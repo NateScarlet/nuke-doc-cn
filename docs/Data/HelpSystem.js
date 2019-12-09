@@ -6,7 +6,7 @@ xmlHelpSystemData += '        <Toolbar EnableCustomLayout=\"true\" Buttons=\"Pri
 xmlHelpSystemData += '            <Script>$(\'&lt;link&gt;\')';
 xmlHelpSystemData += '	.appendTo($(\'head\'))';
 xmlHelpSystemData += '	.attr({type: \'text/css\', rel: \'stylesheet\'})';
-xmlHelpSystemData += '	.attr(\'href\', \'Content/assets/stylesheets/toc_separators.css\');';
+xmlHelpSystemData += '	.attr(\'href\', \'content/assets/stylesheets/toc_separators.css\');';
 xmlHelpSystemData += '';
 xmlHelpSystemData += '//Full Screen Images';
 xmlHelpSystemData += '$(document).ready(function() {';
