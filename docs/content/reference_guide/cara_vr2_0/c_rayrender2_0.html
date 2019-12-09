@@ -1,622 +1,1313 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|[%=System.LinkedTitle%]">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>C_RayRender</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/cara_vr2_0/c_rayrender2_0.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|[%=System.LinkedTitle%]" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   C_RayRender
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/cara_vr2_0/c_rayrender2_0.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>C_RayRender</h1>
-        <p>C_RayRender is based on the vanilla Nuke RayRender node, but it also includes a <b>Camera</b> tab to reconstruct stereographic VR sequences using slit scan techniques. Ray rendering is a 3D to 2D process, so there's some setup involved before you can use C_RayRender.</p>
-        <p>When connected to a Scene node, the C_RayRender node renders all the objects and lights connected to that scene from the perspective of the Camera connected to the <b>cam</b> input (or a default camera if no <b>cam</b> input exists). The rendered 2D image is then passed along to the next node in the compositing tree, and you can use the result as an input to other nodes in the script.</p>
-        <p>C_RayRender is included with CaraVR as an alternative to Nuke's ScanlineRender because it is particularly suited to working with latlong material. C_RayRender can processes full 360 renders relatively quickly, and it includes a number of controls to improve the quality of stereo views towards the poles, when you look up or down wearing a headset.</p>
-        <p>See the CaraVR <a href="https://help.thefoundry.co.uk/cara-vr/#user_guide/workflows/c_rayrender.html" target="_blank">Online Help</a> for more information on C_RayRender.</p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="141px">
-                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="3">
-                                <p rowspan="3">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>cam</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>An optional camera input. The scene is rendered from the perspective of this camera. If the camera input is not connected, C_RayRender uses a default camera positioned at the origin and facing in the negative Z direction.
-
-</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>obj/scn</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Either:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>A Scene node that is connected to the objects and lights you want to render, or</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>a 3D object or MergeGeo node.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>bg</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p>An optional background input. This can be used to composite a background image into the scene and to determine the output resolution. If not used, this defaults to <b>root.format</b> or <b>root.proxy_format</b> defined in the <b>Project Settings</b>.
-
-</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="603px">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="117px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="108px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p>C_RayRender Tab</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Cubic</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Select the filtering algorithm to use when remapping pixels from their original positions to new positions. This allows you to avoid problems with image quality, particularly in high contrast areas of the frame (where highly aliased, or jaggy edges may appear if pixels are not filtered and retain their original values).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Impulse</b> - remapped pixels carry their original values.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Cubic</b> - remapped pixels receive some smoothing.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Keys</b> - remapped pixels receive some smoothing, plus minor sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Simon</b> - remapped pixels receive some smoothing, plus medium sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Rifman</b> - remapped pixels receive some smoothing, plus significant sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mitchell</b> - remapped pixels receive some smoothing, plus blurring to hide pixelation.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Parzen</b> - remapped pixels receive the greatest smoothing of all filters.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Notch</b> - remapped pixels receive flat smoothing (which tends to hide moire patterns).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Lanczos4</b>, <b>Lanczos6</b>, and <b>Sinc4</b> - remapped pixels receive sharpening which can be useful for scaling down. Lanczos4 provides the least sharpening and Sinc4 the most.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>projection mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>projection_mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>render camera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Sets the projection mode:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>perspective</b> - have the camera’s focal length and aperture define the illusion of depth for the objects in front of the camera.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>orthographic</b> - use orthographic projection (projection onto the projection plane using parallel rays).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>spherical</b> - have the entire 360-degree world rendered as a spherical map. You can increase tessellation max to increase the accuracy of object edges as they are warped out of line, but this takes longer to render.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>render camera</b> - use the projection type of the render camera.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>stocastic samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>stochastic_samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the number of samples, per pixel, to use in stochastic estimation (zero is disabled). Lower values result in faster renders, while higher values improve the quality of the final image.</p>
-                                <p>Stochastic sampling is based on Robert L. Cook’s <i>Stochastic Sampling in Computer Graphics</i>, available in <i>ACM Transactions on Graphics</i>, Volume 6, Number 1, January 1996.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>It is recommended for motion blur that the samples control is adjusted. This also provides anti-aliasing by jittering the sample point.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>intersection epsilon</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>triangle_intersection_epsilon</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>0.000035</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Sets the error threshold for the triangle ray intersection calculations.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p>MotionBlur Tab</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>interpolate animation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>interpolate_animation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, interpolate between animation keyframes during the <b>shutter</b> aperture.</p>
-                                <p>When disabled, no interpolation is calculated.</p>
-                                <p>Enabling interpolation can decrease the number of <b>samples</b> keyframes and <b>stocastic samples</b> required to produce motion blur, but may introduce deviation from the motion direction.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the number of keyframes used to reconstruct motion blur during the <b>shutter</b> aperture.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>uniform distribution</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>uniform_distribution</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, use a uniform temporal distribution of scenes to sample. This generates more accurate results for stochastic multisampling.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>shutter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>shutter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>0.5</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Enter the number of frames the shutter stays open when motion blurring. For example, a value of 0.5 corresponds to half a frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>shutter offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>shutteroffset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>start</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>This value controls how the shutter behaves with respect to the current frame value. It has four options:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>centred</b> - center the shutter around the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29,5 to 30,5.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>start</b> - open the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 30 to 31.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>end</b> - close the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29 to 30.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>custom</b> - open the shutter at the time you specify. In the field next to the dropdown, enter a value (in frames) you want to add to the current frame. To open the shutter before the current frame, enter a negative value. For example, a value of - 0.5 would open the shutter half a frame before the current frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>shutter custom offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>shuttercustomoffset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>If the shutter offset parameter is set to custom, this parameter is used to set the time that the shutter opens by adding it to the current frame. Values are in frames, so -0.5 would open the shutter half a frame before the current frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>match ScanlineRender shutter offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>use_scanline_shutter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, assume a <b>sample</b> value of 1 and a <b>shutter offset</b> of 0, unless a custom <b>shutter offset</b> is in use. </p>
-                                <p>When disabled, set the required <b>sample</b> value.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p>AOV Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>output vectors</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>output_shader_vectors</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, all the arbitrary output variables specified are passed into the specified channels.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>remove AOV from beauty pass</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>remove_from_beauty</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, the specified AOV are not included in the output of the node.</p>
-                                <p>When disabled, all specified AOV channels are output.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>surface point</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>AOV_Point</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" rowspan="8">
-                                <p>When output vectors is enabled, these dropdowns split out the various AOV into specific channels for use later in the node tree.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>surface normal</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>AOV_Normal</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>motion vector</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>AOV_Motion</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>solid color</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>AOV_Solid</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>direct diffuse</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>AOV_Direct_Diffuse</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>direct specular</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>AOV_Direct_Specular</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>reflection</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>AOV_Reflection</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>emissive</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>AOV_Emissive</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p>Camera Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Stereo Scan&#160;Enable</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>stereoScan</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, the controls on the <b>Camera</b> tab are enabled, allowing you to scan stereo footage.</p>
-                                <p>When disabled,  the controls on the <b>Camera</b> tab are disabled.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Left View</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>leftView</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Sets the view to use for the left eye in the output.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Right View</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>rightView</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the view to use for the right eye in the output.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Eye Separation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>eyeSeparation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>0.065</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Determines how far apart the two views are, from a viewer's perspective. If you set the <b>Eye Separation</b>, or interpupillary distance (IPD), too low, objects in the scene appear crushed horizontally, but raising it too high can leave holes in the stitch.</p>
-                                <p>The IPD is measured in the same units as the <b>Rig Size</b> control in the upstream C_CameraSolver properties, so adjust it accordingly.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Convergence Distance</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>convergenceDistance</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>100</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the distance to the zero parallax point, where the scene is in focus.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Falloff Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>falloffType</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Cosine</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Determines how pole merging is handled:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>None</b> - no IPD adjustment occurs towards the poles.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Linear</b> - the views are merged gradually from the <b>Start Angle</b> specified toward the pole. Increasing the angle moves the start point toward the poles.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Cosine</b> - the views are merged smoothly toward the poles. Reducing the <b>Separation Falloff</b> shifts the transition in depth towards the poles.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Start Angle</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>separationFalloffStartAngle</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the point at which falloff begins when <b>Falloff Type</b> is set to <b>Linear</b>.</p>
-                                <p>Increasing the value pushes the merge point toward the poles, a value of 90 disables pole merging entirely.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Falloff Exponent</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>separationFalloffExponent</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p> Sets the rate off falloff for the eye separation towards the poles when <b>Falloff Type</b> is set to <b>Cosine</b>.</p>
-                                <p>A value of 1 produces smooth merging toward the poles for the left and right views.</p>
-                                <p>Reducing the value pushes the merge point toward the poles, a value of 0 disables pole merging entirely.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Sample Ray From Camera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>sampleRayFromCamera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, sample rays with respect to the capture radius for a camera rig.</p>
-                                <p>Enable this control to match stereoscopic image stitches generated for a horizontal ring of cameras with a diameter set by the <b>Rig Size</b> control.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>Rig Size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>rigDiameter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>0.1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p>Sets the diameter of the camera rig used to generate a corresponding stereoscopic image stitch, when <b>Sample&#160;Ray From Camera</b> is enabled.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span> The <b>Rig Size</b> diameter should always be greater than the <b>Eye Separation</b> value.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   C_RayRender
+  </h1>
+  <p>
+   C_RayRender 基于香草 Nuke RayRender 节点，但它也包括
+   <b>
+    相机
+   </b>
+   使用狭缝扫描技术重建赤平 VR 序列。光线渲染是一个 3D 到 2D 的过程，所以在使用 C_RayRender 之前，需要进行一些设置。
+  </p>
+  <p>
+   当连接到场景节点时，C_RayRender 节点从连接到场景的摄像机的角度渲染连接到该场景的所有对象和灯光
+   <b>
+    凸轮
+   </b>
+   输入 (或默认相机，如果没有
+   <b>
+    凸轮
+   </b>
+   输入存在)。然后，渲染的 2D 图像将传递到合成树中的下一个节点，您可以将结果用作脚本中其他节点的输入。
+  </p>
+  <p>
+   C_RayRender 包含在 CaraVR 中，作为 Nuke ScanlineRender 的替代产品，因为它特别适合使用 latlong 材料。C_RayRender 可以相对快速地处理完整的 360 渲染，当你戴着耳机向上或向下看时，它包括许多控件来提高朝向杆子的立体视图的质量。
+  </p>
+  <p>
+   看到商队
+   <a href="https://help.thefoundry.co.uk/cara-vr/#user_guide/workflows/c_rayrender.html" target="_blank">
+    在线帮助
+   </a>
+   有关 C_RayRender 的更多信息。
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="141px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="105px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="120px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="436px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="3">
+        <p rowspan="3">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         凸轮
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         一个可选的相机输入。场景是从这个相机的角度渲染的。如果相机输入未连接，C_RayRender 将使用位于原点并面向负 Z 方向的默认相机。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Obj/scn
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         要么:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         连接到要渲染的对象和灯光的场景节点，或
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         3D 对象或 MergeGeo 节点。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         Bg
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p>
+         可选的背景输入。这可以用于将背景图像合成到场景中，并确定输出分辨率。如果不使用，默认为
+         <b>
+          根.格式
+         </b>
+         或
+         <b>
+          Root.proxy_format
+         </b>
+         定义在
+         <b>
+          项目设置
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="603px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="117px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="108px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="364px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         C_RayRender 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         过滤器
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         filter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         立方
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         选择将像素从原始位置重新映射到新位置时要使用的过滤算法。这允许您避免图像质量问题，特别是在帧的高对比度区域 (如果没有过滤像素并保留其原始值，则可能会出现高度锯齿或锯齿边缘)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          冲动
+         </b>
+         -重新映射的像素携带其原始值。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          立方
+         </b>
+         -重新映射的像素接收一些平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          钥匙
+         </b>
+         -重新映射的像素会得到一些平滑，加上轻微的锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          西蒙
+         </b>
+         -重新映射的像素会获得一些平滑，加上中等锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          里夫曼
+         </b>
+         -重新映射的像素获得一些平滑，加上显著的锐化 (如曲线的负-y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          米切尔
+         </b>
+         -重新映射的像素接收一些平滑，加上模糊来隐藏像素化。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          帕森
+         </b>
+         -重新映射的像素接收所有过滤器的最大平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          缺口
+         </b>
+         -重新映射的像素接收平坦平滑 (倾向于隐藏莫尔图案)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          Lanczos4
+         </b>
+         ,
+         <b>
+          Lanczos6
+         </b>
+         ,和
+         <b>
+          Sinc4
+         </b>
+         -重新映射的像素接收锐化，这对于缩小缩放很有用。Lanczos4 提供了最少的锐化和 Sinc4 最多。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         投影模式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Projection_mode
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         渲染相机
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         设置投影模式:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          透视
+         </b>
+         -让相机的焦距和光圈定义相机前面物体的深度错觉。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          正交
+         </b>
+         -使用正交投影 (使用平行光线投影到投影平面上)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          球形
+         </b>
+         -将整个 360 度世界渲染为球形地图。您可以增加 “细分最大值”，以提高对象边在线外扭曲时的精度，但这需要更长的渲染时间。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          渲染相机
+         </b>
+         -使用渲染相机的投影类型。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         储存样本
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         随机样本
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置在随机估计中使用的每个像素的样本数 (零被禁用)。较低的值会导致更快的渲染，而较高的值会提高最终图像的质量。
+        </p>
+        <p>
+         随机抽样是基于罗伯特 · 库克的
+         <i>
+          计算机图形学中的随机抽样
+         </i>
+         ,可在
+         <i>
+          图形上的 ACM 事务
+         </i>
+         ,第六卷，第一，1996年1月。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         建议对运动模糊进行采样控制调整。这也通过抖动采样点来提供抗锯齿。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         交叉口
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Triangle_intersection_epsilon
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         0.000035
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         设置三角射线相交计算的误差阈值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         MotionBlur 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         插值动画
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         插值动画
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用时，在动画关键帧之间插入
+         <b>
+          快门
+         </b>
+         光圈。
+        </p>
+        <p>
+         禁用时，不计算任何插值。
+        </p>
+        <p>
+         启用插值可以减少
+         <b>
+          样品
+         </b>
+         关键帧和
+         <b>
+          储存样本
+         </b>
+         产生运动模糊所需，但可能会引入与运动方向的偏差。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         样品
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         样品
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置关键帧的用于重建运动模糊的
+         <b>
+          快门
+         </b>
+         光圈。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         均匀分布
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Uniform_distribution
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用后，使用场景的统一时间分布进行采样。这为随机多抽样产生更准确的结果。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         快门
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         快门
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         0.5
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         输入运动模糊时快门保持打开的帧数。例如，值 0.5 对应于半帧。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         快门偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Shutteroffset
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         开始
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         此值控制快门相对于当前帧值的行为。它有四个选项:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          集中
+         </b>
+         -将快门围绕当前帧居中。例如，如果将 “快门” 值设置为 1，并且当前帧为 30，则快门将从帧 29,5 保持打开，直到 30,5。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          开始
+         </b>
+         -在当前帧处打开快门。例如，如果将快门值设置为 1，并且当前帧为 30，则快门将从帧 30 保持打开。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          结束
+         </b>
+         -在当前帧处关闭快门。例如，如果将 “快门” 值设置为 1，并且当前帧为 30，则快门将从帧 29 到 30 保持打开状态。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          自定义
+         </b>
+         -在您指定的时间打开快门。在下拉列表旁边的字段中，输入要添加到当前帧中的值 (以帧为单位)。要在当前帧之前打开快门，请输入负值。例如，值为-0.5 将在当前帧之前半帧打开快门。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         快门自定义偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Shuttercustomoffset
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         如果 “快门偏移” 参数设置为 “自定义”，则此参数用于通过将快门添加到当前帧来设置快门打开的时间。值以帧为单位，因此-0.5 将在当前帧之前半帧打开快门。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         匹配 ScanlineRender 快门偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Use_scanline_shutter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用时，假设
+         <b>
+          样品
+         </b>
+         值 1 和 a
+         <b>
+          快门偏移
+         </b>
+         0，除非自定义
+         <b>
+          快门偏移
+         </b>
+         正在使用。
+        </p>
+        <p>
+         禁用时，设置所需的
+         <b>
+          样品
+         </b>
+         价值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         AOV 标签
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         输出向量
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Output_shader_vectors
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用后，所有指定的任意输出变量都将传递到指定的通道中。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         从美容通行证中删除 AOV
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Remove_from_beauty
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用时，指定的 AOV 不包括在节点的输出中。
+        </p>
+        <p>
+         禁用时，将输出所有指定的 AOV 通道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         表面点
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         AOV_Point
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" rowspan="8">
+        <p>
+         启用输出向量后，这些下拉列表将各种 AOV 拆分为特定通道，以便以后在节点树中使用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         表面正常
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         AOV_Normal
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         运动矢量
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         AOV_Motion
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         纯色
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         AOV_Solid
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         直接扩散
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         AOV_Direct_Diffuse
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         直接镜面
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         AOV_Direct_Specular
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         反思
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         AOV_Reflection
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         发射
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         AOV_Emissive
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         相机标签
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         立体声扫描启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         立体扫描
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用时，上的控件
+         <b>
+          相机
+         </b>
+         选项卡已启用，允许您扫描立体声镜头。
+        </p>
+        <p>
+         禁用时，上的控件
+         <b>
+          相机
+         </b>
+         标签被禁用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         左视图
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         左视图
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         设置输出中用于左眼的视图。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         右视图
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         RightView
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         在输出中设置用于右眼的视图。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         眼睛分离
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         眼罩分离
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         0.065
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         从观众的角度确定两个视图的距离。如果你设置
+         <b>
+          眼睛分离
+         </b>
+         ,或者瞳孔间距 (IPD)，太低，场景中的对象显示为水平压碎，但将其抬高得太高会在针脚上留下洞。
+        </p>
+        <p>
+         IPD 的测量单位与
+         <b>
+          钻机尺寸
+         </b>
+         控制上游 C_CameraSolver 属性，因此相应地调整它。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         收敛距离
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         ConvergenceDistance
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         100
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置到零视差点的距离，场景在其中聚焦。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         衰减类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         衰减型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         余弦
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         确定如何处理极点合并:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          没有
+         </b>
+         -没有 IPD 调整发生在两极。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          线性
+         </b>
+         -视图从逐渐合并
+         <b>
+          开始角度
+         </b>
+         向极点指定的。增加角度会将起点向极点移动。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          余弦
+         </b>
+         -视图向两极平滑合并。减少了
+         <b>
+          分离衰减
+         </b>
+         将深度转换转移到极点。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         开始角度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         SeparationFalloffStartAngle
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置衰减开始时的点
+         <b>
+          衰减类型
+         </b>
+         设置为
+         <b>
+          线性
+         </b>
+         .
+        </p>
+        <p>
+         增大该值会将合并点推向极点，值为 90 将完全禁用极点合并。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         衰减指数
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         SeparationFalloffExponent
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         设置眼睛向两极分离时的衰减率
+         <b>
+          衰减类型
+         </b>
+         设置为
+         <b>
+          余弦
+         </b>
+         .
+        </p>
+        <p>
+         值为 1 会产生向左视图和右视图的极点的平滑合并。
+        </p>
+        <p>
+         减小该值会将合并点推向极点，如果值为 0，则完全禁用极点合并。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         来自相机的样本光线
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         SampleRayFromCamera
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用后，根据相机装备的捕获半径对光线进行采样。
+        </p>
+        <p>
+         启用此控件以匹配为水平相机环生成的直径由
+         <b>
+          钻机尺寸
+         </b>
+         控制。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         钻机尺寸
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         RigDiameter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         0.1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p>
+         设置用于生成相应立体图像缝合的相机装配的直径，当
+         <b>
+          来自相机的样本光线
+         </b>
+         已启用。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         的
+         <b>
+          钻机尺寸
+         </b>
+         直径应始终大于
+         <b>
+          眼睛分离
+         </b>
+         价值。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -630,5 +1321,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

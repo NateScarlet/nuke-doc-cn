@@ -1,94 +1,199 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Channels">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Understanding Channels and Layers</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/channels/understanding_channels.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Channels" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   了解通道和层
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/channels/understanding_channels.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Understanding Channels and Layers</h1>
-        <p class="afterHead">At a very basic level, <b>channels</b> in <span class="CustomProduct">Nuke</span> carry image data and <b>layers</b> are containers for these channels, up to the maximum of 1023 channels per script. When elements are rendered out in the OpenEXR format, for example, you can operate on multiple channels from a single image.</p>
-        <table>
-            <col style="width: 100mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/gsg_images/channels_titanic.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997538px;margin-bottom: 1.000074px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The layer name, in this case <b>rgba</b>, <b>depth</b>, or <b>masks</b>,<br />followed by the channel name.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>Channels</h2>
-        <p class="afterHead">Think of a channel as a container that contains image data. Once created or read into your composite, the image data stored in a channel is available downstream in the network until the value is replaced with something else or the channel is removed. The channel may even be “empty” - depending on where you reference it in the compositing network.</p>
-        <h2>Layers</h2>
-        <p class="afterHead">All channels in a script must exist as part of a layer (also called a <span class="_Override" style="font-style: italic;">channel set</span>). You’re probably familiar with the default layer - <span class="_Override" style="font-style: italic;">rgba</span> - which includes the channels with pixel values of red, green, and blue, and also the alpha channel for transparency.</p>
-        <p>All channels in a composite must belong to at least one layer. Some channels, like alpha, may be available in other layers, too. Channel names always include the layer name as a prefix, like this:</p>
-        <p class="cmdline">layer_name.channel_name.</p>
-        <p>By default, every script has a layer called <b>rgba</b>. When you first import an image element, <span class="CustomProduct">Nuke</span> automatically assigns its channels to the rgba layer - that is, the image channels are named <b>rgba.red</b>, <b>rgba.blue</b>, <b>rgba.green</b>, and <b>rgba.alpha</b>.</p>
-        <p>The <b>rgba</b> layer allows for the standard four-channel workflow of most node-based compositing systems. However, you’re not limited to these four channels. You can create new channels and assign them to new layers up to the limit of 1023 channels per script.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   了解通道和层
+  </h1>
+  <p class="afterHead">
+   在一个非常基本的层面上,
+   <b>
+    渠道
+   </b>
+   在
+   <span class="CustomProduct">
+    核武器
+   </span>
+   携带图像数据和
+   <b>
+    层
+   </b>
+   是这些通道的容器，每个脚本最多 1023 个通道。例如，当元素以 OpenEXR 格式呈现时，您可以从单个图像对多个通道进行操作。
+  </p>
+  <table>
+   <col style="width: 100mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/gsg_images/channels_titanic.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997538px;margin-bottom: 1.000074px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      层名称，在这种情况下
+      <b>
+       Rgba
+      </b>
+      ,
+      <b>
+       深度
+      </b>
+      ,或
+      <b>
+       面具
+      </b>
+      ,
+      <br/>
+      后跟频道名称。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   渠道
+  </h2>
+  <p class="afterHead">
+   将通道视为包含图像数据的容器。一旦创建或读入组合，存储在通道中的图像数据在网络下游是可用的，直到该值被其他值替换或通道被删除。频道甚至可能是 “空的” -- 这取决于你在合成网络中引用它的位置。
+  </p>
+  <h2>
+   层
+  </h2>
+  <p class="afterHead">
+   脚本中的所有通道都必须作为层的一部分存在 (也称为
+   <span class="_Override" style="font-style: italic;">
+    频道设置
+   </span>
+   )。你可能熟悉默认层-
+   <span class="_Override" style="font-style: italic;">
+    Rgba
+   </span>
+   -其中包括像素值为红色、绿色和蓝色的通道，以及透明度的 alpha 通道。
+  </p>
+  <p>
+   复合中的所有通道必须至少属于一个层。一些通道，如 alpha，也可能在其他层中可用。通道名称始终包含层名称作为前缀，如下所示:
+  </p>
+  <p class="cmdline">
+   Layer_name.channel_name。
+  </p>
+  <p>
+   默认情况下，每个脚本都有一个名为
+   <b>
+    Rgba
+   </b>
+   。当您第一次导入图像元素时,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   自动将其通道分配给 rgba 层 -- 也就是说，图像通道被命名为
+   <b>
+    Rgba.red
+   </b>
+   ,
+   <b>
+    Rgba.blue
+   </b>
+   ,
+   <b>
+    Rgba.green
+   </b>
+   ,和
+   <b>
+    Rgba.alpha
+   </b>
+   .
+  </p>
+  <p>
+   的
+   <b>
+    Rgba
+   </b>
+   层允许大多数基于节点的合成系统的标准四通道工作流。然而，你并不局限于这四个渠道。您可以创建新的频道，并将它们分配给新的层，每个脚本最多只能有 1023 个频道。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -102,5 +207,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

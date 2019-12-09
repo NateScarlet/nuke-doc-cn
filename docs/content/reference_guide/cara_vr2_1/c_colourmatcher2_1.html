@@ -1,583 +1,1072 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-conditions="Custom.ReviewExclude" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|[%=System.LinkedTitle%]">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>C_ColourMatcher</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/cara_vr2_1/c_colourmatcher2_1.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-conditions="Custom.ReviewExclude" data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|[%=System.LinkedTitle%]" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   C_ColourMatcher
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/cara_vr2_1/c_colourmatcher2_1.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="sectionTitle">C_ColourMatcher</h1>
-        <p>C_ColourMatcher aims to produce a global gain-based color correction across all the views in a rig to balance out differences in exposure and white balance. It solves across all cameras to find the minimum required gain changes to ensure color similarity.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>C_ColourMatcher does not compensate for color shifts not resulting from exposure- or gain-type differences. It also does not deal with gamma- or offset-type differences.</p>
-        <p>Color matching relies on solve data and should be performed before stitching the solved camera output together, so ideally, place C_ColourMatcher between C_CameraSolver and C_Stitcher.</p>
-        <h1>Inputs and Controls</h1>
-        <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;margin-left: auto;margin-right: auto;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="141px">
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Connection Type</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Connection Name</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Function</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>Input</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>Source</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p>A preview sequence from C_CameraSolver to color correct. </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;margin-left: auto;margin-right: auto;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="603px">
-            <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="117px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="108px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Control (UI)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Knob (Scripting)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Default Value</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                        <p class="CellHeading">Function</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>C_ColourMatcher Tab</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Local GPU</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>gpuName</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Displays the GPU used for rendering when <b>Use GPU if available</b> is enabled. Local GPU displays <b>Not available</b> when:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Use CPU</b> is selected as the GPU device in the <b>Preferences</b>.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no suitable GPU was found on your system.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>it was not possible to create a context for processing on the selected GPU, such as when there is not enough free memory available on the GPU.</p>
-                        <p>You can select a different GPU device, if available, by navigating to the <b>Preferences</b> and selecting an alternative from the <b>GPU Device</b> dropdown.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Selecting a different GPU requires you to restart Nuke before the change takes effect.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Use GPU if available</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>useGPUIfAvailable</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>enabled</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>When enabled, rendering occurs on the <b>Local GPU</b> specified, if available, rather than the CPU. The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.</p>
-                        <p><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Enabling this option with no local GPU allows the script to run on the GPU whenever the script is opened on a machine that does have a GPU available. <br />You should also select this if you wish to render from the command line with the <b>--gpu</b> option.</p>
-                        <p class="CellBody">GPU processing also requires certain NVIDIA GPUs and CUDA drivers, or in the case of late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5 running 10.9.3 'Mavericks', or later, certain AMD GPUs and drivers. For more information on the minimum requirements, please refer to the Nuke Release Notes available in <b>Help</b> &gt; <b>Release Notes</b>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
-                        <p>Input</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Projection</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>inputProjectionType</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Default (source)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Sets the input projection type:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Default (source)</b> - the source input is connected to a C_CameraSolver and uses the images and metadata to color correct the output.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Latlong</b> - the source input is connected to a panorama that has already been converted to latlong space. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
-                        <p>Keying</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
-                        <p>Match Keys</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Key number</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>1</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Displays the total number of stitch keyframes added to the sequence.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Key count</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>1</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Displays the current stitch keyframe.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>
-                            <img src="../../assets/images/rg_images/icon_roto_key_back_26x25.png" style="width: 26;height: 25;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Click to jump to the previous keyframe.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>
-                            <img src="../../assets/images/rg_images/icon_roto_key_fward_26x24.png" style="width: 26;height: 24;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Click to jump to the nextkeyframe.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>
-                            <img src="../../assets/images/rg_images/icon_keys1_26x23.png" style="width: 26;height: 23;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Click to add a keyframe at the current frame in the sequence.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>
-                            <img src="../../assets/images/rg_images/icon_keys2_26x23.png" style="width: 26;height: 23;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Click to delete the keyframe at the current frame in the sequence.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Step</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>keyStep</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>500</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Sets the interval between keyframes for the <b>Key All</b> button.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Key All</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>addAllAnalysisKeys</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Click to add keyframes to the sequence at intervals set by the <b>Step</b> control.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Delete All</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>deleteAllAnalysisKeys</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Click to delete all keyframes from the sequence.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Import</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>importAllKeys</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Click to import existing keyframes automatically from C_CameraSolver, C_ColourMatcher, or C_Stitcher nodes in the current script.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Importing keyframes deletes any existing keyframes.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
-                        <p>Analysis</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Match</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>matchType</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Exposure</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Sets the type of match to calculate:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Exposure</b> - calculates exposure differences and corrects across all cameras.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Exposure and Colour</b> - calculates exposure and color differences and corrects across all cameras.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Analyse</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>solveGainCompensation</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Click to analyze the selected match type across all cameras.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Reset</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>deleteGainCompensation</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Click to delete the calculated analysis.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
-                        <p>Output</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Gains</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>gainsOutput</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>1</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Displays the gains per view once the analysis pass is complete.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Exposure</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>globalExposure</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>0</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Adjusts the global exposure across all cameras.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Format</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>outputFormat</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>dependent on Compositing environment <b>Project Settings</b></p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Sets the output resolution passed down the node tree.</p>
-                        <p>Typically, you would set the format globally in the <b>Project Settings</b>, but this control overrides the global setting.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Converge</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>convergenceDepth</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>10</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Sets the depth at which the cameras overlap, allowing you to bring particular areas in the scene into focus to check color matches.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Auto</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>autoConvergenceDepth</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>enabled</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>When enabled, the <b>Converge</b> control is set automatically by upstream metadata.</p>
-                        <p>When disabled, you can use the <b>Converge</b> control to manually adjust what convergence depth is in focus.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
-                        <p>Export</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Export menu</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>exportMenu</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>STMaps (split)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Sets the export nodes to add to the Node Graph:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Grades (split)</b> - creates a single Grade and Exposure node containing the calculated exposure and color differences.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Grades (separate)</b> - creates separate Grade and Exposure nodes for each view containing the calculated exposure and color differences.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>OCIO CDL Transforms (split)</b> - creates a single OCIOCDLTransform and Exposure node containing the calculated exposure and color differences.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>OCIO CDL Transforms (separate)</b> - creates separate OCIOCDLTransform and Exposure nodes for each view containing the calculated exposure and color differences.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Create</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>exportButton</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>N/A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Click to create the export specified in the export dropdown.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
-                        <p>Python Tab (These controls are for Python callbacks and can be used to have Python functions automatically called when various events happen in Nuke.)
-
-</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>before render</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>beforeRender</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>none</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>These functions run prior to starting rendering in execute(). If they throw an exception, the render aborts.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>before each frame</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>beforeFrameRender</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>none</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>These functions run prior to starting rendering of each individual frame. If they throw an exception, the render aborts.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>after each frame</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>afterFrameRender</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>none</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>These functions run after each frame is finished rendering. They are not called if the render aborts. If they throw an exception, the render aborts.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>after render</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>afterRender</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>none</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>These functions run after rendering of all frames is finished. If they throw an error, the render aborts.</p>
-                    </td>
-                </tr>
-                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>render progress</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>renderProgress</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>none</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p>These functions run during rendering to determine progress or failure.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="sectionTitle">
+   C_ColourMatcher
+  </h1>
+  <p>
+   C_ColourMatcher 旨在在钻机中的所有视图中产生基于全局增益的颜色校正，以平衡曝光和白平衡的差异。它解决了所有相机找到所需的最小增益变化，以确保颜色相似性。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   C_ColourMatcher 不能补偿不是由曝光或增益类型差异引起的颜色变化。它也不处理伽马或偏移类型的差异。
+  </p>
+  <p>
+   颜色匹配依赖于解决数据，应该在将解决的相机输出拼接在一起之前执行，因此理想情况下，在 C_CameraSolver 和 C_Stitcher 之间放置 C_ColourMatcher。
+  </p>
+  <h1>
+   输入和控制
+  </h1>
+  <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="141px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;margin-left: auto;margin-right: auto;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       连接类型
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       连接名称
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       函数
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       输入
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       源
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p>
+       从 C_CameraSolver 到颜色正确的预览序列。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="603px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;margin-left: auto;margin-right: auto;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="117px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="108px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="364px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       控制 (UI)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       旋钮 (脚本)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       默认值
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+      <p class="CellHeading">
+       函数
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+      <p>
+       C_ColourMatcher 选项卡
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       本地 GPU
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       GpuName
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       显示用于渲染的 GPU
+       <b>
+        使用 GPU (如果可用)
+       </b>
+       已启用。本地 GPU 显示
+       <b>
+        不可用
+       </b>
+       当:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        使用 CPU
+       </b>
+       被选中作为 GPU 设备
+       <b>
+        偏好
+       </b>
+       .
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       在您的系统上找不到合适的 GPU。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       无法在选定的 GPU 上创建处理上下文，例如当 GPU 上没有足够的可用内存时。
+      </p>
+      <p>
+       如果可用，您可以通过导航到
+       <b>
+        偏好
+       </b>
+       并从中选择一个替代方案
+       <b>
+        GPU 设备
+       </b>
+       下拉列表。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       选择不同的 GPU 需要您在更改生效之前重新启动 Nuke。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       使用 GPU (如果可用)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       UseGPUIfAvailable
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       已启用
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       启用时，渲染发生在
+       <b>
+        本地 GPU
+       </b>
+       指定 (如果可用)，而不是 CPU。GPU 和 CPU 之间的输出在 NVIDIA GPU 上是相同的，但是使用 GPU 可以显著提高处理性能。
+      </p>
+      <p>
+       <span class="CustomProduct">
+        核武器
+       </span>
+       在 2013年底的 Mac Pro 6,1 和 2015年中的 Mac Pro 11,5 上支持 AMD gpu，运行 OS X 10.9.3 “mavericks” 或更高版本。虽然，在某些情况下，GPU 和 CPU 之间的比特级相等保持不变，但对于某些操作，这种配置可能存在精度限制。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       在没有本地 GPU 的情况下启用此选项允许脚本在 GPU 上运行，只要脚本在具有 GPU 可用的机器上打开。
+       <br/>
+       你应该选择这个，如果你想使从命令行的
+       <b>
+        -- Gpu
+       </b>
+       选项。
+      </p>
+      <p class="CellBody">
+       GPU 处理还需要某些 NVIDIA GPU 和 CUDA 驱动程序，或者在 2013年底运行 10.9.3 “mavericks” 或更高版本的 Mac Pro 6,1 和 2015年中 Mac Pro 11,5 的情况下，某些 AMD GPU 和驱动程序。有关最低要求的更多信息，请参考
+       <b>
+        帮助
+       </b>
+       &gt;
+       <b>
+        发行说明
+       </b>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+      <p>
+       输入
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       投影
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       InputProjectionType
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       默认 (源)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       设置输入投影类型:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        默认 (源)
+       </b>
+       -源输入连接到 C_CameraSolver，并使用图像和元数据对输出进行颜色校正。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        Latlong
+       </b>
+       -源输入连接到已经转换为 latlong 空间的全景。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+      <p>
+       键控
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+      <p>
+       匹配键
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       密钥编号
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       1
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       显示添加到序列中的缝合关键帧的总数。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       密钥计数
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       1
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       显示当前缝合关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       <img src="../../assets/images/rg_images/icon_roto_key_back_26x25.png" style="width: 26;height: 25;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       单击可跳转到上一个关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       <img src="../../assets/images/rg_images/icon_roto_key_fward_26x24.png" style="width: 26;height: 24;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       单击以跳转到下一个关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       <img src="../../assets/images/rg_images/icon_keys1_26x23.png" style="width: 26;height: 23;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       单击以在序列的当前帧处添加关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       <img src="../../assets/images/rg_images/icon_keys2_26x23.png" style="width: 26;height: 23;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       单击以删除序列中当前帧处的关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       步骤
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       KeyStep
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       500
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       设置关键帧之间的间隔
+       <b>
+        全部关键
+       </b>
+       按钮。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       全部关键
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       AddAllAnalysisKeys
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       单击以按设置的间隔将关键帧添加到序列中
+       <b>
+        步骤
+       </b>
+       控制。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       全部删除
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       DeleteAllAnalysisKeys
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       单击可从序列中删除所有关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       导入
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       ImportAllKeys
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       单击可从当前脚本中的 C_CameraSolver 、 C_ColourMatcher 或 C_Stitcher 节点自动导入现有关键帧。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       导入关键帧将删除任何现有关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+      <p>
+       分析
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       匹配
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       匹配类型
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       曝光
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       设置要计算的匹配类型:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        曝光
+       </b>
+       -计算曝光差异并校正所有相机。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        曝光和颜色
+       </b>
+       -计算曝光和颜色差异，并纠正所有相机。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       分析
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       SolveGainCompensation
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       单击以分析所有摄影机中的选定匹配类型。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       重置
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       删除补偿
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       单击删除计算分析。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+      <p>
+       输出
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       收益
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       增益输出
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       1
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       分析过程完成后，显示每个视图的增益。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       曝光
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       全球曝光
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       0
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       调整所有相机的全局曝光。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       格式
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       输出格式
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       依赖于合成环境
+       <b>
+        项目设置
+       </b>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       设置节点树向下传递的输出分辨率。
+      </p>
+      <p>
+       通常，您可以在
+       <b>
+        项目设置
+       </b>
+       ,但此控件覆盖全局设置。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       收敛
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       ConvergenceDepth
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       10
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       设置摄像机重叠的深度，允许您将场景中的特定区域聚焦以检查颜色匹配。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       自动
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       AutoConvergenceDepth
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       已启用
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       启用时,
+       <b>
+        收敛
+       </b>
+       控件由上游元数据自动设置。
+      </p>
+      <p>
+       禁用时，可以使用
+       <b>
+        收敛
+       </b>
+       控件手动调整焦点中的收敛深度。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+      <p>
+       出口
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       导出菜单
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       ExportMenu
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       STMaps (分割)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       设置要添加到节点图中的导出节点:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        等级 (分割)
+       </b>
+       -创建包含计算曝光和颜色差异的单个等级和曝光节点。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        成绩 (单独)
+       </b>
+       -为包含计算曝光和颜色差异的每个视图创建单独的等级和曝光节点。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        OCIO CDL 变换 (分割)
+       </b>
+       -创建包含计算曝光和颜色差异的单个 OCIOCDLTransform 和曝光节点。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        OCIO CDL 变换 (单独)
+       </b>
+       -为包含计算曝光和颜色差异的每个视图创建单独的 OCIOCDLTransform 和曝光节点。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       创建
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       ExportButton
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       N/A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       单击以创建在导出下拉列表中指定的导出。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+      <p>
+       Python Tab (这些控件用于 Python 回调，可用于在 Nuke 中发生各种事件时自动调用 Python 函数。)
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       渲染前
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       BeforeRender
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       没有
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       这些函数在 execute () 中开始呈现之前运行。如果它们抛出异常，渲染将中止。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       在每帧之前
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       BeforeFrameRender
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       没有
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       这些函数在开始渲染每个帧之前运行。如果它们抛出异常，渲染将中止。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       每帧后
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       AfterFrameRender
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       没有
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       这些函数在每个帧完成渲染后运行。如果渲染中止，则不会调用它们。如果它们抛出异常，渲染将中止。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       渲染后
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       AfterRender
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       没有
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       这些函数在所有帧的渲染完成后运行。如果它们抛出错误，渲染将中止。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       渲染进度
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       渲染进度
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       没有
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p>
+       这些函数在渲染期间运行，以确定进度或失败。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -591,5 +1080,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

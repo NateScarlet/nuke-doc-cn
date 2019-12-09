@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Running Python During Startup</title>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   启动期间运行 Python
+  </title>
+  <script>
+   /* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -13,69 +17,326 @@
 			ga('create', 'UA-7716777-9', 'thefoundry.co.uk');
 			ga('send', 'pageview');
 
-		/* ]]> */</script>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../resources/stylesheets/load.js">
-        </script>
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-    </head>
-    <body>
-        <h2><a name="pythonapi_661556485_1012145"></a><a name="pythonapi_661556485_47891"></a>Running Python During Startup</h2>
-        <p>On startup, <span class="CustomProduct">Nuke Studio</span> scans various directories for Python scripts that customize the behavior of the application. These scripts can be downloaded from online resources and placed in specific locations on disk, depending on the platform you’re using.</p>
-        <p>If you’re familiar with Python scripting, you can place custom startup scripts in the same locations, though bear in mind that you should take care as mistakes can produce performance issues.</p>
-        <p>Some example scripts are included in the application package in the following directories:</p>
-        <p class="NoteBullets"><b>On Mac: </b>
-        </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>/Applications/<span class="CustomProduct">Nuke Studio</span><span class="CustomVersion Number (Long)">9.0v1</span>/<span class="CustomProduct">Nuke Studio</span><span class="CustomVersion Number (Long)">9.0v1</span>.app/Contents/Plugins/site-packages/nuke/examples/</p>
-        <p class="NoteBullets"><b>On Linux:</b>
-        </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>/usr/local/<span class="CustomProduct">Nuke Studio</span><span class="CustomVersion Number (Long)">9.0v1</span>/Plugins/site-packages/nuke/examples/</p>
-        <p class="NoteBullets"><b>On Windows:</b>
-        </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>drive letter:\Program Files\The Foundry\Hiero<span class="CustomVersion Number (Long)">9.0v1</span>\plugins\site-packages\nuke\examples</p>
-        <p>At startup, <span class="CustomProduct">Nuke Studio</span> searchs <span class="_Override" style="font-weight: bold;">&lt;path&gt;/Python/Startup</span> and <span class="_Override" style="font-weight: bold;">&lt;path&gt;/Python/StartupUI</span> for any Python <span class="_Override" style="font-weight: bold;">.py</span> modules or packages containing <span class="_Override" style="font-weight: bold;">__init__.py</span>. Scanning is done in two passes - all the Startup folders are searched and then all the StartupUI folders.</p>
-        <p>You can also add your own Startup folders, which are scanned after the standard paths, by creating a Python file pointing to the custom location. For example:</p>
-        <p class="cmdline">import hiero.core</p>
-        <p class="cmdline">hiero.core.addPluginPath("/myCustomPlugins") </p>
-        <p>Searches <b>/myCustomPlugins/Python/Startup</b> after the standard paths.</p>
-        <p>Each package or module discovered is imported and added to the built-in package <span class="_Override" style="font-weight: bold;">hiero.plugins</span>.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Python startup scripts are imported in alphabetical order so you can force ordering if necessary.</p>
-        <p><a name="pythonapi_661556485_71770"></a>The <span class="_Override" style="font-weight: bold;">&lt;path&gt;</span> varies by platform as follows:</p>
-        <h4><a name="pythonapi_661556485_1012230"></a><a name="pythonapi_661556485_36784"></a><a name="Mac_OS_X"></a>Mac OS X</h4>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>/Applications/<span class="CustomProduct">Nuke Studio</span><span class="CustomVersion Number (Long)">9.0v1</span>/<span class="CustomProduct">Nuke Studio</span><span class="CustomVersion Number (Long)">9.0v1</span>.app/Contents/Plugins</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>/Library/Application Support/TheFoundry/<span class="CustomProduct">Nuke Studio</span></p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>~/Library/Application Support/TheFoundry/<span class="CustomProduct">Nuke Studio</span></p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>~/.nuke</p>
-        <h4><a name="pythonapi_661556485_1012266"></a><a name="pythonapi_661556485_59531"></a><a name="Linux"></a>Linux</h4>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>/usr/local/<span class="CustomProduct">Nuke Studio</span><span class="CustomVersion Number (Long)">9.0v1</span>/Plugins</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>~/.nuke</p>
-        <h4><a name="pythonapi_661556485_1012282"></a><a name="pythonapi_661556485_48693"></a><a name="Windows"></a>Windows</h4>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>drive letter:\Program Files\<span class="CustomProduct">Nuke Studio</span>\plugins\nukescripts</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>drive letter:\Program Files (x86)\<span class="CustomProduct">Nuke Studio</span>\plugins\nukescripts</p>
-        <p>You can specify any number of user-defined paths using the environment variable HIERO_PLUGIN_PATH, separating them with <span class="_Override" style="font-weight: bold;">:</span> just like the standard unix PATH environment variable and Nuke's NUKE_PATH. See <a class="noPage MCXref xref xrefnoPage" href="setting_env_vars.html#pythonapi_661556485_1011609"><span style="color: 00B4E0;" class="mcFormatColor">Setting Environment Variables</span></a> for more information.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;margin-left: auto;margin-right: auto;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>&#160;</td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+		/* ]]> */
+  </script>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../resources/stylesheets/load.js">
+  </script>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+ </head>
+ <body>
+  <h2>
+   <a name="pythonapi_661556485_1012145">
+   </a>
+   <a name="pythonapi_661556485_47891">
+   </a>
+   启动期间运行 Python
+  </h2>
+  <p>
+   在启动时,
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   扫描各种目录，寻找自定义应用程序行为的 Python 脚本。这些脚本可以从在线资源下载并放置在磁盘上的特定位置，具体取决于您使用的平台。
+  </p>
+  <p>
+   如果您熟悉 Python 脚本，您可以将自定义启动脚本放在相同的位置，但请记住，您应该小心，因为错误会产生性能问题。
+  </p>
+  <p>
+   以下目录中的应用程序包中包含一些示例脚本:
+  </p>
+  <p class="NoteBullets">
+   <b>
+    在 Mac 上:
+   </b>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   /应用程序/
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   /
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   。应用程序/内容/插件/网站-包/核武器/示例/
+  </p>
+  <p class="NoteBullets">
+   <b>
+    在 Linux 上:
+   </b>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   /Usr/本地/
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   /Plugins/site-packages/nuke/examples/
+  </p>
+  <p class="NoteBullets">
+   <b>
+    在 Windows 上:
+   </b>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   驱动器号: \ 程序文件 \ 铸造 \ Hiero
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   \ Plugins \ site-packages \ nuke \ 示例
+  </p>
+  <p>
+   在启动时,
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   搜索
+   <span class="_Override" style="font-weight: bold;">
+    &lt;Path&gt;/Python/Startup
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    &lt;Path&gt;/Python/StartupUI
+   </span>
+   对于任何 Python
+   <span class="_Override" style="font-weight: bold;">
+    。Py
+   </span>
+   模块或包件
+   <span class="_Override" style="font-weight: bold;">
+    _ _ Init _ _.py
+   </span>
+   。扫描分两次完成 -- 搜索所有启动文件夹，然后搜索所有启动文件夹。
+  </p>
+  <p>
+   您还可以通过创建指向自定义位置的 Python 文件来添加自己的启动文件夹，这些文件夹在标准路径之后进行扫描。例如:
+  </p>
+  <p class="cmdline">
+   导入 hiero.core
+  </p>
+  <p class="cmdline">
+   Hiero.core.addPluginPath (“/mycustoplugins”)
+  </p>
+  <p>
+   搜索
+   <b>
+    /Mycustoplugins/Python/Startup
+   </b>
+   在标准路径之后。
+  </p>
+  <p>
+   发现的每个包或模块都被导入并添加到内置包中
+   <span class="_Override" style="font-weight: bold;">
+    Hiero.plugins
+   </span>
+   .
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   Python 启动脚本按字母顺序导入，因此如果需要，您可以强制排序。
+  </p>
+  <p>
+   <a name="pythonapi_661556485_71770">
+   </a>
+   的
+   <span class="_Override" style="font-weight: bold;">
+    &lt;路径&gt;
+   </span>
+   不同平台的差异如下:
+  </p>
+  <h4>
+   <a name="pythonapi_661556485_1012230">
+   </a>
+   <a name="pythonapi_661556485_36784">
+   </a>
+   <a name="Mac_OS_X">
+   </a>
+   Mac OS X
+  </h4>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   /应用程序/
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   /
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   。应用程序/内容/插件
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   /图书馆/应用支持/铸造/
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   ~/图书馆/应用支持/铸造/
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   ~/。核武器
+  </p>
+  <h4>
+   <a name="pythonapi_661556485_1012266">
+   </a>
+   <a name="pythonapi_661556485_59531">
+   </a>
+   <a name="Linux">
+   </a>
+   Linux
+  </h4>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   /Usr/本地/
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   <span class="CustomVersion Number (Long)">
+    9.0v1
+   </span>
+   /插件
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   ~/.nuke
+  </p>
+  <h4>
+   <a name="pythonapi_661556485_1012282">
+   </a>
+   <a name="pythonapi_661556485_48693">
+   </a>
+   <a name="Windows">
+   </a>
+   窗户
+  </h4>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   驱动器号: \ 程序文件 \
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   \ Plugins \ nukescripts
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   驱动器号: \ 程序文件 (x86) \
+   <span class="CustomProduct">
+    核武器工作室
+   </span>
+   \ Plugins \ nukescripts
+  </p>
+  <p>
+   可以使用环境变量 HIERO_PLUGIN_PATH 指定任意数量的用户定义路径，并使用
+   <span class="_Override" style="font-weight: bold;">
+    :
+   </span>
+   就像标准的 unix 路径环境变量和 Nuke 的 NUKE_PATH 一样。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="setting_env_vars.html#pythonapi_661556485_1011609">
+    <span class="mcFormatColor" style="color: 00B4E0;">
+     设置环境变量
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;margin-left: auto;margin-right: auto;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
 </html>

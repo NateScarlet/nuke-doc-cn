@@ -1,220 +1,472 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Keying with ChromaKeyer">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Despilling and Color Replacement</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/keying_with_chromakeyer/despill_controls.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Keying with ChromaKeyer" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   绝望和颜色替换
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/keying_with_chromakeyer/despill_controls.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Despilling and Color Replacement</h1>
-        <p>Although ChromaKeyer automatically despills the matte when you select a screen color, you may find that you can improve the matte by manually despilling the key using a <b>despill bias</b> or by replacing color at the edges of the matte.</p>
-        <h2>Custom Despilling</h2>
-        <p>The <b>despill bias</b> allows you to specify a color from the image, separate from the <b>alpha bias</b>, to improve the overall despill for the matte. Typically, you should pick skin tones or hair colors for the <b>despill bias</b>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Enable <b>custom despill bias</b> to allow you to use the <b>despill bias</b> controls.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click the color swatch next to <span class="_Override" style="font-weight: bold;">despill bias</span> to activate the eye dropper.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;"><span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Shift</span>+click and drag a rectangular area over the color you want to replace the highlighted pixels in the Viewer. This averages the pixels in the area selected to produce a better result.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>
-                            <img src="../../assets/images/ug_images/chromakey20_264x189.png" class="cm07" style="width: 264;height: 189;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <img src="../../assets/images/ug_images/chromakey21_264x189.png" class="cm07" style="width: 264;height: 189;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p style="text-align: center;">Blue screen pixels present in a default matte.</p>
-                    </td>
-                    <td>
-                        <p style="text-align: center;">Selecting the hair color despills the blue pixels, producing a better matte.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>Color Replacement</h2>
-        <p>Improving a matte by adjusting the alpha channel can remove the wrong amount of screen color from the pixels where transparency has changed. The <b>replace</b> controls instruct ChromaKeyer how to deal with these pixels. The <span class="_Override" style="font-weight: bold;">replace mode</span> controls which pixels inherit the <b>replace color</b>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the ChromaKeyer <b>Properties</b> panel, select the required replace mode using the dropdown:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>ignore</b> - the despilled image is left untouched if the alpha is modified. This is the default operation.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>edge hard color</b> - the despilled image has a corresponding amount of the <b>replace color</b> added for any increase in alpha.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>edge linear color</b> - the despilled image has a graded amount of the <b>replace color</b>, controled by a linear curve, added for any increase in alpha. Pixels closer to the background have more background bias and pixels closer to the foreground have more foreground bias.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>edge soft color</b> - the despilled image has a corresponding amount of the <b>replace color</b> added for any increase in alpha, however, it attempts to modulate the luminance of the resulting pixel so that it matches the original pixel. This gives a more subtle result than the <b>edge hard color</b> option.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click the color swatch next to <span class="_Override" style="font-weight: bold;">replace color</span> to activate the eye dropper.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;"><span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Shift</span>+click and drag a rectangular area over the color you want to replace the highlighted pixels in the Viewer. This averages the pixels in the selected area to produce a better result.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can enhance the despill effect by enabling <b>add-in matte fix</b> to also apply the replace color to areas eroded or dilated by the <b>white point</b> and <b>black point</b> controls.</p>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/chromakey18_264x189.png" class="cm07" style="width: 264;height: 189;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <img src="../../assets/images/ug_images/chromakey19_264x189.png" class="cm07" style="width: 264;height: 189;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p style="text-align: center;">Image with <b>edge soft color</b> highlighted.</p>
-                    </td>
-                    <td>
-                        <p style="text-align: center;">Highlighted pixels replaced by the color picked from the Viewer.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Use the <b>replace amount</b> slider to control how much of the <b>replace color</b> is applied.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Disable the <b>premultiply</b> control if you don't want the output premultiplied by the alpha channel.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   绝望和颜色替换
+  </h1>
+  <p>
+   虽然 ChromaKeyer 在选择屏幕颜色时会自动消除哑光，但您可能会发现可以通过使用
+   <b>
+    绝望的偏见
+   </b>
+   或者通过替换哑光边缘的颜色。
+  </p>
+  <h2>
+   定制绝望
+  </h2>
+  <p>
+   的
+   <b>
+    绝望的偏见
+   </b>
+   允许您从图像中指定颜色，与
+   <b>
+    阿尔法偏倚
+   </b>
+   ,以改善对哑光的整体绝望。通常，你应该选择肤色或头发颜色
+   <b>
+    绝望的偏见
+   </b>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     启用
+     <b>
+      定制绝望偏见
+     </b>
+     允许您使用
+     <b>
+      绝望的偏见
+     </b>
+     控制。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     单击旁边的色样
+     <span class="_Override" style="font-weight: bold;">
+      绝望的偏见
+     </span>
+     激活滴管。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     <span class="_Override" style="font-weight: bold;">
+      Ctrl
+     </span>
+     /
+     <span class="_Override" style="font-weight: bold;">
+      Cmd
+     </span>
+     +
+     <span class="_Override" style="font-weight: bold;">
+      转变
+     </span>
+     + 单击并在要替换查看器中突出显示的像素的颜色上拖动一个矩形区域。这将平均选定区域中的像素，以产生更好的结果。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+       <img class="cm07" src="../../assets/images/ug_images/chromakey20_264x189.png" style="width: 264;height: 189;"/>
+      </p>
+     </td>
+     <td>
+      <p>
+       <img class="cm07" src="../../assets/images/ug_images/chromakey21_264x189.png" style="width: 264;height: 189;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <p style="text-align: center;">
+       默认遮罩中的蓝屏像素。
+      </p>
+     </td>
+     <td>
+      <p style="text-align: center;">
+       选择头发颜色会忽略蓝色像素，产生更好的哑光。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   颜色替换
+  </h2>
+  <p>
+   通过调整 alpha 通道来改善遮罩，可以从透明度发生变化的像素中去除错误数量的屏幕颜色。的
+   <b>
+    替换
+   </b>
+   控制指示 ChromaKeyer 如何处理这些像素。的
+   <span class="_Override" style="font-weight: bold;">
+    替换模式
+   </span>
+   控制哪些像素继承
+   <b>
+    替换颜色
+   </b>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 ChromaKeyer
+     <b>
+      属性
+     </b>
+     面板中，使用下拉菜单选择所需的替换模式:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    忽略
+   </b>
+   -如果 alpha 被修改，鄙视图像将保持不变。这是默认操作。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    边缘硬颜色
+   </b>
+   -被鄙视的图像有相应数量的
+   <b>
+    替换颜色
+   </b>
+   增加阿尔法的任何增加。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    边缘线性颜色
+   </b>
+   -令人沮丧的图像有分级的数量
+   <b>
+    替换颜色
+   </b>
+   ,由线性曲线控制，为 alpha 的任何增加而添加。靠近背景的像素有更多的背景偏差，靠近前景的像素有更多的前景偏差。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    边缘柔和的颜色
+   </b>
+   -被鄙视的图像有相应数量的
+   <b>
+    替换颜色
+   </b>
+   然而，对于 alpha 的任何增加，它会尝试调节结果像素的亮度，使其与原始像素相匹配。这给出了一个比
+   <b>
+    边缘硬颜色
+   </b>
+   选项。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     单击旁边的色样
+     <span class="_Override" style="font-weight: bold;">
+      替换颜色
+     </span>
+     激活滴管。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     <span class="_Override" style="font-weight: bold;">
+      Ctrl
+     </span>
+     /
+     <span class="_Override" style="font-weight: bold;">
+      Cmd
+     </span>
+     +
+     <span class="_Override" style="font-weight: bold;">
+      转变
+     </span>
+     + 单击并在要替换查看器中突出显示的像素的颜色上拖动一个矩形区域。这将平均选定区域中的像素，以产生更好的结果。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   你可以通过启用来增强绝望效果
+   <b>
+    外接程序磨砂修复
+   </b>
+   也可以将替换颜色应用于被腐蚀或扩张的区域
+   <b>
+    白点
+   </b>
+   和
+   <b>
+    黑点
+   </b>
+   控制。
+  </p>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img class="cm07" src="../../assets/images/ug_images/chromakey18_264x189.png" style="width: 264;height: 189;"/>
+      </p>
+     </td>
+     <td>
+      <p>
+       <img class="cm07" src="../../assets/images/ug_images/chromakey19_264x189.png" style="width: 264;height: 189;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <p style="text-align: center;">
+       图像与
+       <b>
+        边缘柔和的颜色
+       </b>
+       突出显示。
+      </p>
+     </td>
+     <td>
+      <p style="text-align: center;">
+       突出显示的像素被从查看器中选择的颜色替换。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     使用
+     <b>
+      替换金额
+     </b>
+     滑块来控制有多少
+     <b>
+      替换颜色
+     </b>
+     应用。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     禁用
+     <b>
+      预乘
+     </b>
+     如果不希望输出被 alpha 通道预乘，请控制。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -228,5 +480,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

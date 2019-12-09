@@ -1,136 +1,205 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Retiming and Motion Blur">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>VectorGenerator</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/kronos_motionblur/vectorgenerator.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Retiming and Motion Blur" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   矢量发生器
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/kronos_motionblur/vectorgenerator.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>VectorGenerator</h1>
-        <p class="afterHead">VectorGenerator allows you to produce images containing <a name="kanchor127"></a>motion vector fields. A vector field for an image in a sequence has the same dimensions as the image, but contains an (x,y) offset per pixel. These offsets show how to warp a neighboring image onto the current image. Clearly, as most of the images in a sequence have two neighbors, each can have two vector fields:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">The <a name="kanchor128"></a>backward <a name="kanchor129"></a>vector field: the x and y offsets per pixel that, when applied to the previous frame in the sequence, allow you to reconstruct an approximation to the current frame.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">The <a name="kanchor130"></a>forward <a name="kanchor131"></a>vector field: the x and y offsets needed to transform the next frame into an approximation to the current one.</td>
-            </tr>
-        </table>
-        <p>The output from VectorGenerator is stored in the <a name="kanchor132"></a>vector channels. The images below show the different vector images for a clip.</p>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/vectorsrgba.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/vectorsmotion.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The source sequence.</td>
-                    <td class="caption">Forward and backward motion vectors for the sequence.</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/vectorsforward.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/vectorsbackward.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Forward motion vectors.</td>
-                    <td class="caption">Backward motion vectors.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>When viewing 'forward' or 'backward' motion vectors, the Viewer represents the x values as amounts of red and y values as amounts of green. Motion vectors can be positive or negative, where zero represents no motion.</p>
-        <p>In general, once you have generated a sequence of motion vector fields that describe the motion in a particular clip well, they are suitable for use in any nodes which can take vector inputs. These include Kronos and MotionBlur. If you are going to be using more than one of these effects in your project, it might be worth generating the vector fields beforehand with VectorGenerator, so that they can be reused.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   矢量发生器
+  </h1>
+  <p class="afterHead">
+   VectorGenerator 允许您生成包含
+   <a name="kanchor127">
+   </a>
+   运动矢量场。序列中图像的向量场与图像具有相同的尺寸，但每像素包含 (x，y) 偏移。这些偏移显示了如何将相邻图像扭曲到当前图像上。显然，由于序列中的大多数图像都有两个邻居，因此每个邻居都可以有两个向量场:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     的
+     <a name="kanchor128">
+     </a>
+     向后
+     <a name="kanchor129">
+     </a>
+     向量场: 每像素的 x 和 y 偏移，当应用于序列中的上一帧时，允许您重建当前帧的近似值。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     的
+     <a name="kanchor130">
+     </a>
+     向前
+     <a name="kanchor131">
+     </a>
+     向量场: 将下一帧转换为当前帧的近似值所需的 x 和 y 偏移。
+    </td>
+   </tr>
+  </table>
+  <p>
+   VectorGenerator 的输出存储在
+   <a name="kanchor132">
+   </a>
+   矢量通道。下面的图像显示剪辑的不同矢量图像。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/vectorsrgba.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/vectorsmotion.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      源序列。
+     </td>
+     <td class="caption">
+      序列的向前和向后运动向量。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/vectorsforward.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/vectorsbackward.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      向前运动矢量。
+     </td>
+     <td class="caption">
+      向后运动向量。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   查看 “向前” 或 “向后” 运动矢量时，查看器将 x 值表示为红色量，y 值表示为绿色量。运动向量可以是正的或负的，其中零代表没有运动。
+  </p>
+  <p>
+   一般来说，一旦你生成了一系列运动矢量场，很好地描述了特定片段中的运动，它们就适合用于任何可以接受矢量输入的节点。这些包括 Kronos 和 MotionBlur。如果你打算在你的项目中使用不止一个这样的效果，那么用 VectorGenerator 预先生成向量场可能是值得的，这样它们就可以被重复使用。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -144,5 +213,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

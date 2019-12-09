@@ -1,146 +1,319 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Deep Compositing">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Modifying Deep Data</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/deep/modifying_deep_data.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Deep Compositing" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   修改深层数据
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/deep/modifying_deep_data.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Modifying Deep Data</h1>
-        <p class="afterHead"><span class="CustomProduct">Nuke</span> allows you to color correct deep images as well as modify them using expressions.</p>
-        <h2><a name="Color_Correcting_Deep_Images"></a>Color Correcting Deep Images</h2>
-        <p class="afterHead">The DeepColorCorrect node applies the color correction to each sample at each pixel. </p>
-        <p>There are control sets for adjusting shadows, midtones and highlights, as well as a <span class="_Override" style="font-weight: bold;">master</span> set for adjusting all these at once. You can use the lookup curves on the <span class="_Override" style="font-weight: bold;">Ranges</span> tab to control the range of the image that is considered to be in the shadows, midtones, and highlights. For more information about the basics of color correcting, see <a href="../color_correction/colour_correction.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with Color</span></a>.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Make mattes by setting the <span class="_Override" style="font-weight: bold;">gain</span> value for your alpha channel to 0 and setting the <span class="_Override" style="font-weight: bold;">offset</span> value for the alpha channel to 1 in the range you want a matte for. </p>
-        <h3>Adjusting the Effect of Deep Color Correction</h3>
-        <p>On the <span class="_Override" style="font-weight: bold;">Masking</span> tab you can set the point among the deep samples where the effect of your color correction starts and finishes. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Check the <span class="_Override" style="font-weight: bold;">limit_z</span> box to activate the <span class="_Override" style="font-weight: bold;">zmap</span> tool. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Adjust the trapezoid so that the <span class="_Override" style="font-weight: bold;">A</span> delimiter marks the depth where you want the color correction to start, <span class="_Override" style="font-weight: bold;">B</span> and <span class="_Override" style="font-weight: bold;">C</span> mark the length of the full effect and delimiter <span class="_Override" style="font-weight: bold;">D</span> indicates where the effect stops. <span class="_Override" style="font-weight: bold;">Zmap</span> tool’s y axis, therefore, indicates the amount of the effect, and the x axis is the range of your depth samples. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the <span class="_Override" style="font-weight: bold;">mix</span> control to adjust the overall mixing between the color corrected result and the original image. Zero value is the original image, and value 1 is the full color correction result. </td>
-            </tr>
-        </table>
-        <h2><a name="Modifyin"></a>Modifying Your Deep Images with Expressions</h2>
-        <p class="afterHead">You can use the DeepExpression node to run <span class="CustomProduct">Nuke</span> expressions on deep data. Use the controls in the properties panel: </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">There are four fields for temporary expressions, just like in the normal Expression node. These can be useful if you need to use a long expression in several fields and want to assign that expression temporarily to a variable. Enter the variable name to the left of the equals (<span class="_Override" style="font-weight: bold;">=</span>) sign, and the expression to the right. You can then use the variable name to represent the entire expression in the expression fields for the channels. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the <span class="_Override" style="font-weight: bold;">chans0</span> - <span class="_Override" style="font-weight: bold;">chans3</span> dropdowns you can then specify which channels you want to create expressions for. This adds or removes expression fields below. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">You can then enter your expressions for the different channels in the channel expression fields. </td>
-            </tr>
-        </table>
-        <p>For more information about expressions, have a look at <a href="../expressions/expressions.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Expressions</span></a>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   修改深层数据
+  </h1>
+  <p class="afterHead">
+   <span class="CustomProduct">
+    核武器
+   </span>
+   允许您为深度图像着色，以及使用表达式修改它们。
+  </p>
+  <h2>
+   <a name="Color_Correcting_Deep_Images">
+   </a>
+   颜色校正深层图像
+  </h2>
+  <p class="afterHead">
+   DeepColorCorrect 节点将颜色校正应用于每个像素的每个样本。
+  </p>
+  <p>
+   有用于调整阴影、中间色调和高光的控制集，以及
+   <span class="_Override" style="font-weight: bold;">
+    大师
+   </span>
+   设置一次调整所有这些。您可以使用上的查找曲线
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   选项卡，用于控制被认为位于阴影、中间色调和高光中的图像的范围。有关颜色校正基础知识的更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../color_correction/colour_correction.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用颜色
+    </span>
+   </a>
+   .
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   通过设置来制作遮罩
+   <span class="_Override" style="font-weight: bold;">
+    增益
+   </span>
+   Alpha 通道的值为 0，并设置
+   <span class="_Override" style="font-weight: bold;">
+    偏移
+   </span>
+   Alpha 通道的值为 1，在您想要遮罩的范围内。
+  </p>
+  <h3>
+   调整深颜色校正的效果
+  </h3>
+  <p>
+   在
+   <span class="_Override" style="font-weight: bold;">
+    掩蔽
+   </span>
+   选项卡您可以在深样本中设置颜色校正效果开始和结束的点。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     检查
+     <span class="_Override" style="font-weight: bold;">
+      Limit_z
+     </span>
+     框来激活
+     <span class="_Override" style="font-weight: bold;">
+      Zmap
+     </span>
+     工具。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     调整梯形，以便
+     <span class="_Override" style="font-weight: bold;">
+      一个
+     </span>
+     定界符标记您希望颜色校正开始的深度,
+     <span class="_Override" style="font-weight: bold;">
+      B
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      C
+     </span>
+     标记完整效果和分隔符的长度
+     <span class="_Override" style="font-weight: bold;">
+      D
+     </span>
+     指示效果停止的位置。
+     <span class="_Override" style="font-weight: bold;">
+      Zmap
+     </span>
+     因此，工具的 y 轴指示效果的量，x 轴是深度样本的范围。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      混合
+     </span>
+     控件来调整颜色校正结果和原始图像之间的整体混合。零值是原始图像，值 1 是全色校正结果。
+    </td>
+   </tr>
+  </table>
+  <h2>
+   <a name="Modifyin">
+   </a>
+   用表情修改你的深层图像
+  </h2>
+  <p class="afterHead">
+   可以使用 DeepExpression 节点运行
+   <span class="CustomProduct">
+    核武器
+   </span>
+   深层数据上的表达式。使用 “属性” 面板中的控件:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     临时表达式有四个字段，就像正常表达式节点一样。如果您需要在多个字段中使用长表达式，并希望将该表达式临时分配给变量，则这些表达式将非常有用。在等号的左边输入变量名 (
+     <span class="_Override" style="font-weight: bold;">
+      =
+     </span>
+     ) 标志，右侧的表达式。然后，可以使用变量名称在通道的表达式字段中表示整个表达式。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在
+     <span class="_Override" style="font-weight: bold;">
+      Chans0
+     </span>
+     -
+     <span class="_Override" style="font-weight: bold;">
+      Chans3
+     </span>
+     下拉列表然后可以指定要为其创建表达式的通道。这将添加或删除下面的表达式字段。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     然后，可以在 “通道表达式” 字段中输入不同通道的表达式。
+    </td>
+   </tr>
+  </table>
+  <p>
+   有关表达式的更多信息，请查看
+   <a class="noPage MCXref xref xrefnoPage" href="../expressions/expressions.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     表情
+    </span>
+   </a>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -154,5 +327,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,551 +1,1240 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Filter Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>VectorBlur</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/filter_nodes/vectorblur.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|Filter Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   VectorBlur
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/filter_nodes/vectorblur.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>VectorBlur</h1>
-        <p>Generates motion blur by blurring each pixel into a straight line, using the values from the motion vector channels (u and v channels) to determine the direction of the blur. You can create motion vectors using the VectorGenerator, MotionBlur2D, MotionBlur3D, ScanlineRender, or RayRender nodes. Many third-party applications can also produce motion vector information as two-channel, floating point images that you can use with VectorBlur. If possible, you should unpremultiply these images.</p>
-        <p>You can use the constant <b>uv offset </b>values to add motion blur for camera movement and shake. Subtract the xy translation or camera rotation at the current frame from the same values at the next frame to get the correct values to use.</p>
-        <p>See also <a href="../time_nodes/vectorgenerator.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">VectorGenerator</span></a>, <a href="motionblur2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">MotionBlur2D</span></a>, <a href="motionblur3d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">MotionBlur3D</span></a>, <a href="../3d_nodes/scanlinerender.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">ScanlineRender</span></a>, and <a href="../3d_nodes/rayrender.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">RayRender</span></a>.</p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="141px">
-                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">unnamed</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The image sequence to receive the blur effect.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">mask</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p class="CellBody">An optional image to use as a mask. By default, the blur is limited to the non-black areas of the mask.</p>
-                                <p class="CellBody">At first, the mask input appears as triangle on the right side of the node, but when you drag it, it turns into an arrow labeled mask. If you cannot see the mask input, ensure that the <b>mask</b> control is disabled or set to <b>none</b>.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="698px">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="151px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="123px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">VectorBlur Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The effect is only applied to these channels.</p>
-                                <p class="CellBody">If you set this to something other than <b>all</b> or <b>none</b>, you can use the checkboxes on the right to select individual channels.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Local GPU</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>gpuName</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Displays the GPU used for rendering when <b>Use GPU if available</b> is enabled. Local GPU displays <b>Not available</b> when:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Use CPU</b> is selected as the <b>default blink device</b> in the <b>Preferences</b>.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no suitable GPU was found on your system.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>it was not possible to create a context for processing on the selected GPU, such as when there is not enough free memory available on the GPU.</p>
-                                <p>You can select a different GPU, if available, by navigating to the <b>Preferences</b> and selecting an alternative from the <b>default blink device</b> dropdown.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span> Selecting a different GPU requires you to restart <span class="CustomProduct">Nuke</span> before the change takes effect.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Use GPU if available</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>useGPUIfAvailable</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, rendering occurs on the <b>Local GPU</b> specified, if available, rather than the CPU. The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.</p>
-                                <p><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Enabling this option with no local GPU allows the script to run on the GPU whenever the script is opened on a machine that does have a GPU available. <br />You should also select this if you wish to render from the command line with the <b>--gpu</b> option.</p>
-                                <p class="CellBody">GPU processing also requires certain NVIDIA GPUs and CUDA drivers, or in the case of late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5 running 10.9.3 'Mavericks', or later, certain AMD GPUs and drivers. For more information on the minimum requirements, please refer to the Nuke Release Notes available in <b>Help</b> &gt; <b>Release Notes</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">uv channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">uv</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the channel(s) to control the horizontal (u) and vertical (v) size of the blur vector.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If the <b>uv</b> values are read from a file, enable the Read node’s colorspace <b>raw data</b> checkbox. See <a href="../image_nodes/read.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Read</span></a>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>mv presets</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>mv_presets</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Nuke Scanline Render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets which renderer format to apply to the motion vectors.&#160;Each preset contains a scale and offset specific to the renderer, so that the vectors are in the format expected by <span class="CustomProduct">Nuke</span>.</p>
-                                <p>For example, if VectorBlur is downstream of a PRMan node, select PRMan from the dropdown.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p>vector preprocessing</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>result</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the output of the VectorBlur node:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>result</b> - the final result of the blur is displayed in the Viewer.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uvs</b> - the uv map used to generate the motion vectors.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>blur uv</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>blur_uv</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When set to <b>uniform</b> or <b>linear</b>, applies the motion blur filter to the motion vectors themselves, before using them to blur the image.</p>
-                                <p>This option can smooth out gradients in the motion vectors, resulting in a softer blur between regions with very different motion. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>none</b>	- don't blur the UVs.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b>	- apply a small uniform blur to soften edges in the UV map. This is how blur was calculated pre-<span class="CustomProduct">Nuke</span> 10.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>linear</b> -	apply a linearly-weighted blur to blend between regions with different motion. This has a stronger effect than the <b>uniform</b> option.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>invert uv</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>invert_uv</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, invert the motion vectors before blurring them. </p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The effect is only visible when the shutter is not centred at the current frame (for Nuke vectors, this means when the shutter offset is not equal to -0.5).</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">uv offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">uv_offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets a constant value to add to the <b>uv channels</b> values. </p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If the <b>uv</b> values are read from a file, this should be -0.5 or -127/255.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" rowspan="2">
-                                <p>uv alpha</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Enables the associated alpha channel to the right. Disabling this checkbox is the same as setting the channel to <b>none</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>alpha</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>If your motion vectors were premultiplied, set this channel to the channel used to multiply the vectors to improve the results.</p>
-                                <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Where possible, use vectors that have not been premultiplied. </p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p>motion blur</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>blur type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>blur_type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>gaussian</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Sets the profile to use along the direction of blur:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b> - a box-like profile with uniform weighting along the blur vector.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>gaussian</b> - a gaussian profile with a softer fall-off towards the ends of the blur vector.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">motion amount</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">scale</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the value by which the u and v channels are multiplied. Set this to 0.5 for motion blur from a standard shutter.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>motion falloff</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>motion_falloff</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>0.33</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Controls the steepness of the gaussian fall-off on the blur. 0 gives a very sharp fall-off, while 1 gives a shallow fall-off.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">motion offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">-0.5</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the shutter offset, causing the shutter to open at <b>frame</b> +/- <b>motion offset</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>expand blur bbox</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">grow_bbox</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the number of pixels added to the outside edge of image. Set this manually for cropped images with non-zero uv channels.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>soft lines</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>soft_lines</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, increase the softness of the motion blur by drawing wider lines, at the expense of slower processing.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>blur inside</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>blur_inside</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When soft lines is enabled, apply a small blur inside regions with zero motion, to give a smoother transition to areas with motion blur.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>normalize</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>normalize</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, normalize the results to compensate for tearing (holes appearing behind moving objects) and collisions (objects moving on top of one another) in the rendered output. </p>
-                                <p>Normalizing can exacerbate the effects of tearing and collisions, but it tends to give a softer blur than not normalizing.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">mask</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Enables the associated mask channel to the right. Disabling this checkbox is the same as setting the channel to <b>none</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">maskChannelInput</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The channel to use as the alpha channel. </p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">inject</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">inject</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Copies the <b>mask</b> input to the predefined <b>mask.a</b> channel. Injecting the mask allows you to use the same mask further downstream.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">invert</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">invert_mask</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Inverts the use of the mask channel, so that the effect is limited to the non-white areas of the mask.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">fringe</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">fringe</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Blurs the edges of the mask.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">mix</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">mix</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p class="CellBody">Dissolves between the original image at 0 and the full effect at 1.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/3d_compositing/adding_motion_blur_vectorblur.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adding Motion Blur Using VectorBlur</span></a>
-                </p>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="CustomExample Scripts">Example Nuke Scripts</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Loading example scripts only works if you launched the help from <span class="CustomProduct">Nuke</span> and have set <b>documentation source</b> to <b>local</b> in the <b>Behaviors</b> &gt; <b>Documentation</b> tab of the <b>Preferences</b>. <br /><br />See <a href="../../example_scripts/example_scripts.html#Using" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Using Script Links</span></a> for more information.</p>
-                <h4><span class="CustomProduct">Nuke</span> 10.0</h4>
-                <p><a href="#" onclick="loadInNuke('MotionBlur2D_10.nk');">Using MotionBlur2D and VectorBlur to generate motion blur</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('MotionBlur3D_10.nk');">Using MotionBlur3D and VectorBlur to generate motion blur</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('Particles_Motion_Blur_10.nk');">Using ScanlineRender and VectorBlur to add motion blur to particles</a>
-                </p>
-                <h4><span class="CustomProduct">Nuke</span> 9.0 or Earlier</h4>
-                <p><a href="#" onclick="loadInNuke('MotionBlur2D.nk');">Using MotionBlur2D and VectorBlur to generate motion blur</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('MotionBlur3D.nk');">Using MotionBlur3D and VectorBlur to generate motion blur</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('Particles_Motion_Blur.nk');">Using ScanlineRender and VectorBlur to add motion blur to particles</a>
-                </p>
-            </div>
-        </div>
-        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="MotionBlur2D|motionblur2d.html||MotionBlur3D|motionblur3d.html||ScanlineRender|../3d_nodes/scanlinerender.html||VectorGenerator|../time_nodes/vectorgenerator.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Link Icon" />Related Topics</span></a>
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   VectorBlur
+  </h1>
+  <p>
+   通过将每个像素模糊成直线，使用运动矢量通道 (u 和 v 通道) 的值来确定模糊的方向，生成运动模糊。可以使用 VectorGenerator 、 MotionBlur2D 、 MotionBlur3D 、 ScanlineRender 或 RayRender 节点创建运动矢量。许多第三方应用程序还可以将运动矢量信息作为双通道浮点图像生成，您可以将其与 VectorBlur 一起使用。如果可能的话，你应该 unpremultiply 这些图像。
+  </p>
+  <p>
+   您可以使用常数
+   <b>
+    Uv 偏移
+   </b>
+   为相机移动和抖动添加运动模糊的值。从下一帧的相同值中减去当前帧的 xy 平移或相机旋转，以获得要使用的正确值。
+  </p>
+  <p>
+   另见
+   <a class="noPage MCXref xref xrefnoPage" href="../time_nodes/vectorgenerator.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     矢量发生器
+    </span>
+   </a>
+   ,
+   <a class="noPage MCXref xref xrefnoPage" href="motionblur2d.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     MotionBlur2D
+    </span>
+   </a>
+   ,
+   <a class="noPage MCXref xref xrefnoPage" href="motionblur3d.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     MotionBlur3D
+    </span>
+   </a>
+   ,
+   <a class="noPage MCXref xref xrefnoPage" href="../3d_nodes/scanlinerender.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     ScanlineRender
+    </span>
+   </a>
+   ,和
+   <a class="MCXref xref" href="../3d_nodes/rayrender.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     光线渲染
+    </span>
+   </a>
+   .
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="141px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="105px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="120px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="436px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
         </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         未命名
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         接收模糊效果的图像序列。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         面具
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p class="CellBody">
+         用作遮罩的可选图像。默认情况下，模糊仅限于遮罩的非黑色区域。
+        </p>
+        <p class="CellBody">
+         起初，遮罩输入在节点的右侧显示为三角形，但是当您拖动它时，它会变成一个标记为遮罩的箭头。如果看不到遮罩输入，请确保
+         <b>
+          面具
+         </b>
+         控件已禁用或设置为
+         <b>
+          没有
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="698px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="151px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="123px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="364px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         VectorBlur 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         渠道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         渠道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         效果仅适用于这些通道。
+        </p>
+        <p class="CellBody">
+         如果你把这个设置成其他的东西
+         <b>
+          所有
+         </b>
+         或
+         <b>
+          没有
+         </b>
+         ,您可以使用右侧的复选框选择单个频道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         本地 GPU
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         GpuName
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         显示用于渲染的 GPU
+         <b>
+          使用 GPU (如果可用)
+         </b>
+         已启用。本地 GPU 显示
+         <b>
+          不可用
+         </b>
+         当:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          使用 CPU
+         </b>
+         被选为
+         <b>
+          默认闪烁设备
+         </b>
+         在
+         <b>
+          偏好
+         </b>
+         .
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         在您的系统上找不到合适的 GPU。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         无法在选定的 GPU 上创建处理上下文，例如当 GPU 上没有足够的可用内存时。
+        </p>
+        <p>
+         如果可用，您可以通过导航到
+         <b>
+          偏好
+         </b>
+         并从中选择一个替代方案
+         <b>
+          默认闪烁设备
+         </b>
+         下拉列表。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         选择不同的 GPU 需要重新启动
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在变更生效之前。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         使用 GPU (如果可用)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         UseGPUIfAvailable
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用时，渲染发生在
+         <b>
+          本地 GPU
+         </b>
+         指定 (如果可用)，而不是 CPU。GPU 和 CPU 之间的输出在 NVIDIA GPU 上是相同的，但是使用 GPU 可以显著提高处理性能。
+        </p>
+        <p>
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在 2013年底的 Mac Pro 6,1 和 2015年中的 Mac Pro 11,5 上支持 AMD gpu，运行 OS X 10.9.3 “mavericks” 或更高版本。虽然，在某些情况下，GPU 和 CPU 之间的比特级相等保持不变，但对于某些操作，这种配置可能存在精度限制。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         在没有本地 GPU 的情况下启用此选项允许脚本在 GPU 上运行，只要脚本在具有 GPU 可用的机器上打开。
+         <br/>
+         你应该选择这个，如果你想使从命令行的
+         <b>
+          -- Gpu
+         </b>
+         选项。
+        </p>
+        <p class="CellBody">
+         GPU 处理还需要某些 NVIDIA GPU 和 CUDA 驱动程序，或者在 2013年底运行 10.9.3 “mavericks” 或更高版本的 Mac Pro 6,1 和 2015年中 Mac Pro 11,5 的情况下，某些 AMD GPU 和驱动程序。有关最低要求的更多信息，请参考
+         <b>
+          帮助
+         </b>
+         &gt;
+         <b>
+          发行说明
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 64px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Uv 通道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         紫外线
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置通道以控制模糊向量的水平 (u) 和垂直 (v) 大小。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         如果
+         <b>
+          紫外线
+         </b>
+         值从文件中读取，启用读取节点的颜色空间
+         <b>
+          原始数据
+         </b>
+         复选框。请参阅
+         <a class="noPage MCXref xref xrefnoPage" href="../image_nodes/read.html">
+          <span class="mcFormatColor" style="color: #00b4e0;">
+           阅读
+          </span>
+         </a>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 64px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Mv 预设
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Mv_presets
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Nuke 扫描线渲染
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置要应用于运动矢量的渲染器格式。每个预设都包含特定于渲染器的比例和偏移，因此向量的格式为
+         <span class="CustomProduct">
+          核武器
+         </span>
+         .
+        </p>
+        <p>
+         例如，如果 VectorBlur 位于 PRMan 节点的下游，请从下拉列表中选择 PRMan。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         向量预处理
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         结果
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置 VectorBlur 节点的输出:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          结果
+         </b>
+         -模糊的最终结果显示在查看器中。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          Uv
+         </b>
+         -用于生成运动矢量的 uv 贴图。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         模糊 uv
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Blur_uv
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         当设置为
+         <b>
+          制服
+         </b>
+         或
+         <b>
+          线性
+         </b>
+         ,在使用运动模糊滤镜模糊图像之前，将运动模糊滤镜应用于运动矢量本身。
+        </p>
+        <p>
+         此选项可以平滑运动矢量中的渐变，从而在运动非常不同的区域之间产生更柔和的模糊。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          没有
+         </b>
+         -不要模糊 uv。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          制服
+         </b>
+         -应用小的均匀模糊来软化 UV 贴图中的边缘。这就是模糊是如何计算的
+         <span class="CustomProduct">
+          核武器
+         </span>
+         10.
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          线性
+         </b>
+         -应用线性加权模糊来混合具有不同运动的区域。这有一个比更强的效果
+         <b>
+          制服
+         </b>
+         选项。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         反转 uv
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Invert_uv
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用后，在模糊运动向量之前反转运动向量。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         只有当快门不集中在当前帧时，效果才可见 (对于 Nuke 矢量，这意味着快门偏移不等于-0.5 时)。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Uv 偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Uv_offset
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置一个常量值以添加到
+         <b>
+          Uv 通道
+         </b>
+         值。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         如果
+         <b>
+          紫外线
+         </b>
+         值从文件中读取，这应该是-0.5 或-127/255。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" rowspan="2">
+        <p>
+         紫外线阿尔法
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用右侧关联的 alpha 通道。禁用此复选框与将通道设置为
+         <b>
+          没有
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         阿尔法
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         如果您的运动向量被预乘，请将此通道设置为用于将向量相乘以提高结果的通道。
+        </p>
+        <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            提示:
+           </span>
+          </span>
+         </span>
+         在可能的情况下，使用尚未预乘的向量。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         运动模糊
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         模糊类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Blur_type
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         高斯
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         沿模糊方向设置要使用的轮廓:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          制服
+         </b>
+         -沿着模糊向量均匀加权的框状轮廓。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          高斯
+         </b>
+         -高斯轮廓，在模糊向量的末端有一个更柔和的下降。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         运动量
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         规模
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置 u 和 v 通道相乘的值。将其设置为 0.5，以便从标准快门进行运动模糊。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         运动衰减
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Motion_falloff
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         0.33
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         控制模糊上高斯衰减的陡度。0 给出一个非常急剧的下降，而 1 给出一个浅的下降。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         运动偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.5
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置快门偏移，导致快门在
+         <b>
+          框架
+         </b>
+         /-
+         <b>
+          运动偏移
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         展开模糊 bbox
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Grow_bbox
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置添加到图像外边缘的像素数。为具有非零 uv 通道的裁剪图像手动设置此设置。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         软线
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Soft_lines
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用后，通过绘制更宽的线条来增加运动模糊的柔软度，而牺牲处理速度。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         里面模糊
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Blur_inside
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用软线后，在运动为零的区域内应用小模糊，以使运动模糊的区域获得更平滑的过渡。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         正常化
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         正常化
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用后，将结果标准化，以补偿渲染输出中的撕裂 (移动对象后面出现的洞) 和碰撞 (相互移动的对象)。
+        </p>
+        <p>
+         正常化会加剧撕裂和碰撞的影响，但它往往比不正常化更模糊。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+        <p class="CellBody">
+         面具
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用右侧关联的遮罩通道。禁用此复选框与将通道设置为
+         <b>
+          没有
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         MaskChannelInput
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         要用作 alpha 通道的通道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         注入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         注入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         复制
+         <b>
+          面具
+         </b>
+         预定义的输入
+         <b>
+          面具。
+         </b>
+         频道。注射面具可以让你在下游使用相同的面具。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         反转
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Invert_mask
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         反转遮罩通道的使用，以便效果仅限于遮罩的非白色区域。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         边缘
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         边缘
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         模糊遮罩的边缘。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         混合
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         混合
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p class="CellBody">
+         在 0 处的原始图像和 1 处的完整效果之间溶解。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/3d_compositing/adding_motion_blur_vectorblur.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用矢量模糊添加运动模糊
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="CustomExample Scripts">
+      Nuke 脚本示例
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+     <span class="autonumber">
+      <span>
+       <span class="mcFormatColor" style="color: Black;">
+        注意:
+       </span>
+      </span>
+     </span>
+     加载示例脚本仅在您从启动帮助时有效
+     <span class="CustomProduct">
+      核武器
+     </span>
+     并设置
+     <b>
+      文档来源
+     </b>
+     到
+     <b>
+      本地
+     </b>
+     在
+     <b>
+      行为
+     </b>
+     &gt;
+     <b>
+      文档
+     </b>
+     标签的
+     <b>
+      偏好
+     </b>
+     .
+     <br/>
+     <br/>
+     请参阅
+     <a class="MCXref xref" href="../../example_scripts/example_scripts.html#Using">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用脚本链接
+      </span>
+     </a>
+     欲了解更多信息。
+    </p>
+    <h4>
+     <span class="CustomProduct">
+      核武器
+     </span>
+     10.0
+    </h4>
+    <p>
+     <a href="#" onclick="loadInNuke('MotionBlur2D_10.nk');">
+      使用 MotionBlur2D 和 VectorBlur 生成运动模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('MotionBlur3D_10.nk');">
+      使用 MotionBlur3D 和 VectorBlur 生成运动模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('Particles_Motion_Blur_10.nk');">
+      使用 ScanlineRender 和 VectorBlur 向粒子添加运动模糊
+     </a>
+    </p>
+    <h4>
+     <span class="CustomProduct">
+      核武器
+     </span>
+     9.0 或更早
+    </h4>
+    <p>
+     <a href="#" onclick="loadInNuke('MotionBlur2D.nk');">
+      使用 MotionBlur2D 和 VectorBlur 生成运动模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('MotionBlur3D.nk');">
+      使用 MotionBlur3D 和 VectorBlur 生成运动模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('Particles_Motion_Blur.nk');">
+      使用 ScanlineRender 和 VectorBlur 向粒子添加运动模糊
+     </a>
+    </p>
+   </div>
+  </div>
+  <p data-mc-conditions="Default.ScreenOnly">
+   <a class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="MotionBlur2D|motionblur2d.html||MotionBlur3D|motionblur3d.html||ScanlineRender|../3d_nodes/scanlinerender.html||VectorGenerator|../time_nodes/vectorgenerator.html" href="javascript:void(0);">
+    <span class="MCHelpControl-RelatedHotSpot_">
+     <img alt="Related Topics Link Icon" class="MCHelpControl_Image_Icon" height="16" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     相关主题
+    </span>
+   </a>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -559,5 +1248,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,186 +1,373 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Previews and Rendering|Rendering Output">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Changing the Numbering of Rendered Frames</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/rendering/changing_frame_numbering.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Previews and Rendering|Rendering Output" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   更改渲染帧的编号
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/rendering/changing_frame_numbering.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Changing the Numbering of Rendered Frames</h2>
-        <p class="afterHead">By default, when you render an image sequence, <span class="CustomProduct">Nuke</span> assumes an exact relation between the currently processed frame and the numbering of the frame written out. Therefore, if you choose to render frame 15, the resulting file is numbered accordingly, for example image.0015.rgb. However, the <b>frame</b> parameter on the Write node lets you change this behavior. For instance, if you have a sequence that runs from image.0500.rgb to image.1000.rgb, you may want to render it so that the frame numbering in the resulting files runs from image.0001.rgb to image.0501.rgb. You can do so via expressions, specified start frames, and constant offsets. Each method is described below.</p>
-        <h3>Using Expressions</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Image</b> &gt; <b>Write</b> to insert a Write node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Write properties panel, click the <b>file</b> folder icon <img src="../../assets/images/ug_images/icon_file_menu.png" />, then navigate to the directory path where you want to save the rendered image sequence. Enter a name for the image sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Set <b>frame</b> to <b>expression</b>. Enter an expression in the field on the right. The expression changes the relation between the currently processed frame and the numbering of the frame written out. The resulting file name for the current frame is displayed on the Write node in the Node Graph.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/write_frame_mode_expr.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-        </p>
-        <p class="numberedCont">For example, if your clip begins from frame 500 and you want to name that frame image.0001.rgb rather than image.0500.rgb, you can use the expression <span class="_Override" style="font-weight: bold;">frame-499</span>. This way, 499 frames are subtracted from the current frame to get the number for the frame written out. Frame 500 is written out as image.0001.rgb, frame 501 is written out as image.0002.rgb, and so on.</p>
-        <p class="numberedCont">Another example of an expression is <span class="_Override" style="font-weight: bold;">frame*2</span>. This expression multiplies the current frame by two to get the number of the frame that’s written out. At frame 1, image.0002.rgb is written out; at frame 2, image.0004.rgb is written out; at frame 3, image.0006.rgb is written out; and so on.</p>
-        <h3>Specifying a Frame Number for the First Frame in the Clip</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Image</b> &gt; <b>Write</b> to insert a Write node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Write properties panel, click the <b>file</b> folder icon <img src="../../assets/images/ug_images/icon_file_menu.png" />, then navigate to the directory path where you want to save the rendered image sequence. Enter a name for the image sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select <b>start at</b> from the <b>frame</b> dropdown menu. Enter a start frame number in the field on the right. This specifies the frame number given to the first frame in the sequence. The numbering of the rest of the frames is offset accordingly.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/write_frame_mode_start.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-        </p>
-        <p class="numberedCont">For example, if your sequence begins from frame 500 and you enter <span class="_Override" style="font-weight: bold;">1</span> in the field, frame 500 is written out as image.0001.rgb, frame 501 as image.0002.rgb, and so on. Similarly, if you enter <span class="_Override" style="font-weight: bold;">100</span> in the field, frame 500 is written out as image.0100.rgb.</p>
-        <h3>Offsetting All Frame Numbers by a Constant Value</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Image</b> &gt; <b>Write</b> to insert a Write node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Write properties panel, click the <b>file</b> folder icon <img src="../../assets/images/ug_images/icon_file_menu.png" />, then navigate to the directory path where you want to save the rendered image sequence. Enter a name for the image sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">From the <b>frame</b> dropdown menu, select <b>offset</b>. Enter a constant offset in the field on the right. This constant value is added to the current frame to get the number for the frame that’s written out.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/write_frame_mode_offset.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-        </p>
-        <p class="numberedCont">For example, if your clip begins from frame 500 and you want to render this first frame as image.0001.rgb rather than image.0500.rgb, you can use <span class="_Override" style="font-weight: bold;">-499</span> as the constant offset. This way, 499 is subtracted from the current frame to get the number for the frame that’s written out. At frame 500, image.0001.rgb is written out; at frame 501, image.0002 is written out, and so on.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   更改渲染帧的编号
+  </h2>
+  <p class="afterHead">
+   默认情况下，当渲染图像序列时,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   假设当前处理的帧与写出的帧编号之间存在精确关系。因此，如果选择渲染帧 15，则会相应地对生成的文件进行编号，例如 image.0015.rgb。然而,
+   <b>
+    框架
+   </b>
+   “写入” 节点上的参数允许您更改此行为。例如，如果您有一个从 image.0500.rgb 运行到 image.1000.rgb 的序列，您可能希望呈现该序列，以便生成的文件中的帧编号从 image.0001.rgb 运行到 image.0501.rgb。您可以通过表达式、指定的开始帧和常数偏移来执行此操作。每种方法如下所述。
+  </p>
+  <h3>
+   使用表达式
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      图像
+     </b>
+     &gt;
+     <b>
+      写
+     </b>
+     将写入节点插入脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 “写入属性” 面板中，单击
+     <b>
+      文件
+     </b>
+     文件夹图标
+     <img src="../../assets/images/ug_images/icon_file_menu.png"/>
+     ,然后导航到要保存渲染图像序列的目录路径。输入图像序列的名称。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     设置
+     <b>
+      框架
+     </b>
+     到
+     <b>
+      表达
+     </b>
+     。在右侧的字段中输入表达式。表达式将更改当前处理的帧和写出的帧编号之间的关系。当前帧的结果文件名显示在节点图的 “写入” 节点上。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/write_frame_mode_expr.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+  </p>
+  <p class="numberedCont">
+   例如，如果剪辑从帧 500 开始，并且要将该帧命名为 image.0001.rgb 而不是 image.0500.rgb，则可以使用表达式
+   <span class="_Override" style="font-weight: bold;">
+    框架-499
+   </span>
+   。这样，从当前帧中减去 499 帧，以获得写出的帧的编号。帧 500 以 image.0001.rgb 形式写出，帧 501 以 image.0002.rgb 形式写出，依此类推。
+  </p>
+  <p class="numberedCont">
+   表达式的另一个例子是
+   <span class="_Override" style="font-weight: bold;">
+    框架 * 2
+   </span>
+   。此表达式将当前帧乘以 2，以获得写出的帧的数量。在帧 1，image.0002.rgb 被写出; 在帧 2，image.0004.rgb 被写出; 在帧 3，image.0006.rgb 被写出; 依此类推。
+  </p>
+  <h3>
+   为剪辑中的第一帧指定帧编号
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     Select
+     <b>
+      Image
+     </b>
+     &gt;
+     <b>
+      Write
+     </b>
+     to insert a Write node into your script.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     In the Write properties panel, click the
+     <b>
+      file
+     </b>
+     folder icon
+     <img src="../../assets/images/ug_images/icon_file_menu.png"/>
+     , then navigate to the directory path where you want to save the rendered image sequence. Enter a name for the image sequence.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     选择
+     <b>
+      从开始
+     </b>
+     从
+     <b>
+      框架
+     </b>
+     下拉菜单。在右侧的字段中输入起始帧编号。这指定给序列中的第一帧的帧编号。其余帧的编号会相应地偏移。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/write_frame_mode_start.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+  </p>
+  <p class="numberedCont">
+   例如，如果您的序列从帧 500 开始，并且您输入
+   <span class="_Override" style="font-weight: bold;">
+    1
+   </span>
+   在该字段中，帧 500 被写出为 image.0001.rgb，帧 501 被写出为 image.0002.rgb，依此类推。同样，如果您输入
+   <span class="_Override" style="font-weight: bold;">
+    100
+   </span>
+   在该字段中，帧 500 以 image.0100.rgb 的形式写出。
+  </p>
+  <h3>
+   将所有帧编号偏移一个常数值
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     Select
+     <b>
+      Image
+     </b>
+     &gt;
+     <b>
+      Write
+     </b>
+     to insert a Write node into your script.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     In the Write properties panel, click the
+     <b>
+      file
+     </b>
+     folder icon
+     <img src="../../assets/images/ug_images/icon_file_menu.png"/>
+     , then navigate to the directory path where you want to save the rendered image sequence. Enter a name for the image sequence.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从
+     <b>
+      框架
+     </b>
+     下拉菜单，选择
+     <b>
+      偏移
+     </b>
+     。在右侧的字段中输入恒定偏移。将此常数值添加到当前帧中，以获取写出的帧的编号。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/write_frame_mode_offset.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+  </p>
+  <p class="numberedCont">
+   例如，如果剪辑从帧 500 开始，并且您希望将第一帧渲染为 image.0001.rgb 而不是 image.0500.rgb，则可以使用
+   <span class="_Override" style="font-weight: bold;">
+    499
+   </span>
+   作为常数偏移。这样，从当前帧中减去 499，以获得写出的帧的编号。在第 500 帧，image.0001.rgb 被写出; 在第 501 帧，image.0002 被写出，依此类推。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -194,5 +381,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,1006 +1,1537 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Expressions">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adding Mathematical Functions to Expressions</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/expressions/adding_math_functions.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Expressions" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   向表达式添加数学函数
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/expressions/adding_math_functions.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1><a name="kanchor160"></a><a name="kanchor161"></a>Adding Mathematical Functions to Expressions</h1>
-        <p class="afterHead">You can incorporate mathematical functions into parameters. For example, you might negate an expression in order to invert a tracking curve which you wish to use to stabilize an element (such an expression might resemble the following: <b>-(Transform1.translate.x)</b>).</p>
-        <p>You can also rely on a function to add more complex mathematical operation to your expressions. The table below list all the functions which you may incorporate into <span class="CustomProduct">Nuke</span> expressions.</p>
-        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');margin-left: 0;margin-right: auto;caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="109px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="218px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="117px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="134px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="116px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Function</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Purpose</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Operator Usage</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Related Functions</p>
-                    </td>
-                    <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">DeepExpression Compatible</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">abs (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the absolute value of the floating-point number x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: fabs.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">acos (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Calculates the arc cosine of x; that is the value whose cosine is x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">If x is less than -1 or greater than 1, acos returns nan (not a number).</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: cos, cosh, asin, atan.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">asin (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Calculates the arc sine of x; that is the value whose sine is x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">If x is less than -1 or greater  than1, asin returns nan (not a number).</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: sin, sinh, acos, atan.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">atan (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Calculates the arc tangent of x; that is the value whose tangent is x. The return value is between -PI/2 and PI/2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: tan, tanh, acos, asin, atan2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">atan2 (x, y)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Calculates the arc tangent of the two variables x and y. This function is useful to calculate the angle between two vectors.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, y</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: sin, cos, tan, asin, acos, atan, hypot.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">ceil (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Round x up to the nearest integer.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: floor, trunc, rint.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">clamp (x, min, max)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Return x clamped to [min ... max].</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, min, max</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: min, max.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">clamp (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Return x clamped to [0.0 ... 1.0].</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: min, max.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">cos (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the cosine of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x in radians</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: acos, sin, tan, cosh.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">cosh (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the hyperbolic cosine of x, which is defined mathematically as (exp(x) + exp(-x)) / 2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: cos, acos, sinh, tanh.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">curve (frame)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the y value of the animation curve at the given frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">optional: frame, defaults to current frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: value, y.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">degrees (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Convert the angle x from radians into degrees.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: radians.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">exp (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the value of e (the base of natural logarithms) raised to the power of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: log, log10.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">exponent (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Exponent of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: mantissa, ldexp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">fBm (x, y, z, octaves, lacunarity, gain)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Fractional Brownian Motion. This is the sum of octaves calls to noise(). For each of them the input point is multiplied by pow(lacunarity,i) and the result is multiplied by pow(gain,i). For normal use, lacunarity should be greater than 1 and gain should be less than 1.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, y, z, octaves, lacunarity, gain</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: noise, random, turbulence.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">fabs (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the absolute value of the floating-point number x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: abs.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">false ()</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Always returns 0</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: true.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">floor (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Round x down to the nearest integer.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: ceil, trunc, rint.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">fmod (x, y)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Computes the remainder of dividing x by y. The return value is x - n y, where n is the quotient of x / y, rounded towards zero to an integer.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, y</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: ceil, floor.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">frame ()</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Return the current frame number.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">from_byte (color component)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Converts an sRGB pixel value to a linear value.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">color_component</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: to_sRGB, to_rec709f, from_rec709f.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">from_rec709f (color component)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Converts a rec709 byte value to a linear brightness</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">color_component</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: form_sRGB, to_rec709f.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">from_sRGB (color component)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Converts an sRGB pixel value to a linear value.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">color_component</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: to_sRGB, to_rec709f, from_rec709f.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">hypot (x, y)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the sqrt(x*x + y*y). This is the length of the hypotenuse of a right-angle triangle with sides of length x and y.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x, y</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: atan2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">int (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Round x to the nearest integer not larger in absolute value.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: ceil, floor, trunc, rint.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">ldexp (x, exp)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the result of multiplying the floating-point number x by 2 raised to the power exp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x, exp</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: exponent.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">lerp (a, b, x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns a point on the line f(x) where f(0)==a and f(1)==b. Matches the lerp function in other shading languages.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">a, b, x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: step, smoothstep.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">log (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the natural logarithm of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: log10, exp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">log10 (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the base-10 logarithm of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: log, exp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">logb (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Same as exponent().</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: mantissa, exponent.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">mantissa (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the normalized fraction. If the argument x is not zero, the normalized fraction is x times a power of two, and is always in the range 1/2 (inclusive) to 1 (exclusive). If x is zero, then the normalized fraction is zero and exponent() Returns zero.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: exponent.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">max (x, y, ... )</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Return the greatest of all values.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x, y, (...)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: min, clamp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">min (x, y, ... )</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Return the smallest of all values.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, y, (...)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: max, clamp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">mix (a, b, x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Same as lerp().</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">a, b, x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: step, smoothstep, lerp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">noise (x, y, z)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Creates a 3D Perlin noise value. This produces a signed range centerd on zero. The absolute maximum range is from -1.0 to 1.0. This produces zero at all integers, so you should rotate the coordinates somewhat (add a fraction of y and z to x, etc.) if you want to use this for random number generation.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, optional y, optional z</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: random, fBm, turbulence.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">pi ()</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the value for pi (3.141592654...).</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">pow (x, y)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the value of x raised to the power of y.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x, y</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: log, exp, pow.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">pow2 (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the value of x raised to the power of 2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x, y</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: pow.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">radians (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Convert the angle x from degrees into radians.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: degrees.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">random (x, y, z)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Creates a pseudo random value between 0 and 1. It always generates the same value for the same x, y and z. Calling random with no arguments creates a different value on every invocation.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">optional x, optional y, optional z</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: noise, fBm, turbulence.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">rint (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Round x to the nearest integer.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: ceil, floor, int, trunc.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">sin (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the sine of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x in radians</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: asin, cos, tan, sinh.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">sinh (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the hyperbolic sine of x, which is defined mathematically as (exp(x) - exp(-x)) / 2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: sin, asin, cosh, tanh.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">smoothstep (a, b, x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns 0 if x is less than a, returns 1 if x is greater or equal to b, returns a smooth cubic interpolation otherwise. Matches the smoothstep function in other shading languages.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">a, b, x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: step, lerp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">sqrt (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the non-negative square root of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: pow, pow2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">step (a, x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns 0 if x is less than a, returns 1 otherwise. Matches the step function other shading languages.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">a, x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: smoothstep, lerp.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">tan (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Returns the tangent of x.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x in radians</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: atan, cos, sin, tanh, atan2.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">tanh (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Returns the hyperbolic tangent of x, which is defined mathematically as sinh(x) / cosh(x).</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: tan, atan, sinh, cosh.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">to_byte (color component)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Converts a floating point pixel value to an 8-bit value that represents that number in sRGB space.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">color_component</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: form_sRGB, to_rec709f, from_rec709f.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">to_rec709f (color component)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Converts a floating point pixel value to an 8-bit value that represents that brightness in the rec709 standard when that standard is mapped to the 0-255 range.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">color_component</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: form_sRGB, from_rec709f.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">to_sRGB (color component)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Converts a floating point pixel value to an 8-bit value that represents that number in sRGB space.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">color_component</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: form_sRGB, to_rec709f, from_rec709f.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">true ()</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Always Returns 1.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: false</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">trunc (x)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Round x to the nearest integer not larger in absolute value.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">x</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: ceil, floor, int, rint.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">turbulence (x, y, z, octaves, lucanarity, gain)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">This is the same as fBm() except the absolute value of the noise() function is used.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x, y, z, octaves, lucanarity, gain</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: fBm, noise, random.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">value (frame)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Evaluates the y value for an animation at the given frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">optional: frame, defaults to current frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">See also: y, curve.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">x ()</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Return the current frame number.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">See also: frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">&#160;</td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">y (frame)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">Evaluates the y value for an animation at the given frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">optional: frame, defaults to current frame.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">See also: value, curve.</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1" style="text-align: center;">&#160;</td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   <a name="kanchor160">
+   </a>
+   <a name="kanchor161">
+   </a>
+   向表达式添加数学函数
+  </h1>
+  <p class="afterHead">
+   您可以将数学函数合并到参数中。例如，您可能会否定某个表达式，以便反转希望用于稳定元素的跟踪曲线 (此类表达式可能类似于以下内容:
+   <b>
+    -(Transform1.translate.x)
+   </b>
+   )。
+  </p>
+  <p>
+   您也可以依靠函数向表达式添加更复杂的数学运算。下表列出了您可以纳入的所有功能
+   <span class="CustomProduct">
+    核武器
+   </span>
+   表情。
+  </p>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');margin-left: 0;margin-right: auto;caption-side: top;width: 100%;">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="109px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="218px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="117px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="134px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="116px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       函数
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       目的
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       操作员使用
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       相关功能
+      </p>
+     </td>
+     <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       DeepExpression 兼容
+      </p>
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Abs (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回浮点数 x 的绝对值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 晶圆厂。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Acos (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       计算 x 的弧余弦; 这是余弦为 x 的值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       如果 x 小于-1 或大于 1，acos 返回 nan (不是数字)。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: cos，cosh，asin，atan。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Asin (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       计算 x 的弧正弦值; 这是其正弦值为 x 的值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       如果 x 小于-1 或大于 1，asin 返回 nan (不是数字)。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: sin，sinh，acos，atan。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       阿坦 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       计算 x 的反正切，即切线为 x 的值。返回值介于-PI/2 和 PI/2 之间。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: tan，tanh，acos，asin，atan2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Atan2 (x，y)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       计算两个变量 x 和 y 的反正切。此函数用于计算两个向量之间的角度。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，y
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: sin，cos，tan，asin，acos，atan，hypot。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Ceil (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将 x 舍入到最接近的整数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 地板，trunc，rint。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       夹具 (x，最小，最大)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将 x 夹在 [min.Max]。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，最小，最大
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 最小，最大。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       夹具 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将 x 夹在 [0.0。..1.0]。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 最小，最大。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Cos (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 x 的余弦。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       弧度 x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: acos 、 sin 、 tan 、 cosh。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Cosh (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 x 的双曲余弦，其数学定义为 (exp (x) exp (-x))/2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: cos，acos，sinh，tanh。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       曲线 (框架)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回给定帧处动画曲线的 y 值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       可选: 框架，默认为当前框架。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 价值，y。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       度 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将角度 x 从弧度转换为度。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 弧度。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Exp (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 e 的值 (自然对数的基数)，该值等于 x 的幂。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另请参阅: log，log10。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       指数 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X 的指数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 尾数，ldexp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       FBm (x，y，z，八度，空白，增益)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       分数布朗运动。这是对 noise () 的八度音阶调用的总和。对于它们中的每一个，输入点乘以 pow (空白，i)，结果乘以 pow (增益，i)。对于正常使用，缺口应大于 1，增益应小于 1。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，y，z，八度，空白，增益
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 噪音、随机、湍流。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       晶圆厂 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回浮点数 x 的绝对值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: abs。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       假 ()
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       总是返回 0
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 真实。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       楼层 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将 x 舍入到最接近的整数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: ceil，trunc，rint。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Fmod (x，y)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       计算 x 除以 y 的余数。返回值是 x-n y，其中 n 是 x/y 的商，向零舍入为整数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，y
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: ceil，地板。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       框架 ()
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回当前帧号。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: x。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       From_byte (颜色分量)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将 sRGB 像素值转换为线性值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Color_component
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另请参阅: to_sRGB 、 to_rec709f 、 from _ rec709f。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       From_rec709f (颜色分量)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将 rec709 字节值转换为线性亮度
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Color_component
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另请参阅: form_sRGB，to_rec709f。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       From_sRGB (颜色组件)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将 sRGB 像素值转换为线性值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Color_component
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另请参阅: to_sRGB 、 to_rec709f 、 from _ rec709f。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       假设 (x，y)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 sqrt (x * x y * y)。这是直角三角形斜边的长度，边长为 x 和 y。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X，y
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: atan2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Int (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将 x 舍入到绝对值不大的最近整数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: ceil，地板，trunc，rint。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Ldexp (x，exp)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回将浮点数 x 乘以 2 的结果，该结果被提升到幂 exp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X，经验
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 指数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Lerp (a，b，x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回直线 f (x) 上的一个点，其中 f (0) = = a，f (1) = = b。匹配其他着色语言中的 lerp 函数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       A，b，x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 步骤，平滑步骤。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       日志 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 x 的自然对数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另请参阅: log10，exp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Log10 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 x 的底 10 对数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 日志，经验。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Logb (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       与指数 () 相同。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 尾数，指数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       尾数 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回规格化分数。如果参数 x 不为零，则标准化分数是 x 乘以 2 的幂，并且始终在 1/2 (包括) 到 1 (排除) 的范围内。如果 x 为零，则标准化分数为零，指数 () 返回零。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 指数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Max (x，y，.)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回所有值中的最大值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X，y，(.)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: min，clamp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       最小 (x，y，.)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回所有值中最小的。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，y，(.)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: max，clamp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       混合 (a 、 b 、 x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       与 lerp () 相同。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       A，b，x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 步骤，smoothstep，lerp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       噪声 (x，y，z)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       创建 3D Perlin 噪波值。这将在零上产生一个有符号范围中心。绝对最大范围为-1.0 到 1.0。这在所有整数上都产生零，所以你应该稍微旋转坐标 (将 y 和 z 的一小部分添加到 x 等)。) 如果你想用它来产生随机数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，可选 y，可选 z
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 随机、 fBm 、湍流。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Pi ()
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 pi 的值 (141592654.)。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Pow (x，y)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 x 的值，该值等于 y 的幂。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       X，y
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 日志，经验，pow。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Pow2 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 x 的值，该值等于 2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X，y
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: pow。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       弧度 (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将角度 x 从度转换为弧度。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: 度。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       随机 (x，y，z)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       创建一个介于 0 和 1 之间的伪随机值。它总是为相同的 x 、 y 和 z 生成相同的值。没有参数的随机调用在每次调用时都会创建不同的值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       可选 x，可选 y，可选 z
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 噪音、 fBm 、湍流。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Rint (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将 x 舍入到最接近的整数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: ceil，floor，int，trunc。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Sin (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 x 的正弦值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       弧度 x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: asin，cos，tan，sinh。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Sinh (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 x 的双曲正弦，其数学定义为 (exp (x)-exp (-x))/2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: sin，asin，cosh，tanh。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Smoothstep (a，b，x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       如果 x 小于 a，则返回 0，如果 x 大于或等于 b，则返回 1，否则返回平滑三次插值。匹配其他着色语言中的 smoothstep 函数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       A，b，x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 步骤，lerp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Sqrt (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 x 的非负平方根。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: pow，pow2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       步骤 (a，x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       如果 x 小于 a，则返回 0，否则返回 1。匹配 step 函数和其他着色语言。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       A，x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: smoothstep，lerp。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       谭 (十)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       返回 x 的切线。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       弧度 x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: atan，cos，sin，tanh，atan2。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Tanh (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回 x 的双曲正切，x 在数学上定义为 sinh (x)/cosh (x)。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 谭，阿坦，辛赫，科什。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       To_byte (颜色分量)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将浮点像素值转换为表示 sRGB 空间中该数字的 8 位值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Color_component
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另请参见: form_sRGB 、 to_rec709f 、 from_rec709f。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       To_rec709f (颜色分量)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将浮点像素值转换为 8 位值，当该标准映射到 0-255 范围时，该值表示 rec709 标准中的亮度。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       Color_component
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另请参阅: form_sRGB，from_rec709f。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       To_sRGB (颜色组件)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将浮点像素值转换为表示 sRGB 空间中该数字的 8 位值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Color_component
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另请参见: form_sRGB 、 to_rec709f 、 from_rec709f。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       真 ()
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       总是返回 1。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 假
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Trunc (x)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       将 x 舍入到绝对值不大的最近整数。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       x
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: ceil，floor，int，rint。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       湍流 (x，y，z，八度，lucanarity，增益)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       这与 fBm () 相同，只是使用了 noise () 函数的绝对值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X，y，z，八度，lucanarity，增益
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: fBm，噪音，随机。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       值 (框架)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       计算给定帧处动画的 y 值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       可选: 框架，默认为当前框架。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       另见: y，曲线。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       X ()
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       返回当前帧号。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       另见: 框架。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" style="text-align: center;">
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       Y (框架)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       计算给定帧处动画的 y 值。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       可选: 框架，默认为当前框架。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       另请参见: 值，曲线。
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1" style="text-align: center;">
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -1014,5 +1545,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

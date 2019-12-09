@@ -1,684 +1,1503 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|3D Nodes">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>ProjectionSolver</title>
-        <link href="../../resources/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../resources/stylesheets/load.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-    </head>
-    <body>
-        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="../preface/reference_guide.html">Reference Guide</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="3d_nodes.html">3D Nodes</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">ProjectionSolver</span>
-        </div>
-        <h1>ProjectionSolver</h1>
-        <p>ProjectionSolver (NukeX only) helps you align 2D with 3D points. You can for instance align 2D images with a 3D model. The output from the ProjectionSolver node is a <a href="camera.html#3d_nodes_3521729775_797269" class="noPage MCXref xref  xref noPage"><span style="color: 00B4E0;" class="mcFormatColor">Camera</span></a> node that matches your 2D footage’s camera movement. You can also create <a href="card.html#3d_nodes_3521729775_758178" class="noPage MCXref xref  xref noPage"><span style="color: 00B4E0;" class="mcFormatColor">Card</span></a> nodes to match each different camera position. </p>
-        <div class="MCDropDown MCDropDown_Open dropDown "><span class="MCDropDownHead dropDownHead "><span class="MCDropDownHotSpot dropDownHotspot  MCDropDownHotSpot_" title="Drop Down"><span class="Master_VariablesRGContent">Inputs and Controls</span></span></span>
-            <div class="MCDropDownBody dropDownBody ">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="77px">
-                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="114px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="431px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Geo</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">A 3D geometry object.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">Source</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p class="CellBody">The 2D image to align with the 3D model in the <span class="_Override" style="font-weight: bold;">Geo</span> input.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="2548px">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">ProjectionSolver Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Solver</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 217px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Focal Length Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">focalLengthType</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Unknown Constant</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the focal length for the camera:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Known</b> - select this if the focal length is defined for the sequence and enter the focal length value in the Focal Length field.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Approximate Varying</span> - select this if an approximate focal length is available and changes. Enter the focal length value in the <span class="_Override" style="font-weight: bold;">Focal</span><span class="_Override" style="font-weight: bold;">Length</span> field.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Approximate Constant</span> - select this if there is no zoom and an approximate focal length is available. Enter the focal length value in the <span class="_Override" style="font-weight: bold;">Focal</span><span class="_Override" style="font-weight: bold;">Length</span> field.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Unknown Varying</span> - select this if the focal length is unknown and changes.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Unknown Constant</span> - select this if there’s no zoom and the focal length is unknown.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Focal Length</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">knownFocalLegth</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">50</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the focal length for approximate and known solves. You can animate this control to define a varying focal length. The units are the same as those used for the <span class="_Override" style="font-weight: bold;">Film Back Size</span> (mm or inches).</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Film Back Size x,y</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filmBackSize</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">36, 24</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the size of the camera imaging sensor. Specify the units you want to use by selecting either millimeters or inches in the <span class="_Override" style="font-weight: bold;">Units</span> drop-down. The units should match the units used for the <span class="_Override" style="font-weight: bold;">Focal Length</span>.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You only need to specify <span class="_Override" style="font-weight: bold;">Film Back Size</span> if you have also specified <span class="_Override" style="font-weight: bold;">Focal</span><span class="_Override" style="font-weight: bold;">Length</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Units</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">filmBackUnits</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">mm</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the units of measurement for the <span class="_Override" style="font-weight: bold;">Focal Length</span> and <span class="_Override" style="font-weight: bold;">Film Back Size</span> fields.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Lens</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 315px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Lens Distortion</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">lensDistortionType</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">No Lens Distortion</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Select the type of distortion to expect:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">No Lens Distortion</span> - disables all lens distortion controls and treats the footage as having no distortion. This option gives the best solve to work on the original footage. The calculated focal length will compensate for lens distortion.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Known Lens</span> - allows you to specify the lens distortion manually and to use that information in doing the camera solve. Use this when you have a grid available for defining lens distortion. You can calculate the distortion parameters in a <a href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969" class="MCXref xref "><span style="color: 00B4E0;" class="mcFormatColor">LensDistortion</span></a> node first and paste the values onto ProjectionSolver.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Refine Known Lens</span> - gives you a chance to give an approximate distortion which to use but attempts to refine it in the camera solve. This is not necessary when a grid is used, but could improve the solve if lens distortion is calculated using an alternative method or set manually.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Unknown Lens</span> - calculates the lens distortion automatically from the sequence (in the same way as the <span class="_Override" style="font-weight: bold;">Image Analysis</span> option in the <a href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969" class="noPage MCXref xref  xref noPage"><span style="color: 00B4E0;" class="mcFormatColor">LensDistortion</span></a> node) and then refines the distortion in the camera solve. This way you don’t have to calculate your lens distortion separately using the LensDistortion node.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Lens Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">lensType</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Spherical</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the lens type that ProjectionSolver should expect: <span class="_Override" style="font-weight: bold;">Spherical</span> or <span class="_Override" style="font-weight: bold;">Anamorphic</span>.</p>
-                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Distortion</span> to anything other than <span class="_Override" style="font-weight: bold;">No Lens Distortion</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 93px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Radial Distortion 1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">distortion1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the first radial distortion term. This is proportional to r^2, where r is the distance from the distortion center. You can define this manually, or use the <a href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969" class="noPage MCXref xref  xref noPage"><span style="color: 00B4E0;" class="mcFormatColor">LensDistortion</span></a> node’s <span class="_Override" style="font-weight: bold;">image</span>, <span class="_Override" style="font-weight: bold;">grid</span>, or <span class="_Override" style="font-weight: bold;">line</span> analysis to fill it out automatically.</p>
-                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Distortion</span> to anything other than <span class="_Override" style="font-weight: bold;">No Lens Distortion</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Radial Distortion 2</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">distortion2</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the second radial distortion term, proportional to r^4. You can define this manually, or use the <a href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969" class="noPage MCXref xref  xref noPage"><span style="color: 00B4E0;" class="mcFormatColor">LensDistortion</span></a> node’s <span class="_Override" style="font-weight: bold;">image</span>, <span class="_Override" style="font-weight: bold;">grid</span>, or <span class="_Override" style="font-weight: bold;">line</span> analysis to fill it out automatically.</p>
-                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Distortion</span> to anything other than <span class="_Override" style="font-weight: bold;">No Lens Distortion</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Distortion Center x, y</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">distortionCenter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the values for the center of the radial distortion.</p>
-                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Distortion</span> to anything other than <span class="_Override" style="font-weight: bold;">No Lens Distortion</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Anamorphic Squeeze</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">anamorphicSqueeze</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">If you select <span class="_Override" style="font-weight: bold;">Lens Type</span> &gt; <span class="_Override" style="font-weight: bold;">Anamorphic</span>, enter values to define anamorphic squeeze - the distortion in x is scaled by this amount.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Asymmetric Distortion x, y</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">asymmetricDistortion</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">If you select <span class="_Override" style="font-weight: bold;">Lens Type</span> &gt; <span class="_Override" style="font-weight: bold;">Anamorphic</span>, enter values to define asymmetric distortion to correct for slight misalignments between multiple elements in the lens.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Undistort Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">undistort</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, the source is undistorted to match the camera solve.</p>
-                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Distortion</span> to anything other than <span class="_Override" style="font-weight: bold;">No Lens Distortion</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 307px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">&#160;</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the filtering algorithm to use when <span class="_Override" style="font-weight: bold;">Undistort Input</span> is enabled. This allows you to avoid problems with image quality, particularly in high contrast areas of the frame (where highly aliased, or jaggy, edges may appear if pixels are not filtered and retain their original values).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Impulse</span> - remapped pixels carry their original values.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Cubic</span> - remapped pixels receive some smoothing.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Keys</span> - remapped pixels receive some smoothing, plus minor sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Simon</span> - remapped pixels receive some smoothing, plus medium sharpening (as shown by the negative -y portions of the curve). </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Rifman</span> - remapped pixels receive some smoothing, plus significant sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mitchell</span> - remapped pixels receive some smoothing, plus blurring to hide pixelation.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Parzen</span> - remapped pixels receive the greatest smoothing of all filters.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Notch</span> - remapped pixels receive flat smoothing (which tends to hide moiré patterns).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Lanczos4</b>, <b>Lanczos6</b>, and <b>Sinc4</b> - remapped pixels receive sharpening which can be useful for scaling down. <b>Lanczos4</b> provides the least sharpening and <b>Sinc4</b> the most.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Analysis</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Solve Error</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">solveRMSE</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Displays the solved camera’s root mean square (RMS) error in pixels.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Solve Camera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">solveCamera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Click to calculate the relative position, orientation, and focal length of the camera. Any errors, such as unsolved frames, display a pop-up message containing tips on how to improve the solve.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Refine Output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">refineSolve</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Click to refine your solve according to changes made in the Viewer before creating a camera. The <span class="_Override" style="font-weight: bold;">Focal</span><span class="_Override" style="font-weight: bold;">Length</span>, <span class="_Override" style="font-weight: bold;">Position</span>, and <span class="_Override" style="font-weight: bold;">Rotation</span> checkboxes determine which aspects of the solve are refined.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Focal Length</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">refineOptions</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, clicking <span class="_Override" style="font-weight: bold;">Refine Output</span> refines the focal length information of the camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Position</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">refineOptions</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, clicking <span class="_Override" style="font-weight: bold;">Refine Output</span> refines the position information of the camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Rotation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">refineOptions</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, clicking <span class="_Override" style="font-weight: bold;">Refine Output</span> refines the rotation of the camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Live refinement</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">liveRefinement</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, making changes in the Viewer updates the solve in real time.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Output</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Link output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">linkOutput</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, a link is maintained between ProjectionSolver and the Camera and Card nodes it creates. When the nodes are linked, changing values in one also changes them in the others. </p>
-                                <p class="CellBody">When disabled, the Camera and Card nodes are left unlinked, and you can copy and use them in another script.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Create Camera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">createCamera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Click to create a Camera node using your solve and refinements.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Create Camera Rig (multi-view only)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">createRig</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Click to create a multi-view rig and Camera node for each view.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Create Cards</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">createCards</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Click to create a linked Camera and Card node based on your solve and refinements.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">z</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">cardDistance</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the z depth of the Card created when you click <span class="_Override" style="font-weight: bold;">Create</span><span class="_Override" style="font-weight: bold;">Card</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">Locators Tab (this tab is only populated when you add locators to your footage, Locator 0, Locator 1, etc.)</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Add Locator</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">addLocator</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Click to add a blank locator. You can manually adjust the fields or copy a Tracker’s values to populate the locator’s controls.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Key All Locators</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">keyAllLocators</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Click to add a keyframe for all locators on the current frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Locator 0 xy</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">IO</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Displays the locator’s 2D position.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Don’t expression link tracks to these controls—the keys are accessed directly.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Delete</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">deleteLocator0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Click to delete the associated locator from the list.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Active</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">locatorActive0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, the associated locator is used when calculating the solve.</p>
-                                <p class="CellBody">When disabled, the associated locator is ignored during calculation.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Position xyz</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">p0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0, 0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Displays the locator’s 3D position.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">Output Tab ( in most cases you won’t need to adjust these controls)</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Translate x, y, z</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">camTranslate</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0, 0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Defines the transform values for the virtual camera’s position.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Rotate x, y, z</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">camRotate</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0, 0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Defines the transform values for the virtual camera’s rotation.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Focal Length</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">focalLength</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the focal length for the virtual camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Aperture x, y</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">aperture</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the aperture angle, in degrees, for the virtual camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Window Translate x, y</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">windowTranslate</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the center point offset for the camera projection.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">Window Scale x, y</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">windowScale</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">0, 0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p class="CellBody">Sets the relative pixel scaling value for the camera projection.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown "><span class="MCDropDownHead dropDownHead "><span class="MCDropDownHotSpot dropDownHotspot  MCDropDownHotSpot_" title="Drop Down"><span class="Master_VariablesUGContent">Step-by-Step Guides</span></span></span>
-            <div class="MCDropDownBody dropDownBody ">
-                <p><a href="../../user_guide/projectionsolver/using_projectionsolver.html" class="MCXref xref "><span style="color: 00B4E0;" class="mcFormatColor">Using ProjectionSolver</span></a>
-                </p>
-            </div>
-        </div>
-        <p data-mc-conditions="Default.ScreenOnly"><a class="MCHelpControl MCHelpControl-Related relatedTopics " data-mc-topics="Camera|camera.html||Card|card.html"><span class="MCHelpControl-RelatedHotSpot_">Related Topics</span></a>
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|3D Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   ProjectionSolver
+  </title>
+  <link href="../../resources/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../resources/stylesheets/load.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+ </head>
+ <body>
+  <div class="MCBreadcrumbsBox_0">
+   <span class="MCBreadcrumbsPrefix">
+    你在这里:
+   </span>
+   <a class="MCBreadcrumbsLink" href="../preface/reference_guide.html">
+    参考指南
+   </a>
+   <span class="MCBreadcrumbsDivider">
+    &gt;
+   </span>
+   <a class="MCBreadcrumbsLink" href="3d_nodes.html">
+    3D 节点
+   </a>
+   <span class="MCBreadcrumbsDivider">
+    &gt;
+   </span>
+   <span class="MCBreadcrumbs">
+    ProjectionSolver
+   </span>
+  </div>
+  <h1>
+   ProjectionSolver
+  </h1>
+  <p>
+   ProjectionSolver (仅限 NukeX) 可帮助您将 2D 与 3D 点对齐。例如，您可以将 2D 图像与 3D 模型对齐。ProjectionSolver 节点的输出是
+   <a class="noPage MCXref xref xref noPage" href="camera.html#3d_nodes_3521729775_797269">
+    <span class="mcFormatColor" style="color: 00B4E0;">
+     相机
+    </span>
+   </a>
+   与 2D 镜头的相机运动相匹配的节点。您也可以创建
+   <a class="noPage MCXref xref xref noPage" href="card.html#3d_nodes_3521729775_758178">
+    <span class="mcFormatColor" style="color: 00B4E0;">
+     卡
+    </span>
+   </a>
+   节点来匹配每个不同的相机位置。
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <span class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" title="Drop Down">
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </span>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="77px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="101px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="114px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="431px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
         </p>
-    </body>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Geo
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         三维几何图形对象。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         源
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p class="CellBody">
+         要与 3D 模型对齐的 2D 图像
+         <span class="_Override" style="font-weight: bold;">
+          Geo
+         </span>
+         输入。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="2548px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="362px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         ProjectionSolver 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+        <p class="CellBody">
+         求解器
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 217px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         焦距类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         FocalLengthType
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         未知常数
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置相机的焦距:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          已知
+         </b>
+         -如果为序列定义了焦距，请选择此选项，并在 “焦距” 字段中输入焦距值。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          近似变化
+         </span>
+         -如果近似焦距可用并更改，请选择此选项。在中输入焦距值
+         <span class="_Override" style="font-weight: bold;">
+          焦
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          长度
+         </span>
+         字段。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          近似常数
+         </span>
+         -如果没有缩放，并且有一个近似焦距可用，请选择此选项。在中输入焦距值
+         <span class="_Override" style="font-weight: bold;">
+          焦
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          长度
+         </span>
+         字段。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          未知变化
+         </span>
+         -如果焦距未知并发生变化，请选择此选项。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          未知常数
+         </span>
+         -如果没有缩放，并且焦距未知，请选择此选项。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         焦距
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Knownfogalleth
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         50
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置近似和已知解决的焦距。可以设置此控件的动画以定义不同的焦距。这个单位是一致的,
+         <span class="_Override" style="font-weight: bold;">
+          胶片背面尺寸
+         </span>
+         (毫米或英寸)。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         胶片背面尺寸 x，y
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         FilmBackSize
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         36 、 24
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置相机成像传感器的大小。指定的单位要使用的选择要么毫米或英寸的
+         <span class="_Override" style="font-weight: bold;">
+          单位
+         </span>
+         下拉。各单位应与单位使用,
+         <span class="_Override" style="font-weight: bold;">
+          焦距
+         </span>
+         .
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         您只需要指定
+         <span class="_Override" style="font-weight: bold;">
+          胶片背面尺寸
+         </span>
+         如果您还指定了
+         <span class="_Override" style="font-weight: bold;">
+          焦
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          长度
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         单位
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         FilmBackUnits
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Mm
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置的测量单位
+         <span class="_Override" style="font-weight: bold;">
+          焦距
+         </span>
+         和
+         <span class="_Override" style="font-weight: bold;">
+          胶片背面尺寸
+         </span>
+         字段。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         镜头
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 315px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         镜头失真
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Lensdistimultiontype
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         无镜头失真
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         选择预期的失真类型:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          无镜头失真
+         </span>
+         -禁用所有镜头失真控制，并将镜头视为没有失真。这个选项给出了处理原始镜头的最佳解决方案。计算的焦距将补偿镜头失真。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          已知镜头
+         </span>
+         -允许您手动指定镜头失真，并在进行相机解算时使用该信息。当您有可用于定义镜头失真的网格时，请使用此选项。你可变形参数的计算
+         <a class="MCXref xref" href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969">
+          <span class="mcFormatColor" style="color: 00B4E0;">
+           透镜失真
+          </span>
+         </a>
+         首先节点，然后将值粘贴到 ProjectionSolver 上。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          精炼已知镜头
+         </span>
+         -给你一个机会，给一个近似失真，使用，但试图完善它在相机解决。当使用网格时，这是不必要的，但是如果使用替代方法或手动设置来计算镜头失真，这可能会改善解决方案。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          未知镜头
+         </span>
+         -自动从序列中计算镜头失真 (与
+         <span class="_Override" style="font-weight: bold;">
+          图像分析
+         </span>
+         中的选项
+         <a class="noPage MCXref xref xref noPage" href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969">
+          <span class="mcFormatColor" style="color: 00B4E0;">
+           透镜失真
+          </span>
+         </a>
+         节点)，然后在相机求解中细化失真。这样，您就不必使用透镜失真节点分别计算镜头失真。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 64px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         镜头类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         LensType
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         球形
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置 ProjectionSolver 应期望的镜头类型:
+         <span class="_Override" style="font-weight: bold;">
+          球形
+         </span>
+         或
+         <span class="_Override" style="font-weight: bold;">
+          变形
+         </span>
+         .
+        </p>
+        <p class="CellBody">
+         此控件仅在设置后可用
+         <span class="_Override" style="font-weight: bold;">
+          镜头失真
+         </span>
+         除了其他任何东西
+         <span class="_Override" style="font-weight: bold;">
+          无镜头失真
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 93px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         径向失真 1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         扭曲 1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置第一个径向失真项。这与 r ^ 2 成比例，其中 r 是与失真中心的距离。您可以手动定义此，或使用
+         <a class="noPage MCXref xref xref noPage" href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969">
+          <span class="mcFormatColor" style="color: 00B4E0;">
+           透镜失真
+          </span>
+         </a>
+         节点的
+         <span class="_Override" style="font-weight: bold;">
+          图像
+         </span>
+         ,
+         <span class="_Override" style="font-weight: bold;">
+          网格
+         </span>
+         ,或
+         <span class="_Override" style="font-weight: bold;">
+          行
+         </span>
+         分析自动填写。
+        </p>
+        <p class="CellBody">
+         此控件仅在设置后可用
+         <span class="_Override" style="font-weight: bold;">
+          镜头失真
+         </span>
+         除了其他任何东西
+         <span class="_Override" style="font-weight: bold;">
+          无镜头失真
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         径向失真 2
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         扭曲 2
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置第二个径向失真项，与 r ^ 4 成比例。您可以手动定义此，或使用
+         <a class="noPage MCXref xref xref noPage" href="../transform_nodes/lensdistortion.html#transform_nodes_2326311149_768969">
+          <span class="mcFormatColor" style="color: 00B4E0;">
+           透镜失真
+          </span>
+         </a>
+         节点的
+         <span class="_Override" style="font-weight: bold;">
+          图像
+         </span>
+         ,
+         <span class="_Override" style="font-weight: bold;">
+          网格
+         </span>
+         ,或
+         <span class="_Override" style="font-weight: bold;">
+          行
+         </span>
+         分析自动填写。
+        </p>
+        <p class="CellBody">
+         此控件仅在设置后可用
+         <span class="_Override" style="font-weight: bold;">
+          镜头失真
+         </span>
+         除了其他任何东西
+         <span class="_Override" style="font-weight: bold;">
+          无镜头失真
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         失真中心 x，y
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         扭曲中心
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置径向扭曲中心的值。
+        </p>
+        <p class="CellBody">
+         此控件仅在设置后可用
+         <span class="_Override" style="font-weight: bold;">
+          镜头失真
+         </span>
+         除了其他任何东西
+         <span class="_Override" style="font-weight: bold;">
+          无镜头失真
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         变形挤压
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         变形挤压
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         如果您选择
+         <span class="_Override" style="font-weight: bold;">
+          镜头类型
+         </span>
+         &gt;
+         <span class="_Override" style="font-weight: bold;">
+          变形
+         </span>
+         ,输入值以定义变形挤压-x 中的失真按此量缩放。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         不对称失真 x，y
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         不对称失真
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         如果您选择
+         <span class="_Override" style="font-weight: bold;">
+          镜头类型
+         </span>
+         &gt;
+         <span class="_Override" style="font-weight: bold;">
+          变形
+         </span>
+         ,输入值以定义不对称失真，以纠正镜头中多个元素之间的轻微失调。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         不失真输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         不失真
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用时，源不会失真，以匹配相机解析度。
+        </p>
+        <p class="CellBody">
+         此控件仅在设置后可用
+         <span class="_Override" style="font-weight: bold;">
+          镜头失真
+         </span>
+         除了其他任何东西
+         <span class="_Override" style="font-weight: bold;">
+          无镜头失真
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 307px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         过滤器
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         filter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置要在何时使用的过滤算法
+         <span class="_Override" style="font-weight: bold;">
+          不失真输入
+         </span>
+         已启用。这允许您避免图像质量问题，特别是在帧的高对比度区域 (高度锯齿或锯齿, 如果没有过滤像素并保留其原始值，则可能会出现边缘)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          冲动
+         </span>
+         -重新映射的像素携带其原始值。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          立方
+         </span>
+         -重新映射的像素接收一些平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          钥匙
+         </span>
+         -重新映射的像素会得到一些平滑，加上轻微的锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          西蒙
+         </span>
+         -重新映射的像素会获得一些平滑，加上中等锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          里夫曼
+         </span>
+         -重新映射的像素获得一些平滑，加上显著的锐化 (如曲线的负-y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          米切尔
+         </span>
+         -重新映射的像素接收一些平滑，加上模糊来隐藏像素化。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          帕森
+         </span>
+         -重新映射的像素接收所有过滤器的最大平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          缺口
+         </span>
+         -重新映射的像素接收平坦平滑 (倾向于隐藏莫尔图案)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          Lanczos4
+         </b>
+         ,
+         <b>
+          Lanczos6
+         </b>
+         ,和
+         <b>
+          Sinc4
+         </b>
+         -重新映射的像素接收锐化，这对于缩小缩放很有用。
+         <b>
+          Lanczos4
+         </b>
+         提供最少的锐化和
+         <b>
+          Sinc4
+         </b>
+         最多的。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         分析
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         解决错误
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         SolveRMSE
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         显示已解决的相机的均方根 (RMS) 误差 (以像素为单位)。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         解决相机
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         SolveCamera
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         单击以计算相机的相对位置、方向和焦距。任何错误，如未解决的帧，都会显示一个弹出消息，其中包含如何改进解决方案的提示。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         精炼输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         RefineSolve
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         单击以根据创建相机之前在查看器中所做的更改来优化您的解决方案。的
+         <span class="_Override" style="font-weight: bold;">
+          焦
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          长度
+         </span>
+         ,
+         <span class="_Override" style="font-weight: bold;">
+          位置
+         </span>
+         ,和
+         <span class="_Override" style="font-weight: bold;">
+          旋转
+         </span>
+         复选框确定解决方案的哪些方面得到细化。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         焦距
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         精炼期权
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，单击
+         <span class="_Override" style="font-weight: bold;">
+          精炼输出
+         </span>
+         细化相机的焦距信息。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         位置
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         精炼期权
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，单击
+         <span class="_Override" style="font-weight: bold;">
+          精炼输出
+         </span>
+         细化相机的位置信息。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         旋转
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         精炼期权
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，单击
+         <span class="_Override" style="font-weight: bold;">
+          精炼输出
+         </span>
+         细化相机的旋转。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         现场精炼
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         LiveRefinement
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，在查看器中进行更改将实时更新解析。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         输出
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         链路输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         LinkOutput
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，ProjectionSolver 与其创建的相机和卡节点之间将保持链接。当节点链接时，更改其中一个中的值也会更改其他节点中的值。
+        </p>
+        <p class="CellBody">
+         禁用时，相机和卡片节点保持未链接，您可以在另一个脚本中复制和使用它们。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         创建相机
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         CreateCamera
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         单击以使用解析和改进创建相机节点。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         创建相机装备 (仅限多视图)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         CreateRig
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         单击为每个视图创建多视图装备和相机节点。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         创建卡片
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         CreateCards
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         单击以根据您的解决方案和改进创建链接的相机和卡节点。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         z
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         CardDistance
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置单击时创建的卡的 z 深度
+         <span class="_Override" style="font-weight: bold;">
+          创建
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          卡
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         “定位器” 选项卡 (仅当您将定位器添加到素材、定位器 0 、定位器 1 等时，才填充此选项卡。))
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         添加定位器
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         AddLocator
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         单击添加空白定位器。您可以手动调整字段或复制跟踪器的值来填充定位器的控件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         为所有定位器键
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         KeyAllLocators
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         单击为当前帧上的所有标注添加关键帧。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         定位器 0 xy
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         IO
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         显示定位器的 2D 位置。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         不要将表达式轨迹链接到这些控件-键是直接访问的。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         删除
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         DeleteLocator0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         单击可从列表中删除关联的定位器。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 49px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         主动
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         LocatorActive0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，在计算解析时使用关联的定位器。
+        </p>
+        <p class="CellBody">
+         禁用时，在计算期间将忽略关联的定位器。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         位置 xyz
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         P0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0,0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         显示定位器的 3D 位置。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         输出选项卡 (在大多数情况下，您不需要调整这些控件)
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         翻译 x，y，z
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         CamTranslate
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0,0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         定义虚拟相机位置的变换值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         旋转 x 、 y 、 z
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         CamRotate
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0,0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         定义虚拟相机旋转的变换值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         焦距
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         FocalLength
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置虚拟相机的焦距。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         孔径 x，y
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         光圈
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置虚拟相机的光圈角度 (以度为单位)。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         窗口翻译 x，y
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         窗户翻译
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置相机投影的中心点偏移。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         窗口比例 x，y
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         WindowScale
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         0，0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p class="CellBody">
+         设置相机投影的相对像素缩放值。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <span class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" title="Drop Down">
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </span>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="MCXref xref" href="../../user_guide/projectionsolver/using_projectionsolver.html">
+      <span class="mcFormatColor" style="color: 00B4E0;">
+       使用 ProjectionSolver
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <p data-mc-conditions="Default.ScreenOnly">
+   <a class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="Camera|camera.html||Card|card.html">
+    <span class="MCHelpControl-RelatedHotSpot_">
+     相关主题
+    </span>
+   </a>
+  </p>
+ </body>
 </html>

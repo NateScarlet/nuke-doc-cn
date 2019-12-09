@@ -1,503 +1,980 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|3D Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>WriteGeo</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/3d_nodes/writegeo.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|3D Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   WriteGeo
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/3d_nodes/writegeo.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>WriteGeo</h1>
-        <p>Writes out geometry to a specified file. You can export:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>OBJ files</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>FBX files containing meshes, point clouds, cameras, lights, and axes.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Alembic (.abc) files containing meshes, point clouds, cameras, or axes. For more information on Alembic, see <a href="http://code.google.com/p/alembic/">http://code.google.com/p/alembic/</a>.</p>
-        <p>You can write the geometry by clicking the <span class="_Override" style="font-weight: bold;">Execute</span> button and specifying a range of frames you want written or by running the Nuke script with the <span class="_Override" style="font-weight: bold;">-x</span> switch. </p>
-        <p>See also <a href="readgeo.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">ReadGeo</span></a>.</p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="54px">
-                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="114px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="431px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">unnamed</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p class="CellBody">The geometry or scene you want to write out to a specified file.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="995px">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">WriteGeo Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">file</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">file</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Enter the file path and file name or use the folder icon to browse to the required location.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Execute</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Execute</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Click to write the input geometry to the file specified in the <span class="_Override" style="font-weight: bold;">file</span> control.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">frame range</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">first</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When <span class="_Override" style="font-weight: bold;">limit to range</span> is enabled, enter the first frame to write to the specified <span class="_Override" style="font-weight: bold;">file</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">last</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When <span class="_Override" style="font-weight: bold;">limit to range</span> is enabled, enter the last frame to write to the specified <span class="_Override" style="font-weight: bold;">file</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">limit to range</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">use_limit</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, enter the first and last frames to write to the specified <span class="_Override" style="font-weight: bold;">file</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">views</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">views</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">main</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When you’re working with stereo footage, select the required view.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 168px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">file type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">file_type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Select the file type you intend to write:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">none</span> - Nuke attempts to guess the <span class="_Override" style="font-weight: bold;">file type</span> from the <span class="_Override" style="font-weight: bold;">file</span> name, but you cannot set any type-specific controls.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">abc</span> - when the WriteGeo node is connected to a Scene node, writes to an <b>.abc</b> file and exposes the Alembic-specific controls (see <span class="_Override" style="font-weight: bold;">abc Options</span>).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">fbx</span> - when the WriteGeo node is connected to a Scene node, writes to an <b>.fbx</b> file and exposes the FBX-specific controls (see <span class="_Override" style="font-weight: bold;">fbx Options</span>).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">obj</span> - write to an <b>.obj</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">abc Options (These controls are only exposed when file type is set to <b>abc</b>.)</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">geometries</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">writeGeometries</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, write the scene geometries into the <b>.abc</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">pointClouds</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">writePointClouds</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, write the scene point clouds into the <b>.abc</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">cameras</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">writeCameras</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, write the scene cameras to the <b>.abc</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">axes</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">writeAxes</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, write the scene axes into the <b>.abc</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>storage format</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>storageFormat</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>HDF</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Select the storage format to use when writing the file:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>HDF</b> - A storage format that maintains backwards compatibility.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Ogawa</b> - A storage format that offers faster file reading and smaller files.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">fbx Options (These controls are only exposed when file type is set to <b>fbx</b>.)</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">geometries</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">writeGeometries</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, write the scene geometries into the <b>.fbx</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">cameras</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">writeCameras</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, write the scene cameras to the <b>.fbx</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">lights</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">writeLights</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, write the scene lights into the <b>.fbx</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">axes</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">writeAxes</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, write the scene axes into the <b>.fbx</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">point clouds</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">writePointClouds</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, write the scene point clouds into the <b>.fbx</b> file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">ascii file format</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">asciiFileFormat</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When disabled, a binary .fbx file is written. Check <span class="_Override" style="font-weight: bold;">ascii file format</span> to write the scene as an ascii .fbx file.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">animate mesh vertices</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">animateMeshVertices</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, the mesh vertices are animated and keyframes created at every frame. The animated meshes use vertex point cache for the data and a directory with <span class="_Override" style="font-weight: bold;">_fpc</span> appended to the file name is created to contain the point caches.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">Python Tab (These controls are for Python callbacks and can be used to have Python functions automatically called when various events happen in Nuke.)</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">before render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">beforeRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">These functions run prior to starting rendering in execute(). If they throw an exception, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">before each frame</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">beforeFrameRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">These functions run prior to starting rendering of each individual frame. If they throw an exception, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">after each frame</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">afterFrameRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">These functions run after each frame is finished rendering. They are not called if the render aborts. If they throw an exception, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">after render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">afterRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">These functions run after rendering of all frames is finished. If they throw an error, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p>render progress</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p>renderProgress</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p>These functions run during rendering to determine progress or failure.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/3d_compositing/exporting_objects.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Exporting Geometry, Cameras, Lights, Axes, or Point Clouds </span></a>
-                </p>
-            </div>
-        </div>
-        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="ReadGeo|readgeo.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Link Icon" />Related Topics</span></a>
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   WriteGeo
+  </h1>
+  <p>
+   将几何图形写入指定文件。您可以导出:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   OBJ 文件
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   包含网格、点云、相机、灯光和轴的 FBX 文件。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   包含网格、点云、相机或轴的 Alembic (.abc) 文件。有关 Alembic 的更多信息，请参见
+   <a href="http://code.google.com/p/alembic/">
+    Http://code.google.com/p/alembic/
+   </a>
+   .
+  </p>
+  <p>
+   您可以通过单击
+   <span class="_Override" style="font-weight: bold;">
+    执行
+   </span>
+   按钮，并指定您想要编写的框架范围，或者通过使用
+   <span class="_Override" style="font-weight: bold;">
+    -X
+   </span>
+   开关。
+  </p>
+  <p>
+   另见
+   <a class="noPage MCXref xref xrefnoPage" href="readgeo.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     ReadGeo
+    </span>
+   </a>
+   .
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="54px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="101px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="114px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="431px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
         </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         未命名
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p class="CellBody">
+         要写入指定文件的几何体或场景。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="995px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="362px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         WriteGeo 标签
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         文件
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         文件
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         输入文件路径和文件名，或使用文件夹图标浏览到所需位置。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         执行
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         执行
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         单击将输入几何图形写入文件中指定的
+         <span class="_Override" style="font-weight: bold;">
+          文件
+         </span>
+         控制。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" rowspan="2">
+        <p class="CellBody">
+         帧范围
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         首先
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         当
+         <span class="_Override" style="font-weight: bold;">
+          限制范围
+         </span>
+         如果启用，请输入要写入指定
+         <span class="_Override" style="font-weight: bold;">
+          文件
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         最后
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         当
+         <span class="_Override" style="font-weight: bold;">
+          限制范围
+         </span>
+         已启用，请输入要写入指定帧的最后一个帧
+         <span class="_Override" style="font-weight: bold;">
+          文件
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         限制范围
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Use_limit
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，输入要写入指定帧的第一个和最后一个帧
+         <span class="_Override" style="font-weight: bold;">
+          文件
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         视图
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         视图
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         主要
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         使用立体声素材时，请选择所需的视图。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 168px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         文件类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         File_type
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         选择要写入的文件类型:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          没有
+         </span>
+         -核武器试图猜测
+         <span class="_Override" style="font-weight: bold;">
+          文件类型
+         </span>
+         从
+         <span class="_Override" style="font-weight: bold;">
+          文件
+         </span>
+         名称，但不能设置任何类型特定的控件。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Abc
+         </span>
+         -当 WriteGeo 节点连接到场景节点时，写入
+         <b>
+          。Abc
+         </b>
+         文件并公开特定于 Alembic 的控件 (请参见
+         <span class="_Override" style="font-weight: bold;">
+          Abc 选项
+         </span>
+         )。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Fbx
+         </span>
+         -当 WriteGeo 节点连接到场景节点时，写入
+         <b>
+          。Fbx
+         </b>
+         文件并公开特定于 FBX 的控件 (请参见
+         <span class="_Override" style="font-weight: bold;">
+          Fbx 选项
+         </span>
+         )。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Obj
+         </span>
+         -写信给
+         <b>
+          。Obj
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         Abc 选项 (这些控件仅在文件类型设置为
+         <b>
+          Abc
+         </b>
+         )。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         几何形状
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         写作经验
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，将场景几何图形写入
+         <b>
+          。Abc
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         点云
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         WritePointClouds
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，将场景点云写入
+         <b>
+          。Abc
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         相机
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         WriteCameras
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，将场景摄像机写入
+         <b>
+          。Abc
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         轴
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         WriteAxes
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，将场景轴写入
+         <b>
+          。Abc
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         存储格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         存储格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         HDF
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         选择写入文件时要使用的存储格式:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          HDF
+         </b>
+         -保持向后兼容性的存储格式。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          小川
+         </b>
+         -一种存储格式，提供更快的文件读取速度和更小的文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         Fbx 选项 (这些控件仅在文件类型设置为
+         <b>
+          Fbx
+         </b>
+         )。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         几何形状
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         写作经验
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，将场景几何图形写入
+         <b>
+          。Fbx
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         相机
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         WriteCameras
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，将场景摄像机写入
+         <b>
+          。Fbx
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         灯光
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         WriteLights
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，将场景灯光写入
+         <b>
+          。Fbx
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         轴
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         WriteAxes
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，将场景轴写入
+         <b>
+          。Fbx
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         点云
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         WritePointClouds
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，将场景点云写入
+         <b>
+          。Fbx
+         </b>
+         文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Ascii 文件格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         AsciiFileFormat
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         禁用时，为二进制。Fbx 文件已写入。检查
+         <span class="_Override" style="font-weight: bold;">
+          Ascii 文件格式
+         </span>
+         将场景写成 ascii。Fbx 文件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 59px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         动画网格顶点
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         动画顶点
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，将对网格顶点进行动画处理，并在每一帧中创建关键帧。动画网格对数据和目录使用顶点缓存
+         <span class="_Override" style="font-weight: bold;">
+          _ Fpc
+         </span>
+         将创建附加到文件名以包含点缓存。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         Python Tab (这些控件用于 Python 回调，可用于在 Nuke 中发生各种事件时自动调用 Python 函数。)
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         渲染前
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         BeforeRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         这些函数在 execute () 中开始呈现之前运行。如果它们抛出异常，渲染将中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         在每帧之前
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         BeforeFrameRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         这些函数在开始渲染每个帧之前运行。如果它们抛出异常，渲染将中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         每帧后
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         AfterFrameRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         这些函数在每个帧完成渲染后运行。如果渲染中止，则不会调用它们。如果它们抛出异常，渲染将中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         渲染后
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         AfterRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         这些函数在所有帧的渲染完成后运行。如果它们抛出错误，渲染将中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p>
+         渲染进度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p>
+         渲染进度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p>
+         这些函数在渲染期间运行，以确定进度或失败。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="MCXref xref" href="../../comp_environment/3d_compositing/exporting_objects.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       导出几何图形、摄影机、灯光、轴或点云
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <p data-mc-conditions="Default.ScreenOnly">
+   <a class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="ReadGeo|readgeo.html" href="javascript:void(0);">
+    <span class="MCHelpControl-RelatedHotSpot_">
+     <img alt="Related Topics Link Icon" class="MCHelpControl_Image_Icon" height="16" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     相关主题
+    </span>
+   </a>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -511,5 +988,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

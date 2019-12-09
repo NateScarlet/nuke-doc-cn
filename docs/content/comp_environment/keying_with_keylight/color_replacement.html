@@ -1,204 +1,455 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Keying with Keylight|Screen Processing">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Color Replacement</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/keying_with_keylight/color_replacement.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Keying with Keylight|Screen Processing" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   颜色替换
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/keying_with_keylight/color_replacement.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="kanchor239"></a>Color Replacement</h2>
-        <p class="afterHead">Remember that Keylight does two things - it removes the screen color to despill the image and generates an alpha (<span class="_Override" style="font-weight: bold;">Screen</span> <span class="_Override" style="font-weight: bold;">Matte</span>) to composite the foreground over the background layer. </p>
-        <p>If you then process the <span class="_Override" style="font-weight: bold;">Screen</span> <span class="_Override" style="font-weight: bold;">Matte</span>, for example, by eroding the alpha or changing the clip levels, Keylight would be removing the wrong amount of screen color from the pixels whose transparency has now changed. The <span class="_Override" style="font-weight: bold;"><a name="kanchor240"></a>Screen</span> <span class="_Override" style="font-weight: bold;">Replace</span> instructs Keylight how to deal with such pixels. The <span class="_Override" style="font-weight: bold;">Status</span> displays which pixels use a replace method. Those pixels that use a replace method because the alpha processing tools modified the transparency are green, whilst those pixels whose transparency was modified by the inside matte are blue. See the Status View under <a href="view.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">View</span></a>.</p>
-        <p>There are four options to the replace method. These are:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;"><span class="_Override" style="font-weight: bold;">None</span> - the despilled image is left untouched if the alpha is modified. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;"><span class="_Override" style="font-weight: bold;">Source</span> - the image has a corresponding amount of the original pixel (screen color and all) reintroduced/removed if the alpha is changed. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;"><span class="_Override" style="font-weight: bold;">Hard</span> <span class="_Override" style="font-weight: bold;">Color</span> - the despilled image has a corresponding amount of the <span class="_Override" style="font-weight: bold;">Screen</span> <span class="_Override" style="font-weight: bold;">Replace</span> <span class="_Override" style="font-weight: bold;">Color</span> added for any increase in alpha. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;"><span class="_Override" style="font-weight: bold;">Soft</span> <span class="_Override" style="font-weight: bold;">Color</span> - the despilled image has a corresponding amount of the <span class="_Override" style="font-weight: bold;"><a name="kanchor241"></a>Screen</span> <span class="_Override" style="font-weight: bold;">Replace</span> <span class="_Override" style="font-weight: bold;">Color</span> added for any increase in alpha, however, it attempts to modulate the luminance of the resulting pixel so that it matches the original pixel. This gives a more subtle result than the <span class="_Override" style="font-weight: bold;">Hard</span> <span class="_Override" style="font-weight: bold;">Color</span> option.</td>
-            </tr>
-        </table>
-        <h3>Inside mask</h3>
-        <p>If the changes to the screen matte are due to an inside mask, the <span class="_Override" style="font-weight: bold;">Inside</span> <span class="_Override" style="font-weight: bold;">Replace</span> and <span class="_Override" style="font-weight: bold;">Inside</span> <span class="_Override" style="font-weight: bold;">Replace</span> <span class="_Override" style="font-weight: bold;">Color</span> parameters can be used to modify the color in these areas just like the <span class="_Override" style="font-weight: bold;">Screen</span> <span class="_Override" style="font-weight: bold;">Replace</span> parameters described above.</p>
-        <h3>Edges</h3>
-        <p>Built-in crop tools are included to quickly remove parts of the foreground at the edges of the image. It can also be useful in tidying up a matte at the edges where luminance changes in the blue screen are proving difficult to key out.</p>
-        <p>With <span class="_Override" style="font-weight: bold;">X</span> <span class="_Override" style="font-weight: bold;">Method</span> and <span class="_Override" style="font-weight: bold;">Y</span> <span class="_Override" style="font-weight: bold;">Method</span> set to <span class="_Override" style="font-weight: bold;">Color</span> and <span class="_Override" style="font-weight: bold;">Edge</span> <span class="_Override" style="font-weight: bold;">Color,</span> set to pure blue (for a blue screen), set the <span class="_Override" style="font-weight: bold;">Left</span> to crop out the left-hand side of the image revealing the background. The figures below show the changes to the <span class="_Override" style="font-weight: bold;">Combined</span> <span class="_Override" style="font-weight: bold;">Matte</span> with cropping.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/keylight_edges1.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/keylight_edges2.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p><span class="_Override" style="font-weight: bold;">Left</span> = 0.</p>
-                    </td>
-                    <td class="caption">
-                        <p><span class="_Override" style="font-weight: bold;">Left</span> = 0.35.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>InM component</h3>
-        <p>The component (luminance or alpha channel) of the inside mask input that is used in the calculations. Typically, this is a garbage matte that covers the area you know to be 100% foreground.<span class="_Override" style="font-size: 12pt;line-height: 14pt;"> </span></p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/keylight_original.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/keylight_inside_mask.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>A bluescreen image.</p>
-                    </td>
-                    <td class="caption">
-                        <p>An inside matte.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>To avoid having to roto the inside matte throughout the clip, you can connect another Keylight node to the <span class="_Override" style="font-weight: bold;">InM</span> input and use it to create a hard, dilated key (set <span class="_Override" style="font-weight: bold;">Screen Dilate</span> to a low value).</p>
-        <h3>OutM component</h3>
-        <p>The component (luminance or alpha channel) of the outside mask. Typically, this is a garbage matte that covers the area you know to be 100% background.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/keylight_original1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/keylight_outside_mask.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />&#160;</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>A bluescreen image.</p>
-                    </td>
-                    <td class="caption">
-                        <p>An outside matte.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="kanchor239">
+   </a>
+   颜色替换
+  </h2>
+  <p class="afterHead">
+   请记住，键控灯有两件事 -- 它消除了屏幕颜色，以消除图像，并生成一个 alpha (
+   <span class="_Override" style="font-weight: bold;">
+    屏幕
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    哑光
+   </span>
+   ) 在背景层上合成前景。
+  </p>
+  <p>
+   如果你然后处理
+   <span class="_Override" style="font-weight: bold;">
+    屏幕
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    哑光
+   </span>
+   例如，通过侵蚀 alpha 或改变剪辑级别，Keylight 将从透明度现在已经改变的像素中删除错误数量的屏幕颜色。的
+   <span class="_Override" style="font-weight: bold;">
+    <a name="kanchor240">
+    </a>
+    屏幕
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    替换
+   </span>
+   指示 Keylight 如何处理这些像素。的
+   <span class="_Override" style="font-weight: bold;">
+    地位
+   </span>
+   显示哪些像素使用替换方法。由于 alpha 处理工具修改了透明度而使用替换方法的像素是绿色的，而由内侧磨砂修改了透明度的像素是蓝色的。请参见下的状态视图
+   <a class="noPage MCXref xref xrefnoPage" href="view.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     视图
+    </span>
+   </a>
+   .
+  </p>
+  <p>
+   Replace 方法有四个选项。这些是:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     -如果 alpha 被修改，鄙视图像将保持不变。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     <span class="_Override" style="font-weight: bold;">
+      源
+     </span>
+     -如果 alpha 改变，图像有相应数量的原始像素 (屏幕颜色和全部) 重新引入/删除。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     <span class="_Override" style="font-weight: bold;">
+      硬
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      颜色
+     </span>
+     -被鄙视的图像有相应数量的
+     <span class="_Override" style="font-weight: bold;">
+      屏幕
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      替换
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      颜色
+     </span>
+     增加阿尔法的任何增加。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     <span class="_Override" style="font-weight: bold;">
+      软
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      颜色
+     </span>
+     -被鄙视的图像有相应数量的
+     <span class="_Override" style="font-weight: bold;">
+      <a name="kanchor241">
+      </a>
+      屏幕
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      替换
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      颜色
+     </span>
+     然而，对于 alpha 的任何增加，它会尝试调节结果像素的亮度，使其与原始像素相匹配。这给出了一个比
+     <span class="_Override" style="font-weight: bold;">
+      硬
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      颜色
+     </span>
+     选项。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   内面具
+  </h3>
+  <p>
+   如果屏幕磨砂的变化是由于内部遮罩造成的，则
+   <span class="_Override" style="font-weight: bold;">
+    里面
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    替换
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    里面
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    替换
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    颜色
+   </span>
+   参数可以用来修改这些区域的颜色，就像
+   <span class="_Override" style="font-weight: bold;">
+    屏幕
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    替换
+   </span>
+   上述参数。
+  </p>
+  <h3>
+   边缘
+  </h3>
+  <p>
+   内置裁剪工具可快速移除图像边缘的前景部分。它也可以在边缘清理哑光时有用，因为蓝屏的亮度变化很难显示出来。
+  </p>
+  <p>
+   与
+   <span class="_Override" style="font-weight: bold;">
+    X
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    方法
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    Y
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    方法
+   </span>
+   设置为
+   <span class="_Override" style="font-weight: bold;">
+    颜色
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    边缘
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    颜色,
+   </span>
+   设置为纯蓝色 (对于蓝屏)，设置
+   <span class="_Override" style="font-weight: bold;">
+    左
+   </span>
+   裁剪出图像的左侧，露出背景。下图显示了对
+   <span class="_Override" style="font-weight: bold;">
+    合并
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    哑光
+   </span>
+   与裁剪。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/keylight_edges1.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/keylight_edges2.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       <span class="_Override" style="font-weight: bold;">
+        左
+       </span>
+       = 0。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       <span class="_Override" style="font-weight: bold;">
+        左
+       </span>
+       = 0.35。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   InM 组件
+  </h3>
+  <p>
+   计算中使用的内部遮罩输入的分量 (亮度或 alpha 通道)。通常，这是一个垃圾哑光，覆盖了你知道 100% 前景的区域。
+   <span class="_Override" style="font-size: 12pt;line-height: 14pt;">
+   </span>
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/keylight_original.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/keylight_inside_mask.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       蓝屏图像。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       内部哑光。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   为了避免在整个剪辑中旋转内部哑光，您可以将另一个键光节点连接到
+   <span class="_Override" style="font-weight: bold;">
+    InM
+   </span>
+   输入并使用它来创建一个硬的，扩张的关键 (设置
+   <span class="_Override" style="font-weight: bold;">
+    屏幕扩张
+   </span>
+   到低值)。
+  </p>
+  <h3>
+   OutM 组件
+  </h3>
+  <p>
+   外部遮罩的分量 (亮度或 alpha 通道)。通常，这是一个垃圾哑光，覆盖了你知道是 100% 背景的区域。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/keylight_original1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/keylight_outside_mask.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       蓝屏图像。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       外面的哑光。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -212,5 +463,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

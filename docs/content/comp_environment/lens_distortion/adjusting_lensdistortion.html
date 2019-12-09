@@ -1,87 +1,374 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Working with Lens Distortion">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adjusting LensDistortion Parameters</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/lens_distortion/adjusting_lensdistortion.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Working with Lens Distortion" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   调整透镜失真参数
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/lens_distortion/adjusting_lensdistortion.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Adjusting LensDistortion Parameters</h1>
-        <p class="afterHead">After you’ve estimated your lens distortion, you can view the values on the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab. You can also change these to apply distortion to the input directly. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Output Type</span> - Select your output type depending on whether you want to distort the input image directly or just preserve the distortion information to use it on another image.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Image</span> - Choose to distort or undistort the input image.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Displacement</span> - Choose to leave the input image alone and store the pixel displacements corresponding to the calculated distortion in the UV channels so they can be used by the STMap node. Selecting the <span class="_Override" style="font-weight: bold;">Displacement</span> option enables you to analyze the distortion on one image or grid and use the STMap node to apply that distortion to another image. For more information, see <a href="applying_distortion_another_image.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Calculating the Distortion on One Image and Applying it to Another</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;"><a name="kanchor220"></a>Lens Type </span>– Select your lens type. You can choose between <span class="_Override" style="font-weight: bold;">Spherical</span> and <span class="_Override" style="font-weight: bold;">Anamorphic</span> lenses.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;"><a name="kanchor221"></a>Radial Distortion 1</span> – Define the first radial distortion term. This is proportional to r<span class="_Override" style="line-height: 9pt;font-size: 5.6pt;vertical-align: super;">2</span>, where r is the distance from the distortion center. You can define this manually, or use image analysis, grid analysis, or line analysis to fill it out automatically.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Radial Distortion 2</span> – Define the second radial distortion term, proportional to r<span class="_Override" style="line-height: 9pt;font-size: 5.6pt;vertical-align: super;">4</span>.<span class="_Override" style="font-family: 'Times New Roman';"> </span>You can define this manually, or use image analysis, grid analysis, or line analysis to fill it out automatically.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Distortion Center</span> – Define the values for the center of the radial distortion.<span class="_Override" style="font-family: 'Times New Roman';"> </span></p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Anamorphic Squeeze</span> – Define the anamorphic squeeze value. If you select an anamorphic lens, the distortion in x is scaled by this amount.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Asymmetric Distortion</span> - This is enabled only for anamorphic lenses. Enter values to define asymmetric distortion to correct for slight misalignments between multiple elements in the lens.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Analyze from Current Lens</span> – Check to analyze the distortion from the current values. When this is selected, the Image Analysis and Grid Analysis modes skip their initial estimation steps and instead use the current parameter values as an initial guess from which to estimate the distortion. If you already have a rough idea of the distortion present, this can speed up the estimation, particularly for the Image Analysis mode.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Undistort</span> – Check to apply the inverse of the current distortion. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Reset</span> – Click to reset the parameters for zero distortion.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">filter</span> - Select a filtering option. For more information on the filtering options, see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Distortion Scaling</span> - Select either <span class="_Override" style="font-weight: bold;">Scale</span> <span class="_Override" style="font-weight: bold;">to</span> <span class="_Override" style="font-weight: bold;">Input</span> <span class="_Override" style="font-weight: bold;">Format</span> or <span class="_Override" style="font-weight: bold;">Choose</span> <span class="_Override" style="font-weight: bold;">Format</span> depending on whether you want to scale to your input format or select another format. By default the distortion is scaled according to the input format size. You might however want to select a different format, for example, if you have previously undistorted an image and changed the format to match the undistorted image size, then want to reapply the distortion later. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Scale to Format</span> - If you selected <span class="_Override" style="font-weight: bold;">Choose</span> <span class="_Override" style="font-weight: bold;">Format</span> next to the Distortion Scaling control, you can use this dropdown menu to select a format that you want to use to scale your image. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Card Parameters</span> – Fill in<span class="_Override" style="font-weight: bold;"> a</span>, <span class="_Override" style="font-weight: bold;">b</span> and <span class="_Override" style="font-weight: bold;">c</span> values in the <b>Card Parameters</b> folder. These correspond to the parameters on the <b>Lens Distortion</b> tab of <span class="CustomProduct">Nuke</span>'s Card node. For more information, see <a href="applying_lens_distortion_card.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Applying Lens Distortion to a Card Node</span></a>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   调整透镜失真参数
+  </h1>
+  <p class="afterHead">
+   估计镜头失真后，您可以查看
+   <span class="_Override" style="font-weight: bold;">
+    透镜失真
+   </span>
+   标签。您也可以更改这些选项，以便直接将失真应用于输入。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    输出类型
+   </span>
+   -选择您的输出类型，具体取决于您是要直接扭曲输入图像，还是只保留失真信息，以便在另一个图像上使用。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    图像
+   </span>
+   -选择扭曲或不扭曲输入图像。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    位移
+   </span>
+   -选择单独保留输入图像，并存储与 UV 通道中的计算失真相对应的像素位移，以便 STMap 节点可以使用它们。选择
+   <span class="_Override" style="font-weight: bold;">
+    位移
+   </span>
+   选项使您能够分析一个图像或网格上的失真，并使用 STMap 节点将该失真应用于另一个图像。有关更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="applying_distortion_another_image.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     计算一幅图像的失真并将其应用于另一幅图像
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    <a name="kanchor220">
+    </a>
+    镜头类型
+   </span>
+   -选择您的镜头类型。你可以在两者之间选择
+   <span class="_Override" style="font-weight: bold;">
+    球形
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    变形
+   </span>
+   镜头。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    <a name="kanchor221">
+    </a>
+    径向失真 1
+   </span>
+   -定义第一个径向失真项。这与 r 成正比
+   <span class="_Override" style="line-height: 9pt;font-size: 5.6pt;vertical-align: super;">
+    2
+   </span>
+   ,其中 r 是与失真中心的距离。您可以手动定义它，或者使用图像分析、网格分析或线分析自动填充它。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    径向失真 2
+   </span>
+   -定义第二个径向失真项，与 r 成比例
+   <span class="_Override" style="line-height: 9pt;font-size: 5.6pt;vertical-align: super;">
+    4
+   </span>
+   .
+   <span class="_Override" style="font-family: 'Times New Roman';">
+   </span>
+   您可以手动定义它，或者使用图像分析、网格分析或线分析自动填充它。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    失真中心
+   </span>
+   -定义径向扭曲中心的值。
+   <span class="_Override" style="font-family: 'Times New Roman';">
+   </span>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    变形挤压
+   </span>
+   -定义变形挤压值。如果选择变形镜头，x 中的失真将按此量缩放。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    不对称失真
+   </span>
+   -这仅适用于变形镜头。输入值以定义不对称失真，以纠正镜头中多个元素之间的轻微失调。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    从当前镜头分析
+   </span>
+   -检查以分析当前值的失真。选择此选项后，图像分析和网格分析模式会跳过其初始估计步骤，而是使用当前参数值作为估计失真的初始猜测。如果你已经对失真有一个大致的了解，这可以加快估计，尤其是对于图像分析模式。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    不失真
+   </span>
+   -检查以应用电流失真的逆。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    重置
+   </span>
+   -单击以重置零失真参数。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   -选择过滤选项。有关筛选选项的更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../transforming_elements/filtering_algorithm_2d.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     选择过滤算法
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    失真缩放
+   </span>
+   -选择
+   <span class="_Override" style="font-weight: bold;">
+    规模
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    到
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    输入
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    格式
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold;">
+    选择
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    格式
+   </span>
+   取决于您是要缩放到输入格式，还是选择其他格式。默认情况下，根据输入格式大小缩放失真。然而，您可能希望选择不同的格式，例如，如果您以前未扭曲的图像并更改了格式以匹配未扭曲的图像大小，则希望以后重新应用失真。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    缩放到格式
+   </span>
+   -如果你选择
+   <span class="_Override" style="font-weight: bold;">
+    选择
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    格式
+   </span>
+   在 “失真缩放” 控件旁边，可以使用此下拉菜单选择要用于缩放图像的格式。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    卡参数
+   </span>
+   -填写
+   <span class="_Override" style="font-weight: bold;">
+    一个
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    b
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    c
+   </span>
+   中的值
+   <b>
+    卡参数
+   </b>
+   文件夹。这些对应于上的参数
+   <b>
+    镜头失真
+   </b>
+   标签的
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的卡片节点。有关更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="applying_lens_distortion_card.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     将镜头失真应用于卡节点
+    </span>
+   </a>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -95,5 +382,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

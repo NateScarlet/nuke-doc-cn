@@ -1,342 +1,880 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Creating 3D Particles">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Modifying the Particles’ Movement</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/particles/modifying_particle_movement.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Creating 3D Particles" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   修改粒子的运动
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/particles/modifying_particle_movement.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Modifying the Particles’ Movement</h1>
-        <h2><a name="Bouncing"></a>Bouncing Particles off Objects</h2>
-        <p class="afterHead">With the ParticleBounce node, you can make your particles bounce off the shape of a 3D object  instead of traveling through it. Connect this node to your other particle nodes, and adjust the ParticleBounce controls: </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">To set your particles to bounce off the outside of the bounce object (specified by the <span class="_Override" style="font-weight: bold;">object</span> control), select a mode in the <span class="_Override" style="font-weight: bold;">external bounce mode </span>dropdown: <span class="_Override" style="font-weight: bold;">none</span> to apply no external bounce effect, <span class="_Override" style="font-weight: bold;">bounce</span> to bounce the particles, <span class="_Override" style="font-weight: bold;">kill</span> to end the life of the particles as they bounce. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select a channel where a particle should be assigned to when a bounce is detected in the <span class="_Override" style="font-weight: bold;">new</span> <span class="_Override" style="font-weight: bold;">channels</span> dropdown. Setting this to <span class="_Override" style="font-weight: bold;">none</span> doesn’t perform any channel assignment. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the <span class="_Override" style="font-weight: bold;">bounce</span> field, specify the strength of the external bounce effect, and adjust <span class="_Override" style="font-weight: bold;">friction</span> to control the amount of friction for external bounce effect. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To set your particles to bounce off the inside of the bounce object (specified by the <span class="_Override" style="font-weight: bold;">object</span> control), use the <span class="_Override" style="font-weight: bold;">internal bounce mode</span> dropdown:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">none</span> - to apply no internal bounce effect. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bounce</span> - to bounce the particles.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">kill</span> - to end the life of the particles as they bounce. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select a channel where a particle should be assigned to when a bounce is detected in the <span class="_Override" style="font-weight: bold;">new</span> <span class="_Override" style="font-weight: bold;">channels</span> dropdown. Setting this to <span class="_Override" style="font-weight: bold;">none</span> doesn’t perform any channel assignment.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the <span class="_Override" style="font-weight: bold;">bounce</span> field, specify the strength of the internal bounce effect, and adjust <span class="_Override" style="font-weight: bold;">friction</span> to control the amount of friction for the internal bounce effect. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Select the object you want to use for the bounce effect in the<span class="_Override" style="font-weight: bold;"> object</span> dropdown:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span> <span class="_Override" style="font-weight: bold;">plane</span>, <span class="_Override" style="font-weight: bold;">sphere</span> or <span class="_Override" style="font-weight: bold;">cylinder</span> - add a Nuke standard primitive to use as the bounce surface for the particle system. You can use these shapes to quickly test your particle effects.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>input</b> - add custom geometry attached to the <b>geometry</b> input. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Use the transform controls to fine-tune your geometry's position to achieve the desired bounce result.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 100mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_bounce.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Particles bouncing off a plane.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><a name="Adding"></a>Adding Drag to Particles</h2>
-        <p class="afterHead">With the ParticleDrag node you can apply drag on your particles. This gradually slows them down over time. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect the ParticleDrag node to your particle stream. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Adjust the ParticleDrag controls: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">drag</span> - increase to add a drag effect to your particles, slowing and stopping their movement as they are making distance from the particle center. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">rotational</span> <span class="_Override" style="font-weight: bold;">drag</span> - increase to add a drag effect to your particles’ rotation, slowing and stopping their rotation.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also enter negative values to apply a reverse drag effect and speed the particles up. </p>
-        <h2><a name="Adding2"></a>Adding Turbulence Motion on Particles</h2>
-        <p class="afterHead">The ParticleTurbulence node applies Perlin noise to the particle movement in the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span> and/or <span class="_Override" style="font-weight: bold;">z</span> directions. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect a ParticleTurbulence node to your particle stream. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Adjust the ParticleTurbulence controls: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">strength</span> - set the strength for the turbulence effect on the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span> and <span class="_Override" style="font-weight: bold;">z</span> axes. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">scale</span> - set the scale of the effect, or the size of the area affected, on the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span> and <span class="_Override" style="font-weight: bold;">z</span> axes.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">offset</span> - set the offset applied to the effect, or the offset of the area affected, on the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span> and <span class="_Override" style="font-weight: bold;">z</span> axes.</p>
-        <h2><a name="Adding3"></a>Adding Spiral Motion to Particles</h2>
-        <p class="afterHead">The ParticleVortex node applies a circular force to the particles and attracts them to an imaginary line, thus creating a whirlpool of particles. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect the ParticleVortex node to your particle stream.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">An arrow appears in the Viewer, which you can drag to determine direction and velocity of the vortex effect. The bigger and longer the arrow, the stronger the effect. Alternatively, you can use the <span class="_Override" style="font-weight: bold;">from</span> and <span class="_Override" style="font-weight: bold;">to</span> controls in the properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the ParticleVortex properties panel modify the parallel effect with the <span class="_Override" style="font-weight: bold;">parallel</span> control. This accelerates the particles in the direction of the imaginary vortex center line. If you set this to 0, no parallel force is applied, and positive and negative values determine the direction of the force. Adjust the <span class="_Override" style="font-weight: bold;">parallel falloff</span> to choose how quickly strength of the parallel force falls off with respect to the distance by selecting the type of falloff, <span class="_Override" style="font-weight: bold;">none</span> for no falloff, <span class="_Override" style="font-weight: bold;">inverse</span> for inverse falloff, or <span class="_Override" style="font-weight: bold;">inverse</span> <span class="_Override" style="font-weight: bold;">square</span> for inverse falloff squared.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">With the<span class="_Override" style="font-weight: bold;"> tangential</span> slider you can force the particles to circulate the vortex center line. Adjust <span class="_Override" style="font-weight: bold;">tangential</span> <span class="_Override" style="font-weight: bold;">falloff</span> to choose how quickly strength of the tangential force falls off with respect to the distance by selecting the type of falloff, <span class="_Override" style="font-weight: bold;">none</span> for no falloff, <span class="_Override" style="font-weight: bold;">inverse</span> for inverse falloff, or <span class="_Override" style="font-weight: bold;">inverse</span> <span class="_Override" style="font-weight: bold;">square</span> for inverse falloff squared.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Use the <span class="_Override" style="font-weight: bold;">radial</span> slider to adjust the force that attracts the particles to (positive values), or repels (negative values), them from the center line. Adjust <span class="_Override" style="font-weight: bold;">radial</span> <span class="_Override" style="font-weight: bold;">falloff</span> to choose how quickly strength of the radial force falls off with respect to the distance by selecting the type of falloff, <span class="_Override" style="font-weight: bold;">none</span> for no falloff, <span class="_Override" style="font-weight: bold;">inverse</span> for inverse falloff, or <span class="_Override" style="font-weight: bold;">inverse</span> <span class="_Override" style="font-weight: bold;">square</span> for inverse falloff squared.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you want to create a helix of particles, you can turn up both the <span class="_Override" style="font-weight: bold;">parallel</span> and <span class="_Override" style="font-weight: bold;">tangential</span> values. This creates a particle vortex in a shape of a corkscrew.</p>
-        <table>
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particle_sphere_vortex.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">ParticleVortex on a sphere.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><a name="Adding4"></a>Adding a Wind Effect to Particles</h2>
-        <p class="afterHead">With the ParticleWind, you can simulate a wind blowing on your particles. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect the ParticleWind node to your particle stream. An arrow appears in the Viewer, which you can then use to determine direction and velocity of the wind. The bigger and longer the arrow, the stronger the wind effect. Alternatively, you can use the <span class="_Override" style="font-weight: bold;">from</span> and <span class="_Override" style="font-weight: bold;">to</span> controls in the properties panel. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the ParticleWind controls, check <span class="_Override" style="font-weight: bold;">air</span> <span class="_Override" style="font-weight: bold;">resistance</span> to enable a drag effect on the wind. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Adjust the <span class="_Override" style="font-weight: bold;">drag</span> slider to increase or decrease the simulated air resistance. </td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   修改粒子的运动
+  </h1>
+  <h2>
+   <a name="Bouncing">
+   </a>
+   从物体上反弹粒子
+  </h2>
+  <p class="afterHead">
+   使用 ParticleBounce 节点，您可以使粒子从 3D 对象的形状反弹，而不是穿过它。将此节点连接到其他粒子节点，并调整 ParticleBounce 控件:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     设置粒子从反弹对象的外部反弹 (由
+     <span class="_Override" style="font-weight: bold;">
+      对象
+     </span>
+     控件)，在
+     <span class="_Override" style="font-weight: bold;">
+      外部反弹模式
+     </span>
+     下拉列表:
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     要应用无外部反弹效果,
+     <span class="_Override" style="font-weight: bold;">
+      反弹
+     </span>
+     反弹粒子,
+     <span class="_Override" style="font-weight: bold;">
+      杀死
+     </span>
+     结束粒子反弹时的生命。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择一个通道，一个粒子将分为反弹时被发现的
+     <span class="_Override" style="font-weight: bold;">
+      新
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      渠道
+     </span>
+     下拉列表。将此设置为
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     不执行任何频道分配。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在
+     <span class="_Override" style="font-weight: bold;">
+      反弹
+     </span>
+     场，指定外部反弹效果的强度，并调整
+     <span class="_Override" style="font-weight: bold;">
+      摩擦
+     </span>
+     为了控制外部反弹效果的摩擦力。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置粒子从反弹对象的内部反弹 (由
+     <span class="_Override" style="font-weight: bold;">
+      对象
+     </span>
+     控制)，使用
+     <span class="_Override" style="font-weight: bold;">
+      内部反弹模式
+     </span>
+     下拉列表:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    没有
+   </span>
+   -应用没有内部反弹效果。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    反弹
+   </span>
+   -反弹粒子。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    杀死
+   </span>
+   -结束粒子反弹时的生命。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     选择一个通道，一个粒子将分为反弹时被发现的
+     <span class="_Override" style="font-weight: bold;">
+      新
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      渠道
+     </span>
+     下拉列表。将此设置为
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     不执行任何频道分配。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在
+     <span class="_Override" style="font-weight: bold;">
+      反弹
+     </span>
+     场，指定内部反弹效果的强度，并调整
+     <span class="_Override" style="font-weight: bold;">
+      摩擦
+     </span>
+     为了控制内部反弹效果的摩擦力。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     在中选择要用于反弹效果的对象
+     <span class="_Override" style="font-weight: bold;">
+      对象
+     </span>
+     下拉列表:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    飞机
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    球体
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold;">
+    气缸
+   </span>
+   -添加一个 Nuke 标准基元，用作粒子系统的反弹曲面。您可以使用这些形状来快速测试粒子效果。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    输入
+   </b>
+   -添加附加到的自定义几何图形
+   <b>
+    几何
+   </b>
+   输入。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     使用变换控件微调几何图形的位置，以获得所需的反弹结果。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 100mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_bounce.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      粒子从飞机上反弹。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <a name="Adding">
+   </a>
+   向粒子添加阻力
+  </h2>
+  <p class="afterHead">
+   使用 ParticleDrag 节点，您可以对粒子应用阻力。随着时间的推移，这逐渐减慢了他们的速度。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     将 ParticleDrag 节点连接到粒子流。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     调整 ParticleDrag 控件:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    拖动
+   </span>
+   -增加以向粒子添加拖动效果，在粒子与粒子中心保持距离时减缓和停止它们的运动。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    旋转
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    拖动
+   </span>
+   -增加添加到您的粒子的旋转拖动效果，减缓和停止它们的旋转。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   还可以输入负值以应用反向拖动效果并加快粒子速度。
+  </p>
+  <h2>
+   <a name="Adding2">
+   </a>
+   在粒子上添加湍流运动
+  </h2>
+  <p class="afterHead">
+   粒子湍流节点将柏林噪声应用于粒子运动
+   <span class="_Override" style="font-weight: bold;">
+    x
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    y
+   </span>
+   和/或
+   <span class="_Override" style="font-weight: bold;">
+    z
+   </span>
+   方向。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     将粒子湍流节点连接到粒子流。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     调整粒子湍流控制:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    强度
+   </span>
+   -设置湍流效果的强度
+   <span class="_Override" style="font-weight: bold;">
+    x
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    y
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    z
+   </span>
+   斧头。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    规模
+   </span>
+   -设置的规模效应，或影响的区域的大小,
+   <span class="_Override" style="font-weight: bold;">
+    x
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    y
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    z
+   </span>
+   斧头。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    偏移
+   </span>
+   -在上设置应用于效果的偏移或受影响区域的偏移
+   <span class="_Override" style="font-weight: bold;">
+    x
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    y
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    z
+   </span>
+   斧头。
+  </p>
+  <h2>
+   <a name="Adding3">
+   </a>
+   向粒子添加螺旋运动
+  </h2>
+  <p class="afterHead">
+   ParticleVortex 节点对粒子施加圆形力，并将它们吸引到想象的线，从而产生粒子漩涡。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     将 ParticleVortex 节点连接到粒子流。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     查看器中会出现一个箭头，您可以拖动该箭头来确定涡旋效果的方向和速度。箭头越大、越长，效果越强。或者，您可以使用
+     <span class="_Override" style="font-weight: bold;">
+      从
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      到
+     </span>
+     属性面板中的控件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在 ParticleVortex 属性面板中，使用
+     <span class="_Override" style="font-weight: bold;">
+      平行
+     </span>
+     控制。这将加速粒子在假想涡旋中心线的方向。如果将其设置为 0，则不会应用平行力，并且正值和负值确定力的方向。调整
+     <span class="_Override" style="font-weight: bold;">
+      平行衰减
+     </span>
+     要通过选择衰减类型来选择平行力相对于距离的衰减速度,
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     没有衰减,
+     <span class="_Override" style="font-weight: bold;">
+      逆
+     </span>
+     对于反向衰减，或
+     <span class="_Override" style="font-weight: bold;">
+      逆
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      广场
+     </span>
+     对于反向衰减平方。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     随着
+     <span class="_Override" style="font-weight: bold;">
+      切向
+     </span>
+     滑块可以强制粒子循环漩涡中心线。调整
+     <span class="_Override" style="font-weight: bold;">
+      切向
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      衰减
+     </span>
+     要通过选择衰减类型来选择切向力相对于距离的衰减速度,
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     没有衰减,
+     <span class="_Override" style="font-weight: bold;">
+      逆
+     </span>
+     对于反向衰减，或
+     <span class="_Override" style="font-weight: bold;">
+      逆
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      广场
+     </span>
+     对于反向衰减平方。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      径向
+     </span>
+     滑块将吸引粒子的力从中心线调整为 (正值) 或排斥 (负值)。调整
+     <span class="_Override" style="font-weight: bold;">
+      径向
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      衰减
+     </span>
+     要通过选择衰减类型来选择径向力相对于距离的衰减速度,
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     没有衰减,
+     <span class="_Override" style="font-weight: bold;">
+      逆
+     </span>
+     对于反向衰减，或
+     <span class="_Override" style="font-weight: bold;">
+      逆
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      广场
+     </span>
+     对于反向衰减平方。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果你想创建一个粒子螺旋，你可以打开两个
+   <span class="_Override" style="font-weight: bold;">
+    平行
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    切向
+   </span>
+   值。这将创建一个螺旋状的粒子涡旋。
+  </p>
+  <table>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particle_sphere_vortex.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      球体上的粒子漩涡。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <a name="Adding4">
+   </a>
+   向粒子添加风效果
+  </h2>
+  <p class="afterHead">
+   使用 ParticleWind，您可以模拟粒子上的风。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     将 ParticleWind 节点连接到粒子流。一个箭头出现在观察者中，然后您可以使用它来确定风的方向和速度。箭头越大、越长，风的效果就越强。或者，您可以使用
+     <span class="_Override" style="font-weight: bold;">
+      从
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      到
+     </span>
+     属性面板中的控件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 ParticleWind 控件中，选中
+     <span class="_Override" style="font-weight: bold;">
+      空气
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      电阻
+     </span>
+     启用风的阻力效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     调整
+     <span class="_Override" style="font-weight: bold;">
+      拖动
+     </span>
+     滑块增加或减少模拟空气阻力。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -350,5 +888,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

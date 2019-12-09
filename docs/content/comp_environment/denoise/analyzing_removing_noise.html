@@ -1,165 +1,377 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Removing Noise with Denoise">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Analyzing and Removing Noise</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/denoise/analyzing_removing_noise.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Removing Noise with Denoise" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   分析和去除噪音
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/denoise/analyzing_removing_noise.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Analyzing and Removing Noise</h1>
-        <p class="afterHead">To analyze and remove noise:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the Denoise controls, set <b>Source</b> to <b>Film</b> or <b>Digital</b> depending on the type of footage you’re using. <b>Film</b> is the default setting and it works fine in most cases even if the footage is in a digital format.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In general, you can also leave <b>Noise Model</b> set to <b>Modulated</b>. However, you may want to try <b>Constant</b> if you’re working on either:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>film footage with lots of detail but not too much noise in dark regions, or </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>digital footage with lots of detail but not too much noise in light regions.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the Viewer, scrub to a frame with a suitable analysis region. This should be a flat area free from image detail, so no textures, edges, or shadows. If this is not the case, you may get poor results, as the algorithm thinks the image detail is noise and removes it.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Position and resize the analysis box to cover the analysis region. Note that the minimum size for the analysis region is 80x80 pixels. If the analysis region is too small, Denoise cannot analyze the footage or remove any noise.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/denoise_good_area.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/denoise_bad_area.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A good analysis region.</td>
-                    <td class="caption">A poor analysis region.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="numberedCont">The analysis area selection automatically updates not only the <b>Analysis Region</b> parameter in the <b>Noise Analysis</b> group, but also the frame from which the sample is taken (<b>Analysis Frame</b>). By default, whenever the analysis box is altered, the internal analysis of the noise in that region reoccurs.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Connect a Viewer to the Denoise node.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The output should now show the denoised frame.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="reviewing_results.html"><span style="color: #00b4e0;" class="mcFormatColor">Reviewing the Results</span></a>.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>By default, Denoise starts analyzing the noise in your input footage when you move the analysis box. If you scrub to a new frame, don't move the analysis box, and want to reanalyze the noise from the new frame, you can force analysis by clicking the <b>Analyze Noise</b> button in the <b>Noise Analysis</b> parameter group.<br /><br />If you’d like to disable analysis, you can check <b>Lock Noise Analysis</b>.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can export the analysis profile in an external file. Note that if you’ve set <b>Profile</b> to <b>Constant</b>, only the controls that affect the analysis are saved in this file. By contrast, if you’ve set <b>Profile</b> to <b>Automatic</b>, both the analysis profile and the automatically calculated noise profile are exported.<br /><br />To export the profile, use the <b>Analysis file</b> control under <b>Noise Analysis</b> to set the name and location of the file. The file extension doesn’t really matter here - for example <b>.txt</b> is fine. Once you have named the profile, click the <b>Export</b> button to export it.<br /><br />To import the same profile later, use <b>Analysis File</b> again to navigate to it and click <b>Import</b>. This disables any controls that are read from the profile. To re-enable them, you can uncheck <b>Lock Noise Analysis</b>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   分析和去除噪音
+  </h1>
+  <p class="afterHead">
+   要分析和消除噪音:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在去噪控件中，设置
+     <b>
+      源
+     </b>
+     到
+     <b>
+      电影
+     </b>
+     或
+     <b>
+      数字
+     </b>
+     取决于您使用的镜头类型。
+     <b>
+      电影
+     </b>
+     是默认设置，在大多数情况下，即使镜头是数字格式，它也可以正常工作。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     一般来说，你也可以离开
+     <b>
+      噪声模型
+     </b>
+     设置为
+     <b>
+      调制
+     </b>
+     。然而，你可能想试试
+     <b>
+      常数
+     </b>
+     如果你正在做任何一项:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   带有大量细节但在黑暗区域没有太多噪音的胶片，或者
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   数字镜头有很多细节，但在光区没有太多噪音。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在查看器中，滚动到具有合适分析区域的帧。这应该是一个平面区域，没有图像细节，所以没有纹理、边缘或阴影。如果不是这样，你可能会得到不好的结果，因为算法认为图像细节是噪声，并删除它。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     定位分析框并调整其大小，以覆盖分析区域。请注意，分析区域的最小大小为 80x80 像素。如果分析区域太小，去噪将无法分析素材或删除任何噪音。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/denoise_good_area.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/denoise_bad_area.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      一个很好的分析区域。
+     </td>
+     <td class="caption">
+      一个糟糕的分析区域。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="numberedCont">
+   分析区域选择不仅自动更新
+   <b>
+    分析区域
+   </b>
+   中的参数
+   <b>
+    噪声分析
+   </b>
+   组，还包括取样的帧 (
+   <b>
+    分析框架
+   </b>
+   )。默认情况下，只要改变分析框，该区域中的噪声的内部分析就会重新进行。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     将查看器连接到去噪节点。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   输出现在应该显示去噪帧。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="reviewing_results.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       审查结果
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   默认情况下，当您移动分析框时，去噪开始分析输入素材中的噪音。如果您擦洗到一个新框架，不要移动分析框，并且想重新分析新框架中的噪音，您可以通过单击
+   <b>
+    分析噪音
+   </b>
+   按钮在
+   <b>
+    噪声分析
+   </b>
+   参数组。
+   <br/>
+   <br/>
+   如果你想禁用分析，你可以检查
+   <b>
+    锁定噪声分析
+   </b>
+   .
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   可以在外部文件中导出分析配置文件。请注意，如果你已经设置
+   <b>
+    简介
+   </b>
+   到
+   <b>
+    常数
+   </b>
+   ,只有影响分析的控件保存在此文件中。相比之下，如果你已经设定了
+   <b>
+    简介
+   </b>
+   到
+   <b>
+    自动
+   </b>
+   ,分析轮廓和自动计算的噪声轮廓都将导出。
+   <br/>
+   <br/>
+   要导出配置文件，请使用
+   <b>
+    分析文件
+   </b>
+   控制下
+   <b>
+    噪声分析
+   </b>
+   设置文件的名称和位置。文件扩展名在这里并不重要 -- 例如
+   <b>
+    。Txt
+   </b>
+   很好。命名配置文件后，单击
+   <b>
+    出口
+   </b>
+   按钮导出它。
+   <br/>
+   <br/>
+   要以后导入相同的配置文件，请使用
+   <b>
+    分析文件
+   </b>
+   再次导航到它并单击
+   <b>
+    导入
+   </b>
+   。这将禁用从配置文件中读取的任何控件。要重新启用它们，您可以取消选中
+   <b>
+    锁定噪声分析
+   </b>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -173,5 +385,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

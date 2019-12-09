@@ -1,178 +1,343 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Generating Depth Maps">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Analyzing the Depth</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/depthgenerator/analyzing_depth.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Generating Depth Maps" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   分析深度
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/depthgenerator/analyzing_depth.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Analyzing the Depth</h1>
-        <p class="afterHead">To analyze the depth:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Do one of the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use the <span class="_Override" style="font-weight: bold;">Frame</span> <span class="_Override" style="font-weight: bold;">Separation</span> control to select the offset between the current frame and the frame against which to calculate depth for your footage. For example, if your current frame is 100, and your frame separation is 2, DepthGenerator uses frame 98 and frame 102 to generate the depth map.</p>
-        <p class="processBulletCont">Ideally, you want frames close together so that the images are similar and include the same bits of the world. However, you get more accurate depth when the frames are further apart and the baseline between the cameras is bigger. So, for fast camera moves, you need a small frame separation, and for slow camera moves, you can use a larger frame separation. To change the separation for fast and slow movements, you can animate the <span class="_Override" style="font-weight: bold;">Frame Separation</span> control.</p>
-        <p class="processBulletCont">Note that this control does NOT affect the number of frames used in the calculation, as that is always 2.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To have DepthGenerator attempt to calculate the best <span class="_Override" style="font-weight: bold;">Frame Separation</span> automatically, click <span class="_Override" style="font-weight: bold;">Analyze Sequence</span>. For this to work, the camera in the <span class="_Override" style="font-weight: bold;">Camera</span> input must be defined for all frames within the frame range.</p>
-        <p class="processBulletCont">DepthGenerator goes through the entire sequence, attempts to work out the correct frame separation, and animates the <span class="_Override" style="font-weight: bold;">Frame Separation</span> value.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Alternatively, you can also click <span class="_Override" style="font-weight: bold;">Analyze Frame</span> to have DepthGenerator automatically calculate the frame separation for the current frame. This gives you more control than <span class="_Override" style="font-weight: bold;">Analyze Sequence</span>, as you can work through the timeline, analyze particular frames, and if necessary tweak the <span class="_Override" style="font-weight: bold;">Frame Separation</span> value manually.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Scrub through the timeline and keep an eye on the <span class="_Override" style="font-weight: bold;">Calculated Accuracy</span> value. This displays the depth accuracy calculated when analyzing frame separation. Values closer to 1 are considered accurate, and values closer to 0 inaccurate.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">You can use the frames that produce accurate values later when placing elements in 3D (for example, by clicking <span class="_Override" style="font-weight: bold;">Create Card</span> or using a PositionToPoints node).</p>
-        <p class="numberedCont">If you’re not getting accurate depth values, try adjusting <span class="_Override" style="font-weight: bold;">Frame Separation</span> or using an <span class="_Override" style="font-weight: bold;">Ignore Mask</span>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">View the depth channel in 2D by selecting it from the list of channels in the Viewer. To see more details in the depth map, it can be a good idea to temporarily adjust the gain and gamma controls in the Viewer.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/dg_depth_map_default.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/dg_depth_map1.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A depth map.</td>
-                    <td class="caption">The same depth map after <br />adjusting Viewer gain.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you have set <span class="_Override" style="font-weight: bold;">Surface Point</span> or <span class="_Override" style="font-weight: bold;">Surface Normal</span> to generate position and normals passes, you can also view those by selecting them from the list of channels in the Viewer.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/dg_ppass1.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/dg_npass1.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A position pass.</td>
-                    <td class="caption">A normals pass.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="refining_results.html"><span style="color: #00b4e0;" class="mcFormatColor">Refining the Results</span></a> below.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   分析深度
+  </h1>
+  <p class="afterHead">
+   要分析深度:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     执行以下操作之一:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用
+   <span class="_Override" style="font-weight: bold;">
+    框架
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    分离
+   </span>
+   控制以选择当前帧和用于计算素材深度的帧之间的偏移。例如，如果当前帧为 100，帧间隔为 2，则 DepthGenerator 使用帧 98 和帧 102 生成深度贴图。
+  </p>
+  <p class="processBulletCont">
+   理想情况下，您希望帧紧密相连，以便图像相似，并包含世界的相同部分。然而，当帧相距更远，摄像机之间的基线更大时，你会得到更精确的深度。因此，对于快速相机移动，您需要小帧分离，对于慢速相机移动，您可以使用大帧分离。要更改快速和慢速运动的分离，可以设置动画
+   <span class="_Override" style="font-weight: bold;">
+    帧分离
+   </span>
+   控制。
+  </p>
+  <p class="processBulletCont">
+   请注意，此控制不会影响计算中使用的帧数，因为总是 2。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   让深度生成器试图计算最好的
+   <span class="_Override" style="font-weight: bold;">
+    帧分离
+   </span>
+   自动，单击
+   <span class="_Override" style="font-weight: bold;">
+    分析序列
+   </span>
+   。要做到这一点，相机在
+   <span class="_Override" style="font-weight: bold;">
+    相机
+   </span>
+   必须为帧范围内的所有帧定义输入。
+  </p>
+  <p class="processBulletCont">
+   深度生成器经历整个序列，试图找出正确的帧分离，并对
+   <span class="_Override" style="font-weight: bold;">
+    帧分离
+   </span>
+   价值。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   或者，您也可以单击
+   <span class="_Override" style="font-weight: bold;">
+    分析框架
+   </span>
+   让 DepthGenerator 自动计算当前帧的帧分离。这给了你更多的控制
+   <span class="_Override" style="font-weight: bold;">
+    分析序列
+   </span>
+   ,当您可以在时间线中工作时，分析特定的框架，并在必要时调整
+   <span class="_Override" style="font-weight: bold;">
+    帧分离
+   </span>
+   手动值。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     擦洗时间表，并留意
+     <span class="_Override" style="font-weight: bold;">
+      计算精度
+     </span>
+     价值。这将显示分析帧分离时计算的深度精度。接近 1 的值被认为是准确的，接近 0 的值不准确。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   以后在 3D 中放置元素时，可以使用生成精确值的框架 (例如，通过单击
+   <span class="_Override" style="font-weight: bold;">
+    创建卡片
+   </span>
+   或使用 PositionToPoints 节点)。
+  </p>
+  <p class="numberedCont">
+   如果你没有得到准确的深度值，试着调整
+   <span class="_Override" style="font-weight: bold;">
+    帧分离
+   </span>
+   或使用
+   <span class="_Override" style="font-weight: bold;">
+    忽略遮罩
+   </span>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从查看器中的通道列表中选择深度通道，以 2D 形式查看深度通道。要在深度图中查看更多细节，最好在查看器中临时调整增益和伽马控件。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/dg_depth_map_default.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/dg_depth_map1.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      深度图。
+     </td>
+     <td class="caption">
+      后相同深度图
+      <br/>
+      调整查看器增益。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如果你已经设置
+     <span class="_Override" style="font-weight: bold;">
+      表面点
+     </span>
+     或
+     <span class="_Override" style="font-weight: bold;">
+      表面正常
+     </span>
+     要生成位置和法线通道，还可以通过从查看器的通道列表中选择它们来查看这些通道。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/dg_ppass1.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/dg_npass1.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      一个位置通行证。
+     </td>
+     <td class="caption">
+      一个法线通过。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="refining_results.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       提炼结果
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -186,5 +351,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

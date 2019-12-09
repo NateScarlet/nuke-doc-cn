@@ -1,251 +1,411 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Merging Images">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Generating Contact Sheets</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/merging/generating_contactsheets.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Merging Images" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   生成接触表
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/merging/generating_contactsheets.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Generating Contact Sheets</h1>
-        <p class="afterHead">In order to demonstrate, document or manage what you are doing for a project, it can be useful to generate a contact sheet that shows your frame sequence(s) lined up next to each other in a matrix. For this, you can use the ContactSheet node. It generates a contact sheet from all its inputs or from the frames of one input.</p>
-        <table>
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/contactsheet1.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A contact sheet generated from<br />the frames of one image sequence.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>To Generate a Contact Sheet</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Merge</b> &gt; <b>ContactSheet</b> to insert a ContactSheet node in your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the image(s) you want to include in your contact sheet to the numbered input(s) of the ContactSheet node. If you want to include several different image sequences in the contact sheet, use multiple inputs. If you want the contact sheet to include the frames of just one image sequence, use only one input. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/contactsheet2.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect a Viewer to the ContactSheet node so you can see the effect of your changes.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the ContactSheet properties, define the <b>Resolution</b> (width and height) of the entire contact sheet in pixels.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If you want to create a contact sheet from the frames of one input, check <b>Use frames instead of inputs</b>. In the <b>Frame Range</b> field, define the frame range you want to include in the contact sheet.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the <b>rows/columns</b> field, specify into how many rows and columns you want to arrange the input images or frames.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To adjust the size of the gaps between the images in the contact sheet, increment or decrement the <b>gap</b> value.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet3.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet4.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The <b>gap</b> value set to 0.</td>
-                    <td class="caption">The <b>gap</b> value set to 50.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">From the <b>Row Order</b> and <b>Column Order</b> dropdown menus, select how you want to order the images or frames in the contact sheet:</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 4cm;" />
-            <col style="width: 4cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet5.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet6.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Row order: TopBottom<br />Column order: LeftRight</td>
-                    <td class="caption">Row order: TopBottom<br />Column Order: RightLeft</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 4cm;" />
-            <col style="width: 4cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet7.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet8.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Row order: TopBottom<br />Column Order: Snake</td>
-                    <td class="caption">Row order: BottomTop<br />Column Order: LeftRight</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 4cm;" />
-            <col style="width: 4cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet9.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/contactsheet10.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Row order: BottomTop<br />Column Order: RightLeft</td>
-                    <td class="caption">Row order: BottomTop<br />Column Order: Snake</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you want to add any text, such as the frame number, on top of the images in the contact sheet, insert a Text node between the input image(s) and the ContactSheet node.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   生成接触表
+  </h1>
+  <p class="afterHead">
+   为了演示、记录或管理您正在为项目做的事情，生成一个显示您的框架序列的联系表可能很有用在矩阵中排列在一起。为此，可以使用 ContactSheet 节点。它从它的所有输入或从一个输入的框架生成一个联系表。
+  </p>
+  <table>
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/contactsheet1.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      从生成的联系表
+      <br/>
+      一个图像序列的帧。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   生成联系表的步骤
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      合并
+     </b>
+     &gt;
+     <b>
+      ContactSheet
+     </b>
+     在脚本中插入 ContactSheet 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将要包含在联系表中的图像连接到 ContactSheet 节点的编号输入。如果要在联系表中包含几个不同的图像序列，请使用多个输入。如果希望联系表只包含一个图像序列的帧，请只使用一个输入。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/contactsheet2.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将查看器连接到 ContactSheet 节点，以便您可以看到更改的效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在 ContactSheet 属性中，定义
+     <b>
+      决议
+     </b>
+     (宽度和高度) 的整个联系表的像素。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     如果要从一个输入的框架中创建联系表，请选中
+     <b>
+      使用帧而不是输入
+     </b>
+     。在
+     <b>
+      帧范围
+     </b>
+     字段中，定义要包括在联系表中的框架范围。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在
+     <b>
+      行/列
+     </b>
+     字段中，指定要排列输入图像或帧的行数和列数。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     要调整联系表中图像之间间隙的大小，请增大或减小
+     <b>
+      差距
+     </b>
+     价值。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet3.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet4.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      的
+      <b>
+       差距
+      </b>
+      值设置为 0。
+     </td>
+     <td class="caption">
+      的
+      <b>
+       差距
+      </b>
+      值设置为 50。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     从
+     <b>
+      行顺序
+     </b>
+     和
+     <b>
+      列顺序
+     </b>
+     下拉菜单中，选择要如何订购联系表中的图像或框架:
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 4cm;"/>
+   <col style="width: 4cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet5.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet6.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      行顺序: TopBottom
+      <br/>
+      列顺序: 左
+     </td>
+     <td class="caption">
+      行顺序: TopBottom
+      <br/>
+      列顺序: 向右
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 4cm;"/>
+   <col style="width: 4cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet7.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet8.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      行顺序: TopBottom
+      <br/>
+      列顺序: 蛇
+     </td>
+     <td class="caption">
+      行顺序: 底部
+      <br/>
+      列顺序: 左
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 4cm;"/>
+   <col style="width: 4cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet9.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/contactsheet10.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      行顺序: 底部
+      <br/>
+      列顺序: 向右
+     </td>
+     <td class="caption">
+      行顺序: 底部
+      <br/>
+      列顺序: 蛇
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果要在联系表中的图像顶部添加任何文本，如帧号，请在输入图像和 ContactSheet 节点之间插入文本节点。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -259,5 +419,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

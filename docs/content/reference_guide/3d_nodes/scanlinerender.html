@@ -1,590 +1,1574 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|3D Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>ScanlineRender</title>
-        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/3d_nodes/scanlinerender.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|3D Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   ScanlineRender
+  </title>
+  <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/3d_nodes/scanlinerender.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>ScanlineRender</h1>
-        <p>When connected to a <a href="scene.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Scene</span></a> node, the ScanlineRender node renders all the objects and lights connected to that scene from the perspective of the <a href="camera.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Camera</span></a> connected to the <span class="_Override" style="font-weight: bold;">cam</span> input (or a default camera if no <span class="_Override" style="font-weight: bold;">cam</span> input exists). The rendered 2D image is then passed along to the next node in the compositing tree, and you can use the result as an input to other nodes in the script.</p>
-        <p>The ScanlineRender node also outputs deep data if there is a Deep node downstream.</p>
-        <p>See also <a href="prmanrender.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">PrmanRender</span></a>, <a href="scene.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Scene</span></a>, and <a href="camera.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Camera</span></a></p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="233px">
-                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="115px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="430px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 55px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td rowspan="3" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">obj/scn</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Either:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>A Scene node that is connected to the objects and lights you want to render, or</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>a 3D object or MergeGeo node.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">cam</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">An optional camera input. The scene is rendered from the perspective of this camera. If the camera input is not connected, ScanlineRender uses a default camera positioned at the origin and facing in the negative Z direction.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">bg</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p class="CellBody">An optional background input. This can be used to composite a background image into the scene and to determine the output resolution. If not used, this defaults to <span class="_Override" style="font-weight: bold;">root.format</span> or <span class="_Override" style="font-weight: bold;">root.proxy_format</span> defined in the <span class="_Override" style="font-weight: bold;">Project</span><span class="_Override" style="font-weight: bold;">Settings</span>.</p>
-                                <p class="CellBody">If this input contains a depth channel, ScanlineRender considers it when doing Z-buffer and Z-blending calculations.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="2331px">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">ScanlineRender Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">transparency</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">transparency</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, objects appear transparent where their alphas are less than 1.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Z-buffer</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">ztest_enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Enable or disable the Z-buffer which compares object Z-depth within a scene, assisting with occlusions.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 321px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Cubic</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Select the filtering algorithm to use when remapping pixels from their original positions to new positions. This allows you to avoid problems with image quality, particularly in high contrast areas of the frame (where highly aliased, or jaggy, edges may appear if pixels are not filtered and retain their original values).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Impulse</span> - remapped pixels carry their original values.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Cubic</span> - remapped pixels receive some smoothing.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Keys</span> - remapped pixels receive some smoothing, plus minor sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Simon</span> - remapped pixels receive some smoothing, plus medium sharpening (as shown by the negative -y portions of the curve). </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Rifman</span> - remapped pixels receive some smoothing, plus significant sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mitchell</span> - remapped pixels receive some smoothing, plus blurring to hide pixelation.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Parzen</span> - remapped pixels receive the greatest smoothing of all filters.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Notch</span> - remapped pixels receive flat smoothing (which tends to hide moire patterns).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Lanczos4</b>, <b>Lanczos6</b>, and <b>Sinc4</b> - remapped pixels receive sharpening which can be useful for scaling down. <b>Lanczos4</b> provides the least sharpening and <b>Sinc4</b> the most.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Nearest</b> - Fastest and crudest, sample the nearest texel from the appropriate mip map.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Bilinear</b> - Remove blockiness, sample and interpolate the four nearest texels from the appropriate mipmap level.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Trilinear</b> - Smooth interpolation of texture quality according to the distance, bilinearly interpolate between two closest mipmap levels.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Anisotropic</b> - Highest quality filtering, gives a better result when shading surfaces with a high angle relative to the camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">antialiasing</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">antialiasing</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the level of antialiasing to reduce any aliasing artifacts in the render. Choose from <span class="_Override" style="font-weight: bold;">none</span>, <span class="_Override" style="font-weight: bold;">low</span>, <span class="_Override" style="font-weight: bold;">medium</span> and <span class="_Override" style="font-weight: bold;">high</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Z-blend mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">zblend_mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Type of ramp to use to blend two surfaces within the <span class="_Override" style="font-weight: bold;">Z-blend range</span> of each other. Smooth looks better, but linear is provided for back-compatibility.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Z-blend range</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">zblend_range</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0.1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Any two surfaces closer together than this distance on the Z axis are blended together to smooth the transition between intersecting objects.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 203px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">projection mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">projection_mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">render camera</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The projection modes are:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">perspective</span> - have the camera’s focal length and aperture define the illusion of depth for the objects in front of the camera. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">orthographic</span> - use orthographic projection (projection onto the projection plane using parallel rays). </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">uv</span> - have every object render its UV space into the output format. You can use this option to cook out texture maps.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">spherical</span> - have the entire 360-degree world rendered as a spherical map. You can increase <span class="_Override" style="font-weight: bold;">tessellation</span><span class="_Override" style="font-weight: bold;">max</span> to increase the accuracy of object edges as they are warped out of line, but this takes longer to render.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">render</span><span class="_Override" style="font-weight: bold;">camera</span> - use the projection type of the render camera.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 108px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">tessellation max</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">max_tessellation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">3</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Limits recursive subdivision of polygons by a screen-space distance percentage.</p>
-                                <p class="CellBody">This control can be useful in the <span class="_Override" style="font-weight: bold;">spherical</span> projection mode, which sometimes distorts object edges. If you see such distortions, you can try increasing this value to tessellate (subdivide) polygons into smaller polygons. This produces more accurate object edges, but also takes longer to render.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 103px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">overscan</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">overscan</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The maximum additional pixels to render beyond the left/right and top/bottom of the frame. Rendering pixels beyond the edges of the frame can be useful if subsequent nodes need to have access outside the frame. For example, a Blur node down the node tree may produce better results around the edges of the frame if overscan is used. Similarly, a subsequent LensDistortion node may require the use of overscan.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">ambient</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">ambient</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Enter a value between 0 (black) and 1 (white) to change the global ambient color.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">MultiSample Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the number of samples to render per pixel, to produce motion blur and antialiasing. If you use this, in most cases you can turn off the antialiasing and filter controls on the <span class="_Override" style="font-weight: bold;">ScanlineRender</span> tab.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">shutter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">shutter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0.5</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Enter the number of frames the shutter stays open when motion blurring. For example, a value of 0.5 corresponds to half a frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 256px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">shutter offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">shutteroffset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">start</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">This value  controls how the shutter behaves with respect to the current frame value. It has four options:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">centred</span> - center the shutter around the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29,5 to 30,5. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">start</span> - open the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 30 to 31. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">end</span> - close the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29 to 30. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">custom</span> - open the shutter at the time you specify. In the field next to the dropdown menu, enter a value (in frames) you want to add to the current frame. To open the shutter before the current frame, enter a negative value. For example, a value of - 0.5 would open the shutter half a frame before the current frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">shuttercustom<br />offset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">shuttercustomoffset</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">If the <span class="_Override" style="font-weight: bold;">shutter offset</span> parameter is set to <span class="_Override" style="font-weight: bold;">custom</span>, this parameter is used to set the time that the shutter opens by adding it to the current frame. Values are in frames, so -0.5 would open the shutter half a frame before the current frame.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">randomize time</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">temporal_jitter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Adds randomness to the distribution of samples in time so they don’t produce regularly spaced images. The larger the value, the larger the time difference between the samples.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">sample diameter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">spacial_jitter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The diameter of the circle that the samples for each pixel are placed in for antialiasing. The larger the value, the more pixels are jittered.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">focus diameter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">focal_jitter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Randomly orbit the camera about a point at the <b>focal distance</b> in front of it for each sample to produce depth-of-field effects from multiple samples.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <span class="_Override" style="font-weight: bold;">focal distance</span> is set in the Camera node's controls, in the <span class="_Override" style="font-weight: bold;">Projection</span> tab.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 128px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">stochastic<br />samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">stochastic_samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the number of samples, per pixel, to use in stochastic estimation (zero is disabled). Lower values result in faster renders, while higher values improve the quality of the final image.</p>
-                                <p class="CellBody">Stochastic sampling is based on Robert L. Cook’s <span class="_Override" style="font-style: italic;">Stochastic Sampling in Computer Graphics</span>, available in <span class="_Override" style="font-style: italic;">ACM Transactions on Graphics</span>, Volume 6, Number 1, January 1996.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>It is recommended for motion blur that the <span class="_Override" style="font-weight: bold;">samples</span> control is adjusted. This also provides anti-aliasing by jittering the sample point.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">uniform<br />distribution</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">uniform_distribution</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, use a uniform temporal distribution of scenes to sample. This generates more accurate results for stochastic multisampling.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">Shader Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 241px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">motion vectors</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">motion_vectors_type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">distance</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Select how to render motion vectors:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">off</span> - do not render motion vectors.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">classic</span> - render motion vectors the classic (pre-Nuke 6.1) way. This option is only provided for backwards compatibility, and isn't always accurate.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">velocity</span> - store the velocity of every single pixel in the motion vector channels (pre-Nuke 7.0 way). This option is only provided for backwards compatibility. In order to have the same behavior as Nuke 6.3, set <span class="_Override" style="font-weight: bold;">samples</span> to 1.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">distance</span> - for every pixel, store the distance (in pixels) between samples in the motion vector channels. This is the recommended option that usually produces the best results. It also allows the <a href="../filter_nodes/vectorblur.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">VectorBlur</span></a> node to produce curved vector blur where interpolation between two frames is made according to a curve rather than linearly.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 35px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">motion vector channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">MB_channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">forward</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The channels the motion vectors are output to.</p>
-                                <p class="CellBody">You can use the checkboxes on the right to select individual channels.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">output vectors</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">output_shader_vectors</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, shader vectors (<span class="_Override" style="font-weight: bold;">surface points</span> and <span class="_Override" style="font-weight: bold;">surface normals</span>) are output as well as motion vectors. These can be useful if you want to relight the rendered 3D scene in the compositing phase.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">surface points</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">P_channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The channel to use as the surface point channel. When <span class="_Override" style="font-weight: bold;">output vectors</span> is enabled, ScanlineRender outputs the surface point positions (in world space coordinates) into this channel.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">surface normal</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">N_channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The channel to use as the surface normal channel. When <span class="_Override" style="font-weight: bold;">output vectors</span> is enabled, ScanlineRender outputs the surface point normals (in world space coordinates) into this channel.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p>Deep Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>drop zero alpha samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>drop_zero_alpha_samples</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p>When enabled, deep samples with an alpha value of 0 do not contribute to the output.</p>
-                                <p>When disabled, deep samples with an alpha value 0 contribute to the output.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/3d_compositing/setting_up_scene.html#The" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">The ScanlineRender Node</span></a>
-                </p>
-                <p><a href="../../comp_environment/3d_compositing/adding_motion_blur_scanlinerender.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Adding Motion Blur Using a Renderer</span></a>
-                </p>
-                <p><a href="../../comp_environment/3d_compositing/rendering_3d_scene.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Rendering a 3D Scene</span></a>
-                </p>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Nuke 8.0 - ScanlineRender</a></span>
-                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/81086622?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                        <p><a href="https://vimeo.com/81086622" target="_blank">ScanlineRender - NUKE 8 Tutorial</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
-                    </div>
-                </div>
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />3D Workspace Overview - Step Up to Nuke Tutorial 11</a></span>
-                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/62692381?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                        <p><a href="https://vimeo.com/62692381" target="_blank">3D Workspace Overview</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
-                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
-                            <div class="MCDropDownBody dropDownBody">
-                                <p>Nuke is not limited to a 2D space, in fact, it has a complete 3D environment built right in. For example, here is a 3D ship and a 3D sphere. In order to see the 3D environment, go to the <b>View</b> menu where it says <b>2D</b> and switch that to <b>3D</b>, and there’s the environment. In order to change the view, which is the default camera, you can use the <b>Alt</b> or your <b>Option</b> key, along with your mouse buttons. For example, <b>Alt</b> and left mouse button scrolls, <b>Alt</b> and middle mouse button zooms, and <b>Alt</b> and right mouse button orbits.</p>
-                                <p>Let’s see what we have in the scene. There is a 3D Camera, a Spotlight, a Point light, a primitive Sphere, an imported spaceship, and a large primitive Card in the background. Let’s take a look at the node network, and you can see what we need to make a 3D scene happen. The node with the most connections is the Scene node. The Scene node groups together lights and geometry in order to pass them on to a render node. In order to render the scene so it becomes 2D, you need to have some sort of render node. In this case, there is a ScanlineRender node. Connected to the ScanlineRender is a 3D Camera. Connected to the Scene node are two lights - there is the Spotlight and the Point light. If I open up the properties on the Spotlight, you can see common options like <b>color</b> and <b>intensity</b> and, in the case of the Spotlight, <b>cone angle</b>. There are also two pieces of primitive geometry here - there is the Sphere and the Card. This will be a good time to note that 3D nodes have a rounded, pill-like shape, as opposed to the rectangular 2D nodes.</p>
-                                <p>You can create a light or a primitive piece of geometry through the <b>3D</b> menu. You can make your Point or your Spot, plus a Direct and a few specialized lights, like the one that’s called Light, which you can use to import lights from other programs, like Maya. There is also the <b>Geometry</b> menu, which has the primitives such as <b>Card</b>, or other shapes, like <b>Cube</b> and <b>Cylinder</b>. You can transform lights and geometry. For example, if I open up the Sphere, you will see there is a <b>translate</b>, <b>rotate</b>, and <b>scale</b> property. Once this is open, you will also see there is a transform handle. If you click+drag the handle along the axis, you can move it in that direction, for example, Y. Of course, you can also enter values into the properties panel. Lights also have their own set of transforms. Now, one new feature is the fact that lights can cast shadows right here in the 3D environment. For example, if I go to the Spotlight and go to the <b>Shadows</b> tab, you will see there is a place to click on <b>cast shadows</b>. Let’s go back to the 2D view. You can see the shadow of the Sphere right here on the spaceship. Now, aside from shadows of course, you can animate all of these properties. You can animate the light, changing over time, as well as the geometry. There are also animation buttons beside all of these properties. You can key these as you would any other node inside Nuke.</p>
-                                <p>You will notice that the two pieces of geometry have shaders connected to their <b>img</b> pipes. These are necessary for the surfaces to be lit correctly. The Sphere has a Phong, which is similar to the one you might have in a program like Maya. The Card has an Emission shader, which has the emissive component or the ambient color component. Now, in terms of the spaceship, it has to be imported through a ReadGeo node. ReadGeo node has a place to bring in the file, and this  supports <b>.fbx</b> files, or <b>.obj</b> files, or alembic files, <b>.abc</b>. If there is animation in the file, Nuke will recognize it. For example, with the <b>.fbx</b> file, it might have multiple takes. Nuke will recognize that and you can choose the animation take. So, if I go back to the 3D view, scrub the timeline, and we will see the ship is pre-animated, and this animation was created in Maya. There is also a material connected to the <b>img</b> pipe of the ReadGeo. Now, because the UV texture space came through the <b>.fbx</b> file, in order to map the geometry, you just need to bring in the texture bitmaps through Read nodes, and connect to a shader. For example, here is the diffuse map connected through the <b>mapD</b>, or map diffuse. There is a specular map connected through the <b>mapS</b>, or map specular. Lets go back to the 2D view.</p>
-                                <p>Now, if anything is animated, you can also activate motion blur. To do that, you go to the render node and, for example, with the ScanlineRender, go to the <b>MultiSample</b> tab and change <b>samples</b> to a higher number like <b>8</b>. At that point, the motion blur will appear, as you can see right here. The higher the <b>samples</b> number, the higher the quality.</p>
-                                <p>So, there is a brief introduction to Nuke’s 3D environment. Keep in mind that any node you need to create for this you can find through the <b>3D</b> node menu. This includes all your shaders, geometry, lights, Scene nodes, and cameras. Aside from animating lights and geometry, you are also free to animate cameras. They have their own set of transforms. In any case, I would suggest exploring this component of Nuke.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="Camera|camera.html||PrmanRender|prmanrender.html||Scene|scene.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Link Icon" />Related Topics</span></a>
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   ScanlineRender
+  </h1>
+  <p>
+   当连接到
+   <a class="noPage MCXref xref xrefnoPage" href="scene.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     场景
+    </span>
+   </a>
+   节点，ScanlineRender 节点渲染所有连接到该场景的对象和灯光。
+   <a class="noPage MCXref xref xrefnoPage" href="camera.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     相机
+    </span>
+   </a>
+   连接
+   <span class="_Override" style="font-weight: bold;">
+    凸轮
+   </span>
+   输入 (或默认相机，如果没有
+   <span class="_Override" style="font-weight: bold;">
+    凸轮
+   </span>
+   输入存在)。然后，渲染的 2D 图像将传递到合成树中的下一个节点，您可以将结果用作脚本中其他节点的输入。
+  </p>
+  <p>
+   如果下游有深度节点，ScanlineRender 节点也会输出深度数据。
+  </p>
+  <p>
+   另见
+   <a class="noPage MCXref xref xrefnoPage" href="prmanrender.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     PrmanRender
+    </span>
+   </a>
+   ,
+   <a class="noPage MCXref xref xrefnoPage" href="scene.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     场景
+    </span>
+   </a>
+   ,和
+   <a class="noPage MCXref xref xrefnoPage" href="camera.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     相机
+    </span>
+   </a>
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="233px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="101px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="115px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="430px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
         </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 55px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="3">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Obj/scn
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         要么:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         连接到要渲染的对象和灯光的场景节点，或
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         3D 对象或 MergeGeo 节点。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         凸轮
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         一个可选的相机输入。场景是从这个相机的角度渲染的。如果相机输入未连接，ScanlineRender 将使用位于原点并面向负 Z 方向的默认相机。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         Bg
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p class="CellBody">
+         可选的背景输入。这可以用于将背景图像合成到场景中，并确定输出分辨率。如果不使用，默认为
+         <span class="_Override" style="font-weight: bold;">
+          根.格式
+         </span>
+         或
+         <span class="_Override" style="font-weight: bold;">
+          Root.proxy_format
+         </span>
+         定义在
+         <span class="_Override" style="font-weight: bold;">
+          项目
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          设置
+         </span>
+         .
+        </p>
+        <p class="CellBody">
+         如果此输入包含深度通道，ScanlineRender 在进行 Z 缓冲区和 Z 混合计算时会考虑该通道。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="2331px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="362px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         ScanlineRender 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         透明度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         透明度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用时，对象的阿尔法小于 1 时显示为透明。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Z 缓冲区
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Ztest_enabled
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用或禁用比较场景中对象 Z 深度的 Z 缓冲区，以辅助遮挡。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 321px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         过滤器
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         filter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         立方
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         选择将像素从原始位置重新映射到新位置时要使用的过滤算法。这允许您避免图像质量问题，特别是在帧的高对比度区域 (高度锯齿或锯齿, 如果没有过滤像素并保留其原始值，则可能会出现边缘)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          冲动
+         </span>
+         -重新映射的像素携带其原始值。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          立方
+         </span>
+         -重新映射的像素接收一些平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          钥匙
+         </span>
+         -重新映射的像素会得到一些平滑，加上轻微的锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          西蒙
+         </span>
+         -重新映射的像素会获得一些平滑，加上中等锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          里夫曼
+         </span>
+         -重新映射的像素获得一些平滑，加上显著的锐化 (如曲线的负-y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          米切尔
+         </span>
+         -重新映射的像素接收一些平滑，加上模糊来隐藏像素化。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          帕森
+         </span>
+         -重新映射的像素接收所有过滤器的最大平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          缺口
+         </span>
+         -重新映射的像素接收平坦平滑 (倾向于隐藏莫尔图案)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          Lanczos4
+         </b>
+         ,
+         <b>
+          Lanczos6
+         </b>
+         ,和
+         <b>
+          Sinc4
+         </b>
+         -重新映射的像素接收锐化，这对于缩小缩放很有用。
+         <b>
+          Lanczos4
+         </b>
+         提供最少的锐化和
+         <b>
+          Sinc4
+         </b>
+         最多的。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          最近的
+         </b>
+         -最快和最粗糙的，从适当的 mip 地图中采样最近的 texel。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          双线性
+         </b>
+         -从适当的 mipmap 级别移除块，采样并插入四个最近的纹理。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          三线性
+         </b>
+         -根据距离平滑插值纹理质量，在两个最近的 mipmap 级别之间进行 bilinearly 插值。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          各向异性
+         </b>
+         -最高质量的过滤，在相对于相机的高角度着色表面时给出了更好的结果。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         抗锯齿
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         抗锯齿
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置抗锯齿级别以减少渲染中的任何锯齿伪影。选择
+         <span class="_Override" style="font-weight: bold;">
+          没有
+         </span>
+         ,
+         <span class="_Override" style="font-weight: bold;">
+          低
+         </span>
+         ,
+         <span class="_Override" style="font-weight: bold;">
+          介质
+         </span>
+         和
+         <span class="_Override" style="font-weight: bold;">
+          高
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Z 混合模式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Zblend_mode
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         用于混合两个曲面的渐变类型
+         <span class="_Override" style="font-weight: bold;">
+          Z 混合范围
+         </span>
+         彼此的。Smooth 看起来更好，但是线性是为了向后兼容性而提供的。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Z 混合范围
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Zblend_range
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0.1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         比 Z 轴上的此距离更近的任何两个曲面将混合在一起，以平滑相交对象之间的过渡。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 203px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         投影模式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Projection_mode
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         渲染相机
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         投影模式为:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          透视
+         </span>
+         -让相机的焦距和光圈定义相机前面物体的深度错觉。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          正交
+         </span>
+         -使用正交投影 (使用平行光线投影到投影平面上)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          紫外线
+         </span>
+         -让每个对象将其 UV 空间渲染为输出格式。您可以使用此选项绘制纹理贴图。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          球形
+         </span>
+         -将整个 360 度世界渲染为球形地图。你可以增加
+         <span class="_Override" style="font-weight: bold;">
+          镶嵌
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          最大
+         </span>
+         增加对象边缘的精度，因为它们是线外扭曲的，但这需要更长的时间来渲染。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          渲染
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          相机
+         </span>
+         -使用渲染相机的投影类型。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 108px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         镶嵌最大
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Max_tessellation
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         3
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         通过屏幕空间距离百分比限制多边形的递归细分。
+        </p>
+        <p class="CellBody">
+         这个控制可以是有用的
+         <span class="_Override" style="font-weight: bold;">
+          球形
+         </span>
+         投影模式，有时会扭曲对象边缘。如果你看到这样的扭曲，你可以尝试增加这个值来将多边形细分成更小的多边形。这将产生更精确的对象边缘，但渲染也需要更长的时间。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 103px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         过扫描
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         过扫描
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         在帧的左侧/右侧和顶部/底部之外渲染的最大附加像素。如果后续节点需要访问帧外，渲染帧边缘之外的像素可能很有用。例如，如果使用过扫描，节点树下的模糊节点可能会在帧边缘周围产生更好的结果。同样，后续的透镜失真节点可能需要使用过扫描。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         环境
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         环境
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         输入一个介于 0 (黑色) 和 1 (白色) 之间的值，以更改全局环境光颜色。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         多样本选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         样品
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         样品
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置每像素渲染的采样数，以产生运动模糊和抗锯齿。如果您使用此，在大多数情况下，您可以关闭
+         <span class="_Override" style="font-weight: bold;">
+          ScanlineRender
+         </span>
+         标签。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         快门
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         快门
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.5
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         输入运动模糊时快门保持打开的帧数。例如，值 0.5 对应于半帧。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 256px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         快门偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Shutteroffset
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         开始
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         此值控制快门相对于当前帧值的行为。它有四个选项:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          集中
+         </span>
+         -将快门围绕当前帧居中。例如，如果将 “快门” 值设置为 1，并且当前帧为 30，则快门将从帧 29,5 保持打开，直到 30,5。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          开始
+         </span>
+         -在当前帧处打开快门。例如，如果将快门值设置为 1，并且当前帧为 30，则快门将从帧 30 保持打开。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          结束
+         </span>
+         -在当前帧处关闭快门。例如，如果将 “快门” 值设置为 1，并且当前帧为 30，则快门将从帧 29 到 30 保持打开状态。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          自定义
+         </span>
+         -在您指定的时间打开快门。在下拉菜单旁边的字段中，输入要添加到当前帧中的值 (以帧为单位)。要在当前帧之前打开快门，请输入负值。例如，值为-0.5 将在当前帧之前半帧打开快门。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 59px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Shuttercustom
+         <br/>
+         偏移
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Shuttercustomoffset
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         如果
+         <span class="_Override" style="font-weight: bold;">
+          快门偏移
+         </span>
+         参数设置为
+         <span class="_Override" style="font-weight: bold;">
+          自定义
+         </span>
+         ,此参数用于通过将快门添加到当前帧来设置快门打开的时间。值以帧为单位，因此-0.5 将在当前帧之前半帧打开快门。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         随机时间
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Temporal_jitter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         增加了样本时间分布的随机性，因此它们不会产生规则间隔的图像。值越大，样本之间的时差越大。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         样品直径
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Spacial_jitter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         每个像素的样本用于抗锯齿的圆直径。值越大，像素越抖动。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 59px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         聚焦直径
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Focal_jitter
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         随机围绕摄像机的一个点运行
+         <b>
+          焦距
+         </b>
+         在它的前面为每个样本产生多个样本的景深效应。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         的
+         <span class="_Override" style="font-weight: bold;">
+          焦距
+         </span>
+         在摄像机节点的控件中设置
+         <span class="_Override" style="font-weight: bold;">
+          投影
+         </span>
+         标签。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 128px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         随机
+         <br/>
+         样品
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         随机样本
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置在随机估计中使用的每个像素的样本数 (零被禁用)。较低的值会导致更快的渲染，而较高的值会提高最终图像的质量。
+        </p>
+        <p class="CellBody">
+         随机抽样是基于罗伯特 · 库克的
+         <span class="_Override" style="font-style: italic;">
+          计算机图形学中的随机抽样
+         </span>
+         ,可在
+         <span class="_Override" style="font-style: italic;">
+          图形上的 ACM 事务
+         </span>
+         ,第六卷，第一，1996年1月。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         对于运动模糊，建议
+         <span class="_Override" style="font-weight: bold;">
+          样品
+         </span>
+         控制调整。这也通过抖动采样点来提供抗锯齿。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         制服
+         <br/>
+         分布
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Uniform_distribution
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，使用场景的统一时间分布进行采样。这为随机多抽样产生更准确的结果。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         着色器选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 241px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         运动矢量
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Motion_vectors_type
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         距离
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         选择如何渲染运动矢量:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          关闭
+         </span>
+         -不渲染运动矢量。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          经典
+         </span>
+         -渲染运动矢量的经典 (前核弹 6.1) 的方式。此选项仅用于向后兼容性，并不总是准确的。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          速度
+         </span>
+         -存储运动矢量通道中每个像素的速度 (预核弹 7.0 方式)。此选项仅用于向后兼容性。为了具有与 Nuke 6.3 相同的行为，设置
+         <span class="_Override" style="font-weight: bold;">
+          样品
+         </span>
+         至 1。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          距离
+         </span>
+         -对于每个像素，在运动矢量通道中存储样本之间的距离 (以像素为单位)。这是通常产生最佳结果的推荐选项。它还允许
+         <a class="noPage MCXref xref xrefnoPage" href="../filter_nodes/vectorblur.html">
+          <span class="mcFormatColor" style="color: #00b4e0;">
+           VectorBlur
+          </span>
+         </a>
+         节点产生曲线向量模糊，其中两帧之间的插值是根据曲线而不是线性进行的。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 35px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         运动矢量通道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         MB_channel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         向前
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         运动矢量输出到的通道。
+        </p>
+        <p class="CellBody">
+         您可以使用右侧的复选框选择单个频道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         输出向量
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Output_shader_vectors
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用时，着色器向量 (
+         <span class="_Override" style="font-weight: bold;">
+          表面点
+         </span>
+         和
+         <span class="_Override" style="font-weight: bold;">
+          曲面法线
+         </span>
+         ) 是输出以及运动矢量。如果要在合成阶段重新点亮渲染的 3D 场景，这些选项将非常有用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         表面点
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         P_channel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         要用作曲面点通道的通道。当
+         <span class="_Override" style="font-weight: bold;">
+          输出向量
+         </span>
+         启用后，ScanlineRender 将表面点位置 (在世界空间坐标中) 输出到此通道中。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         表面正常
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         N_channel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         用作表面正常通道的通道。当
+         <span class="_Override" style="font-weight: bold;">
+          输出向量
+         </span>
+         启用后，ScanlineRender 将表面点法线 (在世界空间坐标中) 输出到该通道中。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p>
+         深标签
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         零 alpha 样本
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         Drop_zero_alpha_samples
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p>
+         启用时，alpha 值为 0 的深度采样不会影响输出。
+        </p>
+        <p>
+         禁用时，alpha 值为 0 的深度样本会影响输出。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="MCXref xref" href="../../comp_environment/3d_compositing/setting_up_scene.html#The">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       ScanlineRender 节点
+      </span>
+     </a>
+    </p>
+    <p>
+     <a class="MCXref xref" href="../../comp_environment/3d_compositing/adding_motion_blur_scanlinerender.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用渲染器添加运动模糊
+      </span>
+     </a>
+    </p>
+    <p>
+     <a class="MCXref xref" href="../../comp_environment/3d_compositing/rendering_3d_scene.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       渲染 3D 场景
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesVideoContent">
+      视频教程
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+       Nuke 8.0-ScanlineRender
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <iframe allowfullscreen="" frameborder="0" height="281" mozallowfullscreen="" src="https://player.vimeo.com/video/81086622?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+      </iframe>
+      <p>
+       <a href="https://vimeo.com/81086622" target="_blank">
+        ScanlineRender-NUKE 8 教程
+       </a>
+       从
+       <a href="https://vimeo.com/thefoundry" target="_blank">
+        铸造
+       </a>
+       上
+       <a href="https://vimeo.com/" target="_blank">
+        Vimeo
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+       3D 工作空间概述-升级到 Nuke 教程 11
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <iframe allowfullscreen="" frameborder="0" height="281" mozallowfullscreen="" src="https://player.vimeo.com/video/62692381?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+      </iframe>
+      <p>
+       <a href="https://vimeo.com/62692381" target="_blank">
+        3D 工作空间概述
+       </a>
+       从
+       <a href="https://vimeo.com/thefoundry" target="_blank">
+        铸造
+       </a>
+       上
+       <a href="https://vimeo.com/" target="_blank">
+        Vimeo
+       </a>
+       .
+      </p>
+      <div class="MCDropDown MCDropDown_Open dropDown">
+       <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented">
+        <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+         <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+         <span class="Master_VariablesTranscribedContent">
+          转录
+         </span>
+        </a>
+       </span>
+       <div class="MCDropDownBody dropDownBody">
+        <p>
+         Nuke 并不局限于 2D 空间，事实上，它有一个完整的 3D 环境。例如，这里有一艘 3D 船和一个 3D 球体。要查看 3D 环境，请转到
+         <b>
+          视图
+         </b>
+         菜单上写着
+         <b>
+          2D
+         </b>
+         并切换到
+         <b>
+          3D
+         </b>
+         ,还有环境。为了改变视图，这是默认的相机，您可以使用
+         <b>
+          Alt
+         </b>
+         或者你的
+         <b>
+          选项
+         </b>
+         键，以及鼠标按钮。例如,
+         <b>
+          Alt
+         </b>
+         和鼠标左键滚动,
+         <b>
+          Alt
+         </b>
+         和鼠标中键缩放，和
+         <b>
+          Alt
+         </b>
+         和鼠标右键轨道。
+        </p>
+        <p>
+         让我们看看现场有什么。背景中有 3D 相机、聚光灯、点光源、原始球体、进口宇宙飞船和一张大型原始卡片。让我们看看节点网络，你可以看到我们需要做一个 3D 场景。连接最多的节点是场景节点。场景节点将灯光和几何体组合在一起，以便将它们传递到渲染节点。为了渲染场景，使其成为 2D，您需要某种渲染节点。在这种情况下，有一个 ScanlineRender 节点。连接到 ScanlineRender 的是一个 3D 相机。连接到场景节点的是两个灯光 -- 有聚光灯和点光源。如果我打开聚光灯下的属性，你可以看到常见的选项，比如
+         <b>
+          颜色
+         </b>
+         和
+         <b>
+          强度
+         </b>
+         而且，在聚光灯下,
+         <b>
+          锥角
+         </b>
+         。这里还有两个原始几何图形 -- 有球体和卡片。这将是一个很好的时间来注意 3D 节点有一个圆形的，像药丸一样的形状，而不是矩形的 2D 节点。
+        </p>
+        <p>
+         您可以创建一个或一个简单的几何形状的
+         <b>
+          3D
+         </b>
+         菜单。你可以把你的观点或你的位置，加上一个直接的和一些专门的灯，像一个叫做光，你可以用它从其他程序，如玛雅导入灯。也有
+         <b>
+          几何
+         </b>
+         菜单，它有原语，如
+         <b>
+          卡
+         </b>
+         ,或其他形状，如
+         <b>
+          立方体
+         </b>
+         和
+         <b>
+          气缸
+         </b>
+         。可以变换灯光和几何图形。例如，如果我打开球体，你会看到有一个
+         <b>
+          翻译
+         </b>
+         ,
+         <b>
+          旋转
+         </b>
+         ,和
+         <b>
+          规模
+         </b>
+         财产。一旦打开，您还将看到有一个变换句柄。如果您单击 “沿轴拖动” 控制柄，可以沿该方向移动它，例如 Y。当然，您也可以在 “属性” 面板中输入值。灯光也有自己的变换集。现在，一个新功能是灯光可以在 3D 环境中投射阴影。例如，如果我去聚光灯下，去
+         <b>
+          阴影
+         </b>
+         标签，你会看到有一个地方可以点击
+         <b>
+          投射阴影
+         </b>
+         。让我们回到 2D 视图。你可以在宇宙飞船上看到球体的阴影。现在，除了阴影，当然，你可以动画所有这些属性。您可以设置灯光动画，随时间变化，以及几何图形。所有这些属性旁边还有动画按钮。你可以像使用 Nuke 中的任何其他节点一样键入这些。
+        </p>
+        <p>
+         你会注意到这两块几何有着色器连接到他们的
+         <b>
+          Img
+         </b>
+         管道。这些是正确点亮曲面所必需的。球体有一个 Phong，它类似于像 Maya 这样的程序中的一个。该卡具有发射着色器，该着色器具有发射组件或环境颜色组件。现在，就宇宙飞船而言，它必须通过 ReadGeo 节点导入。ReadGeo 节点有一个引入文件的位置，这支持
+         <b>
+          。Fbx
+         </b>
+         文件，或
+         <b>
+          。Obj
+         </b>
+         文件，或 alembic 文件,
+         <b>
+          。Abc
+         </b>
+         。如果文件中有动画，Nuke 会识别它。例如，使用
+         <b>
+          。Fbx
+         </b>
+         文件，它可能有多个需要。Nuke 会认识到这一点，你可以选择动画拍摄。所以，如果我回到 3D 视图，擦洗时间线，我们会看到船是预先动画的，这个动画是在玛雅中创建的。还有一个材料连接到
+         <b>
+          Img
+         </b>
+         ReadGeo 的管道。现在，因为 UV 纹理空间通过
+         <b>
+          。Fbx
+         </b>
+         文件，为了映射几何图形，您只需要通过读取节点引入纹理位图，并连接到着色器。举例来说，这里是漫图接通
+         <b>
+          MapD
+         </b>
+         ,或地图漫射。有一个镜面地图通过连接
+         <b>
+          地图
+         </b>
+         ,或地图高光。让我们回到 2D 视图。
+        </p>
+        <p>
+         现在，如果有任何动画，您也可以激活运动模糊。为此，您将转到渲染节点，例如，使用 ScanlineRender，转到
+         <b>
+          多样本
+         </b>
+         标签和更改
+         <b>
+          样品
+         </b>
+         到更高的数字，如
+         <b>
+          8
+         </b>
+         。在这一点上，运动模糊将出现，正如你在这里看到的。更高的
+         <b>
+          样品
+         </b>
+         数量，质量越高。
+        </p>
+        <p>
+         所以，对 Nuke 的 3D 环境有一个简要的介绍。请记住，您需要为此创建的任何节点都可以通过
+         <b>
+          3D
+         </b>
+         节点菜单。这包括所有的着色器、几何体、灯光、场景节点和摄像机。除了动画灯光和几何图形，您还可以自由地为相机制作动画。他们有自己的一套转变。无论如何，我建议探索核武器的这个组成部分。
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <p data-mc-conditions="Default.ScreenOnly">
+   <a class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="Camera|camera.html||PrmanRender|prmanrender.html||Scene|scene.html" href="javascript:void(0);">
+    <span class="MCHelpControl-RelatedHotSpot_">
+     <img alt="Related Topics Link Icon" class="MCHelpControl_Image_Icon" height="16" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     相关主题
+    </span>
+   </a>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -598,5 +1582,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
