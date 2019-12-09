@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|3D Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>DepthGenerator</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/3d_nodes/depthgenerator.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>DepthGenerator</h1>
+        <p>The DepthGenerator node (<span class="CustomProductX">NukeX</span> and <span class="CustomProductStudio">Nuke Studio</span> only) allows you to generate a depth map from your footage. The node uses information from a tracked camera to create a channel that displays variations in depth.</p>
+        <p>A depth map is an image that uses the brightness of each pixel to specify the distance between the 3D scene point and the virtual camera used to capture the scene.</p>
+        <p>DepthGenerator also allows you to output depth as normals and position  passes, and create a <a href="../transform_nodes/card3d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Card3D</span></a> node positioned in 3D space and displaced according to the depth channel.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="242px">
+                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="113px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="432px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 143px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="3" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The mask used to ignore areas of the source image. DepthGenerator expects alpha values of either 0 (for regions to use) or 1 (for regions to ignore).</p>
+                                <p class="CellBody">Depth can only be calculated where the real world 3D position of objects doesn’t change. If there are moving objects in your <span class="_Override" style="font-weight: bold;">Source</span> footage, DepthGenerator is likely to struggle to create an accurate depth map for those regions. To prevent this, you can exclude moving foreground regions from the depth calculation by connecting a matte to this input and setting <span class="_Override" style="font-weight: bold;">Ignore Mask</span> in the DepthGenerator properties to the channel that contains the matte.</p>
+                                <p class="CellBody">The <span class="_Override" style="font-weight: bold;">Mask</span> input only appears once you’ve connected the other two inputs.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Camera</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">A tracked Camera that matches the Source footage. If necessary, you can create one using the <a href="cameratracker.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">CameraTracker</span></a> node.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">The source footage from which the Camera track was derived.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="1938px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">DepthGenerator Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 371px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Ignore Mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">ignoreMask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the mask type to exclude areas of the <span class="_Override" style="font-weight: bold;">Source</span> footage during depth calculation. DepthGenerator expects values of either 0 (for regions to use) or 1 (for regions to ignore).</p>
+                                <p class="CellBody">Depth can only be calculated where the real world 3D position does not change. If your <span class="_Override" style="font-weight: bold;">Source</span> footage includes moving foreground objects, it’s a good idea to supply a mask to prevent distortion in moving regions:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">None</span> - none of the footage is ignored.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Alpha</span> - use the alpha channel of the <span class="_Override" style="font-weight: bold;">Source</span> clip to define which areas to ignore.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Inverted Alpha</span> - use the inverted alpha channel of the <span class="_Override" style="font-weight: bold;">Source</span> clip to define which areas to ignore.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Luminance </span>- use the luminance of the <span class="_Override" style="font-weight: bold;">Mask</span> input to define which areas to ignore.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Luminance</span> - use the inverted luminance of the <span class="_Override" style="font-weight: bold;">Mask</span> input to define which areas to ignore.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Alpha</span> - use the <span class="_Override" style="font-weight: bold;">Mask</span> input alpha channel to define which areas to ignore.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Alpha</span> - use the inverted <span class="_Override" style="font-weight: bold;">Mask</span> input alpha channel to define which areas to ignore.</p>
+                                <p class="CellBody">Alternatively, you can try using a smaller <span class="_Override" style="font-weight: bold;">Frame Separation</span> to capture moving objects.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Output</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 84px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Depth Output</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Depth (1/Z)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the type of output produced:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Depth 1/Z</span> - output 1/Z where Z is the distance along the camera Z axis. This matches the depth output of the <a href="scanlinerender.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">ScanlineRender</span></a> node.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Distance</span> - output the distance along the ray from the camera center to the 3D surface point.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Create Card</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">createCard</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to create a group containing a displaced Card to visualize depth as a surface in 3D space.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <span class="_Override" style="font-weight: bold;">Depth</span><span class="_Override" style="font-weight: bold;">Output</span> control must be set to <span class="_Override" style="font-weight: bold;">Depth (1/Z)</span>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Surface Point</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">P_channel</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the channel(s) to output depth as a position pass.</p>
+                                <p class="CellBody">The position pass includes the X, Y, and Z coordinates for each pixel in the image. You can use it with the <a href="relight.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Relight</span></a> node, or with the <a href="positiontopoints.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">PositionToPoints</span></a> node to visualize depth as a 3D point cloud.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 93px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Surface Normal</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N_channel</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the channel(s) to output depth as a normals pass. Use the <span class="_Override" style="font-weight: bold;">Normal</span><span class="_Override" style="font-weight: bold;">Detail</span> control to affect the smoothness of the normals pass.</p>
+                                <p class="CellBody">The normals pass contains three vectors of information for each pixel in the image: X direction, Y direction, and Z direction. In other words, it stores the direction in which each point in the image is facing. You can use a normals pass with the <a href="relight.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Relight</span></a> node.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Frame Separation</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 113px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Analyze Sequence</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">analyzeSequence</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to automatically calculate the <span class="_Override" style="font-weight: bold;">Frame</span><span class="_Override" style="font-weight: bold;">Separation</span> to use in the sequence.</p>
+                                <p class="CellBody">For this to work, the camera in the <span class="_Override" style="font-weight: bold;">Camera</span> input must be defined for all frames within the frame range.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you analyze the sequence and only then decide to add an ignore mask, you should analyze the sequence again after adding the mask.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 99px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Analyze Frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">analyzeFrame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to calculate the <span class="_Override" style="font-weight: bold;">Frame Separation</span> to use at the playhead frame.</p>
+                                <p class="CellBody">This gives you more control than <span class="_Override" style="font-weight: bold;">Analyze Sequence</span>, as you can work through the timeline, analyze particular frames, and if necessary tweak the <span class="_Override" style="font-weight: bold;">Frame Separation</span> value manually.</p>
+                                <p class="CellBody">The camera in the <span class="_Override" style="font-weight: bold;">Camera</span> input must be defined for all frames within the frame range.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 217px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Frame Separation</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">frameSeparation</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Adjusts the offset between the current frame and the frame against which to calculate depth for your input.</p>
+                                <p class="CellBody">Use a small separation value for fast camera moves and a larger value for slow camera moves.</p>
+                                <p class="CellBody">Increasing the separation gives a larger baseline and more accurate depth. However, a high separation reduces the quality of image matching and gives incorrect 3D points.</p>
+                                <p class="CellBody">Animate the <span class="_Override" style="font-weight: bold;">Frame</span><span class="_Override" style="font-weight: bold;">Separation</span> to compensate for variable camera speeds.</p>
+                                <p class="CellBody">The camera in the <span class="_Override" style="font-weight: bold;">Camera</span> input must be defined for all frames within the frame range.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <span class="_Override" style="font-weight: bold;">Analyse Sequence</span> and <span class="_Override" style="font-weight: bold;">Analyse Frame</span> buttons attempt to calculate the best separation. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 113px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Calculated Accuracy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">accuracy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the depth accuracy calculated when analyzing frame separation. Values closer to 1 are considered accurate, and values closer to 0 inaccurate.</p>
+                                <p class="CellBody">Use frames with a high accuracy when placing elements in 3D (for example, by clicking <span class="_Override" style="font-weight: bold;">Create Card</span> or using a PositionToPoints node).</p>
+                                <p class="CellBody">If you’re not getting accurate depth values, try adjusting <span class="_Override" style="font-weight: bold;">Frame Separation</span> or using an <span class="_Override" style="font-weight: bold;">Ignore Mask.</span></p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Depth Generation</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Depth Detail</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">vectorDetail</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0.5</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Adjust this to vary the resolution of the images used to calculate the depth map. The default value of 0.5 equals half the image resolution. Lower values speed up processing and deliver a smoother result. Higher values pick up finer details, but also increase processing time.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Normal Detail</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">normalDetail</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0.25</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Adjusts the resolution of the surface normals. Reduce the detail to smooth out the normals pass.</p>
+                                <p class="CellBody">The default value of 0.25 causes the normals pass to be calculated at a quarter resolution.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Noise</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">noiseLevel</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0.01</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the amount of noise to ignore in the input footage when calculating the depth map.</p>
+                                <p class="CellBody">Try increasing this to smooth depth in flat image regions.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Strength</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">strength</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the strength in matching pixels between frames. Increase this to force the matches, for example where fine details are missed, or reduce to smooth depth.</p>
+                                <p class="CellBody">In most cases, you can leave this at the default value.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Sharpness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">sharpness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0.5</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Defines how distinct object boundaries should be. Increase sharpness to separate objects and reduce it to smooth depth.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 93px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Smoothness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">smoothness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0.5</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Adjusts the smoothness weighting of the disparity calculation. Rather than affecting the depth calculation, this applies an intelligent blur on the result.</p>
+                                <p class="CellBody">A high smoothness can miss lots of local detail, but is less likely to produce noisy depth values. A low smoothness will concentrate on detail matching, even if the resulting depth map is jagged. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Depth Limits</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Near Clip Plane</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">near</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0.1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the minimum z depth. All depth values that are lower than this number are set to this value.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Far Clip Plane</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">far</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">10000</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the maximum z depth. All depth values that are higher than this number are set to this value.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Mark Bad Regions</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">markRegions</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">When enabled, the regions where the depth calculation is ambiguous are marked in the depth map as very large values.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p><a href="../../comp_environment/depthgenerator/generating_depth_maps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Generating Depth Maps</span></a>
+                </p>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding --> <object width="500" height="281"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=69179384&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=69179384&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="281" /></object> <p>NUKE 7.0 - DepthGenerator from Foundry on <a href="https://vimeo.com">Vimeo</a>.</p></div>
+        </div>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

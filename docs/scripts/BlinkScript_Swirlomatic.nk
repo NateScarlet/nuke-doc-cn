@@ -1,0 +1,38 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote8
+ label "Swirlomatic:\nWarps part of its input around in a swirl. \nUses random access, trigonometric\nfunctions and bilinear interpolation."
+ xpos -280
+ ypos -141
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard5
+ xpos -224
+ ypos -77
+}
+BlinkScript {
+ ProgramGroup 1
+ KernelDescription "1 \"Swirlomatic\" iterate pixelWise 6fd568e2d74ef95ca9432e3cd47bc4cd58c7cdfa37213f0f5a671a915ae9449a 2 \"src\" Read Random \"dst\" Write Point 3 \"Amount\" Float 1 AAA0Qw== \"Size\" Int 1 gAIAAA== \"Centre\" Float 2 AAAgRAAAtEM="
+ kernelSource "// Copyright (c) 2012 The Foundry Visionmongers Ltd.  All Rights Reserved.\n// Example RIP Kernel\n\n/// SwirlomaticKernel: does a nice swirl. Amount is in degrees.\nkernel Swirlomatic : ImageComputationKernel<ePixelWise> \{\n  Image<eRead, eAccessRandom, eEdgeClamped> src;\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  float amount;\n  int size;\n  float2 centre;  \n\nlocal:\n  float _sizeInv;\n  float _cs, _sn;\n\n  void define() \{\n     defineParam(amount, \"Amount\", 180.0f);\n     defineParam(size, \"Size\", 640);\n     defineParam(centre, \"Centre\", float2(640.0f, 360.0f));\n  \}\n\n  void init() \{\n    _sizeInv = size <= 0 ? 0 : 1.0f/size;\n    _sizeInv *= _sizeInv;\n  \}\n\n  void process(int2 pos) \{\n    float dx = float(pos.x) - centre.x;\n    float dy = float(pos.y) - centre.y;\n    float delta = 1.0f - ((dx*dx + dy*dy) * _sizeInv);\n    if (delta < 0) delta = 0;   \n\n    float cs = cos(delta * amount * 3.1415926535f/180.0f);\n    float sn = sin(delta * amount * 3.1415926535f/180.0f);\n    \n    float x = centre.x + dx * cs + dy * sn;\n    float y = centre.y - dx * sn + dy * cs;\n\n    for (int c = 0; c < dst.kComps; c++)\n      dst(c) = bilinear(src, x, y, c);\n    \n  \}\n\};"
+ rebuild ""
+ Swirlomatic_Amount 85
+ Swirlomatic_Centre {914 820}
+ name BlinkScript7
+ selected true
+ xpos -224
+ ypos 9
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer2
+ xpos -224
+ ypos 67
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Tracking and Stabilizing|Keyframe Tracking">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Importing Tracking Data</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/tracking_stabilizing/importing_trackdata.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Importing Tracking Data</h2>
+        <p>You can import tracking data from third-party software using a plain text file containing three values in each line, frame, x, and y coordinates. Tracker can read files with values separated by spaces, commas, or colons and any blank lines or lines starting with <b>#</b>, <b>;</b>, and <b>/</b> are ignored. For example, importing a file containing:</p><pre><p class="cmdline"># Tracking Data
+1,1,1
+10,240,240
+50,1000,700
+90,1800,1200
+100,2048,1556</p></pre>
+        <p>Produces five keyframes at frames 1, 10, 50, 90, an 100 with the relevant x,y coordinates.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you use a particular file format on a regular basis, you might want to create you own importer to parse the <b>.txt</b> file. You can use the <b>&lt;install_dir&gt;/plugins/import_discreet.tcl</b> file as a guide on how to do this.</p>
+        <p>To import tracking data:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Add a tracking anchor as described in <a href="adding_track_anchors.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adding Track Anchors</span></a>.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">This adds a track to the tracks table in the <b>Properties</b> panel.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Right-click the new track and select <b>File</b> &gt; <b>Import Time+value Ascii</b>.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">The <b>Import discreet</b> dialog displays.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/tracker_import.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter the file path and file name in the <b>File</b> field.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the required column containing the x and y coordinate data.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Click <b>OK</b> to import the track.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">The points from the file are converted into keyframes and displayed in the Viewer. The track between keyframes is interpolated as normal. The five keyframe example file described earlier produces a track similar to the following image.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/tracker_import1.png" />
+        </p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

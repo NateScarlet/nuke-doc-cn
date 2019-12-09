@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Using the Shot Template</title>
+        <script>/* <![CDATA[ */
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-7716777-9', 'thefoundry.co.uk');
+			ga('send', 'pageview');
+
+		/* ]]> */</script>
+        <link href="../../resources/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../resources/stylesheets/load.js">
+        </script>
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <h2><a name="export_manage_3660486414_1021864"></a><a name="export_manage_3660486414_76432"></a>Using the Shot Template</h2>
+        <p>The shot template sets up the folder hierarchy and naming conventions for export processors such as Transcode Images. Any folders added to the template are created during export unless they already exist, in which case the export writes to the existing structure.</p>
+        <p><span class="CustomProduct">Nuke Studio</span> ships with default templates for your convenience, but you can quickly create custom templates using folders and “tokens”, which are replaced with the relevant information during export.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>A useful auto-expansion feature can save time when creating folder structures in the shot template. Simply type the required folder structure in the first field of the shot template, then press enter to create the specified hierarchy.</p>
+        <p><span class="CustomProduct">Nuke Studio</span> can resolve the following tokens during export:</p>
+        <table style="mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');margin-left: auto;margin-right: auto;caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="135px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="336px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Token</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">Resolves to</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">{ampm}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">The local equivalent of either AM or PM.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{binpath}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The bin structure to preserve. Including this token recreates your bin structure upto the nearest parent bin.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{clip}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The name of the clip used in the shot processed.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{day}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The local weekday name, abbreviated to Mon, Tue, and so on.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{DD}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The day of the month as a decimal, 01, 02, and so on.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{event}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The timeline event number associated with the track item to process.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{ext}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The extension of the file to output, such as <span class="_Override" style="font-weight: bold;">.dpx</span> or <span class="_Override" style="font-weight: bold;">.mov</span></p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{filebase}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The base of the clip name to process. For example, the filebase of Shot01_####.dpx is Shot01_####.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{fileext}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The format of the clip to process, such as <span class="_Override" style="font-weight: bold;">.dpx</span> or <span class="_Override" style="font-weight: bold;">.mov</span></p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{filehead}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The source clip filename not including frame padding or extension. For example, the filehead of Shot01_####.dpx is Shot01.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{filename}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The source clip name of the media to process.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{filepadding}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The source filename padding, which you might use for formatting frame indices.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{fullbinpath}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The full bin structure to preserve. Including this token recreates the bin structure upto the project level.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{fullday}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The local full weekday name.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{fullmonth}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The local full month name.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">{hierotemp}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">The <span class="CustomProduct">Nuke Studio</span> temp directory as specified in the Preferences.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">{hour12}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">The export start time hour component (12-hour clock).</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">{hour24}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">The export start time hour component (24-hour clock).</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{MM}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The month of the year as a decimal, 01, 02, and so on.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">{minute}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">The export start time minute component.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{month}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The local month name, abbreviated to Jan, Feb, and so on.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{project}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The name of the parent project of the export item.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{projectroot}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The root export filepath as specified in the <a class="noPage MCXref xref xrefnoPage" href="../conforming/project_settings.html#conform_325193794_1000629"><span style="color: 00B4E0;" class="mcFormatColor">Project Settings</span></a>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">{second}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">The export start time second component.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{sequence}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The sequence name to process.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{shot}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The name of the track item to process.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">{timestamp}</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">The export start time in the 24-hour clock format (HHMM).</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{track}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The name of the track to process. Exporting EDLs using this token generates a separate EDL for each track.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{user}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The current username.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">{version}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The string <span class="_Override" style="font-weight: bold;">v#</span>, defined by the number (#) set in the Version section of the export dialog</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">{YY}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The year of the century as a decimal, 01, 02, and so on.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="CellBody">{YYYY}</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                        <p class="CellBody">The year, including century.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>After double-clicking the path column, right-click and choose <span class="_Override" style="font-weight: bold;">Select Keyword</span> to display a list of available export tokens, though only valid tokens for the current selection are listed.</p>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/select_keyword.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;" />
+        </p>
+        <p>Token substrings are valid if you need to extract a certain part of an evaluated string. For example, if <span class="_Override" style="font-weight: bold;">{shot}</span> resolves to JB100, then:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>{shot [0:2] } - resolves to JB</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>{shot [-3:] } - resolves to 100</p>
+        <p>Similarly, anything within the outer brackets is evaluated as a Python string. For example, if <span class="_Override" style="font-weight: bold;">{shot}</span> resolves to JB_10_20, then:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>{shot.split(’_’) [0] } - resolves to JB</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>{shot.split(’_’) [2] } - resolves to 20</p>
+        <h3><a name="export_manage_3660486414_1021987"></a><a name="export_manage_3660486414_94917"></a>Example Shot Templates</h3>
+        <p><span class="CustomProduct">Nuke Studio</span>’s shot template enables you to create as many Nuke Read and Write nodes as required for a project. A typical use case might be creating <b>.jpg</b> clips for review and <b>.dpx</b> resolution clips for finishing.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>A useful auto-expansion feature can save time when creating folder structures in a template. Simply type the required folder structure in the first field of the template, then press enter to create the specified hierarchy.</p>
+        <h4>Multi-format Exports</h4>
+        <p>The following example describes how to build a shot template to export a sequence of <span class="_Override" style="font-weight: bold;">.mov</span> clips, create <span class="_Override" style="font-weight: bold;">.dpx</span> and <span class="_Override" style="font-weight: bold;">.jpg</span> Write nodes in Nuke, and bring the <span class="_Override" style="font-weight: bold;">.dpx</span> clips back into <span class="CustomProduct">Nuke Studio</span>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Set up an export as described in <a class="noPage MCXref xref xrefnoPage" href="round_tripping_dialog.html#export_manage_3660486414_1021785"><span style="color: 00B4E0;" class="mcFormatColor">Round-Tripping Using the Export Dialog</span></a>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the <span class="_Override" style="font-weight: bold;">Export</span> dialog, select <span class="_Override" style="font-weight: bold;">Basic Nuke Shot</span> in the <b>Local Presets</b> pane to auto-complete the shot template with the preset values.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Click <span class="_Override" style="font-weight: bold;">Duplicate selected preset</span> and give the new preset a name.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;"> Rename the <span class="_Override" style="font-weight: bold;">renders</span> folder <span class="_Override" style="font-weight: bold;">renders_dpx</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select the <span class="_Override" style="font-weight: bold;">nuke</span> folder and click the folder icon to add a new folder. Name the new folder <span class="_Override" style="font-weight: bold;">renders_jpg</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Select the <span class="_Override" style="font-weight: bold;">renders_jpg</span> folder and click <img src="../../resources/images/ug_hiero/conforming/icon_add.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9960955px;" /> to add a new entry.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Replace the <b>{filename}</b> token with <b>{shot}_comp_{version}.####.{ext}</b>, the same as the existing entry under <span class="_Override" style="font-weight: bold;">renders_dpx</span>.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <span class="_Override" style="font-weight: bold;">####</span> marks represent frame numbers for image sequences. If you were creating <b>.mov</b> clips, they’d be omitted.</p>
+        <p>The shot template should look something like this:</p>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/shot_template0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000028px;margin-bottom: 1.000067px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Click the <span class="_Override" style="font-weight: bold;">Content</span> column and select <span class="_Override" style="font-weight: bold;">Nuke</span> <span class="_Override" style="font-weight: bold;">Write Node</span>.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/shot_template1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000028px;margin-bottom: 1.000067px;" />
+        </p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>When using a third party application to produce the VFX work, select <span class="_Override" style="font-weight: bold;">External</span><span class="_Override" style="font-weight: bold;">Render</span> instead of <span class="_Override" style="font-weight: bold;">Nuke Write Node</span>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">In the <span class="_Override" style="font-weight: bold;">Nuke</span> <span class="_Override" style="font-weight: bold;">Write Node</span> settings, use the <span class="_Override" style="font-weight: bold;">File</span> <span class="_Override" style="font-weight: bold;">Type</span> dropdown to select <span class="_Override" style="font-weight: bold;">jpeg</span>.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/shot_template2.png" style="margin-left: 1.000063px;margin-bottom: 1.000064px;" />
+        </p>
+        <p class="numberedCont">Notice that the settings available change depending on the <span class="_Override" style="font-weight: bold;">File</span> <span class="_Override" style="font-weight: bold;">Type</span> selected?</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Click <span class="_Override" style="font-weight: bold;">Nuke</span> <span class="_Override" style="font-weight: bold;">Project</span> <span class="_Override" style="font-weight: bold;">File</span> in the shot template and check that both <span class="_Override" style="font-weight: bold;">Write</span> nodes are enabled.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/shot_template3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000067px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">Set up the rest of the export as described in <a class="noPage MCXref xref xrefnoPage" href="exporting_to_nuke.html#export_manage_3660486414_1023143"><span style="color: 00B4E0;" class="mcFormatColor">Exporting to Nuke</span></a> and click <span class="_Override" style="font-weight: bold;">Export</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">When complete, locate a <span class="_Override" style="font-weight: bold;">Nuke</span> <span class="_Override" style="font-weight: bold;">Shot</span> <span class="_Override" style="font-weight: bold;">Exporter</span> entry in the <span class="_Override" style="font-weight: bold;">Export</span> <span class="_Override" style="font-weight: bold;">Queue</span> and click the magnifying glass icon to reveal the Nuke scripts in a browser.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>13. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="13. &#160;">Drag the script into Nuke’s Node Graph to display the script.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/shot_template4.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997691px;" />
+        </p>
+        <p>Once the VFX work is complete, bring the <b>.dpx</b> clips back into <span class="CustomProduct">Nuke Studio</span>:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the original clips on the <span class="CustomProduct">Nuke Studio</span> timeline.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Right-click<span class="_Override" style="font-weight: bold;">  <![CDATA[ ]]></span>and select <span class="_Override" style="font-weight: bold;">Build Track</span> &gt; <span class="_Override" style="font-weight: bold;">From Export Structure</span>.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">The <span class="_Override" style="font-weight: bold;">Build Track</span> <span class="_Override" style="font-weight: bold;">From Export Structure</span> dialog displays.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter a<span class="_Override" style="font-weight: bold;"> Track Name</span> or use the default <span class="_Override" style="font-weight: bold;">VFX</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select the <span class="_Override" style="font-weight: bold;">Export Preset</span> used from the dropdown menu. In this case, <span class="_Override" style="font-weight: bold;">Dual</span> <span class="_Override" style="font-weight: bold;">Render</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Enter the filepath of the <span class="_Override" style="font-weight: bold;">Export Root</span> directory or click <span class="_Override" style="font-weight: bold;">Choose</span> and browse to the location.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Select the <span class="_Override" style="font-weight: bold;">Nuke Write Node (dpx - 10 bit)</span> entry.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../resources/images/ug_hiero/exportmanagement/shot_template5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 1.000059px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Click <span class="_Override" style="font-weight: bold;">Build</span> to create the VFX track.</td>
+            </tr>
+        </table>
+        <p class="numberedCont"><span class="CustomProduct">Nuke Studio</span> automatically creates the new track containing the <b>.dpx</b> clips.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;margin-left: auto;margin-right: auto;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

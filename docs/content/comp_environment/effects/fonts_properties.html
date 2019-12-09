@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Creating Effects|Creating Text Overlays">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Fonts and Font Properties</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/effects/fonts_properties.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Fonts and Font Properties</h2>
+        <p class="afterHead">The FreeType library used by the Text node supports a large number of fonts, including TrueType, OpenType, and PostScript fonts. In order to display the available fonts faster in the <b>font</b> dropdown menu, these fonts are cached as an XML file when you open a Text node's properties panel. The font cache XML file is called <b>fontmapping.fcache</b> and its location is specified by the environment variable NUKE_TEMP_DIR. See <a href="updating_fonts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Updating  the Font Cache</span></a> for more information.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>See <a href="../configuring_nuke/environment_variables.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Environment Variables</span></a> for more information on setting environment variables.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The font cache file is not used when rendering and is not required on a render farm.</p>
+        <p class="afterHead"><span class="CustomProduct">Nuke</span> retrieves the fonts available in the Text node from various locations in a set order, before caching them:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">The location specified in the <b>Project Settings</b> &gt; <b>Font</b> &gt; <b>project font path</b> control.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">The <b>.nuke/fonts</b> directory and all other plug-in folders.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">The location specified by the NUKE_FONT_PATH environment variable.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Locations 1 and 3 allow you to specify multiple paths using the OS standard syntax. On Windows, for example, you could specify "c:\windows\font1;c:\windows\font2;..."</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">The local fonts folder.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">The system fonts folder, assuming that <b>Project Settings</b> &gt; <b>Font</b> &gt; <b>include system fonts</b> is enabled. For example, on Windows C:\Windows\Fonts\.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If several locations contain the same font, <span class="CustomProduct">Nuke</span> uses the font from the first directory it finds it in.</p>
+        <p class="afterHead">In general, there is no guarantee that a font family and style, such as {Arial : Regular}, will render identically cross-platform. To avoid this, <span class="CustomProduct">Nuke</span> ships with several fonts common to all platforms. If you disable <b>Project Settings</b> &gt; <b>Font</b> &gt; <b>include system fonts</b>, only the fonts that ship with <span class="CustomProduct">Nuke</span> are available in the font controls.</p>
+        <p class="afterHead">See <a href="../../appendices/appendixd/studio_third_party_libraries.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Third-Party Libraries and Fonts</span></a> for a list of fonts that ship with <span class="CustomProduct">Nuke</span>.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Only fonts that are physically stored in a file are available in the <b>font</b> controls. As a result, the list of system fonts available in <span class="CustomProduct">Nuke</span> may be different to that available in other software applications on the same machine.</p>
+        <h3>Selecting a Font</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Highlight the text you want to affect in the <b>message</b> field or  Viewer.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Text properties panel, click the <b>font</b> <b>family</b> dropdown to select the required family.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select the required <b>font style </b>from the dropdown.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The styles available depend on the family selected.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click the information icon to display the location of the selected font. For example:</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_fontpath.png" />
+        </p>
+        <p>The font family and style used are saved in the <span class="CustomProduct">Nuke</span> script, along with some extra information, in order to make sure the same family and style are used if the script is opened on a different machine or operating system. If the font family and style are not the same, <span class="CustomProduct">Nuke</span> displays a warning message.</p>
+        <h3>Adjusting Font Size and Spacing</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Highlight the text you want to affect in the <b>message</b> field or  Viewer.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">To adjust the overall size of the font, use the <b>font</b> <b>size</b> slider. When <b>leading</b> is set to 0, this parameter also controls the spacing between each line of text.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">When rendering the font, <b>font size</b> controls the font hinting used. Font hinting adjusts which pixels are interpolated to more clearly render a font. At small sizes and on low resolution output devices, it has a big impact on the legibility of the font. For best results, you should use the <b>font</b> <b>size</b> parameter (rather than the <b>scale</b> control on the <b>Group</b> tab) to control the size of the font and keep <b>scale</b> set to 1.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Use the <b>global font scale</b> control to adjust the scale multiplier for all characters in the current Text node, regardless of the <b>font size</b> specified for individual characters.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">You can adjust fonts asymmetrically using the <b>font width</b> and <b>font height</b> controls.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">You can also use the controls above the Viewer to adjust font size.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_viewer_controls1_454x68.png" style="width: 454;height: 68;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To increase or decrease the spacing between individual characters, adjust the <b>kerning</b> slider. By using negative values, you can make the letters overlap.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you select more than one character or the last character in a group, the <b>kerning</b> control is disabled.</p>
+        <p class="numberedCont">You can also use the control above the Viewer to adjust kerning.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_viewer_controls2_454x68.png" style="width: 454;height: 68;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To increase or decrease the space between each character and the previous character adjust the <b>tracking</b> control. Negative values move characters towards the preceding character.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">You can also use the control above the Viewer to adjust tracking.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_viewer_controls3_454x68.png" style="width: 454;height: 68;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">To adjust the selected text's height above the baseline, in screen space, use the <b>baseline shift</b> control. The baseline is the imaginary line upon which most letters rest. This control allows you to reliably line up the baseline of different fonts.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">You can also use the control above the Viewer to adjust baseline.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_viewer_controls4_454x68.png" style="width: 454;height: 68;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">If your text overlay contains several lines of text, you can adjust the spacing between each line by using the <b>leading</b> slider. By using negative values, you can make the letters overlap.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Unlike the <b>baseline shift</b> control, <b>leading</b> affects all text within the bounding box regardless of selection.</p>
+        <h3>Justifying Fonts</h3>
+        <p>The justify controls affect the positioning of the text within the bounding box on the x and y axes.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use the <b>xjustify</b> dropdown to control how you want to align the text horizontally:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>left</b> - align the text along the left edge of the on-screen text box. This leaves the right edge of the text ragged.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_left.png" />
+        </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>center</b> - align the text from the center of the on-screen text box. This leaves both edges of the text ragged.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_center.png" />
+        </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>right</b> - align the text along the right edge of the on-screen text box. This leaves the left edge of the text ragged.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_right.png" />
+        </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>justify</b> - align the text both along the left and the right edge of the on-screen text box. This leaves no ragged edges. The justification is done by expanding the spaces between letters. If there are no spaces or the spaces get more than about three times wider than they were, letters are expanded.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_justify.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Use the <b>yjustify</b> dropdown to control how you want to align the text vertically:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>top</b> - align the text against the top edge of the on-screen text box.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_top.png" />
+        </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>center</b> - align the text from the center of the on-screen text box.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_center_vertical.png" />
+        </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>bottom</b> - align the text against the bottom edge of the on-screen text box.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/text_justify_bottom.png" />
+        </p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

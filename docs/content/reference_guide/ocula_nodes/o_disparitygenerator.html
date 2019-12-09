@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Ocula 3.0 Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>O_DisparityGenerator</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/ocula_nodes/o_disparitygenerator.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>O_DisparityGenerator</h1>
+        <p>The O_DisparityGenerator plug-in is used to create disparity fields for stereo images. A <a name="kanchor318"></a><span class="_Override" style="font-style: italic;">disparity field</span> maps the location of a pixel in one view to the location of its corresponding pixel in the other view. It includes two sets of <a name="kanchor319"></a>disparity vectors: one maps the left view to the right, and the other maps the right view to the left.</p>
+        <p>The following <span class="CustomProduct">Nuke</span> plug-ins rely on disparity fields to produce their output: </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_OcclusionDetector</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_ColourMatcher (in <span class="_Override" style="font-weight: bold;">3D LUT</span> and <span class="_Override" style="font-weight: bold;">Local Matching</span> modes)</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_FocusMatcher</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_VerticalAligner (in <span class="_Override" style="font-weight: bold;">Local Alignment</span> mode)</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_NewView</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_InteraxialShifter</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_VectorGenerator</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_DisparityToDepth, and </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>O_DisparityViewer. </p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="141px">
+                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="4" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Input</p>
+                                <p>&#160;</p>
+                                <p>&#160;</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Fg</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p> An optional mask that<span class="SC763"> specifies the area to calculate disparity. You can use this to create a disparity layer for a foreground element.</span></p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Ignore</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p> An optional mask that specifies areas to exclude from the disparity calculation.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Masks should exist in both views, and O_DisparityGenerator expects alpha values of either 0 (for background) or 1 (for foreground).</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Solver</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody"> If the <span class="_Override" style="font-weight: bold;">Source</span> sequence doesn’t contain features that O_Solver is able to match well, you can use O_Solver on another sequence shot with the same camera setup. If you do so, connect O_Solver to this input.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p class="CellBody"> A stereo pair of images. The images should be followed by an O_Solver node, unless you’re using the <span class="_Override" style="font-weight: bold;">Solver</span> input.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="603px">
+                    <col width="118px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="113px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="113px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">Knob (Scripting)</td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">Default Value</td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p colspan="4">O_DisparityGenerator</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Views to Use</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>viewPair</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Dependent on source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the  two views you want to use to create the disparity field. These views will be mapped for the left and right eye.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Ignore Mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>ignoreMask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the mask type to exclude areas of the sequence:</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Masks should exist in both views, and O_DisparityGenerator expects alpha values of either 0 (for regions to use) or 1 (for regions to ignore).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>None</b> - do not use an ignore mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Source Alpha</b> - use the alpha channel of the <b>Source</b> clip as an ignore mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Source Inverted Alpha</b> - use the inverted alpha channel of the <b>Source</b> clip as an ignore mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Luminance</b> - use the luminance of the <b>Ignore</b> input as an ignore mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Inverted Luminance</b> - use the inverted luminance of the <b>Ignore</b> input as an ignore mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Alpha</b> - use the alpha channel of the <b>Ignore</b> input as an ignore mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Inverted Alpha</b> - use the inverted alpha channel of the <b>Ignore</b> input as an ignore mask.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Foreground Mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>foregroundMask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets an optional mask that<span class="SC763"> specifies the area to calculate disparity. You can use this to create a disparity layer for a foreground element. You can also use the </span><span class="SC763" style="font-weight: bold;">Ignore</span><span class="SC763" style="font-weight: normal;"> mask to exclude elements in the foreground region.</span></p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Masks should exist in both views, and O_DisparityGenerator expects alpha values of either 0 (for background) or 1 (for foreground).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>None</b> - do not use a foreground mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Source Alpha</b> - use the alpha channel of the <b>Source</b> clip as a foreground mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Source Inverted Alpha</b> - use the inverted alpha channel of the <b>Source</b> clip as a foreground mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Luminance</b> - use the luminance of the <b>Fg</b> input as a foreground mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Inverted Luminance</b> - use the inverted luminance of the <b>Fg</b> input as a foreground mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Alpha</b> - use the alpha channel of the <b>Fg</b> input as a foreground mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Inverted Alpha</b> - use the inverted alpha channel of the <b>Fg</b> input as a foreground mask.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Noise</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>noiseLevel</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the amount of noise O_DisparityGenerator should ignore in the input footage when calculating the disparity field. </p>
+                                <p>The higher the value, the smoother the disparity field. You may want to increase this value if you find that the disparity field is noisy in low-contrast image regions. </p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Strength</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>strength</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the strength in matching pixels between the left and right views. </p>
+                                <p>Higher values allow you to accurately match similar pixels in one image to another, concentrating on detail matching even if the resulting disparity field is jagged. Lower values may miss local detail, but are less likely to provide you with the odd spurious vector, producing smoother results. </p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Consistency</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>consistency</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>0.1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the constrains applied the left and right disparities to be consistent. Increase the value to encourage the left and right disparity vectors to match.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Alignment</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>alignment</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>0.1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets how much to constrain the disparities to match the horizontal alignment defined by an upstream O_Solver node. </p>
+                                <p>A value of 0 calculates the disparity using unconstrained motion estimation. Increasing the value forces the disparities to be aligned. In most cases, you want this set to 0 or the default value of 0.1.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Sharpness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>sharpness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets how distinct object boundaries should be in the calculated disparity field.</p>
+                                <p>Increase this value to produce distinct borders and separate objects. Decrease the value to blur disparity layers together and minimise occlusions. </p>
+                                <p>For better picture building with O_NewView, O_InteraxialShifter, O_FocusMatcher, and O_Retimer, you can set this value to 0.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Smoothness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>smoothness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the amount of extra smoothing applied to the disparity field as a post process after image matching.</p>
+                                <p>The higher the value, the smoother the result. You can use this in conjunction with the <b>Sharpness</b> parameter to smooth out the disparity field separately for distinct objects in the shot.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                                <p>Parallax Limits</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Enforce parallax limits</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>enforceParallax<br />Limits</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>When enabled, O_DisparityGenerator limits the disparity to the specified <b>Negative</b> and <b>Positive</b> values  to remove incorrect disparity vectors. You can review the disparity range using the Parallax Histogram display in O_DisparityViewer.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Negative</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>negativeParallax<br />LimitInPixels</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>-100</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the maximum negative parallax, in pixels. With negative parallax, pixels in the left image are to the right of pixels in the right and objects appear in front of the screen plane. </p>
+                                <p>Negative parallax is defined by the maximum disparityL.x and minimum disparityR.x values for the aligned images.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>Positve</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>positiveParallax<br />LimitInPixels</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>100</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p>Sets the maximum positive parallax, in pixels. With positive parallax, pixels in the left image are to the left of pixels in the right and objects appear behind the screen plane. </p>
+                                <p>Positive parallax is defined by the minimum disparityL.x and maximum disparityR.x values for the aligned images.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Ocula 3.0 - DisparityGenerator</a></span>
+                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/33671171?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        <p><a href="https://vimeo.com/33671171" target="_blank">OCULA 3.0 - Disparity Generator</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Welcome to Ocula from Foundry. My name’s Jon and, in this tutorial, we’re going to take a look at setting up and reviewing the DisparityGenerator node in Ocula 3.0. Disparity is used throughout Ocula, and is the vector that connects the pieces between the left view and the right view, so it informs Ocula about how to match images, and how to update one view along with the other one. It’s used to align plates, colour match, focus match, to create z passes, change the interaxial separation, to change depth, rebuild views, correlate roto between eyes, and also to do retiming. So, you can calculate disparity upfront for your shot, bake it out, and then use it in a comp. Let’s have a quick look at some of these operations.</p>
+                                <p>The VerticalAligner node in Ocula can do a per-pixel update on the input footage to align it horizontally, based on the vertical components of disparity. We can see this if we switch to Anaglyph for this footage. If I look at the footage here, and compare that to the updated, vertically aligned footage, it’s done a per-pixel update.</p>
+                                <p>The ColorMatcher node also uses disparity to pull the colour of one view onto the other to correct any differences between the two views. So, here’s the input footage left and right, and here's the corrected footage. The colour is now matched, so this is using the colour from the right view to update the colour on the left, based on those disparity vectors. Similarly, the focus matcher can pull the appearance of one view onto the other to update focus. So, here’s the input footage, which is slightly out of focus on the left view, compared to the right. We can update that left view to match the focus on the right by pulling the appearance across using disparity. You can also take those disparity vectors, if we have a match-moved camera, and convert them to a z pass, convert them to depth values to use in a comp. So, here we have a z pass, based on those disparity vectors, triangulated to create 3D points using a match-moved camera for the shot. The InteraxialShifter node in Ocula will shift images, using disparity, to change the depth in the scene. So, here’s our input footage, here’s our new interaxial separation, and we have changed the depth. It’s easier to see if we switch to the <b>Parallax Histogram</b> in our DisparityViewer node. Here’s our input footage and here’s our new parallax, showing a squeezed depth with a change in the interaxial separation.</p>
+                                <p>Now, you can also use disparity to rebuild one view from the other, using the NewView node in Ocula. Here we're using the left image to rebuild the right by pushing the left pixels across using the disparity vectors. So, that’s the rebuilt right view, compared to the original right view. You can also use disparity to push across rotos. Here, I have created a roto in the left eye and I have pushed it across to the right eye. And, finally, we use disparity in Ocula to create motion vectors that are consistent in the left and right eye. So, the disparity connects the motion in the left and the right, making sure it’s consistent for any retiming we do with it. Disparity is critical to all Ocula operations. Let’s have a look at setting up the DisparityGenerator now, and reviewing those disparity vectors.</p>
+                                <p>In the DisparityGenerator you need to find the <b>Views to use</b> for the left and right eye. It also has two mask inputs - an <b>Ignore Mask</b> to exclude parts of the image in the disparity calculation. For example, where the disparity is corrupted or if you want to exclude a foreground element to be able to try to pull out the disparity behind it. You also have a <b>Foreground Mask</b>, and this defines the region where it calculates the disparity, so you can roto out a particular part of the image and calculate disparity there to pull out disparity layers in the shot. You also have the parameters that control the disparity calculation, so <b>Strength</b> defines how well the image is matched. You can increase the <b>Strength</b> to force the disparity to match the images. <b>Consistency</b> defines how much the left and right vectors for disparity agree. <b>Alignment</b> is the weighting on how much the disparity vectors satisfy the alignment data that’s delivered by a Solver upstream. You can increase that, or even set it to 0 to ignore the alignment data. You have a <b>Sharpness</b> parameter to define how distinct objects are in the disparity vectors, so you can increase <b>Sharpness</b> to pull out disparity boundaries between the different layers in the scene. You can also over-smooth the disparity vectors by increasing the <b>Smoothness</b> parameter. Finally, here, if you need to set limits on how the disparity is calculated, you can force those limits by clicking the <b>Enforce parallax limits</b> and setting the (<b>Negative</b> and <b>Positive</b>) limits in pixels here.</p>
+                                <p>Let’s have a look at the disparity that’s been calculated. We can switch the Viewer to show disparity and, here, disparity is being shown as an RGBA image. I can turn that down to see it more easily or, in fact, what I have done here is copied disparity over to RGBA, and done a Grade to make it more easily visible. Essentially, it’s showing a disparity left vector as red and green, and the disparity right vector as blue and alpha. So, red and green x,y, and the disparity right vector as blue and alpha x,y. Disparity left is the vector that pulls the left image onto the right, so it starts at a right pixel and points at the corresponding left pixel. Disparity right is the vector that pulls the right image onto the left, so it starts at a left pixel and points at a corresponding right. Using this image, we can see how the parameters affect the disparity calculation. If I switch this to a strength of 2, I want it to force the image matcher more. You can see it starts to get a little bit more noisy, forcing the image matching, but it’s likely to be more accurate. So, increase the <b>Strength</b>, if you’re not getting accurate matching.</p>
+                                <p>Another way of actually getting accurate matching is to increase the <b>Sharpness</b> slightly, because it allows the disparity to separate the matching for different elements in the shot. If I turn the <b>Sharpness</b> on here, and increase it a bit, you can see it’s picked up the different object boundaries inside the disparity and allowed the disparity to separate between different layers. And, finally, the other thing to tune here is <b>Smoothness</b>. If you need to smooth out those vectors, you can turn on over-smoothing here. When you work with disparity, it’s a good idea to bake them out upfront to use in your comp. So, you can render these out with different settings for your parameters, you can have the default setting, you can use a strong setting, you can have a sharp setting and a smooth setting, and then you can pick and choose between the disparity vectors without having to go back in and tune.</p>
+                                <p>Now, let’s have a look at quality checking them and reviewing disparity. The best way to check your disparity vectors is to use them in an Ocula tree. My favourite is to do a NewView, pulling the left pixels onto the right, or vice versa. So, here’s the original right image, and here we have rebuilt that right image by pulling the left pixels across on top of the right using disparity. If the original right and our rebuilt right line up, those disparity vectors must be working well. So, the images look well-aligned and we can check that here by joining the rebuilt and the original image, and putting it into the StereoReviewGizmo, set to <b>Difference</b>. You can also look at it as a CheckerBoard. Essentially, with the <b>Difference</b> tool, all you are looking at here is the colour differences between the left and right eye because they now line up nicely with the disparity vectors. If the disparity wasn’t quite right, you would see the images un-aligned. You can review the disparity using the DisparityViewer node in Ocula. Here, we can see disparity overlayed as vectors on the image. You can switch this to show a <b>Parallax Histogram</b>, summarising the depth in the scene, and comparing the disparity against any parallax limits you have set for the shot. If you are violating those limits, you can switch to see a violation overlay (<b>Parallax Violation</b>) to see where that is happening in the image. All these options render out so you can bake them out with your disparity vectors, and the <b>Parallax Histogram</b> is quite handy here in order to test any reconvergence happening in the comp tree. You can calculate disparity upfront for your plates, you can do your comp work, and then you can recalculate the disparity and view that again as a <b>Parallax Histogram</b> to see if there has been a shift in convergence in the scene. So, here, I have just put in a ReConverge node and, you can see, as I move it around, the <b>Parallax Histogram</b> will shift, showing a shift in the depth of the scene.</p>
+                                <p>So, that wraps up this tutorial on the DisparityGenerator in Ocula 3.0. We have looked at where Disparity is used in Ocula, the parameter settings, and how to tune them. We have also looked at quality checking using the NewView node in Ocula, and also reviewing with the DisparityViewer.</p>
+                            </div>
+                        </div>
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                    </div>
+                </div>
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Ocula 3.0 - DisparityGenerator Layers</a></span>
+                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/33670842?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        <p><a href="https://vimeo.com/33670842" target="_blank">OCULA 3.0 - Disparity Generator_Layers</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Hello, my name is Dan Ring, and I am going to show you some advanced techniques for working with, and correcting, disparity maps. The most common use for disparity maps is building new views. We are going to introduce some handy tricks you can use in Ocula 3.0, and in particular, how to build better new views that require far less touch-ups. Now, instead of the scenario where you have made significant changes to one view, let’s call it the ‘hero’ view, you now want to apply those same changes to the other view. When I say significant changes, this could mean that you have created a clean background plate, removed a camera dolly, painted or composited in something novel, colour-treated a region, and so on - anything that takes a considerable amount of time and you wouldn't want to do twice for the second eye. In this example script I am going to use a CheckerBoard tracked to the ground to represent significant changes made through our left eye. We then want to push these changes to our other view, in this case, our right eye. The CheckerBoard makes it much easier to see when things go wrong. We are also going to assume that some kind person has drawn roto masks for the dancers for us in both views. This allows us to composite the dancers back onto any pushed background plates much more easily.</p>
+                                <p>Let’s start off by looking at how you might do this without Ocula. One way is to use a tracked camera setup with geometry of the set, and then project your ‘hero’ view onto the scene. You can then use a ScanlineRender to get a new view. Looking at the results, here, you can see this does a pretty good job. However, it does have two important and non-trivial requirements: the first being that you have a good track of your scene, and the second that you have accurate scene geometry. In our CheckerBoard example, the scene geometry wouldn't need to be that complicated - a simple card is probably sufficient - but for anything more complicated like the sides of the buildings, for example, you would certainly need more detailed geometry, and in many cases, that’s just not possible.</p>
+                                <p>Now, let’s try pushing from the left to right eye in the standard Ocula way, with Disparity Generator and NewView nodes. As with most Ocula pipelines, we start with O_Solver with relevant keyframes set and any erroneous matches thrown out. We now go down the stream and use an O_DisparityGenerator to get some disparity for us. Note that we are generating the disparity on the untreated plates, we then use a Shuffle node to bring in our CheckerBoard left eye, before supplying it to a O_NewView node to give us a new right eye. In order to tell NewView that we want to build a right eye from the left, we set the <b>Inputs</b> here to <b>Left</b>, and we move the <b>Interpolate Position</b> all the way to 1. We will use these same settings for every NewView node in this tutorial. If we look at this for one frame, you can see that it didn’t do a good job. Looking at the comp with the dancers on, you can see by the wavy lines of the CheckerBoard that the motion of the dancers is severely influencing the background disparity. This is exactly what we don’t want. Instead, we want a way to generate the background disparity separately from the foreground, and we can do this with the new <b>Ignore Mask</b> feature in Ocula’s O_DisparityGenerator. This tells the disparity generator not to calculate any disparity in the specified region and, instead, to fill it using disparity from around its border.</p>
+                                <p>In this example, I have drawn a crude roto around the foreground dancers. Now, if we look at the disparity from the original and ignore the generator (CheckerBoard) node, you can see the dancers have been effectively painted out, giving us a perfectly smooth, usable background disparity plate. If we then supply this disparity to a NewView node, you can see it’s done a much better job. Straight lines remain straight after the push between eyes. If we composite the dancers back in, you can see the CheckerBoard is no longer affected by the dancers and remains smooth over time. Let’s now swap between the original background plate reconstruction and our layer enhanced reconstruction to see the effect more clearly. This example shows how powerful working with Ocula’s disparity layers can be, not to mention how easy it is to push background changes between views without the need for camera tracking and projections on the geometry.</p>
+                                <p>In the next part of this tutorial, we are going to develop the techniques shown earlier to get better new views for both background and foreground regions. For this scenario, imagine you have been working heavily fixing up and treating both the dancer, and the background elements for the left eye, so much so that the right eye no longer bears any resemblance to the left. You now want to push these edits in your other view. While the camera tracking and projection workflow will work for the background elements, it probably won’t work for the foreground. So, naturally, we turn to Ocula’s NewView workflow to help us out. First off, let’s look at the simplest, most standard way of creating new view from disparity by connecting O_NewView node to O_DisparityGenerator. As you can see, it hasn’t done a good job. We are getting a lot of distortion and artefacts around the edges of the dancers and parts of the background aren't warping correctly, such as the centre of the road and the kerb. To fix this, we are going to make clever use of disparity generators, ignore, and foreground masks to extract disparity from the foreground and background separately, then combine the results at the end to give a much cleaner build of the other view. Earlier in this tutorial, we saw how to extract background disparity using the ignore mask, so let’s use that as a place to start now. Let’s apply the same rough roto mask as before to the O_DisparityGenerator. Looking at the NewView node, we can now see the background is handled better and we have nice straight edges along the road’s kerbs and centre line. However, because we decided to ignore the area of the dancers, we have essentially thrown away the disparity, so we now have to estimate that separately. Also notice that we are shuffling in our dancer’s alpha mask before estimating the new view. This will be used later on.</p>
+                                <p>To accurately pull disparity for the dancers, we are going to supply the alpha mask of the dancers as a foreground mask to the O_DisparityGenerator node. This explicitly tells the disparity generator that it must match the regions in the mask across both views. Now, when we create a new view from the foreground disparity, we can be sure that the background is not influencing the dancer’s disparity. For example, looking at the NewView you can see that the only regions that are hardly distorting are the dancers, and this is exactly what we want. Now, let’s comp the foreground and the background using the dancer’s alpha. Apart from the ghosting effect of the dancers, the new plate looks very nice. In particular, we are not seeing any weird distortions around the boundaries of the dancers or the background. The ghost effect is due to the fact that these regions are occluded in the left view, so when we build the right view from the left, we don’t have the correct data from which to reconstruct. Although most of our ‘hero’ view is transferred over correctly, these ghost regions will need to be addressed by a comp artist, possibly applying the same treatment that was applied to the ‘hero’ view. With some simple mask manipulation, you can quickly identify these regions.</p>
+                                <p>To end this tutorial, I am going to cheat a bit and pretend that I painted in these missing bits by simply copying them over from the original right eye. Although the colours are a little off, as we haven't done any colour matching, you can see how nicely the original right eye boundaries line up with our new view reconstruction. This lets us know that our plate rebuild workflow has done a good job. You can try out these techniques yourself with the accompanying scripts and footage available on our website. This concludes this Ocula tutorial on working with disparity maps.</p>
+                            </div>
+                        </div>
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                    </div>
+                </div>
+                <p>&#160;</p>
+            </div>
+        </div>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

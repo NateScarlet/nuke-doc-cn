@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Stereoscopic Scripts">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Loading Multi-View Images</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/stereoscopic_films/loading_multi_view_images.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1><a name="kanchor295"></a>Loading Multi-View Images</h1>
+        <p class="afterHead">Once you have set up the views, you are ready to read your images into <span class="CustomProduct">Nuke</span>. To make things easier, the images you read in should have the view name or the first letter of the view name in the filename, for example <span class="_Override" style="font-weight: bold;">filename.left.0001.exr</span>, <span class="_Override" style="font-weight: bold;">filename.l.exr</span>, or <span class="_Override" style="font-weight: bold;">lefteyefilename.0001.cin</span>.</p>
+        <p>If you are using <span class="_Override" style="font-weight: bold;">.exr</span> files, your files can contain both the input for the left eye and the input for the right eye, as <span class="_Override" style="font-weight: bold;">.exr</span> files support multiple views in a single file. With any other file types, you need to have separate files for the left and right inputs.</p>
+        <h3>To Read Images in</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Image</b> &gt; <b>Read.</b></td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Navigate to the files containing the images intended for either the left or right eye (or in the case of <b>.exr</b> and <b>.mov</b> images, both eyes), and select <b>Open</b>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Do one of the following:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If the images you want to read in contain a view name or the initial letter of one (for example, <span class="_Override" style="font-weight: bold;">left</span>, <span class="_Override" style="font-weight: bold;">right</span>, <span class="_Override" style="font-weight: bold;">l</span> or <span class="_Override" style="font-weight: bold;">r</span>) in their file names, replace this with the variable <span class="_Override" style="font-weight: bold;">%V</span> or <span class="_Override" style="font-weight: bold;">%v</span> in the <b>file</b> field of the Read node’s controls. Use <span class="_Override" style="font-weight: bold;">%V</span> to replace an entire view name (for example, <span class="_Override" style="font-weight: bold;">left</span> or <span class="_Override" style="font-weight: bold;">right</span>), and <span class="_Override" style="font-weight: bold;">%v</span> to replace an initial letter (for example, <span class="_Override" style="font-weight: bold;">l</span> or <span class="_Override" style="font-weight: bold;">r</span>). When a variable is used, <span class="CustomProduct">Nuke</span> reads in the missing inputs and combines all inputs into a single output. </p>
+        <p class="processBulletCont">For example, if you read in <span class="_Override" style="font-weight: bold;">image.left.cin</span> and changed the name to <span class="_Override" style="font-weight: bold;">image.%V.cin</span>, <span class="CustomProduct">Nuke</span> would read in both <span class="_Override" style="font-weight: bold;">image.left.cin</span> and <span class="_Override" style="font-weight: bold;">image.right.cin</span> with the same Read node, provided that views called <span class="_Override" style="font-weight: bold;">left</span> and <span class="_Override" style="font-weight: bold;">right</span> existed in your project settings. Both input images would be combined into a single output.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Mac and Linux operating systems can be case-sensitive or case-insensitive. If your OS is case-sensitive, you'll need to make sure you use the correct case when naming your left and right views, as the <b>%v</b> variable can only retrieve the case used in the view name.</p>
+        <p class="processBulletCont">You can also use the <span class="_Override" style="font-weight: bold;">%V</span> and <span class="_Override" style="font-weight: bold;">%v</span> variables at a directory level. For example, let’s say you have set up views called <span class="_Override" style="font-weight: bold;">testleft</span>, <span class="_Override" style="font-weight: bold;">testmiddle</span> and <span class="_Override" style="font-weight: bold;">testright</span>, and you have the following directories and files:</p>
+        <p class="cmdlineprocessCont">mydirectory/testleft/image.testleft.cin</p>
+        <p class="cmdlineprocessCont">mydirectory/testmiddle/image.testmiddle.cin</p>
+        <p class="cmdlineprocessCont">mydirectory/testright/image.testright.cin</p>
+        <p class="processBulletCont">If you now read in image.testleft.cin and changed the pathname to <span class="_Override" style="font-weight: bold;">mydirectory/%V/image.%V.cin</span>, all three inputs would be read in with the same Read node. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If the images you want to read in do NOT contain a view name or the initial letter of one (for example, <span class="_Override" style="font-weight: bold;">left</span>, <span class="_Override" style="font-weight: bold;">right</span>, <span class="_Override" style="font-weight: bold;">l</span> or <span class="_Override" style="font-weight: bold;">r</span>) in the file names and are not stereo <span class="_Override" style="font-weight: bold;">.exr</span> files, insert a Read node for each input and combine them into a single output using the JoinViews node (see below for instructions on how to do that). </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If the images you want to read in are in the stereo <span class="_Override" style="font-weight: bold;">.exr</span> file format, you do not need to do anything. However, remember that not all <b>.exr</b> files contain multiple views. If you are using files that are not, follow the instructions in the first two points.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If the images you want to read in are in the multi-view <span class="_Override" style="font-weight: bold;">.mov</span> file format, you need to open the Read node's properties and disable <b>First track only</b>. </p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/stereo_qt1_378x228.png" style="width: 378;height: 228;" />
+        </p>
+        <p class="processBulletCont">You'll notice that the <b>.mov</b> Read node in the Node Graph is now marked with <img src="../../assets/images/ug_images/icon_stereo_16x16.png" style="width: 16;height: 16;" /> to denote multiple views. You can now switch between views using the buttons above the compositing Viewer.</p>
+        <h3><a name="To_combine_different_views_into_a_single_output_when_the_views_are_not_indicated_in_the_filenames"></a>To Combine Different Views into a Single Output When the Views are not Indicated in the File Names</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Image</b> &gt; <b>Read</b> to read in your image sequences containing the different views.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">To insert a JoinViews node, select <b>Views</b> &gt; <b>JoinViews</b>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect the inputs of the JoinViews node into the appropriate Read nodes. There should be an input for each view you have created in the project settings. The inputs are labeled with the name of the view.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">If you have assigned colors to the views and checked <b>Use colors in UI?</b> on the <b>Views</b> tab of your project settings, the connecting arrows reflect the view colors. If this does not happen and the arrows are black, you may have connected the inputs the wrong way around. Check that you have connected each Read node to the correct input of the JoinViews node.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/joinviews_node1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+        </p>
+        <p class="numberedCont"><span class="CustomProduct">Nuke</span> combines the inputs into a single output.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

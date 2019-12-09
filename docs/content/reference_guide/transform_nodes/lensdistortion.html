@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Transform Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>LensDistortion</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/transform_nodes/lensdistortion.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>LensDistortion</h1>
+        <p>LensDistortion (<span class="CustomProductX">NukeX</span> and <span class="CustomProductStudio">Nuke Studio</span> only) applies or removes lens distortion. To estimate the lens distortion on the input, you have three options. Each one of these will calculate the distortion present and set the values on the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Image Analysis - use this option to estimate the distortion automatically without the help of grids or lines. Image analysis tracks features through the sequence and finds the distortion model that best describes the way the same 3D structure is projected onto different parts of the image.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Grid Analysis - use this option to estimate the distortion from a checkerboard or thin line grid, for greater accuracy.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Line Analysis - use this option to estimate the distortion from lines you draw along features in the input that are known to be straight.</p>
+        <p>You must perform the analysis in NukeX, but you can also use the results in Nuke.   </p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="106px">
+                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="114px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="431px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The image sequence to apply lens distortion to or remove lens distortion from.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p class="CellBody">Mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p class="CellBody">An optional image to use as a mask. By default, the lens distortion analysis is limited to the non-black areas of the mask. You may not want to analyze all regions of your <span class="_Override" style="font-weight: bold;">Source</span> image, for example, if there are moving objects in the image.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="2988px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">LensDistortion Tab (After you’ve estimated your lens distortion, you can view the values on this tab. You can also change these to apply distortion to the input directly.)</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 157px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Output Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Image</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Choose your output type depending on whether you want to distort the input image directly or just preserve the distortion information to use it on another image:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Image</span> - Choose to distort or undistort the input image.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Displacement</span> - Choose to leave the input image alone and store the pixel displacements corresponding to the calculated distortion in the UV channels, so they can be used by the <a href="stmap.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">STMap</span></a> node. Choosing the <span class="_Override" style="font-weight: bold;">Displacement</span> option enables you to analyze the distortion on one image or grid and use the STMap node to apply that distortion to another image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Lens Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">lensType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Spherical</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Select your lens type. You can choose between <span class="_Override" style="font-weight: bold;">Spherical</span> and <span class="_Override" style="font-weight: bold;">Anamorphic</span> lenses.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Radial Distortion 1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">distortion1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The first radial distortion term. This is proportional to r^2, where r is the distance from the distortion center. You can define this manually, or use image analysis, grid analysis, or line analysis to fill it out automatically.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Radial Distortion 2</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">distortion2</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The second radial distortion term, proportional to r^4. You can define this manually, or use image analysis, grid analysis, or line analysis to fill it out automatically.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Distortion Center x, y</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">distortionCenter</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0, 0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The values for the center of the radial distortion.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Anamorphic Squeeze</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">anamorphicSqueeze</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The anamorphic squeeze value. If you select an anamorphic lens, the distortion in x will be scaled by this amount.</p>
+                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Type</span> to <span class="_Override" style="font-weight: bold;">Anamorphic</span>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Asymmetric Distortion x, y</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">asymmetricDistortion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0, 0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Enter values to define asymmetric distortion to correct for slight misalignments between multiple elements in the lens.</p>
+                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Lens Type</span> to <span class="_Override" style="font-weight: bold;">Anamorphic</span>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 73px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Analyze from Current Lens</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">startFromCurrentLens</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">When enabled, the <span class="_Override" style="font-weight: bold;">Image Analysis</span> and <span class="_Override" style="font-weight: bold;">Grid Analysis</span> modes skip their initial estimation steps and instead use the current parameter values as an initial guess from which to estimate the distortion. If you already have a rough idea of the distortion present, this can speed up the estimation, particularly for the <span class="_Override" style="font-weight: bold;">Image Analysis</span> mode.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Undistort</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">invertDistortion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, LensDistortion applies the inverse of the current distortion.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Reset</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">reset</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Resets the controls for zero distortion.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 321px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">filter</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">filter</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Cubic</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Select the filtering algorithm to use when remapping pixels from their original positions to new positions. This allows you to avoid problems with image quality, particularly in high contrast areas of the frame (where highly aliased, or jaggy, edges may appear if pixels are not filtered and retain their original values).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Impulse</span> - remapped pixels carry their original values.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Cubic</span> - remapped pixels receive some smoothing.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Keys</span> - remapped pixels receive some smoothing, plus minor sharpening (as shown by the negative -y portions of the curve).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Simon</span> - remapped pixels receive some smoothing, plus medium sharpening (as shown by the negative -y portions of the curve). </p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Rifman</span> - remapped pixels receive some smoothing, plus significant sharpening (as shown by the negative -y portions of the curve).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mitchell</span> - remapped pixels receive some smoothing, plus blurring to hide pixelation.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Parzen</span> - remapped pixels receive the greatest smoothing of all filters.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Notch</span> - remapped pixels receive flat smoothing (which tends to hide moire patterns).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Lanczos4</b>, <b>Lanczos6</b>, and <b>Sinc4</b> - remapped pixels receive sharpening which can be useful for scaling down. <b>Lanczos4</b> provides the least sharpening and <b>Sinc4</b> the most.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 99px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Distortion Scaling</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">distortionScaling</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Scale to Input Format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Select either:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Scale to Input Format</b> - to scale to your input format.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Choose Format</span> - to choose another format. You might want to select this, for example, if you have previously undistorted an image and changed the format to match the undistorted image size, and then want to reapply the distortion later.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Scale to Format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputFormat</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">root.format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">If you have set <span class="_Override" style="font-weight: bold;">Distortion Scaling</span> to <span class="_Override" style="font-weight: bold;">Choose Format</span>, you can use this menu to select a format that you want to use to scale your image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Card Parameters</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">scale x, y, z</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">cardScale</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">1, 1, 1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Equivalent value for the <span class="_Override" style="font-weight: bold;">scale</span> control on the <a href="../3d_nodes/card.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Card</span></a> node, needed to reproduce the horizontal scale.</p>
+                                <p class="CellBody">This allows you to use the calculated lens distortion values to distort an image projected onto a card in 3D.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 128px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">a (r^3)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">a</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Equivalent value for the <span class="_Override" style="font-weight: bold;">a (r^3)</span> control on <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab of the <a href="../3d_nodes/card.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Card</span></a> node. Defines a cubic term that affects the radial distortion of the texture applied to the card, and the edges of the card.</p>
+                                <p class="CellBody">This allows you to use the calculated lens distortion values to distort an image projected onto a card in 3D, for example, to simulate camera lens distortion effects, such as barrel distortion.</p>
+                                <p class="CellBody">Positive values make the card rounder, negative make the corners sharper.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 128px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">b (r^2)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">b</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Equivalent value for the <span class="_Override" style="font-weight: bold;">b (r^2)</span> control on <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab of the <a href="../3d_nodes/card.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Card</span></a> node. Defines a square term that affects the radial distortion of the texture applied to the card, and the edges of the card.</p>
+                                <p class="CellBody">This allows you to use the calculated lens distortion values to distort an image projected onto a card in 3D, for example, to simulate camera lens distortion effects, such as barrel distortion.</p>
+                                <p class="CellBody">Positive values make the card rounder, negative make the corners sharper.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 128px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">c (r^1)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">c</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Equivalent value for the <span class="_Override" style="font-weight: bold;">c (r^1)</span> control on <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab of the <a href="../3d_nodes/card.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Card</span></a> node. Defines a linear term that affects the radial distortion of the texture applied to the card, and the edges of the card.</p>
+                                <p class="CellBody">This allows you to use the calculated lens distortion values to distort an image projected onto a card in 3D, for example, to simulate camera lens distortion effects, such as barrel distortion.</p>
+                                <p class="CellBody">Positive values make the card rounder, negative make the corners sharper.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Image Analysis Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 84px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Analysis Range</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">analysisRange</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Source Clip Range</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the range of frames in the sequence to analyze:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Clip Range</span> - the entire sequence including all frames.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Specified Range</span> - a particular frame range selection from the sequence. Enter the start and stop frame in the <span class="_Override" style="font-weight: bold;">Analysis Start</span> and <span class="_Override" style="font-weight: bold;">Stop</span> fields.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Analysis Start</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">analysisStart</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The first frame to analyze.</p>
+                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Analysis Range</span> to <span class="_Override" style="font-weight: bold;">Specified</span><span class="_Override" style="font-weight: bold;">Range</span>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Analysis Stop</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">analysisStop</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">100</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The last frame to analyze.</p>
+                                <p class="CellBody">This control is only available if you have set <span class="_Override" style="font-weight: bold;">Analysis Range</span> to <span class="_Override" style="font-weight: bold;">Specified</span><span class="_Override" style="font-weight: bold;">Range</span>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 69px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Camera Motion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">cameraMotion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Free Camera</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets what type of camera movement to expect:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Free Camera</span> - expect a freely moving camera that is rotating and translating.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Rotation Only</span> - expect a still camera that is rotating only.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 257px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Mask Channel</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">maskWith</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">If you don’t want to analyze all regions of your image, for example if there are moving objects in the image, you can provide a matte in the <span class="_Override" style="font-weight: bold;">Mask</span> or <span class="_Override" style="font-weight: bold;">Source</span> input and use this control to select the matte channel:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">None</span> - no matte is used and the entire <span class="_Override" style="font-weight: bold;">Source</span> image is analyzed.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Alpha</span> - the alpha of the <span class="_Override" style="font-weight: bold;">Source</span> input is used.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Inverted Alpha</span> - the inverted alpha of the <span class="_Override" style="font-weight: bold;">Source</span> input is used.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Luminance</span> - the luminance of the image connected to the <span class="_Override" style="font-weight: bold;">Mask</span> input is used.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Luminance</span> - the inverted luminance of the image connected to the <span class="_Override" style="font-weight: bold;">Mask</span> input is used.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Alpha</span> - the alpha of the image connected to the <span class="_Override" style="font-weight: bold;">Mask</span> input is used.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Alpha</span> - the inverted alpha of the image connected to the <span class="_Override" style="font-weight: bold;">Mask</span> input is used.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Analyze Image</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">analyzeImage</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Track features through the input sequence and estimate the lens distortion present. When the analysis is complete, this will set the controls on the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab in order to undistort the sequence.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 104px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Feature Overlay</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">showFeatures</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">After analyzing, you can choose:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">None</span> - to not display an overlay in the Viewer.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Features</span> - to display the features that were detected on the current frame in a Viewer overlay.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Features</span><span class="_Override" style="font-weight: bold;">and</span><span class="_Override" style="font-weight: bold;">Tracks</span> - to display the features and tracks that were detected on the current frame in a Viewer overlay.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">Grid Analysis Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Grid Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">gridType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Checkerboard</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Choose the type of grid you want to use, <span class="_Override" style="font-weight: bold;">Checkerboard</span> or <span class="_Override" style="font-weight: bold;">Thin</span><span class="_Override" style="font-weight: bold;">Line</span> grid.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Analyze Grid</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">analyzeGrid</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Calculate the lens distortion present. When the analysis is complete, this will set the controls on the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab in order to undistort the sequence.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Align Grid</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">alignGrid</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Check to correct for perspective distortion caused by the grid not being shot square-on to the camera. In other words, you can align the grid lines with the image edges.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Grid Overlay</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">showGrid</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">After analysis, you can choose to display the <span class="_Override" style="font-weight: bold;">Original</span> or <span class="_Override" style="font-weight: bold;">Undistorted</span><span class="_Override" style="font-weight: bold;">Grid</span> lines over the image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">Line Analysis Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 73px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Drawing Mode On</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">drawingModeOn</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Check this to begin drawing lines along features in the input that should be straight. Draw a line by left-clicking along the feature at intervals and finish a line by clicking the right mouse button. You need at least three left-clicks to make one line, and at least three lines to initiate the distortion.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Distortion Terms</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">nCoefficients</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">2</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Choose the number of distortion terms to estimate. With only a few lines, sometimes better results can be achieved by estimating only the first radial distortion term.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Estimate Center</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">estimateCenter</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Choose whether you want to estimate the distortion center. If the lines are not evenly distributed around the image, the center estimate is unlikely to be very good and you may get better results to approximate it by using the image center instead (the default).</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Analyze Lines</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">analyzeLines</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to estimate the lens distortion from the current lines. When the analysis is complete, this will set the controls on the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab in order to undistort the sequence.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Delete Last Line</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">deleteLastLine</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Delete the last line drawn. Repeat to delete the previous line, and so on.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Delete Last Point</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">deleteLastPoint</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Delete the last point drawn. Repeat to delete previous points that are not yet part of a completed line.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Hide Lines</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">hideLines</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Hide the line overlay.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Clear All</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">clearAll</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">Delete all lines and points.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p><a href="../../comp_environment/lens_distortion/adding_removing_lens_distortion.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Working with Lens Distortion</span></a>
+                </p>
+            </div>
+        </div>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

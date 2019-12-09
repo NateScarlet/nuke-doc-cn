@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="856" MadCap:lastWidth="711">
+    <head>&#160;</head>
+    <body>
+        <h2>Fonts and Font Properties</h2>
+        <p class="afterHead">The FreeType library used by the Text node supports a large number of fonts, including TrueType (.ttf) fonts and PostScript fonts (.pfa and .pfb). These fonts are cached as an XML file when you open a Text node's properties panel.</p>
+        <p class="note" MadCap:autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"> The font cache XML file is called <b>fontmapping.fcache</b> and its location is specified by the environment variable NUKE_TEMP_DIR. See <MadCap:xref href="Updating_Fonts.htm#Updating"><span style="color: 00B4E0;" class="mcFormatColor">Updating  the Font Cache</span> on page 1</MadCap:xref> for more information.</p>
+        <p class="afterHead"><MadCap:variable name="Custom.Product" /> retrieves the fonts available in the Text node from various locations in a set order, before caching them:</p>
+        <p class="numbered1" MadCap:autonum="1. &#160;">The location specified by the NUKE_FONT_PATH environment variable.</p>
+        <p class="numbered" MadCap:autonum="2. &#160;">The location specified in the <b>Project Settings</b> &gt; <b>Font</b> &gt; <b>project font path</b> control.</p>
+        <p class="note" MadCap:autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;">Locations 1 and 2 allow you to specify multiple paths using the OS standard syntax. On Windows, for example, you could specify "c:\windows\font1;c:\windows\font2;..."</p>
+        <p class="numbered" MadCap:autonum="3. &#160;">The <b>.nuke/fonts</b> directory and all other plug-in folders.</p>
+        <p class="numbered" MadCap:autonum="4. &#160;">projects settings: local font folder (on OSX and Windows)</p>
+        <p class="numbered" MadCap:autonum="5. &#160;">The system fonts folder, assuming that <b>Project Settings</b> &gt; <b>Font</b> &gt; <b>include system fonts</b> is enabled. For example, on Windows C:\Windows\Fonts\</p>
+        <p class="afterHead">In general, there is no guarantee that a font family and style, such as {Arial : Regular}, will render identically cross-platform. To avoid this, <MadCap:variable name="Custom.Product" /> ships with several fonts common to all platforms. If you disable <b>Project Settings</b> &gt; <b>Font</b> &gt; <b>include system fonts</b>, only the fonts that ship with <MadCap:variable name="Custom.Product" /> are available in the font controls.</p>
+        <p class="afterHead">See <MadCap:xref href="../Third_Party_Software/Third_Party_Libraries.htm"><span style="color: 00B4E0;" class="mcFormatColor">Third-Party Libraries and Fonts</span> on page 1</MadCap:xref> for a list of fonts that ship with <MadCap:variable name="Custom.Product" />.</p>
+        <p class="note" MadCap:autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;">Only fonts that are physically stored in a file are available in the <b>font</b> controls. As a result, the list of system fonts available in <MadCap:variable name="Custom.Product" /> may be different to that available in other software applications on the same machine.</p>
+        <h3>Selecting a Font</h3>
+        <p class="numbered1" MadCap:autonum="1. &#160;">Highlight the text you want to affect in the <b>message</b> field or  Viewer.</p>
+        <p class="numbered" MadCap:autonum="2. &#160;">In the Text properties panel, click the <b>font</b> <b>family</b> dropdown to select the required family.</p>
+        <p class="numbered" MadCap:autonum="3. &#160;">Select the required <b>font style </b>from the dropdown.</p>
+        <p class="note" MadCap:autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;">The styles available depend on the family selected.</p>
+        <p class="numbered" MadCap:autonum="4. &#160;">Click the folder icon to display the location of the selected font. For example:</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/text_fontpath.png" />
+        </p>
+        <h3>Adjusting Font Size and Spacing</h3>
+        <p class="numbered1" MadCap:autonum="1. &#160;">Highlight the text you want to affect in the <b>message</b> field or  Viewer.</p>
+        <p class="numbered" MadCap:autonum="2. &#160;">To adjust the overall size of the font, use the <b>font</b> <b>size</b> slider. When <b>leading</b> is set to 0, this parameter also controls the spacing between each line of text.</p>
+        <p class="numberedCont">When rendering the font, <b>font size</b> controls the font hinting used. Font hinting adjusts which pixels are interpolated to more clearly render a font. At small sizes and on low resolution output devices, it has a big impact on the legibility of the font. For best results, you should use the <b>font</b> <b>size</b> parameter (rather than the <b>scale</b> control on the <b>Group</b> tab) to control the size of the font and keep <b>scale</b> set to 1.</p>
+        <p class="numbered" MadCap:autonum="3. &#160;">You can adjust fonts asymmetrically using the <b>font width</b> and <b>font height</b> controls.</p>
+        <p class="numberedCont">You can also use the controls above the Viewer to adjust font size.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/text_viewer_controls1.png" />
+        </p>
+        <p class="numbered" MadCap:autonum="4. &#160;">To increase or decrease the spacing between individual characters, adjust the <b>kerning</b> slider. By using negative values, you can make the letters overlap.</p>
+        <p class="note" MadCap:autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;">If you select more than one character or the last character in a group, the <b>kerning</b> control is disabled.</p>
+        <p class="numberedCont">You can also use the control above the Viewer to adjust kerning.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/text_viewer_controls2.png" />
+        </p>
+        <p class="numbered" MadCap:autonum="5. &#160;">To increase or decrease the space between each character and the previous character adjust the <b>tracking</b> control. Negative values move characters towards the preceding character.</p>
+        <p class="numberedCont">You can also use the control above the Viewer to adjust tracking.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/text_viewer_controls3.png" />
+        </p>
+        <p class="numbered" MadCap:autonum="6. &#160;">To adjust the selected text's height above the baseline, in screen space, use the <b>baseline shift</b> control. The baseline is the imaginary line upon which most letters rest. This control allows you to reliably line up the baseline of different fonts.</p>
+        <p class="numberedCont">You can also use the control above the Viewer to adjust baseline.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/text_viewer_controls4.png" />
+        </p>
+        <p class="numbered" MadCap:autonum="7. &#160;">If your text overlay contains several lines of text, you can adjust the spacing between each line by using the <b>leading</b> slider. By using negative values, you can make the letters overlap.</p>
+        <p class="note" MadCap:autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;">Unlike the <b>baseline shift</b> control, <b>leading</b> affects all text within the bounding box regardless of selection.</p>
+        <h3>Justifying Fonts</h3>
+        <p>The justify controls affect the positioning of the text within the bounding box on the x and y axes.</p>
+        <p class="numbered1" MadCap:autonum="1. &#160;">Use the <b>xjustify</b> dropdown to control how you want to align the text horizontally:</p>
+        <p class="processBullet" MadCap:autonum="• "><b>left</b> - Align the text along the left edge of the on-screen text box. This leaves the right edge of the text ragged.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_left.png" />
+        </p>
+        <p class="processBullet" MadCap:autonum="• "><b>center</b> - Align the text from the center of the on-screen text box. This leaves both edges of the text ragged.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_center.png" />
+        </p>
+        <p class="processBullet" MadCap:autonum="• "><b>right</b> - Align the text along the right edge of the on-screen text box. This leaves the left edge of the text ragged.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_right.png" />
+        </p>
+        <p class="processBullet" MadCap:autonum="• "><b>justify</b> - Align the text both along the left and the right edge of the on-screen text box. This leaves no ragged edges. The justification is done by expanding the spaces between letters. If there are no spaces or the spaces get more than about three times wider than they were, letters are expanded.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_justify.png" />
+        </p>
+        <p class="numbered" MadCap:autonum="2. &#160;">Use the <b>yjustify</b> dropdown to control how you want to align the text vertically:</p>
+        <p class="processBullet" MadCap:autonum="• "><b>top</b> - Align the text against the top edge of the on-screen text box.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_top.png" />
+        </p>
+        <p class="processBullet" MadCap:autonum="• "><b>center</b> - Align the text from the center of the on-screen text box.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_center_vertical.png" />
+        </p>
+        <p class="processBullet" MadCap:autonum="• "><b>bottom</b> - Align the text against the bottom edge of the on-screen text box.</p>
+        <p class="graphic">
+            <img src="../../Resources/Images/UG_Images/Text_justify_bottom.png" />
+        </p>
+    </body>
+</html>

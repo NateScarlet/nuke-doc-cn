@@ -1,0 +1,44 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote3
+ label "ConvolutionKernel:\nDoes a weighted blur on its src input,\nwith the weights taken from the\nfilter input. \n\nThis has 2D ranged access to its src input\nand random access to the filter input\n"
+ xpos -263
+ ypos -211
+}
+ColorWheel {
+ inputs 0
+ format "25 25 0 0 25 25 1 small"
+ gamma 0.45
+ name ColorWheel1
+ xpos -160
+ ypos -95
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard10
+ xpos -251
+ ypos -96
+}
+BlinkScript {
+ inputs 2
+ ProgramGroup 1
+ KernelDescription "1 \"ConvolutionKernel\" iterate pixelWise 9257af65e1a826caf62f836d7a9c65283d9de8be4584d899425eaf92970883e4 3 \"src\" Read Ranged2D \"filter\" Read Random \"dst\" Write Point 0"
+ kernelSource "//Warning: connecting a large image to the filter input will cause the kernel to run very slowly!\n//If running on a GPU connected to a display, this will cause problems if the time taken to \n//execute the kernel is longer than your operating system allows. Use with caution!\nkernel ConvolutionKernel : public ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessRanged2D, eEdgeClamped> src;\n  Image<eRead, eAccessRandom> filter;  \n  Image<eWrite> dst;\n\nlocal:\n  int2 _filterOffset;\n\n  void init()\n  \{\n    //Get the size of the filter input and store the radius.\n    int2 filterRadius(filter.bounds.width()/2, filter.bounds.height()/2); \n\n    //Store the offset of the bottom-left corner of the filter image\n    //from the current pixel:\n    _filterOffset.x = filter.bounds.x1 - filterRadius.x;\n    _filterOffset.y = filter.bounds.y1 - filterRadius.y;\n    \n    //Set up the access for the src image\n    src.setRange(-filterRadius.x, -filterRadius.y, filterRadius.x, filterRadius.y);\n  \}\n\n  void process() \{\n\n    SampleType(src) valueSum(0);\n    ValueType(filter) filterSum(0);\n    \n    //Iterate over the filter image\n    for(int j = filter.bounds.y1; j < filter.bounds.y2; j++) \{\n      for(int i = filter.bounds.x1; i < filter.bounds.x2; i++) \{ \n        //Get the filter value\n        ValueType(filter) filterVal = filter(i, j, 0);\n\n        //Multiply the src value by the corresponding filter weight and accumulate\n        valueSum += filterVal * src(i + _filterOffset.x, j + _filterOffset.y);\n\n        //Update the filter sum with the current filter value\n        filterSum += filterVal;\n      \}\n    \}\n\n    //Normalise the value sum, avoiding division by zero\n    if (filterSum != 0) \n      valueSum /= filterSum;\n    \n    dst() = valueSum;\n  \}\n\};\n"
+ rebuild ""
+ name BlinkScript12
+ xpos -209
+ ypos -6
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -209
+ ypos 26
+}

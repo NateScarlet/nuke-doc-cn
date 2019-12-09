@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Configuring Nuke">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Defining Custom Menus and Toolbars</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/configuring_nuke/custom_menus_toolbars.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1><a name="configuring_nuke_769985560_677690"></a><a name="kanchor82"></a>Defining Custom Menus and Toolbars</h1>
+        <p class="afterHead">You can freely add custom menus and menu options as well as toolbars and toolbar options to the <span class="CustomProduct">Nuke</span> interface. Artists can then use these options to trigger gizmos and plug-ins stored in the plug-in path directory.</p>
+        <p>For example, to add a new menu in the default Toolbar with an option to trigger a gizmo called MyGizmo, you can do the following:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In your home directory, create a directory called <b>.nuke</b> (if it doesn't exist already). For more information on this directory, see <a href="loading_gizmos_plugins_scripts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts</span></a>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the <b>.nuke</b> directory, create a file called <b>menu.py</b> if one does not already exist.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In a text editor, modify the file <b>menu.py</b>, adding the lines:</td>
+            </tr>
+        </table>
+        <p class="cmdlinenumCont">toolbar = nuke.toolbar("Nodes")</p>
+        <p class="cmdlinenumCont">toolbar.addCommand( "Test/MyGizmo", "nuke.createNode('MyGizmo')")</p>
+        <p class="numberedCont">This adds a menu labeled "Test" to the default Nodes Toolbar with an item labeled "MyGizmo" that creates an instance of the node MyGizmo.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Node <b>Class()</b> names occasionally change between major releases, such as Nuke 7 to Nuke 8. While these changes do not affect legacy scripts, you may not get the results you were expecting if a node class has been modified. The <b>toolbars.py</b> file, used to create Nuke's node toolbar, contains all the current node class names and is located in <b>&lt;install_directory&gt;/plugins/nukescripts/</b> for reference.<br /><br />As an example, between Nuke 7 and Nuke 8, the Text node <b>Class()</b> changed from Text to Text2. In the <b>toolbars.py</b> file for the two releases, the entries for the Text node appear as follows:<br /><br /><span style="font-family: 'Courier New';">m.addCommand("Text", "nuke.createNode(\"Text\")", icon="Text.png")</span><br style="font-family: 'Courier New';" /><span style="font-family: 'Courier New';">m.addCommand("Text", "nuke.createNode(\"Text2\")", icon="Text.png")</span></p>
+        <p>It's also possible to add items to other menus in <span class="CustomProduct">Nuke</span> and even create your own toolbars. The following sections cover these possibilities in detail.</p>
+        <h2>To Add a Toolbar</h2>
+        <p class="afterHead">To add a toolbar:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create a file called <b>menu.py</b> in your plug-in path directory if one doesn’t already exist. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">For more information on plug-in path directories, see <a href="loading_gizmos_plugins_scripts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts</span></a>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Open the <b>menu.py</b> file in a text editor and add an entry in the following format:</td>
+            </tr>
+        </table>
+        <p class="cmdlinenumCont">t=nuke.toolbar("ToolbarName")</p>
+        <p class="cmdlinenumCont">t.addCommand("NewMenu", "PythonCode", "Shortcut", icon="IconName")</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">ToolbarName</span> with the name you want to give to the toolbar. This name appears in the content menus under <b>Windows</b> &gt; <b>Custom</b> and above the toolbar on the title tab.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <b>NewMenu</b> with the name of the menu you want to add to the toolbar. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">PythonCode</span> with relevant Python code (usually <span class="_Override" style="font-weight: bold;">nuke.createNode</span>), and, if necessary, use the name of the gizmo, generic Python script, or plug-in file you want the menu option to invoke. For ease of use, place all such referenced files inside the plug-in path directory.</p>
+        <p class="processBulletCont">If you like, you can also replace <span class="_Override" style="font-weight: bold;">PythonCode</span> by a Python callable.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">Shortcut </span>with a keyboard shortcut, for example <b>Alt+A</b>, <b>Ctrl/Cmd+A</b>, or <b>Shift+A</b>. The letter <b>a</b> alone represents lower-case <b>a</b>. <span class="_Override" style="font-weight: bold;">F1</span> represents function key 1. You can combine the <b>Shift</b>, <b>Ctrl/Cmd</b>, and <b>Alt</b> keys as necessary. If you like, you can also use <span class="_Override" style="font-weight: bold;">#A</span> to represent <b>Alt+A, </b><span class="_Override" style="font-weight: bold;">^A</span> to represent <b>Ctrl/Cmd+A</b>,<b> </b>and<b> </b><span class="_Override" style="font-weight: bold;">+A</span> to represent <b>Shift+A</b>.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">IconName</span> with the name of the <b>.png</b> (or <b>.xpm</b>) image you wish to use as the menu icon. This image must be stored in your <span class="CustomProduct">Nuke</span> plug-in path directory. It should be 24 x 24 pixels in size.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the above entry, you can also add the following optional arguments in the parenthesis after <span class="_Override" style="font-weight: bold;">"ToolbarName"</span>:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">True</span>. This is the default. When True, nuke.toolbar() calls the toolbar with the given name or creates it if it does not exist. For example, <span class="_Override" style="font-weight: bold;">t=nuke.toolbar("Extras", True) </span>would either call an existing toolbar called Extras or create one if it did not already exist.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">False</span>. When False, the toolbar is not created if it does not already exist and nuke.toolbar() returns <span class="_Override" style="font-weight: bold;">None</span>. You can use this to find out if a toolbar with a given name already exists. For example, <span class="_Override" style="font-weight: bold;">t=nuke.toolbar("Extras", False)</span> would either call an existing toolbar called Extras or return None if such a toolbar did not exist.</p>
+        <p>The new toolbar does not appear by default, but is listed under <span class="_Override" style="font-weight: bold;">Custom</span> in the content menus. From there, you can insert it in any pane. Once you are happy with the new toolbar and its position, save the layout (select <b>Workspace</b> &gt; <b>Save Workspace</b>). Thereafter, the toolbar appears whenever <span class="CustomProduct">Nuke</span> is launched in the saved workspace.</p>
+        <p>You can build several toolbars for different tasks and save layouts that have one or another present for easy context switching.</p>
+        <h3>Example 1</h3>
+        <p>The following entry creates a new toolbar called <span class="_Override" style="font-weight: bold;">Extras</span>. The toolbar includes an option called <span class="_Override" style="font-weight: bold;">Create VectorBlur</span> that creates a VectorBlur node. The entry also defines <b>v</b> as the keyboard shortcut for the VectorBlur node.</p>
+        <p class="cmdline">t=nuke.toolbar("Extras")</p>
+        <p class="cmdline">t.addCommand("Create VectorBlur", "nuke.createNode ('VectorBlur')", "v")</p>
+        <h3>Example 2</h3>
+        <p>In this example, we add an option called Autoplace to the toolbar created in example 1. This option places the selected nodes neatly one after another, as illustrated in the following images:</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/autoplace_before.png" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/autoplace_after.png" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>Before using Autoplace <br />to tidy up the Node Graph.</p>
+                    </td>
+                    <td class="caption">
+                        <p>After using Autoplace <br />to tidy up the Node Graph.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The following entry adds the Autoplace option. It also defines <span class="_Override" style="font-weight: bold;">Alt</span>+<span class="_Override" style="font-weight: bold;">A</span> as the keyboard shortcut for this option.</p>
+        <p class="cmdline">def _autoplace():</p>
+        <p class="cmdline">  n = nuke.selectedNodes()</p>
+        <p class="cmdline">  for i in n:</p>
+        <p class="cmdline">    nuke.autoplace(i)</p>
+        <p class="cmdline">t=nuke.toolbar("Extras")</p>
+        <p class="cmdline">t.addCommand("Auto&amp;place", "_autoplace()", "Alt+a")</p>
+        <h2>To Define a Menu or Toolbar Option</h2>
+        <p class="afterHead">To define a menu or toolbar option:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">If you haven’t already done so, create a file called <b>menu.py</b> in your plug-in path directory. For more information on plug-in path directories, see <a href="loading_gizmos_plugins_scripts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts</span></a>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Open the <b>menu.py</b> file in a text editor and add an entry in the following format:</td>
+            </tr>
+        </table>
+        <p class="cmdlinenumCont">menubar=nuke.menu("MenuType")</p>
+        <p class="cmdlinenumCont">m=menubar.addMenu("&amp;NewMenu")</p>
+        <p class="cmdlinenumCont">m.addCommand("&amp;NewItem", "PythonCode", "Shortcut", icon="IconName", index=#)</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">MenuType </span>with the type of menu or toolbar you want to add an item to:</p>
+        <p class="processBulletCont"><span style="font-weight: bold;" class="CustomProduct">Nuke</span> adds an item to the application main menu bar.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/custom_menus_type_nuke.png" />
+        </p>
+        <p class="processBulletCont"><span class="_Override" style="font-weight: bold;">Animation </span>adds an item to the menu on the Animation button <img src="../../assets/images/ug_images/icon_animation_curve1.png" /> of all panels, and to the right-click menu of the Curve editor.</p>
+        <p class="processBulletCont"><span class="_Override" style="font-weight: bold;">Properties</span> adds an item to the right-click menus of properties panels.</p>
+        <p class="processBulletCont"><span class="_Override" style="font-weight: bold;">Node Graph</span> adds an item to the right-click menu of the Node Graph.</p>
+        <p class="processBulletCont"><span class="_Override" style="font-weight: bold;">Nodes</span> adds an item to the default Toolbar.</p>
+        <p class="processBulletCont"><span class="_Override" style="font-weight: bold;">Viewer</span> adds an item to the right-click menu of the Viewer.</p>
+        <p class="processBulletCont"><span class="_Override" style="font-weight: bold;">Pane</span> adds an item to the content menus where it appears under <b>Custom</b>.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">NewMenu</span> with the menu name. Using an existing menu name appends any new options to the existing menu. You can also add options to the default Menu bar and Toolbar.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace<span class="_Override" style="font-weight: bold;"> NewItem </span>with the underlying item you want to add to the menu. You may precede any character with an<span class="_Override" style="font-weight: bold;"> &amp;</span> in order to flag it as keyboard shortcut trigger.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">PythonCode</span> with relevant Python code (usually <span class="_Override" style="font-weight: bold;">nuke.createNode</span>) and, if necessary, use the name of the gizmo, generic Python script, or plug-in file you want the menu option to invoke. For ease of use, place all such referenced files inside the plug-in path directory.</p>
+        <p class="processBulletCont">For more information on plug-in path directories, see <a href="loading_gizmos_plugins_scripts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts</span></a>.</p>
+        <p class="processBulletCont">If you like, you can also replace <span class="_Override" style="font-weight: bold;">PythonCode</span> by a Python callable. This has the advantage that you get informed about errors in your script on start-up instead of when the menu item is invoked. For an example of using a lambda function, see <a href="#configuring_nuke_769985560_677877" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Example 3</span></a>.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">Shortcut </span>with a keyboard shortcut, for example <b>Alt+A</b>, <b>Ctrl/Cmd+A</b>, or <b>Shift+A</b>. The letter <b>a</b> alone represents lower-case <b>a</b>. <span class="_Override" style="font-weight: bold;">F1</span> represents function key 1. You can combine the <b>Shift</b>, <b>Ctrl/Cmd</b>, and <b>Alt</b> keys as necessary. If you like, you can also use <span class="_Override" style="font-weight: bold;">#A</span> to represent <b>Alt+A, </b><span class="_Override" style="font-weight: bold;">^A</span> to represent <b>Ctrl/Cmd+A</b>,<b><![CDATA[  ]]></b>and<b><![CDATA[  ]]></b><span class="_Override" style="font-weight: bold;">+A</span> to represent <b>Shift+A</b>.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>By assigning a keyboard shortcut, you can overwrite existing shortcuts. For example, if you assign the shortcut <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">O</span> to a new menu item, it is no longer used for it’s default purpose, which is opening a file. However, shortcuts are only overwritten in the main menu bar, the Toolbar, any user-created toolbars, and the menu you are adding the new menu item to. This means you can add a shortcut into the Node Graph, for example, without resetting the same shortcut in the Viewer. However, you cannot add a shortcut into the Node Graph without resetting the same shortcut in the main menu bar or the Toolbar.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">IconName</span> with the name of the .png (or .xpm) image you wish to use as the menu icon. This image must be stored in your <span class="CustomProduct">Nuke</span> plug-in path directory. It should be 24 x 24 pixels in size.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Replace <span class="_Override" style="font-weight: bold;">#</span> with a number that represents the position of the item in the menu or toolbar. If you do not use an index keyword, the item is added in the end of the menu or toolbar.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also put the menu name in the addCommand call, like this:<br />nuke.menu("MenuType").addCommand("NewMenu/NewItem", "PythonCode("name")")</p>
+        <h3>Example 1</h3>
+        <p>The following entry creates a new menu and option called <b>Custom </b>&gt;<b> Cue Render</b> in the menu bar. It inserts a gizmo called “cue_render.” The entry also defines <b>Ctrl+R</b> as the keyboard shortcut for the gizmo.</p>
+        <p class="cmdline">menubar=nuke.menu("Nuke")</p>
+        <p class="cmdline">m=menubar.addMenu("&amp;Custom")</p>
+        <p class="cmdline">m.addCommand("&amp;Cue Render", "nuke.createNode('cue_render')", "Ctrl+R")</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/menu_bar_custom_menu_1.png" />
+        </p>
+        <h3>Example 2</h3>
+        <p>For information on how to create a new menu in the default Toolbar with a menu item that triggers a gizmo, see the example under <a href="#configuring_nuke_769985560_677690" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Defining Custom Menus and Toolbars</span></a>.</p>
+        <h3><a name="configuring_nuke_769985560_677877"></a>Example 3</h3>
+        <p>The following entry creates a menu and options called <b>Custom</b> &gt; <b>Filters</b> &gt; <b>Blur</b> in the menu bar. Selecting <b>Blur</b> inserts the Blur node. </p>
+        <p class="cmdline">menubar=nuke.menu("Nuke")</p>
+        <p class="cmdline">m=menubar.addMenu("&amp;Custom")</p>
+        <p class="cmdline">m.addCommand("Filters/Blur", "nuke.createNode(\"Blur\")" )</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/menu_bar_custom_menu_2.png" />
+        </p>
+        <p>You can also do the same with a lambda function:</p>
+        <p class="cmdline">menubar=nuke.menu("Nuke")</p>
+        <p class="cmdline">m=menubar.addMenu("&amp;Custom")</p>
+        <p class="cmdline">m.addCommand("Filters/Blur", lambda: nuke.createNode("Blur") )</p>
+        <p>This way, you don’t have to use the backslashes.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

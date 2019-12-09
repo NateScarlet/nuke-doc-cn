@@ -1,0 +1,35 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote2
+ label "BoxBlur2D:\nA two-dimensional blur that\naccesses a 2D range from \nits input"
+ xpos -86
+ ypos -159
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard9
+ xpos -52
+ ypos -97
+}
+BlinkScript {
+ KernelDescription "1 \"BoxBlur2D\" iterate componentWise 4906993d430327c536689cb19ae720fc4c4cac2565c7aa4fb714b5e36b37bb4c 2 \"src\" Read Ranged2D \"dst\" Write Point 2 \"RadiusX\" Int 1 BQAAAA== \"RadiusY\" Int 1 AwAAAA=="
+ kernelSource "kernel BoxBlur2D : public ImageComputationKernel<eComponentWise>\n\{\n  Image<eRead, eAccessRanged2D, eEdgeClamped> src;\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  int xRadius;  //The horizontal radius of our box blur\n  int yRadius;  //The vertical radius of our box blur\n\nlocal:\n  int _filterSize;\n\n  void define() \{\n    defineParam(xRadius, \"RadiusX\", 5); \n    defineParam(yRadius, \"RadiusY\", 3); \n  \}\n\n  void init() \{\n    //Set the range we need to access from the source \n    src.setRange(-xRadius, -yRadius, xRadius, yRadius);\n\n    _filterSize = (2 * xRadius + 1) * (2 * yRadius + 1);\n  \}\n\n  void process() \{\n    float sum = 0.0f;\n    for(int j = -yRadius; j <= yRadius; j++)\n      for(int i = -xRadius; i <= xRadius; i++)\n        sum += src(i, j);\n    dst() = sum / (float)_filterSize;\n  \}\n\};\n"
+ rebuild ""
+ name BlinkScript11
+ selected true
+ xpos -52
+ ypos -6
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -52
+ ypos 88
+}

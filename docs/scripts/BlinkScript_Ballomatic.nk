@@ -1,0 +1,37 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote6
+ label "Ballomatic:\nApplies a balloon-like effect to\nits src input. It requires random \naccess to its src and uses bilinear \ninterpolation."
+ xpos -49
+ ypos -93
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos -8
+ ypos -17
+}
+BlinkScript {
+ KernelDescription "1 \"Ballomatic\" iterate pixelWise f0154f11f7c26d4c1d0cfc00ee17fcba22fcd6cc955e9069968a47ba2ec6e3f6 2 \"src\" Read Random \"dst\" Write Point 3 \"Power\" Float 1 zcxMvg== \"Size\" Int 1 kAEAAA== \"Centre\" Float 2 AAAgRAAAtEM="
+ kernelSource "// Copyright (c) 2012 The Foundry Visionmongers Ltd.  All Rights Reserved.\n// Example RIP Kernel\n\n\n// BallomaticKernel: does a ball-o-matic effect. Set the power to change the effect.\nkernel Ballomatic : ImageComputationKernel<ePixelWise> \{\n  Image<eRead, eAccessRandom, eEdgeClamped> src;\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  float power;\n  int size;\n  float2 centre;  \n\nlocal:\n  float _sizeInv2;\n\n  void define() \{\n     defineParam(power, \"Power\", -0.2f);\n     defineParam(size, \"Size\", 400);\n     defineParam(centre, \"Centre\", float2(640.0f, 360.0f));\n  \}\n\n  void init() \{\n    _sizeInv2 = size <= 0 ? 0 : 1.0f/size;\n    _sizeInv2 *= _sizeInv2;\n  \}\n\n  void process(int2 pos) \{\n    float dx = float(pos.x) - centre.x;\n    float dy = float(pos.y) - centre.y;\n    float delta = 1.0f - ((dx*dx + dy*dy) * _sizeInv2);\n    if (delta < 0) \{\n      dst() = src(pos.x, pos.y);\n    \}\n    else \{\n      delta = pow(delta, power);\n      float x = centre.x + dx * delta;\n      float y = centre.y + dy * delta;\n      for (int c = 0; c < dst.kComps; c++)\n        dst(c) = bilinear(src, x, y, c);\t\n    \}\n  \}\n\};\n"
+ rebuild ""
+ Ballomatic_Power -0.08
+ Ballomatic_Centre {1060 690}
+ name BlinkScript1
+ selected true
+ xpos -8
+ ypos 64
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -8
+ ypos 119
+}

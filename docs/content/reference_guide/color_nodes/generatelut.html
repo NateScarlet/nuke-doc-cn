@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Color Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>GenerateLUT</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/color_nodes/generatelut.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>GenerateLUT</h1>
+        <p>Generates lookup tables, or LUTs, from color management nodes downstream of a CMSTestPattern node. LUTs are generated according to the size of CMSTestPattern cube size. </p>
+        <p>You can use the GenerateLUT node to create both 1D and 3D LUTs:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>1D LUTs</b> assume that the primary color channels (red, green, and blue) are independent, and the output for a particular primary color (for example, red) only depends on the input value of that channel (rather than the values of all three channels). For each input value, there is one output value. 1D LUTs are represented by a curve. They are useful for quickly creating an image for viewing purposes, using less processing power, but they cannot be used to adjust saturation independently of brightness.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>In <b>3D LUTs</b>, the output values of each primary color channel are calculated based on the input values from all three channels (red, green, and blue). For each input value, there are three output values. This is represented by a 3D grid or cube. 3D LUTs can adjust saturation and brightness together, and are very useful for emulating a particular known look, such as Cineon.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>For good visual fidelity when using 3D LUTs, it is recommended that a log colorspace is used for 3D LUT generation. <MadCap:conditionalText data-mc-conditions="Default.ScreenOnly">For more information on how to generate a LUT in log colorspace, please refer to <a href="../../comp_environment/color_correction/colour_correction.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with Color</span></a>.</MadCap:conditionalText></p>
+        <p>For more information, see <a href="cmstestpattern.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">CMSTestPattern</span></a> and <a href="vectorfield.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Vectorfield</span></a>.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="68px">
+                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">unnamed</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">An arrangement of nodes that do the color correction you want your 3D LUT to do, preceded by a CMSTestPattern node.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="1056px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="360px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">GenerateLUT Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">output file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The path and file name of the LUT file you want to generate. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 204px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">file type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">file_type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The file format of the LUT file you want to generate. If this is set to <b>auto</b> (the default), Nuke guesses the format from the file name extension.</p>
+                                <p class="CellBody">The following file extensions are recognized:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.3dl</b> - Autodesk and ASSIMILATE Scratch LUT format (3D).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.blut</b> - Side Effects Houdini binary LUT format (3D).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.cms</b> - Light Illusion LightSpace CMS LUT format (1D and 3D).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.csp</b> - Rising Sun Research CineSpace LUT format (3D).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.cub</b> - FilmLight Truelight LUT format (1D and 3D).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.cube</b> - IRIDAS LUT format (1D and 3D).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>.vf</b> - Nuke's native LUT format used by the Vectorfield node (3D).</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">1D preLUT</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1D preLUT size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">lut1d</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1024</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The size of the 1D LUT.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">style1d</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">logarithmic</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Some systems assume the LUT is designed to apply to <b>logarithmic</b> images, others <b>linear</b>. Some LUT formats are assumed to encode values as either logarithmic or linear. Use this setting to get your output LUT values encoded the way your use of the LUT requires.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">3D LUT (These controls are only visible when you’ve selected 3dl in the file type dropdown menu.) </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">input bit depth (.3dl)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">bitdepth_id</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">10 bit</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The bit depth to scale input values to for .3dl files. For example, a 10-bit file has values between 0 and 1023.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">output bit depth (.3dl)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">output_bitdepth_id</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">input bit depth</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The bit depth to scale output values to for .3dl files. For instance a 10-bit file has values between 0 and 1023. In general this should match the input bit depth. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">clamp ouput</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">clamp_output</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Clamp 3D LUT output values to the range of 0-1. Turning this off allows superwhite values to be represented which are allowed in some packages, such as Nuke. This may cause the result to be unreadable in other packages. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 133px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">3dl file format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">format_3dl_id</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">autodesk flame/smoke</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Select the format you want to use for your .3dl file. The final cube size is determined by the CMSTestPattern which generates the input.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>autodesk flame/smoke</b> - use Autodesk preferred cube sizes of 17x17, 33x33, and 65x65.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>autodesk lustre</b> - use Autodesk preferred cube sizes of 17x17, 33x33, and 65x65, and output a 3DMESH/Mesh header. </p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>assimilate scratch</b> - scale and offset the 3D LUT. This should be used only for legacy scratch files prior to Flame compatibility.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Generate and Write LUT File</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">generate</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Generate the LUT file and save it to the <b>output file</b> location.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">Python Tab (These controls are for Python callbacks and can be used to have Python functions automatically called when various events happen in Nuke.)</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">before render</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">beforeRender</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">These functions run prior to starting rendering in execute(). If they throw an exception, the render aborts.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">before each frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">beforeFrameRender</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">These functions run prior to starting rendering of each individual frame. If they throw an exception, the render aborts.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">after each frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">afterFrameRender</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">These functions run after each frame is finished rendering. They are not called if the render aborts. If they throw an exception, the render aborts.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">after render</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">afterRender</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">These functions run after rendering of all frames is finished. If they throw an error, the render aborts.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">render progress</td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">renderProgress</td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">none</td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">These functions run during rendering to determine progress or failure.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="CMSTestPattern|cmstestpattern.html||Vectorfield|vectorfield.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Link Icon" />Related Topics</span></a>
+        </p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

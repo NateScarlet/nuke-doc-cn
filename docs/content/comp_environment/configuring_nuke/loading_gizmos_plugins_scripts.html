@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Configuring Nuke">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/configuring_nuke/loading_gizmos_plugins_scripts.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts</h1>
+        <p class="afterHead">On start-up, <span class="CustomProduct">Nuke</span> scans various directories for files that customize the behavior of <span class="CustomProduct">Nuke</span>. It looks for information on favorite directories, menu options, image formats, gizmos, NDK plug-ins, Python scripts, generic Tcl scripts, and preferences.</p>
+        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>It’s worth saying that you should edit Python files with care as mistakes could stop <span class="CustomProduct">Nuke</span> from running.<br />For more information on Python in <span class="CustomProduct">Nuke</span>, see <a href="../script_editor/script_editor_python.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">The Script Editor and Python </span></a> or the Python Developer’s Guide (<span class="_Override" style="font-weight: bold;">Help</span> &gt; <span class="_Override" style="font-weight: bold;">Documentation</span>).</p>
+        <p>To make your customizations available to all versions of a particular release, place them in the following directories:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Linux: /usr/local/Nuke/&lt;version&gt;/plugins/</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Mac OS X: /Library/Application Support/Nuke/&lt;version&gt;/plugins/</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Windows: C:\Program Files\Common Files\Nuke\&lt;version&gt;\plugins\</p>
+        <p>If you want Nuke to look for plug-ins somewhere else rather than in these default locations, you can also define a common plug-in path yourself. Thus, by defining the <span class="CustomProduct">Nuke</span> plug-in path, you can assign yourself a common shared directory from which to control <span class="CustomProduct">Nuke</span> for multiple artists. See <a href="defining_nuke_plugin_path.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Defining the Nuke Plug-in Path</span></a> for more information.</p>
+        <p><span class="CustomProduct">Nuke</span> also looks in specific sub-directories of your home directory and the <span class="CustomProduct">Nuke</span> application directory in the order shown by platform:</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you place customizations in the application directories, they'll only be available for that release.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Linux:</p>
+        <p class="bulletedCont">/usr/local/<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>/plugins</p>
+        <p class="bulletedCont">/usr/local/<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>/plugins/nukescripts</p>
+        <p class="bulletedCont">/home/<span class="_Override" style="font-style: italic;">login name</span>/.nuke</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Mac OS X:</p>
+        <p class="bulletedCont">/Applications/<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>/<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>.app/Contents/MacOS/plugins</p>
+        <p class="bulletedCont">/Applications/<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>/plugins/nukescripts</p>
+        <p class="bulletedCont">/Users/<span class="_Override" style="font-style: italic;">login name</span>/.nuke</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Windows:</p>
+        <p class="bulletedCont"><span class="_Override" style="font-style: italic;">drive letter</span>:\Program Files\<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>\plugins\nukescripts or </p>
+        <p class="bulletedCont"><span class="_Override" style="font-style: italic;">drive letter</span>:\Program Files (x86)\<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>\plugins\nukescripts</p>
+        <p class="bulletedCont"><span class="_Override" style="font-style: italic;">drive letter</span>:\Program Files\<span class="CustomProduct">Nuke</span><span class="CustomVersion Number (Long)">10.5v8</span>\plugins </p>
+        <p class="bulletedCont"><i>~\.nuke</i>
+        </p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>On Windows, the <b>.nuke</b> folder can be found under the directory pointed to by the HOME environment variable. If this variable is not set (which is common), the .nuke directory will be under the folder specified by the USERPROFILE environment variable - which is generally of the form <span class="_Override" style="font-style: italic;">drive letter</span>:\Documents and Settings\<span class="_Override" style="font-style: italic;">login name</span>\ or <span class="_Override" style="font-style: italic;">drive letter</span>:\Users\<span class="_Override" style="font-style: italic;">login name</span>\<br /><br />To find out if the HOME and USERPROFILE environment variables are set and where they are pointing at, enter %HOME% or %USERPROFILE% into the address bar in Windows Explorer. If the environment variable is set, the folder it’s pointing at is opened. If it’s not set, you get an error.</p>
+        <p>In addition to setting up your Python/plugin environment using the <b>init.py</b> and <b>menu.py </b>files, <span class="CustomProductStudio">Nuke Studio</span> also allows you to run Python code automatically on start-up. The default location for this Python code is:</p>
+        <p class="cmdline">&lt;STARTUP_PYTHON_PATH&gt;/Python/Startup</p>
+        <p>Where by default, &lt;STARTUP_PYTHON_PATH&gt; is $HOME/.nuke as described in the OS breakdown above.</p>
+        <p>Any Python <b>.py</b> modules or packages containing __init__.py found within the /Python/Startup directory is imported when the application launches, and added to the hiero.plugins namespace.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

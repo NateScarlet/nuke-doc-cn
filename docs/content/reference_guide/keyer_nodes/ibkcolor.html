@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Keyer Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>IBKColor</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/keyer_nodes/ibkcolor.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>IBKColor</h1>
+        <p>The IBK keyer differs from many other keyers in that, instead of using a single color picker, it uses an input image (a clean plate with just the color variations of the background) to drive the key. This generally gives you good results when working with uneven blue- or greenscreens.</p>
+        <p>The IBK keyer consists of two nodes: IBKColor and <a href="ibkgizmo.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">IBKGizmo</span></a>. IBKColor creates the clean plate from the blue- or greenscreen image, and IBKGizmo pulls the key.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Pre-rendering output from IBKColor to some formats can result in loss of color information and incorrect results when the image is used as input to IBKGizmo. We recommended that the <b>.exr</b> format is used for pre-rendered images as it supports full float data, reducing loss of information.</p>
+        <p>As a general workflow guide:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect the output from IBKColor to the <span class="_Override" style="font-weight: bold;">c</span> input of IBKGizmo. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Attach the input of IBKColor, along with the <span class="_Override" style="font-weight: bold;">fg</span> input of IBKGizmo, to the original blue- or greenscreen image.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Attach the <span class="_Override" style="font-weight: bold;">bg</span> input of IBKGizmo to your background image.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Create two Viewers and view the output from both nodes side-by-side. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Adjust the controls of IBKColor until you get a clean plate with nothing but the background colors.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Adjust the controls of IBKGizmo until you are happy with the key.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Connect the output from IBKGizmo to a compositing node, such as Merge, to composite the foreground over the background.</td>
+            </tr>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="77px">
+                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="113px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="432px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The blue- or greenscreen image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p class="CellBody">Output</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p class="CellBody">unnamed</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p class="CellBody">Connect this to the IBKGizmo node’s <span class="_Override" style="font-weight: bold;">c</span> input.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="523px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">Parameters Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">screen type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">screen_type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">blue</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Select green or blue depending on which one you have in the foreground image. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">10</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Adjust the amount of color expansion. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 137px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">darks</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">off</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0, 0, 0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Adjust the color values to get the best separation between black and the screen type color. You want to be left with shades of the screen color and black only. Start by bringing down the value for blue if you’re using a blue screen, and the value for green if you have a green screen in the image. The <span class="_Override" style="font-weight: bold;">erode</span> and <span class="_Override" style="font-weight: bold;">patch</span><span class="_Override" style="font-weight: bold;">black</span> sliders should be set to 0 when you’re adjusting these values.</p>
+                                <p class="CellBody">As a rule of thumb, if you have a dark green discolored area, increase <span class="_Override" style="font-weight: bold;">darks g</span>. Similarly, if you have a light red discolored area, increase the <span class="_Override" style="font-weight: bold;">lights r</span> value.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 137px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">lights</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">mult</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">1, 1, 1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Adjust the color values to get the best separation between black and the screen type color. You want to be left with shades of the screen color and black only. Start by bringing down the value for blue if you’re using a blue screen, and the value for green if you have a green screen in the image. The <span class="_Override" style="font-weight: bold;">erode</span> and <span class="_Override" style="font-weight: bold;">patch</span><span class="_Override" style="font-weight: bold;">black</span> sliders should be set to 0 when you’re adjusting these values.</p>
+                                <p class="CellBody">As a rule of thumb, if you have a dark green discolored area, increase <span class="_Override" style="font-weight: bold;">darks g</span>. Similarly, if you have a light red discolored area, increase the <span class="_Override" style="font-weight: bold;">lights r</span> value.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">erode</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">erode</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Increase this value if you still see traces of the foreground edge color in the output. This might be especially useful if, after adjusting the lights and the darks values, you’re still left with areas of discoloration. This is likely if your screen does not have a very saturated hue. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">patch black</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">multi</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">After adjusting the darks and the lights, you can increase this value to remove all the black from the output image, if you want. This might be useful, for example, if you get blue/green artifacts in your composite. </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p><a href="../../getting_started/tutorial3/image_based_keying.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Image-Based Keying</span></a>
+                </p>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Keying - Step Up to Nuke Tutorial 8</a></span>
+                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/62691968?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        <p><a href="https://vimeo.com/62691968" target="_blank">Keying</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>One important task of compositing is the removal of bluescreen or greenscreen. Nuke provides a wide variety of keyers for this task. I am going to go through several of these very briefly just so you have an introduction. I have brought in two pieces of footage to try this on. There is a greenscreen of the man that we used previously and there is also a still image of a house. It just has a bright sky and, even though there is no green or blue in this particular photo, you can still use keyer tools to attack the sky and remove it. You can reach the keyer tools through the <b>Keyer</b> menu.</p>
+                                <p>I am going to start with the simplest one, which is called Keyer. Now, even though it doesn’t have a lot of options, it is great for certain circumstances like this. I am going to drop down the <b>A</b> pipe between the Merge and the Read node. The Keyer has several operations, one of which is   <b>luminance key</b>, which is default. You can also target certain colors like green, or certain properties like saturation. We will leave it at luminance for now. There is also a graph here, which represents the operation values. For example, this graph represents luminance, as it runs from 0 towards 1, or the maximum. There are also four yellow bars here: <b>A</b>, <b>B</b>, <b>C</b>, and <b>D</b>. You can click-and-drag those interactively. Now <b>B</b> and <b>C</b> are overlapping at the start, but you can separate them. As soon as I move these, the alpha matte will start to be formed. Let’s go take a look at that. I am going to go into the Viewer and press the <b>A</b> key; there’s the alpha channel. What this signifies is any pixel with a luminance value between B and C becomes opaque. Any pixel value that had a luminance between C and D, or B and A, has a tapering value somewhere between opaque and transparent. So, in this situation, what I can do is move B and A towards the far-left, and then adjust C and D to make the sky mostly transparent. For example, what this means is any pixel with a luminance value over 0.9 becomes 100% transparent, or if a pixel has a luminance value between 0.8 and 0.9 has tapering transparency.</p>
+                                <p>Let’s go back to rgb. Press the <b>A</b> key again, and there we go. Now, it doesn’t look like anything is happening right now. What you have to do with the Keyer is premultiply the alpha. So, I will select the Keyer node, right-mouse-button-click, <b>Merge</b> &gt; <b>Premult</b>. Premult multiplies the alpha values by the rgb values. Once I add this, the sky is removed. Now I can test this further. I can hook something up to the <b>B</b> pipe of the Merge. For example, I can right-mouse-button-click, and go to <b>Image</b> &gt; <b>Constant</b>. Constant will produce a solid color - I will hook that up to the <b>B</b> pipe. Then go to the color wheel for that node and pick a color, like light blue. The sky is gone and now the Constant appears in the sky area.</p>
+                                <p>Let’s move on to some other keyers. I am going to go back to the greenscreen footage. Now, in fact, you can have more than one Viewer in any project. You can make a new Viewer at any time by going to the <b>Viewer</b> &gt; <b>Create New Viewer</b> (<b>Ctrl</b>/<b>Cmd</b>+<b>I</b>). If you have more than one Viewer, you can switch between them by clicking the tabs. So now, we are going to work on this greenscreen. The first keyer we will try here is Keylight, so <b>Keyer</b> &gt; <b>Keylight</b>. Foundry writes Keylight and, in fact, it is available in other compositing packages like After Effects, the functionality is the same. It looks a little intimidating at the start because of all the inputs. What you have to do is plug the <b>Source</b> into the greenscreen, in this case, the <b>A</b> pipe into the output.  Now there are many options you can adjust. I am going to adjust the basic ones you need to remove the greenscreen. The first thing to do is select the <b>Screen Colour</b>. You can click the swatch here, get the eyedropper, and go back to the Viewer. There are several ways to sample pixels with the eyedropper. You can <b>Ctrl</b>/<b>Cmd</b>+click or <b>Ctrl</b>/<b>Cmd</b>+drag your mouse. I will try the drag, so click+drag, let go - the screen color is sampled and you will see it right here in the swatch, and also beside the <b>Screen Colour</b> property. Let’s take a look at the alpha. Now, Keylight offers this <b>View</b> menu, which you can change from <b>Final Result</b> to <b>Combined Matte</b>. That’s what the alpha channel looks like, so right now there is some gray in the transparent area. What you can do is raise the <b>Clip Black</b> to erode that. What the <b>Clip Black</b> does is it looks for any pixel less than the slider and it makes it 100% transparent. There is also some gray in the white area. You can lower <b>Clip White</b> to make them more opaque, and now the matte looks pretty good. Once the matte looks good, you can return the <b>View</b> to <b>Final Result</b>. Now, to test that, I will disconnect the Constant over here, and plug it into the <b>B</b> pipe here. There we go, that’s pretty successful. Let’s try another keyer. I am going to disconnect Keylight, disconnect constant, and move that aside.</p>
+                                <p>Now we will try Primatte. Primatte has been updated for Nuke 7, so now it’s even more powerful. In this case, I need to hook the <b>fg</b> or foreground to the greenscreen and then the output to the <b>A</b> pipe. Primatte has a very powerful button called <b>Auto-Compute</b>. If you click that, it will attempt to identify the screen color and remove it. In fact, it does a really good job right off the bat. Let’s see what the alpha looks like. I will press the <b>A</b> key again, and there it is. Again, there is some noise around the edges. Fortunately, Primatte offers a long list of operations you can use to clean up the matte. For example, I can switch this menu to <b>Clean BG Noise</b>. Now I will zoom in, and now, I can sample those pixels that are too gray. Another way to sample is to <b>Ctrl</b>/<b>Cmd</b>+<b>Shift</b> and draw a marquee box around the problem area that samples a whole bunch of pixels at once.</p>
+                                <p>So now the edges are looking better, but there is still some gray on his jacket. We can then switch the menu to <b>Clean FG Noise</b> and then sample those pixels. Now that becomes more opaque. Let’s take a look at the rgb again. Press the <b>A</b> key - there it is. It looks pretty clean, however, there is a lot of green spill from the greenscreen in his clothing. In that case, I can go to <b>Spill Sponge</b> and sample those pixels to pull the green back out. There it goes. Now it’s not perfect yet, but you can see how quickly you can move the green. Let’s go ahead and plug in the Constant though and see what that looks like. Alright, let's move on to one more keyer. I will disconnect this one, move it aside.</p>
+                                <p>Now we are going to try the IBKGizmo and IBKColor: two nodes that are designed to work together to tackle greenscreen or bluescreen. So <b>Keyer</b> &gt; <b>IBKColour</b> and <b>Keyer</b> &gt; <b>IBKGizmo</b>. Now, the connections here are a little bit more complicated. Basically, the <b>1</b> input for the IBKColor goes into the greenscreen, as does the <b>fg</b> for the IBKGizmo. Then the <b>c</b>, or color input pipe for the IBKGizmo, goes to the IBKColor node. Then the <b>A</b> pipe for the Merge goes to the output of the IBKGizmo. Let’s take a look at the options. The first thing to change is the <b>screen type</b> for the IBKColor node. It is set to <b>blue</b> by default, but you can change it to <b>green</b>. That looks a little funny here in the Viewer, but what I can do to see what the IBKColor node is doing is plug the Viewer into that node. Here, it’s targeting the color green; whatever color is not green it’s removing. Now the aggressiveness of the removal is controlled by the <b>size</b> slider. If I increase that, there is more averaging and there is fewer and fewer non-green colors. Let’s plug the Viewer back into the IBKGizmo. The color information is passed from the IBKColor node to the IBKGizmo node, which the IBKGizmo node turns into a matte. Now the first thing you need to do with the IBKGizmo is make sure the <b>screen type</b> is set to the same color, in this case, <b>green</b>. Let’s plug the Constant into the <b>B</b> pipe and put the Viewer back to the Merge node, and there we go - successful greenscreen removal.</p>
+                                <p>Now, I know all of these keyers have numerous options, which we didn't talk about. This is just to give you a brief introduction and to show you there is a wide range of keyers to tackle pretty much any type of footage.</p>
+                                <p>“Tears of Steel” footage courtesy (CC) Blender Foundation - <a href="http://mango.blender.org/">mango.blender.org</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="IBKGizmo|ibkgizmo.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Link Icon" />Related Topics</span></a>
+        </p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

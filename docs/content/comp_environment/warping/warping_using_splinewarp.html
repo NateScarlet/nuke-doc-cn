@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Warping Images|Warping">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Warping an Image Using the SplineWarp Node</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/warping/warping_using_splinewarp.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Warping an Image Using the SplineWarp Node</h2>
+        <p class="afterHead">The SplineWarp node deforms an image based on multiple Bezier or B-spline curves that you create. Source curves define where to warp from, while destination curves define where to warp the source image to. Unlike the GridWarp node, you can draw these curves anywhere on the image, rather than only adding points on the existing grid lines, then join them to create the source and destination. The controls for adding and modifying points are similar to the RotoPaint node controls.</p>
+        <h3>To Warp an Image Using the SplineWarp Node</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Transform</b> &gt; <b>SplineWarp</b> to insert a SplineWarp node after the image you want to warp.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the <b>A</b> input to the image and attach a Viewer to the SplineWarp node.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_node_node_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the Viewer tools to control the following:</td>
+            </tr>
+        </table>
+        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="62px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="304px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Control</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Name</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">What it does</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_autokey.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">autokey</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, changes to points and shapes are automatically keyed. You can disable this and set your keyframes manually, which is particularly useful if you intend to use the Curve Editor. See <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a> for more information.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_label.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">label points</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, points selected in the Viewer are numbered sequentially.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_hidecurve.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">hide curves</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, curve lines are hidden.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_hidepoints.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">hide points</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, points are hidden.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_hidetrans.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">hide transform handle</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, the transform handle is hidden when a selection is made.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_hidehandles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">hide transform handle when moved</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, the transform handle is hidden when a selection is moved.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_deselect.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">constant selection</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, clicking in the Viewer does not deselect the current shape(s).</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_ripple.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">ripple</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Rippling keyframes allows you to adjust the position of a stroke/shape point on one frame and have that same relative adjustment applied to the point across all frames or a specified range of frames.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>all</b> - ripple all frames in the sequence.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>from start</b> - ripple frames from the <b>first</b> frame to the <b>current</b> frame.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>to end</b> - ripple frames from <b>current</b> frame to the <b>last</b> frame.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>range</b> - ripple all frames within the <b>from</b> and <b>to</b> fields.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_keys.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198725px;margin-bottom: 1.249731px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">add/remove <br />keyframe</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Add and remove keyframes at the current playhead position using these buttons.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">output A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, output the image attached to the <b>A</b> input and any shapes in the <b>curves</b> list labeled with <b>A</b>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_aw.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">output A warped</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, output the image attached to the <b>A</b> input warped by any shapes in the <b>curves</b> list labeled with <b>A</b>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_ab.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">output AB morph</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, output the morphed <b>A</b> and <b>B</b> inputs and any shapes in the curves list labeled with <b>AB</b>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_b.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">output B</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, output the image attached to the <b>B</b> input and any shapes in the <b>curves</b> list labeled with <b>B</b>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_bw.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">output B warped</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, output the image attached to the <b>B</b> input warped by any shapes in the <b>curves</b> list labeled with <b>B</b>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">show source curves</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, joined <b>source</b> curves are displayed in the Viewer.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">show destination curves</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, joined <b>destination</b> curves are displayed in the Viewer.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_corresp.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">show correspondence points</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, all <b>correspondence</b> points are displayed in the Viewer when a <b>Correspondence</b> tool is selected.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_bound.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">show boundaries</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, all <b>boundary</b> curves are displayed in the Viewer.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_hbound.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">show hard <br />boundaries</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, all <b>hard boundary</b> curves are displayed in the Viewer.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Hard boundary is only useful on closed curves.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_visible.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">visibility</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Controls visibility for the selected shape.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_locked.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">lock</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Controls the lock state of the selected shape. Locked shapes cannot be modified.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_bound_state.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">toggle boundary</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Toggles the Boundary state of the selected shape(s). </p>
+                        <p class="CellBody">Clicking <b>toggle boundary</b> on a standard shape defines it as a Boundary and vice versa. See <a class="noPage MCXref xref xrefnoPage" href="#Using_Boundary_Shapes_and_Pins_to_Limit_Warp"><span style="color: #00b4e0;" class="mcFormatColor">Using Boundary Shapes and Pins to Limit Warp</span></a> for more information.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_preview.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">update mode</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Sets the Viewer update mode:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>off</b> - no updates are applied when points are moved. Use this option for complex warps where the Viewer update can be slow.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>on</b> - the Viewer updates in real-time to help you position points. With complex scripts, this mode maybe prohibitively slow.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>persistent</b> - similar to <b>on</b>, but displays a preview until the render is complete, rather than showing real-time scanlines.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_select1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Select tool</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Click to enable <b>Select</b> mode allowing you to select points and shapes, or marquee select multiple points and shapes.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_add1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Points tool</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Click to enable <b>Add</b> mode or toggle between <b>Add</b>, <b>Remove</b>, <b>Cusp</b>, <b>Smooth</b>, <b>Open/Close</b>, and <b>Remove Destination</b> modes.</p>
+                        <p class="CellBody">Click on existing shapes to add or modify points.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_bezier.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Draw tool</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Click to enable <b>Draw</b> mode or toggle between <b>Bezier</b>, <b>Cusped Bezier</b>, <b>B-spline</b>, <b>Ellipse</b>, <b>Rectangle</b>, and <b>Cusped Rectangle</b> mode.</p>
+                        <p class="CellBody">Click on the Viewer to draw the selected shape.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_correspond.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.009071231px;margin-bottom: 0.9997805px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Correspondence tool</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Correspondence</span> mode or toggle between <span class="_Override" style="font-weight: bold;">Add</span>, <span class="_Override" style="font-weight: bold;">Modify</span>, and <span class="_Override" style="font-weight: bold;">Remove</span> mode:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Add</span> - clicking on a joined curve creates a correspondence point. These points are used to improve the warp accuracy in isolated areas, but overuse can cause performance issues.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Modify</span> - allows you to move an existing correspondence point along its curve, in either direction, as far as the next point on the shape.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Remove</span> - click to remove an existing correspondence point.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_pin.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 2px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Pin tool</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Pin</span> mode. You can use pins as single point joined curves to create warp or to secure specific points in place to isolate them from warping.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_splinewarp_join.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">Join tool</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Join</span> mode or toggle between <span class="_Override" style="font-weight: bold;">Join</span>, <span class="_Override" style="font-weight: bold;">Reverse</span>, and <span class="_Override" style="font-weight: bold;">Unjoin</span> mode.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click <span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_splinewarp_mode_aw1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;" /></span> to select source warped mode.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select the <b>Draw</b> tool <img src="../../assets/images/ug_images/icon_splinewarp_bezier1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.006016px;margin-bottom: 0.255968px;vertical-align: middle;" /> and draw a source, or warp from, curve as shown below.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you’re creating multiple open splines, draw your first spline and then press <b>Esc</b> or select another tool to let SplineWarp know you’re done. Reselect <b>Draw</b> to begin drawing another spline.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_node_mask_curve.png" style="margin-left: 1.000063px;margin-right: 0.5198649px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">You can modify shapes by adding points using the <b>Add</b> tool and adjusting the tangent handles that appear around it.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_node_point_handles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+        </p>
+        <p class="numberedCont">When you mouse over a point, it turns green. Clicking on a point changes its color to indicate it’s selected (white by default) and whether it has an expression set (red by default). You can change the default colors on the <b>Viewers</b> tab in the Preferences.</p>
+        <p class="numberedCont">To move several points together, draw a marquee around them and use the transformation overlay that appears.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_node_transformation_overlay.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+        </p>
+        <p class="numberedCont">To close an open curve or open a closed curve, right-click on a point and select <b>open/close curve</b>.</p>
+        <p class="numberedCont">To remove a point, right-click on the point and select <b>delete</b>.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can also use the Curve Editor to edit curves by right-clicking a control point and selecting <b>curve editor</b> &gt; <b>points</b> or <b>points+tangents</b>.<br />The curves appear in the Dope Sheet as long as the SplineWarp <b>Properties</b> panel is open.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Once you’re happy with the source curve, either:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>draw a destination curve and use the Join <img src="../../assets/images/ug_images/icon_splinewarp_join1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 1.005165px;vertical-align: middle;" /> tool to connect the two curves.</p>
+        <p class="processBulletCont">OR</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>right-click a point on the source curve and select <b>duplicate in A and join</b> to produce the destination curve.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Select the destination curve and drag points or the entire shape to a new position. The pixels in these areas are warped in the direction of movement.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_node_moved_curves1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_node_moved_curves.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">The image A and warp curves.</td>
+                    <td class="caption">The warped image.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">To better see what the warped image looks like, press <b>Q</b> on the Viewer to toggle the overlay off.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">To compare the original and warped images, press <b>D</b> on the SplineWarp node to disable and enable it. If you see changes in the areas you don’t want to warp, go back to modifying your shapes.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Using the <b>curves</b> list, you can quickly build up a complex warp hierarchy using the add/remove <img src="../../assets/images/ug_images/icon_splinewarp_layeradd.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5136393px;margin-bottom: 1.005165px;vertical-align: middle;" /> buttons.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_curve_hierarchy.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
+        </p>
+        <p class="numberedCont">Using the <b>root</b>, <b>layer</b>, and <b>pair warp</b> controls, you can affect different elements as required:</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>root warp</b> - affects warp globally, irrespective of layer and pairing.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>layer warp</b> - affects warp on the selected layers only, irrespective of pairing. This control is disabled if anything other than layers is selected.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>pair warp</b> - affects warp on the selected pairings only. This control is disabled if anything other than pairs is selected.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <b>pair warp</b> value is multiplied by the <b>layer warp</b> value, which is in turn multiplied by the <b>root warp</b> value.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">If necessary, animate the source warped shapes to match any movement in the source image. For more information on how to do this, see <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">You can adjust the controls described in the following table to enhance your results.</td>
+            </tr>
+        </table>
+        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="95px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="376px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Control</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">What it does</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                        <p class="CellBody">SplineWarp tab</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">crop to format</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When disabled, the input image is not cropped to the <b>Project Settings</b> &gt; <b>full format size</b>. As a result, warping can introduce pixels from the image outside the format size, rather than black.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Disabling <b>crop to format</b> can affect performance as <span class="CustomProduct">Nuke</span> has to calculate the warp for the entire image, not just the area inside the format size.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">bbox boundary curve</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, a boundary curve is added around the input format, limiting warp at the edges of the image.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>In <b>AB morph</b> mode, the format of input <b>A</b> is taken as the boundary.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                        <p class="CellBody">Render Tab</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">curve resolution</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Adjusts the accuracy of the warp/spline match. Higher values increase accuracy, but sacrifice speed and vice versa. For example, with open splines at low curve resolution, image tearing may occur. You can raise the <b>curve resolution</b> value to compensate for tearing, but the render times increase.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Correspondence points may be used to improve the warping accuracy in a specific part of the curve if turning this value up too high causes performance problems.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">boundary curve resolution</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Adjusts the number of interpolated points on <b>boundary</b> and <b>hard boundary</b> curves. Higher values stop the warp from filtering through the boundary curves but sacrifice speed, and vice versa.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">preview resolution</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Improves the accuracy of the preview at higher values and the rendering speed at lower values.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Classic warping</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Set the type of warp function to use:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>disabled</b> - uses an updated quadratic warp function that copes well with overlapping control points, but has a more local warp effect.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>enabled</b> - employs a warping function from previous versions of <span class="CustomProduct">Nuke</span> that has a more global warp effect, but doesn’t cope well with overlapping control points.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">filter</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                        <p class="CellBody">Select the appropriate filtering algorithm (see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>).</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="Using_Boundary_Shapes_and_Pins_to_Limit_Warp"></a>Using Boundary Shapes and Pins to Limit Warp</h3>
+        <p>You may notice that pixels in areas around warping are also moved to accommodate the change, but the distortion lessens the further you get from the repositioned points. If you don’t want a nearby area distorted, you can:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Designate a curve or shape as a boundary to control or eliminate warp.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Place pins in the areas you want to limit warp.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Boundaries only affect the input they are drawn on, <b>A</b> or <b>B</b>, not both.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Boundary</b> - generally open splines helping to control warp rather than eliminate it.</p>
+        <p class="bulletedCont">To define a boundary for an existing curve, enable <b>boundary</b> in the curves list, as shown below.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_boundary.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
+        </p>
+        <p class="bulletedCont">Using the example curves from Mr. Lion above, you could control the warp by adding a curve and designating it as a boundary:</p>
+        <table style="caption-side: top;">
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_boundary1.png" style="margin-left: 1.000063px;margin-top: 6.490205px;margin-right: 0.5198649px;margin-bottom: 1.240157px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_boundary2.png" style="margin-left: 1.000063px;margin-top: 6.491339px;margin-right: 0.5235575px;margin-bottom: 0.7653522px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">The source and destination <br />curves.</td>
+                    <td class="caption">The same curves, but with <br />a boundary above the <br />destination to limit warp.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Hard Boundary</b> - closed shapes that eliminate warp outside the area that they enclose.</p>
+        <p class="bulletedCont">To define a hard boundary for an existing shape, enable <b>hard boundary</b> in the curves list, as shown below.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/splinewarp_hboundary.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
+        </p>
+        <p class="bulletedCont">The effect of a hard boundary on a warp is quite distinct - the hard boundary, colored white by default, limits the warp effect to entirely within the closed shape:</p>
+        <table style="caption-side: top;">
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_boundary3.png" style="margin-left: 1.000063px;margin-top: 1.240157px;margin-right: 0.5198649px;margin-bottom: 1.240151px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_hboundary2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.5198725px;" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Pins</b> - placing a pin creates a single point source and destination curve, effectively limiting warp in a very localized way.</p>
+        <p class="bulletedCont">The effect of a pin on a single joined curve is shown below. The warp direction is shown on the left and the pin’s effect on the right.</p>
+        <table style="caption-side: top;">
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_pins1.png" style="margin-left: 1.000063px;margin-top: 1.240157px;margin-right: 0.5198649px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/splinewarp_pins2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

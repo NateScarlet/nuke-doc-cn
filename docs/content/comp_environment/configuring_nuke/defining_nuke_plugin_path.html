@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Configuring Nuke|Loading Gizmos, NDK Plug-ins, and Python and Tcl Scripts">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Defining the Nuke Plug-in Path</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/configuring_nuke/defining_nuke_plugin_path.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Defining the Nuke Plug-in Path</h2>
+        <p class="afterHead">To define the plug-in path:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">On each artist’s machine, create an environment variable called <span class="_Override" style="font-weight: bold;">NUKE_PATH</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Assign the <span class="_Override" style="font-weight: bold;">NUKE_PATH</span> environment variable to the path name of the directory where files related to <span class="CustomProduct">Nuke</span> customization will reside.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">For example, on Mac OS X using a csh or tcsh shell:</p>
+        <p class="cmdlinenumCont">setenv NUKE_PATH /SharedDisk/Nuke</p>
+        <p class="numberedCont">Or, if you're using a bash or ksh shell:</p>
+        <p class="cmdlinenumCont">export NUKE_PATH=/SharedDisk/Nuke</p>
+        <p>Loading a plug-in (plugin_find()) searches the NUKE_PATH until the first plug-in is located, ensuring that only the most local plug-in is loaded. For example if the NUKE_PATH variable contains:</p>
+        <p>project_dir:studio_dir:company_dir</p>
+        <p>The path is searched in the following order until the first plug-in is located:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>~/.nuke</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>project_dir</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>studio_dir</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>company_dir</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>nuke_dir</p>
+        <p>However, the NUKE_PATH environment variable is parsed in reverse order when loading <b>init.py</b> and <b>menu.py</b> and all discovered copies are used. This allows localized settings to override more global ones. So, with the directory hierarchy above, <b>init.py</b> scripts would execute as follows:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>nuke_dir/init.py</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>company_dir/init.py</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>studio_dir/init.py</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>project_dir/init.py</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>~/.nuke/init.py</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

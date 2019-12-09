@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Tutorials|Written Tutorials|3D Integration">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Setting Up a 3D System</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#getting_started/tutorial4/setting_up_3d_system.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Setting Up a 3D System</h1>
+        <p class="afterHead">Let’s start with the basics. In this first example, you’ll create a basic 3D node tree, map an image to a 3D card, manipulate it, and then render the result back out to the 2D composite.</p>
+        <h3>To Set Up a 3D Node Tree</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the “3Dinteg_tutor.nk” project file, locate the backdrop node labeled “<span class="_Override" style="font-weight: bold;">Setting Up a 3D System</span>.” You’ll see a Read node with the image you’ll use for this example. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Right-click over the <span class="_Override" style="font-weight: bold;">nuke_sign.jpg</span> node, and choose <span class="_Override" style="font-weight: bold;">3D &gt; Geometry &gt; Card</span>.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup1.png" />
+        </p>
+        <p class="numberedCont">This attaches a “Card1” node. Let’s see what it looks like in 3D. </p>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup2.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Attach a Viewer to the <span class="_Override" style="font-weight: bold;">Card1</span> node and <span class="CustomProduct">Nuke</span> switches the Viewer to 3D. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">Wow, that’s amazing. It looks exactly like the 2D Viewer. How can anyone tell the difference? Check the lower-left corner of the Viewer and you’ll see an orientation marker for the three axes in 3D. You’ll also see that “3D” is displayed on the view dropdown menu. </p>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup3.png" />
+        </p>
+        <p class="numberedCont">That sign is a little darker than expected, isn’t it? Actually, you can’t see the image yet because the default view of the 3D workspace is at the origin or center of the space. Perhaps zooming-out may improve the view. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Press the <span class="_Override" style="font-weight: bold;">Alt</span> key (Windows /Linux) or the <span class="_Override" style="font-weight: bold;">Option</span> key (OS X), and drag with the middle mouse button to zoom or “dolly.” Drag to the left and you’ll zoom out. </td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup4.png" />
+        </p>
+        <p class="numberedCont">Hey, look. There’s the <span class="CustomProduct">Nuke</span> emblem. In the 3D Viewer, the “pan” and “zoom” controls are exactly the same as what you’ve used for the node tree and the 2D Viewer, but let’s try “tumbling” to get a better view. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;"><span class="_Override" style="font-weight: bold;">Alt-</span> or <span class="_Override" style="font-weight: bold;">Option</span>-drag with the right mouse button to rotate around the origin point of the 3D workspace. You now see the 3D grid and the image mapped to the card. </td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_view-3_7.0.png" />
+        </p>
+        <p class="numberedCont">When an image is connected directly to a Card node like this, it is applied as a flat or “planar” map. The size of the card adjusts to the dimensions of the image. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Click on the card and you select the node in the node tree and also the card inside the 3D workspace.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Use the mouse (and the <span class="_Override" style="font-weight: bold;">Alt</span> key) to navigate through the workspace. Go ahead, pan, dolly, and rotate at will. Then, press <span class="_Override" style="font-weight: bold;">F</span> over the Viewer to frame the 3D view.</td>
+            </tr>
+        </table>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you don’t like the standard navigation controls, open the <span class="_Override" style="font-weight: bold;">Preferences</span> control panel (<span class="_Override" style="font-weight: bold;">Shift+S</span>), select the <span class="_Override" style="font-weight: bold;">Viewers</span> tab and change the <span class="_Override" style="font-weight: bold;">3D control type</span> to <span class="_Override" style="font-weight: bold;">Maya</span>, <span class="_Override" style="font-weight: bold;">Lightwave</span>, or <span class="_Override" style="font-weight: bold;">Houdini</span>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Click on an empty spot in the Node Graph to deselect all nodes. Let’s add the other nodes you need. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Right-click on the Node Graph and choose <span class="_Override" style="font-weight: bold;">3D &gt; Camera</span>. Keep its control panel open so you can manipulate the camera in the Viewer. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Right-click and choose <span class="_Override" style="font-weight: bold;">3D &gt; ScanlineRender</span> to insert a render node, and then connect the nodes as shown below. </td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup5.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">Connect the Viewer to the <span class="_Override" style="font-weight: bold;">ScanlineRender</span> node, and you have the most basic 3D system in <span class="CustomProduct">Nuke</span>. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">Press <span class="_Override" style="font-weight: bold;">Tab</span> over the Viewer to change to the 2D view. You won’t see the <span class="CustomProduct">Nuke</span> emblem - hey, where did it go? We saw it before.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>13. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="13. &#160;">Press <span class="_Override" style="font-weight: bold;">Tab</span> again to switch back to 3D. You’ll see the default camera position is too close to view the card. Let’s move things around to get an image for 2D. </td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup6.png" />
+        </p>
+        <h3>To Position Objects in the Scene</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;"><span class="_Override" style="font-weight: bold;">Alt-</span> or <span class="_Override" style="font-weight: bold;">Option-</span>drag with the middle mouse button to dolly out and show more of the 3D workspace. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select the camera. You can do this by clicking the camera object in the Viewer or clicking the <span class="_Override" style="font-weight: bold;">Camera1</span> node in the Node Graph. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Drag the transform handles to move the camera away from the card, along the z-axis. </td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup7.png" />
+        </p>
+        <p class="numberedCont">As you drag the camera, look at the camera’s control panel. You’ll see the x/y/z transform values reflect the camera’s current position.</p>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup8.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Press and hold <span class="_Override" style="font-weight: bold;">Ctrl</span> (Mac users press <span class="_Override" style="font-weight: bold;">Command</span>) over the Viewer and the transform handles change to rotation rings.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup9.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Drag the green ring to rotate the camera around the Y-axis. Notice the x/y/z rotation values in the control panel reflect the angle of the rotation. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">The blue handle “rolls” or rotates on the Z-axis, and the red handle rotates on X. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Now, select the card object and move it away from the camera.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">Keep the control panel open for the Card node. As with the Camera node, the transform handles disappear from the Viewer when you close the control panel.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Drag the card’s transform handles to position it in the 3D workspace. If you wish, press the <span class="_Override" style="font-weight: bold;">Ctrl</span> key (Mac users press <span class="_Override" style="font-weight: bold;">Command</span>) over the Viewer and rotate the card.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup10.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Press <span class="_Override" style="font-weight: bold;">Tab</span> over the Viewer to switch between the 2D and 3D views to see the image the ScanlineRender node produces. </td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup11.png" />
+        </p>
+        <p class="graphic">
+            <img src="../../assets/images/gsg_images/3d_setup12.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Before you continue to the next example, close all the control panels that are currently open. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">In this example, it doesn’t matter where you move the camera or card. In reality, however, you often need to use specific values, which you can enter directly in the control panels. </p>
+        <p class="numberedCont">You can also import camera data or animation curves - did you notice the <span class="_Override" style="font-weight: bold;">import chan file</span> button in the camera’s control panel? - and apply them to the objects in the workspace. </p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

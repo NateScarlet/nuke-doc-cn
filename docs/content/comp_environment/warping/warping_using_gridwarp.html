@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Warping Images|Warping">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Warping Images Using the GridWarp Node</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/warping/warping_using_gridwarp.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Warping Images Using the GridWarp Node</h2>
+        <p class="afterHead">The GridWarp node allows you to warp images by transferring image information from one Bezier grid onto another. When using this node, you first position the source grid, which defines where to warp from. Next, you position the destination grid, which defines where to warp the image to. This grid can be a duplicate of the source grid, or you can define it separately. When you manipulate the destination grid, the corresponding warp is applied to the source image.</p>
+        <p>The GridWarp node also includes controls for animating the warp and selecting the level of filtering used to remove any artifacts the warp may have caused.</p>
+        <h3>To Warp an Image Using the GridWarp Node</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Transform</b> &gt; <b>GridWarp</b> to insert a GridWarp node after the image you want to warp.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the <b>src</b> input and a Viewer to the image.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/gridwarp_node_node_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">When the GridWarp properties panel is open, by default the destination grid overlay appears in the Viewer. You can show or hide the source and destination grids using the <span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_gridwarp_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9881581px;margin-bottom: 0.9881581px;vertical-align: middle;" /> </span>and<span class="_Override" style="font-size: 9pt;line-height: 11pt;"> <img src="../../assets/images/ug_images/icon_gridwarp_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.990425px;margin-bottom: 0.9997805px;vertical-align: middle;" /> </span>buttons in the Viewer toolbar or the <span class="_Override" style="font-weight: bold;">visible</span> checkbox in the <span class="_Override" style="font-weight: bold;">GridWarp</span> tab. Use the destination grid to define the warp areas.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/gridwarp_node_starting_grids.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.03967083px;margin-bottom: 0.5198802px;" />
+        </p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>GridWarp automatically attempts to resize the grids to the image size as long as you have not modified any of the control points.<br /><br />If the grids are not the same size as the input image, click the <span class="_Override" style="font-weight: bold;">Resize to image</span> buttons under both <span class="_Override" style="font-weight: bold;">Source Grid</span> and <span class="_Override" style="font-weight: bold;">Destination Grid</span>.<br /><br /><img src="../../assets/images/ug_images/gridwarp_node_image_size_buttons.png" style="margin-right: 1.266235px;margin-bottom: 1.450195px;" /></p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Use the Viewer tools to control the following aspects of the grids:</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can use the copy and paste buttons <img src="../../assets/images/ug_images/icon_gridwarp_cpypst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.7525958px;margin-bottom: 1.005731px;vertical-align: middle;" /> in the grid controls to copy control point keyframes between the source and destination grids. </p>
+        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="95px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="375px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Control</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">What it does</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">output</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Controls the output displayed in the Viewer:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">source</span> - the source image and source grid.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">source</span> <span class="_Override" style="font-weight: bold;">warped</span> - the source image and destination grid.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">destination</span> - the destination image and destination grid.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">destination</span> <span class="_Override" style="font-weight: bold;">warped</span> - the destination image and source grid.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">morph</span> - the morphed image, controlled by the <span class="_Override" style="font-weight: bold;">warp</span> and <span class="_Override" style="font-weight: bold;">mix</span> parameters, and both grids.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_auto.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, the grids shown in the Viewer depends on the <span class="_Override" style="font-weight: bold;">output</span> setting. For example, if <span class="_Override" style="font-weight: bold;">output</span> is set to <span class="_Override" style="font-weight: bold;">source warped</span>, only the destination grid appears in the Viewer.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_src1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, the <span class="_Override" style="font-weight: bold;">source</span> grid is displayed in the Viewer. This control can be overridden by the <img src="../../assets/images/ug_images/icon_gridwarp_auto1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.013387px;margin-bottom: 0.9924086px;vertical-align: middle;" /> button.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_dst1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, the <span class="_Override" style="font-weight: bold;">destination</span> grid is displayed in the Viewer. This control can be overridden by the <img src="../../assets/images/ug_images/icon_gridwarp_auto2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.013387px;margin-bottom: 0.9924086px;vertical-align: middle;" /> button.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_autokey.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, changes to points in a grid are automatically keyed. You can disable this and set your keyframes manually, which is particularly useful if you intend to use the Curve Editor. See <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">ripple</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Rippling keyframes allows you to adjust the position of a stroke/shape point on one frame and have that same relative adjustment applied to the point across all frames or a specified range of frames.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">off</span> - ripple edit is disabled.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">all</span> - ripple all frames in the sequence.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">from start</span> - ripple frames from the <span class="_Override" style="font-weight: bold;">first</span> frame to the <span class="_Override" style="font-weight: bold;">current</span> frame.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">to end</span> - ripple frames from <span class="_Override" style="font-weight: bold;">current</span> frame to the <span class="_Override" style="font-weight: bold;">last</span> frame.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">range</span> - ripple all frames within the <span class="_Override" style="font-weight: bold;">from</span> and <span class="_Override" style="font-weight: bold;">to</span> fields.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">label points</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, points selected on the grid are labeled <span class="_Override" style="font-weight: bold;">x,y</span> measured from the origin.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_transhandle.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">When enabled, the transform handle overlays all selected points.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_preview.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">When enabled, a low resolution preview displays when points are moved on a grid. Once the render is complete, the low-res image is updated.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">divisions</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Enter the number of divisions required in the field to modify the grid. The number of divisions must be between 3 and 20.</p>
+                        <p class="CellBody">You can also click and hold the slider to overlay a preview of the subdivisions. GridWarp attempts to modify the grid based on the current control point distribution.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>When using the preview, accuracy may suffer at lower divisions and additional smoothing may be required at higher divisions.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_select.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Edit</span> mode. Select individual points, multiple points using shift-click, or marquee groups of points.</p>
+                        <p class="CellBody">Edit mode also allows you to adjust the curve between points to produce distortion.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_add.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Insert</span> mode. Click on a horizontal line to add a vertical line to the grid and vice versa.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_delete.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Delete</span> mode. Click on a grid line to remove it from the Viewer.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_drawgrid.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Draw Boundary</span> mode. The cursor changes to a crosshair and you can drag a marquee in the Viewer to create a custom grid.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_subdiv.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Click to subdivide the grid <span class="_Override" style="font-weight: bold;">columns</span> across the currently selected area.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_subdiv1.png" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Click to subdivide the grid <span class="_Override" style="font-weight: bold;">rows</span> across the currently selected area.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/icon_gridwarp_subdiv2.png" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                        <p class="CellBody">Click to subdivide the grid <span class="_Override" style="font-weight: bold;">columns</span> and <span class="_Override" style="font-weight: bold;">rows</span> across the currently selected area.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Modify the grid around the area you want to warp. Usually, you want the grid to conform to the subject of the source image. For example, if you are warping an animal’s eyes, you need to create grid lines that follow the edges of the eyes.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you have both grids visible when you move a point, and the same point for both grids are on top of each other, both points are moved and you won’t see any distortion.</p>
+        <p class="numberedCont">You can use the grid lines to isolate the areas you do not want to warp. You do this by adding grid lines between the area you intend to warp and the area you don’t want to change.</p>
+        <table style="caption-side: top;">
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/warp1.png" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/warp2.png" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">An unlimited warp.</td>
+                    <td class="caption">The same warp limited to <br />a small area with grid lines.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="numberedCont">When you select a point, four tangent handles appear around it. You can use these handles to modify the curves connecting the points.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/gridwarp_node_point_handles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+        </p>
+        <p class="numberedCont">To move several points together, draw a marquee around them and use the transformation overlay that appears.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/gridwarp_node_transformation_overlay.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997691px;" />
+        </p>
+        <p class="numberedCont">You can also use the <b>Draw Boundary</b> tool in the Viewer to quickly set a user defined grid. Click <b>Draw Boundary</b> and draw a marquee over the required area of the image.</p>
+        <table style="caption-side: top;">
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/gridwarp_node_draw_boundary1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/gridwarp_node_draw_boundary2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">The <b>Draw Boundary</b> marquee.</td>
+                    <td class="caption">The resulting user-defined grid.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can also use the Curve Editor to edit curves by right-clicking a control point and selecting <span class="_Override" style="font-weight: bold;">Curve Editor</span> &gt; <span class="_Override" style="font-weight: bold;">points</span>, <span class="_Override" style="font-weight: bold;">tangents</span>, or <span class="_Override" style="font-weight: bold;">both</span>.<br /><br />The curves appear in the Dope Sheet as long as the GridWarp <span class="_Override" style="font-weight: bold;">Properties</span> panel is open.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the areas where you want to warp the image, drag the points on the grid to a new position. When you click on a point, the point changes color to indicate whether it’s in focus (green by default) and whether it has an expression set (red by default). You can change the default colors on the <span class="_Override" style="font-weight: bold;">Viewers</span> tab in the Preferences.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/gridwarp_node_image_being_warped.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792033px;margin-bottom: 1.000059px;" />
+        </p>
+        <p class="numberedCont">The pixels in these areas are moved in the direction you moved the points. Pixels in the nearby areas are also moved to accommodate the change, but the distortion lessens the further you get from the repositioned points. If you don’t want a nearby area distorted, add more grid lines between the area and the points you want to move before you drag the points to a new location.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can nudge selected control points by a single pixel using the numeric pad <span class="_Override" style="font-weight: bold;">4</span> and <span class="_Override" style="font-weight: bold;">6</span> to nudge left and right, or <span class="_Override" style="font-weight: bold;">8 </span>and <span class="_Override" style="font-weight: bold;">2</span> to nudge up and down.<br /><br />Holding down <span class="_Override" style="font-weight: bold;">Shift</span> and using the numeric pad moves the selected points by 10 pixels, for example, <span class="_Override" style="font-weight: bold;">Shift+6 </span>moves the selected points 10 pixels to the right.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To better see what the warped image looks like, press <b>Q</b> on the Viewer to toggle the overlay off.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/warp3.png" />
+        </p>
+        <p class="numberedCont">To compare the original and warped images, press <span class="_Override" style="font-weight: bold;">D</span> on the GridWarp node to disable and enable it. If you see changes in the areas you don’t want to warp, go back to modifying the grid.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">If necessary, animate the grid to match any movement in the source image. For more information on how to do this, see <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">You can adjust the controls described in the following table to enhance your results. </td>
+            </tr>
+        </table>
+        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="87px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="368px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Control</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">What it does</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                        <p class="CellBody">GridWarp Tab</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">channel</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Sets the channels affected by the distortion.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">mask</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Connect a mask input and set the channel to use as a mask. By default, the mask is limited to the non-black areas of this channel.</p>
+                        <p class="CellBody">Use the checkboxes to modify the mask properties:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">inject</span> - copies the <span class="_Override" style="font-weight: bold;">mask</span> input to the predefined <span class="_Override" style="font-weight: bold;">mask.a</span> channel. Injecting the mask allows you to use the same mask further downstream.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">invert</span> - inverts the use of the mask channel so that the mask is limited to the non-white areas of the mask.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">fringe</span> - blurs the edges of the mask.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">background</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The warped image is rendered on top of an unwarped background. This control sets what to use as that background:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on black </span>- render the warped image on top of a constant black image.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on src</span> - render the warped image on top of the image connected to the <b>src</b> input of the GridWarp node.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on dst</span> - render the warped image on top of the image connected to the <b>dst</b> input of the GridWarp node.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on bg</span> - render the warped image on top of a background image connected to the <b>bg</b> input of the GridWarp node.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">background mix</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Blends between the output of the GridWarp node (at 0) and whatever you have selected from the <span class="_Override" style="font-weight: bold;">background</span> dropdown menu (at 1).</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Set bbox to</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Sets the boundary box properties.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                        <p class="CellBody">Render Tab</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">submesh <br />resolution</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Sets the number of subdivisions that are created between Bezier curves in the grid. The higher the value, the more accurate the distortion between the grid lines, but rendering time increases.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">filter</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Select the appropriate filtering algorithm (see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>).</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                        <p class="CellBody">Options Tab</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">source color</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Sets the source grid color.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="CellBody">destination color</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                        <p class="CellBody">Sets the destination grid color.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

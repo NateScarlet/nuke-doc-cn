@@ -1,0 +1,45 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard4
+ xpos -402
+ ypos -154
+}
+BlinkScript {
+ ProgramGroup 1
+ KernelDescription "1 \"ResizeKernel\" iterate componentWise 957976cb984ad538a99fd24ff8ffc23d011697020e705c14e8f3dec01ceaf4c6 2 \"src\" Read Random \"dst\" Write Point 2 \"Scale\" Float 1 AAAAPw== \"Horizontal\" Bool 1 AQ=="
+ kernelSource "//ResizeKernel: scale the input horizontally or vertically using a bilinear filter. \nkernel ResizeKernel : ImageComputationKernel<eComponentWise>\n\{\n  Image<eRead, eAccessRandom, eEdgeConstant> src; //Output will be black outside the original image\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  float _externalScale;\n  bool _horizontal; \n\nlocal:\n  float _scale;\n\n  void define()\n  \{\n    defineParam(_externalScale, \"Scale\", 0.5f);\n    defineParam(_horizontal, \"Horizontal\", true);\n  \}\n\n  void init()\n  \{\n    _scale = 1.0f/_externalScale;  //invert the scale as we back-map from dst to src\n  \}\n\n  void process(int2 pos)\n  \{\n    //Work out the scaled src position.\n    const float xPos = (_horizontal ? (float)pos.x * _scale : (float)pos.x);\n    const float yPos = (_horizontal ? pos.y : (float)pos.y * _scale);\n\n    //Use a bilinear filter to get the value at that src position.\n    dst() = bilinear(src, xPos, yPos);    \n  \}\n\n\};\n\n"
+ rebuild ""
+ name BlinkScript5
+ xpos -402
+ ypos -61
+}
+BlinkScript {
+ KernelDescription "1 \"ResizeKernel\" iterate componentWise 957976cb984ad538a99fd24ff8ffc23d011697020e705c14e8f3dec01ceaf4c6 2 \"src\" Read Random \"dst\" Write Point 2 \"Scale\" Float 1 AAAAPw== \"Horizontal\" Bool 1 AQ=="
+ kernelSource "//ResizeKernel: scale the input horizontally or vertically using a bilinear filter. \nkernel ResizeKernel : ImageComputationKernel<eComponentWise>\n\{\n  Image<eRead, eAccessRandom, eEdgeConstant> src; //Output will be black outside the original image\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  float _externalScale;\n  bool _horizontal; \n\nlocal:\n  float _scale;\n\n  void define()\n  \{\n    defineParam(_externalScale, \"Scale\", 0.5f);\n    defineParam(_horizontal, \"Horizontal\", true);\n  \}\n\n  void init()\n  \{\n    _scale = 1.0f/_externalScale;  //invert the scale as we back-map from dst to src\n  \}\n\n  void process(int2 pos)\n  \{\n    //Work out the scaled src position.\n    const float xPos = (_horizontal ? (float)pos.x * _scale : (float)pos.x);\n    const float yPos = (_horizontal ? pos.y : (float)pos.y * _scale);\n\n    //Use a bilinear filter to get the value at that src position.\n    dst() = bilinear(src, xPos, yPos);    \n  \}\n\n\};\n\n"
+ rebuild ""
+ ResizeKernel_Horizontal false
+ name BlinkScript6
+ selected true
+ xpos -402
+ ypos -18
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -402
+ ypos 32
+}
+StickyNote {
+ inputs 0
+ name StickyNote11
+ label "ResizeKernel:\nA Blink resize done in two passes, \nhorizontal then vertical.\n\nThe same kernel is used for both \npasses, with different values for the\n\"horizontal\" parameter"
+ xpos -439
+ ypos -244
+}

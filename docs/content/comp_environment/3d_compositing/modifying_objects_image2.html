@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|3D Scene Geometry|Modifying Object Shapes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Modifying Objects Using an Image - Method 2</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/modifying_objects_image2.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h3>Modifying Objects Using an Image - Method 2</h3>
+        <p>Like the DisplaceGeo node, the Displacement shader node also performs displacement mapping and at first glance the nodes seem very similar. However, the approach they have on performing displacement mapping is different.</p>
+        <p>Displacement mapping is a technique for adding geometric detail to object surfaces as you render them. Unlike the DisplaceGeo node, The Displacement node does this on the fly, only displacing those parts of the geometry that are visible at any given moment. Displacement considers the point of view of camera to determine which parts of the displacement need rendering, thus saving render time. It’s also possible to optimize the level of tessellation to be the level that you need for an object at a certain distance. </p>
+        <h4>Connecting the Displacement Node</h4>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create the Displacement node by clicking <span class="_Override" style="font-weight: bold;">3D</span> &gt; <span class="_Override" style="font-weight: bold;">Shader</span> &gt; <span class="_Override" style="font-weight: bold;">Displacement</span>. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect your geometry to the Displacement node’s output. If you want, you can connect a texture to the Displacement node’s input. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect the image you want to create the displacement from in the <span class="_Override" style="font-weight: bold;">displacement</span> input.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Optionally, you can use a separate map for calculating the normals. Connect this to the <span class="_Override" style="font-weight: bold;">normals</span> input.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#3d_compositing_3567570779_780119"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Displacement Controls</span></a> below.</td>
+            </tr>
+        </table>
+        <h4><a name="3d_compositing_3567570779_780119"></a>Adjusting the Displacement Controls</h4>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use the <span class="_Override" style="font-weight: bold;">displacement</span> <span class="_Override" style="font-weight: bold;">channel</span> dropdown menu to select the channel from your <span class="_Override" style="font-weight: bold;">displacement</span> input that you want to use as the displacement map.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you’re using a <span class="_Override" style="font-weight: bold;">normals</span> input, uncheck <span class="_Override" style="font-weight: bold;">build</span> <span class="_Override" style="font-weight: bold;">normals</span> and set <span class="_Override" style="font-weight: bold;">normal expansion </span>to:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">none</span> to use the normals as they are,</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">XY</span> to multiply them on x and y dimensions, and</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">XYZ</span> to multiply them in x, y and z dimensions.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use <span class="_Override" style="font-weight: bold;">scale</span> to set the overall scale of the displacement.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set<span class="_Override" style="font-weight: bold;"> filter</span> <span class="_Override" style="font-weight: bold;">size</span> to the size of the filter you want to use when sampling the input image.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Use the <span class="_Override" style="font-weight: bold;">filter</span> dropdown menu to select a filtering algorithm. For more information, see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:transforming_elements_3731870222_51126"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If you want to automatically calculate normals after the displacement, check <span class="_Override" style="font-weight: bold;">build normals</span>. Uncheck this, if you want the normals calculated from the <span class="_Override" style="font-weight: bold;">normals</span> input.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#3d_compositing_3567570779_780133"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting Displacement Controls for Rendering</span></a> below.</td>
+            </tr>
+        </table>
+        <h4><a name="3d_compositing_3567570779_780133"></a>Adjusting Displacement Controls for Rendering</h4>
+        <p>Before rendering a scene where you’ve used Displacement, adjust the controls on the <span class="_Override" style="font-weight: bold;">Tessellation</span> tab to gain speed and quality for the render process:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use <b>max subdivision</b> to set the maximum number of iterations of polygon subdivision that occurs in tessellation.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">If you’re used to working with DisplaceGeo or displacement in other applications, it’s worth noting that you can get a similar amount of detail with lower geometry subdivisions using the Displacement node.</p>
+        <p class="numberedCont">For example, a 30x30 Card is constructed from the tessellation of 1800 triangles (30x30x2), but you can achieve a similar tessellation levels using the Displacement node with fewer card subdivisions:</p>
+        <table style="width: 447px;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="157px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="133px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="157px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Card subdivisions</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">max subdivisions</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">tessellation triangles</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">1x1 (2 triangles)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">5</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">2048</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">2x2 (8 triangles)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">4</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">2048</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">4x4 (32 triangles)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">3</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                        <p class="CellBody">2048</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Using a high number of geometry <b>and</b> Displacement subdivisions is likely to slow down rendering so far it becomes unusable - A 10x10 card with <b>max subdivisions</b> set to 4 generates 51200 triangles!</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Set the <b>mode</b> dropdown menu to the mode used in polygon subdivision:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b> - uniform polygon tessellation. This is a good option mainly for testing your result, and only in rare occasions the best option to actually use for a displacement render. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>screen</b> - tessellation is determined by the screen size. This is the default and often the best mode option. The tessellation is determined by the size of the tessellate polygons on the screen. This mode ensures that no new polygons are created once a particular polygon edge screen length is reached.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>adaptive</b> - tessellation is determined by the complexity of the displacement. This option attempts to estimate flat areas in the image where tessellation is unnecessary. The calculation is based on the threshold controls which are only active if the <b>adaptive</b> mode is selected.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you set <b>mode</b> to <b>screen</b> or <b>adaptive</b>, set <b>pixel edge length</b> to the maximum size of polygons used in tessellation.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you set <b>mode</b> to <b>adaptive</b>, you can also adjust the following:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>edge threshold</b> - edges larger than this threshold get divided, whereas edges smaller than this are subdivided according to the normal and displace thresholds.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>normal threshold</b> - detects normal orientations to determine if the surface is flat or not. If the angle between adjacent normals is larger than this threshold, tessellation occurs. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>displace threshold</b> - compares the degrees to which two points on the surface are displaced, and if the results do not match, tessellation occurs.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Keep in mind that applying the Displacement shader to a very complex high resolution geometry can be very slow.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

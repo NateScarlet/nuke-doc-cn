@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Expressions">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Linking Expressions</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/expressions/linking_expressions.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1><a name="kanchor226"></a>Linking Expressions</h1>
+        <p class="afterHead">Through expressions, you can link the parameters from one node and control the values of the parameters in other nodes. When creating a linking expression, type the elements listed in the table below; remember to separate each element with a period.</p>
+        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');margin-left: 0;margin-right: auto;caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="94px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="375px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Element</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">Description</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Node name</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">The node with the source parameter (i.e., <span class="_Override" style="font-weight: bold;">Transform1</span>).</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Parameter name</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">The name of the parameter with the source value (for example, <span class="_Override" style="font-weight: bold;">translate</span>).The name is defined internally, and may not match the parameter’s label that appear in the <span class="CustomProduct">Nuke</span> interface. If necessary, hover over the parameter’s field with your mouse pointer and its name appears in the pop-up tool tip.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Child parameter name</p>
+                        <p class="CellBody">(optional)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Some parameters include child parameters, such as the fields for x and y axes, or red, green, and blue color channels. Child parameter names do match the label that appears before the parameter’s field (for example, <b>x</b>).</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="CellBody">Time<br />(optional)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                        <p class="CellBody">By default, linking expressions pull values from the current frame number, but you can read values from other frames, either statically or dynamically (that is, with a temporal offset).</p>
+                        <p class="CellBody">If you want to read in a static value for a given frame, you just type that frame number inside a set of parenthesis (for example,<span class="_Override" style="font-weight: bold;"> (10)</span>).</p>
+                        <p class="CellBody">If you want to read in dynamic values but with an offset in time, type<span class="_Override" style="font-weight: bold;"> t</span>, the variable for time, followed by a <b>+</b> (for a forward offset) or <b>-</b> (for a backward offset), followed by a number representing the number of frames worth of offset. For example, typing <span class="_Override" style="font-weight: bold;">(t-2)</span> would capture values that are two frames back from the current frame. </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Thus, to create a linking expression that pulls the value from a Transform node’s x translation field at the tenth frame, you would type <b>= </b>on a parameter to open the expression dialog, and then enter<b> Transform1.translate.x(10)</b> in the dialog’s <b>Expression</b> field.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/expression_dialog.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+        </p>
+        <p>The steps below recap the process for creating a linking expression.</p>
+        <h2>Referencing Values from Another Parameter</h2>
+        <h3>To Reference Values from Another Parameter - Method 1</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click on the destination parameter (the one which receives values from another parameter).</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">To display the expression dialog, right-click on the parameter and select <b>Add expression</b>,</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/add_expression.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000074px;" />
+        </p>
+        <p class="numberedCont"><span class="_Override" style="font-weight: bold;">OR</span> type <b>=</b> in the parameter field. </p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/add_expression_2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the dialog that opens, type the name of the node containing the source parameter and a period. (Each node prominently displays its name on its face.) </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you want to enter a multi-line expression, you can click the multi-line edit field button <img src="../../assets/images/ug_images/icon_multiline_expression.png" style="margin-left: 2.143559px;margin-top: 1.213795px;margin-right: 2.893605px;margin-bottom: 0.4637483px;vertical-align: middle;" />. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Follow the name of the node by the source parameter’s name and a period. (If you don’t know the parameter’s name, you can hover over its field in order to see it displayed in a tool tip.)</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Optionally, type the child parameter’s name and a period.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Optionally, type a frame number or offset variable in brackets (for example, <b>(2)</b> or <b>(t-2)</b>)<b></b>in order to specify the frame or range of frames from which you pull values.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Next to the expression entry field, you can click the <span class="_Override" style="font-weight: bold;">Py</span> button to automatically make your expression a Python callback. You can also toggle the <span class="_Override" style="font-weight: bold;">R</span> button to have your expression interpreted as an expression or as a series of statements. For example, with the multi-line edit mode and the Python mode on, you could enter the following expression, and get 15 as the resulting value:</td>
+            </tr>
+        </table>
+        <p class="codeBlock">-execlocal
+
+def example():
+
+  a = 5
+  return a
+ 
+
+def example2():
+
+  b = 10
+  return b
+ 
+
+ret = example()+example2()</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Click <span class="_Override" style="font-weight: bold;">OK</span>. This links the parameters, which turn blue. In the Node Graph, a green arrow appears between the nodes to indicate that they are linked via an expression.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/expression_arrow_in_dag.png" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">To edit the expression later on, right-click on the parameter and select <b>Edit expression</b> (or press <span class="_Override" style="font-weight: bold;">=</span> on the parameter). You can also click the animation button <img src="../../assets/images/ug_images/icon_animation_curve.png" /> and select <b>Edit expression</b> to edit expressions for all the parameters next to the button.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/expression_dialog_edit.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+        </p>
+        <h3>To Reference Values from Another Parameter - Method 2</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;"><span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+drag the parameter that has the values you want to use on top of the parameter that receives these values. This links the parameters, which turn blue. In the Node Graph, a green arrow appears between the nodes to indicate that they are linked via an expression.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/expression_arrow_in_dag.png" />
+        </p>
+        <p class="numberedCont">To view or edit the expression, right-click on the parameter and select <b>Edit expression</b>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you want to link several parameters at the same time, <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+drag the animation button <img src="../../assets/images/ug_images/icon_animation_curve.png" /> next to the source parameters on top of the animation button next to the destination parameters.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">To view or edit the expressions used to link the parameters, click the animation button and select <b>Edit expression</b>.</p>
+        <h2>Linking Channels and Formats Using Expressions</h2>
+        <p class="afterHead">You can also create expression links to connect channel, layer, and format controls with other controls in various nodes. Since these controls aren’t meant to be animated, you can’t use the full range of <span class="CustomProduct">Nuke</span> expressions, nor can you use Python or Tcl languages. You can link controls using the <span class="_Override" style="font-weight: bold;">Link</span> <span class="_Override" style="font-weight: bold;">menu <img src="../../assets/images/ug_images/link_menu2.png" style="margin-left: 1.393512px;margin-top: 0.6434646px;margin-right: 0.9136057px;vertical-align: middle;" /></span> next to the control on the properties panel: </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click the <span class="_Override" style="font-weight: bold;">Link</span> <span class="_Override" style="font-weight: bold;">menu</span> and select <span class="_Override" style="font-weight: bold;">Set</span> <span class="_Override" style="font-weight: bold;">link</span>. An <b>Expression</b> dialog opens. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Enter your expression in the Expression field and click <span class="_Override" style="font-weight: bold;">OK</span>. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">You can edit an existing link by clicking the <span class="_Override" style="font-weight: bold;">Link</span><span class="_Override" style="font-weight: bold;">menu</span> and selecting <span class="_Override" style="font-weight: bold;">Edit</span><span class="_Override" style="font-weight: bold;">link</span>. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">You can also <span class="_Override" style="font-weight: bold;">Ctrl/Cmd</span>+drag the <span class="_Override" style="font-weight: bold;">Link menu</span> to another control to create a link between the two. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To remove a link, click the <span class="_Override" style="font-weight: bold;">Link</span><span class="_Override" style="font-weight: bold;">menu</span> and select <span class="_Override" style="font-weight: bold;">Remove</span><span class="_Override" style="font-weight: bold;">link</span>. </td>
+            </tr>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

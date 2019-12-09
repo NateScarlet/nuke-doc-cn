@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Image Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Read</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/image_nodes/read.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Read</h1>
+        <p>This node loads images from disk, using the native resolution and the frame range for the sequence. It converts all imported sequences to Nuke’s native 32-bit linear RGB colorspace.</p>
+        <p>The Read node supports multiple file formats, such as Cineon, TIFF, Alembic, PSD, OpenEXR, HDRI, DPX, REDCODE, ARRIRAW, DNG, and RAW camera data. It uses the file name extension to determine the format.</p>
+        <p>You can also create a Read node by pressing <b>R</b> on the Node Graph.</p>
+        <p>See also <a href="../deep_nodes/deepread.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">DeepRead</span></a>, <a href="../3d_nodes/readgeo.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">ReadGeo</span></a>, <a href="../other_nodes/audioread.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">AudioRead</span></a>, and <a href="udim_import.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">UDIM Import</span></a>.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="2531px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="134px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="94px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" style="font-weight: bold;">
+                                <p class="CellBody"><span style="font-weight: normal;">Read Tab</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the file path and name of the file to read. For frame numbers, you can use <b>####</b> for each digit or the printf-style formatting <b>%04d</b>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 89px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">localization policy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">localizationPolicy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">from auto-localize path</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the local file caching behavior. Copies of the files are stored in a specified local folder for faster access times:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>On</b> - the files are cached, regardless of location, as long as the <b>limit to (GB)</b> limit is not breached.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Off</b> - the files are never cached, regardless of location.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>from auto-localize path</b> - the files are cached if they reside in the <b>auto-localize from</b> directory, as long as the <b>limit to (GB)</b> limit is not breached.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the size of the file. Typically it is guessed correctly from the file header, but you can change it to set a different pixel aspect ratio if required.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">proxy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">proxy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the file path and name of a relevant proxy image. This proxy image is used if <b>proxy</b> mode is on and the required resolution is less than or equal to the <b>proxy format</b>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">proxy format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">proxy_format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">1024x778</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The file specified in <span class="_Override" style="font-weight: bold;">proxy</span> is read if the <span class="_Override" style="font-weight: bold;">down-rez</span> of the format is smaller or equal to this value. Typically it is guessed correctly from the file header, but you can change it to set a different pixel aspect ratio if required.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="4" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">frame range</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">first</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The first frame number of a sequence to display.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 139px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">before</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">hold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the behavior of frames before the <span class="_Override" style="font-weight: bold;">first</span> frame specified:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">hold</span> - select to show a still picture of the first frame of the frame range.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">loop</span> - select to start over and keep looping the span of the frame range outside the first frame of the frame range.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bounce</span> - select to play the span of the frame range backwards and forwards between the frame range limits.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">black</span> - select to display a black frame outside of the first frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">last</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">The last frame number of a sequence to display.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 139px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">after</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">hold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the behavior of frames after the <span class="_Override" style="font-weight: bold;">last</span> frame specified:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">hold</span> - select to show a still picture of the last frame of the frame range.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">loop</span> - select to start over and keep looping the span of the frame range outside the last frame of the frame range.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bounce</span> - select to play the span of the frame range backwards and forwards between the frame range limits.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">black</span> - select to display a black frame outside of the last frame.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">frame_mode</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">expression</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the frame mode:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">expression</span> - Lets you enter an expression in the field on the right. The expression changes the relation between the current frame and the frame read in. For example, if your clip begins from image.0500.rgb and you want to place this first frame at frame 1 rather than frame 500, you can use the expression <span class="_Override" style="font-weight: bold;">frame+499</span>. This way, 499 frames are added to the current frame to get the number of the frame that’s read in. At frame 1, image.0500.rgb is read in; at frame 2, image.0501.rgb is read in; and so on. Another example of an expression is <span class="_Override" style="font-weight: bold;">frame*2</span>. This expression multiplies the current frame by two to get the number of the frame that’s read in. This way, only every other frame in the clip is used. At frame 1, image.0002.rgb is read in; at frame 2, image.0004.rgb is read in; at frame 3, image.0006.rgb is read in; and so on.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">start</span><span class="_Override" style="font-weight: bold;">at</span> - Lets you enter a start frame number in the field on the right. This specifies the frame where the first frame in the sequence is read in. In other words, all frames are offset so that the clip starts at the specified frame. For example, if your sequence begins from image.0500.rgb and you enter <span class="_Override" style="font-weight: bold;">1</span> in the field, image0500.rgb is read in at frame 1. Similarly, if you enter <span class="_Override" style="font-weight: bold;">100</span> in the field, image0500.rgb is read in at frame 100.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">offset</span> - Lets you enter a constant offset in the field on the right. This constant value is added to the current frame to get the number of the frame that’s read in. For example, if your clip begins from image.0500.rgb and you want to place this first frame at frame 1 rather than frame 500, you can use <span class="_Override" style="font-weight: bold;">499</span> as the constant offset. This way, 499 is added to the current frame to get the frame that’s read in. At frame 1, image.0500.rgb is read in; at frame 2, image.0501 is read in, and so on. You can also use negative values as the constant offset. For example, if you use the value -10, Nuke will subtract ten from the current frame to get the frame that’s read in. At frame 20, image.0010.rgb is read in; at frame 21, image.0011.rgb is read in; and so on.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Depending on the <span class="_Override" style="font-weight: bold;">frame</span> mode, you can enter a start frame, an offset, or an expression here.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">original range</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">origfirst</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Displays the original first frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">origlast</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the original last frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 109px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">missing frames</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">on_error</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">error</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets <span class="CustomProduct">Nuke</span>’s behavior when there is a problem with frames in the file:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">error</span> - display an error in the Viewer.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">black</span> - replace suspect frames with a black frame.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">checkerboard</span> - replace suspect frames with a checkerboard.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">nearest</span><span class="_Override" style="font-weight: bold;">frame</span> - replace suspect frames with the nearest good frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">reload</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">reload</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to re-read the image from disk.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">colorspace</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">colorspace</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the lookup table (LUT) used to convert from this file to the internal values used by Nuke.</p>
+                                <p class="CellBody"><span class="_Override" style="font-weight: bold;">default</span> determines the LUT from the size and type of data in the file, and other information from the file header.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">premultiplied</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">premultiplied</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, <span class="CustomProduct">Nuke</span> corrects the color of the partially transparent pixels produced by most renderers by dividing color data by the alpha channel before converting from the colorspace, and then multiplying by the alpha channel afterwards.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">raw data</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">raw</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">When enabled, <span class="CustomProduct">Nuke</span> does not convert the data. </p>
+                                <p class="CellBody">For most file formats this is the same as <span class="_Override" style="font-weight: bold;">linear</span> colorspace but, for some, it may disable other processing such as conversion from YUV.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">auto alpha</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">auto_alpha</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, if the Read produces RGB but no alpha channel, then assume the alpha should be 1 if it's requested later on.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                                <p colspan="4">dng Options (.dng reads only)</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>color space</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>dng_colorspace</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>sRGB</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the colorspace used during debayering. The standard Read node <b>colorspace</b> control is changed to match this setting automatically.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>To view the data before debayering, enable the <b>raw data</b> control.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>force linear transfer function</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>dng_force_linear</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>When enabled, override the specified <b>color space</b> transfer function to force it to use <b>linear</b>.</p>
+                                <p>For some cases, such as <b>sRGB</b>, this results in slightly faster read times and sets the <b>colorspace</b> on the Read to <b>linear</b> as well.</p>
+                                <p>As a result of forcing linear, all render settings are applied in linear space, rather than the native space, so there may be differences in how the controls respond.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>white balance</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>dng_white_balance</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>As Shot</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Applies preset values to the <b>temperature</b> and <b>tint</b> controls, dending on the setting chosen:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>As Shot</b> - attempt to read the <b>temperature</b> and <b>tint</b> values from the source file's metadata.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Daylight</b> to <b>Flash</b> - standard presets in common usage.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Custom</b> - adjusting the <b>temperature</b> and <b>tint</b> controls manually sets <b>white balance</b> to this value.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>temperature</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>dng_temperature</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+                                <p rowspan="2">dependent on file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" rowspan="2">
+                                <p>Defines the <b>temperature</b>, in Kelvin, and <b>tint</b> of the image white point:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>temperature</b> - in general, runs from blues at low values to yellows at high values.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>tint</b> - in general, runs from greens at low values to purples at high values.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>tint</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>dng_tint</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>exposure</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>dng_exposure</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Controls the amount of exposure data available on top of the baseline exposure.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>shadows</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>dng_shadows</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Controls the amount of low-level image data available at render time.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">exr Options (.exr reads only)</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 128px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">offset negative display window</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">offset_negative_display_window</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">The <b>.exr</b> format allows the image’s lower left corner to start at any position, including negative x axis values. <span class="CustomProduct">Nuke</span> does not support this type of format, but compensates by offsetting the image or reducing the format size on both sides:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>enabled</b> - the image is offset so that the .exr image’s left side start at x=0.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>disabled</b> - the format is reduced on both sides by the negative x amount, as if that area was overscan.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">do not attach prefix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">noprefix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">When enabled, metadata keys are read as they are, without attaching a prefix to them.</p>
+                                <p class="CellBody">When disabled, the prefix <span class="_Override" style="font-weight: bold;">exr</span> is attached to metadata keys to make them distinct from other metadata in the tree.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>edge pixels</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>edge_pixels</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>plate detect</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets how to treat pixels at the edges of the data window, or bounding box in <span class="CustomProduct">Nuke</span> terms, when reading <b>.exr</b> files:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>plate detect</b> - if the bounding box and format match exactly, then repeat all edges. Otherwise, add black at the edges.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>edge detect</b> - for each matching edge, repeat the edge pixels. Add black at mismatched edges.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>repeat</b> - always repeat the edge pixels outside the bounding box.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>black</b> - always add black pixels outside the bounding box.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-conditions="" data-mc-pattern="6">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+                                <p colspan="4">mov Options (.mov reads only)</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>decoder</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>decoder</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>dependent on the file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the decode library used to read the file:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mov32</b> - uses the full range of QuickTime codecs, but can be slow to process due to extra complexity during decode.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mov64</b> - uses its own packing and unpacking and streams decode/encode for extra processing speed, but only supports a sub-set of QuickTime codecs.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><span class="CustomProduct">Nuke</span> defaults to the fastest <b>decoder</b> for the codec used in the file - if you're reading in a type supported by the <b>mov64</b> sub-set, <span class="CustomProduct">Nuke</span> defaults to that reader. Otherwise, the fallback <b>mov32</b> reader is used.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>ycbcr matrix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>mov32_ycbcr_matrix</p>
+                                <p>OR</p>
+                                <p>mov64_ycbcr_matrix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>dependent on the file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the way Y’CbCr is converted to RGB. <b>Rec 601</b> and <b>Rec 709</b> follow the ITU.BC specifications, whilst <b>Nuke Legacy</b>, <b>Nuke Legacy Mpeg</b>, and <b>Nuke Legacy YUVS</b> are retained for backwards compatibility.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                                <p colspan="4" class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The following <b>codec</b> and <b>pixel format</b> controls are only displayed when <b>decoder</b> is set to <b>mov32</b>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>codec</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>mov32_codec</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>dependent on the file</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the codec used to read the file.</p>
+                                <p>The codec dropdown defaults to a codec appropriate for the file in question, where available, and only lists those that declare themselves able to read the file.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body2" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>pixel format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>mov32_pixel_format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>dependent on the codec</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the pixel format type and layout requested from a list supported by the chosen codec.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                                <p colspan="4" class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The following controls are only displayed when <b>decoder</b> is set to <b>mov64</b>.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>do not attach prefix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>mov64_no_prefix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>When enabled, the metadata accompanying the file is saved without the <b>quicktime</b> prefix.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>QuickTime container-specific metadata always carries the prefix.</p>
+                                <p>When disabled, all metadata is prefixed with <b>quicktime</b> for easy identification.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>match key format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>mov64_match_meta_format</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>When enabled, <span class="CustomProduct">Nuke</span> attempts to clean up meta keys into the standard <span class="CustomProduct">Nuke</span> metadata format.</p>
+                                <p>When disabled, the metadata is passed down the Node Graph unchanged.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>source range</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>mov64_decode_video_levels</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>default</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the minimum and maximum color range values for decoded DNxHD files. If your source file was encoded with a reduced range (0-240 for 8-bit or 0-960 for 10-bit), set source range to <b>Video Range</b> to decode the full range (0-255 for 8-bit or 0-1023 for 10-bit).</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1" data-mc-conditions="">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>first track only</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>mov64_first_track_only</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>When enabled, only the first view present in the file is displayed, regardless of how many views the file contains.</p>
+                                <p>When disabled, and there is more than one view set up in the project settings, you can switch between views using the buttons above the Viewer. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">psd Options<span class="_Override" style="font-weight: bold;"> </span>(PSD reads only)</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Breakout Layers</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">breakout</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">&#160;</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Breaks out the .psd file into separate layers and recombines them with a number of PSDmerge nodes. The blend modes/operations in the merge nodes are approximated and do no match Photoshop® exactly.</p>
+                                <p class="CellBody">It’s recommended that all masks and adjustment layers are rasterized in Photoshop® before they’re imported into Nuke.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">Sequence Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 248px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">import sequence</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">import sequence</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to display a browser to locate an import sequence script which builds a frame sequence list from the contents of an EDL file.</p>
+                                <p class="CellBody">These are not standard EDL files, such as CMX. Each line in the file simply defines a separate image sequence to import in the form:</p>
+                                <p class="cmdline">imagesequence.%04d.ext in out head tail</p>
+                                <p class="CellBody">Where in and out are the start/end frame numbers of the clip and head/tail are the number of frames to trim from the start and end.</p>
+                                <p class="CellBody">Each sequence in the list is expanded into the <span class="_Override" style="font-weight: bold;">sequence</span> control so that each line contains the name of the file to read for that frame:</p>
+                                <p class="cmdline">line 1 = frame 1, line 10 = frame 10.</p>
+                                <p class="CellBody">Finally, the script replaces the <span class="_Override" style="font-weight: bold;">Read</span> &gt; <span class="_Override" style="font-weight: bold;">file</span> text with:</p>
+                                <p class="cmdline">[lindex [knob sequence] [frame]]</p>
+                                <p class="CellBody">This looks up the file name from the <span class="_Override" style="font-weight: bold;">sequence</span> control and sets the <span class="_Override" style="font-weight: bold;">first</span> frame to 1 through to the <span class="_Override" style="font-weight: bold;">last</span> frame in the expanded list.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 128px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">frame sequence</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">sequence</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">none</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Most easily used in conjunction with the <span class="_Override" style="font-weight: bold;">import sequence</span> button. Each line contains the name of the file to read for that frame:</p>
+                                <p class="CellBody">line 1 = frame 1, line 10 = frame 10.</p>
+                                <p class="CellBody">Set the <span class="_Override" style="font-weight: bold;">Read</span> &gt; <span class="_Override" style="font-weight: bold;">file</span> control to<span class="_Override" style="font-weight: bold;"> [lindex [knob sequence] [frame]]</span> to look up the file name from this control. This allows you to use a single Read to access multiple sequences of files where the naming does not follow any set numeric sequence, rather than using multiple Read nodes with a single file sequence per Read.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+                                <p colspan="4">Metadata Tab</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">metadata viewer</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">shownmetadata</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the metadata of any file read in using a Read node. Once you know which keys exist in the file, you can reference them in expressions.</p>
+                                <p class="CellBody">The metadata displayed depends on the file type. For example, a <b>.jpg</b> might only contain <span class="_Override" style="font-weight: bold;">input/</span> keys, whereas QuickTimes contain <span class="_Override" style="font-weight: bold;">input/</span> and <span class="_Override" style="font-weight: bold;">quicktime/</span> keys.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">search metadata for</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">metadatafilter</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Filter the metadata by entering text in this field. By default, only metadata containing the <span class="_Override" style="font-weight: bold;">keys</span> and <span class="_Override" style="font-weight: bold;">values</span> entered are displayed. You can change this behavior using the <span class="_Override" style="font-weight: bold;">within</span> control.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p class="CellBody">within</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p class="CellBody">metadatafiltermode</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p class="CellBody">keys and values</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p class="CellBody">Defines how to filter the search metadata for control. You can search <b>keys and values</b>, <b>keys only</b>, or <b>values only</b>.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p><a href="../../getting_started/managing_scripts/loading_image_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Loading Image Sequences</span></a>
+                </p>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Importing Footage / Elements - Step Up to Nuke Tutorial 2</a></span>
+                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/62691339?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        <p><a href="https://vimeo.com/62691339" target="_blank">Importing Footage / Elements</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>We have gone over the basics of the Nuke interface. We can now move in and import some footage and create a basic network. In order to import footage into Nuke, you have to use a Read node. There are four main ways to create a new node in Nuke. The first is to go up to the toolbar and select a node, in this case, it will be under the first icon <b>Image</b> and then I can select Read. I will leave this for now. The second way is to return to the Node Graph, right-click, and choose a node from the list; once again <b>Image</b> &gt; <b>Read</b>. The third way is to press the <b>Tab</b> key on your keyboard, type the node name into the cell, and once you see the name, select it from your dropdown list. The fourth way is to use a pre-assigned hotkey, in this case, the Read node has the <b>R</b> key, so the <b>R</b> key on the keyboard.</p>
+                                <p>Now, if you used any of those four methods, you will get this browse window. On the left, you will see all of the drives and all of the main directories. You click on a directory name one time to go into that directory. Once you get to a folder with footage, you will see it listed, in this case, I have an image sequence. Nuke automatically recognizes image sequences, assuming that they are numbered correctly. So, here the image sequence runs from 0-90. You can just click on the image sequence until it turns orange and open it. Now, if you were to open a still image, or say a QuickTime movie, you would see those listed also. You would simply click on those files until they turned orange and open those also. So, I am going to click <b>Open</b> now and there is a Read node. You can click+drag any of these nodes to rearrange them inside the Node Graph.</p>
+                                <p>So, let’s make a simple network. What I can do is connect these two nodes together. To do that, I can click+drag the end of this input pipe on the Viewer, which looks like an arrow, and then drag+drop it on top of Read1. Once I let go of the mouse button, it makes a connection, and there you see the image sequence in the Viewer. Note the image sequence is 1920x1012. You will see that on the bounding box and also it will appear by the <b>format</b>. If I disconnect this, and I can do that by click+dragging the end of this pipe and letting go, I will see that the original project format is 2K. So, keep in mind, if I reconnect this that Nuke will alter the view based on the resolution of the input going into the Viewer. Now, there are ways to reformat inputs so I can change the width and height, but we'll save that for a later video. For now, this is OK.</p>
+                                <p>Let’s return to the properties panel and take a look at the properties. Of course, you have your path and the name of your image sequence, the recognized resolution, also the recognized <b>frame range</b>, and, at the very end there, is your <b>colorspace</b>. Now, <b>colorspace</b> is set to <b>default (linear)</b>. What that means is the Read node is not making any additional color changes to the image sequence. I should note, however, that Nuke operates in a 32-bit floating point colorspace. Whereas a regular 8-bit colorspace operates with 2⁸ of colors per channel or 256 colors per channel, Nuke potentially operates 2³² colors per channel. Also, because its floating point means that Nuke can operate with decimal places. In other words, you can have a value for a color that is something like 1.000000001 - an incredibly tiny decimal place value. So, a combination of a large bit depth and also the ability to handle decimal places means that Nuke operates in a very large, very accurate colorspace. We have imported footage and we have created a basic network, now we are ready to move on to more complex node networks.</p>
+                                <p>“Tears of Steel” footage courtesy (CC) Blender Foundation - <a href="http://mango.blender.org/">mango.blender.org</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="AudioRead|../other_nodes/audioread.html||DeepRead|../deep_nodes/deepread.html||ReadGeo|../3d_nodes/readgeo.html||UDIM Import|udim_import.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Link Icon" />Related Topics</span></a>
+        </p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

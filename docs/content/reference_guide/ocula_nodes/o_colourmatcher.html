@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Ocula 3.0 Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>O_ColourMatcher</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/ocula_nodes/o_colourmatcher.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>O_ColourMatcher</h1>
+        <p style="font-weight: normal;">The O_ColourMatcher plug-in lets you match the colours of one view with those of another. It has been specifically designed to deal with the subtle <a name="kanchor165"></a>colour differences that are sometimes present between stereo views.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="141px">
+                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+                                <p rowspan="2">Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>An optional mask that determines where to take the colour distribution from. For example, if you have a clip showing a person in front of a green screen, you might want to use a mask to exclude the green area so the plug-in concentrates on matching the person. </p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p class="CellBody">A stereo pair of images.</p>
+                                <p class="CellBody">If disparity channels and occlusion masks aren’t embedded in the images and you are using the <b>3D LUT</b> or <b>Local Matching</b> mode, you should use an O_Solver, an O_DisparityGenerator, and an O_OcclusionDetector node after the image sequence.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="603px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="117px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="108px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p>O_ColourMatcher Tab</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Views to Use</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>viewPair</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Dependent on source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the two views whose colours you want to match. These views will be mapped for the left and right eye.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Match</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>matchWhat</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Left to Right</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets how to match the colours between views:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Left to Right</b> - adjust the colours of the left view to match with those of the right.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Right to Left</b> - adjust the colours of the right view to match with those of the left.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Mode</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>matchingMode</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Basic</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the algorithm to use for the colour matching:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Basic</b> - this mode takes the colour distribution of one entire view and modifies that to match the distribution of the other view.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>3D LUT</b> - this mode generates a global look-up table (LUT) from local matches at unoccluded pixels.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This mode requires that there is a disparity field and an occlusion mask in the input data stream. If these don’t yet exist, you can create them using the O_Solver, O_DisparityGenerator, and OcclusionDetector plug-ins.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Local Matching</b> - this mode first divides the two images into square blocks according to the <b>Block Size</b> control. Then, it matches the colour distributions between corresponding blocks in the two views. This can be useful if there are local colour differences between the views, such as highlights that are brighter in one view than the other. Note that this mode requires that there is a disparity field in the input data stream. If there isn’t, you can create one using the O_Solver and O_DisparityGenerator  plug-ins.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If <b>Occlusion Compensate</b> is enabled, this mode also requires an occlusion mask upstream. If one doesn’t exist, you can use O_OcclusionDetector to create one.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Export 3D LUT</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>exportLUT</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Click to export the colour change calculated for the current frame as a 3D look-up table (LUT) in <b>.vf</b> format. </p>
+                                <p>This allows you to apply the LUT separately using Nuke’s Vectorfield (<b>Color</b> &gt; <b>3D LUT</b> &gt; <b>Vectorfield</b>) node. This control is only available in the <b>3D LUT</b> mode.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                                <p colspan="4">Local Matching Options</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Block Size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>blockSize</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>20</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Defines the width and height (in pixels) of the square blocks that the images are divided into when calculating the colour match.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span> This control is only available in the <b>Local Matching</b> mode. </p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Occlusion Compensate</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>occlusionCompensate</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>When <b>Occlusion Compensate</b> is enabled, O_ColourMatcher looks for similar colours in the nearby unoccluded areas that it has already been able to match and uses the closest colour it finds.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This requires an occlusion mask upstream (you can create one using O_OcclusionDetector) and is only available in the <b>Local Matching</b> mode.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Edge Occlusion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>edgeOcclusion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>0.40000001</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the threshold for treating image edges as occlusions to reduce haloing and edge flicker.</p>
+                                <p>The higher the value, the more image edges are considered occlusions even if they aren’t marked as such in the upstream occlusion mask.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available when <b>Occlusion Compensate</b> is enabled.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Colour Sigma</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>colourSigma</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>2</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the amount of blurring across edges in the colour match at occluded regions.</p>
+                                <p>Decrease this to restrict the colour correction in occluded regions to similar colours. Increase the value to blur the colour correction.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available when <b>Occlusion Compensate</b> is enabled.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Region Size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>regionSize</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>25</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the size of the region (in pixels) of unoccluded pixels used to calculate the colour correction at an occluded pixel.</p>
+                                <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>When <b>Occlusion Compensate</b> is enabled, O_ColourMatcher first finds the closest unoccluded pixel and then expands that distance by this number of pixels to pick up unoccluded pixels to use.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                                <p colspan="4">Multi-scale Options</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Number of Samples</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>samples</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>5</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the number of samples in <b>Local Matching</b> mode.</p>
+                                <p>Using a value larger than 1 calculates the correction for multiple block sizes - between <b>Block Size</b> and <b>Max Block Size</b> - and then blends the results together. This can help to reduce errors.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Max Block Size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>maxBlockSize</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>100</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the size (in pixels) of the maximum block size to go up to when using multiple samples in the Local Matching mode.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available if you have set <b>Mode</b> to <b>Local Matching</b> and <b>Number of Samples</b> to a value larger than 1. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Sample Spacing</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>intervalType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Uniform</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the type of sampling intervals to use when using multiple samples in the <b>Local Matching</b> mode:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Uniform</b> - the sampling interval remains constant. The samples are spaced evenly.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Favour Small Block Sizes</b> - the sampling interval increases as the block size increases. This weights the correction towards smaller block sizes, which preserve more detail, while still including some larger block sizes, which are more immune to disparity errors.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Colour Correction Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>correctionType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Best Guess</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Determines how O_ColourMatcher divides the two views into square blocks and matches the colour distributions between corresponding blocks:</p>
+                                <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span> If you set <b>Number of Samples</b> to a value larger than 1, <b>Colour Correction Type</b> does this for multiple block sizes and then combines the results for different block sizes together. </p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Minimum Correction</b> - out of the results you have, this picks the smallest correction at each point (that is, closest to your original image). This option can be useful if you have a very poor disparity map.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Best Guess</b> - out of the results you have, this picks the closest correction to the target image at each point. The target image is created by using the disparity field to warp the other view onto the image you're trying to correct. This option can be useful if you have a very good disparity map.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Average Correction</b> - use the mean value of the colour correction at each point. This option is the default.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available if you have set <b>Mode</b> to <b>Local Matching</b>. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                                <p colspan="4">Mask Options</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>Mask Components</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>maskWith</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p>Sets the channel to use as a mask when calculating the colour transformation:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>None</b> - use the entire image area.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Source Alpha</b> - use the alpha channel of the <b>Source</b> clip as a mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Source Inverted Alpha</b> - use the inverted alpha channel of the <b>Source</b> clip as a mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Luminance</b> - use the luminance of the <b>Mask</b> input as a mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Inverted Luminance</b> - use the inverted luminance of the <b>Mask</b> input as a mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Alpha</b> - use the alpha channel of the <b>Mask</b> input as a mask.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mask Inverted Alpha</b> - use the inverted alpha channel of the <b>Mask</b> input as a mask.s</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Ocula 3.0 - ColourMatcher</a></span>
+                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/33671463?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        <p><a href="https://vimeo.com/33671463" target="_blank">OCULA 3.0 - Colour Matcher</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Welcome to Ocula from Foundry. My name’s Jon, and in this tutorial we are going to take a look at setting up and reviewing the ColourMatcher node in Ocula 3.0. We are going to look at colour correcting this footage. If I switch between left and right eye, here, you can see there are some large changes in reflections on the floor. We want to match those reflections to the image, to ease the stereo viewing experience. In my script, I am setting up and reviewing disparity. We are rendering that out for use, and I am pulling it in here to do a colour correction, using the ColourMatcher node in Ocula, and we are going to look at quality checking that later on.</p>
+                                <p>So, first of all, let’s have a look at the setup and review. I have set the analysis keys in the Solver node, and I am using the default parameters in the DisparityGenerator node. There are some tutorials available on how to set up the Solver and DisparityGenerator nodes. Here I also have an OcclusionDetector node, and that’s adding in a new occlusion mask channel in Nuke. This defines the pixels that do not match between the left and right view, the pixels that are obscured or revealed between the views. The ColourMatcher is going to ignore those occluded pixels when it pulls the colour from one view onto the other. So, if we look at the OcclusionDetector, you can tune how the occlusions are defined and we’ll see how to do that later on. Here, you can see that the image borders are defined as occluded between left and right view. I am going to render out disparity and occlusion and then pull that back in to use with the ColourMatcher node.</p>
+                                <p>In the ColourMatcher, you can define the left and right views, whether to match the left to the right, or update the right to match the left. There are three different methods to calculate the colour: update a <b>Basic</b> lift and gain, a more complicated <b>3D LUT</b>, which you can then export for use outside Ocula or Nuke, and there is also an option to do a local colour correction (<b>Local Matching</b>). This matches small blocks between the left and right images, so it will match the subtle variations between the views, which is the reflection we are seeing here. You can choose whether to treat the occluded regions, defined by the occlusion detector, separately or not, and there are some parameters to tune. We will see how to tune those updates later. There are also some <b>Multi-scale Options</b> for the blocks. You can choose whether to use one or more block sizes, you can set the maximum block size to use, and also define how the update is applied. These options help to stabilise the colour update over time. The ColourMatcher also has a <b>Mask</b> input. You can choose how the mask is defined with the basic and 3D LUT methods, then the update is calculated in the mask region and applied to the whole image. In <b>Local Matching</b>, the update is calculated for the masked region and applied to that masked region. So, here’s the update that’s been calculated using the local correction method; you can see that reflections have been updated so they match between the left and right view.</p>
+                                <p>Now, let’s have a look at how we can quality check the colour correction. Down here, I am re-calculating the disparity for the corrected plates. Notice I have to pull the Solver information from upstream. I could have just re-calculated it here in the new Solver node. I am using that disparity with the Ocula StereoReviewGizmo. I have got it set to show a CheckerBoard key mix between the left and right view. If I switch the correction, I can pick up the converge point on the gizmo and move it around to check between any differences on the left and right on different parts of the image. If we take a look at the original footage, you can see the difference that’s been corrected. So, again, if we moved around, you could see the different colours in the left and right view in the key mix. Another way to quality check is to use the NewView node to pull the corrected view onto the ‘hero’ view, and then you can check for differences. I have the NewView set to pull the <b>Left</b> view, which we updated across onto the right using an <b>Interpolate Position</b> of 1. I can then do a per-pixel difference, so we can check for errors on the whole image at once. The difference is here, only on the edges, which may have a sub-pixel shift disparity calculation. If we look at the original plates, you can see the colour difference that’s been corrected by the ColourMatcher node.</p>
+                                <p>Let’s have a look at the colour correction for another shot. Here’s the left and right view, and there is a large colour shift we want to correct here. I have keyed the Solver, and we are calculating the disparity and occlusions as before. If we look at those occlusions, these are the pixels that are marked as different between left and right views. Now there are two ways in which occlusions are calculated, first by looking at differences in <b>Depth Occlusions</b>, where one part of the image is obscured by the other, and the other by looking at differences in image content, using a threshold on the colour difference between the views (<b>Colour Threshold</b>). So, we can switch these thresholds off and tune them to the shot. I am going to start by pulling up the <b>Depth Occlusions</b> until we just pick out the occlusions between the depth layers. I don’t want this to become too large and blobby. I can then work with the <b>Colour Threshold</b> so, again, I can start to pull this up until we just pick out the differences at these changes between depth and the scene. I tend to be quite conservative here; you don’t want to pick up lots of isolated regions that are going to flicker between frames. We want it to be stable over time. There are also some options here to refine the occlusion regions, and there’s some presets you can choose from, according to how much of the image is different between left and right views. So, here we are, seeing an extreme difference, so it’s much larger. One extra thing I have done for this shot is to add a roto to block out the bit at the top of the image, which is different between left and right. So, you are free to edit the occlusion masks with Roto or RotoPaint.</p>
+                                <p>So, let’s have a look at the results of the colour matching. This is the <b>Basic</b> method doing the lift and gain. You can improve this using the <b>3D LUT</b> method, which calculates a global update based on pixel matches, based on the left and right views. So, the result is much better, but it still has some variations in the reflections on the water. Now, I can export this and use it in a VectorField node in Nuke, so I can apply that 3D LUT without Ocula, or you can use it outside Nuke. Here’s the ColourMatcher result, and here’s the result from the VectorField node, and they match. We can also do a local correction to match the reflections on the water in this footage. Here, you can see the results: the left and right view match. Now we can use our QC technique again by looking at the colour difference within NewView. So, here’s the difference for the local colour correction, now we can go back and switch the methods, and compare those differences. There’s large changes with <b>Basic</b>. It’s better with <b>3D LUT</b>, but you can see the differences with the reflections on the water. And, finally, the <b>Local Matching</b>, which gives the best result.</p>
+                                <p>Let’s have a look at one more example. In this shot there are some extreme changes between the views. Large areas are not visible when you switch from one to the other. Here, you can see the shop front is obscured when I switch from the left to the right. Let’s review the footage with NewView. I am going to colour match the left view. So, here, I want to pull the right onto the left, and then compare that to the original left. You can see it highlights that shop front. We want to pick up this region with the OcclusionDetector. Now let’s set that up. I am going to switch to the <b>Mat</b> overlay (M) and you can see it picks up the shop fronts. There are some holes though, and some isolated regions, and these can flicker, so we want to remove them and create a stable mask. I am going to switch to the <b>Extreme</b> setting. This expands the mask and fills the holes to make sure that they are stable. Now let’s set up the thresholds, as we did before. We just want to pick out the shop front here. I can switch to set <b>Colour Threshold</b> next, and I want to make sure that there are no isolated patches left in the mask that will flicker, causing the colour update to flicker. So, this looks good. Now, one extra thing I have done here is to add a roto mask, just to make sure that occlusion is masked for the shot. I could have actually switched the thresholds off in the OcclusionDetector, and just used a roto instead.</p>
+                                <p>Now, let’s have a look at the colour correction for the left view. So, here, we have the basic lift and gain. Let’s switch to see the local block-based colour match. You can now see a yellow band on the wall. This is where the ColourMatcher is compensating for the occlusions. It looks at the pixels outside of the mask and it pulls the colour update inside of the mask. The problem here is that it’s pulled the update from the black region into the adjacent bricks. I just need to expand the <b>Region Size</b>, where it searches for the colour update so it can pull the update from other bricks. You can also restrict this to using regions of similar colour by reducing the <b>Colour Sigma</b>. Now, finally, you will notice there is some dark banding inside the teapot. This happens because the blocks are spanning the light and dark region. I need to use a smaller <b>Block Size</b>, so the update covers a smaller area. This looks good. You can try tuning the multi-sampling options, particularly if you are having any issues with the correction changing between frames; multi-sampling can improve the stability. Now, there are still some isolated regions inside of the occlusion mask I’m not happy with. What I am going to do now is switch to using the 3D LUT result in this region. This is the 3D LUT correction, and it looks pretty good. So, what I have done is shuffled the occlusion mask into alpha, and I am going to apply that as a matte to pick out the 3D LUT correction inside the occlusion mask, and the local correction outside. Here’s switching between the original and our final results, and you can see it corrects some shadowing and reflections in the shot.</p>
+                                <p>So, that wraps up this tutorial on the ColourMatcher. We have looked at rendering out the occlusion mask with disparity for use in colour matching. We have looked at the local colour matching and quality checking the result, in particular using NewView to rebuild one view on top of the other to look at colour differences. We then looked at a more detailed example, and how to set up the occlusions, how to edit them with roto, and finally, we looked at an extreme occlusion example and how to tune the colour matching parameters, and also switch between different colour matching results.</p>
+                            </div>
+                        </div>
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

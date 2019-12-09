@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Previews and Rendering|Previewing Output">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Flipbooking Sequences</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/rendering/flipbooking_sequences.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2><a name="kanchor168"></a>Flipbooking Sequences</h2>
+        <p class="afterHead"><span class="_Override" style="font-style: normal;">Flipbooking</span> a sequence refers to rendering a range of images (typically at <a name="kanchor169"></a>proxy resolution), then playing them back in order to accurately access the motion characteristics of added effects.</p>
+        <p>You have a few options for flipbooking within <span class="CustomProduct">Nuke</span>:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can enable automatic disk caching of rendered frames, then play these frames back using <span class="CustomProduct">Nuke</span>’s native Viewer. This option does <span class="_Override" style="font-style: normal;">not</span> let you define a specific playback rate.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can render out temporary image sequences using the default flipbooking tool, a RAM-buffering playback utility, which is displayed in its own Viewer and plays back sequences at the defined frame rate.</p>
+        <p class="bulletedCont">If you have purchased a license for HieroPlayer, you can flipbook using HieroPlayer rather than the default flipbook that ships with Nuke.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can also set up an external flipbooking application in <span class="CustomProduct">Nuke</span> using Python. For more information, see the <span class="CustomProduct">Nuke</span> Python documentation (<span class="_Override" style="font-weight: bold;">Help</span> &gt; <span class="_Override" style="font-weight: bold;">Documentation</span>).</p>
+        <p>The <span class="CustomProduct">Nuke</span> Viewer automatically saves to disk a version of every frame it displays. When you play through sequences in the Viewer, it reads, where possible, from this cache of pre-rendered images, making real-time play back possible (depending, of course, on image resolution and your hardware configuration). You can define the location and size of the Viewer cache in the <b>Preferences</b>.</p>
+        <p>Depending on what <b>viewer buffer bit depth</b> has been set to in the Viewer settings, the cache can contain 8-bit (<b>byte</b>), 16-bit (<b>half-float</b>), or 32-bit (<b>float</b>) image data. This offers a trade-off between speed and quality. Half-float and float modes provide higher precision than byte, but are also slower to process.</p>
+        <h4>To set the location and size of the Viewer cache:</h4>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click <b>Edit &gt; Preferences</b> to display the <i style="font-weight: bold; font-style: normal;">Preferences</i> dialog.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the <b>Performance </b>&gt;<b> Caching </b>section, there is a <b>Disk Caching</b> – <b>temp directory</b> field. Use this to enter the path name of the directory in which you want to store the flipbook images (for example, c:/temp).</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Using the <b>comp disk cache size</b> control, specify the number of gigabytes you want to allow the image cache to consume.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click <b>OK </b>in the bottom-right corner of the <b>Preferences</b> dialog<b> </b>to update preferences and then restart <span class="CustomProduct">Nuke</span>.</td>
+            </tr>
+        </table>
+        <p>The Viewer now caches each frame it displays in the directory specified. When you click the playback buttons on the Viewer, or drag on the scrub bar, <span class="CustomProduct">Nuke</span> reads in images from this cache.</p>
+        <p>Note that the cached images have unique names reflecting their point of output location in the script. This means that you can cache images from multiple nodes in the script without overwriting previously cached images. For more information on caching, see <a href="../../getting_started/managing_scripts/image_caching.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Image Caching</span></a>.</p>
+        <h4>To Use HieroPlayer as Nuke's Flipbook</h4>
+        <p>If you have purchased a license for HieroPlayer, you can flipbook using HieroPlayer rather than the default flipbook that ships with Nuke:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Copy the <b>flipbook_hiero_launch.py</b> and <b>hiero_flipbook.py</b> file from:</td>
+            </tr>
+        </table>
+        <p class="cmdlinenumCont">&lt;installation_folder&gt;/pythonextensions/site-packages/hiero/examples/</p>
+        <p class="numberedCont">to your <b>.nuke</b> folder.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Launch Nuke and open the Script Editor.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Type:</td>
+            </tr>
+        </table>
+        <p class="cmdlinenumCont"> import hiero_flipbook</p>
+        <p class="numberedCont"> and press <b>Ctrl/Cmd</b>+<b>Return</b>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Open the required comp and launch the flipbook by clicking the <img src="../../assets/images/ug_images/icon_flipbook_viewer2_24x24.png" style="vertical-align: bottom;width: 24;height: 24;" /> icon under the Viewer or by pressing <b>Alt</b>+<b>F</b> on a selected node.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select <b>HieroPlayer</b> from the <b>Flipbook</b> dropdown and proceed as described below.</td>
+            </tr>
+        </table>
+        <h3>How to Flipbook a Sequence</h3>
+        <p>To flipbook an image sequence, do the following:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the node that you want to flipbook the output of.</td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you select a Write node in the step above, you must first click its <span class="_Override" style="font-weight: bold;">Render</span> button in order to manually render its output to the destination defined in the <span class="_Override" style="font-weight: bold;">file</span> field. This step is necessary only in the case of Write nodes.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>Render</b> &gt; <b>Flipbook selected</b> (or press <b>Alt</b>+<b>F</b>). </td>
+            </tr>
+        </table>
+        <p class="numberedCont">Alternatively, you can click the <span class="_Override" style="font-weight: bold;">Flipbook</span> <span class="_Override" style="font-weight: bold;">this</span> <span class="_Override" style="font-weight: bold;">Viewer</span> button <img src="../../assets/images/ug_images/icon_flipbook_viewer2_24x24.png" style="vertical-align: bottom;width: 24;height: 24;" /> at the bottom-right of the Viewer. This flipbooks the nodes that are connected to the Viewer.</p>
+        <p class="numberedCont">A <b>Flipbook</b> dialog opens.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Check that your settings are correct in the dialog. The default values are copied from the Viewer you currently have active. You can change them if necessary: </td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Flipbook</b> - set the flipbooking application you want to use. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Take</span> <span class="_Override" style="font-weight: bold;">settings</span> <span class="_Override" style="font-weight: bold;">from - </span>set which Viewer should be used to draw default values from. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Enable ROI - </span>Check to define your region of interest. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Channels</span> - select which layer to display in the flipbook result. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Frame</span> <span class="_Override" style="font-weight: bold;">range - </span>set the frame range you want to flipbook.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Use</span> <span class="_Override" style="font-weight: bold;">proxy - </span>check to use proxy mode.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Render in background</span> - check to render in the background. If you check this, you can also set <b>Thread limit</b> and <span class="_Override" style="font-weight: bold;">Memory limit</span> controls. The former limits the number of threads that <span class="CustomProduct">Nuke</span> uses in the background and the latter limits the amount of cache memory that <span class="CustomProduct">Nuke</span> uses.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you’re rendering multiple sequences in the background, this can take up more than the total RAM on your machine. When running background renders of any type, you need to make sure they don't require more RAM all together than what's available on the machine, otherwise you may experience problems such as hanging.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Delete</span> <span class="_Override" style="font-weight: bold;">existing</span> <span class="_Override" style="font-weight: bold;">temporary</span> <span class="_Override" style="font-weight: bold;">files - </span>Check to delete any existing temporary files with the same file name before flipbooking.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">LUT</span> - select the LUT appropriate for viewing. By default, the flipbook renders your files with a linear colorspace and attempt to pass a LUT file to the flipbook. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Burn</span> <span class="_Override" style="font-weight: bold;">in</span> <span class="_Override" style="font-weight: bold;">the</span> <span class="_Override" style="font-weight: bold;">LUT</span> - If you check this box the flipbook files are rendered with the LUT applied. If you uncheck it, the flipbook is displayed using it's equivalent LUT (based on the LUT’s name). If you have an equivalent LUT available in the flipbook program, then it's better not to check the <span class="_Override" style="font-weight: bold;">Burn in the LUT</span> box. This way, when you measure pixel values in the flipbook application they match what you get in the <span class="CustomProduct">Nuke</span> Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Audio</span> - if you want to flipbook an audio file with your clip, select the AudioRead node you need in this dropdown. For more information on audio files in <span class="CustomProduct">Nuke</span>, see <a href="../audio_in_nuke/audio_nuke.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Audio in Nuke</span></a>. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Continue</span> <span class="_Override" style="font-weight: bold;">on</span> <span class="_Override" style="font-weight: bold;">error</span> - check to keep rendering even if an error occurs during the process.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Views</b> - check the view(s) to output, if you're working in a multi-view comp. </p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <b>Views</b> control is only available in multi-view comps. See <a href="../stereoscopic_films/stereo_projects.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Stereoscopic Scripts</span></a> for more information.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Buffer</span> - set which buffer you want include. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click <b>OK</b>.</td>
+            </tr>
+        </table>
+        <p class="numberedCont"><span class="CustomProduct">Nuke</span> renders as a temporary sequence the output of the selected node using the frame range and resolution defined in the script’s settings. This may take a few moments.</p>
+        <p class="numberedCont">After the render is complete, <span class="CustomProduct">Nuke</span> launches Flipbook Viewer and loads in the temporary sequence. You can play it back and view it using Flipbook Viewer controls.</p>
+        <p class="numberedCont">If you flipbooked a stereo comp, you can right-click in the Flipbook and choose <b>Stereo Modes</b> to view your flipbook in various configurations:</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Side by Side</b> - displays the views side by side at the correct aspect ratio, and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Squeezed Side by Side</b> - displays the views side by side and squeezed to fit the format horizontally, and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Squeezed Above by Below</b> - displays the views above and below each other and squeezed to fit the format vertically, and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Interlace H</b>  - displays the views interlaced horizontally, and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Interlace V</b> - displays the views interlaced vertically, and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Checkerboard</b> - displays the views using an alternating checkerboard pattern (one pixel from left and one pixel from right), and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Anaglyph</b> - displays the views simultaneously using a red hue for left and green hue for right, and adds selection controls above the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Flicker</b> - displays both views alternately, and adds selection controls above the Viewer.</p>
+        <h3>Capturing the Viewer</h3>
+        <p>You can capture the contents of the Viewer for a quick real-time flipbook, also known as a playblast, and save the content out to <b>.jpg</b> for review. This is very useful for quickly checking the animation in your 3D scene in real-time without having to do a full scanline render. Playblast flipbooks the Viewer 'as is', including 2D and 3D scenes, handle and transform overlays (such as roto shape outlines), wipes, and so on.</p>
+        <table>
+            <col style="width: 120mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../../assets/images/ug_images/capture0.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>The contents of a Viewer containing 3D and 2D information, including the wipe handle, captured in <b>.jpg</b> format.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To capture the Viewer contents:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click the <b>Capture</b> button under the Viewer, to the right of the flipbook button.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">The <b>Capture</b> dialog displays.</p>
+        <p class="graphic">&#160;</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/capture_flipbook_new_265x266.png" style="width: 265;height: 266;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select the required <b>Flipbook</b> tool using the dropdown.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you have more than one Viewer in the script, select the required Viewer.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Check that your settings are correct in the dialog. The default values are copied from the Viewer you currently have active. You can change them if necessary: </td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Frame range </span>- set which Viewer you want to draw default values from, and set the frame range that you want to flipbook.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Use </span><span class="_Override" style="font-weight: bold;">proxy - </span>check to use proxy mode.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Render in background</span> - check to render in the background. If you check this, you can also set <b>Thread limit</b> and <span class="_Override" style="font-weight: bold;">Memory limit</span> controls. The former limits the number of threads that <span class="CustomProduct">Nuke</span> uses in the background and the latter limits the amount of cache memory that <span class="CustomProduct">Nuke</span> uses.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Delete existing temporary files</b> - disable this if you want to retain previously cached files.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Continue</span><span class="_Override" style="font-weight: bold;"> on </span><span class="_Override" style="font-weight: bold;">error</span> - check to keep rendering even if an error occurs during the process. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Buffer</b> - select the buffer you want to capture.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Customise write path</b> - Check this to manually set the location (in the <b>Write path</b> field below) where the <b>.jpg</b> files are stored.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>No flipbook</b> - Enable this if you don't require the selected flipbooking tool to display the frame range.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><span class="CustomProduct">Nuke</span> only captures sequences using the <b>.jpg</b> format. Don't forget to include printf or hash frame padding, such as <b>%4d</b> or <b>####</b>.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Click <b>OK</b> to capture  the contents of the Viewer.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">The frame range is cached as <b>.jpg</b>s to either the default location set in the <b>Preferences</b> dialog, or – if enabled – the directory specified in the <b>Write path</b> control.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

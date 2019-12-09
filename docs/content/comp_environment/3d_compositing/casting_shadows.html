@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Lighting">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Casting Shadows</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/casting_shadows.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Casting Shadows</h2>
+        <p class="afterHead">The Light, Point, DirectLight, and Spotlight nodes all have controls that you can use to adjust how the lights cast shadows in your 3D scene. The following geometry nodes also have controls that allow you to select whether they receive shadows cast by the lights and whether they themselves cast shadows on other objects:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Card</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Cube</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Cylinder</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Sphere</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>MergeGeo</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>ModelBuilder</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>PointCloudGenerator</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>PositionToPoints</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>ReadGeo</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Scene</p>
+        <p>Note that the method used to create shadows varies between different render nodes: </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>ScanlineRender uses depth mapping to create shadows.</b> It first renders a depth map for each light that casts a shadow. The depth map is rendered from the light’s point of view, and each pixel in the depth map represents the distance from the light to the nearest surface the light illuminates in a specific direction. The depth map is then compared to the render from the point of view of the camera. If a point is farther away in the image that the camera sees than in the depth map, then that point is considered to be in shadow.</p>
+        <p class="bulletedCont">Depth map shadows are often faster to render than raytraced shadows, but may not appear as realistic.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/shadow_casting1.png" />
+        </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>PrmanRender creates shadows through raytracing.</b> It fires individual light rays from the camera into the scene for each pixel. When a light ray hits a surface in the scene, PrmanRender traces so called shadow rays between the intersection point and every light source in the scene. If there are obstacles between the intersection point and the light sources, the intersection point is considered to be in shadow.</p>
+        <p class="bulletedCont">The advantage of raytracing is that it can be used to create more accurate shadows and shadows that have soft edges, much like those in the real world. However, compared to creating shadows using depth mapping, raytracing can take much longer to render.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/shadow_casting2.png" />
+        </p>
+        <h3>To Cast Shadows:</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Open the properties panels for the 3D objects in your scene. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Check the <span class="_Override" style="font-weight: bold;">cast shadow</span> or <span class="_Override" style="font-weight: bold;">receive shadow</span> box, or both.</td>
+            </tr>
+        </table>
+        <p class="numberedCont"><span class="_Override" style="font-weight: bold;">Cast shadow</span> tells objects in a light’s path to cast shadows onto other objects in the scene.</p>
+        <p class="numberedCont"><span class="_Override" style="font-weight: bold;">Receive shadow</span> tells objects to display shadows cast by other objects in the scene. This is useful for showing occlusion in a scene.</p>
+        <p class="numberedCont">You can also use a Scene node to define these settings for all 3D objects connected to it. In the Scene properties, set <span class="_Override" style="font-weight: bold;">shadow</span> to <span class="_Override" style="font-weight: bold;">override inputs</span> and use the <span class="_Override" style="font-weight: bold;">cast shadow</span> and <span class="_Override" style="font-weight: bold;">receive shadow</span> controls to override the corresponding controls on the individual 3D objects.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Make sure you’ve got a Shader node attached to any 3D objects that you want to receive shadows.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Attach a light to your scene, and check the <span class="_Override" style="font-weight: bold;">cast</span> <span class="_Override" style="font-weight: bold;">shadows</span> box on the <span class="_Override" style="font-weight: bold;">Shadows</span> tab. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">In our example node tree below, we are using a ScanlineRender node, but you could use a PrmanRender node instead.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/3d_shadows_nodes.png" style="margin-bottom: 1.000076px;" />
+        </p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you are using a point light, casting shadows is not supported in the ScanlineRender node.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Depending on the render node you are using, proceed to either:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><a class="noPage MCXref xref xrefnoPage" href="#Adjusting_Shadows_When_Using_ScanlineRender"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting Shadows When Using ScanlineRender</span></a> below, or</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><a href="#Adjusting_Shadows_When_Using_PrmanRender" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting Shadows When Using PrmanRender</span></a>.</p>
+        <h4><a name="Adjusting_Shadows_When_Using_ScanlineRender"></a>Adjusting Shadows When Using ScanlineRender</h4>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">On the <span class="_Override" style="font-weight: bold;">Shadows</span> tab of the light node properties, set <span class="_Override" style="font-weight: bold;">shadow mode</span> to:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>solid</b> - Objects seen from the light that cast shadows are considered completely solid.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>clipped alpha</b> - objects that cast shadows are considered to be transparent if the object’s alpha is below the light’s clipping threshold control. All other alpha values fully occlude the light.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">full alpha</span> - Shadows are calculated based on how light is reduced when it passes through non-opaque occluders.</p>
+        <p class="numberedCont">This affects shadows cast by objects, based on the objects’ opacity.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_solid.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_clip_threshold_0.9.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Solid. (The shadow is<br />rectangular because the<br />leaf image is applied on<br /> a Card object.)</td>
+                    <td class="caption">Clipped alpha.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_full_alpha.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Full alpha.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you want the light node to to output the shadow map, set<span class="_Override" style="font-weight: bold;"> output</span> <span class="_Override" style="font-weight: bold;">mask</span> to the channel where you want to store this. You can enable this even if <span class="_Override" style="font-weight: bold;">cast shadows</span> is disabled.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you set <span class="_Override" style="font-weight: bold;">shadow mode</span> to <span class="_Override" style="font-weight: bold;">solid</span> or <span class="_Override" style="font-weight: bold;">clipped alpha</span>, you can adjust the following:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">depthmap resolution</span> - this sets the resolution of the depth map. Larger values result in shadows with less crunchy edges and less artifacts, but require more time to process.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_map_res_800.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_map_res_7400.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Depthmap resolution</span> set <br />to 800.</td>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Depthmap resolution</span> set <br />to 7400.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="processBulletCont">Note that you can also fix crunchy edges by increasing the number of <span class="_Override" style="font-weight: bold;">samples</span> instead of increasing the depth map resolution.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">samples </span>- this sets the number of samples for the light when generating soft shadows. If soft shadows in your scene appear dotty or noisy, try increasing this value. The higher the value, the smoother the soft the shadows become.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_sr_samples_1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000074px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_sr_samples_50.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Samples</span> set to 1.</td>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Samples</span> set to 50.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">jitter scale</span> - the amount of jitter used when doing percentage-closer filtering (PCF) for soft shadows. A larger <span class="_Override" style="font-weight: bold;">jitter scale</span> value results in softer, more perceptually accurate shadows.</p>
+        <p class="processBulletCont">PCF works by sampling the depth map at many different positions around the same spot. The final shadow value for that spot is an average of how many of the samples were occluded or visible from point of view of the light.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bias</span> - this is a constant offset that moves the surface sample point away from surface, towards the light that is casting the shadow. If self-shadowing artifacts appear in the image, you may want to increase this value. Note, however, that if you increase the value too much, some shadows may start moving away from the base of the objects that cast them.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_artifacts.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_increased_bias.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Shadow artifacts.</td>
+                    <td class="caption">Increasing <span class="_Override" style="font-weight: bold;">bias</span> can help<br />reduce artifacts.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">slope bias</span> - this is like <span class="_Override" style="font-weight: bold;">bias</span>, but the offset is proportional to the slope of the depth map. This allows you to give a different offset to each value in the depth map, depending on the surface’s slope relative to the light. For example, if the surface’s slope relative to the light is shallow, the value in the depth map may be a correct approximation and no offset (or only a very small offset) is needed. If the surface’s slope relative to the light is steep, the values in the depth map are less likely to be a correct approximation and a larger offset is needed.</p>
+        <p class="processBulletCont">If increasing <span class="_Override" style="font-weight: bold;">bias</span> reduced the existing self-shadowing artifacts but introduced more artifacts in other areas of the image, you may want to bring <span class="_Override" style="font-weight: bold;">bias</span> down a little and increase <span class="_Override" style="font-weight: bold;">slope bias</span> instead. Then, tweak both values until you’re happy with the result.</p>
+        <p class="numberedCont">In the <span class="_Override" style="font-weight: bold;">clipped alpha</span> mode, you can also adjust:</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">filter</span> - the type of filter to use. For more information on the available filtering algorithms, see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:transforming_elements_3731870222_35122"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">clipping threshold</span> - any surface samples with alpha values below this threshold are considered transparent. The higher the value, the more areas on objects that cast shadows are considered transparent and pass through some light.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_clip_threshold_0.1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000074px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_clip_threshold_0.10.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Clipping threshold</span> set to 0.1.</td>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Clipping threshold</span> set to 0.9.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you set <span class="_Override" style="font-weight: bold;">shadow mode</span> to <span class="_Override" style="font-weight: bold;">full alpha</span>, you can adjust the following:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">filter</span> - the type of filter to use. For more information on the available filtering algorithms, see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:transforming_elements_3731870222_35122"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">scene epsilon</span> - an offset that moves the sampling point away from the geometry surface, towards the light that is casting the shadow. Increasing this value can reduce self-shadowing artifacts.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>To generate accurate shadows from a Direct light, view the scene through the light (using the Viewer's camera dropdown menu) and adjust the Direct light's <span class="_Override" style="font-weight: bold;">scale</span> control so that the part of the scene that should cast shadows fits within the view. This ensures that none of the shadow-casting geometry is missed by the depth map.</p>
+        <h4><a name="Adjusting_Shadows_When_Using_PrmanRender"></a>Adjusting Shadows When Using PrmanRender</h4>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Open the PrmanRender properties and make sure <span class="_Override" style="font-weight: bold;">shadows</span> is enabled.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Open the light node properties and go to the <span class="_Override" style="font-weight: bold;">Shadows</span> tab.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Make sure <span class="_Override" style="font-weight: bold;">shadow mode</span> is set to <span class="_Override" style="font-weight: bold;">solid</span>. The other two modes aren’t relevant when using PrmanRender.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you want to cast soft shadows from the light, increase<span class="_Override" style="font-weight: bold;"> sample</span> <span class="_Override" style="font-weight: bold;">width</span>. This value multiplies the width of the soft area around the egde of a shadow. The higher the value, the larger the soft area.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_sample_width_1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_sample_width_15.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Sample width</span> set to 1.</td>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Sample width</span> set to 15.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If you increased <span class="_Override" style="font-weight: bold;">sample width</span> in the previous step and the resulting soft shadows in your scene appear dotty or noisy, increase <span class="_Override" style="font-weight: bold;">samples</span>. This sets the number of samples for the light when generating soft shadows. The higher the value, the smoother the soft shadows become.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_samples_10.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_samples_80.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Samples</span> set to 10.</td>
+                    <td class="caption"><span class="_Override" style="font-weight: bold;">Samples</span> set to 80.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If self-shadowing artifacts appear in the image, increase the <span class="_Override" style="font-weight: bold;">bias </span>value. This moves the surface sample point away from surface. Note, however, that if you increase the value too much, some shadows may start moving away from the base of the objects that cast them.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_artifacts1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="CellBody">
+                            <img src="../../assets/images/ug_images/3d_shadows_increased_bias1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Shadow artifacts.</td>
+                    <td class="caption">Increaseing <span class="_Override" style="font-weight: bold;">bias</span> can help<br />reduce artifacts.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

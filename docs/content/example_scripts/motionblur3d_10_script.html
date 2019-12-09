@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>motionblur3d_10_script</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#example_scripts/motionblur3d_10_script.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script><pre><p>Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ tile_color 0x9b9b9bff
+ label "While similar to the MotionBlur2D node \nin that it does not produce motion blur \nindependently, MotionBlur3D is designed \nspecifically for camera moves rather \nthan 2D transforms.\n\nIt generates motion vectors from\nfootage and a camera input. \nIf a z-depth channel is available,\nthis is also taken into account.\n\nThe generated motion vectors can\nthen be used in the VectorBlur node\nto apply motion blur to the footage.\n\n"
+ note_font_size 18
+ xpos -586
+ ypos -270
+}
+Camera2 {
+ inputs 0
+ translate {{curve i x1 -3.730796576 x7 5.078611374 x10 7.377658844 x16 5.452919006 x18 4.485298634 3.046649694} {curve i x1 3.436206818 x7 5.077408791 x10 5.380681515 x16 4.597033501 x18 3.988295555 3.570898533} {curve i x1 10.02727699 x7 7.394742012 x10 5.295120716 x16 0.2301386297 x18 -1.379944086 -2.820096016}}
+ rotate {{curve i x1 -17.79999733 x10 -30.20003128 x20 -39.80005264} {curve i x1 -16.80001259 x10 47.39998245 x20 132.6000366} {curve i x1 0 x10 0 x20 0}}
+ name Camera1
+ xpos 64
+ ypos -129
+}
+set N3af4000 [stack 0]
+Dot {
+ name Dot1
+ xpos 88
+ ypos -45
+}
+push $N3af4000
+Light2 {
+ inputs 0
+ intensity 1.3
+ translate {0.9146963954 1.1832937 0.9894348383}
+ rotate {-21.40003586 46.40003204 0}
+ name Light1
+ xpos -200
+ ypos -220
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.1083612218 0.06631816924 0.3199999928 0}
+ name Constant2
+ xpos 17
+ ypos -510
+}
+Shuffle {
+ alpha white
+ name Shuffle1
+ xpos 17
+ ypos -420
+}
+Phong {
+ name Phong2
+ xpos 17
+ ypos -349
+}
+Sphere {
+ translate {1 0 0}
+ uniform_scale 0.68
+ name Sphere1
+ xpos 17
+ ypos -298
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.053299997 0.09904222935 0.4099999964 0}
+ name Constant1
+ xpos -100
+ ypos -508
+}
+Shuffle {
+ alpha white
+ name Shuffle2
+ xpos -100
+ ypos -419
+}
+Phong {
+ diffuse 0.7
+ specular 0.98
+ min_shininess 9.4
+ max_shininess 12.6
+ name Phong1
+ xpos -100
+ ypos -350
+}
+Cube {
+ translate {-1 0 0}
+ name Cube1
+ xpos -100
+ ypos -296
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos -212
+ ypos -509
+}
+Phong {
+ diffuse 0.06
+ specular 0.28
+ name Phong3
+ xpos -212
+ ypos -349
+}
+Card2 {
+ translate {0 -0.7 0}
+ rotate {90 0 0}
+ uniform_scale 30
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card1
+ xpos -212
+ ypos -295
+}
+Scene {
+ inputs 4
+ name Scene1
+ xpos -90
+ ypos -220
+}
+push 0
+ScanlineRender {
+ inputs 3
+ motion_vectors_type velocity
+ name ScanlineRender1
+ xpos -100
+ ypos -108
+}
+MotionBlur3D {
+ inputs 2
+ Z depth.Z
+ name MotionBlur3D1
+ xpos -100
+ ypos -48
+}
+VectorBlur2 {
+ uv motion
+ scale 2
+ name VectorBlur2_1
+ xpos -100
+ ypos 20
+}
+Viewer {
+ frame 1
+ frame_range 1-100
+ name Viewer1
+ xpos -100
+ ypos 95
+}
+</p></pre>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

@@ -1,0 +1,33 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote7
+ label "LensFlareKernel:\nThis generates a simple lens flare.\nIt requires no inputs."
+ xpos -292
+ ypos -77
+}
+BlinkScript {
+ inputs 0
+ ProgramGroup 1
+ KernelDescription "1 \"LensFlareKernel\" iterate pixelWise 378dc01eb6650469084332891fba57b12073add1e27f1ba69d4baa5721df578f 1 \"dst\" Write Point 7 \"FlareHandle\" Float 2 AABIRAAASEQ= \"Centre\" Float 2 AADIQwAAyEM= \"Size\" Float 1 AAAWQw== \"Spread\" Float 1 mpmZPg== \"Brightness\" Float 1 AACAPw== \"NDots\" Int 1 BQAAAA== \"Seed\" Int 1 AAAAAA=="
+ kernelSource "// Copyright (c) 2012 The Foundry Visionmongers Ltd.  All Rights Reserved.\n// Example RIP Kernel\n\n#define kRandMax 32767\n\n/// Platform-consistent PRNG based on SGI rand().\ninline int RandI(unsigned int seed) \{\n  unsigned int next = seed;\n  int result;\n\n  next *= 1103515245;\n  next += 12345;\n  result = (unsigned int) (next / 65536) % 256;\n\n  next *= 1103515245;\n  next += 12345;\n  result <<= 7;\n  result ^= (unsigned int) (next / 65536) % 256;\n  return result;\n\}\n\ninline float RandF(unsigned int seed)\n\{\n  return float(RandI(seed))/float(kRandMax);\n\}\n\n/// LensFlareKernel: Generates a lens flare on top of the input image.\n/// NOTE that this process does not currently vectorize.\nkernel LensFlareKernel : ImageComputationKernel<ePixelWise>\n\{\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  float2 flareHandle;\n  float2 centre;\n  float  size;\n  float  spread;\n  float  brightness;\n  int    nDots;\n  int    seed;\n\nlocal:\n  static const int kMaxDots = 10;\n  float4 colours\[kMaxDots];\n  float2 dotCentres\[kMaxDots];\n  float  invSizeSqr\[kMaxDots];\n  int actualDots;\n\n  void define() \{\n    defineParam(centre,      \"Centre\", float2(400.0f, 400.0f));\n    defineParam(flareHandle, \"FlareHandle\",  float2(800.0f, 800.0f));\n    defineParam(size,        \"Size\",         150.0f);\n    defineParam(brightness,  \"Brightness\",   1.0f);\n    defineParam(spread,      \"Spread\",   0.3f);\n    defineParam(nDots,       \"NDots\",   5);\n    defineParam(seed,        \"Seed\",   0);\n  \}\n\n  void init() \{\n    actualDots = nDots > kMaxDots ? kMaxDots : nDots;\n    actualDots = actualDots < 0 ? 0 : actualDots;\n    float2 dist = centre - flareHandle;\n    for(int i = 0; i < actualDots; ++i) \{\n      float t = float(i) / float(kMaxDots-1);\n      dotCentres\[i] = flareHandle + dist * spread * RandF(seed + i);\n      float thisSize =  RandF(seed + i + 1000) * size;\n      invSizeSqr\[i] = 1.0f/(thisSize * thisSize);\n      colours\[i] = float4(RandF(seed + i + 2000),\n                          RandF(seed + i + 3000),\n                          RandF(seed + i + 4000),\n                          RandF(seed + i + 5000));\n    \}\n  \}\n\n  float4 flareValue(float2 posf,\n                   int index)\n  \{\n    float2 delta = posf - dotCentres\[index];\n    float dotDelta = dot(delta, delta) * invSizeSqr\[index];\n    float value = clamp(1.0f - dotDelta, 0.0f, 1.0f);\n    value *= value;\n    return colours\[index] * value;\n  \}\n\n  void process(int2 pos) \{\n    float2 posf(pos.x, pos.y);\n\n    SampleType(dst) sample(0.0f);\n\n    float4 value = 0;\n    for(int i = 0; i < actualDots; ++i) \{\n      value += flareValue(posf, i);\n    \}\n\n    sample.x += value.x * brightness;\n    sample.y += value.y * brightness;\n    sample.z += value.z * brightness;\n\n    dst() = sample;\n  \}\n\n\};\n"
+ rebuild ""
+ LensFlareKernel_FlareHandle {1678 238}
+ LensFlareKernel_Centre {1306 1242}
+ name BlinkScript14
+ selected true
+ xpos -248
+ ypos -18
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -248
+ ypos 25
+}

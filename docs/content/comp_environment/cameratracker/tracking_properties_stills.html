@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Camera Tracking|Tracking in Stills Mode">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Tracking Still Frames</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/cameratracker/tracking_properties_stills.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Tracking Still Frames</h2>
+        <p>Before you do anything else, you need to tell CameraTracker which still frames you want it to track and how it should distribute the tracking features on each frame. Then, you can track your still frames.</p>
+        <h3>Selecting the Frames to Track</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">On the <span class="_Override" style="font-weight: bold;">CameraTracker</span> tab of the CameraTracker properties, ensure that <b>Source</b> is set to <b>Stills</b>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Use the <b>Range</b> dropdown to determine which frames are analyzed:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Input</b> - the default value, sets the frame range to the length of the sequence attached to the <b>Source</b> input.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Global</b> - sets the tracking frame range to the range set in the Project Settings <b>frame range</b> controls.</p>
+        <p class="processBulletCont">If no frame range is defined, the frame range of the first image you read in is used as the <b>Global</b> frame range.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Custom</b> - sets a tracking range of frames described by the <b>from</b> and <b>to</b> fields. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Reference Frames</b> - allows you to manually set keyframes on the frames you want to analyze.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you set <b>Range</b> to <b>Reference Frames</b>, do one of the following:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To set all frames in the input as reference frames, set the <b>Add</b> dropdown menu to <b>Add All</b> . Any missing frames on the input are skipped.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To set a specific frame range as reference frames, set the <b>Add</b> dropdown menu to <b>Add Range</b>. In the dialog that opens, enter the frame range in the <b>Frame range</b> field and click <b>OK</b>.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To set individual frames as reference frames,  set the <b>Thumbnails</b> dropdown menu to <b>All</b> at the top of the Viewer. Then, scrub to a frame you want to set as a reference frame and click the add reference frame button <img src="../../assets/images/ug_images/icon_keys1.png" alt="" title="" />. The current frame is set as a keyframe and displayed in the thumbnail gallery at the bottom of the Viewer. </p>
+        <p class="numberedCont">
+            <img src="../../assets/images/ug_images/ct2_selecting_ref_frames_567x307.png" style="width: 567;height: 307;" />
+        </p>
+        <p class="processBulletCont">Scrub to the next frame you want to add as a reference frame and repeat the process until you're happy with your set of reference frames.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If necessary, you can also use the delete reference frame button <img src="../../assets/images/ug_images/icon_keys2.png" alt="" title="" /> or the <b>Delete</b> dropdown menu in the CameraTracker properties to remove frames from the set of frames to analyze.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Proceed to <a href="#Adjusting_Features_to_Track" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Features to Track</span></a> below.</td>
+            </tr>
+        </table>
+        <h3><a name="Adjusting_Features_to_Track"></a>Adjusting the Features to Track</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">If you intend to mask out parts of your image (such as burn-ins), set the <span class="_Override" style="font-weight: bold;">Mask</span> control to the matte source. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">For example, if you're using the alpha channel from a Roto node attached to the <b>Mask</b> input, select <b>Mask Alpha</b>. For more information, see <a href="masking.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Masking Out Regions of the Image</span></a>.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>For stereoscopic or multi-view footage, set the <b>Principal View</b> on the <b>CameraTracker </b>or<b> Settings</b> tab to the main tracking view. Any masking should be applied to this view, which is then used to calculate the secondary camera.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">On the <span class="_Override" style="font-weight: bold;">Settings</span> tab, define the starting points for feature tracking:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Number</span><span class="_Override" style="font-weight: bold;"> of</span><span class="_Override" style="font-weight: bold;"> Features</span> - define the number of features you want to track in each frame. </p>
+        <p class="processBulletCont">Ideally, you should use more than 200 tracks per frame. In most cases, the default 250 should be sufficient, but in difficult solves you may consider using twice that number. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Detection</span><span class="_Override" style="font-weight: bold;"> Threshold</span> - set the distribution of features over the input image. </p>
+        <p class="processBulletCont">If you enter a low detection threshold value, features are tracked evenly on all parts of the image and vice versa.</p>
+        <table>
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_stills_threshold_low.png" alt="" title="" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_stills_threshold_high.png" alt="" title="" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Low threshold distribution</td>
+                    <td class="caption">High threshold distribution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Feature</span><span class="_Override" style="font-weight: bold;"> Separation</span> - set the distribution of features in relation to each other. </p>
+        <p class="processBulletCont">To force feature separation and spread features evenly over the image at even distances, enter a high feature separation value.</p>
+        <table>
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_stills_separation_low.png" alt="" title="" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_stills_separation_high.png" alt="" title="" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Low separation value</td>
+                    <td class="caption">High separation value</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Check <span class="_Override" style="font-weight: bold;">Refine Feature Locations</span> to lock detected features to local corners. If you activate this, CameraTracker finds the closest corner point in your footage and locks the feature to it. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Check <span class="_Override" style="font-weight: bold;">Preview</span><span class="_Override" style="font-weight: bold;"> Features</span> to view the current distribution of tracking features. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">Preview comes in handy when you want to tweak the tracking parameters further before tracking - it updates dynamically when controls are adjusted.</p>
+        <p class="numberedCont">It's important to make sure that the previewed features are distributed evenly and not clustered together too densely before tracking using the distribution and separation controls.</p>
+        <table style="caption-side: top;">
+            <col style="width: 70mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_stills_preview_tracks.png" alt="" title="" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Previewing features in a sequence</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Once you're happy with the feature distribution in the preview, proceed to <a href="#Tracking_Your_Still_Frames" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking the Selected Frames</span></a> below.</td>
+            </tr>
+        </table>
+        <h3><a name="Tracking_Your_Still_Frames"></a>Tracking the Selected Frames</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the CameraTracker properties, click <b>Track</b> to begin analyzing the still frames.</td>
+            </tr>
+        </table>
+        <p class="numberedCont"> CameraTracker begins by detecting viable features,  aligning the reference frames, and then tracking forwards. Tracks that don't meet the quality  thresholds set in the <b>Settings</b> tab <b>Tracking</b> controls are reseeded so that the number of tracks remains constant.</p>
+        <p class="numberedCont">When the playhead reaches the end of the sequence, it begins a verifying pass by reading the frames sequentially backwards. Any tracks that were reseeded due to error are tracked back past the point where they were created, if they remain viable.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Proceed to <a href="viewing_still_tracks.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Viewing Reference Frames and Track Data</span></a>.</td>
+            </tr>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

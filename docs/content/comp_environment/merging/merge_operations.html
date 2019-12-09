@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Merging Images|Layering Images Together with the Merge Node">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Merge Operations</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/merging/merge_operations.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Merge Operations</h2>
+        <p class="afterHead">When layering images with the Merge node, you need to select a compositing algorithm that determines how the pixel values from one input are calculated with the pixel values from the other to create the new pixel values that are output as the merged image. </p>
+        <p>The <b>operation</b> dropdown menu in the Merge node’s properties panel houses a large number of different compositing algorithms, giving you great flexibility when building your composite. The available algorithms are listed in alphabetical order.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>With many compositing algorithms available, it may sometimes be difficult to find what you’re looking for in the <span class="_Override" style="font-weight: bold;">operation</span> dropdown menu. Luckily, there’s a quick way of finding a particular operation. With the menu open, you can type a letter to jump to the first operator that starts with that letter. To move to the second operation that starts with the same letter, press the letter again. For example, to select the <span class="_Override" style="font-weight: bold;">soft-light</span> operation, open the menu and press <span class="_Override" style="font-weight: bold;">S</span> twice.</p>
+        <p>The following table describes each operation and its associated compositing algorithm. There are example images to illustrate the effects, one that combines the letters A and B to a merged image and another that has an image of fire merged with the familiar checkerboard. You may want to spend some time familiarizing yourself with each algorithm in order to be able to determine which operation to use in each situation.</p>
+        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col width="64px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="67px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="129px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="83px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="114px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Operation</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Algorithm</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Description</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+                        <p class="CellHeading">Illustration</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+                        <p class="CellHeading">Example Uses</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">atop</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Ab+B(1-a)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Shows the shape of image B, with A covering B where the images overlap.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops1.png" />
+                            <img src="../../assets/images/ug_images/merge_atop_fire.png" style="margin-left: 0.02692913px;margin-top: 0.416126px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">average</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">(A+B)/2</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">The average of the two images. The result is darker than the original images.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops2.png" />
+                            <img src="../../assets/images/ug_images/merge_average_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">color-burn</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">darken B towards A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Image B gets darker based on the luminance of A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops3.png" />
+                            <img src="../../assets/images/ug_images/merge_colorburn_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">color-dodge</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">brighten B towards A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Image B gets brighter based on the luminance of A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops4.png" />
+                            <img src="../../assets/images/ug_images/merge_colordodge_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">conjoint-over</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">A+B(1-a/b),</p>
+                        <p class="CellBody">A if a&gt;b</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Similar to the over operation, except that if a pixel is partially covered by both A and B, conjoint-over assumes A completely hides B. For instance, two polygons where A and B share some edges but A completely overlaps B. Normal over produces a slightly transparent seam here.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops5.png" />
+                            <img src="../../assets/images/ug_images/merge_conjoint-over_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">copy</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Only shows image A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops6.png" />
+                            <img src="../../assets/images/ug_images/merge_copy_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">This is useful if you also set the <span class="_Override" style="font-weight: bold;">mix</span> or <span class="_Override" style="font-weight: bold;">mask</span> controls so that some of B can still be seen.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">difference</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">abs(A-B)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">How much the pixels differ. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Absminus</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops7.png" />
+                            <img src="../../assets/images/ug_images/merge_difference_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Useful for comparing two very similar images. This mode can also be used as a difference keyer.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">disjoint-over</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A+B(1-a)/b, </p>
+                        <p class="CellBody">A+B if a+b&lt;1</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Similar to the over operation, except that if a pixel is partially covered by both a and b, disjoint-over assumes the two objects do not overlap. For instance, two polygons that touch and share an edge. Normal over produces a slightly transparent seam here.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops8.png" />
+                            <img src="../../assets/images/ug_images/merge_disjoint-over_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">This can be useful if you want to merge element a over element b, and element a has element b already held out. For example, you may have a CG character whose hair, skin, and clothing are rendered separately so that each object has the other objects held out of the render. </p>
+                        <p class="CellBody">In this case, using the over operation would produce dark lines around the comped objects. This is because over does a hold-out of the background image, meaning the background is held out twice.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">divide</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">A/B,</p>
+                        <p class="CellBody">0 if A&lt;0 and B&lt;0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Divides the values but stops two negative values from becoming a positive number.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops9.png" />
+                            <img src="../../assets/images/ug_images/merge_divide_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">This does not match any photographic operation, but can be used to undo a multiply.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">exclusion</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A+B-2AB</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A more photographic form of difference.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops10.png" />
+                            <img src="../../assets/images/ug_images/merge_exclusion_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">from</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">B-A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Image A is subtracted from B.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops11.png" />
+                            <img src="../../assets/images/ug_images/merge_from_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">geometric</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">2AB/(A+B)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Another way of averaging two images.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops12.png" />
+                            <img src="../../assets/images/ug_images/merge_geometric_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">hard-light</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">multiply if A&lt;0.5,</p>
+                        <p class="CellBody">screen if A&gt;0.5</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Image B is lit up by a very bright and sharp light in the shape of image A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops13.png" />
+                            <img src="../../assets/images/ug_images/merge_hard-light_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">hypot</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">sqrt (A*A+B*B)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Resembles the plus and screen operations. The result is not as bright as plus, but brighter than screen. </p>
+                        <p class="CellBody">Hypot works with values above 1.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops14.png" />
+                            <img src="../../assets/images/ug_images/merge_hypot_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">This is useful for adding reflections, as an alternative to screen.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">in</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Ab</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Only shows the areas of image A that overlap with the alpha of B. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">In</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops15.png" />
+                            <img src="../../assets/images/ug_images/merge_in_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Useful for combining mattes.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">mask</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Ba</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">This is the reverse of the in operation. Only shows the areas of image B that overlap with the alpha of A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops16.png" />
+                            <img src="../../assets/images/ug_images/merge_mask_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">matte</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Aa+B(1-a)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Premultiplied over. Use unpremultiplied images with this operation. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Matte</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops17.png" />
+                            <img src="../../assets/images/ug_images/merge_matte_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">max</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">max (A,B)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Takes the maximum values of both images. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Max</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops18.png" />
+                            <img src="../../assets/images/ug_images/merge_max_fire.png" style="margin-left: 0.02692913px;margin-top: 0.1763149px;margin-right: 0.02692676px;margin-bottom: 0.176041px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">This is a good way to combine mattes and useful for bringing aspects like bright hair detail through.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">min</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">min (A,B)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Takes the minimum values of both images. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Min</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops19.png" />
+                            <img src="../../assets/images/ug_images/merge_min_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">minus</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A-B</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Image B is subtracted from A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops20.png" />
+                            <img src="../../assets/images/ug_images/merge_minus_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">multiply</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">AB, A if A&lt;0 and B&lt;0</p>
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Multiplies the values but stops two negative values from becoming a positive number. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Multiply</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops21.png" />
+                            <img src="../../assets/images/ug_images/merge_multiply_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Used to composite darker values from A with the image of B - dark gray smoke shot against a white background, for example.</p>
+                        <p class="CellBody">This is also useful for adding a grain plate to an image regrained with F_Regrain. </p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">out</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A(1-b)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Only shows the areas of image A that do not overlap with the alpha of B. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Out</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops22.png" />
+                            <img src="../../assets/images/ug_images/merge_out_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Useful for combining mattes.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">over</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">A+B(1-a)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">This is the default operation. Layers image A over B according to the alpha of image A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops23.png" />
+                            <img src="../../assets/images/ug_images/merge_over_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">This is the most commonly used operation. Used when layering a foreground element over a background plate. </p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">overlay</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">multiply if B&lt;0.5,</p>
+                        <p class="CellBody">screen if B&gt;0.5</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">Image A brightens image B.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="FigureTitle">
+                            <img src="../../assets/images/ug_images/merge_ops24.png" />
+                            <img src="../../assets/images/ug_images/merge_overlay_fire.png" style="margin-left: 0.02692913px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">plus</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">A+B</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">The sum of image A and B. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Plus</span>. Note that the plus algorithm may result in pixel values higher than 1.0. </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops25.png" />
+                            <img src="../../assets/images/ug_images/merge_plus_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Useful for compositing laser beams, but you’re better off not using this one for combining mattes.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">screen</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">A or B ≤1? A+B-AB: max(A,B)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">If A or B is less than or equal to 1 the screen else use the maximum example, resembles Plus. Also available from <span class="_Override" style="font-weight: bold;">Merge</span> &gt; <span class="_Override" style="font-weight: bold;">Merges</span> &gt; <span class="_Override" style="font-weight: bold;">Screen</span>.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops26.png" />
+                            <img src="../../assets/images/ug_images/merge_screen_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">This is useful for combining mattes and also for adding laser beams. </p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">soft-light</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>B(2A+(B(1-AB))) if AB&lt;1, 2AB otherwise</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">Image B gets lit up. Not as extreme as the hard-light operation.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops27.png" />
+                            <img src="../../assets/images/ug_images/merge_softlight_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">stencil</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">B(1-a)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="CellBody">This is the reverse of the out operation. Only shows the areas of image B that do not overlap with the alpha of A.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops28.png" />
+                            <img src="../../assets/images/ug_images/merge_stencil_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">under</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">A(1-b)+B</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="CellBody">This is the reverse of the over operation. Layers image B over A according to the matte of image B.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops29.png" />
+                            <img src="../../assets/images/ug_images/merge_under_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="CellBody">xor</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="CellBody">A(1-b)+B(1-a)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="CellBody">Shows both image A and B where the images do not overlap.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/merge_ops30.png" />
+                            <img src="../../assets/images/ug_images/merge_xor_fire.png" style="margin-left: 0.02692913px;margin-right: 0.02692676px;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                        <p class="CellBody">&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you have used older versions of <span class="CustomProduct">Nuke</span>, you may have seen Merge operations called diagonal, nl_over, and nl_under. Diagonal has been renamed and is now called hypot. To get the results of nl_over and nl_under, you can check <span class="_Override" style="font-weight: bold;">Video colorspace</span> and use over and under.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

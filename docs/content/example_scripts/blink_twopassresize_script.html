@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>blink_twopassresize_script</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#example_scripts/blink_twopassresize_script.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script><pre><p>Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard4
+ xpos -402
+ ypos -154
+}
+BlinkScript {
+ ProgramGroup 1
+ KernelDescription "1 \"ResizeKernel\" iterate componentWise 957976cb984ad538a99fd24ff8ffc23d011697020e705c14e8f3dec01ceaf4c6 2 \"src\" Read Random \"dst\" Write Point 2 \"Scale\" Float 1 AAAAPw== \"Horizontal\" Bool 1 AQ=="
+ kernelSource "//ResizeKernel: scale the input horizontally or vertically using a bilinear filter. \nkernel ResizeKernel : ImageComputationKernel&lt;eComponentWise&gt;\n\{\n  Image&lt;eRead, eAccessRandom, eEdgeConstant&gt; src; //Output will be black outside the original image\n  Image&lt;eWrite, eAccessPoint&gt; dst;\n\nparam:\n  float _externalScale;\n  bool _horizontal; \n\nlocal:\n  float _scale;\n\n  void define()\n  \{\n    defineParam(_externalScale, \"Scale\", 0.5f);\n    defineParam(_horizontal, \"Horizontal\", true);\n  \}\n\n  void init()\n  \{\n    _scale = 1.0f/_externalScale;  //invert the scale as we back-map from dst to src\n  \}\n\n  void process(int2 pos)\n  \{\n    //Work out the scaled src position.\n    const float xPos = (_horizontal ? (float)pos.x * _scale : (float)pos.x);\n    const float yPos = (_horizontal ? pos.y : (float)pos.y * _scale);\n\n    //Use a bilinear filter to get the value at that src position.\n    dst() = bilinear(src, xPos, yPos);    \n  \}\n\n\};\n\n"
+ rebuild ""
+ name BlinkScript5
+ xpos -402
+ ypos -61
+}
+BlinkScript {
+ KernelDescription "1 \"ResizeKernel\" iterate componentWise 957976cb984ad538a99fd24ff8ffc23d011697020e705c14e8f3dec01ceaf4c6 2 \"src\" Read Random \"dst\" Write Point 2 \"Scale\" Float 1 AAAAPw== \"Horizontal\" Bool 1 AQ=="
+ kernelSource "//ResizeKernel: scale the input horizontally or vertically using a bilinear filter. \nkernel ResizeKernel : ImageComputationKernel&lt;eComponentWise&gt;\n\{\n  Image&lt;eRead, eAccessRandom, eEdgeConstant&gt; src; //Output will be black outside the original image\n  Image&lt;eWrite, eAccessPoint&gt; dst;\n\nparam:\n  float _externalScale;\n  bool _horizontal; \n\nlocal:\n  float _scale;\n\n  void define()\n  \{\n    defineParam(_externalScale, \"Scale\", 0.5f);\n    defineParam(_horizontal, \"Horizontal\", true);\n  \}\n\n  void init()\n  \{\n    _scale = 1.0f/_externalScale;  //invert the scale as we back-map from dst to src\n  \}\n\n  void process(int2 pos)\n  \{\n    //Work out the scaled src position.\n    const float xPos = (_horizontal ? (float)pos.x * _scale : (float)pos.x);\n    const float yPos = (_horizontal ? pos.y : (float)pos.y * _scale);\n\n    //Use a bilinear filter to get the value at that src position.\n    dst() = bilinear(src, xPos, yPos);    \n  \}\n\n\};\n\n"
+ rebuild ""
+ ResizeKernel_Horizontal false
+ name BlinkScript6
+ selected true
+ xpos -402
+ ypos -18
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -402
+ ypos 32
+}
+StickyNote {
+ inputs 0
+ name StickyNote11
+ label "ResizeKernel:\nA Blink resize done in two passes, \nhorizontal then vertical.\n\nThe same kernel is used for both \npasses, with different values for the\n\"horizontal\" parameter"
+ xpos -439
+ ypos -244
+}
+</p></pre>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

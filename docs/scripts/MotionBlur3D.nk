@@ -1,0 +1,161 @@
+Root {
+ inputs 0
+ last_frame 20
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+Camera2 {
+ inputs 0
+ translate {{curve i x1 -3.730796576 x7 5.078611374 x10 7.377658844 x16 5.452919006 x18 4.485298634 3.046649694} {curve i x1 3.436206818 x7 5.077408791 x10 5.380681515 x16 4.597033501 x18 3.988295555 3.570898533} {curve i x1 10.02727699 x7 7.394742012 x10 5.295120716 x16 0.2301386297 x18 -1.379944086 -2.820096016}}
+ rotate {{curve i x1 -17.79999733 x10 -30.20003128 x20 -39.80005264} {curve i x1 -16.80001259 x10 47.39998245 x20 132.6000366} {curve i x1 0 x10 0 x20 0}}
+ name Camera1
+ xpos 119
+ ypos -23
+}
+set N9baa760 [stack 0]
+Dot {
+ name Dot1
+ xpos 143
+ ypos 61
+}
+push $N9baa760
+Light2 {
+ inputs 0
+ intensity 1.3
+ translate {0.9146963954 1.1832937 0.9894348383}
+ rotate {-21.40003586 46.40003204 0}
+ name Light1
+ xpos -145
+ ypos -114
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.1083612218 0.06631816924 0.3199999928 0}
+ name Constant2
+ xpos 72
+ ypos -404
+}
+Shuffle {
+ alpha white
+ name Shuffle1
+ xpos 72
+ ypos -314
+}
+Phong {
+ name Phong2
+ xpos 72
+ ypos -243
+}
+Sphere {
+ translate {1 0 0}
+ uniform_scale 0.68
+ name Sphere1
+ xpos 72
+ ypos -192
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.053299997 0.09904222935 0.4099999964 0}
+ name Constant1
+ xpos -45
+ ypos -402
+}
+Shuffle {
+ alpha white
+ name Shuffle2
+ xpos -45
+ ypos -313
+}
+Phong {
+ diffuse 0.7
+ specular 0.98
+ min_shininess 9.4
+ max_shininess 12.6
+ name Phong1
+ xpos -45
+ ypos -244
+}
+Cube {
+ translate {-1 0 0}
+ name Cube1
+ xpos -45
+ ypos -190
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos -157
+ ypos -403
+}
+Phong {
+ diffuse 0.06
+ specular 0.28
+ name Phong3
+ xpos -157
+ ypos -243
+}
+Card2 {
+ translate {0 -0.7 0}
+ rotate {90 0 0}
+ uniform_scale 30
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card1
+ xpos -157
+ ypos -189
+}
+Scene {
+ inputs 4
+ name Scene1
+ xpos -35
+ ypos -114
+}
+push 0
+ScanlineRender {
+ inputs 3
+ motion_vectors_type velocity
+ name ScanlineRender1
+ xpos -45
+ ypos -2
+}
+MotionBlur3D {
+ inputs 2
+ Z depth.Z
+ name MotionBlur3D1
+ xpos -45
+ ypos 58
+}
+VectorBlur {
+ channels rgba
+ uv motion
+ name VectorBlur1
+ xpos -45
+ ypos 120
+}
+Viewer {
+ input_process false
+ name Viewer1
+ xpos -45
+ ypos 173
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ tile_color 0x9b9b9bff
+ label "While similar to the MotionBlur2D node \nin that it does not produce motion blur \nindependently, MotionBlur3D is designed \nspecifically for camera moves rather \nthan 2D transforms.\n\nIt generates motion vectors from\nfootage and a camera input. \nIf a z-depth channel is available,\nthis is also taken into account.\n\nThe generated motion vectors can\nthen be used in the VectorBlur node\nto apply motion blur to the footage.\n\n"
+ note_font_size 18
+ xpos -531
+ ypos -164
+}

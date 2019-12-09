@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Camera Tracking">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Tracking in Sequence Mode</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/cameratracker/tracking_sequences.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1><a name="camera_tracking_911972325_664447"></a>Tracking in Sequence Mode</h1>
+        <p>In <b>Sequence</b> mode, CameraTracker tracks the footage attached to the <span class="_Override" style="font-weight: bold;">Source</span> input and defines a set of 2D feature tracks that correspond to fixed points in the scene. </p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you intend to remove lens distortion manually using a separate LensDistortion node, you should do that before you track the sequence. See<span style="color: #ff0000;"> <a href="../lens_distortion/adding_removing_lens_distortion.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with Lens Distortion</span></a></span>. Otherwise, set <b>Lens Distortion</b> to <b>Unknown Lens</b> before you solve the camera position to force CameraTracker to calculate the distortion. </p>
+        <p>Before tracking, use CameraTracker's properties panel to control Viewer output and determine tracking behavior:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">On the <span class="_Override" style="font-weight: bold;">CameraTracker</span> tab, ensure that <b>Source</b> is set to <b>Sequence</b>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you intend to mask out parts of your image, set the <span class="_Override" style="font-weight: bold;">Mask</span> control to the matte source. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">For example, if you're using the alpha channel from a Roto node attached to the <b>Mask</b> input, select <b>Mask Alpha</b>. For more information, see <a href="masking.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Masking Out Regions of the Image</span></a>.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>For stereoscopic or multi-view footage, set the <b>Principal View</b> on the <b>CameraTracker </b>or<b> Settings</b> tab to the main tracking view. Any masking should be applied to this view, which is then used to calculate the secondary camera.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the <b>Range</b> dropdown to determine which frames are analyzed:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Input</b> - the default value, sets the frame range to the length of the sequence attached to the <b>Source</b> input.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Global</b> - sets the tracking frame range to the range set in the Project Settings <b>frame range</b> controls.</p>
+        <p class="processBulletCont">If no frame range is defined, the frame range of the first image you read in is used as the <b>Global</b> frame range.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Custom</b> - sets a tracking range of frames described by the <b>from</b> and <b>to</b> fields. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">On the <span class="_Override" style="font-weight: bold;">Settings</span> tab, define the starting points for feature tracking:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Number</span><span class="_Override" style="font-weight: bold;"> of</span><span class="_Override" style="font-weight: bold;"> Features</span> - define the number of features you want to track in each frame. </p>
+        <p class="processBulletCont">Ideally, you should use more than 100 tracks per frame. In most cases, the default 150 should be sufficient, but in difficult sequences you may consider using a higher number. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Detection</span><span class="_Override" style="font-weight: bold;"> Threshold</span> - set the distribution of features over the input image. </p>
+        <p class="processBulletCont">If you enter a low detection threshold value, features are tracked evenly on all parts of the image and vice versa.</p>
+        <table>
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_threshold_low.png" alt="" title="" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_threshold_high.png" alt="" title="" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Low threshold distribution</td>
+                    <td class="caption">High threshold distribution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Feature</span><span class="_Override" style="font-weight: bold;"> Separation</span> - set the distribution of features in relation to each other. </p>
+        <p class="processBulletCont">To force feature separation and spread features evenly over the image at even distances, enter a high feature separation value.</p>
+        <table>
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../../assets/images/ug_images/ct2_separation_high.png" alt="" title="" />
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_separation_low.png" alt="" title="" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Low separation value</td>
+                    <td class="caption">High separation value</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Check <span class="_Override" style="font-weight: bold;">Refine Feature Locations</span> to lock detected features to local corners. If you activate this, CameraTracker finds the closest corner point in your footage and locks the feature to it. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Check <span class="_Override" style="font-weight: bold;">Preview</span><span class="_Override" style="font-weight: bold;"> Features</span> to view the current distribution of tracking features. </td>
+            </tr>
+        </table>
+        <p class="numberedCont">Preview comes in handy when you want to tweak the tracking parameters further before tracking - it updates dynamically when controls are adjusted.</p>
+        <p class="numberedCont">It's important to make sure that the previewed features are distributed evenly and not clustered together too densely before tracking using the distribution and separation controls.</p>
+        <table style="caption-side: top;">
+            <col style="width: 70mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/ct2_preview_tracks.png" alt="" title="" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Previewing features in a sequence</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Once you're happy with the feature distribution in the preview, click <b>Track</b> to begin analyzing the sequence.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;"> CameraTracker begins reading frames sequentially and tracking the features present. Tracks that don't meet the quality  thresholds set in the <b>Settings</b> tab <b>Tracking</b> controls are reseeded so that the number of tracks remains constant.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">See <a href="troubleshooting_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Troubleshooting Sequence Tracks</span></a> for more details on adjusting these controls.</p>
+        <p class="numberedCont">When the playhead reaches the end of the sequence, it begins a verifying pass by reading the frames sequentially backwards. Any tracks that were reseeded due to error are tracked back past the point where they were created, if they remain viable.</p>
+        <p class="afterHead">&#160;</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

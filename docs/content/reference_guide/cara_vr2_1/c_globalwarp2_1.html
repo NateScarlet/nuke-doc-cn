@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-conditions="Custom.ReviewExclude" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|[%=System.LinkedTitle%]">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>C_GlobalWarp</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/cara_vr2_1/c_globalwarp2_1.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1 class="sectionTitle">C_GlobalWarp</h1>
+        <p>C_GlobalWarp rapidly produces a preview stitch using metadata, passed downstream from a C_CameraSolver, to help minimize ghosting in overlap regions. It includes controls to adjust a stitch to line up key features and allows you to add constraints to reduce warping on known straight lines in the rectilinear input images. The correction is based on camera tracks, which in turn drive a grid warp operation applied to each input image.</p>
+        <p>C_GlobalWarp can also track constraints over time, for a faster workflow when correcting moving camera rigs. A simplified tracking interface tracks points directly from the node, while an export workflow allows you to use the full power of the C_Tracker node for more complex tasks.</p>
+        <p>See <a href="c_tracker2_1.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">C_Tracker</span></a> for more information.</p>
+        <h1>Inputs and Controls</h1>
+        <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;margin-left: auto;margin-right: auto;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="141px">
+            <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Connection Type</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Connection Name</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Function</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">Input</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p class="CellBody">source</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                        <p class="CellBody">The image sequence to which global warp is applied.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>C_GlobalWarp requires metadata from a C_CameraSolver node upstream.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;width: 100%;margin-left: auto;margin-right: auto;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="603px">
+            <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="96px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <thead>
+                <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Control (UI)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Knob (Scripting)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Default Value</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                        <p class="CellHeading">Function</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">C_GlobalWarp Tab</p>
+                    </td>
+                </tr>
+                <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Local GPU</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>gpuName</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Displays the GPU used for rendering when <b>Use GPU if available</b> is enabled. Local GPU displays <b>Not available</b> when:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Use CPU</b> is selected as the GPU device in the <b>Preferences</b>.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no suitable GPU was found on your system.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>it was not possible to create a context for processing on the selected GPU, such as when there is not enough free memory available on the GPU.</p>
+                        <p>You can select a different GPU device, if available, by navigating to the <b>Preferences</b> and selecting an alternative from the <b>GPU Device</b> dropdown.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Selecting a different GPU requires you to restart Nuke before the change takes effect.</p>
+                    </td>
+                </tr>
+                <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Use GPU if available</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>useGPUIfAvailable</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>enabled</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>When enabled, rendering occurs on the <b>Local GPU</b> specified, if available, rather than the CPU. The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.</p>
+                        <p><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Enabling this option with no local GPU allows the script to run on the GPU whenever the script is opened on a machine that does have a GPU available. <br />You should also select this if you wish to render from the command line with the <b>--gpu</b> option.</p>
+                        <p class="CellBody">GPU processing also requires certain NVIDIA GPUs and CUDA drivers, or in the case of late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5 running 10.9.3 'Mavericks', or later, certain AMD GPUs and drivers. For more information on the minimum requirements, please refer to the Nuke Release Notes available in <b>Help</b> &gt; <b>Release Notes</b>.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Keying</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+                        <p>Analysis Keys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Key number</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Displays the total number of analysis keyframes added to the sequence.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Key count</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Displays the current analysis keyframe.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_roto_key_back_26x25.png" style="width: 26;height: 25;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to jump to the previous keyframe.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_roto_key_fward_26x24.png" style="width: 26;height: 24;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to jump to the next keyframe.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_keys1_26x23.png" style="width: 26;height: 23;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to add a keyframe at the current frame in the sequence.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_keys2_26x23.png" style="width: 26;height: 23;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to delete the keyframe at the current frame in the sequence.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Step</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>keyStep</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>500</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the interval between keyframes for the <b>Key All</b> button.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Key All</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>addAllAnalysisKeys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to add keyframes to the sequence at intervals set by the <b>Step</b> control.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Delete All</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>deleteAllAnalysisKeys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to delete all keyframes from the sequence.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Import</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>importAllKeys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to import existing keyframes automatically from existing nodes in the current script.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Importing keyframes deletes any existing keyframes.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                        <p>Analysis</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Match</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>match</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to calculate matches between input images at the keyframes specified in the <b>Analysis Keys</b> controls.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Match New</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>match</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to update matches on keyframes that don't currently have any camera matches, such as when you add more keyframes after matching.</p>
+                        <p><b>Match New</b> does not recalculate existing matches.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to use the camera matches and any user constraints you have added manually to find the optimal global warp for all cameras at the analysis keys.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Reset</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>reset</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to reset all matches.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Match Error</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>matchError</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Displays the root mean square (RMS) reprojection error for the triangulated matches. This is a good indicator of match quality.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Warp Threshold</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>warpThreshold</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>20</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Matches with a reprojection error greater than this threshold are discarded. If you set the <b>Error Threshold</b> to <b>0</b>, all matches are used regardless of quality.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Output</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Format</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>outputFormat</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>dependent on Compositing environment <b>Project Settings</b></p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the output resolution passed down the node tree.</p>
+                        <p>Typically, you would set the format globally in the <b>Project Settings</b>, but this control overrides the global setting.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Blend</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>blendType</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Alpha</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Switches between the default <b>Alpha</b> mode and the <b>Multi-Band</b> modes:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Multi-Band</b> - can improve stitch results by matching low frequency color changes over the course of the blend region.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Spherical Multi-Band</b> - can improve stitch results at the poles, looking up or down.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><b>Multi-Band</b> blending can be slower to process than the default <b>Alpha</b> mode.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Suppression</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>blendLevel</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>0.125</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Controls the size of the smallest level of blending applied to views.</p>
+                        <p>Lower values can help balance color and exposure between blended images, higher values are closer to the result from the default <b>Alpha</b> blending mode.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><b>Size</b> is only active when <b>Blend</b> is set to <b>Multi-Band</b> or <b>Spherical Multi-Band</b>.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Expand</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>fullBlend</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>enabled</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>When enabled, blending is expanded outside the alpha mask used to blend images together, which can help to fill in missing areas in views.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><b>Expand</b> is only active when <b>Blend</b> is set to <b>Multi-Band</b> or <b>Spherical Multi-Band</b>.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Filter</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>resampleTypeLink</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Cubic</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the filtering algorithm used during warping. As a general guide line, the filters increase in quality at the cost of processing time as you move down the list. <b>Bilinear</b> filtering is the fastest and <b>Lanczos</b> the sharpest.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Cam Warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>cameraOutputMode</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Default (pass through)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the output mode for the individual cameras:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Unwarped</b> - only the metadata stream is warped, the camera views remain unchanged.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Warped</b> - each individual camera view, as well as the metadata, is warped in accordance with the calculated global warp.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Cam Projection</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>cameraViewsProjectionType</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Default (pass-through)</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the projection mode for the cameras output by C_GlobalWarp:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Default (pass-through)</b> - individual camera views are passed through in their native format.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Latlong</b> - individual camera views are projected into latlong space, allowing you to make manual corrections before stitching.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Converge</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>convergence</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>10</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the depth at which the cameras overlap, allowing you to bring particular areas in the scene into focus.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Auto</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>autoConvergenceDepth</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>enabled</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>When enabled, the <b>Converge</b> control is set automatically by upstream metadata.</p>
+                        <p>When disabled, you can use the <b>Converge</b> control to manually adjust what convergence depth is in focus.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Line Constraints Tab</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Show guide lines</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>showLines</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>enabled</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>When enabled, the guide lines for all constraints are displayed in the Viewer, spanning the full output format.</p>
+                        <p>When disabled, only the constraint lines themselves are displayed.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Strength</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>constraintStrength</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>2</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the strength bias for the selected constraint(s). Decreasing the strength of a constraint reduces its influence on the warp.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">Frame Range</td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>constraintStartFrame</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>1</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the start frame for the duration of the selected constraint(s).</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>constraintEndFrame</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>1</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the end frame for the duration of the selected constraint(s).</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_to_current.png" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>constraintFrameRangeToCurrent</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to set the selected constraint's frame range from the beginning of the input range to the current frame.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_current_only.png" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>constraintFrameRangeCurrent</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to set the selected constraint's frame range to the current frame only.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_from_current.png" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>constraintFrameRangeFromCurrent</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to set the selected constraint's frame range from the current from to the end of the input range.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_input_range.png" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>constraintFrameRangeInput</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to set the selected constraint's frame range to the input frame range.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+                        <p>Keys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Key number</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Displays the total number of analysis keyframes added to the current constraint(s).</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Key count</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Displays the current analysis keyframe.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_roto_key_back_26x25.png" style="width: 26;height: 25;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to jump to the previous keyframe.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_roto_key_fward_26x24.png" style="width: 26;height: 24;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to jump to the next keyframe.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_keys1_26x23.png" style="width: 26;height: 23;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to add a keyframe at the current frame in the sequence.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>
+                            <img src="../../assets/images/rg_images/icon_keys2_26x23.png" style="width: 26;height: 23;" />
+                        </p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to delete the keyframe at the current frame in the sequence.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Lines</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Constraints added to features in the Viewer are listed in the <b>Lines</b> table.</p>
+                        <p>Selecting constraints in the table displays them in the Viewer. You can toggle the visibility of constraints using the <img src="../../assets/images/ug_images/icon_splinewarp_visible_20x21.png" style="vertical-align: text-top;width: 20;height: 21;" /> button.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Add</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>addConstraint</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to add a constraint to the <b>Lines</b> table. You can then select a view above the Viewer and draw the constraint.</p>
+                        <p>Clicking the <img src="../../assets/images/ug_images/icon_tracker_fastadd_20x19.png" style="vertical-align: text-top;width: 20;height: 19;" /> button above the Viewer also creates a constraint in the <b>Lines</b> table.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Merge</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>mergeConstraints</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to merge the selected constraints into a single constraint.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Delete</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>deleteConstraints</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to delete the selected constraint(s) in the <b>Lines</b> table.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Select All</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>selectAllConstraints</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to select all constraints in the <b>Lines</b> table.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Tracking</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Track</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>trackConstraints</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to track the selected constraints for the frame range specified in the <b>Start </b>and<b> End</b> field in the <b>Lines</b> table.</p>
+                        <p>You can change the keyframe <b>Step</b>, <b>Patch Size</b>, and track <b>Error Threshold</b> controls on the <b>Settings</b> tab.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Export</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>exportConstraints</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to export the tracking information from the selected constraints to separate OneView and C_Tracker nodes for fine-tuning.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Import</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>importConstraints</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to import the tracking information for the selected constraints from previously exported tracking data.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Analysis</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Add Key</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>addConstraintKey</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to add the current frame as a new analysis keyframe. You can then click <b>Match New</b> to calculate the new keyframe.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Add Keys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>addConstraintKeys</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to add keys for all visible constraint keyframes as analysis keys.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Match New</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Match New</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to update matches on new analysis keys, such as when you add more constraint keyframes after warping.</p>
+                        <p><b>Match New</b> does not recalculate existing analysis keys.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to use the constraints and analysis keyframes you have added manually to find the optimal global warp for all cameras at the analysis keys.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Reset</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Reset</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to reset current warp. Camera matches are not deleted.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Settings Tab</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                        <p>Display</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" rowspan="2">
+                        <p>Zoom Size/Mag.</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>zoomWindowSize_1</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>200px</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p class="CellBody">Sets the size of the zoom window.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>zoomMagnificationSize_1</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>x1</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p class="CellBody">Sets the magnification in the zoom window.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Warping</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Grid Size</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>gridSize</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>10,10</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the size of the grid used by C_GlobalWarp to apply the warp operation in each camera view.</p>
+                        <p>Using larger grids can produce better warping results, but at the expense of  longer computation time. Very small grids should only be used when a large number of camera matches are available.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Match Strength</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>trackStrength</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>2</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the strength bias for the camera matches. Increasing the strength of a match forces the warped output to converge at the camera matches.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>User Match Strength</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>userTrackStrength</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>4</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the strength bias for manually added user matches. Increasing the strength of a match forces the warped output to converge at the camera matches.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Smoothness</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>spatialSmoothness</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0.5</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Controls how image edges are used as clues for sharp transitions in the scene. The higher the value, the smoother the warped edges.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Consistency</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>temporalConsistency</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>2</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets how accurately keyframes map to each other over time. Increasing the value forces the warp to match between views.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Temporal Window</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>temporalWindow</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the number of frames either side of the keyframes used by the Consistency control match warp between view over time.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Weight Kernel</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>kernelType</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Linear</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Allows you to give different weights to each camera match during warping. The weights are a function of the camera RMS error.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>None </b>- all matches have the same influence on the image.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Linear </b>- matches have diminishing influence as the RMS error increases.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Gaussian </b>- similar to <b>Linear</b> weighting, but more forgiving with low RMS error values.</p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If the <b>Error Threshold</b> is set to zero, this control has no effect.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Vector Detail</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>vectorDetail</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0.4</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Controls the density of the calculated vectors. Higher values pick up finer disparity changes, but take longer to calculate.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                        <p>Tracking</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Step</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>trackingStep</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>5</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the number of frames between tracking analysis keys. Increasing the <b>Step</b> value reduces the tracking time, but the track may not be as accurate.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Patch Size</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>trackingPatchSize</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>14</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Sets the size of the image patch around feature points. Increasing the patch size can improve track quality, but larger patches increase processing time.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Error Threshold</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>trackingThreshold</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>0.25</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Sets the image change threshold a constraint track can tolerate before terminating. Reducing the <b>Error Threshold</b> makes tracking more tolerant to image changes, producing longer tracks.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                        <p>Analysis</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>Warp</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>Click to apply any changes you have made in the <b>Settings</b> tab.</p>
+                    </td>
+                </tr>
+                <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Reset</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>Reset</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>N/A</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Click to reset any changes that the <b>Warp</b> button applied.</p>
+                    </td>
+                </tr>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                        <p>Python Tab (These controls are for Python callbacks and can be used to have Python functions automatically called when various events happen in Nuke.)
+</p>
+                    </td>
+                </tr>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>before render</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>beforeRender</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>none</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>These functions run prior to starting rendering in <b>execute()</b>. If they throw an exception, the render aborts.</p>
+                    </td>
+                </tr>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>before each frame</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>beforeFrameRender</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>none</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>These functions run prior to starting rendering of each individual frame. If they throw an exception, the render aborts.</p>
+                    </td>
+                </tr>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>after each frame</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>afterFrameRender</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                        <p>none</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>These functions run after each frame is finished rendering. They are not called if the render aborts. If they throw an exception, the render aborts.</p>
+                    </td>
+                </tr>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>after render</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>afterRender</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                        <p>none</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                        <p>These functions run after rendering of all frames is finished. If they throw an error, the render aborts.</p>
+                    </td>
+                </tr>
+                <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p>render progress</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p>renderProgress</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                        <p>none</p>
+                    </td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                        <p>These functions run during rendering to determine progress or failure.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

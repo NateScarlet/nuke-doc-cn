@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Timeline Editing in Nuke Studio|Exporting from Nuke Studio">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Using the Frame Server on External Machines</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/rendering/render_farms_studio.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1><a name="kanchor332"></a>Using the Frame Server on External Machines</h1>
+        <p>Although <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> is capable of rendering frames internally, running the Frame Server on an external machine can accelerate the process considerably by sharing work across a network of machines.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The Frame Server requires a <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> license (nukestudio_i) on the main workstation, but only a <span class="CustomProduct">Nuke</span> render license (nuke_r) on the slave machines. Local Frame Server processes use ports 5559-5662.<br /><br />If you want to use an interactive license (nuke_i) on the slave machines, add the <b>--useInteractiveLicense</b> argument to the <b>runframeserver.py</b> command described below.</p>
+        <h2>Configuring the Frame Server on External Machines</h2>
+        <p><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span>'s Frame Server can be set up on an external machine (or a number of machines) to render from your Nuke Studio session. To do this, you need to run the <b>runframeserver.py</b> script on the external machines, found inside the Python site-packages, with specific command line arguments.</p>
+        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>In order for everything to work smoothly, you need to ensure that both your external slave machines and main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> session can read and write files to a shared location, such as an NFS share.<br /><br />Depending on platform this can be done by manipulating your default <b>umask</b> setting, but be aware that this alters the permissions of the created files.<br /><br />Additionally, Mac OS X and certain Linux distributions, such as RHEL, can not function as the main workstation if the firewall is blocking the communication port 5560. You can configure the firewall to allow certain ports through the firewall using the <b>iptables</b> command, but use caution when doing so. For example:<br /><br /><span style="font-family: 'Courier New';">sudo iptables -I INPUT -p tcp --dport 5560 --syn -j ACCEPT</span><br /><br />Please refer to the documentation on firewalls for your particular platform for more information.</p>
+        <p>The Frame Server uses a number of worker processes on the external machine, each of which requires allocated resources, such as threads, memory, and so on. There are a number of arguments that you must pass to <b>runframeserver.py</b> for the server to work correctly:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--numworkers</b> - this is the number of concurrent Nuke processes that are launched when you run this server render node.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--nukeworkerthreads</b> - the number of threads that each worker is allocated. This is similar to setting the <b>-m</b> argument when running <span class="CustomProduct">Nuke</span> from the command line.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--nukeworkermemory</b> - the amount of memory, in MB, allocated to each frame server worker.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--workerconnecturl</b> - the TCP port address of the main workstation you want to serve. For example:</p>
+        <p class="cmdlinebulletCont"> tcp://bob:5560</p>
+        <p class="bulletedCont">where <b>bob</b> is the resolved hostname of a machine you wish to serve. You can also use an IP address.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>To ensure that you're entering a valid URL, try using the <b>ping</b> command to see if you get a response.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--nukepath</b> - the path to the Nuke application on the slave workstation.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>On Windows, if there are spaces in the file path, remember to place the path in quotes.<br />For example, <b>--nukepath="C:\Program Files\Nuke<span class="CustomVersion Number (Long)">10.5v8</span>\Nuke<span class="CustomVersion Number (Short)">10.5</span>.exe"</b></p>
+        <p>On a Linux slave machine, an example command prompt entry running from the install directory might look like this:</p>
+        <p class="cmdline">./python ./pythonextensions/site-packages/foundry/frameserver/nuke/runframeserver.py --numworkers=2 --nukeworkerthreads=4 --nukeworkermemory=8096 --workerconnecturl=tcp://bob:5560 --nukepath=./Nuke<span class="CustomVersion Number (Short)">10.5</span></p>
+        <p>On a Windows slave machine, an example command prompt entry running from the install directory might look like this:</p>
+        <p class="cmdline">python.exe pythonextensions\site-packages\foundry\frameserver\nuke\runframeserver.py --numworkers=2 --nukeworkerthreads=4 --nukeworkermemory=8096 --workerconnecturl=tcp://bob:5560 --nukepath=Nuke<span class="CustomVersion Number (Short)">10.5</span>.exe</p>
+        <p>In the examples, we specify that the slave uses two Nuke workers, with four threads and 8 GB RAM each, and are slaved to the main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> workstation  running  on <b>bob</b>.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If your slave machines run a different OS than your main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> machine, you can use the <b>--remap</b> command line argument to convert file paths between them. The host file path is read first followed by the slave file path. <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> expects all file paths to use <b>/</b> (forward slash) between directories. For example: <br /><span style="font-family: 'Courier New';">--remap "P:/,/mnt/renders/"</span><br />converts host paths beginning with <b>P:/</b> (Windows style) to slave paths beginning with <b>/mnt/renders/</b> (Linux style).</p>
+        <p>You can check that the Frame Server and workers are connected by running the following lines in the Script Editor on the main workstation:</p>
+        <p class="cmdline">from hiero.ui.nuke_bridge.nukestudio import frameServer</p>
+        <p class="cmdline">print [worker.address for worker in frameServer.getStatus(1).workerStatus]</p>
+        <p>Successful connections should report something similar to the following in the output panel:</p>
+        <p class="cmdline">['Worker 0 - henry.local - 192.168.1.11', 'Worker 0 - bob.local - 192.168.1.111', 'Worker 1 - henry.local - 192.168.1.11']</p>
+        <p>Where <b>henry.local</b> is the name of the remote slave, and <b>bob.local</b> is the name of the main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> session.</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If the workers cannot contact the Frame Server, an exception is printed in the Script Editor's output panel.</p>
+        <h2>Frame Server Logs</h2>
+        <p>Broker and Worker logging can to help diagnose Frame Server issues. The logs are written to NUKE_TEMP_DIR/logs by default, and take the form:</p>
+        <p class="cmdline">broker.log</p>
+        <p class="cmdline">worker-0.log</p>
+        <p class="cmdline">worker-1.log</p>
+        <p class="cmdline">worker-2.log</p>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Running the Frame Server using Python, as described above, always writes log files to the specific OS temporary directory. For example, on Windows C:\temp is used.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can use the FRAMESERVER_LOG_DIR environment variable to force Frame Server logs into a different location. See <MadCap:conditionalText data-mc-conditions="Default.ScreenOnly"><a href="../configuring_nuke/setting_environment_variables.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Setting Environment Variables</span></a> </MadCap:conditionalText>for more information.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Adding Motion Blur to the 3D Scene">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adding Motion Blur Using VectorBlur</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/adding_motion_blur_vectorblur.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Adding Motion Blur Using VectorBlur</h2>
+        <p class="afterHead"><span class="CustomProduct">Nuke</span>’s VectorBlur node generates motion blur by blurring each pixel into a straight line, using the values from the motion vector channels (u and v channels) to determine the direction of the blur. Compared to generating motion blur using the ScanlineRender node’s <span class="_Override" style="font-weight: bold;">MultiSample</span> controls, this is less accurate but faster to render.</p>
+        <p>You can create the necessary motion vectors for use with VectorBlur in several ways:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use the ScanlineRender or RayRender nodes. This is usually more accurate than using a MotionBlur3D node (described below), and works well with both static and moving cameras as well as both linear and non-linear camera movement. See <a href="#3d_compositing_3567570779_826548" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">To use VectorBlur with ScanlineRender</span></a> or <a href="#To_use_VectorBlur_with_RayRender" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">To use VectorBlur with RayRender</span></a>.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Alternatively, if your 3D scene is static or nearly so and the camera movement over the shutter time is nearly linear, you can also use the <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">MotionBlur3D</span> node. However, note that MotionBlur3D only uses camera information to produce motion vectors. If you have moving objects in your scene but the camera is static, MotionBlur3D isn’t able to produce any output. See <a href="#3d_compositing_3567570779_826774" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">To use VectorBlur with MotionBlur3D</span></a>.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Several third-party 3D applications can also produce motion vector information as two-channel, floating point images that you can use with VectorBlur. If possible, you should unpremultiply these images. See <a href="#3d_compositing_3567570779_829048" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">To use VectorBlur with Third-Party Motion Vectors</span></a>.</p>
+        <h3><a name="3d_compositing_3567570779_826548"></a>To use VectorBlur with ScanlineRender</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In your 3D scene, open the ScanlineRender properties and go to the <span class="_Override" style="font-weight: bold;">Shader</span> tab.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Make sure <span class="_Override" style="font-weight: bold;">motion vectors</span> is set to one of the following (not <span class="_Override" style="font-weight: bold;">off</span>):</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">classic</span> - Render motion vectors the classic (pre-<span class="CustomProduct">Nuke</span> 6.1) way. This option is only provided for backwards compatibility, and isn't always accurate.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">velocity</span> - Store the velocity of every single pixel in the motion vector channels (pre-<span class="CustomProduct">Nuke</span> 7.0 way). This option is only provided for backwards compatibility. In order to have the same behavior as <span class="CustomProduct">Nuke</span> 6.3, set <span class="_Override" style="font-weight: bold;">samples</span> to 1.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">distance</span> - For every pixel, store the distance (in pixels) between samples in the motion vector channels. This is the recommended option that usually produces the best results. It also allows the VectorBlur node to produce curved vector blur where interpolation between two frames is made according to a curve rather than linearly.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use <span class="_Override" style="font-weight: bold;">motion vector channels</span> to select where to store the generated motion vectors.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">If you view the channels you selected, you should see they now contain motion vectors.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_orig.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_motion_vectors.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>A render of a 3D scene.</p>
+                    </td>
+                    <td class="caption">
+                        <p>Motion vectors produced by<br />ScanlineRender.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">On the <span class="_Override" style="font-weight: bold;">MultiSample</span> tab, leave <span class="_Override" style="font-weight: bold;">samples</span> set to 1. You can increase this value later if non-linear movement cannot be approximated sufficiently well using VectorBlur’s linear approach.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">VectorBlur</span> to insert a VectorBlur node after ScanlineRender.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 100mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_nodes.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997691px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>A node tree with ScanlineRender and VectorBlur.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the VectorBlur properties, use the <span class="_Override" style="font-weight: bold;">channels</span> dropdown menu to select the channels to blur.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Select the motion vector channels from the <span class="_Override" style="font-weight: bold;">uv channels</span> dropdown menu. These should be the same channels as the channels you chose to create in step 3.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Set the <b>mv presets</b> dropdown to set which renderer format to apply to the motion vectors.&#160;Each preset contains a scale and offset specific to the renderer, so that the vectors are in the format expected by <span class="CustomProduct">Nuke</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Use the <b>blur uv</b> dropdown to blur the motion vectors themselves, before blurring the image, to smooth the results between regions with very different motion. Choose either:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b> - applies a small uniform blur to soften edges in the UV map, or</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>linear</b> - applies a linearly-weighted blur to blend between regions with different motion. This has a stronger effect than the <b>uniform</b> option.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>The <b>uniform</b> option can be used to create blur similar to pre-<span class="CustomProduct">Nuke</span> 10 results.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Set <span class="_Override" style="font-weight: bold;">shutter offset</span> to 0. This means the shutter opens at the current frame.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">Select the <b>blur type</b> using the dropdown.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">To adjust the amount of blur, adjust the <b>motion blur</b> controls.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_orig1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_result.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>The original image.</p>
+                    </td>
+                    <td class="caption">
+                        <p>Motion blur produced by<br />VectorBlur.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="To_use_VectorBlur_with_RayRender"></a>To use VectorBlur with RayRender</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In your 3D scene, open the RayRender properties and go to the <span class="_Override" style="font-weight: bold;">AOVs</span> tab.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Enable <b>output AOV</b> and then use the <b>motion vector</b> dropdown to select where to store the generated motion vectors.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">If you view the channels you selected, you should see they now contain motion vectors.</p>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_orig.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_motion_vectors.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>A render of a 3D scene.</p>
+                    </td>
+                    <td class="caption">
+                        <p>Motion vectors produced by<br />ScanlineRender.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">On the <span class="_Override" style="font-weight: bold;">MultiSample</span> tab, leave <span class="_Override" style="font-weight: bold;">samples</span> set to 1. You can increase this value later if non-linear movement cannot be approximated sufficiently well using VectorBlur’s linear approach.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">VectorBlur</span> to insert a VectorBlur node after RayRender.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 100mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_rr_nodes_453x351.png" class="cm12" style="width: 453;height: 351;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>A node tree with RayRender and VectorBlur.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the VectorBlur properties, use the <span class="_Override" style="font-weight: bold;">channels</span> dropdown menu to select the channels to blur.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Select the motion vector channels from the <span class="_Override" style="font-weight: bold;">uv channels</span> dropdown menu. These should be the same channels as the channels you chose to create in step 2.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Set the <b>mv presets</b> dropdown to set which renderer format to apply to the motion vectors.&#160;Each preset contains a scale and offset specific to the renderer, so that the vectors are in the format expected by <span class="CustomProduct">Nuke</span>.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Use the <b>blur uv</b> dropdown to blur the motion vectors themselves, before blurring the image, to smooth the results between regions with very different motion. Choose either:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b> - applies a small uniform blur to soften edges in the UV map, or</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>linear</b> - applies a linearly-weighted blur to blend between regions with different motion. This has a stronger effect than the <b>uniform</b> option.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>The <b>uniform</b> option can be used to create blur similar to pre-<span class="CustomProduct">Nuke</span> 10 results.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Set <span class="_Override" style="font-weight: bold;">shutter offset</span> to 0. This means the shutter opens at the current frame.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Select the <b>blur type</b> using the dropdown.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">To adjust the amount of blur, adjust the <b>motion blur</b> controls.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_orig1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_sr_result.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>The original image.</p>
+                    </td>
+                    <td class="caption">
+                        <p>Motion blur produced by<br />VectorBlur.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="3d_compositing_3567570779_826774"></a>To use VectorBlur with MotionBlur3D</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In your 3D scene (which should be static or nearly static), open the ScanlineRender properties, go to the <span class="_Override" style="font-weight: bold;">Shader</span> tab, and set <span class="_Override" style="font-weight: bold;">motion vectors</span> to <span class="_Override" style="font-weight: bold;">off</span>.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">This tells ScanlineRender not to produce motion vectors, which is what you want if you are going to use MotionBlur3D to generate the vectors.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">MotionBlur3D</span> to insert this node and connect it to the ScanlineRender node’s output.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect the rendering camera to the <span class="_Override" style="font-weight: bold;">cam</span> input of the MotionBlur3D node. Note that this has to be a moving camera. The camera movement over the shutter time should be linear or nearly linear.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the MotionBlur3D properties, use <span class="_Override" style="font-weight: bold;">Output UV</span> to select where to store the generated motion vectors.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">If you view the channels you selected, you should see they now contain motion vectors.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">VectorBlur</span> to insert this node and connect it to the MotionBlur3D node.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 100mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/vb_mb3d_nodes.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997844px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>A node tree with MotionBlur3D and VectorBlur.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the VectorBlur properties, select the motion layer from the <span class="_Override" style="font-weight: bold;">uv channels</span> dropdown menu.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Use the <b>blur uv</b> dropdown to blur the motion vectors themselves, before blurring the image, to smooth the results between regions with very different motion. Choose either:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b> - applies a small uniform blur to soften edges in the UV map, or</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>linear</b> - applies a linearly-weighted blur to blend between regions with different motion. This has a stronger effect than the <b>uniform</b> option.</p>
+        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>The <b>uniform</b> option can be used to create blur similar to pre-<span class="CustomProduct">Nuke</span> 10 results.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Select the <b>blur type</b> using the dropdown.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">To adjust the amount of blur, adjust the <b>motion blur</b> controls.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">To adjust the length of the blur, adjust the <span class="_Override" style="font-weight: bold;">Shutter</span> setting in the MotionBlur3D <b>Properties</b> panel.</td>
+            </tr>
+        </table>
+        <table style="caption-side: top;">
+            <col style="width: 50mm;" />
+            <col style="width: 50mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/motion_blur_3d_low.png" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/motion_blur_3d_high.png" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>Low<span class="_Override" style="font-weight: bold;"> Shutter</span> value.</p>
+                    </td>
+                    <td class="caption">
+                        <p>High<span class="_Override" style="font-weight: bold;"> Shutter</span> value.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="3d_compositing_3567570779_829048"></a>To use VectorBlur with Third-Party Motion Vectors</h3>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">VectorBlur</span> to insert a VectorBlur node after a 2D image that contains motion vector channels.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the VectorBlur properties, use the <span class="_Override" style="font-weight: bold;">channels</span> dropdown menu to select the channels to blur.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select the motion vector channels from the <span class="_Override" style="font-weight: bold;">uv channels</span> dropdown menu.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the <b>mv presets</b> dropdown to apply the presets associated with the selected renderer's default settings, if present.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If your motion vectors have been premultiplied, check <span class="_Override" style="font-weight: bold;">uv alpha</span> and specify the channel used to premultiply the image.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Select the <b>blur type</b> and the required amount of blur using the <b>motion blur</b> controls.</td>
+            </tr>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

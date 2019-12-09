@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Tracking with PlanarTracker">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Tracking a Plane</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/planartracker/tracking_plane.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Tracking a Plane</h1>
+        <p class="afterHead">Before you can track a plane, you need to draw one using the Roto node.</p>
+        <h2>Drawing a Plane to Track</h2>
+        <p class="afterHead"> You can use the PlanarTracker to track rigid objects and objects that deform slightly throughout the track. As the PlanarTracker tries to fit a plane to the object to be tracked, rigid objects obtain better track results than objects that deform. </p>
+        <p class="afterHead"> For instance, a wall or a flat side of an object are good planes, but you can also get good results tracking faces or people. It’s also important that the plane you’re tracking has some texture and that the plane isn’t completely obscured at any point of the tracking. Tracking surfaces without texture and few features to track is not likely to produce good results. </p>
+        <p class="afterHead">&#160;</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">You can do one of the following:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Insert a PlanarTracker node by either selecting <b>Transform</b> &gt; <b>PlanarTracker</b>, or by pressing tab, typing PlanarTracker, and pressing <b>Return</b>. This inserts a Roto node that is already in PlanarTracker mode. You can use this to draw a Bezier shape, which is automatically added as a track object. The shape's boundary appears in purple, denoting this, and the shape is automatically added to a layer called <span class="_Override" style="font-weight: bold;">PlanarTrackLayer1</span> in the stroke/shape list.</p>
+        <p class="processBulletCont">OR</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Create a Roto or RotoPaint node and use it to draw a Bezier shape around the plane you want to track. Your new shape’s boundaries appear in red in the Viewer, and a Bezier shape item appears in the stroke/shape list. The shape remains as a normal roto shape until it is  converted into a track object.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/planar_tracker03_377x263.png" class="cm10" style="width: 377;height: 263;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you’re drawing more than one shape, you can arrange them in the stroke/shape list to tell PlanarTracker that they are different layers. Order your shapes from closest to camera (top of the list) to furthest away (bottom of the list), and PlanarTracker automatically holds out any track layers above the current one.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Make sure you’re still on the same frame as you used to draw the Bezier shape. </td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>When you select a frame to draw a roto shape on, that frame becomes your reference frame. When you proceed with tracking your plane it’s important that you’re always starting on the same reference frame. Move to your reference frame using the <span class="_Override" style="font-weight: bold;">Go to Reference Frame</span>  button <img src="../../assets/images/ug_images/icon_planartr_go_ref_frame.png" style="vertical-align: middle;" />. In the course of the process you may decide to change your reference frame. You can do this by clicking <span class="_Override" style="font-weight: bold;">Set Reference Frame </span> <img src="../../assets/images/ug_images/icon_planartr_set_ref_frame.png" style="vertical-align: middle;" /> in the Viewer.</p>
+        <h2>Tracking the Footage</h2>
+        <p class="afterHead">You can now proceed to track the plane you’ve drawn:</p>
+        <p>Depending on whether you have chosen to insert a PlanarTracker node, or a Roto (or RotoPaint) node, do one of the following:</p>
+        <p>If you have chosen to insert a PlanarTracker node:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use the tracking tools above the Viewer to track the Roto shape.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/tracker_tools_566x125.png" class="cm15" style="width: 566;height: 125;" />
+        </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">See <a href="#Tracker_Menu_Options" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracker Menu Options in the Viewer</span></a> for more information.</td>
+            </tr>
+        </table>
+        <p>If you have chosen to insert a Roto or a RotoPaint node:</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Right-click the Roto shape and select one of the following options:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>planar-track this shape</b> - Select this to convert the roto shape into a track object that doesn't contain any tracking data (if it's not already).</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>planar-track this shape (fwd) </b>- Select this to track your shape while the track is played forwards.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>planar-track this shape (bkwd) </b>- Select this to track your shape while the track is played backwards.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you selected one of the latter two options, your shape is now tracked throughout the timeline. A progress dialog is displayed while the shape is tracked.</td>
+            </tr>
+        </table>
+        <p class="numberedCont">If you selected the first option to convert your roto shape into a track object without any tracking data, you can use the tracking tools above the Viewer to track forwards or backwards. See <a href="#Tracker_Menu_Options" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracker Menu Options in the Viewer</span></a> for more information. When you select any of the options above the tracker menu tools are displayed above the Viewer.</p>
+        <p class="numberedCont">The shape is now automatically added to a layer called <span class="_Override" style="font-weight: bold;">PlanarTrackLayer1</span> in the stroke/shape list and is displayed in purple in the Viewer, signifying that it has been converted into a track object.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">  In the stroke/shape list, a purple rectangle appears in the <span class="_Override" style="font-weight: bold;">PT</span> column next to your shape(s). You can toggle the purple rectangle on and off to revert the shape to a normal roto shape instead of a track object. </td>
+            </tr>
+        </table>
+        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can only toggle a shape between being a roto shape or a track object, after converting the Roto shape into a track object.</p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select the <b>Tracking</b> tab in the Roto node properties to display the tracking data, as shown below.</td>
+            </tr>
+        </table>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/tracker_showtracks_377x246.png" class="cm10" style="width: 377;height: 246;" />
+        </p>
+        <h2><a name="Tracker_Menu_Options"></a>Tracker Menu Options in the Viewer</h2>
+        <p>You can use the tracker menu options to perform more advanced tracking. These options are only visible in the Viewer after you have converted a shape into a track object.</p>
+        <p>
+            <img src="../../assets/images/ug_images/tracker_tools_566x125.png" class="cm15" style="width: 566;height: 125;" />
+        </p>
+        <h3>Track Motion Controls</h3>
+        <p>Before tracking an object, you can use the track motion controls to specify the type of movement that the PlanarTracker can expect. The following options are available:</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/tracker_motion_controls_377x94.png" class="cm10" style="width: 377;height: 94;" />
+        </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Translation</span> - Select this so the tracker expects translation. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Rotate</b> - Select this so the tracker expects rotation. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Scale</span> - Select this so the tracker expects scaling. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Shear</span> - Select this so the tracker expects shearing. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Perspective</span> - Select this so the tracker expects changing perspective. </p>
+        <h3>Tracking Controls</h3>
+        <p>Use the <span class="_Override" style="font-weight: bold;">Tracking</span> <span class="_Override" style="font-weight: bold;">buttons</span> to track backwards or forwards throughout the whole footage, or if you want, select a specified frame range. </p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/tracking_tools_section_377x127.png" class="cm10" style="width: 377;height: 127;" />
+        </p>
+        <p>You can also track on a frame by frame basis. For example, if the plane you’re tracking is visible throughout the footage, forward tracking might be all you need. If the plane is only partially visible over a part of the footage though, it might be a good idea to first track the part with the whole plane visible, and then track the rest of the footage separately. </p>
+        <p>With the Tracking controls you can track and re-track your footage.  For more information see <a href="../tracking_stabilizing/tracking_stabilizing.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking and Stabilizing </span></a>.</p>
+        <h3>Clear Tracking Data Controls</h3>
+        <p>You can clear tracking information that you’ve already created with the clear buttons.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/clear_tracking_data_377x129.png" class="cm10" style="width: 377;height: 129;" />
+        </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">clear</span> <span class="_Override" style="font-weight: bold;">all</span> - clear all tracking information created by PlanarTracker. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">clear</span> <span class="_Override" style="font-weight: bold;">backwards</span> - clear all tracking information backwards from the current frame.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">clear</span> <span class="_Override" style="font-weight: bold;">forwards</span> - clear all tracking information forwards from the current frame. </p>
+        <h3>Planar Tracker Surface Controls</h3>
+        <p>After you have tracked your shape or shapes, you can review your results by scrubbing back and forth on the timeline. You can adjust the planar surface shape if, for example, your roto shape drifts in the course of the tracking, or you simply want to change it. To do this, you can use the planar surface controls.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/planar_surface_tools_377x164.png" class="cm10" style="width: 377;height: 164;" />
+        </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>center planar surface</b> - Select this to center the planar surface in the Viewer during playback.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>display planar surface</b> - Select this to display the boundary of the planar surface.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>enable planar surface editing</b> - Select this so that you can edit the planar surface by dragging the corner points in the Viewer.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>display grid</b> - Select this to display a grid over the planar surface.</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>set planar surface to image bounding box</b> - Select this to change the planar surface to be the same as the image bounding box.</p>
+        <h3>Reference Frame Controls</h3>
+        <p>You can use the reference controls above the Viewer to either go to the current reference frame, or change the reference frame to the current frame.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/reference_frames_tracker_377x38.png" class="cm10" style="width: 377;height: 38;" />
+        </p>
+        <h3>Keyframe Controls</h3>
+        <p>You can set and remove keyframes, and go to previous or next keyframes using the keyframe controls above the Viewer.</p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/keyframe_tracker_controls_377x149.png" class="cm10" style="width: 377;height: 149;" />
+        </p>
+        <h3>Layer Dropdown</h3>
+        <p>You can use the layer dropdown to quickly select various PlanarTracker layers, or to add a new layer. </p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/layer_select_tracker_132x92.png" style="width: 132;height: 92;" />
+        </p>
+        <h3><a name="CornerPin_Dropdown"></a>CornerPin Dropdown</h3>
+        <p>You can use the <b>CornerPin</b> dropdown to insert a CornerPin node. The CornerPin2D tool is designed to map the four corners of an image sequence to positions derived from tracking data. In practice, this allows you to replace any four-cornered feature with another image sequence. </p>
+        <p class="graphic">
+            <img src="../../assets/images/ug_images/cornerpin_tracker_189x198.png" style="width: 189;height: 198;" />
+        </p>
+        <p>The CornerPin dropdown provides you with several different kinds of CornerPin you can choose from:</p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">relative</span> - to warp the image according to the relative transform between the current frame and the reference frame. The image remains unchanged in the reference frame. You can also pick the baked version of the relative CornerPin node. A baked node has the keyframe values copied from PlanarTracker, rather than having them expression linked. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">absolute</span> - to use the <span class="_Override" style="font-weight: bold;">to</span> and <span class="_Override" style="font-weight: bold;">from</span> controls to place the image exactly within the selected plane. This may skew the image throughout the footage. This attaches and automatically sets its format to the dimensions of any currently selected node. You can also pick the baked version of the absolute CornerPin node. A baked node has the keyframe values copied from PlanarTracker, rather than having them expression linked. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">stabilize</span> - to apply an inverse transform on the image, which effectively locks the image in its place and stabilizes it in the footage. This type of corner pinning is most useful for drift corrections and making sure your tracking results are reliable. You can also select <span class="_Override" style="font-weight: bold;">Tracker</span> to create a baked Tracker node for further reducing jitter. You can also pick the baked version of the stabilize CornerPin node. A baked node has the keyframe values copied from PlanarTracker, rather than having them expression linked. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Tracker</b> - <span>creates a Tracker node with four tracks set to each of the tracked corner points. These tracked points give you access to the Tracker's comprehensive functions, such as track averaging and enhanced smoothing controls. </span>See <a href="../tracking_stabilizing/tracking_stabilizing.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking and Stabilizing </span></a>for more information.</p>
+        <h2>Tracking Tab Menu Options</h2>
+        <p>Select the <b>Tracking</b> tab in the Roto node's properties to access more tracking options.</p>
+        <h3>Settings</h3>
+        <table style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
+            <col style="width: 198px;" class="TableStyle-Master_TableStyle-Column-Column1" />
+            <col class="TableStyle-Master_TableStyle-Column-Column1" />
+            <tbody>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">track channels</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">Use this dropdown to select the channel set on which you want to track.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">image channels</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">Use this to select an individual channel from the channel set. You do not need to select an individual channel, and instead can leave it as <b>none</b>, the default.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">pre-track filter</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Before image patches are compared, the selected filter is applied. You can select one of the following options:</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>none</b> - This disables all pre-filtering, which allows you to have full control of tuning the input image for tracking.</p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>adjust contrast</b> - This stretches the image contrast to better suit the tracking algorithm. This option is recommended. </p>
+                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>grayscale</b> - This converts any input RGB channels to a grayscale image for faster processing.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">adjust for luminance changes</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">If your footage changes brightness over time, either gradually or suddenly, enabling this option performs extra pre-filtering to help compensate for the changes. This may make the track slower and less accurate and therefore should only be selected when you need to handle changes in luminance.</td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                    <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">clamp super-white, sub-zero footage</td>
+                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                        <p>Select this to clamp the tracking patch pixel values to lie between 0 and 1. </p>
+                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you want to track using the full dynamic range of your super-white or sub-zero footage, disable this option.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                    <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">hide progress bar</td>
+                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">As it is possible to stop a track using the tools above the Viewer, you can choose to hide the progress dialog that appears when you track a shape.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Export</h3>
+        <p>You can use the <b>CornerPin</b> dropdown to select the type of corner pin node you want to insert. See <a href="#CornerPin_Dropdown" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">CornerPin Dropdown</span></a> for more information about the different kinds of CornerPin. After you have selected the required type of CornerPin, you can press <b>Create</b> to insert it.</p>
+        <p>Select the <b>link output</b> checkbox to link to the PlanarTracker output so that exported nodes are updated with the track.</p>
+        <h3>Correction</h3>
+        <p>The CornerPin points are populated automatically when you track an object. When you draw a roto shape and convert it into a track object, <span class="CustomProduct">Nuke</span> automatically places 4 corner pins around the shape. These are the points that are tracked.</p>
+        <p>You can correct the four automatically placed points by offsetting any or all of the four points. To offset a point, simply click and drag it in the Viewer to the correct position.</p>
+        <h3>Reference Frame</h3>
+        <p>This is the frame used as a reference to compare all other frames containing tracking data. It defaults to the first frame used to track. You can change this by entering a new frame number in the <b>reference frame</b> input field.</p>
+        <p>&#160;</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

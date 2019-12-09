@@ -1,0 +1,40 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+BackdropNode {
+ inputs 0
+ name BlinkScript_Knobs
+ tile_color 0x778b9bff
+ label "This example demonstrates all the\nknob types that can be automatically \ncreated for the kernel parameters in\nBlinkScript. \n\nLook at the Kernel Parameters tab\nto see the Nuke knobs that have been \ngenerated for each of the KnobsKernel's\nparameters.\n\nThe KnobsKernel is just intended to \ndemonstrate the knob creation,\nso it does no processing except to\ncopy its input to its output.\n\n"
+ selected true
+ xpos -442
+ ypos -142
+ bdwidth 194
+ bdheight 166
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos -229
+ ypos -142
+}
+BlinkScript {
+ ProgramGroup 1
+ KernelDescription "1 \"KnobsKernel\" iterate componentWise cde7d8569e331707d59c7ae8032dfafe765dd319855e5038bf6461fbd21ce3de 2 \"src\" Read Point \"dst\" Write Point 11 \"SingleFloat\" Float 1 AACAQA== \"XY\" Float 2 AAAAAAAAAAA= \"XYZ\" Float 3 AAAAAAAAAAAAAAAAAAAAAA== \"AColor\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== \"MultiFloat\" Float 5 AAAAAAAAAAAAAAAAAAAAAAAAAAA= \"Array3x3\" Float 9 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA \"Array4x4\" Float 16 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA== \"SingleInt\" Int 1 BAAAAA== \"MultiInt\" Int 4 AAAAAAAAAAAAAAAAAAAAAA== \"DefaultTrue\" Bool 1 AQ== \"DefaultFalse\" Bool 1 AA=="
+ kernelSource "/// Kernel demonstrating RIP knob types\nkernel KnobsKernel : ImageComputationKernel<eComponentWise>\n\{\n  Image<eRead> src;\n  Image<eWrite> dst;\n\nparam:\n  float single_float;\n  float2 xy;\n  float3 xyz;\n  float4 acolor;\n  float multi_float\[5];\n  float3x3 array3x3;\n  float4x4 array4x4;\n  int single_int;\n  int multi_int\[4];\n  bool default_true_knob;\n  bool default_false_knob;\n\n\nlocal:\n  void define() \{\n    defineParam(single_float, \"SingleFloat\", 4.0f); //This knob will have a range of 0..8\n    defineParam(xy, \"XY\"); \n    defineParam(xyz, \"XYZ\"); \n    defineParam(acolor, \"AColor\"); \n    defineParam(multi_float, \"MultiFloat\"); \n    defineParam(array3x3, \"Array3x3\"); \n    defineParam(array4x4, \"Array4x4\"); \n    defineParam(single_int, \"SingleInt\", 4); \n    defineParam(multi_int, \"MultiInt\"); \n    defineParam(default_true_knob, \"DefaultTrue\", true); \n    defineParam(default_false_knob, \"DefaultFalse\", false); \n  \}\n\n  void init() \{\n  \}\n\n  void process() \{\n    //Just copy src to dst\n    dst() = src();\n  \}\n\};\n"
+ rebuild ""
+ group_KnobsKernel_Array3x3 1
+ group_KnobsKernel_Array4x4 1
+ name BlinkScript1
+ xpos -229
+ ypos -49
+}
+Viewer {
+ input_process false
+ name Viewer2
+ xpos -229
+ ypos 5
+}

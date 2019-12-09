@@ -1,0 +1,125 @@
+Root {
+ inputs 0
+}
+Camera2 {
+ inputs 0
+ translate {0.3215569854 2.016159058 4.550463676}
+ rotate {-16.97902553 -1.092542119 0}
+ name Camera1
+ xpos 1846
+ ypos 183
+}
+ColorWheel {
+ inputs 0
+ edgeSaturation 0
+ edgeValue 0
+ gamma 0.45
+ name ColorWheel1
+ xpos 2057
+ ypos -17
+}
+BlendMat {
+ operation plus
+ surfaceblend modulate
+ name BlendMat1
+ xpos 2057
+ ypos 77
+}
+CheckerBoard2 {
+ inputs 0
+ format "640 480 0 0 640 480 1 PC_Video"
+ color1 {0.1000000015 0.1000000015 0.1000000015 1}
+ color3 {0.1000000015 0.1000000015 0.1000000015 1}
+ linecolor {0.1000000015 0.1000000015 0.1000000015 1}
+ centerlinewidth 20
+ name CheckerBoard1
+ xpos 1940
+ ypos -84
+}
+Sphere {
+ display textured+lines
+ name Sphere3
+ gl_color 0x5b5b5bff
+ xpos 1940
+ ypos 19
+}
+push 0
+ParticleEmitter {
+ inputs 3
+ rate 2
+ lifetime 200
+ velocity 0.01
+ name ParticleEmitter1
+ xpos 1940
+ ypos 77
+}
+ParticleExpression {
+ colexpr "x(vel)>0?v(1, 0, 0):v(0, 0, 1)"
+ opacityexpr 1-(age/life)
+ sizeexpr (age/life)*0.2
+ posexpr new?randomv:pos
+ name ParticleExpression1
+ xpos 1940
+ ypos 127
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "640 480 0 0 640 480 1 PC_Video"
+ name Constant1
+ xpos 2050
+ ypos 180
+}
+ScanlineRender {
+ inputs 3
+ motion_vectors_type velocity
+ name ScanlineRender1
+ xpos 1940
+ ypos 204
+}
+Viewer {
+ input_process false
+ name Viewer1
+ xpos 1940
+ ypos 254
+}
+StickyNote {
+ inputs 0
+ name StickyNote2
+ tile_color 0x9b9b9bff
+ label "color = x(vel)>0?v(1, 0, 0):v(0, 0, 1)\n\nThis says:\n\nFor every particle moving along the x axis in some capacity, \nif the velocity is greater than 0 (i.e. going in the \npositive x direction), color the particle red \[v(1,0,0)].\nElse, color it blue \[v(0,0,1)]."
+ note_font_size 18
+ note_font_color 0x10101ff
+ xpos 2204
+ ypos -242
+}
+StickyNote {
+ inputs 0
+ name StickyNote6
+ tile_color 0x9b9b9bff
+ label "The age is the current age that the particle is \n(the frame count since emission).\n\nThe life is the entire time until it expires (the max lifetime).\n\n-----\n\nSo for an axample case where the max lifetime is set to 100:\n\n1-(age/lifetime)\n\n1 - (1/100) = 0.99    > close to being fully opaque\n1 - (50/100) = 0.5    > semi-transparent\n1 - (100/100) = 0     > can't see it  "
+ note_font_size 18
+ note_font_color 0x20202ff
+ xpos 2203
+ ypos -58
+}
+StickyNote {
+ inputs 0
+ name StickyNote4
+ tile_color 0x9b9b9bff
+ label "pos = new?randomv:pos\ncould also be written: \nnew?v(random,random,random):pos\n\nIf the particle is new, give it a random position and direction.\nElse, give it the position it had.\n\nBasically, this is bypassing using the Sphere as the emitter."
+ note_font_size 18
+ note_font_color 0x20202ff
+ xpos 2214
+ ypos 239
+}
+StickyNote {
+ inputs 0
+ name StickyNote3
+ tile_color 0x9b9b9bff
+ label "In this example, the particles are:\n- red or blue based on the direction they are travelling in\n- fading to nothing the over their lifetime\n- increasing in size over their lifetime\n- starting from a random x, y, z position within a 1x1x1 cube\n  area on the grid."
+ note_font_size 18
+ note_font_color 0x10101ff
+ xpos 1709
+ ypos -243
+}

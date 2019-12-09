@@ -1,0 +1,116 @@
+Root {
+ inputs 0
+ last_frame 20
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+Camera2 {
+ inputs 0
+ translate {-1.446374774 1.187220097 2.273895025}
+ rotate {-23.90210342 -32.77867126 -9.338625659e-07}
+ name Camera1
+ xpos -155
+ ypos 83
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "512 512 0 0 512 512 1 square_512"
+ name Constant1
+ xpos -53
+ ypos -242
+}
+Noise {
+ type turbulence
+ zoffset {{frame/20}}
+ lacunarity 1.54
+ gain 0.47
+ gamma 0.42
+ center {256 256}
+ name Noise1
+ xpos -53
+ ypos -156
+ postage_stamp true
+}
+Shuffle {
+ alpha white
+ name Shuffle1
+ xpos -53
+ ypos -59
+}
+set N1705c1c0 [stack 0]
+Dot {
+ name Dot2
+ xpos -126
+ ypos -56
+}
+Dot {
+ name Dot1
+ xpos -126
+ ypos 16
+}
+push $N1705c1c0
+Card2 {
+ display wireframe
+ rows 40
+ columns 40
+ rotate {-90 0 0}
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card1
+ xpos -53
+ ypos -23
+}
+DisplaceGeo {
+ inputs 2
+ scale 0.2
+ name DisplaceGeo1
+ xpos -53
+ ypos 13
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "960 540 0 0 960 540 1 half_HD"
+ name Constant2
+ xpos 68
+ ypos 80
+}
+add_layer {positionPass pointPass.x pointPass.y pointPass.z}
+add_layer {normalsPass normalsPass.x normalsPass.y normalsPass.z}
+ScanlineRender {
+ inputs 3
+ motion_vectors_type velocity
+ output_shader_vectors true
+ P_channel positionPass
+ N_channel normalsPass
+ name ScanlineRender1
+ xpos -53
+ ypos 80
+ postage_stamp true
+}
+Viewer {
+ input_process false
+ name Viewer1
+ xpos -53
+ ypos 194
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ tile_color 0x9b9b9bff
+ label "This example displaces a Card node \nbased on a noise image."
+ note_font_size 18
+ xpos 62
+ ypos 1
+}

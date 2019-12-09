@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Creating 3D Particles">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adjusting the Speed and Direction of the Particles</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/particles/adjusting_speed_direction.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>Adjusting the Speed and Direction of the Particles</h1>
+        <h2><a name="Applying"></a>Applying Gravity to Particles</h2>
+        <p class="afterHead">When applying gravity to particles, as opposed to our familiar gravity, <span class="CustomProduct">Nuke</span> doesn’t restrict you to a certain direction but works in any or all of the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span> and <span class="_Override" style="font-weight: bold;">z</span> directions. You can add gravity either by: </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Using the ParticleDirectionalForce to apply a directional force. Just connect it to your particle stream, and adjust the strength of the force in the x, y, and z directions by entering <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y,</span> and <span class="_Override" style="font-weight: bold;">z</span> values in the <span class="_Override" style="font-weight: bold;">strength</span> fields.</p>
+        <p class="bulletedCont"><span class="_Override" style="font-weight: bold;">OR</span> </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Using the ParticleGravity node. When you connect the ParticleGravity node to your particle stream, an arrow appears in the Viewer, which you can then use to determine the direction and velocity of the gravity. The bigger and longer the arrow, the stronger the effect. Instead of adjusting the arrow, you can also use the controls in the properties panel: </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">from</span> - enter the point of origin for the gravity effect on the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span>, and <span class="_Override" style="font-weight: bold;">z</span> axis. This determines from which direction the force appears to come, indicated by the base of the arrow in the Viewer.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">to</span> - enter direction for the gravity effect on the <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span>, and <span class="_Override" style="font-weight: bold;">z</span> axis. This is indicated by the point of the arrow in the Viewer.</p>
+        <h2><a name="Aligning"></a>Aligning Particles </h2>
+        <p class="afterHead">To align your particles’ motion, direction, and orientation, you can use two nodes: </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can add the ParticleMotionAlign node in your particle stream to realign all the particles along their direction of motion. This is useful if your particles seem too rigid in their movement. </p>
+        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Add the ParticleLookAt node to determine a 3D point that all the particles are looking toward. To specify this point, adjust the <span class="_Override" style="font-weight: bold;">position</span> control. The <span class="_Override" style="font-weight: bold;">x</span>, <span class="_Override" style="font-weight: bold;">y</span> and <span class="_Override" style="font-weight: bold;">z</span> coordinates specify the point that the particles are looking at. </p>
+        <h2><a name="Controll"></a>Controlling Particles’ Speed</h2>
+        <p class="afterHead">The ParticleSpeedLimit node limits the particles to a specified minimum and maximum speed. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect it to your particle stream.</td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the properties panel, adjust: </td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">minimum</span> - the minimum speed at which each particle can travel. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">maximum</span> - the maximum speed at which each particle can travel. </p>
+        <h2><a name="Attracti"></a>Attracting Particles to a Specific Point</h2>
+        <p class="afterHead">With the ParticlePointForce, you can attract particles to or repel them from a certain point in the 3D space. </p>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect the node to your particle stream. </td>
+            </tr>
+        </table>
+        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
+            <col style="width: 0px;" />
+            <col style="width: 25px;" />
+            <col style="width: auto;" />
+            <tr>
+                <td valign="top" />
+                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
+                </td>
+                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Adjust the ParticlePointForce controls:</td>
+            </tr>
+        </table>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">strength</span> - set the strength of the force attracting or repelling particles. Negative values cause attraction, positive values repulsion.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">falloff</span> - choose how quickly strength of the attraction falls off with respect to the distance by selecting the type of falloff, <span class="_Override" style="font-weight: bold;">none</span> for no falloff, <span class="_Override" style="font-weight: bold;">inverse</span> for inverse falloff, or <span class="_Override" style="font-weight: bold;">inverse</span> <span class="_Override" style="font-weight: bold;">square</span> for inverse falloff squared.</p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">radius</span> - set the radius of influence. Outside of this radius, no particles are affected by point force. </p>
+        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">position</span> - set the position of the point that attracts or repels particles. You can use an animated or a still Axis node expression-linked to these fields, or you can just enter a position value manually.</p>
+        <table>
+            <col style="width: 70mm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/particle_pointforce.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000074px;margin-bottom: 0.9997844px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">Particles attracted to a 3D point.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

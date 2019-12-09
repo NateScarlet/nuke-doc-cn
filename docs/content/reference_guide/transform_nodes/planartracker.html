@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>PlanarTracker</title>
+        <script>/* <![CDATA[ */
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-7716777-9', 'thefoundry.co.uk');
+			ga('send', 'pageview');
+
+		/* ]]> */</script>
+        <link href="../../resources/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../resources/stylesheets/load.js">
+        </script>
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/transform_nodes/planartracker.html">Open topic with navigation</a>
+        </p>
+        <h1><a name="transform_nodes_2326311149_792628"></a>PlanarTracker</h1>
+        <p>PlanarTracker (<span class="CustomProductX">NukeX</span> and <span class="CustomProductStudio">Nuke Studio</span> only) is a powerful tool for tracking surfaces that lie on a plane in your source footage. The size of plane is not important as the track relies on the amount of texture in the region - the more texture, the more features can be picked up, the better the track. PlanarTracker can handle approximately 40% of the surface being covered at any one time, but if the plane is fully obscured, you can manually correct the plane by moving it to a frame where it is not obscured and resume tracking from there.</p>
+        <p>You can also use your tracking results to replace the tracked plane with an image, or link to a GridWarp node to manually transform a warp or morph function.</p>
+        <p>See also <a href="tracker.html" class="noPage MCXref xref xrefnoPage"><span style="color: 00B4E0;" class="mcFormatColor">Tracker</span></a>.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="88px">
+                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="113px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="432px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 49px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">The source sequence you intend to track.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>By default, when you create a PlanarTracker node a Roto node is connected to this input.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="2737px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">PlanarTracker Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Additional Input</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 252px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">mask</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">additional_input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">None</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets what mask or an alpha from another source you intend to include, for example, if you have the results of a chroma keying that you want to use with your primary mask:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Alpha</span> - use the alpha channel of the source footage to define the plane to track.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Inverted Alpha</span> - use the inverted alpha channel of the source footage to define the plane to track.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Luminance</span> - use the luminance of the mask input to define the plane to track.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Luminance</span> - use the inverted luminance of the mask input to define the plane to track.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Alpha</span> - use the mask input alpha channel to define the plane to track.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Alpha</span> - use the inverted mask input alpha channel to define the plane to track.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Tracking Controls</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 149px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Perspective</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">planarApparentMotionType</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Perspective</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets what type of camera movement is expected:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Translation</span> - only translates.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">T + Scale</span> - both translates and scales.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">S + Rotation</span> - rotates and scales.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">TS + Rotation </span>- translation, scaling, and rotation.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">TSR + Shear</span> - translation, scaling, rotation, and shear (move as if cutting through the scene).</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Perspective</span> - the camera to changes perspective freely.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 34px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">
+                                    <img src="../../resources/images/rg_images/plan_track_trackrange.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000063px;margin-bottom: 0.9997786px;" />
+                                </p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">trackToStartRange</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to track backwards through a range of frames specified using the frame range control.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 34px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">
+                                    <img src="../../resources/images/rg_images/plan_track_trackback.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000063px;margin-bottom: 0.9997786px;" />
+                                </p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">trackToStart</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to track backward to the first frame of the sequence.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 34px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">
+                                    <img src="../../resources/images/rg_images/plan_track_previoustrack.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000063px;margin-bottom: 0.9997786px;" />
+                                </p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">trackPrev</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to track the previous frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 34px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">
+                                    <img src="../../resources/images/rg_images/plan_track_previoustrack1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000063px;margin-bottom: 0.9997786px;" />
+                                </p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">trackNext</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to track the next frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 34px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">
+                                    <img src="../../resources/images/rg_images/plan_track_trackback1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000063px;margin-bottom: 0.9997786px;" />
+                                </p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">trackToEnd</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to track forward to the last frame of the sequence.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 34px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">
+                                    <img src="../../resources/images/rg_images/plan_track_trackrange1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000063px;margin-bottom: 0.9997786px;" />
+                                </p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">trackToEndRange</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to track forward through a range of frames specified using the frame range control.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">clear all</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">clearAll</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to clear all tracking information.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">clear bkwd</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">clearBkwd</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to clear all tracking information backward from the current frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">clear fwd</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">clearFwd</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to clear all tracking information forward of the current frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Planar Surface</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">go to reference frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">gotoReferenceFrame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to move the playhead to the tracker's reference frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">set reference frame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">setCurrentFrameToReferenceFrame</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Click to set the current frame as the reference frame for the planar surface.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">resize planar surface  to image</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">setImageSizedPlanarSurface</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to set the planar surface to the bounds of the input image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">show plane</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">displayPlanarSurface</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">When enabled, the current plane is displayed in the Viewer.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">center viewer</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">centerPlanarSurface</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, the plane is centered in the Viewer.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">correct plane</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">correctPlane</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">When enabled, you can adjust the plane using the four output indicators in the Viewer.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">show grid</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">displayGridLines</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, a grid corresponding to the current plane is displayed in the Viewer.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Smoothness</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">enable jitter smoothing</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">doSmooth</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, jitter smoothing is applied to the planar surface corners. The amount of smoothing is controlled by the <span class="_Override" style="font-weight: bold;">smoothing amount</span>.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 99px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">smoothing amount</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">trackSmoothMotion</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0.2</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the amount of jitter smoothing to apply when <span class="_Override" style="font-weight: bold;">enable jitter smoothing</span> is active. Smoothing works best for removing low-amplitude jitter, usually introduced by noisy images. </p>
+                                <p class="CellBody">A value of 0 disables smoothing, while a value of 1 is maximum smoothing. </p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Jitter smoothing is not generally suited to heavy smoothing.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Export</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 291px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Export</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">createPinOptions</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">CornerPin2D (relative)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the node type to export the track data:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>CornerPin2D (relative)</b> - warp the image according to the relative transform between the current frame and the reference frame.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>CornerPin2D (absolute)</b> -  set the <b>to</b> positions to the corners of the planar surface, and the <b>from</b> positions to the dimensions of the currently selected node. This option places the incoming image entirely inside the planar surface.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>CornerPin2D (stabilize)</b> - applies the inverse transform of the track to stabilize the image. This option locks down the image so that the tracked plane effectively doesn't move - can be very useful for applying drift corrections.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Tracker</b> - creates a four-corner Tracker node with each of the trackers taking the positions of planar surface corners. This allows you to use the Tracker's transform functions to stabilize, reduce jitter, and so on. This export option is always baked out in order for the transform to work correctly.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Each of the exports also has a <b>bake</b> option which copies the values of the keyframes out, instead of creating expression links.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">create</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">createPin</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Click to create the selected node containing the track data.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Transform Matrix</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Transform Matrix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">planarTransformMatrix</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Specifies plane transformation from the reference frame to the current frame.</p>
+                                <p class="CellBody">You can also drag-and-drop matrix values from another plane to apply those values, for example, if you wanted to align planes in a scene.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Correction &gt; Four-corner output</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">bottom left xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputBottomLeft</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the coordinates of the <span class="_Override" style="font-weight: bold;">outputBottomLeft</span> indicator in the Viewer. You can adjust the indicator’s position by dragging it in the Viewer or by copying and pasting coordinates from other controls.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">bottom right xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">outputBottomRight</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Displays the coordinates of the <span class="_Override" style="font-weight: bold;">outputBottomRight</span> indicator in the Viewer. You can adjust the indicator’s position by dragging it in the Viewer or by copying and pasting coordinates from other controls.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">top right xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputTopRight</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the coordinates of the <span class="_Override" style="font-weight: bold;">outputTopRight</span> indicator in the Viewer. You can adjust the indicator’s position by dragging it in the Viewer or by copying and pasting coordinates from other controls.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">top left xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">outputTopLeft</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Displays the coordinates of the <span class="_Override" style="font-weight: bold;">outputTopLeft</span> indicator in the Viewer. You can adjust the indicator’s position by dragging it in the Viewer or by copying and pasting coordinates from other controls.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Correction &gt; Planar surface</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">bottom left xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">outputBottomLeft</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Displays the coordinates of the bottom left corner of the plane in the Viewer. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">bottom right xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputBottomRight</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the coordinates of the bottom right corner of the plane in the Viewer. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">top right xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">outputTopRight</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Displays the coordinates of the top right corner of the plane in the Viewer. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">top left xy</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">outputTopLeft</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Displays the coordinates of the top left corner of the plane in the Viewer. </p>
+                            </td>
+                        </tr>
+                        <tr style="height: 94px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">corrected keyframes</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">N/A</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Controls corrected keyframes:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">keys</span> - displays the current and total number of keyframes.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>
+                                    <img src="../../resources/images/rg_images/keys_browse4.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.007435px;margin-bottom: 0.9983615px;" /> - browse to the previous and next keyframe.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>
+                                    <img src="../../resources/images/rg_images/keys_add_rem4.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.007435px;margin-bottom: 0.9983615px;" /> - add or remove a keyframe on the current frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p class="CellBody">Tracking Tab</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Features</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Number of Features</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">numberFeatures</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">100</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the number of features you want to track in each frame - ideally you should use more than 100 tracks per frame.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Detection Threshold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">featureThreshold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0.05</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the distribution of features over the input image. Low values tracks features evenly on all parts of the image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Feature Separation</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">featureSeparation</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">9</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the distribution of features in relation to each other. High values spread features at even distances over the image.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Refine Feature Locations</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">refineFeatures</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">When enabled, detected features are locked to local corners. PlanarTracker finds the closest corner point in your footage and locks the feature point to it.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Tracking</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Track Threshold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">matchThreshold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0.7</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets a threshold value between 0 and 1. This threshold controls how similar features look over a number of frames. You can adjust this value to test whether a track is reliable.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Track Smoothness</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">smoothnessThreshold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">0.1</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">Sets the threshold for smooth track generation. Adjusting this value can be useful in preventing poor tracks in complex sequences. Increase the smoothness value to remove tracks that glitch over time.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">Track Consistency</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">consistencyThreshold</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p class="CellBody">0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">Sets the threshold for consistent track generation. Increase this value to ensure track motion is locally consistent. Adjust consistency to prevent poor tracks in complex sequences.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">Preview Features</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">previewFeatures</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p class="CellBody">When enabled, a track preview is displayed so you can tweak the tracking parameters before tracking.</p>
+                            </td>
+                        </tr>
+                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">Display Feature Tracks</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">displayTracks</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p class="CellBody">disabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p class="CellBody">When enabled, the individual tracks generated during analysis are displayed in the Viewer.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p><a href="../../comp_environment/planartracker/tracking_planar_surfaces.html" class="MCXref xref"><span style="color: 00B4E0;" class="mcFormatColor">Tracking with PlanarTracker</span></a>
+                </p>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - PlanarTracker: Intro</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                        <p>
+                            <object width="500" height="256">
+                                <param name="allowfullscreen" value="true" />
+                                <param name="allowscriptaccess" value="always" />
+                                <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=26434226&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
+                                <embed src="http://vimeo.com/moogaloop.swf?clip_id=26434226&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="256">
+                                </embed>
+                            </object>
+                        </p>
+                        <p>NukeX 6.3 Planar Tracker Tutorial: Intro from The Foundry on <a href="http://vimeo.com">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Hello, my name is Dan Ring, and in this tutorial I’m going to show you how to use the new PlanarTracker found in Nuke 6.3. I’m going to start by demonstrating just how quick and easy it is to create a planar track, and then go into some of the basics of the PlanarTracker. In this shot, we want to track the top section of this post here. We start by creating a PlanarTracker from the <b>Transform</b> menu. Once it is created, we can start drawing the area we want to track straight away. When we are done, we can click the Track Forward button and watch it track to the end of the shot. While it’s tracking, let me tell you more about the PlanarTracker.</p>
+                                <p>The PlanarTracker follows flat surfaces where most points on the surface lie in the same plane. Things like walls, ceilings, and sides of cars are good examples of planar surfaces, but it can also handle non-planar surfaces, such as faces or people -- generally, the more planar the surface, the better. Our Tracker uses feature-based tracking; it tries to find the best tracks that agree with the plane the user has drawn, and from those it derives a planar track. The important thing to remember is that planar tracking tracks regions as opposed to small image patches. This means you get a much more stable and accurate track compared to traditional 2D pattern trackers. For things like inserting images and set extension, it is nearly always faster and easier to use a planar tracker as opposed to some sort of projection in a camera solve, for example.</p>
+                                <p>Right, so the tracking is finished, and if we scrub back and forth across the timeline, we can see it has done a very good job. That Tracker is ready to use, but first let’s go over what happened. When we created the PlanarTracker, you will notice it also created a Roto node as well, this is to allow very tight integration of planar tracking with Roto. In fact, the Roto node is essential for the PlanarTracker to work, so always try and keep them connected. If we look inside the Roto node, we will see a <b>PlanarTrackLayer</b> in the curves menu. This is a special type of menu that is used to define what is being tracked. In our example, we drew a shape for the top of the post. Notice that the shape outline is colored purple to indicate it is in a track layer and will be used to define a region. If we want to, we can draw more shapes inside this layer, which will all contribute to the same track. I will rename this layer <b>post</b>. The PlanarTrackerLayer is also the place where the results of the track are saved to. To be specific, they are keyed in the <b>extra matrix</b> knob for the layer. This means anything we put in the layer will be affected by the track. When a Roto or RotoPaint node has a PlanarTrackLayer, the tracking toolbar is now displayed in the Viewer. This is a context-sensitive toolbar to let you perform your entire tracking workflow from left to right, for example, tracking, display, and correction, and export, all without having to go back to any node properties panel. We look at all these in detail in later tutorials. For now, the most useful knob here is the planar track layer selector. This shows the currently selected track layer and its associated shapes. You can see if you select the track shape, the selector changes accordingly. This is extremely useful when we have multiple track layers. We can also create whole new track layers, ready for drawing and tracking.</p>
+                                <p>Now, what I would like to do is insert this Nuke logo into our post track. To do this, I need to define where in the image I want the logo to be placed and then export my track data. I first make sure my <b>post</b> layer is selected, and then I click the <b>correct plane</b> button. This displays what is called the planar surface, shown here in blue. This is a diagnostic plane you can use to spot when tracks start to fail and how to correct them. It’s also used to define where to place images in the scene. However, when doing this, we need to move the corners of the surface at what we call the reference frame, that is, the frame where we first started the track -- in this case, frame 1. If we move the corner points at any other frame, we are actually applying corrections and we don’t actually want that. Let’s click the <b>go to reference frame</b> button, just in case we forgot where we started. You will see that at the reference frame the planar surface is yellow. Now we are free to move the corners to where we want to place our image.</p>
+                                <p>If we want, we can use the grid to help us line up our corners. Now, let’s finally export our track data. We can do this from our toolbar, again, making sure the <b>post</b> layer is selected. Clicking the <b>export</b> button, you can see there are lots of options depending on what format you would like. For our needs, we want a <b>CornerPin2D (absolute)</b>. In this case, absolute means the input image will be fit into the bounds of the planar surface. Before we export an absolute, we can save ourselves some time by selecting the Read node and then clicking the <b>export</b> button. This will automatically connect the CornerPin and select the correct image format. To see our composited result, we need to add a Merge node between the CornerPin and the input sequence. I will also add a small amount of motion blur to the CornerPin for effect. I will also close all of the properties panels. This will hide all of the drawing overlays and make it easier to see our track.</p>
+                                <p>As you can see, the logo is sticking very tightly to the back of the panel. This is exactly what we want. This concludes our first tutorial on the PlanarTracker.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - PlanarTracker: Tracking Multiple Layers</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                        <p>
+                            <object width="500" height="256">
+                                <param name="allowfullscreen" value="true" />
+                                <param name="allowscriptaccess" value="always" />
+                                <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=26474018&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
+                                <embed src="http://vimeo.com/moogaloop.swf?clip_id=26474018&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="256">
+                                </embed>
+                            </object>
+                        </p>
+                        <p>NukeX 6.3 PlanarTracker Tutorial: Tracking Multiple Layers from The Foundry on <a href="http://vimeo.com">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Hello, I’m Dan Ring and welcome to the second tutorial to Nuke’s new PlanarTracker. In this tutorial, we’re going to look at tracking multiple layers. We want to track the front of this boat in order to put a logo onto it, but if we look through the shot, we can see it becomes occluded by the suspension cable. In this tutorial, I’m going to show you how we can use back layering to get a better track.</p>
+                                <p>First, I will show you what happens if we try to track the boat without using layers. Let’s start by creating our PlanarTracker. Now we can make an observation here that will help our tracking. If we look at the sides of the boat, we can see they are roughly on the same plane as the area we want to place our logo. By including other areas that belong to the same plane, we will end up with better distributed feature tracks and usually a better overall planar track. So let’s draw these areas in two. I can also see that there’s not much change in perspective of the front of the boat over the course of the shot. This means we can lock our <b>planar apparent motion type</b> to <b>TSR + Shear</b>. I will also rename this layer <b>boat</b>. At this point, you might be tempted to say the cable does not fully occlude the boat, so why can’t you just track normally? Well, in some cases you can get away with it, particularly if the surface of the occluding object is small. Let’s see what happens if we try to track now.</p>
+                                <p>Straight away, we can see that the cable wipes out the track. To fix this, we are going to create a holdout for the cable. Better still, we are going to track the cable and use the track as our holdout. To do that, we create a new track layer. The easiest way to do this is to select the new track layer from the layer selected, and then just start drawing. I am going to draw a white border around the cable. To give the features on the boat a decent buffer zone, and I am going to rename the layer to <b>cable</b>. If we scrub through the footage, we can see that the cable doesn't change its shape or orientation much. This means that we can lock the <b>planar apparent motion type</b> to <b>T + Scale</b>, meaning it will only track changes in translation and scale, and usually results in a much better track. This is particularly useful on flat, featureless surfaces, such as the cable. Now let’s click the <b>track to end</b> button and watch it go.</p>
+                                <p>This looks like a pretty reasonable track and, importantly, it covers most of the overlap area between the cable and the boat. When using layers, the important thing to remember is that the track shape in each layer will hold out all the track layers below. For example, because our cable layer is above our boat layer, the boat shape will have the cable shape removed from it. This is different from the way you may create a regular holdout in the Roto node. It also works for many layers at a time. The idea is to order your layers in the curves menu by their distance from the camera, so that the object drawn in the topmost track layer is closer to the camera and, in our case, our cable layer. The furthest away object we want to track is in the bottom-most layer, and, in our case, our boat layer. So now our holdout track is done, let’s go back and re-track our boat layer. I will start by clearing all the track data to be saved (<b>clear all track data</b>) and then clicking <b>track to end</b>.</p>
+                                <p>You can see that, this time, the track is perfect. Now let’s put our logo on. As in the previous tutorial, we will select our Read node and export a CornerPin using the <b>absolute</b> mode. We now go back to our reference frame and adjust our planar surface to where we want to place our logo. We can also use the grid to help us line up our surface. Now, create a Merge node and connect it up, setting our input <b>B</b> to our Roto node and our input <b>A</b> to the CornerPin. We will also move it to a sensible place in the Node Graph to make it look a little less messy. So we are nearly done, however, if we look at our output, you will see the logo is appearing over the cable.</p>
+                                <p>Clearly, we want to hold out the cable for our comp and we can actually use our existing track result to do that. Going back to our cable track shape, you can tighten it out a bit and use it as a mask. Now let’s set the alpha component of the shape’s color to 0. So, now let’s look at the alpha channel of our Roto node. I think this is exactly what we want. Now, if we go back to the Merge node, we can set the <b>mask</b> to <b>rgba.alpha</b>, and if we connect that to the Viewer, we should see that we have a nice holdout. We just need to tweak the roto shape on the cable a little bit. So that seems to look much better. Let’s clear the drawing handles and play this on a loop so we can see the comp better. I am very happy with that track. So, that concludes the second tutorial for Nuke’s PlanarTracker.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - PlanarTracker: Rig Removal and Hold-Out Layers</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                        <p>
+                            <object width="500" height="256">
+                                <param name="allowfullscreen" value="true" />
+                                <param name="allowscriptaccess" value="always" />
+                                <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=26475873&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
+                                <embed src="http://vimeo.com/moogaloop.swf?clip_id=26475873&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="256">
+                                </embed>
+                            </object>
+                        </p>
+                        <p>NukeX 6.3 Planar Tracker Tutorial: Rig Removal and Hold-Out Layers from The Foundry on <a href="http://vimeo.com">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Hello, I’m Dan Ring and welcome to the third tutorial on Nuke’s new PlanarTracker. In this tutorial, I’m going to demonstrate how you might do some rig removal, using planar tracking and a background plate. I will also show you how to use additional track layers to create holdouts for tracks. In this shot, we have a camera dolly track in the frame that we would like to remove. We also have a clean plate of the floor that a kind artist has drawn for us. What we are going to do here is simply track the floor and move our clean plate along with the track. Let’s do that now.</p>
+                                <p>Instead of using the node menu to create a PlanarTracker, we are going to start with a Roto node and draw the shape of the area we want to track. Here, I am drawing as much of the floor as I can and just a tiny bit extra. Then, to create a track from within the Roto node, we simply right-click the shape and click <b>planar-track this shape</b>. This sets up a <b>PlanarTrackLayer</b> in the Roto curves panel and an associated PlanarTracker node. I’m going to rename the layer <b>floor</b>. Now, remember in the previous tutorial I mentioned the concept of a reference frame, internally the transforms and other frames are calculated relative to the reference frame. So when you are at the reference frame, there is essentially no transform being applied. I know that our clean plate was drawn for frame 382, so when we have done our track, we don’t want any transform to be applied on frame 382. This means I want 382 to be my reference frame, and we do this by starting our track at frame 382. This also means our Roto shape needs to have been drawn at frame 382, which I have already made sure to do so.</p>
+                                <p>Sometimes it happens that you may need to change your reference frame, for example, if an artist drew a Roto or made a clean plate for a frame other than your reference frame. In this case, you can simply go to the new frame and click the <b>set current frame to reference frame</b> button. We are nearly ready to track, but first we are going to set up our export node, so we can see the results as we are tracking. As we don’t want any transform on the reference frame, and we don’t want to place our clean plate inside the planar surface, we can select the <b>CornerPin2D (relative)</b>. To see our composite, we connect this input up to our clean plate, and we merge it with our original shot.</p>
+                                <p>Now, let’s start the track. Again, beginning at frame 382, and tracking to the beginning of the shot. I have just remembered something that will probably affect the track, so I am going to stop it and go back to our original footage. If we turn on the <b>display tracks</b> button, we can see why. If you look at the logo, you can see a lot of features are being tracked here and are biasing the track. To solve this, we need to hold this logo out from the shot. Ordinarily in Roto land, we can simply paint a couple of mask shapes over our first shape. However, the PlanarTracker system has its own way of creating holdouts. We will start by drawing a shape to mask out the logo, being careful to draw it inside the <b>Root</b> layer. Now, we add it to its own track layer by selecting it and right-clicking and choosing <b>planar-track this shape</b>. I will rename this layer <b>holdout</b>. We could also add more shapes to this layer if we wanted to hold out more things in this shot. It’s important to know that planar track layers interact with other layers. The way they work is that each track layer will hold out the track layers below it. So because our holdout layer is on top, our holdout shape will mask out the logo from the floor shape beneath it. Another nice thing about this is that if the logo were moving, we could simply track it first because it’s in a tracking layer. As it’s not moving, we don’t need to do anything else with this track layer. Instead, we’ll go back to our floor track and go to our reference frame. We will clear out all of the track data and we will re-track. I’m going to speed up the recording to save time.</p>
+                                <p>This is now tracking much better in the middle of the shot, but if we look at the beginning, there seems to be something funny happening. Let’s look at the planar surface to see what’s going on. If we scrub through the shot, you can see the surface has turned red for those strange frames. It’s also gone a bit wild here in the Viewer. This means that the transform at this point is extreme compared to the reference frame. This usually happens on these kind of shots when the camera is moving into the scene. Thankfully this is easy to fix. All we need to do is go to our reference frame and adjust our planar surface (<b>correct plane</b>). Here, I’m reigning in the surface, which tells the PlanarTracker to care only about the transform relative to the floor and not the entire scene. This does not need to be perfect, it just needs to be on the floor somewhere. As soon as we have done that, our track should look much better.</p>
+                                <p>So, you can see now that funny transform has gone away. Let’s now close these property panels to get a better view. Now, this track is starting to look a lot better, just apart from this logo here sneaking in. Let’s put this track on a loop so we can see exactly what's happening. That track looks very nice and is sticking very tightly to the ground. That concludes our third PlanarTracker tutorial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - PlanarTracker: Tracking with Chroma Keys</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                        <p>
+                            <object width="500" height="256">
+                                <param name="allowfullscreen" value="true" />
+                                <param name="allowscriptaccess" value="always" />
+                                <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=26477229&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
+                                <embed src="http://vimeo.com/moogaloop.swf?clip_id=26477229&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="256">
+                                </embed>
+                            </object>
+                        </p>
+                        <p>NukeX 6.3 Planar Tracker Tutorial: Tracking with Chroma-Keys from The Foundry on <a href="http://vimeo.com">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Hi, I’m Dan Ring and welcome to the fourth tutorial on Nuke’s PlanarTracker. In this tutorial I’m going to show you how to use additional inputs in planar tracking. Replacing screens with virtual ones, or extending sets, are common planar tracking tasks. Often the real screen, or the area of set that needs to be extended, may have been filmed with a green screen in place. Drawing Roto shapes for tracking on green screens can sometimes be tricky, especially if there are lots of things occluding the screen. In these cases, it can be much easier to use a luma or chroma key to specify what areas you want to track, and Nuke’s PlanarTracker lets you do just that. It’s important to note here that the behavior of the PlanarTracker’s additional input is different than that of the CameraTracker’s. With the PlanarTracker, you use it to specify what areas you want to include in the track, whereas in the CameraTracker, you use it to exclude regions.</p>
+                                <p>In this shot, we have a green screen that we want to track and replace with our logo. We also have a Primatte node that I have already set up to pull a chroma key, and an Expression node for some hard cleanup. To track this screen, we will start with creating a PlanarTracker, but instead of drawing a shape, we are going to leave our track layer empty. We are then going to open the PlanarTracker node’s properties and change the <b>Additional Input</b> knob. There are lots of options here, depending on how you want to work or what format your mask is in. For our setup, we are going to select <b>Mask Inverted Alpha</b>. This has two implications: one, that we are going to supply an alpha channel on the PlanarTracker node’s <b>Mask</b> input, and two, that by saying inverted mask, our track region will be specified where the pixel’s alpha is 0. As you can see here, from the Expression node’s mask overlay, this is exactly what we want. We now connect the PlanarTracker node’s <b>Mask</b> input to the Expression node, and we’re now ready to track. We do this in exactly the same way as before.</p>
+                                <p>To see how the track went, we can display and move our planar surface on the reference frame, and then scrub through the timeline. That all looks pretty good, so let’s throw in our logo and we are good to go. As we want our logo to appear in this frame here, we are going to select our Read node, and then select <b>CornerPin2D (absolute)</b> and, as usual, we create our Merge node. We will get rid of the drawing handles and see how that track went. So that track looks pretty good. Now let’s try something more difficult.</p>
+                                <p>In this shot, we have a very slow pan from the sky to the ground. The idea here is to try to track the sky in order to put a logo onto it. Here it’s difficult to draw a shape in the first frame that will still exist in the last frame. This is a common problem in tracking panning shots, where using the additional input of the PlanarTracker is very useful. We can see here that there is a nice blue sky here with clouds, which would be perfect to pull a chroma key from, and this is exactly what we have done with the Primatte node here. Again, we have used some extra nodes for cleanup. The Dilate node here is very important. It helps expand the alpha channel pixels, so we don't have any features being tracked on the cranes. Going back to our original shot, we have set up our PlanarTracker in exactly the same way. We open up the PlanarTracker node properties and set the <b>Additional Input</b> mask to <b>Mask Inverted Alpha</b>. We then set the <b>Mask</b> input to our final Crop node, and from this we can start tracking. We will start from the beginning and work our way to the end. If we look at the feature tracks, we can see some very pretty, bird-like features in the sky. Notice that only the blue sky and cloud regions are being tracked.</p>
+                                <p>Let’s look at our planar surface (<b>correctPlane</b>) just to make sure everything is OK and that the transform wasn't too extreme. This red color looks like the end of the track pushed this planar surface into an invalid state. So, as in previous tutorials, we can go back to the reference frame and move the planar surface corners closer to the region we are tracking to fix this. Now, if we scrub along we can see that looks much better. Finally, let’s place our logo into the sky plane to see how we did. I have already created a custom Transform node here to warp the logo to where I want it in our reference frame. This means we don’t want to create an absolute CornerPin node, we actually want a relative CornerPin node. We connect that up, and we create our Merge node as usual. Now, let’s close our display handles and set the track to look so we can see it better.</p>
+                                <p>Now, that track of the sky looks really solid, and you can see how easy it was to specify the track region using a chroma key instead of using roto shapes. This concludes the fourth PlanarTracker tutorial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - PlanarTracker: Correcting Tracking Drift</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                        <p>
+                            <object width="500" height="256">
+                                <param name="allowfullscreen" value="true" />
+                                <param name="allowscriptaccess" value="always" />
+                                <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=26477433&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
+                                <embed src="http://vimeo.com/moogaloop.swf?clip_id=26477433&amp;force_embed=1&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=f9b41b&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="256">
+                                </embed>
+                            </object>
+                        </p>
+                        <p>NukeX 6.3 Planar Tracker Tutorial: Correcting Tracking Drift from The Foundry on <a href="http://vimeo.com">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Hi, I’m Dan Ring and welcome to the fifth tutorial for Nuke’s new PlanarTracker. In this tutorial, I am going to demonstrate how to correct tracks when they drift. In this shot, I want to track this window here, but I know that the window is difficult to track because of the reflections, motion blur, and lens distortion. I will start tracking and I will show you what I mean. I am going to create the PlanarTracker using the Roto node. I am going to draw a shape around the window I want to track, just a rough shape, right-click it, and click <b>planar track forward</b>. I am going to speed up tracking to save time.</p>
+                                <p>Now, it looks like the PlanarTracker has done a reasonable job, but it’s not quite spot on, and we want to fix that. To start, we need to assess the damage. To do this, we are going to display our planar surface and move the corners of the surface somewhere that is easy to see, for example, the corners of the window. Notice that I am moving the planar surface on the reference frame, and remember that any changes I make to the planar surface on the reference frame ripple throughout the shot. I am also going to <b>lock</b> the tracking Bezier so we don’t accidentally select and move its control points. Scrubbing through the timeline, we can see the track is slipping more and more as the track goes on. Particularly, if you look to the top right or the top left of the planar surface. It’s time to fix this track, and we do this by moving the planar surface corners when they are not on the reference frame. For example, let’s go to the last frame and move the right top-hand corner. You can see the Roto shape moved with the correction. Internally, each correction keys an offset which allows smooth interpolation of the tracking data. Notice the planar surface changes to a cyan color when it has a keyframe. Now, when we scrub backwards and forwards, we should see this corner tracking a bit better. We can see that the track is slightly better for that point, however, we want better tools to help us diagnose when our track is going wrong and then to make corrections a lot easier.</p>
+                                <p>We actually have two tools to help us see and correct for drift. The first is the <b>center planar surface</b> button, which locks the Viewer to the center of the surface. This already makes drift much easier to see and is perfect for most cases. However, it is difficult if you want to track one specific corner. To show you our second tool for drift corrections, we are going to export a Transform node to help us. In particular, we are going to export a Stabilize node and connect it to the Viewer. We also have to disable the <b>center planar surface</b> button to avoid confusion. The Stabilize node applies the exact opposite transform to your footage, so it will make your footage look like it’s standing perfectly still. Apart from looking very weird, it makes it very easy to look at, and correct, drift corrections. In this inverted space, you can actually see the window drifting away from the planar surface. This is the exact opposite of what would normally happen. Normally, you would expect the planar surface to drift away from the window. We can also turn on <b>display grid lines</b> to help us line up the window perfectly. You can see as we make a correction the Stabilize re-snaps the transform back into place. That frame looks pretty good; let’s see how we did. That’s already looking much better, but we're not done yet.</p>
+                                <p>We want to make certain that our track is good, and not just in those four corners, but in the center of the track as well. Going back to our reference frame, we can move any of the four corners to other positions to help us eyeball when things go wrong. For example, we want to see how well this part of the window frame tracks over time, and make sure that it also keeps as good a lock as the corners do. Scrubbing through the timeline we can see that the track for this point is actually quite good, however, around frame 35 -- just after the middle -- we can see that it starts to drift slightly downwards. We can tweak it in, and it’s good to go. If we wanted, we could repeat this process of moving reference frame corners and tweaking them elsewhere as much as we want, each time improving the track. To see the results of all our drift corrections, let’s move the corners of our planar surface back to their original positions in the window, and then view the track info. We can see this track is sticking a lot tighter than before, and that concludes the fifth PlanarTracker tutorial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p data-mc-conditions="Default.ScreenOnly"><a href="javascript:void(0);" class="MCHelpControl MCHelpControl-Related relatedTopics" data-mc-topics="Tracker|tracker.html"><span class="MCHelpControl-RelatedHotSpot_"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Related Topics Icon" />Related Topics</span></a>
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

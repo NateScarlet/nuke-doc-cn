@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Ocula 3.0 Nodes">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>O_FocusMatcher</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/ocula_nodes/o_focusmatcher.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h1>O_FocusMatcher</h1>
+        <p>O_FocusMatcher attempts to correct subtle focus differences that are typically present between the left and right views of a stereo image. It does this by matching the focus distribution of one view to that of the other, based on the disparity vectors upstream.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="141px">
+                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Type</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Connection Name</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+                                <p>Input</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Kernel</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p class="CellBody">An optional input that allows you to change the shape of the deblur kernel. By default, the kernel is a circular disc. If the way your camera lens renders out-of-focus points of light is not circular, you can input another shape here. O_FocusMatcher then uses the luminance of this RGB image to define the kernel shape.</p>
+                                <p class="CellBody">The size of this image doesn’t matter, as O_FocusMatcher automatically resizes the image to provide the radius defined by <b>Defocus Size</b>.</p>
+                                <p class="CellBody">This input only has an effect if <b>Primary Method</b> is set to <b>Deblur</b>, or <b>Rebuild Method</b> to <b>Rebuild Plus Deblurred</b>.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+                                <p>Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+                                <p class="CellBody">A stereo pair of images.</p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If disparity channels aren’t embedded in the images, you should add an O_Solver and an O_DisparityGenerator node after the image sequence.<br /><br />If occlusion masks aren’t embedded in the images, you also need an O_OcclusionDetector node after O_DisparityGenerator.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" height="603px">
+                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="117px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="108px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
+                    <thead>
+                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Control (UI)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Knob (Scripting)</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Default Value</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+                                <p class="CellHeading">Function</p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
+                                <p>O_FocusMatcher Tab</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Views to Use</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>viewPair</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Dependent on Source</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the two views whose focus you want to match. These views will be mapped for the left and right eye.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Match</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>matchWhat</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Left to Right</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets which view to match to the other’s focus:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Left to Right</b> - deblur or rebuild the left view to match the right.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Right to Left</b> - deblur or rebuild the right view to match the left.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Primary Method</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>primaryMethod</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Rebuild</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets how to match the focus:</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Rebuild</b> - rebuild one view using the pixels from the other. You can use the <b>Rebuild Method</b> control to select how to handle occluded regions where the picture building fails.</p>
+                                <p class="bulletedCont">Choose this method if your input images are heavily blurred or the blur varies across the image.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Deblur</b> - deconvolve one view with the specified kernel. You can use the <b>Deblur Options</b> and the <b>Kernel</b> input to adjust the size and shape of the kernel.</p>
+                                <p class="bulletedCont">Choose this method if your input images are only slightly blurred and the blur is constant across the image.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+                                <p colspan="4">Rebuild Options</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Rebuild Method</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>rebuildMethod</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Rebuild Plus Original</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>When <b>Primary Method</b> is set to <b>Rebuild,</b> choose how to handle occluded regions where the picture building is likely to fail. </p>
+                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You need to use an upstream O_OcclusionDetector node to define which regions are considered occluded. O_OcclusionDetector stores this information in the <b>mask_occlusion</b> channel.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Rebuild Plus Deblurred</b> - use the deblurred image in any occluded regions defined in the <b>mask_occlusion</b> channel. You can use the <b>Deblur Options</b> and the <b>Kernel</b> input to adjust the size and shape of the deblur kernel.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Rebuild Plus Original</b> - use the original image in any occluded regions defined in the <b>mask_occlusion</b> channel.</p>
+                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Rebuild Only</b> - use the rebuilt image in any occluded regions defined in the <b>mask_occlusion</b> channel.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Match Original Colour</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>matchOriginalColour</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>When enabled, the rebuilt view has the colour profile of the original view (for example, a rebuilt right view matches the colours of the original right view).</p>
+                                <p>When disabled, the rebuilt view has the colour profile of the view it was rebuilt from (a rebuilt right view matches the colours of the left view).</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+                                <p>Deblur Options</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Iterations</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>iterations</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>20</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>Sets the number of times the deconvolution algorithm is run for.</p>
+                                <p>Increasing this value may create a sharper image but potentially at the cost of more artefacts.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Defocus Size</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>defocusSize</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>0</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the size of the kernel the image has been blurred with. This value is in pixels. It’s very important to get it right, so keep adjusting it until you get nice deblurring with sharp edges but no ringing.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>Remove Ringing</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>removeRinging</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+                                <p>enabled</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+                                <p>When enabled, O_FocusMatcher attempts to reduce ringing artefacts that may appear around the edges in the image.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>Ring Range</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>ringRange</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+                                <p>5</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+                                <p>Sets the distance from an edge (in pixels) to suppress ringing artefacts.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p>Ring Ratio</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p>ringRatio</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+                                <p>10</p>
+                            </td>
+                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+                                <p>Sets the strength of a strong edge relative to a nearby ringing artefact.</p>
+                                <p>Decreasing this value removes more ringing artefacts, but may also stop real edges from being deblurred.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>&#160;</div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Ocula 3.0 - FocusMatcher</a></span>
+                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/33670687?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        <p><a href="https://vimeo.com/33670687" target="_blank">OCULA 3.0 - Focus Matcher</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
+                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <p>Welcome to Ocula from Foundry. My name is Jon and in this tutorial we're taking a look at correcting focus, using the new FocusMatcher with Ocula 3.0. Let’s look at focus matching this footage. If I switch between the left and right view, you can see the main problems are vertical alignment and colour differences. We saw how to correct this footage in the tutorial on the ColorMatcher node. If I zoom in on the background now, you can see there is a difference in focus here. We want to correct the focus of the left, to match the right view. As we saw in the ColorMatcher tutorial, you can render out the disparity and occlusions for use later on. The important thing to remember here is that we want to mark the main occlusions in the shot; you don’t want lots of isolated occlusions that could cause the corrections to flicker. If you want, you can paint in or roto extra occlusion regions.</p>
+                                <p>So, let’s look at how the FocusMatcher works on this shot. You can define the <b>Views to Use</b>, whether to <b>Match</b> the focus <b>Left to Right</b>, or whether to update the right to match the left. You can define how it does the correction, either by rebuilding the appearance by pulling one view across over the other, or by deblurring the original without pulling across the other view. For the rebuild, you can choose how the occluded region is updated. Does it use a deblurred result, does it use the original image, or does it pull across the other view anyway? You can choose to match the rebuild image to the colour of the original view, or simply to keep the updated colour. These parameters deal with the deblurring algorithm so let’s see how deblurring works for this shot.</p>
+                                <p>I am going to go and look at the correction on the background here. The first thing I need to do is find the size of the blur kernel that’s causing the defocus, so I am going to bring up the <b>Defocus Size</b> until the image becomes sharp, but I don’t want to over-sharpen the shot. Now, you will notice that deblurring causes ringing at strong edges. I can switch to remove that ringing (<b>Remove Ringing</b>). I can then set the range to pick up ringing by looking at how far apart it is in the image (<b>Ring Range</b>), and I can remove it by reducing the <b>Ring Ratio</b> until it disappears across the shot. So, here’s the corrected result and you can see the correction is only subtle. It’s still out of focus compared to the right view. Essentially, the best approach for this shot is to copy the appearance from the right onto the left, using the rebuild method. If I switch to look at the rebuild and compare left to right again, you can see that we get a better result. The focus doesn’t match perfectly though, as I am correcting the colour of the rebuild image to match the original view, which is re-introducing some of the blur from my original left view. So, I can switch this off, and now I have a good match between left and right. Now this is pulling the colour from the right to the left as well, so it’s acting as an intelligent new view, correcting colour and focus.</p>
+                                <p>Here we have some nicely matched plates. We can review this using a ReConverge node. With the ReConverge, I can align the views at a particular point to make it easier to see how well the focus matches when I switch between left and right. Alternatively, you can use the StereoReview Gizmo that comes with Ocula. Here I have got it set to the <b>Reveal</b> tool, so I can peep through from one view to the other to see how similar they are. So, here the images look quite well-matched.</p>
+                                <p>Let’s have a look at an example where you would want to use deblurring to correct defocus. If I zoom in and switch between the left and right view on this shot, you will see that the right view is out of focus. I want to correct that to match the left. So, here we have some large depth changes - there are a lot of occlusions. It’s going to be hard to calculate disparity to correctly pull the left view onto the right, to rebuild the focus to the right view. Now, we can tell this upfront by reviewing the input footage. I have got a NewView node, here, set to pull left onto right, and I am going to compare that to the original right view. You can see when we pull the pixels across, they don’t match. So, we can’t rebuild the right from the left to correct the focus.</p>
+                                <p>Let’s see how deblurring works. I am going to zoom in and then I am going to adjust the <b>Defocus Size</b> to sharpen the image. So, this is a bit too much. This looks reasonable and let’s <b>Remove Ringing</b> on that. So, this is the corrected result, compared to the original. We have sharpened the focus, without having to pull the appearance across the disparity. Now, when you deblur, you can also define the shape of the aperture that caused the original defocus. You might be able to measure this, if you can find a bokeh in the shot, and trace it out with a Roto shape. You can then set this in the <b>Kernel</b> input of focus matcher, and it will use this as the blur kernel to deblur the image. So, here’s the deblurred result using that shape.</p>
+                                <p>Let’s look at one final example to compare deblurring and rebuilding to correct focus. In this shot, the left is nicely focused, but the right is out of focus, and I want to correct that. So, first of all, let’s have a look at deblurring. I have already tuned the <b>Defocus Size</b> and you can see it sharpens the numbers on the plinth. If I zoom in though, you will also notice it is also sharpening the noise on the plate, so I want to Denoise first so I’m not sharpening the noise. An important thing here, when you use the NukeX Denoise tool, is to set the blend values to 1 to make sure all the noise is removed and it’s not mixing any back in. So, now I have the corrected, denoised plate, and I am free to merge back the original noise. Here we can see the original and the corrected plate, and it’s gone someway to correcting that mis-focus. However, there is quite a large blur and the best way to correct this is to copy the left view over to match the views exactly. So, let’s look at the rebuild result and you can see that we can update the focus nicely now. It should match much better when we switch between our left and our rebuilt right view, but the letters don't match perfectly. Again, this is because I have chosen to match the colour back to the original right. If I switch that off and update the colour, you can see we can match that focus really quite well. However, if I switch back to the whole image, you can see some of the problems it can introduce. Because you can’t always pull across one view onto another perfectly, you can end up distorting the image in places. So, here you may need to go back and tune the disparity to improve the rebuild, or you may have to comp together the focus correction across the plate.</p>
+                                <p>That wraps up this tutorial on how to use the new FocusMatcher node in Ocula 3.0. We have seen you can render out disparity and occlusions to pull back in for focus matching. You can review with a deblur or rebuild your plate to correct the focus, and whether to pull in the colour to update focus and colour. We have looked at an example where you would use deblurring. because there are large changes in depth, and lots of occlusions, and also that you can define the blur kernel in the shot by roto-ing out the shape of the aperture and the bokeh. Finally, we have looked at comparing, deblurring, and rebuilding, taking out noise to do a deblur, and also potentially only rebuilding part of the shot to correct the focus.</p>
+                            </div>
+                        </div>
+                        <p>
+                            <!-- This version of the embed code is no longer supported. Learn more: https://vimeo.com/help/faq/embedding -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

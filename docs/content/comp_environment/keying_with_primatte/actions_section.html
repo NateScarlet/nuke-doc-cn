@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Keying with Primatte|Primatte Controls">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Actions Section</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
+        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
+        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+        <script src="../../assets/stylesheets/load.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/keying_with_primatte/actions_section.html">Open topic with navigation</a>
+        </p>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){ 
+			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
+			});
+		/* ]]> */</script>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
+        </div>
+        <h2>Actions Section</h2>
+        <p class="afterHead">In the <b>operations</b> dropdown menu, you can select from the following options:</p>
+        <h4>Smart Select BG Color  </h4>
+        <p>This operational mode gets the sampled backing screen color, analyzes the original foreground image, and determines the foreground areas using the Primatte foreground detection routine. Then, using the newly determined foreground areas, performs a <b>Clean FG Noise</b> operation internally and determines a more desirable shape for the middle and outer polyhedrons, before finally rendering the composite using the generated polyhedrons.</p>
+        <p>For keying operations, this is the first step and should be followed by the steps described immediately below.</p>
+        <h4>Clean BG Noise  </h4>
+        <p>When you select this operational mode, you sample pixels in the Viewer known to be 100% background. White noisy areas in the 100% background region become black. This is usually the second step in using Primatte.</p>
+        <h4>Clean FG Noise  </h4>
+        <p>When you select this operational mode, you sample pixels on the image window known to be 100% foreground. The color of the sampled pixels is registered by Primatte to be the same color as in the original foreground image. This makes dark gray areas in the 100% foreground region white. This is usually the third step in using Primatte.</p>
+        <h4>Matte Sponge  </h4>
+        <p>When this operational mode is selected, the color sampled in the Viewer becomes 100% foreground. However, if the sampled color is already keyed out and removed, it leaves the current suppressed color. It only affects the key or matte information. This tool is usually used to quickly remove stray transparent pixels that have appeared during the chromakeying procedure. It is a quick and easy way to make final adjustments to a composite.</p>
+        <h4>Make FG Trans.  </h4>
+        <p>When this mode is selected, the opaque foreground color region sampled in the Viewer becomes slightly translucent. This operation is useful for the subtle tuning of foreground objects which are otherwise 100% covered with smoke or clouds. It can only be used one time on a particular color. For a more flexible way to thin out a color region and be able to make multiple samples, you should use the <b>Matte (-)</b> tool. It expands the medium polyhedron slightly.</p>
+        <h4>Restore Detail </h4>
+        <p>With this mode selected, the completely transparent background region sampled in the Viewer becomes translucent. This operation is useful for restoring lost hair details, thin wisps of smoke and the like. It shrinks the small polyhedron slightly.</p>
+        <h4>Spill Sponge  </h4>
+        <p>When you select this operational mode, the background color component in the sampled pixels (or spill) within the image window is keyed out and removed for the color region selected. This operation can only be used once on a particular color and the amount of spill suppression applied is not adjustable. It is the fastest way to remove spill from a composite image. For more accurate spill suppression, a <b>Fine Tuning</b> or <b>Spill (+)</b> operation should follow or be used instead. This can usually be the fourth (and final) step in using Primatte unless additional adjustments are necessary.</p>
+        <h4>Spill (-) </h4>
+        <p>When this operational mode is selected, color spill is removed from the sampled pixel color (and all colors like it) in the amount of one Primatte increment. If spill color remains, another click using this tool removes more of the color spill. Continue using this tool until all color spill has been removed from the sampled color region. This tool expands the Primatte large polyhedron in the color region sampled. </p>
+        <h4>Spill (+) </h4>
+        <p>When this operational mode is selected, color spill is returned to the sampled pixel color (and all colors like it) in the amount of one Primatte increment. This tool can be used to move the sampled color more in the direction of the color in the original foreground image. It can be used to nullify a <b>Spill (-)</b> step. This tool dents the Primatte large polyhedron in the color region sampled.</p>
+        <h4>Matte (-) </h4>
+        <p>When this operational mode is selected, the matte is made more translucent for the sampled pixel color (and all colors like it) in the amount of one Primatte increment. If the matte is still too opaque, another click using this operational mode tool makes the sampled color region even more translucent. This can be used to thin out smoke or make a shadow thinner to match shadows in the background imagery. This tool expands the Primatte medium polyhedron in the color region sampled. </p>
+        <h4>Matte (+) </h4>
+        <p>When this operational mode is selected, the matte is made more opaque for the sampled pixel color (and all colors like it) in the amount of one Primatte increment. If the matte is still too translucent or thin, another click using this operational mode tool makes the sampled color region even more opaque. This can be used to thicken smoke or make a shadow darker to match shadows in the background imagery. It can only make these adjustments to the density of the color region on the original foreground image. It can be used to nullify a <b>Matte (-)</b> step. This tool dents the Primatte medium polyhedron in the color region sampled.</p>
+        <h4>Detail (-) </h4>
+        <p>When this operational mode is selected, foreground detail becomes more visible for the sampled pixel color (and all colors like it) in the amount of one Primatte increment. If detail is still missing, another click using this operational mode tool makes detail more visible. This can be used to restore lost smoke or wisps of hair. Sample where the smoke or hair just disappears and it returns to visibility. This is for restoring color regions that were moved into the 100% background region. It may start to bring in background noise if shooting conditions were not ideal on the foreground image. This tool dents the Primatte small polyhedron in the color region sampled. </p>
+        <h4>Detail (+)</h4>
+        <p>When this operational mode is selected, foreground detail becomes less visible for the sampled pixel color (and all colors like it) in the amount of one Primatte increment. If there is still too much detail, another click using this operational mode tool makes more of it disappear. This can be used to remove smoke or wisps of hair from the composite. Sample where detail is visible and it disappears. This is for moving color regions into the 100% background region. It can be used to nullify a <b>Detail (-)</b> step. This tool expands the Primatte small polyhedron in the color region sampled.</p>
+        <h4>Fine Tuning Sliders</h4>
+        <p>If the spilled color has not been totally removed at this point, use the <b>Fine Tuning Sliders</b> for more subtle removal of spilled background color. For more information, refer to the section on <a href="fine_tuning.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Fine Tuning</span></a>.</p>
+        <h4>3D Sample</h4>
+        <p>When this operational mode is selected and <b>viewer</b> is enabled in the Primatte properties, the sampled colors are displayed as a spray of white pixels in the Primatte Viewer. This allows you to see where the selected backing screen colors reside within the 3D RGB colorspace.</p>
+        <h4>Simple Select BG Color </h4>
+        <p>Although using the <b>Smart Select BG Color</b> operation is preferred, the <b>Simple Select BG Color</b> operation may still be useful in some cases. This operation uses the older method of taking the sampled backing screen color, projecting a line in the opposite direction on the hue wheel and generating artificial pixels that may represent the FG object. Then, using the artificially generated foreground pixels, it performs a <b>Clean FG Noise</b> operation internally and creates the shape of the middle and outer polyhedrons, before finally rendering the composite using the generated polyhedron.</p>
+        <h4>Current Color Chip  </h4>
+        <p>This shows the current color selected (or registered) by the <b>Fine Tuning</b> operational mode.</p>
+        <h4>adjust lighting</h4>
+        <p>This enables Primatte’s light adjusting feature, which, based on the currently selected BG color, generates a clean, evenly lit backing screen to use in the keying operation. This can improve the results if you have a very unevenly lit backing screen. For more information, see <a href="adjust_lighting.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adjust Lighting</span></a>.</p>
+        <table style="caption-side: top;">
+            <col style="width: 7cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="graphic">
+                            <img src="../../assets/images/ug_images/primatte_adj_lighting1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000067px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">An uneven backing screen.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../../assets/images/ug_images/primatte_adj_lighting2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
+                    </td>
+                    <td>
+                        <img src="../../assets/images/ug_images/primatte_adj_lighting3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+                        <p>The resulting matte when <br /><b>adjust lighting</b> is disabled.</p>
+                        <p>&#160;</p>
+                    </td>
+                    <td class="caption">The resulting key. Areas near <br />the sampled color on the <br />right look good, but on the <br />left the hair is chunky.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <col style="width: 5cm;" />
+            <col style="width: 5cm;" />
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../../assets/images/ug_images/primatte_adj_lighting4.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                    </td>
+                    <td>
+                        <img src="../../assets/images/ug_images/primatte_adj_lighting5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">The resulting matte when <br /><b>adjust lighting</b> is enabled.</td>
+                    <td class="caption">The resulting key is clean <br />on both sides.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>hybrid render</h4>
+        <p>To tackle this problem, you can enable <b>hybrid render</b> to have Primatte create two keys internally and combine them for the best results. For more information, see <a href="hybrid_matte.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Hybrid Matte</span></a>.</p>
+        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
+            <div class="MCDropDownBody dropDownBody">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">/* <![CDATA[ */
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
+	/* ]]> */</script>
+    <script type="text/javascript">/* <![CDATA[ */
+		$("document").ready(function ()
+		{
+		function postMe()
+		{
+		var cust = document.getElementById("search-field").value;
+		console.log(cust);
+		ga('send', 'event', "Nuke", "search", cust, 9);
+		}
+		var submitButton = $(".search-submit");
+		submitButton.click(function() { postMe(); return true; } );
+		var submit = $("input#search-field");
+		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
+		});
+	/* ]]> */</script>
+</html>

@@ -1,0 +1,35 @@
+Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label "BoxBlur1D:\nA one-dimensional blur that\naccesses a 1D range from \nits input"
+ xpos -394
+ ypos -142
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard8
+ xpos -359
+ ypos -79
+}
+BlinkScript {
+ KernelDescription "1 \"BoxBlur1D\" iterate componentWise 3e112ad059d3b7e8782ba1ef1a9e1c6b4ffc7e41942fbac32ee93c028f5176ed 2 \"src\" Read Ranged1D \"dst\" Write Point 1 \"Radius\" Int 1 BQAAAA=="
+ kernelSource "kernel BoxBlur1D : public ImageComputationKernel<eComponentWise>\n\{\n  Image<eRead, eAccessRanged1D, eEdgeClamped> src;\n  Image<eWrite, eAccessPoint> dst;\n\nparam:\n  int radius;  //The radius of our box blur\n\nlocal:\n  int _filterWidth;\n\n  void define() \{\n    //RIP node will identify radius as the apron\n    defineParam(radius, \"Radius\", 5); \n  \}\n\n  void init() \{\n    //Set the range we need to access from the source \n    src.setRange(-radius, radius);\n\n    //Set the axis for the 1D-range to be horizontal\n    src.setAxis(eX);\n\n    _filterWidth = 2 * radius + 1;\n  \}\n\n  void process() \{\n    float sum = 0.0f;\n    for(int i = -radius; i <= radius; i++)\n      sum += src(i);\n    dst() = sum / (float)_filterWidth;\n  \}\n\};\n"
+ rebuild ""
+ name BlinkScript10
+ selected true
+ xpos -359
+ ypos 13
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -359
+ ypos 82
+}
