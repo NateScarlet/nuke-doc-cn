@@ -101,7 +101,8 @@ def translate_toc_js_file(client, path):
 
     data = json.loads(data)
     for _, v in data.items():
-        assert isinstance(v['t'], list)
+        assert isinstance(v, dict), v
+        assert isinstance(v['t'], list), v['t']
         print(f'translating: t={v["t"]}')
         v['t'] = [translate_text(client, i) for i in v['t']]
 
