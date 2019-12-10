@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import tempfile
+import os
+import subprocess
 from cached_property import threaded_cached_property
 import json
 import pathlib
@@ -29,6 +32,18 @@ def translate_html(client, content) -> str:
     request.set_SourceLanguage("en")
     request.set_SourceText(content)
     request.set_FormatType("html")
+    request.set_TargetLanguage("zh")
+    response = client.do_action_with_exception(request)
+    result = json.loads(response)
+    assert result["Code"] == "200", result.get("Message")
+    return result['Data']['Translated']
+
+
+def translate_text(client, content) -> str:
+    request = TranslateGeneralRequest.TranslateGeneralRequest()
+    request.set_SourceLanguage("en")
+    request.set_SourceText(content)
+    request.set_FormatType("text")
     request.set_TargetLanguage("zh")
     response = client.do_action_with_exception(request)
     result = json.loads(response)
@@ -69,6 +84,36 @@ def translate_html_file(client, path):
         f.write(soup.prettify())
 
 
+def translate_toc_js_file(client, path):
+    with open(path, encoding='utf8') as f:
+        content = f.read()
+    content = content.strip()
+    if not content.startswith('define(') and content.endswith(');'):
+        raise ValueError(f'Invalid format: path={path}')
+    temp_fd, temp_script = tempfile.mkstemp()
+    try:
+        with open(temp_fd, 'w', encoding='utf8') as f:
+            f.write(f'console.log(JSON.stringify({content[7:-2]}))')
+        data = subprocess.check_output(
+            ['node', temp_script])
+    finally:
+        os.unlink(temp_script)
+
+    data = json.loads(data)
+    for _, v in data.items():
+        assert isinstance(v['t'], list)
+        print(f'translating: t={v["t"]}')
+        v['t'] = [translate_text(client, i) for i in v['t']]
+
+    translated_content = 'define(\n' + \
+        json.dumps(data, ensure_ascii=False) + '\n);\n'
+    with open(path, 'w', encoding='utf8') as f:
+        f.write(translated_content)
+    subprocess.check_call(
+        ['npx', 'prettier', '--write', str(path)],
+        shell=True)
+
+
 class CLI:
     record_file = 'translated_files'
 
@@ -99,9 +144,20 @@ class CLI:
         translate_html_file(self._client, path)
         self._add_translated_file(path)
 
+    def _toc_js(self, path):
+        if self._is_translated_file(path):
+            return
+        print(f'start: path={path}')
+        translate_toc_js_file(self._client, path)
+        self._add_translated_file(path)
+
+    def toc_js(self, glob):
+        with futures.ThreadPoolExecutor(max_workers=16) as executor:
+            list(executor.map(self._toc_js, pathlib.Path('.').glob(glob)))
+
     def html_dir(self, path):
         with futures.ThreadPoolExecutor(max_workers=16) as executor:
-            executor.map(self.html, pathlib.Path(path).glob('**/*.html'))
+            list(executor.map(self.html, pathlib.Path(path).glob('**/*.html')))
 
 
 if __name__ == '__main__':
