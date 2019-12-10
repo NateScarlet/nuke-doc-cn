@@ -1,102 +1,559 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Tutorials|Video Tutorials|Compositing with Nuke">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Removing Noise</title>
-        <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#tutorials/removing_noise.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Tutorials|Video Tutorials|Compositing with Nuke" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   去除噪音
+  </title>
+  <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../Default.html#tutorials/removing_noise.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Removing Noise</h2>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - Denoise: Part 1</a></span>
-            <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/26571727?color=f9b41b;byline=0;portrait=0" width="500" height="313" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                <p><a href="https://vimeo.com/26571727" target="_blank">NUKEX 6.3 Denoise Tutorial: part 1</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
-                    <div class="MCDropDownBody dropDownBody">
-                        <p>Welcome to the first of two tutorials on the Denoise node for Foundry’s NukeX. This tutorial will take you through the basics of Denoise and will quickly get you started. So, here’s some noisy footage. I will show you how to use Denoise to remove the noise from this footage without losing the detail. Let me just pause on a frame and bring up a Denoise node. The Denoise node can be found under the <b>Filter</b> menu, and it has two possible inputs: a source clip and a noise clip. I am going to go ahead and connect the source clip to the clip we want to denoise. Denoise works by estimating the noise levels within an analysis region and then removing anything below the estimated noise levels in the rest of the clip.</p>
-                        <p>The first thing we need to do is find a suitable analysis region. A suitable analysis region is a region that’s flat, free from any detail, shadows, or highlights. If I zoom out on this clip, you can see there is a large blue screen area. This is ideal for sampling the noise. If you do not have a blue screen or a green screen, try to find as flat a region as possible. Or, alternatively, you can connect a separate clip to the noise clip and analyze the noise from there. I am going to move this box to the blue area over here, but before I do that, I am going to change the <b>Analysis Mode</b>  from <b>Pen Up</b> to <b>Analysis Button</b> - that means I can move this, rescale it, and it won’t analyze it until I press <b>Analyze Noise</b>. OK, it has finished analyzing the noise, so we can now compute our result.</p>
-                        <p>OK, so this is the Denoise result. I will go ahead and zoom in so we can compare that to the original. You can see it is quite a good result straight out of the box, but it is perhaps a little bit soft. I will now go through the parameters you can tune in order to change the output. OK, so the first parameter you can tune is the <b>Source</b>. This can either be <b>Film</b> or <b>Digital</b>, and alters the noise levels across intensity values. Setting the <b>Source</b> type to whatever the footage was captured on works best for most footage, but for some footage, you might need to switch this around. Essentially, setting the <b>Source</b> type to <b>Digital</b> will keep the noise levels constant, whereas setting it to film will preserve more noise or detail in the dark regions and will remove more noise or detail in the bright regions.</p>
-                        <p>The next parameter to tune is the <b>Noise Model</b>. This can either be <b>Constant</b> or <b>Modulated</b>. It also alters the noise levels across intensity values, but does so in a way that is almost the opposite to the source type. By default, this is set to <b>Modulated</b>, which works well for most footage. For film footage, setting the <b>Noise Model</b> to <b>Modulated</b> will remove more noise in the dark regions. For digital footage, it will remove more noise in the bright regions. For example, if you have film footage with little noise in the dark regions and lots of detail you would like to preserve, you might want to try setting this to <b>Constant</b>. This footage has a lot of detail in the hair, so I’m going to try and set this to <b>Constant</b> and see what happens. You can see that this is actually better for this footage. It has kept the background flat, but brought out a lot more detail.</p>
-                        <p>The next parameter is the <b>Profile</b>. This can either be <b>Constant</b> or <b>Automatic</b>. I will go through <b>Automatic</b> profiling in the next tutorial, so for now I will leave this <b>Constant</b>. The parameters  described so far all affect the noise analysis, and changing any of these will force the analysis to be recomputed.</p>
-                        <p>I will now go through the parameters you can tune in order to change the output after the analysis. Before I start doing anything, I am going to set the <b>Luminance Blend</b> to <b>1</b>. By default, it is set to 0.7, which means the output contains 0.7 of the denoise luminance and 0.3 of the original luminance. Setting this to 1 allows you to see what the Denoise actually does, but you probably want to bring this back down for the final output.</p>
-                        <p>The next thing I’m going to do is bring up the <b>Sharpen</b> to some excessive amount. Sharpening emphasizes any detail being kept, so by increasing it, it is easier to visualize this. To control the detail being kept, I need to tune the <b>Denoise Amount</b> and <b>Roll Off</b> in combination. Anything below the <b>Denoise Amount</b> will be removed, anything between the <b>Denoise Amount</b> and the <b>Roll Off</b> will be softly thresholded, and anything above the <b>Roll Off</b> will be kept. In order to increase the level of detail, I can decrease the <b>Denoise Amount</b>. If there is too much noise left in the output, I can increase the <b>Denoise Amount</b>. Equally, I can increase the <b>Roll Off</b> or decrease it. Increasing the <b>Roll Off</b> gives a much smoother output, so if you think your result is too soft, you can decrease the <b>Roll Off</b>. If you think it’s too sharp, then you can increase the <b>Roll Off</b>.</p>
-                        <p>OK, so when you are happy with the detail being kept and the noise being removed, put the <b>Sharpen</b> back down again. You could leave a little bit in there if you wish. The next parameter to tune is the <b>Smoothness</b>. The <b>Denoise Amount</b> and the <b>Roll Off</b> are just the threshold; the <b>Smoothness</b> allows you to control the smoothness of the underlying image. For example, if your output is a bit blotchy, or if it’s too smooth, then you might want to increase or decrease the <b>Smoothness</b>. To illustrate this, I am going to increase the <b>Denoise Amount</b> to a very large number, so there are no details being kept. What we are left with is the underlying image. So, regardless of what we do, we are not going to be able to sharpen or smooth this anymore. If the output at this stage is blotchy, you have to tune the <b>Smoothness</b>. I will just show you what this does. So, if I increase it, it will all go smoother and it will sharpen as I decrease it. OK, so when I am happy with the <b>Smoothness</b> of the underlying image, I can bring the threshold back down again. Finally, I’m going to blend back some of the <b>Luminance Blend</b>. The <b>Chrominance Blend</b> works by the same principle, but you probably never want to tune this. So let’s compare this denoise result with the original. I have shown you how to use Denoise to remove the noise, while preserving the detail. Let’s play through and see the result.</p>
-                        <p>OK, so I have taken you through some of the basics of Denoise. In the next tutorial, I will look at profiling and explain how you can tune the noise levels for different intensities, frequencies, and channels. I will also look at how you can import and export the noise analysis.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />NukeX 6.3 - Denoise: Part 2</a></span>
-            <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/26571809?color=f9b41b;byline=0;portrait=0" width="500" height="313" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                <p><a href="https://vimeo.com/26571809" target="_blank">NUKEX 6.3 Denoise Tutorial: part 2</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
-                    <div class="MCDropDownBody dropDownBody">
-                        <p>Welcome to the second of two tutorials on the Denoise node for Foundry’s NukeX. In the first tutorial, I took you through the basics of Denoise. In this tutorial, I will go through profiling and tuning of noise levels for different luminance values, frequencies, and color channels. So again, I have this footage I want to denoise, but this time I will take you through more advanced ways of using the tool.</p>
-                        <p>The first thing I will explore is profiling. The noise <b>Profile</b> specifies this threshold across different intensities. By setting the <b>Profile</b> to <b>Constant</b>, it is, of course, constant across all intensities, but even so, we can go in and tune it. To tune the profile, open up the <b>Tune Profile</b> tab, select <b>Tune Profile</b>, and you can now tune the low light, midtone, and highlight regions. To visualize your profile, you can go into the <b>Noise Analysis</b> tab and press <b>Plot Profile</b>. You can then see how the profile changes as you tune it. If you are not quite sure how to tune the profile, you can deselect <b>Tune Profile</b> and set the <b>Profile</b> to <b>Automatic</b>. This will compute an automatic profile for the frame you are looking at. If you want to change the frame, you have to go down to <b>Profile Frame</b>, change it to another frame, and then press <b>Recalculate Profile</b>. This is the frame computed for <b>230</b> - you can see that it is quite flat. This is probably because there is not enough variation in this frame to build a good profile. You can still go in and tune it, but let’s see if we can obtain a better profile from a different clip.</p>
-                        <p>I am going to bring in a different clip, shot with the same camera, and show you how to compute the profile, export it, and import it again. I will copy this node and select the original clip as the noise clip and the new clip as the source clip. I will then press <b>Analyze Noise</b>, not moving the region or anything. So, we will analyze the noise from exactly the same region as the original sequence. OK, I will then <b>Recalculate Profile</b>. So, this is the profile for the new clip. Let’s just view the full frame of the clip. You can see the noise levels are less in the shadows and highlights and more in the midtones. Let’s save this profile in <b>Analysis File</b>, so just put in a file name - it could be anything - and <b>Export Profile</b>. I can then remove this clip, remove this node, and go back to the original Denoise node, put in my profile name, and import it. You can see the profile has been imported and it looks exactly like it did before. When you import a profile, all parameters relevant to it will be locked. To unlock it, go into the <b>Noise Analysis</b> tab and change it to anything other than <b>Lock Analysis</b>, in this case, <b>Analysis Button</b>. I am going to copy this node again, so we can compare the results obtained with the <b>Automatic</b> profile and the <b>Constant</b> profile. Let me set this <b>Profile</b> to <b>Constant</b> and remove <b>Plot Profile</b> and the other <b>Plot Profile</b>. Let’s zoom in again. So, this is the original, this is the result using the <b>Constant</b> profile, and this is the result using the <b>Automatic</b> profile.</p>
-                        <p>You can see that the <b>Automatic</b> profile has maybe a bit too much noise. So, let’s go in and tweak it a bit: <b>Denoise Amount</b> moved up from <b>1</b> to <b>1.42</b>. We now have a flat background, but we also have more detail. Let’s compare that. So, you can see that the <b>Automatic</b> profile has kept a lot more detail, this hair sticking out, more detail around here as well. You can also tune the noise levels for different frequencies. Most of the noise is in the low to mid frequencies, so sometimes you can disable the low and very low frequencies. Go into <b>Tune Frequencies</b> and try disabling these. If disabling these does not introduce any more noise, then you can leave them disabled, otherwise you can try tuning them a bit.</p>
-                        <p>Finally, you can also tune the noise levels for the luminance and the chrominance. The human eye is not very sensitive to color variations, so by default the <b>Chrominance Gain</b> is set to <b>5</b> times the estimated noise level. You might, however, want to reduce this to preserve the original color (<b>2.05</b>). This is our final result, compared to the original, and compared to the result we obtained after the first tutorial. So, I have taken you through profiling and the advanced tuning of Denoise. Thanks for watching the second tutorial on the Denoise node for Foundry’s NukeX.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   去除噪音
+  </h2>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     NukeX 6.3-去噪: 第一部分
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <iframe allowfullscreen="" frameborder="0" height="313" mozallowfullscreen="" src="https://player.vimeo.com/video/26571727?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+    </iframe>
+    <p>
+     <a href="https://vimeo.com/26571727" target="_blank">
+      NUKEX 6.3 去噪教程: 第一部分
+     </a>
+     从
+     <a href="https://vimeo.com/thefoundry" target="_blank">
+      铸造
+     </a>
+     上
+     <a href="https://vimeo.com/" target="_blank">
+      Vimeo
+     </a>
+     .
+    </p>
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+       <span class="Master_VariablesTranscribedContent">
+        转录
+       </span>
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <p>
+       欢迎来到铸造 NukeX 去噪节点两个教程中的第一个。本教程将带您了解去噪的基础知识，并将很快让您开始学习。所以，这里有一些嘈杂的镜头。我将向你展示如何使用去噪来消除这段视频中的噪音，而不会丢失细节。让我在帧上暂停，并调出一个去噪节点。降噪节点可以在
+       <b>
+        过滤器
+       </b>
+       菜单，它有两个可能的输入: 源剪辑和噪声剪辑。我将继续将源剪辑连接到我们要降噪的剪辑。去噪的工作原理是估计分析区域内的噪声水平，然后删除剪辑其余部分中低于估计噪声水平的任何东西。
+      </p>
+      <p>
+       我们需要做的第一件事是找到一个合适的分析区域。合适的分析区域是平坦的区域，没有任何细节、阴影或高光。如果我缩小这个片段，你可以看到有一个大的蓝屏区域。这是理想的采样噪声。如果你没有蓝屏或绿屏，试着找到尽可能平坦的区域。或者，您也可以将单独的剪辑连接到噪波剪辑，并从那里分析噪声。我将把这个盒子移到这里的蓝色区域，但是在我这样做之前，我将改变
+       <b>
+        分析模式
+       </b>
+       从
+       <b>
+        笔向上
+       </b>
+       到
+       <b>
+        分析按钮
+       </b>
+       -这意味着我可以移动它，重新缩放它，直到我按下它，它才会分析它
+       <b>
+        分析噪音
+       </b>
+       。好的，它已经完成了噪音分析，所以我们现在可以计算我们的结果。
+      </p>
+      <p>
+       好的，这是去噪结果。我将继续放大，这样我们就可以将其与原始图像进行比较。你可以看到它是一个非常好的结果，但是它可能有点软。我现在将通过您可以调整的参数来改变输出。好的，所以你可以调整的第一个参数是
+       <b>
+        源
+       </b>
+       。这可以是
+       <b>
+        电影
+       </b>
+       或
+       <b>
+        数字
+       </b>
+       ,并改变强度值之间的噪音水平。设置
+       <b>
+        源
+       </b>
+       键入最适合大多数镜头的镜头，但是对于一些镜头，你可能需要改变这一点。本质上，设置
+       <b>
+        源
+       </b>
+       键入到
+       <b>
+        数字
+       </b>
+       将保持噪音水平不变，而将其设置为胶片将在黑暗区域保留更多噪音或细节，并将在明亮区域移除更多噪音或细节。
+      </p>
+      <p>
+       下一个要调整的参数是
+       <b>
+        噪声模型
+       </b>
+       。这可以是
+       <b>
+        常数
+       </b>
+       或
+       <b>
+        调制
+       </b>
+       。它还改变了强度值之间的噪音水平，但这样做的方式几乎与源类型相反。默认情况下，此设置为
+       <b>
+        调制
+       </b>
+       ,这对大多数镜头都很有效。对于电影片段，设置
+       <b>
+        噪声模型
+       </b>
+       到
+       <b>
+        调制
+       </b>
+       将消除黑暗地区的更多噪音。对于数字镜头，它将消除明亮区域的更多噪音。例如，如果你的电影镜头在黑暗区域噪音很小，并且有很多你想保留的细节，你可能想尝试将它设置为
+       <b>
+        常数
+       </b>
+       。这个镜头在头发上有很多细节，所以我将尝试将它设置为
+       <b>
+        常数
+       </b>
+       看看会发生什么。你可以看到这实际上对这个镜头更好。它保持了背景平坦，但带来了更多的细节。
+      </p>
+      <p>
+       下一个参数是
+       <b>
+        简介
+       </b>
+       。这可以是
+       <b>
+        常数
+       </b>
+       或
+       <b>
+        自动
+       </b>
+       。我会经历
+       <b>
+        自动
+       </b>
+       在下一个教程中，所以现在我将离开这个
+       <b>
+        常数
+       </b>
+       。到目前为止描述的参数都会影响噪声分析，改变其中任何一个参数都会迫使重新计算分析。
+      </p>
+      <p>
+       我现在将介绍您可以调整的参数，以便在分析后更改输出。在我开始做任何事情之前，我要设置
+       <b>
+        亮度混合
+       </b>
+       到
+       <b>
+        1
+       </b>
+       。默认情况下，它设置为 0.7，这意味着输出包含 0.7 的去噪亮度和 0.3 的原始亮度。将它设置为 1 可以让你看到去噪实际上做了什么，但是你可能想把它恢复到最终输出。
+      </p>
+      <p>
+       接下来我要做的是提出
+       <b>
+        锐化
+       </b>
+       到一些过多的数量。锐化强调保留任何细节，所以通过增加细节，更容易可视化。为了控制保存的细节，我需要调整
+       <b>
+        去噪量
+       </b>
+       和
+       <b>
+        滚开
+       </b>
+       在组合。任何低于
+       <b>
+        去噪量
+       </b>
+       将被删除，任何之间
+       <b>
+        去噪量
+       </b>
+       以及
+       <b>
+        滚开
+       </b>
+       将轻轻地门槛，和任何高于
+       <b>
+        滚开
+       </b>
+       将被保留。为了提高详细程度，我可以减少
+       <b>
+        去噪量
+       </b>
+       。如果输出中有太多的噪音，我可以增加
+       <b>
+        去噪量
+       </b>
+       。同样，我可以增加
+       <b>
+        滚开
+       </b>
+       或者减少它。增加
+       <b>
+        滚开
+       </b>
+       给出了更平滑的输出，所以如果你认为你的结果太软，你可以减少
+       <b>
+        滚开
+       </b>
+       。如果你认为它太锋利，那么你可以增加
+       <b>
+        滚开
+       </b>
+       .
+      </p>
+      <p>
+       好吧，所以当你对细节被保留和噪音被移除感到满意时，把
+       <b>
+        锐化
+       </b>
+       再次后退。如果你愿意，你可以在里面留一点。下一个要调整的参数是
+       <b>
+        平滑度
+       </b>
+       。的
+       <b>
+        去噪量
+       </b>
+       以及
+       <b>
+        滚开
+       </b>
+       只是门槛;
+       <b>
+        平滑度
+       </b>
+       允许您控制基础图像的平滑度。例如，如果您的输出有点污点，或者太平滑，那么您可能需要增加或减少
+       <b>
+        平滑度
+       </b>
+       。为了说明这一点，我将增加
+       <b>
+        去噪量
+       </b>
+       到一个非常大的数字，所以没有细节被保存。我们剩下的是底层的图像。所以，不管我们做什么，我们都不能再磨砺或磨平它了。如果这个阶段的输出是污点，你必须调整
+       <b>
+        平滑度
+       </b>
+       。我会告诉你这是什么。所以，如果我增加它，它会变得更平滑，随着我减少它，它会变得更锐利。好吧，所以当我对
+       <b>
+        平滑度
+       </b>
+       在底层图像中，我可以再次降低阈值。最后，我要把一些
+       <b>
+        亮度混合
+       </b>
+       。的
+       <b>
+        色度混合
+       </b>
+       工作原理相同，但你可能永远不想调整这个。所以让我们将这个去噪结果与原始结果进行比较。我已经向你展示了如何使用去噪来去除噪音，同时保留细节。让我们来看看结果。
+      </p>
+      <p>
+       好的，所以我已经介绍了一些去噪的基础知识。在下一个教程中，我将研究分析并解释如何针对不同的强度、频率和通道调整噪音水平。我还将研究如何导入和导出噪声分析。
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     NukeX 6.3-去噪: 第二部分
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <iframe allowfullscreen="" frameborder="0" height="313" mozallowfullscreen="" src="https://player.vimeo.com/video/26571809?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+    </iframe>
+    <p>
+     <a href="https://vimeo.com/26571809" target="_blank">
+      NUKEX 6.3 去噪教程: 第二部分
+     </a>
+     从
+     <a href="https://vimeo.com/thefoundry" target="_blank">
+      铸造
+     </a>
+     上
+     <a href="https://vimeo.com/" target="_blank">
+      Vimeo
+     </a>
+     .
+    </p>
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+       <span class="Master_VariablesTranscribedContent">
+        Transcription
+       </span>
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <p>
+       欢迎来到 Foundry NukeX 去噪节点两个教程中的第二个。在第一个教程中，我带你了解了去噪的基础知识。在本教程中，我将通过分析和调整不同亮度值、频率和颜色通道的噪声水平。同样，我有这个镜头，我想去噪，但是这次我会带你通过更先进的方法来使用这个工具。
+      </p>
+      <p>
+       我将探索的第一件事是分析。噪音
+       <b>
+        简介
+       </b>
+       指定不同强度的阈值。通过设置
+       <b>
+        简介
+       </b>
+       到
+       <b>
+        常数
+       </b>
+       当然，它在所有强度下都是恒定的，但即便如此，我们也可以进入并调整它。要调整配置文件，请打开
+       <b>
+        调谐轮廓
+       </b>
+       选项卡，选择
+       <b>
+        调谐轮廓
+       </b>
+       ,您现在可以调整弱光、中音和高光区域。要可视化您的个人资料，您可以进入
+       <b>
+        噪声分析
+       </b>
+       选项卡并按
+       <b>
+        绘图轮廓
+       </b>
+       。然后，您可以看到配置文件在调整时是如何变化的。如果您不太确定如何调整配置文件，您可以取消选择
+       <b>
+        调谐轮廓
+       </b>
+       并设置
+       <b>
+        简介
+       </b>
+       到
+       <b>
+        自动
+       </b>
+       。这将计算您正在查看的帧的自动轮廓。如果你想改变框架，你必须去
+       <b>
+        轮廓框架
+       </b>
+       ,将其更改为另一个帧，然后按
+       <b>
+        重新计算配置文件
+       </b>
+       。这是计算的帧
+       <b>
+        230
+       </b>
+       -你可以看到它很平。这可能是因为这个框架没有足够的变化来构建一个好的轮廓。你仍然可以进去收听，但是让我们看看是否能从不同的剪辑中获得更好的简介。
+      </p>
+      <p>
+       我将带来一个不同的剪辑，用同一台相机拍摄，并向您展示如何计算轮廓，导出它，然后再次导入它。我将复制此节点，并选择原始剪辑作为噪波剪辑，选择新剪辑作为源剪辑。然后我会按
+       <b>
+        分析噪音
+       </b>
+       ,不要移动该地区或任何东西。因此，我们将从与原始序列完全相同的区域分析噪声。好吧，我会的
+       <b>
+        重新计算配置文件
+       </b>
+       。这是新剪辑的简介。让我们查看剪辑的完整帧。你可以看到噪音水平在阴影和高光中较少，在中间色调中较多。让我们保存这个配置文件
+       <b>
+        分析文件
+       </b>
+       ,所以只要输入一个文件名 -- 它可能是任何东西 -- 和
+       <b>
+        出口简介
+       </b>
+       。然后，我可以删除这个片段，删除这个节点，然后回到原来的去噪节点，输入我的个人资料名称，然后导入它。你可以看到配置文件已经导入，看起来和以前完全一样。导入配置文件时，与该配置文件相关的所有参数都将被锁定。要解锁它，进入
+       <b>
+        噪声分析
+       </b>
+       标签，并将其更改为其他
+       <b>
+        锁分析
+       </b>
+       在这种情况下,
+       <b>
+        分析按钮
+       </b>
+       。我将再次复制这个节点，这样我们就可以将获得的结果与
+       <b>
+        自动
+       </b>
+       简介和
+       <b>
+        常数
+       </b>
+       简介。让我设置这个
+       <b>
+        简介
+       </b>
+       到
+       <b>
+        常数
+       </b>
+       和删除
+       <b>
+        绘图轮廓
+       </b>
+       和其他
+       <b>
+        绘图轮廓
+       </b>
+       。让我们再次放大。所以，这是原始的，这是使用
+       <b>
+        常数
+       </b>
+       配置文件，这是使用
+       <b>
+        自动
+       </b>
+       简介。
+      </p>
+      <p>
+       你可以看到
+       <b>
+        自动
+       </b>
+       个人资料可能有点太多噪音。所以，让我们进去稍微调整一下:
+       <b>
+        去噪量
+       </b>
+       移动的
+       <b>
+        1
+       </b>
+       到
+       <b>
+        1.42
+       </b>
+       。我们现在有一个平坦的背景，但我们也有更多的细节。让我们比较一下。所以，你可以看到
+       <b>
+        自动
+       </b>
+       轮廓保留了更多的细节，这头发突出，这里也有更多的细节。您还可以调整不同频率的噪音水平。大多数噪音都在低频率到中频率，所以有时你可以禁用低频率和非常低的频率。进入
+       <b>
+        调谐频率
+       </b>
+       并尝试禁用这些。如果禁用这些不会引入任何更多的噪音，那么你可以让它们禁用，否则你可以尝试调整一下。
+      </p>
+      <p>
+       最后，您还可以调整亮度和色度的噪音水平。人眼对颜色变化不是很敏感，所以默认情况下
+       <b>
+        色度增益
+       </b>
+       设置为
+       <b>
+        5
+       </b>
+       乘以估计的噪音水平。然而，你可能想减少这一点，以保持原来的颜色 (
+       <b>
+        2.05
+       </b>
+       )。这是我们的最终结果，与原始结果进行了比较，并与我们在第一个教程后获得的结果进行了比较。所以，我已经带你通过分析和去噪的高级调整。感谢收看 Foundry NukeX 去噪节点的第二个教程。
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -110,5 +567,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

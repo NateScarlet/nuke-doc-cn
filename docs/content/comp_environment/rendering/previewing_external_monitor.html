@@ -1,612 +1,1039 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Previews and Rendering|Previewing Output">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Previewing on an External Broadcast Video Monitor</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/rendering/previewing_external_monitor.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Previews and Rendering|Previewing Output" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   在外部广播视频监视器上预览
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/rendering/previewing_external_monitor.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Previewing on an External Broadcast Video Monitor</h2>
-        <p class="afterHead">To check the final result in correct video colorspace and pixel aspect ratio, you can preview the current Viewer image on an external broadcast video monitor. This option requires additional hardware, such as a monitor output card or a FireWire port.</p>
-        <p>Our monitor out architecture interfaces directly with the AJA and BlackMagic device drivers, which are unified across their respective hardware lines, meaning all current supported cards for the versions detailed in <a href="../../appendices/appendixd/studio_third_party_libraries.html#Third-Party_Library_Versions" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Third-Party Library Versions</span></a> should work. We've tested  the following AJA and Blackmagic hardware:</p>
-        <table style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p>AJA Cards</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>SD</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>HD</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>2K</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>UHD</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>4K</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>BNC</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>HDMI</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p>Platforms</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p>Drivers</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>KONA LHi</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Windows - 12.41</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Mac -10.6.1</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Linux - ntv2linux-driver-12.3.0.59 or ntv2linux-driver-12.3.0.61</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>KONA 3G</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Windows - 12.41</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Mac -10.6.1</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Linux - ntv2linux-driver-12.3.0.59 or ntv2linux-driver-12.3.0.61</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>KONA 4</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Win, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Windows - 12.41</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Linux - ntv2linux-driver-12.3.0.59 or ntv2linux-driver-12.3.0.61</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                        <p>KONA
-iOXT</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>&#160;</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
-                        <p>
-                            <img src="../../assets/images/tables_checkmark.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                        <p>Mac OS X 10.9 and 10.10</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Mac -10.6.1</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="background">
-            <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The following notes should be taken into account when using the Monitor Out functionality with AJA cards:</p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you're running AJA cards on Linux, you can contact <a href="https://www.aja.com/support" target="_blank">www.aja.com/support</a> to obtain the correct drivers.</p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>12-bit monitor output is only supported with dual connection cards, that is cards with two physical connections, not dual links combining two separate streams of data.</p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>
-                <MadCap:conditionalText data-mc-conditions="Default.ScreenOnly">Nuke Studio</MadCap:conditionalText> is unable to send out the right eye separately using the 2nd output cable of KONA 3G cards. Instead, both views are sent through the 1st output and can be viewed using the side-by-side, anaglyph, and interlacing options.</p>
-        </div>
-        <table style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p>Blackmagic Cards</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>SD</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>HD</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>2K</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>UHD</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>4K</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>BNC</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
-                        <p>HDMI</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p>Platforms</p>
-                    </th>
-                    <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p>Drivers</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>DeckLink SDI</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>DeckLink HD Extreme 2</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>DeckLink Extreme 3D+</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Intensity Pro 4K</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">&#160;</td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>DeckLink Studio 4K</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>DeckLink 4K Extreme</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>DeckLink 4K Extreme 12G</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
-                        <img src="../../assets/images/tables_checkmark.png" />
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>Win, Mac, Linux</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p>Desktop Video 10.7</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p><span class="CustomProduct">Nuke</span> can output images to external broadcast monitors in either 8- or 10-bit RGB color modes. 10-bit color is automatically selected when the Viewer's <b>gl buffer depth</b> setting is <b>half-float</b> or <b>float</b>, provided it is supported by the monitor output card. In all other cases, 8-bit color is used. </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Selecting a monitor output mode with the phrase <span class="_Override" style="font-weight: bold;">10-bit</span> in its description only outputs true 10-bit color if a <b>gl buffer depth</b> of either <b>half-float</b> or <b>float</b> is selected. Half-float and float modes are considerably slower to process, so it is recommended to stick with <b>byte</b> mode for monitor output unless 10-bit color is specifically required.</p>
-        <h3>To Preview Output on an External Broadcast Video Monitor</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Press <span class="_Override" style="font-weight: bold;">S</span> on the Viewer to open the Viewer settings.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">From the <b>monitor output device</b> dropdown menu, select the external device you want to use and check <b>enable monitor output</b>. All available devices are automatically detected and listed in this menu.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">From the <b>monitor output mode</b> dropdown menu, select the display mode for the device you selected in the previous step. The available options depend on the device you are using. By default, the most recently used display mode is selected.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Press <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">U</span>, navigate to <b>Viewer</b> &gt; <b>Toggle Monitor Out</b>, or click on the monitor output button  in the Viewer overflow dropdown.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/monitor_out_new.png" />
-        </p>
-        <p>From now on, any output connected to the Viewer is sent to the monitor output device you selected. </p>
-        <p>The monitor output image is always full frame, unzoomed (1:1 ratio), and unpanned, regardless of what the Viewer it is linked to is set to. This means that slightly mismatching formats (for example, 640x512 / 640x448 for PAL/NTSC) are not rescaled to fit the monitor.</p>
-        <p>If you save your <span class="CustomProduct">Nuke</span> script with monitor output enabled, this setting is saved with the script. The next time you open the same script, monitor output is enabled.</p>
-        <h3>To Disable Viewing on an External Broadcast Video Monitor, Do One of the Following</h3>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Click on the monitor output button in the Viewer controls.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Select <b>Viewer</b> &gt; <b>Toggle Monitor Output</b> from the menu bar.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Press <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">U</span>. This can be particularly useful if you are using a monitor output device that can draw things on the screen you are using to display the <span class="CustomProduct">Nuke</span> window (such as the Digital Cinema Desktop Preview device installed with Apple Final Cut Pro).</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Press <span class="_Override" style="font-weight: bold;">S</span> on the Viewer to open the Viewer settings, and uncheck <b>enable monitor output</b>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   在外部广播视频监视器上预览
+  </h2>
+  <p class="afterHead">
+   要检查正确的视频色彩空间和像素长宽比的最终结果，您可以在外部广播视频监视器上预览当前查看器图像。此选项需要额外的硬件，如显示器输出卡或火线端口。
+  </p>
+  <p>
+   我们的 monitor out 体系结构直接与 AJA 和 BlackMagic 设备驱动程序接口，它们在各自的硬件线路上统一，这意味着所有当前支持的卡的版本都在
+   <a class="noPage MCXref xref xrefnoPage" href="../../appendices/appendixd/studio_third_party_libraries.html#Third-Party_Library_Versions">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     第三方库版本
+    </span>
+   </a>
+   应该工作。我们测试了以下 AJA 和 Blackmagic 硬件:
+  </p>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p>
+       AJA 卡
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       SD
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       高清
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       2 K
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       UHD
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       4 K
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       BNC
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       HDMI
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p>
+       平台
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p>
+       司机
+      </p>
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       科纳 LHi
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Windows-12.41
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Mac-10.6.1
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Linux-ntv2linux-driver-12.3.0.59 或 ntv2linux-driver-12.3.0.61
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       科纳 3G
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Windows-12.41
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Mac-10.6.1
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Linux-ntv2linux-driver-12.3.0.59 或 ntv2linux-driver-12.3.0.61
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       科纳 4
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       Win，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Windows-12.41
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Linux-ntv2linux-driver-12.3.0.59 或 ntv2linux-driver-12.3.0.61
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+      <p>
+       科纳
+IOXT
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2" style="text-align: center;">
+      <p>
+       <img src="../../assets/images/tables_checkmark.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+      <p>
+       Macosx 10.9 和 10.10
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Mac-10.6.1
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="background">
+   <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+    <span class="autonumber">
+     <span>
+      <span class="mcFormatColor" style="color: Black;">
+       注意:
+      </span>
+     </span>
+    </span>
+    在将 Monitor Out 功能与 AJA 卡一起使用时，应考虑以下注意事项:
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    如果你在 Linux 上运行 AJA 卡，你可以联系
+    <a href="https://www.aja.com/support" target="_blank">
+     Www.aja.com/support
+    </a>
+    获取正确的驱动程序。
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    12 位监视器输出仅支持双连接卡，即具有两个物理连接的卡，而不是结合两个独立数据流的双链路。
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    <madcap:conditionaltext data-mc-conditions="Default.ScreenOnly">
+     核武器工作室
+    </madcap:conditionaltext>
+    无法使用科纳 3g 卡的第2 输出电缆单独发送右眼。相反，这两个视图都是通过第1 输出发送的，可以使用并排、浮雕和隔行选项来查看。
+   </p>
+  </div>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p>
+       Blackmagic 卡
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       SD
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       高清
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       2 K
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       UHD
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       4 K
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       BNC
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="text-align: center;">
+      <p>
+       HDMI
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p>
+       平台
+      </p>
+     </th>
+     <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p>
+       司机
+      </p>
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       DeckLink SDI
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       DeckLink 高清至尊 2
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       DeckLink 至尊 3D
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       强度 Pro 4 K
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       DeckLink Studio 4 K
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       DeckLink 4k Extreme
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       DeckLink 4k Extreme 12G
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1" style="text-align: center;">
+      <img src="../../assets/images/tables_checkmark.png"/>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       Win，Mac，Linux
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p>
+       桌面视频 10.7
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   可以以 8 位或 10 位 RGB 颜色模式将图像输出到外部广播监视器。当观众的时候会自动选择 10 位颜色
+   <b>
+    Gl 缓冲区深度
+   </b>
+   设置是
+   <b>
+    半浮
+   </b>
+   或
+   <b>
+    浮动
+   </b>
+   ,前提是显示器输出卡支持它。在所有其他情况下，使用 8 位颜色。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   使用短语选择监视器输出模式
+   <span class="_Override" style="font-weight: bold;">
+    10 位
+   </span>
+   在其描述中，如果
+   <b>
+    Gl 缓冲区深度
+   </b>
+   无论是
+   <b>
+    半浮
+   </b>
+   或
+   <b>
+    浮动
+   </b>
+   被选中。半浮动和浮动模式的处理速度要慢得多，所以建议坚持使用
+   <b>
+    字节
+   </b>
+   显示器输出模式，除非特别需要 10 位颜色。
+  </p>
+  <h3>
+   在外部广播视频监视器上预览输出
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     新闻
+     <span class="_Override" style="font-weight: bold;">
+      S
+     </span>
+     在查看器上打开查看器设置。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     从
+     <b>
+      监控输出设备
+     </b>
+     下拉菜单，选择要使用的外部设备并检查
+     <b>
+      启用监视器输出
+     </b>
+     。所有可用的设备都会自动检测到，并在此菜单中列出。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从
+     <b>
+      监视器输出模式
+     </b>
+     下拉菜单中，选择您在上一步中选择的设备的显示模式。可用选项取决于您正在使用的设备。默认情况下，选择最近使用的显示模式。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     新闻
+     <span class="_Override" style="font-weight: bold;">
+      Ctrl
+     </span>
+     /
+     <span class="_Override" style="font-weight: bold;">
+      Cmd
+     </span>
+     +
+     <span class="_Override" style="font-weight: bold;">
+      U
+     </span>
+     ,导航到
+     <b>
+      观众
+     </b>
+     &gt;
+     <b>
+      切换监视器
+     </b>
+     ,或单击查看器溢出下拉列表中的监视器输出按钮。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/monitor_out_new.png"/>
+  </p>
+  <p>
+   从现在开始，连接到查看器的任何输出都将发送到您选择的监视器输出设备。
+  </p>
+  <p>
+   监视器输出图像始终是全帧、未缩放 (1:1 比例) 和未平移的，而不管它所链接的查看器设置为什么。这意味着稍微不匹配的格式 (例如，PAL/NTSC 的 640x512/640x448) 不会重新调整到适合显示器。
+  </p>
+  <p>
+   如果你保存你的
+   <span class="CustomProduct">
+    核武器
+   </span>
+   启用监视器输出的脚本，此设置与脚本一起保存。下次打开同一脚本时，将启用监视器输出。
+  </p>
+  <h3>
+   要禁用在外部广播视频监视器上的查看，请执行以下操作之一
+  </h3>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   单击查看器控件中的监视器输出按钮。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   选择
+   <b>
+    观众
+   </b>
+   &gt;
+   <b>
+    切换监视器输出
+   </b>
+   从菜单栏。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   新闻
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    U
+   </span>
+   。如果您使用的是显示器输出设备，该设备可以在屏幕上绘制用于显示
+   <span class="CustomProduct">
+    核武器
+   </span>
+   窗口 (如与苹果 Final Cut Pro 一起安装的数字影院桌面预览设备)。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   新闻
+   <span class="_Override" style="font-weight: bold;">
+    S
+   </span>
+   在查看器上打开查看器设置，然后取消选中
+   <b>
+    启用监视器输出
+   </b>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -620,5 +1047,6 @@ iOXT</p>
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,792 +1,1887 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Materials and Textures">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Object Material Properties</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/object_material_properties.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|Materials and Textures" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   对象材质属性
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/object_material_properties.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="3d_compositing_3567570779_677249"></a>Object Material Properties</h2>
-        <p class="afterHead">The nodes under the <span class="_Override" style="font-weight: bold;">Shader</span> menu let you define the material attributes of geometric objects in a scene, including the quality of light reflected back to the camera from an object’s surface. Using these nodes, you can control what material your objects seem to be made of. </p>
-        <p>You can also add several Shader nodes one after the other to produce more complex effects. For this, you should use the unlabeled inputs on the Shader nodes. </p>
-        <p>The material property settings you apply affect the render output of the scene.</p>
-        <p>You can insert 3D shader nodes in the following places in your scripts: </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>between the 2D image you’re using for the surface texture and the 3D object node that creates the surface, or</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>after the 3D object nodes using the ApplyMaterial node. This is a good way to apply a global material to all objects. See <a href="#Applying_a_Material_Using_the_ApplyMaterial_Node" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Applying a Material Using the ApplyMaterial Node</span></a>.</p>
-        <p>You can use the <b>map</b> connectors to input a mask image to limit the effect of the material change.</p>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties1.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Diffuse and Specular nodes.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can only see the effect of your changes to an object’s material properties in the 2D view.</p>
-        <h3><a name="Applying_a_Material_Using_the_ApplyMaterial_Node"></a>Applying a Material Using the ApplyMaterial Node</h3>
-        <p>The ApplyMaterial node applies a material from the <span class="_Override" style="font-weight: bold;">mat</span> input to your 3D object(s).</p>
-        <h4>To Use the ApplyMaterial Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Shader</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>ApplyMaterial</b> to insert an ApplyMaterial node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect  the unnamed input of the ApplyMaterial node to your geometry (for example, a Sphere, ReadGeo, or ModelBuilder node).</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/applymaterial_nodes_0_378x224.png" style="width: 378;height: 224;" />
-        </p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span> If you want to apply a global material to several objects, you can also connect the unnamed input to a MergeGeo node. This overrides any materials applied to the individual geometry nodes before they were merged.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;"> Connect your materials (for example, a 2D texture image, a BasicMaterial node, or a Wireframe node) to the ApplyMaterial node’s <b>mat</b> input.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/applymaterial_nodes_1_378x224.png" alt="" title="" style="width: 378;height: 224;" />
-        </p>
-        <p class="numberedCont">By default, ApplyMaterial applies the material from the <b>mat</b> input onto all incoming geometry objects.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you created your geometry using ModelBuilder or imported an Alembic file using ReadGeo, you can choose to only apply the material onto a particular object in the incoming geometry. To do so, open the ApplyMaterial properties and set <b>filter</b> to <b>name</b>. This allows you to tell ApplyMaterial to ignore any geometry that doesn't match the filter on the right.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can also limit a material to a particular object if your geometry was created or imported using a third-party plug-in that adds a name attribute for the geometry objects.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To set how to filter the incoming geometry objects, set the  dropdown menu next to <b>name</b> to:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>equals</b> - set the material on any objects whose name matches the string in the filter name field exactly.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>doesn't equal</b> - set the material on any objects whose name does not match the string in the filter name field exactly.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>contains</b> - set the material for any objects whose name contains the string in the filter name field. </p>
-        <p class="processBulletCont">This can be useful when you have some structure to your object names. For example, if you have objects like /Root/Chair/Seat, /Root/Chair/Back, and /Root/Table, you can select <b>contains</b> and set the filter name field to <b>Chair</b> to apply the material to all parts of the chair while leaving the table alone.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/applymaterial_filter_378x44.png" style="width: 378;height: 44;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>doesn't contain</b> -  set the material for any objects whose name does not contain the string in the filter name field. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">To set the filter name,  type the name directly into the text entry field or use the <b>choose</b> button to open the <b>Object Name Chooser</b> dialog and select a filter name from a list of incoming geometry objects.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/applymaterial_object_name_chooser_265x177.png" style="width: 265;height: 177;" />
-        </p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also <b>Ctrl</b>/<b>Cmd</b>+click or <b>Shift</b>+click in the <b>Object Name Chooser</b> dialog to select multiple objects.</p>
-        <h3>Adjusting the Diffuse Color</h3>
-        <p>The Diffuse node  lets you adjust the color of the material when illuminated. The material appears darker as the surface points away from the light, as the light is not falling on it.</p>
-        <h4>To Use the Diffuse Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Shader</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Diffuse</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>to insert a Diffuse node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Place the Diffuse node between your 2D texture image and your 3D object node, or connect it to an ApplyMaterial node’s <b>mat</b> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the Diffuse properties, use the <b>channels</b> dropdown menu to select the channels you wish to process. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Adjust the <b>white</b> slider to control the diffuse color. By default, this is in grayscale, but you can also adjust the individual r, g, and b values. The higher the value, the brighter the material.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties2.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties3.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>Diffuse: Low <span class="_Override" style="font-weight: bold;">white</span> value.</p>
-                    </td>
-                    <td class="caption">
-                        <p>Diffuse: High <span class="_Override" style="font-weight: bold;">white</span> value.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>Adjusting Specular Highlights</h3>
-        <p>You can use the Specular node to control how bright and wide the highlights on the material seem. The location of the viewpoint is significant: the specular highlights are the brightest along the direct angle of reflection.</p>
-        <h4>To Use the Specular Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Shader</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Specular</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>to insert a Specular node into your script. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Place the Specular node between your 2D texture image and your 3D object node, or connect it to an ApplyMaterial node’s <b>mat</b> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the Specular properties, use the <b>channels</b> dropdown menu to select the channels you wish to process.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Adjust the <b>white</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>slider to control the brightness of the specular highlight. The higher the value, the shinier the material seems.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties4.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties5.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>Low <span class="_Override" style="font-weight: bold;">white</span> value.</p>
-                    </td>
-                    <td class="caption">
-                        <p>High <b>white</b> value.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To control the width of the highlights, adjust the <b>min shininess</b> and <b>max shininess</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>sliders.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties6.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/material_properties7.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>Low <span class="_Override" style="font-weight: bold;">shininess</span> value.</p>
-                    </td>
-                    <td class="caption">
-                        <p>High <span class="_Override" style="font-weight: bold;">shininess</span> value.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If necessary, adjust<b> shininess channel</b> to control how the input channels are used to map the black and white values to the <span class="_Override" style="font-weight: bold;">min shininess</span> and <span class="_Override" style="font-weight: bold;">max shininess</span> parameters when a <b>mapSh</b> input is connected. Select <b>red</b> to use the red channel for the mapping, <b>green</b> to use the green channel, <b>blue</b> to use the blue channel, <b>luminance</b> to use the luminance, or <b>average rgb</b> to use the average of the red, green, and blue channels.</td>
-            </tr>
-        </table>
-        <h3>Simulating Materials That Emit Light</h3>
-        <p>You can use the Emission node to simulate lamps or other sources that emit light.</p>
-        <h4>To Use the Emission Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Shader</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>&gt; <b>Emission</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>to insert an Emission node into your script. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Emission properties, use the <b>channels</b> dropdown menu to select the channels you wish to process. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Adjust the <b>emission</b><span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;"> </span>slider to change the brightness of non-illuminated areas for the surface.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The higher the value, the more light the material seems to emit and the brighter it appears.</p>
-        <h3>Adjusting Diffuse, Specular, and Emission Using a Single Node</h3>
-        <p>The BasicMaterial node is a combination of the Diffuse, Specular, and Emission nodes, allowing you to control all three aspects of the material from a single properties panel.</p>
-        <h4>To Use the BasicMaterial Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b> &gt; <b>Shader</b> &gt; <b>BasicMaterial</b> to insert a BasicMaterial node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Place the BasicMaterial node between your 2D texture image and your 3D object node, or connect it to an ApplyMaterial node’s <b>mat</b> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">The BasicMaterial node has several map inputs you can use to mask the effect of the node. Use:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapD</b> to modulate the diffuse component,</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapS</b> to modulate the specular component,</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapE</b> to modulate the emission component, and</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapSh</b> to modulate the shininess value.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the BasicMaterial properties, use the <b>channels</b> dropdown menu to select the channels you wish to process.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Adjust <b>emission</b> to change the color of the light the material emits. Note that when you have an image connected to the unlabeled input of the BasicMaterial node and adjust this value, you need to look at the rendered 2D image to see the effect of your changes. Changing the emission value does not have any effect in the 3D Viewer.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Adjust <b>diffuse</b> to control the color of the material when illuminated. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Use <b>specular</b> to control how bright the highlights on the material seem.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Adjust <b>min shininess</b> and <b>max shininess </b>to set the minimum and maximum shininess values. If you haven’t connected an image to the <b>mapSh</b> input of the node, the average of these values is used as the shininess value for the material.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Select a <b>shininess channel</b> to control how the input channels are used to map the black and white values to the minShininess and maxShininess parameters when a <b>mapSh</b> input is connected. Select <b>red</b> to use the red channel for the mapping, <b>green</b> to use the green channel, <b>blue</b> to use the blue channel, <b>luminance</b> to use the luminance, or <b>average rgb</b> to use the average of the red, green, and blue channels.</td>
-            </tr>
-        </table>
-        <h3>Simulating Smooth, Regular Surfaces</h3>
-        <p>The Phong node uses the Phong algorithm to smooth edges between faces. It provides realistic shading and highlights for smooth materials, such as skin and other organic surfaces.</p>
-        <h4>To Use the Phong Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b> &gt; <b>Shader</b> &gt; <b>Phong</b> to insert a <a name="kanchor278"></a>Phong node into your script. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Place the Phong node between your 2D texture image and your 3D object node, or connect it to an ApplyMaterial node’s <b>mat</b> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">The Phong node has several <b>map</b> inputs you can use to mask the effect of the node. Use:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapD</b> to modulate the diffuse component,</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapS</b> to modulate the specular component,</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapE</b> to modulate the emission component, and</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>mapSh</b> to modulate the shininess value.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the Phong properties, use the <b>channels</b> dropdown menu to select the channels you wish to process.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Adjust <b>color</b> to change the material color.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Adjust <b>emission</b> change the color of the light the material emits.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To control the color of the material when illuminated, adjust <b>diffuse</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">To control how bright the highlights on the material seem, adjust <b>specular.</b></td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">To control how shiny the material appears, adjust <b>shininess</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">To set the minimum and maximum shininess values, adjust <b>min shininess</b> and <b>max shininess</b>. If you haven’t connected an image to the <b>mapSh</b> input of the node, the average of these values is used as the shininess value for the material.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">Select a <b>shininess channel</b> to control how the input channels are used to map the black and white values to the <b>minShininess</b> and <b>maxShininess</b> parameters when a <b>mapSh</b> input is connected. Select <b>red</b> to use the red channel for the mapping, <b>green</b> to use the green channel, <b>blue</b> to use the blue channel, <b>luminance</b> to use the luminance, or <b>average rgb</b> to use the average of the red, green, and blue channels.</td>
-            </tr>
-        </table>
-        <h3><a name="Rendering_a_Wireframe_Overlay_on_Your_Geometry"></a>Rendering a Wireframe Overlay on Your Geometry</h3>
-        <p>The Wireframe node allows you to render a wireframe overlay on the surface of your geometry object or particle simulation. This can be useful, for example, if you want to:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>check that your texture projection correctly lines up with your geometry.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>create a quick render of your 3D scene to check the positioning of objects.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>create motion graphics.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>create "making of" videos.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The Wireframe node currently only works if you are rendering your 3D scene using ScanlineRender, RayRender and PrmanRender do not support the Wireframe shader.</p>
-        <h4>To Use the Wireframe Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b> &gt; <b>Shader</b> &gt; <b>Wireframe</b> to insert a <a name="kanchor279"></a>Wireframe node into your script. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Place the Wireframe node between your 2D texture image and your 3D object node, or connect it to an ApplyMaterial node’s <b>mat</b> input.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_node_tree1_378x291.png" style="width: 378;height: 291;" />
-        </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_node_tree2_378x224.png" style="width: 378;height: 224;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the Wireframe properties, use the <b>channels</b> dropdown menu to select the channels you wish to process.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">From the <b>operation</b> dropdown, select how to apply the wireframe overlay to your geometry:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>opaque</b> - display the wireframe on fully opaque black input geometry.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_opaque_265x235.png" style="width: 265;height: 235;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>see through</b> - display the wireframe on fully transparent geometry.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_see_through_265x235.png" style="width: 265;height: 235;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>over</b> - display the wireframe on top of the input shader or texture.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_over_265x235.png" style="width: 265;height: 235;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>multiply</b> - multiply the wireframe by the input shader or texture and display it on fully transparent geometry.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_multiply_265x235.png" style="width: 265;height: 235;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>modulate</b> - apply standard diffuse shading to the wireframe and display it on top of the input shader or texture. This takes into account any lights in the scene.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/wireframe_modulate_265x235.png" style="width: 265;height: 235;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To set the width of the wireframe lines (in pixels), adjust <b>line width</b>.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/wireframe_line_width_0.5_189x167.png" style="width: 189;height: 167;" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/wireframe_line_width_3_189x167.png" style="width: 189;height: 167;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p><b>Line width</b> set to 0.5.</p>
-                    </td>
-                    <td class="caption">
-                        <p><b>Line width</b> set to 3.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">To set the color and transparency of the wireframe lines, adjust <b>line color</b>.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/wireframe_line_width_0.5_189x167.png" style="width: 189;height: 167;" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/wireframe_line_color_189x167.png" style="width: 189;height: 167;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p><b>Line color</b> set to white.</p>
-                    </td>
-                    <td class="caption">
-                        <p><b>Line color</b> set to cyan.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="3d_compositing_3567570779_677249">
+   </a>
+   对象材质属性
+  </h2>
+  <p class="afterHead">
+   下的节点
+   <span class="_Override" style="font-weight: bold;">
+    着色器
+   </span>
+   菜单用于定义场景中几何对象的材质属性，包括从对象表面反射回相机的光线质量。使用这些节点，您可以控制对象似乎是由什么材料组成的。
+  </p>
+  <p>
+   您还可以一个接一个地添加几个着色器节点，以产生更复杂的效果。为此，应该在着色器节点上使用未标记的输入。
+  </p>
+  <p>
+   应用的材质特性设置会影响场景的渲染输出。
+  </p>
+  <p>
+   可以在脚本中的以下位置插入 3D 着色器节点:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在您用于表面纹理的 2D 图像和创建表面的 3D 对象节点之间，或者
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在使用 ApplyMaterial 节点的 3D 对象节点之后。这是将全局材质应用于所有对象的好方法。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Applying_a_Material_Using_the_ApplyMaterial_Node">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用 ApplyMaterial 节点应用材质
+    </span>
+   </a>
+   .
+  </p>
+  <p>
+   您可以使用
+   <b>
+    地图
+   </b>
+   用于输入遮罩图像的连接器，以限制材料更改的效果。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties1.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      漫反射和镜面节点。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   在 2D 视图中，只能看到对对象的材质属性所做更改的效果。
+  </p>
+  <h3>
+   <a name="Applying_a_Material_Using_the_ApplyMaterial_Node">
+   </a>
+   使用 ApplyMaterial 节点应用材质
+  </h3>
+  <p>
+   ApplyMaterial 节点应用来自
+   <span class="_Override" style="font-weight: bold;">
+    垫子
+   </span>
+   输入到您的 3D 对象。
+  </p>
+  <h4>
+   使用 ApplyMaterial 节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      着色器
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      应用材料
+     </b>
+     将 ApplyMaterial 节点插入脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将 ApplyMaterial 节点的未命名输入连接到几何图形 (例如，球体、 ReadGeo 或 ModelBuilder 节点)。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/applymaterial_nodes_0_378x224.png" style="width: 378;height: 224;"/>
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果要将全局材质应用于多个对象，还可以将未命名的输入连接到 MergeGeo 节点。这将覆盖应用于单个几何节点的任何材质，然后再将它们合并。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将材质 (例如，2D 纹理图像、基本材质节点或线框节点) 连接到 ApplyMaterial 节点的
+     <b>
+      垫子
+     </b>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img alt="" src="../../assets/images/ug_images/applymaterial_nodes_1_378x224.png" style="width: 378;height: 224;" title=""/>
+  </p>
+  <p class="numberedCont">
+   默认情况下，ApplyMaterial 应用来自
+   <b>
+    垫子
+   </b>
+   输入到所有传入的几何对象。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如果使用 ModelBuilder 创建几何图形，或使用 ReadGeo 导入 Alembic 文件，则可以选择仅将材质应用于传入几何图形中的特定对象。为此，打开 ApplyMaterial 属性并设置
+     <b>
+      过滤器
+     </b>
+     到
+     <b>
+      名称
+     </b>
+     。这允许您告诉 ApplyMaterial 忽略任何与右侧过滤器不匹配的几何图形。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果使用第三方插件创建或导入几何图形，并为几何图形对象添加名称属性，则也可以将材质限制到特定对象。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     要设置如何过滤传入的几何对象，请设置 “” 旁边的下拉菜单
+     <b>
+      名称
+     </b>
+     至:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    等于
+   </b>
+   -在名称与过滤器名称字段中的字符串完全匹配的任何对象上设置材质。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    不等于
+   </b>
+   -在名称与 “过滤器名称” 字段中的字符串不完全匹配的任何对象上设置材质。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    包含
+   </b>
+   -为名称在过滤器名称字段中包含字符串的任何对象设置材质。
+  </p>
+  <p class="processBulletCont">
+   当对象名称有某种结构时，这可能很有用。例如，如果您有像/Root/Chair/Seat 、/Root/Chair/Back 和/Root/Table 这样的对象，您可以选择
+   <b>
+    包含
+   </b>
+   并将过滤器名称字段设置为
+   <b>
+    椅子
+   </b>
+   将材料涂抹在椅子的所有部分，同时保持桌子不动。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/applymaterial_filter_378x44.png" style="width: 378;height: 44;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    不包含
+   </b>
+   -为名称在过滤器名称字段中不包含字符串的任何对象设置材质。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     要设置过滤器名称，请直接在文本输入字段中键入名称或使用
+     <b>
+      选择
+     </b>
+     按钮打开
+     <b>
+      对象名称选择器
+     </b>
+     对话框，并从传入几何对象的列表中选择过滤器名称。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/applymaterial_object_name_chooser_265x177.png" style="width: 265;height: 177;"/>
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   你也可以
+   <b>
+    Ctrl
+   </b>
+   /
+   <b>
+    Cmd
+   </b>
+   单击或
+   <b>
+    转变
+   </b>
+   点击
+   <b>
+    对象名称选择器
+   </b>
+   对话框选择多个对象。
+  </p>
+  <h3>
+   调整漫反射颜色
+  </h3>
+  <p>
+   “漫反射” 节点允许您在照明时调整材质的颜色。当表面远离光线时，材料看起来更暗，因为光线不会落在它上面。
+  </p>
+  <h4>
+   使用漫反射节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      着色器
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      扩散
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     将漫反射节点插入到脚本中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将漫反射节点放置在 2D 纹理图像和 3D 对象节点之间，或者将其连接到应用材质节点
+     <b>
+      垫子
+     </b>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在漫反射属性中，使用
+     <b>
+      渠道
+     </b>
+     下拉菜单选择要处理的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     调整
+     <b>
+      白色
+     </b>
+     滑块控制漫反射颜色。默认情况下，这是灰度图，但您也可以调整单个 r 、 g 和 b 值。值越高，材料就越亮。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties2.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties3.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       扩散: 低
+       <span class="_Override" style="font-weight: bold;">
+        白色
+       </span>
+       价值。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       扩散: 高
+       <span class="_Override" style="font-weight: bold;">
+        白色
+       </span>
+       价值。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   调整镜面高光
+  </h3>
+  <p>
+   您可以使用镜面反射节点来控制材质上的高光看起来有多亮多宽。视点的位置很重要: 镜面高光沿着反射的直接角度最亮。
+  </p>
+  <h4>
+   使用镜面反射节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      着色器
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      镜面
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     将高光节点插入到脚本中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将镜面反射节点放置在 2D 纹理图像和 3D 对象节点之间，或者将其连接到应用材质节点
+     <b>
+      垫子
+     </b>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在镜面反射属性中，使用
+     <b>
+      渠道
+     </b>
+     下拉菜单选择要处理的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     调整
+     <b>
+      白色
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     滑块控制镜面高光的亮度。价值越高，材料看起来就越闪亮。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties4.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties5.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       低
+       <span class="_Override" style="font-weight: bold;">
+        白色
+       </span>
+       价值。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       高
+       <b>
+        白色
+       </b>
+       价值。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     要控制高光的宽度，请调整
+     <b>
+      Min shininess
+     </b>
+     和
+     <b>
+      最大光泽
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     滑块。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties6.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/material_properties7.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       低
+       <span class="_Override" style="font-weight: bold;">
+        光泽
+       </span>
+       价值。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       高
+       <span class="_Override" style="font-weight: bold;">
+        光泽
+       </span>
+       价值。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     如有必要，调整
+     <b>
+      闪光通道
+     </b>
+     控制如何使用输入通道将黑白值映射到
+     <span class="_Override" style="font-weight: bold;">
+      Min shininess
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      最大光泽
+     </span>
+     参数时
+     <b>
+      MapSh
+     </b>
+     输入已连接。选择
+     <b>
+      红色
+     </b>
+     要使用红色通道进行映射,
+     <b>
+      绿色
+     </b>
+     要使用绿色通道,
+     <b>
+      蓝色
+     </b>
+     要使用蓝色通道,
+     <b>
+      亮度
+     </b>
+     使用亮度，或
+     <b>
+      平均 rgb
+     </b>
+     使用红色、绿色和蓝色通道的平均值。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   模拟发光的材料
+  </h3>
+  <p>
+   可以使用 “发射” 节点来模拟灯或其他发光源。
+  </p>
+  <h4>
+   使用发射节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      着色器
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     &gt;
+     <b>
+      排放
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     将发射节点插入脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在发射属性中，使用
+     <b>
+      渠道
+     </b>
+     下拉菜单选择要处理的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     调整
+     <b>
+      排放
+     </b>
+     <span class="_Override" style="font-family: 'Times New Roman';font-weight: bold;">
+     </span>
+     滑块可更改曲面非照明区域的亮度。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   值越高，材料发出的光线就越多，看起来就越亮。
+  </p>
+  <h3>
+   使用单个节点调整漫反射、镜面反射和发射
+  </h3>
+  <p>
+   基本材质节点是漫反射、镜面反射和发射节点的组合，允许您从单个属性面板控制材质的所有三个方面。
+  </p>
+  <h4>
+   使用 BasicMaterial 节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      着色器
+     </b>
+     &gt;
+     <b>
+      基本材料
+     </b>
+     将 BasicMaterial 节点插入脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将基本材质节点放置在 2D 纹理图像和 3D 对象节点之间，或者将其连接到 ApplyMaterial 节点
+     <b>
+      垫子
+     </b>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     BasicMaterial 节点有几个贴图输入，您可以使用它们来屏蔽节点的效果。使用:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    MapD
+   </b>
+   为了调节漫反射组件,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    地图
+   </b>
+   要调整镜面反射组件,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    MapE
+   </b>
+   调节发射组件，和
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    MapSh
+   </b>
+   调整光泽值。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在基本材质属性中，使用
+     <b>
+      渠道
+     </b>
+     下拉菜单选择要处理的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     调整
+     <b>
+      排放
+     </b>
+     更改材质发出的灯光的颜色。请注意，当您将图像连接到 BasicMaterial 节点的未标记输入并调整此值时，您需要查看渲染的 2D 图像以查看更改的效果。更改发射值对 3D 查看器没有任何影响。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     调整
+     <b>
+      扩散
+     </b>
+     照明时控制材料的颜色。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     使用
+     <b>
+      镜面
+     </b>
+     控制材料上的高光看起来有多亮。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     调整
+     <b>
+      Min shininess
+     </b>
+     和
+     <b>
+      最大光泽
+     </b>
+     设置最小和最大光泽值。如果您没有将图像连接到
+     <b>
+      MapSh
+     </b>
+     在节点的输入中，这些值的平均值用作材质的光泽值。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     选择一个
+     <b>
+      闪光通道
+     </b>
+     控制如何使用输入通道将黑白值映射到 minshiness 和 maxshiness 参数
+     <b>
+      MapSh
+     </b>
+     输入已连接。选择
+     <b>
+      红色
+     </b>
+     要使用红色通道进行映射,
+     <b>
+      绿色
+     </b>
+     要使用绿色通道,
+     <b>
+      蓝色
+     </b>
+     要使用蓝色通道,
+     <b>
+      亮度
+     </b>
+     使用亮度，或
+     <b>
+      平均 rgb
+     </b>
+     使用红色、绿色和蓝色通道的平均值。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   模拟平滑规则曲面
+  </h3>
+  <p>
+   Phong 节点使用 Phong 算法平滑面之间的边缘。它为光滑的材料 (如蒙皮和其他有机表面) 提供逼真的阴影和高光。
+  </p>
+  <h4>
+   使用 Phong 节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      着色器
+     </b>
+     &gt;
+     <b>
+      庞
+     </b>
+     要插入
+     <a name="kanchor278">
+     </a>
+     Phong 节点到您的脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将 Phong 节点放置在 2D 纹理图像和 3D 对象节点之间，或者将其连接到应用材质节点
+     <b>
+      垫子
+     </b>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     Phong 节点有几个
+     <b>
+      地图
+     </b>
+     可用于屏蔽节点效果的输入。使用:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    mapD
+   </b>
+   to modulate the diffuse component,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    mapS
+   </b>
+   to modulate the specular component,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    mapE
+   </b>
+   to modulate the emission component, and
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    mapSh
+   </b>
+   to modulate the shininess value.
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在 Phong 属性中，使用
+     <b>
+      渠道
+     </b>
+     下拉菜单选择要处理的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     调整
+     <b>
+      颜色
+     </b>
+     更改材质颜色。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     调整
+     <b>
+      排放
+     </b>
+     更改材质发出的灯光的颜色。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     要在照明时控制材料的颜色，请调整
+     <b>
+      扩散
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     要控制材料上的高光看起来有多亮，请调整
+     <b>
+      镜面。
+     </b>
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     要控制材料的光泽，请调整
+     <b>
+      光泽
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     要设置最小和最大光泽值，请调整
+     <b>
+      Min shininess
+     </b>
+     和
+     <b>
+      最大光泽
+     </b>
+     。如果您没有将图像连接到
+     <b>
+      MapSh
+     </b>
+     在节点的输入中，这些值的平均值用作材质的光泽值。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      11。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="11.  " valign="top">
+     选择一个
+     <b>
+      闪光通道
+     </b>
+     控制如何使用输入通道将黑白值映射到
+     <b>
+      MinShininess
+     </b>
+     和
+     <b>
+      MaxShininess
+     </b>
+     参数时
+     <b>
+      MapSh
+     </b>
+     输入已连接。选择
+     <b>
+      红色
+     </b>
+     要使用红色通道进行映射,
+     <b>
+      绿色
+     </b>
+     要使用绿色通道,
+     <b>
+      蓝色
+     </b>
+     要使用蓝色通道,
+     <b>
+      亮度
+     </b>
+     使用亮度，或
+     <b>
+      平均 rgb
+     </b>
+     使用红色、绿色和蓝色通道的平均值。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="Rendering_a_Wireframe_Overlay_on_Your_Geometry">
+   </a>
+   在几何图形上渲染线框覆盖
+  </h3>
+  <p>
+   线框节点允许您在几何对象或粒子模拟的表面上渲染线框覆盖。这可能是有用的，例如，如果你想:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   检查纹理投影是否与几何图形正确对齐。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   创建 3D 场景的快速渲染以检查对象的定位。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   创建运动图形。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   创建 “制作” 视频。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   线框节点目前仅在使用 ScanlineRender 渲染 3D 场景时有效，RayRender 和 PrmanRender 不支持线框着色器。
+  </p>
+  <h4>
+   使用线框节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      着色器
+     </b>
+     &gt;
+     <b>
+      线框
+     </b>
+     要插入
+     <a name="kanchor279">
+     </a>
+     线框节点到脚本中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将线框节点放置在 2D 纹理图像和 3D 对象节点之间，或者将其连接到应用材质节点
+     <b>
+      垫子
+     </b>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_node_tree1_378x291.png" style="width: 378;height: 291;"/>
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_node_tree2_378x224.png" style="width: 378;height: 224;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在线框属性中，使用
+     <b>
+      渠道
+     </b>
+     下拉菜单选择要处理的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     从
+     <b>
+      操作
+     </b>
+     下拉菜单中，选择如何将线框覆盖应用于几何图形:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    不透明
+   </b>
+   -在完全不透明的黑色输入几何图形上显示线框。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_opaque_265x235.png" style="width: 265;height: 235;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    看穿
+   </b>
+   -在完全透明的几何图形上显示线框。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_see_through_265x235.png" style="width: 265;height: 235;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    结束
+   </b>
+   -在输入着色器或纹理的顶部显示线框。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_over_265x235.png" style="width: 265;height: 235;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    乘
+   </b>
+   -将线框与输入着色器或纹理相乘，并在完全透明的几何体上显示。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_multiply_265x235.png" style="width: 265;height: 235;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    调制
+   </b>
+   -将标准漫反射着色应用于线框，并将其显示在输入着色器或纹理的顶部。这考虑到了场景中的任何灯光。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/wireframe_modulate_265x235.png" style="width: 265;height: 235;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     要设置线框线的宽度 (以像素为单位)，请调整
+     <b>
+      线条宽度
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/wireframe_line_width_0.5_189x167.png" style="width: 189;height: 167;"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/wireframe_line_width_3_189x167.png" style="width: 189;height: 167;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       <b>
+        线条宽度
+       </b>
+       设置为 0.5。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       <b>
+        线条宽度
+       </b>
+       设置为 3。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     要设置线框线的颜色和透明度，请调整
+     <b>
+      线条颜色
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/wireframe_line_width_0.5_189x167.png" style="width: 189;height: 167;"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/wireframe_line_color_189x167.png" style="width: 189;height: 167;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       <b>
+        线条颜色
+       </b>
+       设置为白色。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       <b>
+        线条颜色
+       </b>
+       设置为青色。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -800,5 +1895,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
