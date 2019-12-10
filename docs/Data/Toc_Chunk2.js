@@ -888,7 +888,7 @@ define({
   },
   "/content/getting_started/meet_nuke/channel_operations.html": {
     i: [13],
-    t: ["渠道运营"],
+    t: ["通道运营"],
     b: [""]
   },
   "/content/getting_started/meet_nuke/compositing_3d.html": {

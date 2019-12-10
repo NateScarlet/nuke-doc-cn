@@ -691,7 +691,7 @@ define({
   },
   "/content/comp_environment/channels/calling_channels.html": {
     i: [111],
-    t: ["呼叫渠道"],
+    t: ["呼叫通道"],
     b: [""]
   },
   "/content/comp_environment/channels/channel_outputs.html": {
@@ -701,7 +701,7 @@ define({
   },
   "/content/comp_environment/channels/channels.html": {
     i: [108],
-    t: ["渠道"],
+    t: ["通道"],
     b: [""]
   },
   "/content/comp_environment/channels/creating_channels.html": {
@@ -746,12 +746,12 @@ define({
   },
   "/content/comp_environment/channels/tracing_channels.html": {
     i: [116],
-    t: ["追踪渠道"],
+    t: ["追踪通道"],
     b: [""]
   },
   "/content/comp_environment/channels/understanding_channels.html": {
     i: [109],
-    t: ["了解渠道"],
+    t: ["了解通道"],
     b: [""]
   },
   "/content/comp_environment/channels/viewing_channels.html": {
