@@ -1,525 +1,1495 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Timeline Editing in Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Soft Effects</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#timeline_environment/soft_effects/soft_effects.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Timeline Editing in Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   软效果
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#timeline_environment/soft_effects/soft_effects.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="sectionTitle">Soft Effects</h1>
-        <p class="intro">You can add soft effects to your  timeline in any of the workspaces. A soft effect is a real-time effect, processed on GPU instead of CPU.</p>
-        <p>You can also add custom plug-in or gizmo soft effects to the <b>Add Effect</b> menu using Python. There are a few rules concerning valid custom soft effects, such as they must have a GPUEngine implementation, and they must be registered after creation. An example of how to register a plug-in or gizmo as a custom soft effect is located in:</p>
-        <p class="cmdline">&lt;install_directory&gt;/pythonextensions/site-packages/hiero/examples/custom_soft_effect.py</p>
-        <p>See <b>Help</b> &gt; <b>Documentation</b> for more information.</p>
-        <h1>Available Soft Effects</h1>
-        <p>Below is a brief summary of the available soft effects. These are similar to the tools in <span class="CustomProduct">Nuke</span>'s Node Graph. See the <MadCap:conditionalText data-mc-conditions="Default.ScreenOnly"><a href="../../reference_guide/preface/reference_guide.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Reference Guide</span></a></MadCap:conditionalText> for more information about them.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;" data-mc-conditions="Custom.NukeStudio"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><b>Create Comp</b> and <b>Create Comp Special</b> are not soft effects.</p>
-        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="76px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="394px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Soft Effect</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">Summary</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Transform</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Allows you to translate, rotate, scale, and skew clip instances from a single control panel.  </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Mirror</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Allows you to flip the input image around the center of the format area. A flip on the x axis mirrors the image vertically. A flop on the y axis mirrors the image horizontally. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Crop</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p> Allows you to cut out the unwanted portions of the image area. You can fill the cropped portion with black or adjust the image output format to match the cropped image. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>TimeWarp</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Allows you to slow down, speed up, or even reverse selected frames in a clip without necessarily altering its overall length.</p>
-                        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>TimeWarp effects are only allowed on tracks with clips as they are linked to the clips. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Grade</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Allows you to define white and black points by sampling pixels from the Viewer. For example, you can use this for matching foreground plates to background plates. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>LUT</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Allows you to uses the OpenColorIO library to load a colorspace conversion from a file (usually a 1D or 3D LUT) and apply it. You can also load other file-based transformations, for example an ASC ColorCorrection XML. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>CDL</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Allows you to apply an ASC CDL (American Society of Cinematographers Color Decision List) grade based on the OpenColorIO Library. For more information, see http://opencolorio.org</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Colorspace</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Allows you to convert images from one colorspace to another, for example from Nuke’s native colorspace to other color spaces more appropriate to a given process or intended display device. This supports RGB, HSV, YUV, CIE, and CMS formats (and various sub-formats). It can adjust for different primaries, white point, and different encodings. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>ColorCorrect</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Allows you to make quick adjustments to saturation, contrast, gamma, gain, and offset. You can apply these to a clip’s master (entire tonal range), shadows, midtones, or highlights.</p>
-                        <p>You can control the range of the image that is considered to be in the shadows, midtones, and highlights using the lookup curves on the <b>Ranges</b> tab. However, do not adjust the midtone curve - midtones are always equal to 1 minus the other two curves.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>Text</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Allows you to add text overlays on your images. You can simply type in the text you want to have displayed or use Tcl expressions (such as <b>[metadata values]</b>) or Tcl variables to create a text overlay. Text overlays can also be animated using animation layers in the Groups tab, so that their properties (such as position, size, and color) change over time. </p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p>Burn-In</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p>Allows you to quickly add standard burn-in elements on the timeline.
-You can control the color, opacity, font, scale, and so on, as well as use the dropdowns to determine what element is added from the file or sequence metadata. </p>
-                        <p>You can also reference custom metadata from clip instances. For example:</p>
-                        <p class="cmdline">hiero/tags/Approved</p>
-                        <p>Extracts the <b>Approved</b> tag from the clip instance. You can also append <span class="_Override" style="font-weight: bold;">note</span> to include any notes associated with the tag:</p>
-                        <p class="cmdline">hiero/tags/Approved/note</p>
-                        <div class="background">
-                            <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You must precede spaces and slashes in the tag name with \\ (backslashes) to enable <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> to process the tag name correctly. For example: </p>
-                            <p class="backCmd">hiero/tags/Blue\\ Screen/note</p>
-                        </div>
-                        <p>You can also add burn-in through the <b>Export</b> dialog, see <a href="../exporting/adding_burn_in.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adding Burn-in Text to Exports</span></a>  for more information.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p>ChromaKeyer</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p>Allows you to pull a quick chroma key from green or bluescreen areas of your footage.</p>
-                        <p>Use the <b>screen color</b> selector to choose a color from the <b>Source</b> input to use as the blue/green screen color. To remove blue/green spill from the foreground object, use the <b>despill</b> controls to pick skin tones from the source. Use the <b>matte</b> parameters to improve the matte.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p>BlinkScript</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p>Allows you to run Foundry's Blink framework on the timeline, enabling you to write code once and run it on any supported device.</p>
-                        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>BlinkScript is very flexible, as there are no restrictions on the code you can write within a kernel. As a result, code complied from the Kernel Source can cause Nuke to crash, so please use caution!</p>
-                        <p>The BlinkScript soft effect supports a subset of the functionality available in the full BlinkScript node:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can't publish your kernels to Groups or Gizmos.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Due to the way stacks of soft effects are processed in <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span>, the BlinkScript soft effect only contains one input source and produces only one output.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Currently, the BlinkScript soft effect only supports eAccessPoint data access, which means that only one point from the input can be accessed at a time, and only one point from the output can be written, for each iteration position.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The following functions are not supported by the BlinkScript effect:</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>log10</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>round</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>rsqrt</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>abs for integer types</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>modf(a, *b)</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>sign</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>rcp</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>max, min, and clamp for integer types</p>
-                        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>median, atomicInc and atomicAdd.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The only data types supported by the BlinkScript effect are <b>int</b>, <b>float</b>, and <b>bool</b>.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The BlinkScript soft effect supports both <i>pixel-wise</i> and <i>component-wise</i> kernels, but the former is preferred for performance reasons. For more information about this and a more detailed description of the language, see <a href="http://docs.thefoundry.co.uk/nuke/100/BlinkKernels/" target="_blank">http://docs.thefoundry.co.uk/nuke/100/BlinkKernels/</a></p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h1>Adding Sequence-Level Soft Effects</h1>
-        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>Please keep in mind the following:<br /> • Sequence-level soft effects are only permitted on the same track as clips if they're trimmed to exactly match the in and out points of individual clips. In this case, each effect is linked to a specific clip.<br /> • Soft effects can be trimmed arbitrarily if they're on tracks with no clips. </p>
-        <p>As well as adding soft effects using the spreadsheet view (see next section), the timeline provides some additional ways to add soft effects. You can either:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Right-click a clip instance on the timeline, select <b>Effects</b> and then select the soft effect you want to apply. </p>
-        <p class="bulletedCont">OR</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Select a clip instance on the timeline, click the <b>Add Effect</b> button (see screenshot) to the left of the timeline, and then select the soft effect you want to apply.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/create_comp14.png" />
-        </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can add a soft effect to multiple clip instances by selecting  the required clip instances first and then right-clicking on one of them and selecting the soft effect you want to add. A soft effect is added to each of the selected clip instances. You can also add a single soft effect for the whole track by right-clicking on the track header and then selecting the soft effect you want to add.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>TimeWarp effects are only allowed on tracks with clips (and therefore linked to clips).</p>
-        <h2>Using the Spreadsheet View</h2>
-        <p>You can add soft effects using the spreadsheet view in any workspace by doing the following:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">To open the spreadsheet view in any workspace, select <b>Window</b> &gt; <b>New Spreadsheet View</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Right-click a sequence in the bin view.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">This opens a context menu.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If the spreadsheet view is not already populated in the context menu, select <b>Open In</b> &gt; <b>Spreadsheet View</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/create_comp11.png" />
-        </p>
-        <p class="numberedCont">This loads the sequence in the spreadsheet view that you previously opened. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Right-click an event from the list in the spreadsheet view and select <b>Effects</b> to open a list of all available soft effects.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;" data-mc-conditions="Custom.NukeStudio"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><b>Create Comp</b> and <b>Create Comp Special</b> are the only items in the <b>Effects</b> list that are NOT a soft effect.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select the required soft effect from the <b>Effects</b> list. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">The sequence-level soft effect is then displayed above the clip instance and is color coordinated. For example, if the effect appears in blue/violet on the timeline, the corresponding effect properties are highlighted in the same color in the <b>Properties</b> pane.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/create_comp13.png" />
-        </p>
-        <p class="numberedCont">When you insert a soft effect, its properties panel opens automatically. If you have it open, the effect properties panel displays in the <b>Properties</b> pane. If the <b>Properties</b> pane is not open, the effect's properties panel appears as a floating dialog.</p>
-        <h1>Adding Clip-Level Soft Effects</h1>
-        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>Soft effects added at clip-level, must match the length of the clip instance on the locked track. Any soft effect that is trimmed beyond the end of a clip instance, or a different length from the clip instance is marked with red hashing to show that it is invalid.</p>
-        <p>You can add clip-level soft effects on the timeline, by doing the following:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Right-click the clip instance or a bin clip that you want to add a soft effect to.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>Open In</b> &gt; <b>Timeline View</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Click the <b>Effects</b> menu icon and select the soft effect you want to apply. For example, you can select <b>Grade</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The soft effect is then displayed above the clip instance as a colored box.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/softeffect_timelineview2.png" />
-        </p>
-        <p class="numberedCont">When you close the timeline view of the clip instance – as it is a clip-level soft effect – the soft effect is displayed as a colored line within the top of the clip instance. The color of the line displayed reflects the highest soft effect added to the clip instance.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/softeffect_timelineview3.png" />
-        </p>
-        <h1>Soft Effect Controls</h1>
-        <p>Adding an effect displays the associated controls in the <b>Properties</b> panel, similar to <span class="CustomProduct">Nuke</span> nodes. Adjusting the controls affects the clip instances underneath the effect in real-time. For example, adding a Grade effect at sequence level displays the Grade controls in the <b>Properties</b> panel.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/softeffect_properties_377x248.png" class="cm10" style="width: 377;height: 248;" />
-        </p>
-        <p>See <MadCap:conditionalText data-mc-conditions="Custom.NukeStudio"><a href="../../getting_started/using_interface/properties_panels.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Properties Panels</span></a></MadCap:conditionalText><MadCap:conditionalText data-mc-conditions="Default.ScreenOnly"><MadCap:conditionalText data-mc-conditions="Custom.NukeStudio"> and the <span class="CustomProduct">Nuke</span> <a href="../../reference_guide/preface/reference_guide.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Reference Guide</span></a><![CDATA[  ]]></MadCap:conditionalText></MadCap:conditionalText>for more information on node controls.</p>
-        <p>If you intend to animate soft effect controls using keyframes, you can use the Curve Editor and Dope Sheet to fine-tune the output. To add the Curve Editor or Dope Sheet to the interface, navigate to <b>Window</b> and select the required panel.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/softeffect_animation_377x250.png" class="cm10" style="width: 377;height: 250;" />
-        </p>
-        <p>See <MadCap:conditionalText data-mc-conditions="Custom.NukeStudio"><a href="../../getting_started/using_interface/animating_parameters.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Parameters</span></a></MadCap:conditionalText>for more information.</p>
-        <h1>Editing Sequence-Level Soft Effects</h1>
-        <p>You can copy, move, and cut soft effects just like you can with clip instances in the timeline. You can perform these actions by either accessing them from <b>Edit</b> in the right-click menu, or by using the keyboard shortcuts. You can copy soft effects to different tracks, and different sequences, but not different projects.</p>
-        <h2>Moving</h2>
-        <p>You can move a sequence-level soft effect by simply clicking and dragging the soft effect to a different clip instance, or even onto a different video track.</p>
-        <h2>Copying </h2>
-        <p><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> allows you to copy a sequence-level soft effect above the original to create a stack, to a different track, or to a different sequence. You can also copy a sequence-level soft effect to a clip instance open in the timeline view, therefore pasting it as a clip-level soft effect. You can copy a soft effect by doing the following:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the soft effect you want to copy by clicking it.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>Edit</b> &gt; <b>Copy</b> (or <b>Ctrl</b>/<b>Cmd</b>+<b>C</b>).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Move the playhead to where you want to paste the copy.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select <b>Edit</b> &gt; <b>Paste</b> (or <b>Ctrl</b>/<b>Cmd</b>+<b>V</b>).</td>
-            </tr>
-        </table>
-        <h2>Cloning</h2>
-        <p><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> allows you to clone a sequence-level soft effect. This copies the soft effect and links it to the original, which means when one of these is edited, the changes are reflected in the other one. You can clone a soft effect to a different track or even a different sequence. You cannot clone a soft effect in different projects. </p>
-        <p>To clone a soft effect:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the soft effect you want to clone by clicking on it.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>Edit</b> &gt; <b>Copy</b> (or press <b>Ctrl</b>/<b>Cmd</b>+<b>C</b>).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Move the playhead on the timeline to where you want to place the new clone.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select <b>Edit</b> &gt; <b>Clone</b> (or press <b>Alt</b>+<b>K</b>).</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The new clone is placed at the current playhead position on the timeline. You can repeat steps 3 and 4 to create multiple clones that are all linked, at different places on the timeline.</p>
-        <p class="numberedCont">Clones are indicated by a <b>C</b> highlighted in red in the left of the soft effect.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Cloning animation in soft effects is not supported.</p>
-        <h2>Copying as Clone</h2>
-        <p>You can also copy a sequence-level soft effect as a clone. This means, when you paste a new copy of the soft effect above a selected clip instance, it is automatically linked to the original soft effect as a clone. Therefore, any changes made to either of the cloned soft effects, are reflected in the other.</p>
-        <p>To copy a soft effect as a clone, do the following:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the soft effect you want to copy as a clone by clicking on it.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>Edit</b> &gt; <b>Copy as Clones</b> (or press <b>Ctrl</b>/<b>Cmd</b>+<b>K</b>).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Click on the clip instance that you want to clone the soft effect to.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select <b>Edit</b> &gt; <b>Paste</b> (or press <b>Ctrl</b>/<b>Cmd</b>+<b>V</b>).</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The soft effect is copied as a clone on your selected clip instance. You can repeat steps 3 and 4 to create multiple clones that are all linked above different selected clip instances.</p>
-        <p class="numberedCont">Clones are indicated by a <b>C</b> highlighted in red in the left of the soft effect.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Cloning animation in soft effects is not supported.</p>
-        <h2>Decloning</h2>
-        <p>To declone a soft effect, simply click on the clone you want to declone and select <b>Edit</b> &gt; <b>Declone</b> (or press <b>Alt</b>+<b>Shift</b>+<b>K</b>).</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>For more information about copying, moving, and cutting soft effects, see <a href="../editingtools/timeline_editing_tools.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Timeline Editing Tools</span></a> .</p>
-        <h2>Deleting</h2>
-        <p>To delete a soft effect, simply right-click on it and select <b>Edit</b> &gt; <b>Delete</b> (or press <b>Backspace</b>).</p>
-        <h1>Editing Clip-Level Soft Effects</h1>
-        <p>To edit a clip-level soft effect, you first need to open the clip instance with the applied soft effect, in the timeline view. You can do this by right-clicking the clip instance and selecting <b>Open In</b> &gt; <b>Timeline View</b>. You can then copy, delete or move the clip-level soft effect in exactly the same way as sequence-level soft effects. </p>
-        <p>You can copy and paste the clip-level soft effect on top of the original, creating a stack in the timeline view. When you close the timeline view, stacked clip-level soft effects are displayed as a single line within the top of the clip instance. <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> allows you to copy a clip-level soft effect, return to the full sequence, and then paste it as a sequence-level soft effect. You can also paste a clip-level soft effect to another clip instance open in the timeline view.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You cannot clone clip-level soft effects.</p>
-        <h2>Enabling and Disabling Soft Effects</h2>
-        <p>You can choose to disable and re-enable soft effects from the output. To enable or disable a sequence-level soft effect, select the soft effect by clicking on the colored box and then pressing <b>D</b>. To enable or disable a clip-level soft effect, you first need to open the clip instance – that includes the soft effect – in the timeline view. Then you can select the soft effect and press <b>D</b>.</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="sectionTitle">
+   软效果
+  </h1>
+  <p class="intro">
+   您可以在任何工作区中将软效果添加到时间轴。软效果是一种实时效果，在 GPU 上处理，而不是 CPU。
+  </p>
+  <p>
+   您还可以添加自定义插件或发明柔和的效果,
+   <b>
+    添加效果
+   </b>
+   菜单使用 Python。有一些关于有效自定义软效果的规则，比如它们必须有 GPUEngine 实现，并且必须在创建后注册。如何将插件或 gizmo 注册为自定义软效果的示例位于:
+  </p>
+  <p class="cmdline">
+   &lt;Install_directory&gt;/pythonextensions/site-packages/hiero/examples/custom_soft_effect.py
+  </p>
+  <p>
+   请参阅
+   <b>
+    帮助
+   </b>
+   &gt;
+   <b>
+    文档
+   </b>
+   欲了解更多信息。
+  </p>
+  <h1>
+   可用的软效果
+  </h1>
+  <p>
+   下面是可用软效果的简要总结。这些类似于中的工具
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的节点图。看到的
+   <madcap:conditionaltext data-mc-conditions="Default.ScreenOnly">
+    <a class="noPage MCXref xref xrefnoPage" href="../../reference_guide/preface/reference_guide.html">
+     <span class="mcFormatColor" style="color: #00b4e0;">
+      参考指南
+     </span>
+    </a>
+   </madcap:conditionaltext>
+   有关他们的更多信息。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  ' data-mc-conditions="Custom.NukeStudio">
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   <b>
+    创建 Comp
+   </b>
+   和
+   <b>
+    创建 Comp Special
+   </b>
+   不是软效果。
+  </p>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="76px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="394px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       软效果
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       摘要
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       变换
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       允许您从单个控制面板平移、旋转、缩放和倾斜剪辑实例。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       镜子
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       允许您围绕格式区域的中心翻转输入图像。X 轴上的翻转垂直镜像图像。Y 轴上的翻牌操作水平镜像图像。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       作物
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       允许您剪切图像区域中不需要的部分。您可以用黑色填充裁剪部分，或者调整图像输出格式以匹配裁剪的图像。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       时间扭曲
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       允许您在剪辑中减慢、加快甚至反转选定的帧，而不必改变其总长度。
+      </p>
+      <p class="warning" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;WARNING:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          警告:
+         </span>
+        </span>
+       </span>
+       时间扭曲效果仅允许在包含剪辑的轨道上，因为它们链接到剪辑。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       年级
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       允许您通过从查看器中采样像素来定义白色和黑色点。例如，您可以使用它来匹配前景板和背景板。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       LUT
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       允许您使用 OpenColorIO 库从文件 (通常是 1D 或 3D LUT) 加载颜色空间转换并应用它。您还可以加载其他基于文件的转换，例如 ASC ColorCorrection XML。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       CDL
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       允许您根据 OpenColorIO 库应用 ASC CDL (美国电影摄影师协会颜色决定列表) 等级。有关更多信息，请参见 http://opencolorio.org
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       色彩空间
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       允许您将图像从一个颜色空间转换到另一个颜色空间，例如从 Nuke 的本地颜色空间转换到更适合给定过程或预期显示设备的其他颜色空间。这支持 RGB 、 HSV 、 YUV 、 CIE 和 CMS 格式 (以及各种子格式)。它可以根据不同的初选、白点和不同的编码进行调整。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       ColorCorrect
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       允许您快速调整饱和度、对比度、伽马、增益和偏移。您可以将这些应用到剪辑的主色调 (整个色调范围) 、阴影、中间色调或高光。
+      </p>
+      <p>
+       您可以使用上的查找曲线控制被认为位于阴影、中间色调和高光中的图像的范围
+       <b>
+        范围
+       </b>
+       标签。但是，不要调整中间色调曲线-中间色调始终等于 1 减去其他两条曲线。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       文本
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       允许您在图像上添加文本覆盖。您可以简单地键入要显示的文本或使用 Tcl 表达式 (如
+       <b>
+        [元数据值]
+       </b>
+       ) 或 Tcl 变量来创建文本覆盖。还可以使用 “组” 选项卡中的动画层对文本覆盖设置动画，以便它们的属性 (如位置、大小和颜色) 随时间而变化。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p>
+       烧入
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p>
+       允许您在时间轴上快速添加标准烧入元素。
+您可以控制颜色、不透明度、字体、比例等，以及使用下拉列表来确定从文件或序列元数据中添加的元素。
+      </p>
+      <p>
+       您还可以从剪辑实例引用自定义元数据。例如:
+      </p>
+      <p class="cmdline">
+       Hiero/标签/批准
+      </p>
+      <p>
+       提取
+       <b>
+        批准
+       </b>
+       来自剪辑实例的标记。您也可以附加
+       <span class="_Override" style="font-weight: bold;">
+        注意
+       </span>
+       要包括与标记关联的任何注释:
+      </p>
+      <p class="cmdline">
+       Hiero/tags/Approved/note
+      </p>
+      <div class="background">
+       <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+        <span class="autonumber">
+         <span>
+          <span class="mcFormatColor" style="color: Black;">
+           注意:
+          </span>
+         </span>
+        </span>
+        必须在标记名称中的空格和斜杠前面加上 \ \ (反斜杠) 才能启用
+        <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+         核武器工作室
+        </span>
+        正确处理标记名称。例如:
+       </p>
+       <p class="backCmd">
+        Hiero/tags/Blue \ \ Screen/note
+       </p>
+      </div>
+      <p>
+       您还可以添加老化的
+       <b>
+        出口
+       </b>
+       对话框，请参见
+       <a class="noPage MCXref xref xrefnoPage" href="../exporting/adding_burn_in.html">
+        <span class="mcFormatColor" style="color: #00b4e0;">
+         将刻录文本添加到导出中
+        </span>
+       </a>
+       欲了解更多信息。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p>
+       ChromaKeyer
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p>
+       允许你从你的镜头的绿色或蓝屏区域拉一个快速的色度键。
+      </p>
+      <p>
+       使用
+       <b>
+        屏幕颜色
+       </b>
+       选择器从选择颜色
+       <b>
+        源
+       </b>
+       输入用作蓝色/绿色屏幕颜色。要从前景对象中删除蓝色/绿色溢出，请使用
+       <b>
+        绝望
+       </b>
+       控制从源拾取肤色。使用
+       <b>
+        哑光
+       </b>
+       参数来提高哑光。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p>
+       BlinkScript
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p>
+       允许您在时间轴上运行 Foundry 的 Blink 框架，使您能够编写一次代码并在任何受支持的设备上运行。
+      </p>
+      <p class="warning" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;WARNING:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          警告:
+         </span>
+        </span>
+       </span>
+       BlinkScript 非常灵活，因为在内核中可以编写的代码没有限制。因此，从内核源代码编辑的代码可能会导致 Nuke 崩溃，所以请小心!
+      </p>
+      <p>
+       BlinkScript 软效果支持完整 BlinkScript 节点中可用的功能的子集:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       您不能将内核发布到组或小控件。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       由于软效果堆的处理方式
+       <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+        核武器工作室
+       </span>
+       ,BlinkScript 软效果只包含一个输入源，只产生一个输出。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       目前，BlinkScript 软效果只支持 eAccessPoint 数据访问，这意味着一次只能访问输入中的一个点，并且只能写入输出中的一个点, 对于每个迭代位置。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       BlinkScript 效果不支持以下函数:
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Log10
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       圆形
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Rsqrt
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       整数类型的 abs
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Modf (a，* b)
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       标志
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       Rcp
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       整数类型的 max 、 min 和 clamp
+      </p>
+      <p class="processBullet" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       中位数，atomicInc 和 atomicAdd。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       BlinkScript 效果支持的唯一数据类型是
+       <b>
+        Int
+       </b>
+       ,
+       <b>
+        浮动
+       </b>
+       ,和
+       <b>
+        布尔
+       </b>
+       .
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       BlinkScript 软效果同时支持
+       <i>
+        像素化
+       </i>
+       和
+       <i>
+        组件方面
+       </i>
+       内核，但出于性能原因，前者是首选。有关此的更多信息和该语言的更详细描述，请参见
+       <a href="http://docs.thefoundry.co.uk/nuke/100/BlinkKernels/" target="_blank">
+        Http://docs.thefoundry.co.uk/nuke/100/BlinkKernels/
+       </a>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h1>
+   添加序列级软效果
+  </h1>
+  <p class="warning" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;WARNING:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      警告:
+     </span>
+    </span>
+   </span>
+   请记住以下几点:
+   <br/>
+   序列级软效果只允许在与剪辑相同的轨道上，如果它们被修剪以完全匹配单个剪辑的输入和输出点。在这种情况下，每个效果都链接到一个特定的剪辑。
+   <br/>
+   软效果可以任意修剪，如果它们在没有剪辑的轨道上。
+  </p>
+  <p>
+   除了使用电子表格视图添加软效果 (请参见下一节)，时间线还提供了一些添加软效果的其他方法。您可以:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在时间轴上右键单击剪辑实例，选择
+   <b>
+    影响
+   </b>
+   然后选择要应用的软效果。
+  </p>
+  <p class="bulletedCont">
+   OR
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在时间轴上选择剪辑实例，单击
+   <b>
+    添加效果
+   </b>
+   时间线左侧的按钮 (请参见截图)，然后选择要应用的软效果。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/create_comp14.png"/>
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   通过先选择所需的剪辑实例，然后在其中一个实例上单击鼠标右键并选择要添加的软效果，可以将软效果添加到多个剪辑实例中。将软效果添加到每个选定的剪辑实例。您还可以通过右击轨道标题，然后选择要添加的软效果，为整个轨道添加单个软效果。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   时间扭曲效果只允许在带有剪辑 (因此链接到剪辑) 的轨道上。
+  </p>
+  <h2>
+   使用电子表格视图
+  </h2>
+  <p>
+   通过执行以下操作，可以在任何工作空间中使用电子表格视图添加软效果:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     要在任何工作区中打开电子表格视图，请选择
+     <b>
+      窗口
+     </b>
+     &gt;
+     <b>
+      新建电子表格视图
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 bin 视图中的序列上单击鼠标右键。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这将打开一个上下文菜单。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     如果上下文菜单中尚未填充电子表格视图，请选择
+     <b>
+      打开
+     </b>
+     &gt;
+     <b>
+      电子表格视图
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/create_comp11.png"/>
+  </p>
+  <p class="numberedCont">
+   这将加载之前打开的电子表格视图中的序列。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在电子表格视图的列表中右键单击事件，然后选择
+     <b>
+      影响
+     </b>
+     打开所有可用软效果的列表。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  ' data-mc-conditions="Custom.NukeStudio">
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   <b>
+    创建 Comp
+   </b>
+   和
+   <b>
+    创建 Comp Special
+   </b>
+   是唯一的项目
+   <b>
+    影响
+   </b>
+   不是软效果的列表。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     从中选择所需的软效果
+     <b>
+      影响
+     </b>
+     列表。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   然后，序列级软效果显示在剪辑实例上方，并进行颜色协调。例如，如果效果在时间轴上以蓝色/紫色显示，则相应的效果属性将在
+   <b>
+    属性
+   </b>
+   窗格。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/create_comp13.png"/>
+  </p>
+  <p class="numberedCont">
+   插入软效果时，其属性面板将自动打开。如果打开它，“效果属性” 面板将显示在
+   <b>
+    属性
+   </b>
+   窗格。如果
+   <b>
+    属性
+   </b>
+   窗格未打开，效果的 “属性” 面板显示为浮动对话框。
+  </p>
+  <h1>
+   添加剪辑级软效果
+  </h1>
+  <p class="warning" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;WARNING:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      警告:
+     </span>
+    </span>
+   </span>
+   在剪辑级别添加的软效果，必须与锁定轨迹上的剪辑实例的长度相匹配。修剪到剪辑实例末端以外的任何软效果，或与剪辑实例不同的长度，都将用红色散列标记，以显示其无效。
+  </p>
+  <p>
+   通过执行以下操作，可以在时间轴上添加剪辑级软效果:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在要向其添加软效果的剪辑实例或 bin 剪辑上单击鼠标右键。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      打开
+     </b>
+     &gt;
+     <b>
+      时间线视图
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     单击
+     <b>
+      影响
+     </b>
+     菜单图标并选择要应用的软效果。例如，您可以选择
+     <b>
+      年级
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   然后，软效果将作为彩色框显示在剪辑实例上方。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/softeffect_timelineview2.png"/>
+  </p>
+  <p class="numberedCont">
+   关闭剪辑实例的时间线视图时 (因为它是剪辑级软效果)，软效果将显示为剪辑实例顶部的彩色线。显示的线条颜色反映添加到剪辑实例的最高柔和效果。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/softeffect_timelineview3.png"/>
+  </p>
+  <h1>
+   软效果控制
+  </h1>
+  <p>
+   添加效果显示相关的管制
+   <b>
+    属性
+   </b>
+   面板，类似于
+   <span class="CustomProduct">
+    核武器
+   </span>
+   节点。调整控件会实时影响效果下的剪辑实例。例如，在序列级别添加等级效果将在
+   <b>
+    属性
+   </b>
+   面板。
+  </p>
+  <p class="graphic">
+   <img class="cm10" src="../../assets/images/ug_images/softeffect_properties_377x248.png" style="width: 377;height: 248;"/>
+  </p>
+  <p>
+   请参阅
+   <madcap:conditionaltext data-mc-conditions="Custom.NukeStudio">
+    <a class="noPage MCXref xref xrefnoPage" href="../../getting_started/using_interface/properties_panels.html">
+     <span class="mcFormatColor" style="color: #00b4e0;">
+      属性面板
+     </span>
+    </a>
+   </madcap:conditionaltext>
+   <madcap:conditionaltext data-mc-conditions="Default.ScreenOnly">
+    <madcap:conditionaltext data-mc-conditions="Custom.NukeStudio">
+     以及
+     <span class="CustomProduct">
+      核武器
+     </span>
+     <a class="noPage MCXref xref xrefnoPage" href="../../reference_guide/preface/reference_guide.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       参考指南
+      </span>
+     </a>
+     <![CDATA[ ]]>
+    </madcap:conditionaltext>
+   </madcap:conditionaltext>
+   有关节点控件的更多信息。
+  </p>
+  <p>
+   如果要使用关键帧制作动画软效果控件，可以使用曲线编辑器和摄影表来微调输出。要将曲线编辑器或摄影表添加到界面，请导航到
+   <b>
+    窗口
+   </b>
+   并选择所需面板。
+  </p>
+  <p class="graphic">
+   <img class="cm10" src="../../assets/images/ug_images/softeffect_animation_377x250.png" style="width: 377;height: 250;"/>
+  </p>
+  <p>
+   请参阅
+   <madcap:conditionaltext data-mc-conditions="Custom.NukeStudio">
+    <a class="noPage MCXref xref xrefnoPage" href="../../getting_started/using_interface/animating_parameters.html">
+     <span class="mcFormatColor" style="color: #00b4e0;">
+      动画参数
+     </span>
+    </a>
+   </madcap:conditionaltext>
+   欲了解更多信息。
+  </p>
+  <h1>
+   编辑序列级软效果
+  </h1>
+  <p>
+   您可以复制、移动和剪切软效果，就像在时间轴中使用剪辑实例一样。您可以通过从访问这些操作来执行这些操作
+   <b>
+    编辑
+   </b>
+   在右击菜单中，或使用键盘快捷键。您可以将软效果复制到不同的轨道和不同的序列，但不能复制到不同的项目。
+  </p>
+  <h2>
+   移动
+  </h2>
+  <p>
+   只需单击并将软效果拖动到不同的剪辑实例，甚至拖动到不同的视频轨道，即可移动序列级软效果。
+  </p>
+  <h2>
+   复制
+  </h2>
+  <p>
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   允许您将序列级软效果复制到原始序列之上，以创建堆栈、到不同的轨迹或到不同的序列。也可以将序列级软效果复制到时间轴视图中打开的剪辑实例，因此将其粘贴为剪辑级软效果。可以通过执行以下操作复制软效果:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     通过单击要复制的软效果来选择它。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      复制
+     </b>
+     (或
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      C
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将播放头移动到要粘贴副本的位置。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      粘贴
+     </b>
+     (或
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      V
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <h2>
+   克隆
+  </h2>
+  <p>
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   允许您克隆序列级软效果。这将复制软效果并将其链接到原始效果，这意味着当其中一个被编辑时，更改会反映在另一个中。您可以将软效果克隆到不同的轨道，甚至是不同的序列。不能在不同的项目中克隆软效果。
+  </p>
+  <p>
+   要克隆软效果:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     通过单击选择要克隆的软效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      复制
+     </b>
+     (或按
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      C
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将时间轴上的播放头移动到要放置新克隆的位置。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      克隆
+     </b>
+     (或按
+     <b>
+      Alt
+     </b>
+     +
+     <b>
+      K
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   新克隆被放置在时间轴上的当前播放头位置。您可以重复步骤 3 和 4，在时间轴上的不同位置创建所有链接的多个克隆。
+  </p>
+  <p class="numberedCont">
+   克隆由 a 表示
+   <b>
+    C
+   </b>
+   在软效果的左侧以红色突出显示。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   不支持在软效果中克隆动画。
+  </p>
+  <h2>
+   复制为克隆
+  </h2>
+  <p>
+   也可以将序列级软效果复制为克隆。这意味着，当您将软效果的新副本粘贴到选定的剪辑实例上方时，它会自动链接到原始软效果作为克隆。因此，对任一克隆软效果所做的任何更改都将反映在另一克隆软效果中。
+  </p>
+  <p>
+   要将软效果复制为克隆，请执行以下操作:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     通过单击选择要复制为克隆的软效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      复制为克隆
+     </b>
+     (或按
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      K
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     单击要将软效果克隆到的剪辑实例。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      粘贴
+     </b>
+     (或按
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      V
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   软效果将作为选定剪辑实例的克隆进行复制。可以重复步骤 3 和 4 创建多个克隆，这些克隆都链接在不同的选定剪辑实例之上。
+  </p>
+  <p class="numberedCont">
+   Clones are indicated by a
+   <b>
+    C
+   </b>
+   highlighted in red in the left of the soft effect.
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      NOTE:
+     </span>
+    </span>
+   </span>
+   Cloning animation in soft effects is not supported.
+  </p>
+  <h2>
+   Decloning
+  </h2>
+  <p>
+   要获得软效果，只需点击你想要的克隆并选择
+   <b>
+    编辑
+   </b>
+   &gt;
+   <b>
+    Declone
+   </b>
+   (或按
+   <b>
+    Alt
+   </b>
+   <b>
+    转变
+   </b>
+   <b>
+    K
+   </b>
+   )。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   有关复制、移动和剪切软效果的更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../editingtools/timeline_editing_tools.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     时间线编辑工具
+    </span>
+   </a>
+   .
+  </p>
+  <h2>
+   删除
+  </h2>
+  <p>
+   要删除软效果，只需右键单击它并选择
+   <b>
+    编辑
+   </b>
+   &gt;
+   <b>
+    删除
+   </b>
+   (或按
+   <b>
+    退格
+   </b>
+   )。
+  </p>
+  <h1>
+   编辑剪辑级软效果
+  </h1>
+  <p>
+   要编辑剪辑级软效果，首先需要在时间轴视图中打开具有应用软效果的剪辑实例。您可以通过右击剪辑实例并选择
+   <b>
+    打开
+   </b>
+   &gt;
+   <b>
+    时间线视图
+   </b>
+   。然后，您可以复制、删除或移动剪辑级软效果，其方式与序列级软效果完全相同。
+  </p>
+  <p>
+   可以将剪辑级软效果复制并粘贴到原始效果的顶部，从而在时间轴视图中创建堆栈。关闭时间轴视图时，堆叠剪辑级软效果将在剪辑实例的顶部显示为一条线。
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   允许您复制剪辑级软效果，返回到完整序列，然后将其粘贴为序列级软效果。也可以将剪辑级软效果粘贴到时间轴视图中打开的另一个剪辑实例。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   不能克隆剪辑级软效果。
+  </p>
+  <h2>
+   启用和禁用软效果
+  </h2>
+  <p>
+   您可以选择从输出中禁用和重新启用软效果。要启用或禁用序列级软效果，请单击彩色框，然后按键选择软效果
+   <b>
+    D
+   </b>
+   。要启用或禁用剪辑级软效果，首先需要在时间轴视图中打开剪辑实例 (包括软效果)。然后您可以选择软效果并按
+   <b>
+    D
+   </b>
+   .
+  </p>
+  <p>
+  </p>
+  <p>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -533,5 +1503,6 @@ You can control the color, opacity, font, scale, and so on, as well as use the d
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
