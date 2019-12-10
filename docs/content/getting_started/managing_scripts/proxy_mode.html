@@ -1,256 +1,815 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Managing Scripts|Setting Up Your Script">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Proxy Mode</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#getting_started/managing_scripts/proxy_mode.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Managing Scripts|Setting Up Your Script" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   代理模式
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#getting_started/managing_scripts/proxy_mode.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Proxy Mode</h2>
-        <p class="afterHead">When compositing with <span class="CustomProduct">Nuke</span>, you can work in two different modes: the <span class="_Override" style="font-style: normal; font-weight: bold;">full-size mode</span> or <span class="_Override" style="font-weight: bold; font-style: normal;">proxy mode</span>. In the full-size mode, images are read in exactly as they are on the disk, and all positions are in actual pixels in these images. This is the mode you want to use for accurate feedback and when rendering the final output.</p>
-        <p>In proxy mode, instead, a proxy scale factor is used. All images and all x/y positions are scaled by this factor. This produces the same (or at least very similar) composite at a different scale. For example, you can use a fraction of the full output resolution to speed up rendering and display calculation.</p>
-        <p>In addition to the above, a separate proxy file can also be read in place of a full-size image, provided you have specified one in the relevant Read node. This can further speed up the preview, by using a smaller image that reads faster and also saves time by not needing to be scaled. For more information, see <a href="#Read_nodes_and_proxy_files" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Read Nodes and Proxy Files</span></a>.</p>
-        <p>The proxy settings you define in the project settings affect both the proxies <span class="CustomProduct">Nuke</span> generates using the proxy scale factor and proxies read from files. Below, we discuss setting a proxy format and/or a proxy scale and defining how Read nodes use proxy files.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Note that proxy versions of images are only used if you have activated the proxy mode. When the proxy mode is off, <span class="CustomProduct">Nuke</span> always uses the full-res files.</p>
-        <h3>Proxy Format and Proxy Scale</h3>
-        <p>In the <b>Project Settings</b> panel, you have the option of defining a <b>proxy format</b> and/or a <b>proxy scale</b> that you use in the proxy mode. </p>
-        <p>For the proxy <b>format</b>, you can define the image resolution as well as additional information about offsets and pixel aspect ratio. When using the proxy format, the scaling is proportionate to the full-size/proxy format relationship (not scaled to the proxy format). </p>
-        <p>For the proxy <b>scale</b>, you only define a simple scale factor by which your images are scaled down whenever the proxy mode is activated. For example, you can use the scale factor of 0.5 to scale your images down to half the size.</p>
-        <p>If you like, you can define both a proxy format and a proxy scale, and then choose which one to use in proxy mode. A proxy scale is easier to set up, but a proxy format gives you more control over the low-res versions of your images. Below, we first describe how to set up proxy formats and then how to define a proxy scale.</p>
-        <h4>To Set Up Proxy Formats</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">If it’s not already open, select <b>Edit</b> &gt; <b>Project Settings</b> (or press <b>S</b>) to display the <b>Project Settings</b> panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you want to use a proxy format (rather than a proxy scale) whenever the proxy mode is activated, select <b>proxy mode</b> &gt; <b>format</b> from the dropdown.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">From the <b>proxy format</b> dropdown menu, select the resolution to use while working to speed things up. Notice that your images are not scaled to this resolution, but the scaling is proportionate to the full-size/proxy format relationship. <span class="CustomProduct">Nuke</span> divides the proxy format width by the full-size width and uses the result as the scale factor.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">If the proxy format you want to use is not in the dropdown menu, select <b>new</b>. The <b>New format</b> dialog displays.</p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/project_settings_new_format_378x248.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;width: 378;height: 248;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>In the <b>name</b> field, enter a name for the new format.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>In the <b>file size</b> fields, define the width and height of the format.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can type formulas in numeric fields to do quick calculations. For example, if your full-size format width is 4096 and you want your proxy format width to be 1/2 of that, you can enter <b>4096/2</b> in the <b>New format</b> dialog’s <b>file size w</b> field and press <b>Enter</b>. <span class="CustomProduct">Nuke</span> then calculates the new width for you.</p>
-        <p class="numberedCont">Click <b>OK</b> to save the format. It now appears in the dropdown menu where you can select it.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To activate the proxy mode and use the low-res format for calculations and display, check <b>proxy mode</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/proxy_mode_453x102.png" class="cm12" style="width: 453;height: 102;" />
-        </p>
-        <p class="numberedCont">Alternatively, you can use the proxy toggle in the Viewer controls, or press <b>Ctrl</b>+<b>P</b> (<b>Cmd</b>+<b>P</b> on a Mac). For more information, see <a href="../using_interface/using_viewer_controls.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using the Viewer Controls</span></a>.</p>
-        <h4>To Set Up a Proxy Scale</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">If it’s not already open, select <b>Edit</b> &gt; <b>Project Settings</b> (or press <b>S</b>) to display the <b>Project Settings</b> panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>scale</b> from the dropdown in the <b>Project Settings</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Using the <b>proxy scale</b> input field or slider, specify the factor by which you want to scale the width and height of your images. For example, if you want to scale them down by 50%, use the value of <b>0.5</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To activate the proxy mode and use the low-res format for calculations and display, check <b>proxy mode</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/proxy_mode1_453x103.png" class="cm12" style="width: 453;height: 103;" />
-        </p>
-        <p class="numberedCont">Alternatively, you can use the proxy toggle in the Viewer controls, or press <b>Ctrl</b>+<b>P</b> (<b>Cmd</b>+<b>P</b> on a Mac). </p>
-        <h3><a name="Read_nodes_and_proxy_files"></a>Read Nodes and Proxy Files</h3>
-        <p>As an alternative to letting <span class="CustomProduct">Nuke</span> generate proxies on the fly, proxy files can be specified using a second file name in the Read nodes (for how to do this, see <a href="loading_image_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Loading Image Sequences</span></a>). If you don’t have a proxy file, you can create one by activating the proxy mode and rendering your full-size images using a Write node (see <a href="../../comp_environment/rendering/rendering_output.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Rendering Output</span></a> in the <a href="../../comp_environment/rendering/previews_rendering.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Previews and Rendering</span></a> chapter).</p>
-        <p>The proxy file does not need to match the proxy resolution in use. Depending on your project settings, either the full-res or proxy file is scaled to the required proxy size (that is, the size calculated by taking the full-size format and scaling it by the current proxy settings). However, if your proxy images match your typical proxy settings, you can save this time.</p>
-        <h4>To Define Which File (Full-Res or Proxy) is Used in the Proxy Mode:</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">If it’s not already open, select <b>Edit</b> &gt; <b>Project Settings</b> (or press <b>S</b>) to display the <b>Project Settings</b> panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">From <b>read proxy files</b>, select when to use the proxy file (rather than the full-res file) in a Read node:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>never</b> - Never use the proxy file in the proxy mode. Instead, scale the full-size file as necessary.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>if larger</b> - Use the smaller of the two images if it is larger or equal to the desired size, scaling down as needed. Otherwise, use the larger one, scaling down or up as needed. This is the default option.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>if nearest</b> - Use the image that is closest to the desired size, scaling up or down as needed.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>always</b> - Always use the proxy image in the proxy mode, scaling it up or down as necessary.</p>
-        <p class="numberedCont">The option you choose affects all Read nodes in your script, provided that a proxy file is named and the proxy mode is on.</p>
-        <h3>Write Nodes and Proxy Files</h3>
-        <p>It is worth mentioning here that when a script is rendered in proxy mode, processing is done at the proxy scale and image output goes to the file name in the Write node’s <b>proxy</b> field. If you do not specify a proxy file name, the render fails with an error. It never resizes the proxy image, and it does not write the proxy image over the full-size one.</p>
-        <p>For more information, see <a href="../../comp_environment/rendering/rendering_output.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Rendering Output</span></a> in the <a href="../../comp_environment/rendering/previews_rendering.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Previews and Rendering</span></a> chapter<span class="_Override" style="font-style: normal;">.</span></p>
-        <h3>Using Proxy Mode to Enlarge a Script</h3>
-        <p>If you find it necessary to render a comp at higher than the original resolution it was intended for, you can also use the proxy resolution to scale up from the root full size format. For example, you could use a 2K composite to produce 4K or higher images in the proxy mode. </p>
-        <p>The reason you'd probably want to do this is because the comp you did needs to be re-run at higher resolution for a different output target and possibly with some new higher resolution elements. For example, you may need to re-render with new CG elements at print resolution rather than for film out, but you don’t want to go through your script and modify everything that has an x/y position.</p>
-        <p>When scaling up the output of a script in the proxy mode, image generator nodes render at the larger size, larger images can be specified in the proxy field, and as with scaling down, all x/y positions are scaled to the proxy output resolution.</p>
-        <h4>Using Small Proxy Files</h4>
-        <p>If you have previously set up your script to use small proxy files, you do not have to remove these. Make sure <b>read proxy files</b> in <b>Project Settings</b> is set to anything other than <b>always</b>, and <span class="CustomProduct">Nuke</span> reads the larger original files and scales them up.</p>
-        <h4>Using Large Proxy Files</h4>
-        <p>If you actually have larger proxy files, you should enter them into the Read nodes’ <b>proxy</b> field, and set <b>read proxy files</b> to anything other than <b>never</b>. <span class="CustomProduct">Nuke</span> then uses these larger files in the proxy mode. For maximum quality, these should be at exactly the desired proxy size so that no scaling is done to them. For example, if the required proxy size (defined by the project settings) is 4K, then the proxy image should be exactly 4K. Otherwise, <span class="CustomProduct">Nuke</span> scales it to match the project settings, which reduces the quality.</p>
-        <h4>Rendering the Scaled-up Output</h4>
-        <p>To render the larger output of a scaled-up script, you need to activate the proxy mode and enter a file name in the <b>proxy</b> field of the Write nodes. The larger images are then written to these files.</p>
-        <h3>Toggling in and out of Proxy Mode</h3>
-        <p>It’s usually smart to work in proxy mode because most operations work quickly and more efficiently under the low-res display. You can switch between low- and high-resolution when you need greater precision (for example, when pulling a key or tracking), or when you’re ready for final rendering.</p>
-        <h4>To Toggle Between Full Resolution and Proxy Mode</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click on an empty area of the <span class="CustomProduct">Nuke</span> window.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Press <b>Ctrl</b>+<b>P</b> to toggle the display mode (<b>Cmd</b>+<b>P</b> on a Mac).</td>
-            </tr>
-        </table>
-        <p><span class="CustomProduct">Nuke</span> automatically scales script elements - Bezier shapes, B-spline shapes, paint curves, garbage masks, tracking curves, and so on - to keep the original placement on the image.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   代理模式
+  </h2>
+  <p class="afterHead">
+   当合成
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,您可以在两种不同的模式下工作:
+   <span class="_Override" style="font-style: normal; font-weight: bold;">
+    全尺寸模式
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold; font-style: normal;">
+    代理模式
+   </span>
+   。在全尺寸模式下，图像的读取完全像它们在磁盘上一样，并且所有位置都在这些图像的实际像素中。这是您希望用于准确反馈和渲染最终输出的模式。
+  </p>
+  <p>
+   在代理模式下，使用代理比例因子。所有图像和所有 x/y 位置都按此因子缩放。这以不同的比例产生相同 (或至少非常相似) 的复合。例如，可以使用完整输出分辨率的一小部分来加快渲染和显示计算。
+  </p>
+  <p>
+   除了上述内容之外，还可以读取一个单独的代理文件来代替完整大小的图像，前提是您已经在相关的读取节点中指定了一个。这可以通过使用更小的图像来进一步加快预览速度，该图像读取速度更快，也可以通过不需要缩放来节省时间。有关更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="#Read_nodes_and_proxy_files">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     读取节点和代理文件
+    </span>
+   </a>
+   .
+  </p>
+  <p>
+   您在项目设置中定义的代理设置会影响这两个代理
+   <span class="CustomProduct">
+    核武器
+   </span>
+   使用代理比例因子和从文件中读取的代理生成。下面，我们讨论设置代理格式和/或代理比例，以及定义读取节点如何使用代理文件。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   请注意，只有在激活代理模式时，才会使用图像的代理版本。当代理模式关闭时,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   始终使用完整的资源文件。
+  </p>
+  <h3>
+   代理格式和代理比例
+  </h3>
+  <p>
+   在
+   <b>
+    项目设置
+   </b>
+   面板，您可以选择定义
+   <b>
+    代理格式
+   </b>
+   和/或
+   <b>
+    代理规模
+   </b>
+   您在代理模式中使用的。
+  </p>
+  <p>
+   对于代理
+   <b>
+    格式
+   </b>
+   此外，您可以定义图像分辨率以及有关偏移和像素纵横比的其他信息。使用代理格式时，缩放与完整大小/代理格式关系成比例 (不缩放到代理格式)。
+  </p>
+  <p>
+   对于代理
+   <b>
+    规模
+   </b>
+   ,你只定义一个简单的比例因子，每当代理模式被激活时，你的图像就会被缩小。例如，您可以使用 0.5 的比例因子将图像缩小到一半大小。
+  </p>
+  <p>
+   如果愿意，您可以定义代理格式和代理比例，然后选择在代理模式下使用哪个。代理比例更容易设置，但是代理格式可以让您更好地控制图像的低分辨率版本。下面，我们首先描述如何设置代理格式，然后如何定义代理比例。
+  </p>
+  <h4>
+   设置代理格式的步骤
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     如果尚未打开，请选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      项目设置
+     </b>
+     (或按
+     <b>
+      S
+     </b>
+     ) 以显示
+     <b>
+      项目设置
+     </b>
+     面板。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如果要在激活代理模式时使用代理格式 (而不是代理比例)，请选择
+     <b>
+      代理模式
+     </b>
+     &gt;
+     <b>
+      格式
+     </b>
+     从下拉列表中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从
+     <b>
+      代理格式
+     </b>
+     下拉菜单中，选择工作时要使用的分辨率以加快速度。请注意，您的图像没有按此分辨率缩放，但缩放与完整大小/代理格式关系成比例。
+     <span class="CustomProduct">
+      核武器
+     </span>
+     将代理格式宽度除以完整大小的宽度，并将结果用作比例因子。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果要使用的代理格式不在下拉菜单中，请选择
+   <b>
+    新
+   </b>
+   。的
+   <b>
+    新格式
+   </b>
+   对话框显示。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/project_settings_new_format_378x248.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;width: 378;height: 248;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在
+   <b>
+    名称
+   </b>
+   字段中，输入新格式的名称。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在
+   <b>
+    文件大小
+   </b>
+   字段，定义格式的宽度和高度。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您可以在数字字段中键入公式以进行快速计算。例如，如果完整大小的格式宽度为 4096，并且希望代理格式宽度为 1/2，则可以输入
+   <b>
+    4096/2
+   </b>
+   在
+   <b>
+    新格式
+   </b>
+   对话的
+   <b>
+    文件大小 w
+   </b>
+   现场和新闻
+   <b>
+    输入
+   </b>
+   .
+   <span class="CustomProduct">
+    核武器
+   </span>
+   然后为你计算新的宽度。
+  </p>
+  <p class="numberedCont">
+   单击
+   <b>
+    好
+   </b>
+   保存格式。它现在出现在下拉菜单中，您可以在其中选择它。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要激活代理模式并使用低分辨率格式进行计算和显示，请选中
+     <b>
+      代理模式
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/gsg_images/proxy_mode_453x102.png" style="width: 453;height: 102;"/>
+  </p>
+  <p class="numberedCont">
+   或者，您可以在查看器控件中使用代理切换，或者按
+   <b>
+    Ctrl
+   </b>
+   <b>
+    P
+   </b>
+   (
+   <b>
+    Cmd
+   </b>
+   <b>
+    P
+   </b>
+   在 Mac 上)。有关更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../using_interface/using_viewer_controls.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用查看器控件
+    </span>
+   </a>
+   .
+  </p>
+  <h4>
+   设置代理比例的步骤
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     If it’s not already open, select
+     <b>
+      Edit
+     </b>
+     &gt;
+     <b>
+      Project Settings
+     </b>
+     (or press
+     <b>
+      S
+     </b>
+     ) to display the
+     <b>
+      Project Settings
+     </b>
+     panel.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      规模
+     </b>
+     从下拉列表中
+     <b>
+      项目设置
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用
+     <b>
+      代理规模
+     </b>
+     输入字段或滑块，指定要缩放图像宽度和高度的因子。例如，如果要将它们缩小 50%，请使用
+     <b>
+      0.5
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     To activate the proxy mode and use the low-res format for calculations and display, check
+     <b>
+      proxy mode
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/gsg_images/proxy_mode1_453x103.png" style="width: 453;height: 103;"/>
+  </p>
+  <p class="numberedCont">
+   或者，您可以在查看器控件中使用代理切换，或者按
+   <b>
+    Ctrl
+   </b>
+   <b>
+    P
+   </b>
+   (
+   <b>
+    Cmd
+   </b>
+   <b>
+    P
+   </b>
+   在 Mac 上)。
+  </p>
+  <h3>
+   <a name="Read_nodes_and_proxy_files">
+   </a>
+   读取节点和代理文件
+  </h3>
+  <p>
+   作为替代让
+   <span class="CustomProduct">
+    核武器
+   </span>
+   生成代理时，可以在读取节点中使用第二个文件名指定代理文件 (有关如何执行此操作，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="loading_image_sequences.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     加载图像序列
+    </span>
+   </a>
+   )。如果没有代理文件，可以通过激活代理模式并使用写入节点渲染完整大小的图像来创建一个代理文件 (请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/rendering/rendering_output.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     渲染输出
+    </span>
+   </a>
+   在
+   <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/rendering/previews_rendering.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     预览和渲染
+    </span>
+   </a>
+   章)。
+  </p>
+  <p>
+   代理文件不需要匹配正在使用的代理解析。根据您的项目设置，完整的 res 或代理文件被缩放到所需的代理大小 (即, 通过采用全尺寸格式并按当前代理设置缩放计算的大小)。但是，如果代理图像与典型的代理设置匹配，则可以保存此时间。
+  </p>
+  <h4>
+   要定义在代理模式下使用的文件 (完全 Res 或代理):
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     If it’s not already open, select
+     <b>
+      Edit
+     </b>
+     &gt;
+     <b>
+      Project Settings
+     </b>
+     (or press
+     <b>
+      S
+     </b>
+     ) to display the
+     <b>
+      Project Settings
+     </b>
+     panel.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     从
+     <b>
+      读取代理文件
+     </b>
+     ,选择何时在读取节点中使用代理文件 (而不是完整 res 文件):
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    从不
+   </b>
+   -永远不要在代理模式下使用代理文件。而是根据需要缩放完整大小的文件。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    如果更大
+   </b>
+   -使用两个图像中较小的一个，如果它大于或等于所需的大小，根据需要缩小。否则，使用较大的一个，根据需要缩小或放大。这是默认选项。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    如果最近
+   </b>
+   -使用最接近所需大小的图像，根据需要放大或缩小。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    总是
+   </b>
+   -始终在代理模式下使用代理映像，根据需要将其放大或缩小。
+  </p>
+  <p class="numberedCont">
+   您选择的选项会影响脚本中的所有读取节点，前提是代理文件已命名且代理模式已打开。
+  </p>
+  <h3>
+   写入节点和代理文件
+  </h3>
+  <p>
+   这里值得一提的是，当脚本以代理模式呈现时，处理以代理比例完成，图像输出转到写节点的文件名
+   <b>
+    代理
+   </b>
+   字段。如果不指定代理文件名，渲染将失败并显示错误。它从不调整代理图像的大小，也不会将代理图像写入完整大小的代理图像。
+  </p>
+  <p>
+   有关更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/rendering/rendering_output.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     渲染输出
+    </span>
+   </a>
+   在
+   <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/rendering/previews_rendering.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     预览和渲染
+    </span>
+   </a>
+   章
+   <span class="_Override" style="font-style: normal;">
+    .
+   </span>
+  </p>
+  <h3>
+   使用代理模式放大脚本
+  </h3>
+  <p>
+   如果您发现有必要以高于其预期的原始分辨率的速度渲染 comp，您也可以使用代理分辨率从根完整大小格式扩展。例如，您可以使用 2k 复合材料在代理模式下生成 4k 或更高的图像。
+  </p>
+  <p>
+   你可能想这样做的原因是，对于不同的输出目标，你需要以更高的分辨率重新运行 comp，可能还有一些新的更高分辨率的元素。例如，您可能需要以打印分辨率重新渲染新的 CG 元素，而不是进行胶片渲染, 但是你不想浏览你的脚本并修改所有有 x/y 位置的东西。
+  </p>
+  <p>
+   当在代理模式下放大脚本的输出时，图像生成器节点以更大的大小渲染，可以在代理字段中指定更大的图像，并且与缩小一样, 所有 x/y 位置都按代理输出分辨率缩放。
+  </p>
+  <h4>
+   使用小代理文件
+  </h4>
+  <p>
+   如果您以前将脚本设置为使用小代理文件，则不必删除这些文件。确保
+   <b>
+    读取代理文件
+   </b>
+   在
+   <b>
+    项目设置
+   </b>
+   设置为除
+   <b>
+    总是
+   </b>
+   ,和
+   <span class="CustomProduct">
+    核武器
+   </span>
+   读取较大的原始文件并放大它们。
+  </p>
+  <h4>
+   使用大型代理文件
+  </h4>
+  <p>
+   如果你实际上有更大的代理文件，你应该把它们输入到 “读节点”
+   <b>
+    代理
+   </b>
+   字段和设置
+   <b>
+    读取代理文件
+   </b>
+   除了其他任何东西
+   <b>
+    从不
+   </b>
+   .
+   <span class="CustomProduct">
+    核武器
+   </span>
+   然后在代理模式下使用这些较大的文件。为了获得最大的质量，这些应该正好是所需的代理大小，这样就不会对它们进行缩放。例如，如果所需的代理大小 (由项目设置定义) 为 4 K，则代理图像应该正好为 4 K。否则,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   缩放它以匹配项目设置，这降低了质量。
+  </p>
+  <h4>
+   渲染放大的输出
+  </h4>
+  <p>
+   要呈现放大脚本的更大输出，您需要激活代理模式，并在
+   <b>
+    代理
+   </b>
+   写入节点的字段。然后将较大的图像写入这些文件。
+  </p>
+  <h3>
+   切换入和出代理模式
+  </h3>
+  <p>
+   在代理模式下工作通常很聪明，因为大多数操作在低分辨率显示器下工作更快、更有效。当您需要更高的精度时 (例如，当拉动键或跟踪时)，或者当您准备好最终渲染时，您可以在低分辨率和高分辨率之间切换。
+  </p>
+  <h4>
+   在完全分辨率和代理模式之间切换
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击的空白区域
+     <span class="CustomProduct">
+      核武器
+     </span>
+     窗口。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     新闻
+     <b>
+      Ctrl
+     </b>
+     +
+     <b>
+      P
+     </b>
+     切换显示模式 (
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      P
+     </b>
+     在 Mac 上)。
+    </td>
+   </tr>
+  </table>
+  <p>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   自动缩放脚本元素 -- 贝塞尔形状、 b样条形状、绘制曲线、垃圾掩模、跟踪曲线等 -- 以保持图像上的原始位置。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -264,5 +823,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

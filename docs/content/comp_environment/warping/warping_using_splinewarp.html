@@ -1,832 +1,1823 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Warping Images|Warping">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Warping an Image Using the SplineWarp Node</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/warping/warping_using_splinewarp.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Warping Images|Warping" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 SplineWarp 节点扭曲图像
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/warping/warping_using_splinewarp.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Warping an Image Using the SplineWarp Node</h2>
-        <p class="afterHead">The SplineWarp node deforms an image based on multiple Bezier or B-spline curves that you create. Source curves define where to warp from, while destination curves define where to warp the source image to. Unlike the GridWarp node, you can draw these curves anywhere on the image, rather than only adding points on the existing grid lines, then join them to create the source and destination. The controls for adding and modifying points are similar to the RotoPaint node controls.</p>
-        <h3>To Warp an Image Using the SplineWarp Node</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Transform</b> &gt; <b>SplineWarp</b> to insert a SplineWarp node after the image you want to warp.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the <b>A</b> input to the image and attach a Viewer to the SplineWarp node.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_node_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the Viewer tools to control the following:</td>
-            </tr>
-        </table>
-        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="62px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="304px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Control</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Name</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">What it does</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_autokey.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">autokey</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, changes to points and shapes are automatically keyed. You can disable this and set your keyframes manually, which is particularly useful if you intend to use the Curve Editor. See <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a> for more information.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_label.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">label points</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, points selected in the Viewer are numbered sequentially.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_hidecurve.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">hide curves</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, curve lines are hidden.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_hidepoints.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">hide points</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, points are hidden.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_hidetrans.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">hide transform handle</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, the transform handle is hidden when a selection is made.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_hidehandles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">hide transform handle when moved</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, the transform handle is hidden when a selection is moved.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_deselect.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">constant selection</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, clicking in the Viewer does not deselect the current shape(s).</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_ripple.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">ripple</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Rippling keyframes allows you to adjust the position of a stroke/shape point on one frame and have that same relative adjustment applied to the point across all frames or a specified range of frames.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>all</b> - ripple all frames in the sequence.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>from start</b> - ripple frames from the <b>first</b> frame to the <b>current</b> frame.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>to end</b> - ripple frames from <b>current</b> frame to the <b>last</b> frame.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>range</b> - ripple all frames within the <b>from</b> and <b>to</b> fields.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_keys.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198725px;margin-bottom: 1.249731px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">add/remove <br />keyframe</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Add and remove keyframes at the current playhead position using these buttons.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">output A</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, output the image attached to the <b>A</b> input and any shapes in the <b>curves</b> list labeled with <b>A</b>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_aw.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">output A warped</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, output the image attached to the <b>A</b> input warped by any shapes in the <b>curves</b> list labeled with <b>A</b>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_ab.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">output AB morph</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, output the morphed <b>A</b> and <b>B</b> inputs and any shapes in the curves list labeled with <b>AB</b>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_b.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">output B</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, output the image attached to the <b>B</b> input and any shapes in the <b>curves</b> list labeled with <b>B</b>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_mode_bw.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">output B warped</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, output the image attached to the <b>B</b> input warped by any shapes in the <b>curves</b> list labeled with <b>B</b>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">show source curves</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, joined <b>source</b> curves are displayed in the Viewer.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">show destination curves</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, joined <b>destination</b> curves are displayed in the Viewer.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_corresp.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">show correspondence points</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, all <b>correspondence</b> points are displayed in the Viewer when a <b>Correspondence</b> tool is selected.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_bound.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">show boundaries</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, all <b>boundary</b> curves are displayed in the Viewer.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_hbound.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">show hard <br />boundaries</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, all <b>hard boundary</b> curves are displayed in the Viewer.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Hard boundary is only useful on closed curves.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_visible.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">visibility</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Controls visibility for the selected shape.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_locked.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">lock</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Controls the lock state of the selected shape. Locked shapes cannot be modified.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_bound_state.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">toggle boundary</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Toggles the Boundary state of the selected shape(s). </p>
-                        <p class="CellBody">Clicking <b>toggle boundary</b> on a standard shape defines it as a Boundary and vice versa. See <a class="noPage MCXref xref xrefnoPage" href="#Using_Boundary_Shapes_and_Pins_to_Limit_Warp"><span style="color: #00b4e0;" class="mcFormatColor">Using Boundary Shapes and Pins to Limit Warp</span></a> for more information.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_preview.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">update mode</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Sets the Viewer update mode:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>off</b> - no updates are applied when points are moved. Use this option for complex warps where the Viewer update can be slow.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>on</b> - the Viewer updates in real-time to help you position points. With complex scripts, this mode maybe prohibitively slow.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>persistent</b> - similar to <b>on</b>, but displays a preview until the render is complete, rather than showing real-time scanlines.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_select1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Select tool</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Click to enable <b>Select</b> mode allowing you to select points and shapes, or marquee select multiple points and shapes.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_add1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Points tool</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Click to enable <b>Add</b> mode or toggle between <b>Add</b>, <b>Remove</b>, <b>Cusp</b>, <b>Smooth</b>, <b>Open/Close</b>, and <b>Remove Destination</b> modes.</p>
-                        <p class="CellBody">Click on existing shapes to add or modify points.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_bezier.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Draw tool</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Click to enable <b>Draw</b> mode or toggle between <b>Bezier</b>, <b>Cusped Bezier</b>, <b>B-spline</b>, <b>Ellipse</b>, <b>Rectangle</b>, and <b>Cusped Rectangle</b> mode.</p>
-                        <p class="CellBody">Click on the Viewer to draw the selected shape.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_correspond.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.009071231px;margin-bottom: 0.9997805px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">Correspondence tool</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Correspondence</span> mode or toggle between <span class="_Override" style="font-weight: bold;">Add</span>, <span class="_Override" style="font-weight: bold;">Modify</span>, and <span class="_Override" style="font-weight: bold;">Remove</span> mode:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Add</span> - clicking on a joined curve creates a correspondence point. These points are used to improve the warp accuracy in isolated areas, but overuse can cause performance issues.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Modify</span> - allows you to move an existing correspondence point along its curve, in either direction, as far as the next point on the shape.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Remove</span> - click to remove an existing correspondence point.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_pin.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 2px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Pin tool</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Pin</span> mode. You can use pins as single point joined curves to create warp or to secure specific points in place to isolate them from warping.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_splinewarp_join.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">Join tool</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Join</span> mode or toggle between <span class="_Override" style="font-weight: bold;">Join</span>, <span class="_Override" style="font-weight: bold;">Reverse</span>, and <span class="_Override" style="font-weight: bold;">Unjoin</span> mode.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click <span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_splinewarp_mode_aw1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;" /></span> to select source warped mode.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select the <b>Draw</b> tool <img src="../../assets/images/ug_images/icon_splinewarp_bezier1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.006016px;margin-bottom: 0.255968px;vertical-align: middle;" /> and draw a source, or warp from, curve as shown below.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you’re creating multiple open splines, draw your first spline and then press <b>Esc</b> or select another tool to let SplineWarp know you’re done. Reselect <b>Draw</b> to begin drawing another spline.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_mask_curve.png" style="margin-left: 1.000063px;margin-right: 0.5198649px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">You can modify shapes by adding points using the <b>Add</b> tool and adjusting the tangent handles that appear around it.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_point_handles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-        </p>
-        <p class="numberedCont">When you mouse over a point, it turns green. Clicking on a point changes its color to indicate it’s selected (white by default) and whether it has an expression set (red by default). You can change the default colors on the <b>Viewers</b> tab in the Preferences.</p>
-        <p class="numberedCont">To move several points together, draw a marquee around them and use the transformation overlay that appears.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_transformation_overlay.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-        </p>
-        <p class="numberedCont">To close an open curve or open a closed curve, right-click on a point and select <b>open/close curve</b>.</p>
-        <p class="numberedCont">To remove a point, right-click on the point and select <b>delete</b>.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can also use the Curve Editor to edit curves by right-clicking a control point and selecting <b>curve editor</b> &gt; <b>points</b> or <b>points+tangents</b>.<br />The curves appear in the Dope Sheet as long as the SplineWarp <b>Properties</b> panel is open.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Once you’re happy with the source curve, either:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>draw a destination curve and use the Join <img src="../../assets/images/ug_images/icon_splinewarp_join1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 1.005165px;vertical-align: middle;" /> tool to connect the two curves.</p>
-        <p class="processBulletCont">OR</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>right-click a point on the source curve and select <b>duplicate in A and join</b> to produce the destination curve.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Select the destination curve and drag points or the entire shape to a new position. The pixels in these areas are warped in the direction of movement.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_node_moved_curves1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_node_moved_curves.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The image A and warp curves.</td>
-                    <td class="caption">The warped image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">To better see what the warped image looks like, press <b>Q</b> on the Viewer to toggle the overlay off.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">To compare the original and warped images, press <b>D</b> on the SplineWarp node to disable and enable it. If you see changes in the areas you don’t want to warp, go back to modifying your shapes.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Using the <b>curves</b> list, you can quickly build up a complex warp hierarchy using the add/remove <img src="../../assets/images/ug_images/icon_splinewarp_layeradd.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5136393px;margin-bottom: 1.005165px;vertical-align: middle;" /> buttons.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_curve_hierarchy.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
-        </p>
-        <p class="numberedCont">Using the <b>root</b>, <b>layer</b>, and <b>pair warp</b> controls, you can affect different elements as required:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>root warp</b> - affects warp globally, irrespective of layer and pairing.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>layer warp</b> - affects warp on the selected layers only, irrespective of pairing. This control is disabled if anything other than layers is selected.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>pair warp</b> - affects warp on the selected pairings only. This control is disabled if anything other than pairs is selected.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <b>pair warp</b> value is multiplied by the <b>layer warp</b> value, which is in turn multiplied by the <b>root warp</b> value.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">If necessary, animate the source warped shapes to match any movement in the source image. For more information on how to do this, see <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">You can adjust the controls described in the following table to enhance your results.</td>
-            </tr>
-        </table>
-        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="95px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="376px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Control</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">What it does</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                        <p class="CellBody">SplineWarp tab</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">crop to format</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When disabled, the input image is not cropped to the <b>Project Settings</b> &gt; <b>full format size</b>. As a result, warping can introduce pixels from the image outside the format size, rather than black.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Disabling <b>crop to format</b> can affect performance as <span class="CustomProduct">Nuke</span> has to calculate the warp for the entire image, not just the area inside the format size.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">bbox boundary curve</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, a boundary curve is added around the input format, limiting warp at the edges of the image.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>In <b>AB morph</b> mode, the format of input <b>A</b> is taken as the boundary.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                        <p class="CellBody">Render Tab</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">curve resolution</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Adjusts the accuracy of the warp/spline match. Higher values increase accuracy, but sacrifice speed and vice versa. For example, with open splines at low curve resolution, image tearing may occur. You can raise the <b>curve resolution</b> value to compensate for tearing, but the render times increase.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Correspondence points may be used to improve the warping accuracy in a specific part of the curve if turning this value up too high causes performance problems.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">boundary curve resolution</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Adjusts the number of interpolated points on <b>boundary</b> and <b>hard boundary</b> curves. Higher values stop the warp from filtering through the boundary curves but sacrifice speed, and vice versa.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">preview resolution</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Improves the accuracy of the preview at higher values and the rendering speed at lower values.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Classic warping</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Set the type of warp function to use:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>disabled</b> - uses an updated quadratic warp function that copes well with overlapping control points, but has a more local warp effect.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>enabled</b> - employs a warping function from previous versions of <span class="CustomProduct">Nuke</span> that has a more global warp effect, but doesn’t cope well with overlapping control points.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">filter</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p class="CellBody">Select the appropriate filtering algorithm (see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>).</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h3><a name="Using_Boundary_Shapes_and_Pins_to_Limit_Warp"></a>Using Boundary Shapes and Pins to Limit Warp</h3>
-        <p>You may notice that pixels in areas around warping are also moved to accommodate the change, but the distortion lessens the further you get from the repositioned points. If you don’t want a nearby area distorted, you can:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Designate a curve or shape as a boundary to control or eliminate warp.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Place pins in the areas you want to limit warp.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Boundaries only affect the input they are drawn on, <b>A</b> or <b>B</b>, not both.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Boundary</b> - generally open splines helping to control warp rather than eliminate it.</p>
-        <p class="bulletedCont">To define a boundary for an existing curve, enable <b>boundary</b> in the curves list, as shown below.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_boundary.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
-        </p>
-        <p class="bulletedCont">Using the example curves from Mr. Lion above, you could control the warp by adding a curve and designating it as a boundary:</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_boundary1.png" style="margin-left: 1.000063px;margin-top: 6.490205px;margin-right: 0.5198649px;margin-bottom: 1.240157px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_boundary2.png" style="margin-left: 1.000063px;margin-top: 6.491339px;margin-right: 0.5235575px;margin-bottom: 0.7653522px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The source and destination <br />curves.</td>
-                    <td class="caption">The same curves, but with <br />a boundary above the <br />destination to limit warp.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Hard Boundary</b> - closed shapes that eliminate warp outside the area that they enclose.</p>
-        <p class="bulletedCont">To define a hard boundary for an existing shape, enable <b>hard boundary</b> in the curves list, as shown below.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_hboundary.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
-        </p>
-        <p class="bulletedCont">The effect of a hard boundary on a warp is quite distinct - the hard boundary, colored white by default, limits the warp effect to entirely within the closed shape:</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_boundary3.png" style="margin-left: 1.000063px;margin-top: 1.240157px;margin-right: 0.5198649px;margin-bottom: 1.240151px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_hboundary2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.5198725px;" />
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Pins</b> - placing a pin creates a single point source and destination curve, effectively limiting warp in a very localized way.</p>
-        <p class="bulletedCont">The effect of a pin on a single joined curve is shown below. The warp direction is shown on the left and the pin’s effect on the right.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_pins1.png" style="margin-left: 1.000063px;margin-top: 1.240157px;margin-right: 0.5198649px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/splinewarp_pins2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;" />
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   使用 SplineWarp 节点扭曲图像
+  </h2>
+  <p class="afterHead">
+   SplineWarp 节点基于创建的多条 Bezier 或 b样条曲线变形图像。源曲线定义扭曲的位置，而目标曲线定义将源图像扭曲到的位置。与 GridWarp 节点不同，您可以在图像的任何地方绘制这些曲线，而不仅仅是在现有网格线上添加点，然后将它们连接起来以创建源和目标。用于添加和修改点的控件类似于 RotoPaint 节点控件。
+  </p>
+  <h3>
+   使用 SplineWarp 节点扭曲图像
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      变换
+     </b>
+     &gt;
+     <b>
+      Splininewarp
+     </b>
+     在要扭曲的图像后插入 SplineWarp 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     连接
+     <b>
+      一个
+     </b>
+     输入到图像，并将查看器附加到 SplineWarp 节点。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_node_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用查看器工具控制以下内容:
+    </td>
+   </tr>
+  </table>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="62px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="105px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="304px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       控制
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       名称
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       它做什么
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_autokey.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       自动密钥
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，对点和形状的更改将自动设置关键帧。您可以禁用该选项并手动设置关键帧，如果您打算使用曲线编辑器，这将特别有用。请参阅
+       <a class="noPage MCXref xref xrefnoPage" href="animating_warps.html">
+        <span class="mcFormatColor" style="color: #00b4e0;">
+         动画扭曲
+        </span>
+       </a>
+       欲了解更多信息。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_label.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       标签点
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，将按顺序对查看器中选定的点进行编号。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_hidecurve.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       隐藏曲线
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用时，曲线将被隐藏。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_hidepoints.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       隐藏点
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，点将被隐藏。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_hidetrans.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       隐藏变换句柄
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，在进行选择时将隐藏变换控制柄。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_hidehandles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       移动时隐藏变换控制柄
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，移动选择时将隐藏变换控制柄。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_deselect.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       常数选择
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，在查看器中单击不会取消选择当前形状。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_ripple.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       波纹
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       波纹关键帧允许您在一个帧上调整笔触/形状点的位置，并在所有帧或指定帧范围内对该点应用相同的相对调整。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        所有
+       </b>
+       -波纹序列中的所有帧。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        从开始
+       </b>
+       -波纹帧从
+       <b>
+        首先
+       </b>
+       框架到
+       <b>
+        当前
+       </b>
+       框架。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        要结束
+       </b>
+       -波纹帧从
+       <b>
+        当前
+       </b>
+       框架到
+       <b>
+        最后
+       </b>
+       框架。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        范围
+       </b>
+       -波纹内的所有帧
+       <b>
+        从
+       </b>
+       和
+       <b>
+        到
+       </b>
+       字段。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_keys.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198725px;margin-bottom: 1.249731px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       添加/删除
+       <br/>
+       关键帧
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       使用这些按钮在当前播放头位置添加和删除关键帧。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_mode_a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       输出 A
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，输出附加到
+       <b>
+        一个
+       </b>
+       输入和任何形状
+       <b>
+        曲线
+       </b>
+       单标配
+       <b>
+        一个
+       </b>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_mode_aw.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       输出扭曲
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，输出附加到
+       <b>
+        一个
+       </b>
+       输入被任何形状扭曲
+       <b>
+        曲线
+       </b>
+       单标配
+       <b>
+        一个
+       </b>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_mode_ab.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       输出 AB 变形
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，输出变形
+       <b>
+        一个
+       </b>
+       和
+       <b>
+        B
+       </b>
+       输入和标记为的曲线列表中的任何形状
+       <b>
+        AB
+       </b>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_mode_b.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       输出 B
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，输出附加到
+       <b>
+        B
+       </b>
+       输入和任何形状
+       <b>
+        曲线
+       </b>
+       单标配
+       <b>
+        B
+       </b>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_mode_bw.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       输出 B 扭曲
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，输出附加到
+       <b>
+        B
+       </b>
+       输入被任何形状扭曲
+       <b>
+        曲线
+       </b>
+       单标配
+       <b>
+        B
+       </b>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       显示源曲线
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，加入
+       <b>
+        源
+       </b>
+       曲线显示在查看器中。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       显示目标曲线
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，加入
+       <b>
+        目的地
+       </b>
+       曲线显示在查看器中。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_corresp.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       显示对应点
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用时，所有
+       <b>
+        通信
+       </b>
+       点显示在查看器中时
+       <b>
+        通信
+       </b>
+       工具被选中。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_bound.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       显示边界
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用时，所有
+       <b>
+        边界
+       </b>
+       曲线显示在查看器中。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_hbound.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       显示硬
+       <br/>
+       边界
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用时，所有
+       <b>
+        硬边界
+       </b>
+       曲线显示在查看器中。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       硬边界仅对闭合曲线有用。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_visible.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       能见度
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       控制选定形状的可见性。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_locked.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000065px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       锁
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       控制选定形状的锁定状态。无法修改锁定的形状。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_bound_state.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       切换边界
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       切换选定形状的边界状态。
+      </p>
+      <p class="CellBody">
+       单击
+       <b>
+        切换边界
+       </b>
+       在标准形状上，将其定义为边界，反之亦然。请参阅
+       <a class="noPage MCXref xref xrefnoPage" href="#Using_Boundary_Shapes_and_Pins_to_Limit_Warp">
+        <span class="mcFormatColor" style="color: #00b4e0;">
+         使用边界形状和销限制扭曲
+        </span>
+       </a>
+       欲了解更多信息。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_preview.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       更新模式
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       设置查看器更新模式:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        关闭
+       </b>
+       -移动点时不应用更新。对于查看器更新可能会很慢的复杂扭曲，请使用此选项。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        上
+       </b>
+       -观众实时更新，以帮助您定位点。对于复杂的脚本，这种模式可能会很慢。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        持续
+       </b>
+       -类似于
+       <b>
+        上
+       </b>
+       ,但显示预览，直到渲染完成，而不是显示实时扫描线。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_select1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       选择工具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       单击以启用
+       <b>
+        选择
+       </b>
+       模式允许您选择点和形状，或者选择多个点和形状。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_add1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       点工具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       单击以启用
+       <b>
+        添加
+       </b>
+       模式或切换
+       <b>
+        添加
+       </b>
+       ,
+       <b>
+        移除
+       </b>
+       ,
+       <b>
+        尖头
+       </b>
+       ,
+       <b>
+        平滑
+       </b>
+       ,
+       <b>
+        打开/关闭
+       </b>
+       ,和
+       <b>
+        删除目标
+       </b>
+       模式。
+      </p>
+      <p class="CellBody">
+       单击现有形状以添加或修改点。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_bezier.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       绘制工具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       单击以启用
+       <b>
+        绘制
+       </b>
+       模式或切换
+       <b>
+        贝塞尔
+       </b>
+       ,
+       <b>
+        尖头贝塞尔
+       </b>
+       ,
+       <b>
+        B-样条
+       </b>
+       ,
+       <b>
+        椭圆
+       </b>
+       ,
+       <b>
+        矩形
+       </b>
+       ,和
+       <b>
+        尖头矩形
+       </b>
+       模式。
+      </p>
+      <p class="CellBody">
+       单击查看器以绘制选定的形状。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_correspond.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.009071231px;margin-bottom: 0.9997805px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       通信工具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        通信
+       </span>
+       模式或切换
+       <span class="_Override" style="font-weight: bold;">
+        添加
+       </span>
+       ,
+       <span class="_Override" style="font-weight: bold;">
+        修改
+       </span>
+       ,和
+       <span class="_Override" style="font-weight: bold;">
+        移除
+       </span>
+       模式:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        添加
+       </span>
+       -单击连接的曲线将创建对应点。这些点用于提高隔离区域的扭曲精度，但过度使用会导致性能问题。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        修改
+       </span>
+       -允许您沿曲线的任一方向移动现有对应点，直到形状上的下一个点。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        移除
+       </span>
+       -单击以删除现有对应点。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_pin.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 2px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       销工具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        Pin
+       </span>
+       模式。您可以使用销作为单点连接曲线来创建扭曲或将特定点固定到位，以隔离它们的扭曲。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_splinewarp_join.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       连接工具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        加入
+       </span>
+       模式或切换
+       <span class="_Override" style="font-weight: bold;">
+        加入
+       </span>
+       ,
+       <span class="_Override" style="font-weight: bold;">
+        反向
+       </span>
+       ,和
+       <span class="_Override" style="font-weight: bold;">
+        取消加入
+       </span>
+       模式。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     单击
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      <img src="../../assets/images/ug_images/icon_splinewarp_mode_aw1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+     </span>
+     选择源扭曲模式。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     选择
+     <b>
+      绘制
+     </b>
+     工具
+     <img src="../../assets/images/ug_images/icon_splinewarp_bezier1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.006016px;margin-bottom: 0.255968px;vertical-align: middle;"/>
+     并绘制如下所示的源曲线或曲线扭曲。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果要创建多个开放的样条线，请绘制第一个样条线，然后按
+   <b>
+    Esc
+   </b>
+   或者选择另一个工具让 SplineWarp 知道你已经完成了。重新选择
+   <b>
+    绘制
+   </b>
+   开始绘制另一个样条曲线。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_mask_curve.png" style="margin-left: 1.000063px;margin-right: 0.5198649px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     你可以改变形状的加分的
+     <b>
+      添加
+     </b>
+     工具并调整围绕它出现的切线控制柄。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_point_handles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+  </p>
+  <p class="numberedCont">
+   当你将鼠标放在一个点上时，它会变成绿色。点击一个点会改变它的颜色，以指示它被选中 (默认情况下是白色)，以及它是否有表达式集 (默认情况下是红色)。您可以更改上的默认颜色
+   <b>
+    观众
+   </b>
+   首选项中的选项卡。
+  </p>
+  <p class="numberedCont">
+   要一起移动几个点，请在它们周围画一个选框，并使用出现的变换覆盖。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_transformation_overlay.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+  </p>
+  <p class="numberedCont">
+   要关闭开放曲线或打开封闭曲线，请在点上单击鼠标右键，然后选择
+   <b>
+    打开/关闭曲线
+   </b>
+   .
+  </p>
+  <p class="numberedCont">
+   要删除点，请在该点上单击鼠标右键并选择
+   <b>
+    删除
+   </b>
+   .
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   也可以使用曲线编辑器编辑曲线，方法是右击控制点并选择
+   <b>
+    曲线编辑器
+   </b>
+   &gt;
+   <b>
+    点
+   </b>
+   或
+   <b>
+    点切线
+   </b>
+   .
+   <br/>
+   只要 SplineWarp，曲线就会出现在涂料表中
+   <b>
+    属性
+   </b>
+   面板是开放的。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     一旦你对源曲线满意，要么:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   绘制目标曲线并使用连接
+   <img src="../../assets/images/ug_images/icon_splinewarp_join1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 1.005165px;vertical-align: middle;"/>
+   连接两条曲线的工具。
+  </p>
+  <p class="processBulletCont">
+   OR
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在源曲线上的一点上单击鼠标右键，然后选择
+   <b>
+    复制并加入
+   </b>
+   生成目标曲线。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     选择目标曲线并将点或整个形状拖到新位置。这些区域中的像素沿移动方向扭曲。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_node_moved_curves1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_node_moved_curves.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      图像 A 和扭曲曲线。
+     </td>
+     <td class="caption">
+      扭曲的图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     要更好地查看扭曲的图像是什么样子，请按
+     <b>
+      Q
+     </b>
+     在查看器上关闭覆盖。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   要比较原始图像和扭曲图像，请按
+   <b>
+    D
+   </b>
+   在 SplineWarp 节点上禁用并启用它。如果您看到不想扭曲的区域发生变化，请返回修改形状。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     使用
+     <b>
+      曲线
+     </b>
+     列表中，您可以使用添加/删除快速构建复杂的扭曲层次结构
+     <img src="../../assets/images/ug_images/icon_splinewarp_layeradd.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5136393px;margin-bottom: 1.005165px;vertical-align: middle;"/>
+     按钮。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_curve_hierarchy.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;"/>
+  </p>
+  <p class="numberedCont">
+   使用
+   <b>
+    根
+   </b>
+   ,
+   <b>
+    层
+   </b>
+   ,和
+   <b>
+    配对扭曲
+   </b>
+   控件，您可以根据需要影响不同的元素:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    根翘曲
+   </b>
+   -影响全球扭曲，无论层和配对。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    层扭曲
+   </b>
+   -仅影响选定层上的扭曲，而不考虑配对。如果选择了除层之外的任何内容，则禁用此控件。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    配对扭曲
+   </b>
+   -仅影响选定配对上的扭曲。如果选择了 “对” 以外的任何对象，则禁用此控件。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   的
+   <b>
+    配对扭曲
+   </b>
+   值乘以
+   <b>
+    层扭曲
+   </b>
+   值，这反过来又乘以
+   <b>
+    根翘曲
+   </b>
+   价值。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      11。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="11.  " valign="top">
+     如有必要，设置源扭曲形状的动画，以匹配源图像中的任何移动。有关如何执行此操作的更多信息，请参见
+     <a class="noPage MCXref xref xrefnoPage" href="animating_warps.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       动画扭曲
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      12.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="12.  " valign="top">
+     您可以调整下表中描述的控件以增强结果。
+    </td>
+   </tr>
+  </table>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="95px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="376px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       控制
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       它做什么
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="2">
+      <p class="CellBody">
+       Splininewarp 选项卡
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       裁剪到格式
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       禁用时，输入图像不会裁剪到
+       <b>
+        项目设置
+       </b>
+       &gt;
+       <b>
+        完整格式大小
+       </b>
+       。因此，扭曲可以从图像中引入格式大小之外的像素，而不是黑色。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       禁用
+       <b>
+        裁剪到格式
+       </b>
+       可以影响性能
+       <span class="CustomProduct">
+        核武器
+       </span>
+       必须计算整个图像的扭曲，而不仅仅是格式大小内的区域。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       Bbox 边界曲线
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，将在输入格式周围添加边界曲线，从而限制图像边缘的扭曲。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       在
+       <b>
+        AB 变形
+       </b>
+       模式，输入的格式
+       <b>
+        一个
+       </b>
+       作为边界。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="2">
+      <p class="CellBody">
+       渲染选项卡
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       曲线分辨率
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       调整扭曲/样条匹配的精度。较高的值会提高精度，但会牺牲速度，反之亦然。例如，对于低曲线分辨率的开放样条线，可能会发生图像撕裂。你可以提高
+       <b>
+        曲线分辨率
+       </b>
+       值来补偿撕裂，但渲染时间增加。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       如果将对应点调高会导致性能问题，则可以使用对应点来提高曲线特定部分的翘曲精度。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       边界曲线分辨率
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       调整上的插值点数
+       <b>
+        边界
+       </b>
+       和
+       <b>
+        硬边界
+       </b>
+       曲线。较高的值会阻止扭曲通过边界曲线进行过滤，但会牺牲速度，反之亦然。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       预览分辨率
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       提高了较高值时预览的准确性和较低值时的渲染速度。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       经典翘曲
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       设置要使用的扭曲函数类型:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        残疾人
+       </b>
+       -使用更新的二次扭曲函数，可以很好地处理重叠的控制点，但具有更多的局部扭曲效果。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <b>
+        已启用
+       </b>
+       -采用了以前版本的翘曲功能
+       <span class="CustomProduct">
+        核武器
+       </span>
+       这具有更全局的扭曲效应，但不能很好地处理重叠的控制点。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       过滤器
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p class="CellBody">
+       选择适当的过滤算法 (请参见
+       <a class="noPage MCXref xref xrefnoPage" href="../transforming_elements/filtering_algorithm_2d.html">
+        <span class="mcFormatColor" style="color: #00b4e0;">
+         选择过滤算法
+        </span>
+       </a>
+       )。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <a name="Using_Boundary_Shapes_and_Pins_to_Limit_Warp">
+   </a>
+   使用边界形状和销限制扭曲
+  </h3>
+  <p>
+   您可能会注意到，扭曲周围区域的像素也会被移动以适应变化，但是从重新定位的点处得到的失真会进一步减少。如果你不希望附近的区域扭曲，你可以:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将曲线或形状指定为边界，以控制或消除扭曲。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将销放置在要限制扭曲的区域中。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   边界只影响它们绘制的输入,
+   <b>
+    一个
+   </b>
+   或
+   <b>
+    B
+   </b>
+   ,不是两者兼而有之。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    边界
+   </b>
+   -通常开放的花键有助于控制扭曲，而不是消除它。
+  </p>
+  <p class="bulletedCont">
+   要定义现有曲线的边界，请启用
+   <b>
+    边界
+   </b>
+   在曲线列表中，如下所示。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_boundary.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;"/>
+  </p>
+  <p class="bulletedCont">
+   使用上面的 Lion 先生的示例曲线，您可以通过添加一条曲线并将其指定为边界来控制扭曲:
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_boundary1.png" style="margin-left: 1.000063px;margin-top: 6.490205px;margin-right: 0.5198649px;margin-bottom: 1.240157px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_boundary2.png" style="margin-left: 1.000063px;margin-top: 6.491339px;margin-right: 0.5235575px;margin-bottom: 0.7653522px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      源和目标
+      <br/>
+      曲线。
+     </td>
+     <td class="caption">
+      相同的曲线，但
+      <br/>
+      上方的边界
+      <br/>
+      目的地限制扭曲。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    硬边界
+   </b>
+   -封闭形状，消除它们包围的区域外的扭曲。
+  </p>
+  <p class="bulletedCont">
+   要为现有形状定义硬边界，请启用
+   <b>
+    硬边界
+   </b>
+   在曲线列表中，如下所示。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_hboundary.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;"/>
+  </p>
+  <p class="bulletedCont">
+   硬边界对扭曲的影响非常明显 -- 默认情况下，硬边界为白色，将扭曲效果限制在完全封闭的形状内:
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_boundary3.png" style="margin-left: 1.000063px;margin-top: 1.240157px;margin-right: 0.5198649px;margin-bottom: 1.240151px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_hboundary2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.5198725px;"/>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    引脚
+   </b>
+   -放置引脚会创建单点源和目标曲线，以非常本地化的方式有效地限制扭曲。
+  </p>
+  <p class="bulletedCont">
+   销对单个连接曲线的影响如下所示。扭曲方向显示在左侧，销的效果显示在右侧。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_pins1.png" style="margin-left: 1.000063px;margin-top: 1.240157px;margin-right: 0.5198649px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/splinewarp_pins2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;"/>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -840,5 +1831,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,100 +1,236 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Deep Compositing</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/deep/deep_compositing.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   深层合成
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/deep/deep_compositing.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="sectionTitle">Deep Compositing</h1>
-        <p class="intro">Deep compositing is a way of compositing digital images using data in a different format to standard "flat" compositing. As the name suggests, deep compositing uses additional depth data. This reduces need for re-rendering, produces high image quality, and helps you solve problems with artifacts around the edges of objects. </p>
-        <h1>About Deep Compositing</h1>
-        <p>A standard 2D image contains a single value for each channel of each pixel. In contrast, deep images contain multiple samples per pixel at varying depths and each sample contains per-pixel information such as color, opacity, and camera-relative depth. </p>
-        <p>For example, creating holdouts of objects that have moved in the scene has previously required re-rendering the background, and problems frequently occurred with transparent pixels and anti-aliasing. With <span class="CustomProduct">Nuke</span>’s Deep compositing node set, you can render the background once, and later move your objects to different places and depths, without having to re-render the background. Any transparent pixels, with motion blur for example, are also represented without flaw, so working with deep compositing is not only faster, but you also get higher image quality.</p>
-        <table style="caption-side: top;">
-            <col style="width: 100mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/deep_composite.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Deep composite with ball objects among blue buildings.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h1>Quick Start </h1>
-        <p class="afterHead">With <span class="CustomProduct">Nuke</span>’s deep compositing node set, you can: </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Read in your deep image with the DeepRead node. See <a href="reading_deep_footage.html#" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Reading in Deep Footage</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Merge deep data with the DeepMerge, see <a href="merging_deep_images.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Merging Deep Images</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Generate holdout mattes from a pair of deep images using the DeepHoldout node. See <a href="creating_holdouts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Creating Holdouts</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Flatten deep images to regular 2D or create point clouds out of them. See <a href="creating_deep_data.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Creating Deep Data</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Sample information at a given pixel using the DeepSample node. See <a href="sampling_deep_images.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Sampling Deep Images</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Crop, reformat, and transform deep images much in the same way as you would a regular image, using the DeepCrop, DeepReformat and DeepTransform nodes. See <a href="cropping_reformatting_deep.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Cropping, Reformatting, and Transforming Deep Images</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Create deep images using the  DeepFromFrames, DeepFromImage, DeepRecolor, and ScanlineRender nodes. See <a href="creating_deep_data.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Creating Deep Data</span></a>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="sectionTitle">
+   深层合成
+  </h1>
+  <p class="intro">
+   深度合成是一种使用不同格式的数据来合成数字图像的方法，与标准的 “平面” 合成不同。顾名思义，深度合成使用额外的深度数据。这减少了重新渲染的需要，产生高图像质量，并帮助您解决对象边缘周围的瑕疵问题。
+  </p>
+  <h1>
+   关于深层合成
+  </h1>
+  <p>
+   标准 2D 图像包含每个像素的每个通道的单个值。相比之下，深度图像在不同深度下包含每个像素的多个样本，每个样本包含每个像素的信息，如颜色、不透明度和相机相对深度。
+  </p>
+  <p>
+   例如，创建在场景中移动的对象的抵抗者之前需要重新渲染背景，透明像素和抗锯齿经常出现问题。与
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的深度合成节点集，您可以渲染一次背景，然后将对象移动到不同的位置和深度，而不必重新渲染背景。任何透明像素，例如运动模糊，也没有瑕疵，所以使用深度合成不仅更快，而且您还可以获得更高的图像质量。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 100mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/deep_composite.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      蓝色建筑中带有球形物体的深层复合材料。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h1>
+   快速启动
+  </h1>
+  <p class="afterHead">
+   与
+   <span class="CustomProduct">
+    核武器
+   </span>
+   深度合成节点集，您可以:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   用 DeepRead 节点阅读你的深层图像。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="reading_deep_footage.html#">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     在深度镜头中阅读
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将深层数据与 DeepMerge 合并，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="merging_deep_images.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     合并深层图像
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用 deephodout 节点从一对深层图像生成保留遮罩。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="creating_holdouts.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     创建抵抗
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将深层图像展平为常规 2D 图像，或从中创建点云。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="creating_deep_data.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     创建深层数据
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用 DeepSample 节点在给定像素处采样信息。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="sampling_deep_images.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     采样深层图像
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用 DeepCrop 、 deeppreformat 和 DeepTransform 节点，以与常规图像相同的方式裁剪、重新格式化和变换深层图像。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="cropping_reformatting_deep.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     裁剪、重新格式化和转换深层图像
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用 DeepFromFrames 、 DeepFromImage 、 deepprecolor 和 ScanlineRender 节点创建深层图像。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="creating_deep_data.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     创建深层数据
+    </span>
+   </a>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -108,5 +244,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,298 +1,1102 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Creating 3D Particles">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Emitting Particles</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/particles/emitting_particles.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Creating 3D Particles" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   发射粒子
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/particles/emitting_particles.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Emitting Particles</h1>
-        <p class="afterHead">The ParticleEmitter node is the first and only required node in a minimum particle setup. Once you’ve created a ParticleEmitter, connected it to a Viewer and clicked <span class="_Override" style="font-weight: bold;">play</span> on the timeline, you’ll see the default set of particles emitting (from a 3D geometry or point cloud, if you’ve connected one). You can then adjust the ParticleEmitter controls to change the way the particles appear:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Set the <span class="_Override" style="font-weight: bold;">channels</span> in which particles are emitted. Channels <span class="_Override" style="font-weight: bold;">a</span> and <span class="_Override" style="font-weight: bold;">b</span> are arbitrary names for channels which are useful if you want different particle force nodes to have an effect on separate channels.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Use the <span class="_Override" style="font-weight: bold;">start at</span> field to pre-roll or delay the point at which the first particles are emitted. For example, particles could imitate snow that has fallen already, instead of displaying the first flakes falling down, by using a negative <span class="_Override" style="font-weight: bold;">start at</span> frame.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select the emission order and rate for the particles. Set:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">emit</span> <span class="_Override" style="font-weight: bold;">from </span>- select <span class="_Override" style="font-weight: bold;">points</span>, <span class="_Override" style="font-weight: bold;">edges</span>, <span class="_Override" style="font-weight: bold;">faces</span> or <span class="_Override" style="font-weight: bold;">bbox</span> (bounding box) to specify from which part of the 3D object, or point cloud, particles are emitted.</p>
-        <table>
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_emit_from_points.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_emit_from_edges.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><b>emit from</b> &gt; <b>points</b></td>
-                    <td class="caption"><b>emit from</b> &gt; <b>edges</b></td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_emit_from_faces.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_emit_from_bbox.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><b>emit from</b> &gt; <b>faces</b></td>
-                    <td class="caption"><b>emit from</b> &gt; <b>bbox</b></td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">emit</span> <span class="_Override" style="font-weight: bold;">order</span> - select the order that the particles are emitted:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">randomly</span> - produces a random emission order.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">uniformly</span> - emits all particles at the same time.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">in</span> <span class="_Override" style="font-weight: bold;">order</span> - emit particles as a multiple of the <span class="_Override" style="font-weight: bold;">emission rate</span>. For example, an <span class="_Override" style="font-weight: bold;">emission rate</span> of 2 could emit from two points, edges, or faces at a time.</p>
-        <table>
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_emit_inorder.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_emit_uniformly.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Particles emitted in order.</td>
-                    <td class="caption">Particles emitted uniformly.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">randomize type</span> - select whether or not particles are emitted randomly. Select <span class="_Override" style="font-weight: bold;">no random direction</span> for a specific direction based on the emit object’s normals, <span class="_Override" style="font-weight: bold;">randomized direction</span> for a randomly selected initial direction, or <span class="_Override" style="font-weight: bold;">randomize outwards</span> for a randomly selected direction (dependent on the <span class="_Override" style="font-weight: bold;">emit from</span> selection):</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bbox</span> - particles move randomly away from the center.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">points</span>, <span class="_Override" style="font-weight: bold;">edges</span>, and <span class="_Override" style="font-weight: bold;">faces</span> - particles move randomly away from the origin, but at no more than 90 degrees from the nearest normal.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">emission</span> <span class="_Override" style="font-weight: bold;">rate </span>- select the number of particles emitted per frame. This is an exact number, and it is affected by the <span class="_Override" style="font-weight: bold;">rate</span> <span class="_Override" style="font-weight: bold;">channel</span>. If the channel is at a varying value, the emission rate also increases or decreases.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">only emit from selected points</span> - specify whether the particles are emitted from the object, or selected vertices of the object using a GeoSelect node. You can also emit from selected points in a PositionToPoints point cloud using any normals information present.</p>
-        <p class="processBulletCont">See <a href="../3d_compositing/3d_selection_tools.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">3D Selection Tools</span></a> for more information.</p>
-        <table>
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_geoselect.png" style="margin-right: 0.5198669px;margin-bottom: 1.479126px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/particles_only_emit_from_points.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Vertices selected using<br />an upstream GeoSelect node.</td>
-                    <td class="caption">Emitting particles only from<br />the selected vertices.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">rate</span> <span class="_Override" style="font-weight: bold;">variation </span>- specify the range of variation for emitting particles. If you set this to zero, particles are emitted at a constant even level. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">rate</span> <span class="_Override" style="font-weight: bold;">channel </span>- select a specific channel to which you want to emit particles. Unchecking this is the same as selecting none, and in that case particles are emitted to all the channels. For example, if you are emitting from a Card node that has a Ramp texture, it emits particles from the light parts of the ramp at a higher rate (values closer to 1) than from the dark parts (values closer to 0). </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the particles’ color and channels. Enter: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">color</span> - select a color for your particles. Use this if you’re not using the <span class="_Override" style="font-weight: bold;">particle</span> input. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">color</span> <span class="_Override" style="font-weight: bold;">from</span> <span class="_Override" style="font-weight: bold;">texture</span> - check to tint the particles with the colors from the geometry’s texture. If you leave this unchecked, the particles get color only from their own texture. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">channels </span>- select the channels you want to apply particles to. By default, particles are emitted to channel <span class="_Override" style="font-weight: bold;">a. </span>Channels <span class="_Override" style="font-weight: bold;">a</span> and <span class="_Override" style="font-weight: bold;">b</span> are arbitrary names for channels which are useful if you want different ParticleEmitter nodes or other particle force nodes to have an effect on separate channels. An example of this might be if you want two ParticleEmitter nodes emitting particles, one to <span class="_Override" style="font-weight: bold;">a</span> channel, the other to <span class="_Override" style="font-weight: bold;">b</span> channel, so further down in your particle stream you can apply an effect to a specific set of particles.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select how long you want the particles to exist. Set: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">max</span> <span class="_Override" style="font-weight: bold;">lifetime </span>- specify the maximum life span for a particle in frames. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">max</span> <span class="_Override" style="font-weight: bold;">lifetime</span> <span class="_Override" style="font-weight: bold;">range </span>- adjust the range within which your particles’ lifetime varies. If you set this to 0, all particles have the same lifetime. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">lifetime</span> <span class="_Override" style="font-weight: bold;">channel</span> - select a channel of the input geometry texture that you want to use to modulate the lifetime. For example, if you are emitting particles from a Card node with a Ramp texture in the lifetime channel, particles emitted from the lighter parts of the ramp (values closer to 1) would have a lifetime value closer to that set in the <span class="_Override" style="font-weight: bold;">max lifetime</span> than particles emitted from the dark parts (values closer to 0). </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">halflife</span> - select the number of frames over which the number of the particles emitted is halved. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Adjust the velocity and rotation for your particles. Set: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">velocity</span> - specify the initial speed at which you want your particles to move. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">velocity</span> <span class="_Override" style="font-weight: bold;">range</span> - adjust the range within which you want your particles’ velocity to vary. If you set this to 0, the velocity doesn’t vary between particles. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">velocity</span> <span class="_Override" style="font-weight: bold;">channel</span> - select a channel of the input geometry texture that you want to use to modulate the velocity. For example, if you are emitting from a Card node that has a Ramp texture, it emits particles from the light parts of the ramp at a higher velocity (values closer to 1) than from the dark parts (values closer to 0).</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">rotation</span> <span class="_Override" style="font-weight: bold;">velocity</span> - adjust the initial speed at which each particle rotates around its individual Y-axis. The Y-axis points to the direction the particles were initially emitted, and then stays unchanged (unless you use the ParticleMotionAlign node to change its direction). Rotational velocity is most useful when you’re emitting particles from a geometry object. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">rotation</span> <span class="_Override" style="font-weight: bold;">velocity</span> <span class="_Override" style="font-weight: bold;">range</span> - adjust the scale of a random variation in the <span class="_Override" style="font-weight: bold;">rotation velocity</span> value. Value of 0 means the rotation velocity value is as set, value of 1 means it’s very random. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">rotation</span> <span class="_Override" style="font-weight: bold;">velocity</span> <span class="_Override" style="font-weight: bold;">channel</span> - Select a channel of the input geometry texture that you want to use to modulate the speed of rotation. For example, if you are emitting from a Card which has a Ramp texture, the rotation velocity of the particles emitted from the light part of the Ramp (values closer to 1) is greater than that of those emitted from the dark parts (values closer to 0).</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">transfer</span> <span class="_Override" style="font-weight: bold;">velocity</span> - adjust this to transfer the velocity of the initial emitter to the particles. If you set this to 0, no velocity is transferred to the spawned particles. At value 1, full velocity is transferred from the originating particle. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">transfer window</span> - adjust the time, in frames, to look forward or backward in order to determine the velocity that should be transferred to the particles.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Modify the size and mass of the particles. Set: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">size</span> - specify the initial size of each particle. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">size</span> <span class="_Override" style="font-weight: bold;">range</span> - specify the range within which your particle size varies.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">size</span> <span class="_Override" style="font-weight: bold;">channel</span> - select a channel of the geometry texture that you want to use to modulate the size of the particles. For example, if you are emitting particles from a Card node which has a Ramp texture in the size channel, the size of the particles emitted from the lighter part of the Ramp (values closer to 1) is greater than that of those emitted from the darker parts (values closer to 0). </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">mass</span> - adjust the initial mass of each of your particles. The mass of the particles only becomes relevant when you apply a force to your particles, such as one generated by the ParticleDirectionalForce node. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">mass</span> <span class="_Override" style="font-weight: bold;">range</span> - adjust to produce a random variation in the mass value. Simply put, 0 value means the particles’ mass is the value specified by the <span class="_Override" style="font-weight: bold;">mass</span> control, whereas a value of 1 means it’s very random. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">mass</span> <span class="_Override" style="font-weight: bold;">channel</span> - select a channel of the input geometry texture that you want to use to modulate the mass. For example, if you are emitting from a Card which has a Ramp texture in the mass channel, the particles from the light part of the Ramp (values closer to 1) has a higher <span class="_Override" style="font-weight: bold;">mass</span> value than from the dark parts (values closer to 0). With this control, you can emit particles with different masses from different areas based on the input geometry’s texture. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">spread</span> - adjust the extent to which you want your particles to spread in different directions during their lifetime. By default, this forms a cone around the direction of emission. If you set this to zero, each particle has a straight trajectory. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Modify the way your particles are affected by the ParticleEmitter’s inputs. Adjust: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">input</span> <span class="_Override" style="font-weight: bold;">order</span> - if you’re using more than one particle input, you can select which <span class="_Override" style="font-weight: bold;">particle</span> input <span class="CustomProduct">Nuke</span> should select when creating particles. Select <span class="_Override" style="font-weight: bold;">Randomly</span> to pick one of the inputs randomly, or <span class="_Override" style="font-weight: bold;">in</span> <span class="_Override" style="font-weight: bold;">order</span> to rotate the inputs in numerical order. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">start</span> <span class="_Override" style="font-weight: bold;">at</span> - select which frame of the <span class="_Override" style="font-weight: bold;">particle</span> input should be the representation of each new particle. Select <span class="_Override" style="font-weight: bold;">first</span> to pick the first frame of the particle input for each new particle. Select <span class="_Override" style="font-weight: bold;">in</span> <span class="_Override" style="font-weight: bold;">order</span> to pick consecutive frames from the input for each new particle. Select <span class="_Override" style="font-weight: bold;">current</span> to pick the frame where the particle was emitted. Select <span class="_Override" style="font-weight: bold;">random</span> to pick a random input frame for each new particle</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">limit</span> <span class="_Override" style="font-weight: bold;">to</span> <span class="_Override" style="font-weight: bold;">range</span> - limit the particle output to the representation’s frame rate, looping the frame range when <span class="_Override" style="font-weight: bold;">in</span> <span class="_Override" style="font-weight: bold;">order</span> or <span class="_Override" style="font-weight: bold;">current</span> is selected. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">advance</span> - use this to determine if a particle should animate after being emitted. Select <span class="_Override" style="font-weight: bold;">constant</span> to keep the same representation throughout the particle’s lifetime. Select <span class="_Override" style="font-weight: bold;">in steps</span> - to animate the representation frame by frame. Select <span class="_Override" style="font-weight: bold;">randomly</span> to animate the representation one random frame after another. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Vary the results of your range controls with the <span class="_Override" style="font-weight: bold;">random seed</span> field. Enter the random number used in the range controls (such as <span class="_Override" style="font-weight: bold;">max lifetime range</span>) to achieve slightly different effects.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>When you set large values for any of the particle controls it might take <span class="CustomProduct">Nuke</span> a few moments to calculate the result. In such a case a progress bar appears with a <span class="_Override" style="font-weight: bold;">Cancel</span> button you can use to cancel the calculation if necessary. </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   发射粒子
+  </h1>
+  <p class="afterHead">
+   粒子发射器节点是最小粒子设置中的第一个也是唯一需要的节点。创建 ParticleEmitter 后，将其连接到查看器并单击
+   <span class="_Override" style="font-weight: bold;">
+    玩
+   </span>
+   在时间轴上，您将看到默认的粒子集发射 (从 3D 几何图形或点云，如果您已经连接)。然后，可以调整粒子发射器控件以更改粒子的显示方式:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      渠道
+     </span>
+     其中粒子被发射。渠道
+     <span class="_Override" style="font-weight: bold;">
+      一个
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      b
+     </span>
+     是通道的任意名称，如果希望不同的粒子力节点对单独的通道产生影响，这些名称非常有用。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      从开始
+     </span>
+     场预滚或延迟第一个粒子发射的点。例如，粒子可以模仿已经落下的雪，而不是通过使用负值来显示落下的第一片雪花
+     <span class="_Override" style="font-weight: bold;">
+      从开始
+     </span>
+     框架。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     选择粒子的发射顺序和速率。设置:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    发射
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    从
+   </span>
+   -选择
+   <span class="_Override" style="font-weight: bold;">
+    点
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    边缘
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    面孔
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold;">
+    Bbox
+   </span>
+   (边界框) 指定从三维对象或点云的哪个部分发射粒子。
+  </p>
+  <table>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_emit_from_points.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_emit_from_edges.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <b>
+       从发出
+      </b>
+      &gt;
+      <b>
+       点
+      </b>
+     </td>
+     <td class="caption">
+      <b>
+       从发出
+      </b>
+      &gt;
+      <b>
+       边缘
+      </b>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_emit_from_faces.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_emit_from_bbox.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <b>
+       从发出
+      </b>
+      &gt;
+      <b>
+       面孔
+      </b>
+     </td>
+     <td class="caption">
+      <b>
+       从发出
+      </b>
+      &gt;
+      <b>
+       Bbox
+      </b>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    发射
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    秩序
+   </span>
+   -选择粒子发射的顺序:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    随机
+   </span>
+   -产生随机发射顺序。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    均匀
+   </span>
+   -同时发射所有粒子。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    在
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    秩序
+   </span>
+   -以粒子的倍数发射粒子
+   <span class="_Override" style="font-weight: bold;">
+    排放率
+   </span>
+   。例如，一个
+   <span class="_Override" style="font-weight: bold;">
+    排放率
+   </span>
+   2 的可以一次从两个点、边或面发射。
+  </p>
+  <table>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_emit_inorder.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_emit_uniformly.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      按顺序发射的粒子。
+     </td>
+     <td class="caption">
+      粒子发射均匀。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    随机化类型
+   </span>
+   -选择是否随机发射粒子。选择
+   <span class="_Override" style="font-weight: bold;">
+    无随机方向
+   </span>
+   对于基于发射对象法线的特定方向,
+   <span class="_Override" style="font-weight: bold;">
+    随机方向
+   </span>
+   对于随机选择的初始方向，或
+   <span class="_Override" style="font-weight: bold;">
+    向外随机
+   </span>
+   对于随机选择的方向 (取决于
+   <span class="_Override" style="font-weight: bold;">
+    从发出
+   </span>
+   选择):
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Bbox
+   </span>
+   -粒子从中心随机移动。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    点
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    边缘
+   </span>
+   ,和
+   <span class="_Override" style="font-weight: bold;">
+    面孔
+   </span>
+   -粒子从原点随机移动，但距离最近的法线不超过 90 度。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    排放
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    费率
+   </span>
+   -选择每帧发射的粒子数。这是一个确切的数字，它受到
+   <span class="_Override" style="font-weight: bold;">
+    费率
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   。如果通道处于不同的值，发射率也会增加或减少。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    仅从选定点发射
+   </span>
+   -指定是从对象发射粒子，还是使用 GeoSelect 节点从对象的选定顶点发射粒子。也可以使用当前的任何法线信息从 PositionToPoints 点云中的选定点发出。
+  </p>
+  <p class="processBulletCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="../3d_compositing/3d_selection_tools.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     3D 选择工具
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_geoselect.png" style="margin-right: 0.5198669px;margin-bottom: 1.479126px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/particles_only_emit_from_points.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      使用选定的顶点
+      <br/>
+      上游 GeoSelect 节点。
+     </td>
+     <td class="caption">
+      仅从
+      <br/>
+      选定的顶点。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    费率
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    变异
+   </span>
+   -指定发射粒子的变化范围。如果将其设置为零，粒子将以恒定的偶数发射。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    费率
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要发射粒子的特定通道。取消选中此选项与选择 “无” 相同，在这种情况下，粒子将发射到所有通道。例如，如果您从具有斜坡纹理的卡节点发射粒子，则它以更高的速率从斜坡的灯光部分发射粒子 (值更接近 1) 比从黑暗部分 (值更接近 0)。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置粒子的颜色和通道。输入:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    颜色
+   </span>
+   -为粒子选择颜色。如果您不使用
+   <span class="_Override" style="font-weight: bold;">
+    粒子
+   </span>
+   输入。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    颜色
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    从
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    纹理
+   </span>
+   -检查用几何纹理中的颜色着色粒子。如果不选中此选项，粒子只能从自己的纹理获得颜色。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要将粒子应用于的通道。默认情况下，粒子被发射到通道
+   <span class="_Override" style="font-weight: bold;">
+    A.
+   </span>
+   渠道
+   <span class="_Override" style="font-weight: bold;">
+    一个
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    b
+   </span>
+   通道有任意名称，如果希望不同的粒子发射器节点或其他粒子力节点对单独的通道产生影响，这些名称非常有用。这方面的一个例子可能是，如果你想要两个粒子发射器节点发射粒子，一个到
+   <span class="_Override" style="font-weight: bold;">
+    一个
+   </span>
+   渠道，其他
+   <span class="_Override" style="font-weight: bold;">
+    b
+   </span>
+   通道，所以在你的粒子流中，你可以对一组特定的粒子施加效果。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     选择希望粒子存在的时间。设置:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    最大
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    寿命
+   </span>
+   -指定帧中粒子的最大寿命。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    最大
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    寿命
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   -调整粒子寿命变化的范围。如果将其设置为 0，则所有粒子都具有相同的生命周期。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    寿命
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要用于调整生命周期的输入几何纹理的通道。例如，如果要从生命周期通道中具有渐变纹理的卡片节点发射粒子，则从渐变的较浅部分发射粒子 (值更接近 1) 将有一个生命周期值更接近，在设置
+   <span class="_Override" style="font-weight: bold;">
+    最大寿命
+   </span>
+   比从黑暗部分发射的粒子 (值更接近 0)。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    半衰期
+   </span>
+   -选择发射粒子数减半的帧数。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     调整粒子的速度和旋转。设置:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   -指定粒子移动的初始速度。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   -调整您希望粒子速度变化的范围。如果将其设置为 0，粒子之间的速度不会发生变化。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要用于调整速度的输入几何纹理的通道。例如，如果您从具有斜坡纹理的卡节点发射粒子，则它会以更高的速度从斜坡的灯光部分发射粒子 (值更接近 1) 比从黑暗部分 (值更接近 0)。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    旋转
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   -调整每个粒子围绕其单个 y轴旋转的初始速度。Y 轴指向粒子最初发射的方向，然后保持不变 (除非使用 ParticleMotionAlign 节点更改其方向)。从几何对象发射粒子时，旋转速度最有用。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    旋转
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   -调整随机变化的比例
+   <span class="_Override" style="font-weight: bold;">
+    旋转速度
+   </span>
+   价值。值 0 表示旋转速度值为设定值，值 1 表示非常随机。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    旋转
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要用于调整旋转速度的输入几何纹理的通道。例如，如果从具有斜坡纹理的卡片发射，则从斜坡的光线部分发射的粒子的旋转速度 (值更接近 1) 大于从黑暗部分发射的那些 (值更接近于 0)。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    转移
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    速度
+   </span>
+   -调整此选项以将初始发射器的速度传输到粒子。如果将其设置为 0，则不会向生成的粒子传输速度。在值为 1 时，全速从始发粒子转移。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    转移窗口
+   </span>
+   -调整时间，以帧为单位，向前或向后看，以确定应该传输到粒子的速度。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     修改粒子的大小和质量。设置:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    尺寸
+   </span>
+   -指定每个粒子的初始大小。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    尺寸
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   -指定颗粒大小变化的范围。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    尺寸
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要用于调整粒子大小的几何纹理的通道。例如，如果您从在大小通道中具有斜坡纹理的卡片节点发射粒子, 从渐变的较浅部分发射的粒子的大小 (值更接近于 1) 大于从较暗部分发射的粒子的大小 (值更接近于 0)。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    质量
+   </span>
+   -调整每个粒子的初始质量。只有在对粒子施加力 (如 ParticleDirectionalForce 节点生成的力) 时，粒子的质量才相关。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    质量
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   -调整以产生质量值的随机变化。简单地说，0 值意味着粒子的质量是由
+   <span class="_Override" style="font-weight: bold;">
+    质量
+   </span>
+   控制，而值为 1 意味着它是非常随机的。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    质量
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   -选择要用于调整质量的输入几何纹理的通道。例如，如果从质量通道中具有斜坡纹理的卡片发射，则来自斜坡的光线部分 (值更接近 1) 的粒子具有更高的
+   <span class="_Override" style="font-weight: bold;">
+    质量
+   </span>
+   值比从黑暗部分 (值更接近 0)。使用此控件，可以根据输入几何体的纹理从不同区域发射具有不同质量的粒子。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    传播
+   </span>
+   -调整您希望粒子在其生命周期内向不同方向扩散的程度。默认情况下，这将形成一个围绕发射方向的圆锥体。如果将其设置为零，则每个粒子都有一个直线轨迹。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     修改粒子受粒子发射器输入影响的方式。调整:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    输入
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    秩序
+   </span>
+   -如果你使用多个粒子输入，你可以选择哪个
+   <span class="_Override" style="font-weight: bold;">
+    粒子
+   </span>
+   输入
+   <span class="CustomProduct">
+    核武器
+   </span>
+   创建粒子时应选择。选择
+   <span class="_Override" style="font-weight: bold;">
+    随机
+   </span>
+   随机选择一个输入，或者
+   <span class="_Override" style="font-weight: bold;">
+    在
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    秩序
+   </span>
+   以数字顺序旋转输入。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    开始
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    在
+   </span>
+   -选择的框架
+   <span class="_Override" style="font-weight: bold;">
+    粒子
+   </span>
+   输入应该是每个新粒子的表示。选择
+   <span class="_Override" style="font-weight: bold;">
+    首先
+   </span>
+   为每个新粒子拾取粒子输入的第一帧。选择
+   <span class="_Override" style="font-weight: bold;">
+    在
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    秩序
+   </span>
+   从每个新粒子的输入中拾取连续帧。选择
+   <span class="_Override" style="font-weight: bold;">
+    当前
+   </span>
+   来拾取粒子发射的帧。选择
+   <span class="_Override" style="font-weight: bold;">
+    随机
+   </span>
+   为每个新粒子选择随机输入帧
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    限制
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    到
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   -将粒子输出限制为表示的帧速率，当
+   <span class="_Override" style="font-weight: bold;">
+    在
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    秩序
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold;">
+    当前
+   </span>
+   被选中。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    前进
+   </span>
+   -使用它来确定粒子在发射后是否应该设置动画。选择
+   <span class="_Override" style="font-weight: bold;">
+    常数
+   </span>
+   在粒子的整个生命周期中保持相同的表示。选择
+   <span class="_Override" style="font-weight: bold;">
+    在步骤中
+   </span>
+   -逐帧对表示进行动画处理。选择
+   <span class="_Override" style="font-weight: bold;">
+    随机
+   </span>
+   为一个又一个随机帧的表示设置动画。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     不同结果的范围控制的
+     <span class="_Override" style="font-weight: bold;">
+      随机种子
+     </span>
+     字段。输入范围控件中使用的随机数 (如
+     <span class="_Override" style="font-weight: bold;">
+      最大寿命范围
+     </span>
+     ) 达到稍微不同的效果。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   当您为它可能需要的任何粒子控件设置大值时
+   <span class="CustomProduct">
+    核武器
+   </span>
+   几分钟来计算结果。在这种情况下，进度条显示为
+   <span class="_Override" style="font-weight: bold;">
+    取消
+   </span>
+   如果需要，可以使用按钮取消计算。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -306,5 +1110,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

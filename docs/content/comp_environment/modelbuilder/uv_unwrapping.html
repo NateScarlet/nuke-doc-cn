@@ -1,573 +1,1293 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using ModelBuilder|Applying Textures">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>UV Unwrapping</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/modelbuilder/uv_unwrapping.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using ModelBuilder|Applying Textures" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   UV 展开
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/modelbuilder/uv_unwrapping.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>UV Unwrapping</h2>
-        <p class="afterHead">If you've used ModelBuilder to add  new objects over the top of your 2D footage (for example, added a new window to a building or extra bins alongside a street), you can't project your 2D footage over those objects because they were never in the original footage. Instead, you need to supply a texture from somewhere else and map it over the surface of your 3D object. </p>
-        <table style="">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td class="caption">
-                        <img src="../../assets/images/ug_images/modelbuilder_wrong_texture.png" />
-                    </td>
-                    <td class="caption">
-                        <img src="../../assets/images/ug_images/modelbuilder_right_texture.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">An extra cube has been <br />added to the scene. <br />It cannot be textured using<br />the original footage.</td>
-                    <td class="caption">Here, the cube has been <br />textured separately.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>To map a texture image over the surface of your 3D object, you first need to flatten your 3D object out into 2D space through a process called UV unwrapping. This generates UV coordinates for each vertex in the object, allowing you to map points on the surface of your 3D object to pixels in your texture image.</p>
-        <table>
-            <col style="width: 10cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_unwrap_cube.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A 3D cube flattened out into 2D space.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 10cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_textured_cube.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Previewing a texture image while editing the cube's <br />UV coordinates.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>UVs are simply 2D coordinates that tell 3D applications how to apply a texture to a model. The letters U and V  were chosen because X, Y, and Z were already used to denote the axes of objects in 3D space. The U coordinate represents the horizontal axis of the 2D texture, and the V coordinate the vertical axis.<br /><br /><img src="../../assets/images/ug_images/uv_coordinates.png" /><br /></p>
-        <h3>Quick Start</h3>
-        <p>The process of UV unwrapping is roughly the following:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Define where to cut the model in order to flatten it out into 2D space. See <a href="#Creating" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Creating Seams on Your Model</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Unwrap the model and preview the results. See <a href="#Unwrappi" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Unwrapping Your Model and Previewing Its UVs</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Edit the generated UVs as necessary. See <a href="#Editing" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Editing UVs</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Apply a texture to your model. See <a href="#Applying_Textures" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Applying Textures</span></a>.</td>
-            </tr>
-        </table>
-        <h3><a name="Creating"></a>Creating Seams on Your Model</h3>
-        <p>To prepare your model for UV unwrapping, you need to mark some seams. The seams tell ModelBuilder where it's allowed to cut the model in order to flatten it out into 2D space. </p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you don't have enough seams marked, the unwrapping will be very poor with lots of overlapping faces as well as stretching and distortion. On the other hand, too many seams can make it difficult to texture the object, as the gaps in the seams can easily become noticeable on the textured object. If possible, it's a good idea to hide seams in areas where they will not be seen.</p>
-        <h4>To Create Seams</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">If you have created several objects using the same ModelBuilder node, click <img src="../../assets/images/ug_images/icon_splinewarp_visible.png" alt="" title="" style="vertical-align: middle;" /> in the node properties to hide all the other objects except the one you want to generate UVs for.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the ModelBuilder toolbar, click <img src="../../assets/images/ug_images/icon_modelbuilder_uv_mode.png" style="vertical-align: middle;" /> to activate UV mode.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Repeat one or more of the following until you've got a good set of seams:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To mark an edge as a seam, right-click on the Viewer and choose <b>edge selection</b>. Select an edge on your model, right-click, and choose <b>mark as seam</b>. </p>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_edge_as_seam.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_edge_as_seam2.png" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To mark an edge loop as a seam, right-click on the Viewer and choose <b>edge loop selection</b>. Select an edge loop on your model, right-click, and choose <b>mark as seam</b>. </p>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_edge_loop_as_seam.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_edge_loop_as_seam2.png" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To mark all edges around a face as seams, right-click on the Viewer and choose <b>face selection</b>. Select a face on your model, right-click, and choose <b>mark as seam</b>.</p>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_face_as_seam.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/modelbuilder_face_as_seam2.png" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also select a face loop and mark all edges around it as seams. To do so, select at least two faces on your model, right-click, and choose <b>select face loop</b>. Then, right-click on the Viewer again and choose <b>mark as seams</b>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To remove an edge, edge loop, or face from the set of seams, select it in the Viewer, right-click, and choose <b>unmark as seam</b>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To clear all seams, right-click on the object and choose <b>clear all seams</b>.</p>
-        <p class="numberedCont">Any edges that have been marked as seams are displayed in red in the Viewer.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Proceed to <a href="#Unwrappi" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Unwrapping Your Model and Previewing Its UVs</span></a> below.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>The easiest way to create a good set of seams for buildings (or any other roughly cubic or cylindrical object) is to 1) select the top faces and mark them as seams, 2) select the bottom faces and mark them as seams, and 3) select edges along the side of the model that connect the top to the bottom and mark them as seams.</p>
-        <h3><a name="Unwrappi"></a>Unwrapping Your Model and Previewing Its UVs</h3>
-        <p>Once you're happy with your set of seams, you are ready to unwrap the model.</p>
-        <h4>To Unwrap a Model and Preview Its UVs</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Right-click on the Viewer and choose <b>object selection</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Right-click on your model and choose <b>unwrap</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont"> A colored border appears around the Viewer window to indicate that the action is in progress. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Press <b>Return</b> to complete the unwrap.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">ModelBuilder generates UV values for each of the vertices on your model. The unwrapped model appears in the UV preview window in the top left of the Viewer.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_unwrap_cube.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To display a 2D texture image as a background in the UV preview window, connect the image to ModelBuilder's <b>tex</b> input and make sure the <b>Preview</b> dropdown in the ModelBuilder properties (or on top of the Viewer) is set to <b>tex input</b>. To also  see the <b>tex</b> input on the model in the 3D Viewer, set <b>display</b> to either <b>textured</b> or <b>textured+wireframe</b> in the ModelBuilder properties.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_textured_cube.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To zoom in or out of the UV preview window, press <b>Ctrl</b>/<b>Cmd</b>+<b>Alt</b> and drag.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">To pan the UV preview window, press <b>Ctrl</b>/<b>Cmd</b> and drag.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To change the size of the UV preview window, click and drag on its lower right corner.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">To hide the UV preview window, disable <b>uv window</b> at the top of the Viewer.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Proceed to <a href="#Editing" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Editing UVs</span></a> below.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you are not happy with the generated UVs, you can right-click on your model and select <b>clear existing uvs</b>. If necessary, you can also change the seams and unwrap your model again. Each time you do, ModelBuilder replaces the UVs you had with the newly generated UVs.</p>
-        <h3><a name="Editing"></a>Editing UVs</h3>
-        <p>You can tweak  the controls at the top of the Viewer or edit the UVs manually in the UV preview window.</p>
-        <h4>To Edit UVs</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Adjust the following controls at the top of the Viewer:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>iterations</b> - The number of times the unwrapper applies its rules about how to move the UV coordinates towards good locations. This gives you a speed vs. quality trade-off: more iterations give a better result but take longer to unwrap.  Note that the results can only be improved up to a point, and where that point is depends on the complexity of your model.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>threshold</b> - The unwrapper stops before reaching the maximum number of <b>iterations</b> if it sees that the improvement from iteration to iteration is negligible. The <b>threshold</b> control tells it how much change is considered negligible. If the amount of change between iterations is below the threshold, the unwrapper stops. This is another way to trade off quality for speed. You generally use this if you want a higher quality result: if you've increased  <b>iterations</b> but the unwrapper is stopping before reaching the maximum, you can lower the threshold to make it keep running.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>separation</b> - The number of pixels to leave between each patch in the unwrapping. If you don't have enough pixels between your patches, you can get color bleeding through from neighboring patches when you use the texture. A higher value means more widely spaced patches, but also more wasted space in your texture image.</p>
-        <p class="numberedCont">As you edit these controls, the UV preview window updates to allow you to see the effect of your changes.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If necessary, you can also edit the UVs manually in the UV preview window:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To edit a single vertex, drag it to a new location.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_editing_uvs.png" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To edit several vertices together, select them and use the transform jack that appears to translate, rotate, or scale the selection. The transform jack is the same one used elsewhere in <span class="CustomProduct">Nuke</span>, so all the controls work the same way. For example, you can click and drag on the handles to scale out from the center, or <b>Ctrl</b>/<b>Cmd</b>+click and drag to scale out from the opposite edge.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_editing_uvs2.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Proceed to <a href="#Applying" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Applying Textures</span></a>.</td>
-            </tr>
-        </table>
-        <h3><a name="Applying"></a><a name="Applying_Textures"></a>Applying Textures</h3>
-        <p>At this point, it may be that you've got several objects in the scene that you still want to project your camera footage onto (see <a href="projecting_textures.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Projecting Textures onto Your Shapes</span></a>), but there's one object that you want to texture differently. There are two ways to do this:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can export your model as a separate geometry node and use an ApplyMaterial node to texture it. This can be a convenient way to work if your geometry is finished and locked off, so you never need to go back and change it. But what you lose with this is the "live" view: if you do need to go back and edit the object, you have to export it again. See <a href="#Method_1" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Method 1</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Alternatively, you can add an ApplyMaterial node directly after your ModelBuilder node and tell ApplyMaterial to ignore all the geometry that doesn't match the filter you give it. See <a href="#Method_2" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Method 2</span></a>.</p>
-        <h4><a name="Method_1"></a>Method 1</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the ModelBuilder properties, select the object that you want to texture differently.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">At the bottom of the properties panel, set the bake menu to <b>Selected geometry</b> and click <b>Bake</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_bake_object.png" />
-        </p>
-        <p class="numberedCont">ModelBuilder creates a geometry node for the selected object.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">From the toolbar, select <b>3D</b> &gt; <b>Shader</b> &gt; <b>ApplyMaterial</b> to create an ApplyMaterial node.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Connect the geometry node you created in step 2 to the unnamed input of the ApplyMaterial node.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Then, connect your 2D texture image to the <b>mat</b> input of the ApplyMaterial node.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The ApplyMaterial node applies the texture from the <b>mat</b> input onto your 3D geometry object. (To be able to see this in the 3D Viewer, you may have to hide the object in the ModelBuilder properties.)</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_applymaterial_result.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Connect the ApplyMaterial node to your Scene node and use a ScanlineRender node to render all the objects connected to that scene.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_node_tree.png" />
-        </p>
-        <h4><a name="Method_2"></a>Method 2</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">From the toolbar, select <b>3D</b> &gt; <b>Shader</b> &gt; <b>ApplyMaterial</b> to create an ApplyMaterial node.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the unnamed input of the ApplyMaterial node to your ModelBuilder node and the <b>mat</b> input to your 2D texture image.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">By default, ApplyMaterial applies the texture from the <b>mat</b> input onto all objects in your ModelBuilder node. </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_applymat_filter_all.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To only apply the texture onto a particular object, open the ApplyMaterial properties and set <b>filter</b> to <b>name</b>. This allows you to tell ApplyMaterial to ignore any geometry that doesn't match the filter.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To set the filter, click the <b>choose</b> button. In the dialog that opens, select the object you want to apply the texture to and click <b>OK</b>. </td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also <b>Ctrl</b>/<b>Cmd</b>+click or <b>Shift</b>+click to select multiple objects.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_object_name_chooser.png" />
-        </p>
-        <p class="numberedCont">For more information on ApplyMaterial, see <a href="../3d_compositing/object_material_properties.html#Applying_a_Material_Using_the_ApplyMaterial_Node" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Applying a Material Using the ApplyMaterial Node</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Connect the ApplyMaterial node to your Scene node and use a ScanlineRender node to render all the objects connected to that scene.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_node_tree2.png" />
-        </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/modelbuilder_applymaterial_result.png" />
-        </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   UV 展开
+  </h2>
+  <p class="afterHead">
+   如果您使用 ModelBuilder 在 2D 素材的顶部添加新对象 (例如，向建筑物添加新窗口或在街道旁边添加额外的垃圾箱), 你不能在这些物体上投影你的 2D 镜头，因为它们从来没有出现在原始镜头中。相反，您需要从其他地方提供纹理，并将其映射到 3D 对象的表面。
+  </p>
+  <table style="">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td class="caption">
+      <img src="../../assets/images/ug_images/modelbuilder_wrong_texture.png"/>
+     </td>
+     <td class="caption">
+      <img src="../../assets/images/ug_images/modelbuilder_right_texture.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      一个额外的立方体已经
+      <br/>
+      添加到场景中。
+      <br/>
+      它不能使用纹理
+      <br/>
+      原始镜头。
+     </td>
+     <td class="caption">
+      在这里，立方体已经
+      <br/>
+      纹理分开。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   要将纹理图像映射到 3D 对象的表面，首先需要通过一个名为 UV 展开的过程将 3D 对象展开到 2D 空间中。这将为对象中的每个顶点生成 UV 坐标，允许您将 3D 对象表面上的点映射到纹理图像中的像素。
+  </p>
+  <table>
+   <col style="width: 10cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_unwrap_cube.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      一个 3D 立方体被夷为平地变成 2D 空间。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 10cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_textured_cube.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      编辑立方体时预览纹理图像
+      <br/>
+      UV 坐标。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   Uv 只是二维坐标，告诉 3D 应用程序如何将纹理应用于模型。选择字母 U 和 V 是因为 X 、 Y 和 Z 已经被用来表示 3D 空间中物体的轴。U 坐标表示 2D 纹理的水平轴，V 坐标表示垂直轴。
+   <br/>
+   <br/>
+   <img src="../../assets/images/ug_images/uv_coordinates.png"/>
+   <br/>
+  </p>
+  <h3>
+   快速启动
+  </h3>
+  <p>
+   UV 展开的过程大致如下:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     定义切割模型的位置，以便将模型展平到 2D 空间。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="#Creating">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       在模型上创建接缝
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     展开模型并预览结果。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="#Unwrappi">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       展开模型并预览其 uv
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     根据需要编辑生成的 uv。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="#Editing">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       编辑 uv
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     将纹理应用于模型。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="#Applying_Textures">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       应用纹理
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="Creating">
+   </a>
+   在模型上创建接缝
+  </h3>
+  <p>
+   要准备 UV 展开的模型，需要标记一些接缝。接缝告诉 ModelBuilder 允许在哪里切割模型，以便将其展平到 2D 空间。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果你没有足够的接缝标记，展开将会非常糟糕，有很多重叠的面以及拉伸和扭曲。另一方面，过多的接缝会使对象难以纹理化，因为接缝中的间隙很容易在纹理化对象上变得明显。如果可能的话，最好将接缝隐藏在看不到的区域。
+  </p>
+  <h4>
+   创建接缝
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     如果使用同一 ModelBuilder 节点创建了多个对象，请单击
+     <img alt="" src="../../assets/images/ug_images/icon_splinewarp_visible.png" style="vertical-align: middle;" title=""/>
+     在节点属性中隐藏所有其他对象，但要为其生成 uv 的对象除外。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 ModelBuilder 工具栏中，单击
+     <img src="../../assets/images/ug_images/icon_modelbuilder_uv_mode.png" style="vertical-align: middle;"/>
+     激活 UV 模式。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     重复以下一项或多项操作，直到找到一组好的接缝:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要将边缘标记为接缝，请在查看器上单击鼠标右键，然后选择
+   <b>
+    边选择
+   </b>
+   。选择模型上的边，单击鼠标右键，然后选择
+   <b>
+    标记为接缝
+   </b>
+   .
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_edge_as_seam.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_edge_as_seam2.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要将循环边标记为接缝，请在查看器上单击鼠标右键，然后选择
+   <b>
+    循环边选择
+   </b>
+   。选择模型上的循环边，单击鼠标右键，然后选择
+   <b>
+    标记为接缝
+   </b>
+   .
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_edge_loop_as_seam.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_edge_loop_as_seam2.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要将面周围的所有边标记为接缝，请在查看器上单击鼠标右键，然后选择
+   <b>
+    面选择
+   </b>
+   。在模型上选择一个面，单击鼠标右键，然后选择
+   <b>
+    标记为接缝
+   </b>
+   .
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_face_as_seam.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/modelbuilder_face_as_seam2.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   也可以选择面环，并将其周围的所有边标记为接缝。为此，请在模型上选择至少两个面，单击鼠标右键，然后选择
+   <b>
+    选择面循环
+   </b>
+   。然后，再次右键单击查看器并选择
+   <b>
+    标记为接缝
+   </b>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要从接缝集中移除边、循环边或面，请在查看器中选择它，单击鼠标右键，然后选择
+   <b>
+    取消标记为 seam
+   </b>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要清除所有接缝，请在对象上单击鼠标右键，然后选择
+   <b>
+    清除所有接缝
+   </b>
+   .
+  </p>
+  <p class="numberedCont">
+   任何标记为接缝的边缘都将在查看器中以红色显示。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#Unwrappi">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       展开模型并预览其 uv
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   为建筑物 (或任何其他大致为立方体或圆柱形的物体) 创建一组良好接缝的最简单方法是 1) 选择顶面并将其标记为接缝，2) 选择底面并将其标记为接缝，3)选择模型一侧连接顶部和底部的边，并将其标记为接缝。
+  </p>
+  <h3>
+   <a name="Unwrappi">
+   </a>
+   展开模型并预览其 uv
+  </h3>
+  <p>
+   一旦你对你的接缝很满意，你就可以打开模型了。
+  </p>
+  <h4>
+   展开模型并预览其 uv
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     右键单击查看器并选择
+     <b>
+      对象选择
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     右键单击模型并选择
+     <b>
+      展开包装
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   查看器窗口周围出现彩色边框，表示操作正在进行。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     新闻
+     <b>
+      返回
+     </b>
+     完成展开。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   ModelBuilder 为模型上的每个顶点生成 UV 值。展开的模型显示在查看器左上角的 UV 预览窗口中。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_unwrap_cube.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要在 UV 预览窗口中将 2D 纹理图像显示为背景，请将图像连接到 ModelBuilder 的
+     <b>
+      Tex
+     </b>
+     输入并确保
+     <b>
+      预览
+     </b>
+     ModelBuilder 属性 (或查看器顶部) 中的下拉列表设置为
+     <b>
+      Tex 输入
+     </b>
+     。也看到了
+     <b>
+      Tex
+     </b>
+     在 3D 查看器中输入模型，设置
+     <b>
+      显示
+     </b>
+     要么
+     <b>
+      纹理
+     </b>
+     或
+     <b>
+      纹理 + 线框
+     </b>
+     在 ModelBuilder 属性中。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_textured_cube.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     要放大或缩小 UV 预览窗口，请按
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      Alt
+     </b>
+     和拖动。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     要平移 UV 预览窗口，请按
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     和拖动。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     要更改 UV 预览窗口的大小，请单击并拖动其右下角。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     要隐藏 UV 预览窗口，请禁用
+     <b>
+      Uv 窗口
+     </b>
+     在观众的顶部。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#Editing">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       编辑 uv
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果您对生成的 uv 不满意，可以在模型上单击鼠标右键，然后选择
+   <b>
+    清除现有 uv
+   </b>
+   。如有必要，还可以更改接缝并再次展开模型。每次这样做，ModelBuilder 都会将您拥有的 uv 替换为新生成的 uv。
+  </p>
+  <h3>
+   <a name="Editing">
+   </a>
+   编辑 uv
+  </h3>
+  <p>
+   您可以调整查看器顶部的控件，或在 UV 预览窗口中手动编辑 UV。
+  </p>
+  <h4>
+   编辑 uv
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     调整查看器顶部的以下控件:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    迭代
+   </b>
+   -Unwrapper 应用其关于如何将 UV 坐标移动到好的位置的规则的次数。这给了你一个速度与质量的权衡: 更多的迭代会给出更好的结果，但是需要更长的时间来打开包装。请注意，结果只能改进到某一点，并且该点的位置取决于模型的复杂性。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    阈值
+   </b>
+   -Unwrapper 在达到最大数量之前停止
+   <b>
+    迭代
+   </b>
+   如果它看到从迭代到迭代的改进可以忽略不计。的
+   <b>
+    阈值
+   </b>
+   控制告诉它多少变化被认为是可以忽略的。如果迭代之间的更改量低于阈值，则取消包装将停止。这是另一种以质量换取速度的方式。如果你想要一个更高质量的结果，你通常会使用这个: 如果你增加了
+   <b>
+    迭代
+   </b>
+   但是 unwrapper 在达到最大值之前停止，您可以降低阈值以使其保持运行。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    分离
+   </b>
+   -在展开中每个补丁之间留下的像素数量。如果你的补丁之间没有足够的像素，当你使用纹理时，你可以从相邻的补丁中获得颜色出血。更高的值意味着更广泛的间隔补丁，但也浪费了更多的空间在你的纹理图像。
+  </p>
+  <p class="numberedCont">
+   编辑这些控件时，UV 预览窗口将更新，以允许您查看更改的效果。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如有必要，还可以在 UV 预览窗口中手动编辑 UV:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要编辑单个顶点，请将其拖到新位置。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_editing_uvs.png"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要一起编辑几个顶点，请选择它们并使用显示的变换插孔来平移、旋转或缩放选择。变换千斤顶与其他地方使用的千斤顶相同
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,所以所有的控件都以相同的方式工作。例如，可以单击并拖动控制柄以从中心向外缩放，或者
+   <b>
+    Ctrl
+   </b>
+   /
+   <b>
+    Cmd
+   </b>
+   单击并拖动以从相对边缘向外缩放。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_editing_uvs2.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#Applying">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       应用纹理
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="Applying">
+   </a>
+   <a name="Applying_Textures">
+   </a>
+   应用纹理
+  </h3>
+  <p>
+   在这一点上，可能是你在场景中有几个物体，你仍然想把你的相机镜头投射到 (参见
+   <a class="noPage MCXref xref xrefnoPage" href="projecting_textures.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     将纹理投影到形状上
+    </span>
+   </a>
+   ,但是有一个对象想要以不同的方式纹理。有两种方法可以做到这一点:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   可以将模型导出为单独的几何节点，并使用 ApplyMaterial 节点对其进行纹理处理。如果几何图形完成并被锁定，这可能是一种方便的工作方式，所以你永远不需要回去改变它。但是你失去的是 “实时” 视图: 如果你确实需要返回并编辑对象，你必须再次导出它。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Method_1">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     方法 1
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   或者，您可以直接在 ModelBuilder 节点之后添加一个 ApplyMaterial 节点，并告诉 ApplyMaterial 忽略所有与您提供的过滤器不匹配的几何图形。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Method_2">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     方法 2
+    </span>
+   </a>
+   .
+  </p>
+  <h4>
+   <a name="Method_1">
+   </a>
+   方法 1
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 ModelBuilder 属性中，选择要以不同方式纹理的对象。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 “属性” 面板的底部，将 “烘焙” 菜单设置为
+     <b>
+      选定几何
+     </b>
+     并单击
+     <b>
+      烘焙
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_bake_object.png"/>
+  </p>
+  <p class="numberedCont">
+   ModelBuilder 为选定对象创建几何节点。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从工具栏中选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      着色器
+     </b>
+     &gt;
+     <b>
+      应用材料
+     </b>
+     创建 ApplyMaterial 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     将在步骤 2 中创建的几何节点连接到 ApplyMaterial 节点的未命名输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     然后，将您的 2D 纹理图像连接到
+     <b>
+      垫子
+     </b>
+     ApplyMaterial 节点的输入。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   ApplyMaterial 节点应用来自
+   <b>
+    垫子
+   </b>
+   输入到 3D 几何对象上。(为了能够在 3D 查看器中看到这一点，您可能必须在 ModelBuilder 属性中隐藏对象。)
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_applymaterial_result.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     将 ApplyMaterial 节点连接到场景节点，并使用 ScanlineRender 节点渲染连接到该场景的所有对象。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_node_tree.png"/>
+  </p>
+  <h4>
+   <a name="Method_2">
+   </a>
+   方法 2
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     从工具栏中选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      着色器
+     </b>
+     &gt;
+     <b>
+      应用材料
+     </b>
+     创建 ApplyMaterial 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将 ApplyMaterial 节点的未命名输入连接到 ModelBuilder 节点和
+     <b>
+      垫子
+     </b>
+     输入到 2D 纹理图像。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   默认情况下，ApplyMaterial 应用来自
+   <b>
+    垫子
+   </b>
+   输入到 ModelBuilder 节点中的所有对象。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_applymat_filter_all.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     若要仅将纹理应用于特定对象，请打开 ApplyMaterial 属性并设置
+     <b>
+      过滤器
+     </b>
+     到
+     <b>
+      名称
+     </b>
+     。这允许您告诉 ApplyMaterial 忽略任何与过滤器不匹配的几何图形。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要设置过滤器，请单击
+     <b>
+      选择
+     </b>
+     按钮。在打开的对话框中，选择要应用纹理的对象，然后单击
+     <b>
+      好
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   你也可以
+   <b>
+    Ctrl
+   </b>
+   /
+   <b>
+    Cmd
+   </b>
+   单击或
+   <b>
+    转变
+   </b>
+   单击选择多个对象。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_object_name_chooser.png"/>
+  </p>
+  <p class="numberedCont">
+   有关应用材料的更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../3d_compositing/object_material_properties.html#Applying_a_Material_Using_the_ApplyMaterial_Node">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用 ApplyMaterial 节点应用材质
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     将 ApplyMaterial 节点连接到场景节点，并使用 ScanlineRender 节点渲染连接到该场景的所有对象。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_node_tree2.png"/>
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/modelbuilder_applymaterial_result.png"/>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -581,5 +1301,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

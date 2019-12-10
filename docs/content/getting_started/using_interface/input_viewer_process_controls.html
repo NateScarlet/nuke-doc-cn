@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Input Process Controls</title>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   输入过程控制
+  </title>
+  <script>
+   /* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -13,172 +17,561 @@
 			ga('create', 'UA-7716777-9', 'thefoundry.co.uk');
 			ga('send', 'pageview');
 
-		/* ]]> */</script>
-        <link href="../../resources/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../resources/stylesheets/load.js">
-        </script>
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-    </head>
-    <body><a name="using_the_interface_1080192335_913043"></a>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Input Process and Viewer Process Controls</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><span class="_Override" style="font-style: italic;">Input Process</span> and <span class="_Override" style="font-style: italic;">Viewer Process</span> operations can be used to modify the image from the viewed node before it is displayed on your monitor. Both only affect the Viewer in which they are activated and do not affect your rendered output. Input Process is a legacy system which uses a node instantiated in the Node Graph to process the image. This is handy for script-specific, temporary, or experimental use, but can be error prone due to the node accidentally being deleted or changed and is limited to a single node. The Viewer Process system was added in <span class="CustomProduct">Nuke Studio</span> 5.2 and allows a gizmo (or compiled node) to be registered from the Python programming language at start-up. The registered item appears in a dropdown menu in the Viewer and the node is instantiated internally within the Viewer when the item is selected so there is no danger of accidental deletion or modification. This also enables multiple Viewer Processes to be registered at different points of start-up (as <span class="CustomProduct">Nuke Studio</span> works through the NUKE_PATH menu.py files).</p>
-                <p>The Viewer settings contain an option for the Input Process to be applied before or after the Viewer Process, so the two may be used in conjunction, for instance, with the Input Process applying a projection mask after the Viewer Process applies a film look profile. While you could combine the two into a single Viewer Process node, it can be advantageous to keep operations separated. Having both the Viewer Process and Input Process available provides a great deal of flexibility.</p>
-                <p>You can create an Input Process by creating a node in the Node Graph and naming it as an Input Process using <span class="CustomProduct">Nuke Studio</span>’s <span class="_Override" style="font-weight: bold;">Edit</span> menu. Once an Input Process has been named, the IP button appears in the Viewer controls. When the IP button is activated, any image you view is passed through the Input Process.</p>
-                <p>Unlike Input Processes, Viewer Processes are registered using Python. They can be session independent and always appear in the Viewer’s Viewer Process dropdown menu. There are two predefined Viewer Processes, <span class="_Override" style="font-weight: bold;">sRGB</span> and <span class="_Override" style="font-weight: bold;">rec709</span>, but you can also build and add your own. When a Viewer Process is selected from the Viewer Process dropdown menu, any image you view is passed through that Viewer Process.</p>
-                <p>Whenever possible, the Input Process and Viewer Process are executed on the GPU. 1D LUT and 3D LUT (Vectorfield) have GPU implementations, so the built-in Viewer Processes run on the GPU (unless <span class="_Override" style="font-weight: bold;">gl buffer depth</span> has been set to <span class="_Override" style="font-weight: bold;">byte</span> in the Viewer settings, in which case all processing is done on the CPU). To get the GPU'd versions of the nodes for use in a custom Viewer Process gizmo, press <span class="_Override" style="font-weight: bold;">x </span>over the Node Graph, enter <span class="_Override" style="font-weight: bold;">ViewerGain</span>, <span class="_Override" style="font-weight: bold;">ViewerGamma</span>, or <span class="_Override" style="font-weight: bold;">ViewerClipTest</span> in the command entry window, and press <span class="_Override" style="font-weight: bold;">Return</span>.</p>
-                <p>The following table lists the differences between an Input Process and a Viewer Process.</p>
-                <table style="mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-                    <col width="235px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="225px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Input Process</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                                <p class="CellHeading">Viewer Process</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Set by selecting the node in the Node Graph and choosing <span class="_Override" style="font-weight: bold;">Edit</span> &gt; <span class="_Override" style="font-weight: bold;">Node</span> &gt; <span class="_Override" style="font-weight: bold;">Use as Input Process</span>.</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Registered using Python.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Activated using the IP button in the Viewer controls.</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Activated using the Viewer Process dropdown menu in the Viewer controls.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Requires that the node exists in the Node Graph. Can quickly and easily be modified by artists. Can also be accidentally deleted, disabling the effect.</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Is defined in a text file called menu.py that is run at start-up. Accessible for artists, but not likely to be accidentally modified or deleted.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Script dependent. Unless your Input Process node is saved in the template.nk file that is loaded at start-up, the Input Process is lost when you restart <span class="CustomProduct">Nuke Studio</span>.</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Session independent. The Viewer Processes registered in menu.py are always available in each new session of <span class="CustomProduct">Nuke Studio</span>.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">There can only be one Input Process at a time. Setting a new Input Process overrides any previously used Input Process.</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">There can be an unlimited number of Viewer Processes available in the Viewer Process dropdown menu. For example, it is possible to register Viewer Processes in any menu.py file at start-up, so Viewer Processes can be added at any directory in your NUKE_PATH.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">Useful for temporary or non-critical viewing options that you want in the current shot for convenience, or for testing Viewer Processes before registering them. Can also be used for other things, such as field charts or masks that may be switched on or off and changed around in the shot.</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p class="CellBody">Useful for viewing options that you often need or that should not be modified by artists on a shot-by-shot basis.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Note that Input Processes and Viewer Processes are part of a built-in, fixed pipeline of nodes that are applied to images before they are displayed in the Viewer. This pipeline is either:<br></br>gain &gt; Input Process &gt; Viewer Process &gt; gamma &gt; dither &gt; channels &gt; cliptest (if <span class="_Override" style="font-weight: bold;">input process order</span> has been set to <span class="_Override" style="font-weight: bold;">before viewer process</span> in the Viewer settings) <br></br>OR<br></br>gain &gt; Viewer Process &gt; Input Process &gt; gamma &gt; dither &gt; channels &gt; cliptest (if <span class="_Override" style="font-weight: bold;">input process order</span> has been set to <span class="_Override" style="font-weight: bold;">after viewer process</span> in the Viewer settings).<br></br>However, depending on what the Input Process and Viewer Process are doing, the order in the built-in pipeline may not be the correct order. Therefore, if your Input Process or Viewer Process have controls that also exist for the Viewer, such as float controls named <span class="_Override" style="font-weight: bold;">gain</span>, <span class="_Override" style="font-weight: bold;">gamma</span>, or<span class="_Override" style="font-weight: bold;"> cliptest</span>, then the Viewer drives them from the corresponding Viewer controls and does not do that image processing itself. This allows you to implement these controls in your Input Process or Viewer Process node/gizmo using whatever nodes and order you want. If your Input Process and Viewer Process do not have these controls, then the Viewer applies the effects in its normal way according to the built-in pipeline.<br></br>In the built-in pipeline, dither is applied to diffuse round-off errors in conversion of floating point data to the actual display bit depth. Although the cliptest is drawn at the end, it is computed on the image as input to the Viewer.<br></br></p>
-                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>By default, the predefined Viewer Processes, <span class="_Override" style="font-weight: bold;">sRGB</span> and <span class="_Override" style="font-weight: bold;">rec709</span>, affect all channels. However, if you want them to only affect the red, green, and blue channels, you can activate <span class="_Override" style="font-weight: bold;">apply LUT to color channels only</span> in the individual Viewer Settings or on the <span class="_Override" style="font-weight: bold;">Viewers</span> tab of the Preferences.</p>
-                <h4>Input Process Controls</h4>
-                <p>To activate or deactivate the effect of an Input Process, click the IP button in the Viewer controls. Note that the IP button only appears if the <span class="_Override" style="font-weight: bold;">input process</span> field in the Viewer settings is not empty. The button is also only enabled when a node in the Node Graph is set as an Input Process.</p>
-                <table>
-                    <col style="width: 70mm;" />
-                    <tbody>
-                        <tr>
-                            <td>
-                                <p class="graphic">
-                                    <img src="../../resources/images/gsg_images/8_16.png" style="margin-right: 1.000061px;margin-bottom: 1.000065px;" />
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="caption">Toggling the use of the Input Process.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>To open the Viewer settings, press <span class="_Override" style="font-weight: bold;">S</span> on the Viewer, or select <span class="_Override" style="font-weight: bold;">Viewer Settings</span> from the Viewer’s right-click menu. By default, <span class="_Override" style="font-weight: bold;">input process</span> is set to <span class="_Override" style="font-weight: bold;">VIEWER_INPUT</span>. If a node called VIEWER_INPUT exists in the Node Graph, it is automatically used as the input process for the Viewer. This ensures backwards compatibility with pre-5.2 scripts.</p>
-                <p>However, the Input Process node does not have to be named VIEWER_INPUT. You can use any node as an Input Process. Do the following:</p>
-                <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-                    <col style="width: 0px;" />
-                    <col style="width: 25px;" />
-                    <col style="width: auto;" />
-                    <tr>
-                        <td valign="top" />
-                        <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                        </td>
-                        <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the node in the Node Graph and choose <span class="_Override" style="font-weight: bold;">Edit</span> &gt; <span class="_Override" style="font-weight: bold;">Node</span> &gt; <span class="_Override" style="font-weight: bold;">Use as Input Process</span>.</td>
-                    </tr>
-                </table>
-                <p class="numberedCont">Alternatively, you can press <span class="_Override" style="font-weight: bold;">S</span> on the Viewer to open the Viewer settings and enter the name of the node in the <span class="_Override" style="font-weight: bold;">input process</span> field. </p>
-                <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-                    <col style="width: 0px;" />
-                    <col style="width: 25px;" />
-                    <col style="width: auto;" />
-                    <tr>
-                        <td valign="top" />
-                        <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                        </td>
-                        <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Viewer settings, you can also define whether the Input Process is applied before or after the Viewer Process currently in use. To do so, set <span class="_Override" style="font-weight: bold;">input process order</span> either to <span class="_Override" style="font-weight: bold;">before viewer process</span> or <span class="_Override" style="font-weight: bold;">after viewer process</span>.</td>
-                    </tr>
-                </table>
-                <p>The Input Process node should not be connected to other nodes in the Node Graph. If you attempt to connect it, an error is displayed in the Viewer. If you delete the Input Process node from the Node Graph, the effect of the Input Process is disabled. </p>
-                <h4>Viewer Process Controls</h4>
-                <p>To activate a Viewer Process, select it from the Viewer Process dropdown menu in the top right corner of the Viewer. Any images you now view using this Viewer are passed through the selected Viewer Process.</p>
-                <p class="graphic">
-                    <img src="../../resources/images/gsg_images/8_46.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000067px;" />
-                </p>
-                <p><span class="CustomProduct">Nuke Studio</span> includes the following predefined Viewer Process gizmos: <span class="_Override" style="font-weight: bold;">sRGB</span> and <span class="_Override" style="font-weight: bold;">rec709</span>. By default, sRGB is used because it is a best-guess default for a typical computer monitor.</p>
-                <p>In addition to using the predefined Viewer Processes, you can also add your own by registering a node or gizmo as a Viewer Process. You can register as many Viewer Processes with custom Viewer LUTs as you like. <MadCap:conditionalText data-mc-conditions="Default.ScreenOnly">For more information on creating and registering custom Viewer Processes, see <span class="_Override" style="font-style: normal;"><a href="../../user_guide/configuring_nuke/creating_viewer_processes.html" class="noPage MCXref xref xrefnoPage"><span style="color: 00B4E0;" class="mcFormatColor">Creating Custom Viewer Processes</span></a></span> in the <span class="_Override" style="font-style: normal;"><a href="../../user_guide/configuring_nuke/configuring_nuke.html" class="noPage MCXref xref xrefnoPage"><span style="color: 00B4E0;" class="mcFormatColor">Configuring Nuke</span></a></span> chapter in the <span class="_Override" style="font-style: italic;"><span style="font-style: normal;" class="CustomProduct">Nuke Studio</span></span><span class="_Override" style="font-style: italic;"></span>User Guide<i>.</i></MadCap:conditionalText></p>
-                <p>All available Viewer Processes (both predefined and custom ones) appear in the Viewer Process dropdown menu in the Viewer controls. To disable the use of a Viewer Process, select <span class="_Override" style="font-weight: bold;">None</span> from the Viewer Process dropdown menu.</p>
-                <p>To open the properties panel of the currently active Viewer Process, select <span class="_Override" style="font-weight: bold;font-style: italic;">show panel</span> from the Viewer Process dropdown menu.</p>
-                <p>Note that if the control you want to adjust has the same name as any of the Viewer controls (for example, <span class="_Override" style="font-weight: bold;">gain</span> or <span class="_Override" style="font-weight: bold;">gamma</span>), you should adjust the control on the Viewer. This drives the control in the following:</p>
-                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>the Input Process’ controls if an Input Process is in use</p>
-                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>in the Viewer Process’ controls if no Input Process is in use.</p>
-                <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you want to render out a file with the Viewer Process effect baked in, you can select <span class="_Override" style="font-weight: bold;">Edit</span> &gt; <span class="_Override" style="font-weight: bold;">Node</span> &gt; <span class="_Override" style="font-weight: bold;">Copy Viewer Process to Node Graph</span> to create an instance of the Viewer Process node in the Node Graph.</p>
-            </div>
-        </div>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;margin-left: auto;margin-right: auto;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>&#160;</td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+		/* ]]> */
+  </script>
+  <link href="../../resources/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../resources/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../resources/stylesheets/load.js">
+  </script>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+ </head>
+ <body>
+  <a name="using_the_interface_1080192335_913043">
+  </a>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     输入进程和查看器进程控件
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <span class="_Override" style="font-style: italic;">
+      输入过程
+     </span>
+     和
+     <span class="_Override" style="font-style: italic;">
+      浏览器进程
+     </span>
+     操作可用于在图像显示在显示器上之前修改 “已查看” 节点中的图像。两者都只影响激活它们的查看器，而不影响渲染的输出。输入过程是一个遗留系统，它使用节点图中实例化的节点来处理图像。这对于特定于脚本的、临时的或实验性的使用非常方便，但由于节点意外被删除或更改，并且仅限于单个节点，因此可能容易出错。添加了查看器处理系统
+     <span class="CustomProduct">
+      核武器工作室
+     </span>
+     5.2，并允许在启动时从 Python 编程语言注册 gizmo (或编译节点)。注册的项目出现在查看器的下拉菜单中，当选择项目时，该节点在查看器内部被实例化，因此没有意外删除或修改的危险。这也使多个浏览器进程可以在不同的启动点注册 (如
+     <span class="CustomProduct">
+      核武器工作室
+     </span>
+     通过 NUKE_PATH 菜单工作。py 文件)。
+    </p>
+    <p>
+     查看器设置包含一个选项，用于在查看器进程之前或之后应用输入进程，因此两者可以结合使用，例如, 在输入过程中应用投影蒙版后，观众过程应用电影外观轮廓。虽然您可以将两者合并到一个查看器进程节点中，但将操作分开可能是有利的。同时提供查看器过程和输入过程提供了很大的灵活性。
+    </p>
+    <p>
+     可以通过在节点图中创建节点并将其命名为输入进程来创建输入进程。
+     <span class="CustomProduct">
+      核武器工作室
+     </span>
+     的
+     <span class="_Override" style="font-weight: bold;">
+      编辑
+     </span>
+     菜单。输入进程命名后，IP 按钮将出现在查看器控件中。激活 IP 按钮后，您查看的任何图像都将通过输入过程传递。
+    </p>
+    <p>
+     与输入进程不同，查看器进程是使用 Python 注册的。它们可以独立于会话，并且总是出现在查看器的查看器进程下拉菜单中。有两个预定义的查看器进程,
+     <span class="_Override" style="font-weight: bold;">
+      SRGB
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      Rec709
+     </span>
+     ,但您也可以构建和添加自己的。从 “查看器进程” 下拉菜单中选择查看器进程后，您查看的任何图像都将通过该查看器进程。
+    </p>
+    <p>
+     只要有可能，输入进程和查看器进程都会在 GPU 上执行。1D LUT 和 3D LUT (Vectorfield) 有 GPU 实现，因此内置的查看器进程在 GPU 上运行 (除非
+     <span class="_Override" style="font-weight: bold;">
+      Gl 缓冲区深度
+     </span>
+     已设置为
+     <span class="_Override" style="font-weight: bold;">
+      字节
+     </span>
+     在查看器设置中，在这种情况下，所有处理都在 CPU 上完成)。要获得用于自定义查看器过程 gizmo 的节点的 GPU 版本，请按
+     <span class="_Override" style="font-weight: bold;">
+      x
+     </span>
+     在节点图上，输入
+     <span class="_Override" style="font-weight: bold;">
+      ViewerGain
+     </span>
+     ,
+     <span class="_Override" style="font-weight: bold;">
+      ViewerGamma
+     </span>
+     ,或
+     <span class="_Override" style="font-weight: bold;">
+      ViewerClipTest
+     </span>
+     在命令输入窗口中，然后按
+     <span class="_Override" style="font-weight: bold;">
+      返回
+     </span>
+     .
+    </p>
+    <p>
+     下表列出了输入进程和查看器进程之间的差异。
+    </p>
+    <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../resources/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="235px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="225px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+        <p class="CellHeading">
+         输入过程
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+        <p class="CellHeading">
+         浏览器进程
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         通过在节点图中选择节点并选择
+         <span class="_Override" style="font-weight: bold;">
+          编辑
+         </span>
+         &gt;
+         <span class="_Override" style="font-weight: bold;">
+          节点
+         </span>
+         &gt;
+         <span class="_Override" style="font-weight: bold;">
+          用作输入过程
+         </span>
+         .
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         使用 Python 注册。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         使用查看器控件中的 IP 按钮激活。
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         使用查看器控件中的查看器进程下拉菜单激活。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         要求节点存在于节点图中。艺术家可以快速轻松地修改。也可以不小心删除，禁用效果。
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         在一个名为 menu.py 的文本文件中定义，该文件在启动时运行。艺术家可以访问，但不太可能被意外修改或删除。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         脚本依赖。除非您的输入进程节点保存在启动时加载的 template.nk 文件中，否则重新启动时输入进程将丢失
+         <span class="CustomProduct">
+          核武器工作室
+         </span>
+         .
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         会话独立。在 menu.py 中注册的查看器进程在的每个新会话中都始终可用
+         <span class="CustomProduct">
+          核武器工作室
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         一次只能有一个输入过程。设置新的输入进程将覆盖以前使用的任何输入进程。
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         “查看器进程” 下拉菜单中可以有无限数量的查看器进程。例如，可以在启动时在任何 menu.py 文件中注册查看器进程，因此可以在 NUKE_PATH 中的任何目录中添加查看器进程。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         用于临时或非关键的查看选项，您希望在当前快照中查看这些选项以便于使用，或者在注册之前测试查看器进程。也可以用于其他事情，如场图或面具，可以打开或关闭，并改变周围的镜头。
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p class="CellBody">
+         用于查看您经常需要的选项，或者艺术家不应该逐镜头修改的选项。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+     <span class="autonumber">
+      <span>
+       <span class="mcFormatColor" style="color: Black;">
+        注意:
+       </span>
+      </span>
+     </span>
+     Note that Input Processes and Viewer Processes are part of a built-in, fixed pipeline of nodes that are applied to images before they are displayed in the Viewer. This pipeline is either:
+     <br/>
+     gain &gt; Input Process &gt; Viewer Process &gt; gamma &gt; dither &gt; channels &gt; cliptest (if
+     <span class="_Override" style="font-weight: bold;">
+      输入过程顺序
+     </span>
+     has been set to
+     <span class="_Override" style="font-weight: bold;">
+      在查看器进程之前
+     </span>
+     in the Viewer settings)
+     <br/>
+     OR
+     <br/>
+     gain &gt; Viewer Process &gt; Input Process &gt; gamma &gt; dither &gt; channels &gt; cliptest (if
+     <span class="_Override" style="font-weight: bold;">
+      input process order
+     </span>
+     has been set to
+     <span class="_Override" style="font-weight: bold;">
+      浏览器进程后
+     </span>
+     in the Viewer settings).
+     <br/>
+     However, depending on what the Input Process and Viewer Process are doing, the order in the built-in pipeline may not be the correct order. Therefore, if your Input Process or Viewer Process have controls that also exist for the Viewer, such as float controls named
+     <span class="_Override" style="font-weight: bold;">
+      增益
+     </span>
+     ,
+     <span class="_Override" style="font-weight: bold;">
+      伽马
+     </span>
+     , or
+     <span class="_Override" style="font-weight: bold;">
+      快船测试
+     </span>
+     , then the Viewer drives them from the corresponding Viewer controls and does not do that image processing itself. This allows you to implement these controls in your Input Process or Viewer Process node/gizmo using whatever nodes and order you want. If your Input Process and Viewer Process do not have these controls, then the Viewer applies the effects in its normal way according to the built-in pipeline.
+     <br/>
+     In the built-in pipeline, dither is applied to diffuse round-off errors in conversion of floating point data to the actual display bit depth. Although the cliptest is drawn at the end, it is computed on the image as input to the Viewer.
+     <br/>
+    </p>
+    <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+     <span class="autonumber">
+      <span>
+       <span class="mcFormatColor" style="color: Black;">
+        注意:
+       </span>
+      </span>
+     </span>
+     默认情况下，预定义的查看器进程,
+     <span class="_Override" style="font-weight: bold;">
+      SRGB
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      Rec709
+     </span>
+     ,影响所有渠道。但是，如果您希望它们只影响红色、绿色和蓝色通道，您可以激活
+     <span class="_Override" style="font-weight: bold;">
+      仅将 LUT 应用于彩色通道
+     </span>
+     在单个查看器设置中或在
+     <span class="_Override" style="font-weight: bold;">
+      观众
+     </span>
+     首选项的选项卡。
+    </p>
+    <h4>
+     输入过程控制
+    </h4>
+    <p>
+     要激活或停用输入过程的效果，请单击查看器控件中的 IP 按钮。请注意，IP 按钮仅在
+     <span class="_Override" style="font-weight: bold;">
+      输入过程
+     </span>
+     查看器设置中的字段不为空。仅当节点图中的节点设置为输入进程时，才会启用该按钮。
+    </p>
+    <table>
+     <col style="width: 70mm;"/>
+     <tbody>
+      <tr>
+       <td>
+        <p class="graphic">
+         <img src="../../resources/images/gsg_images/8_16.png" style="margin-right: 1.000061px;margin-bottom: 1.000065px;"/>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td class="caption">
+        切换输入过程的使用。
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p>
+     要打开查看器设置，请按
+     <span class="_Override" style="font-weight: bold;">
+      S
+     </span>
+     在查看器上，或选择
+     <span class="_Override" style="font-weight: bold;">
+      查看器设置
+     </span>
+     从查看器的右击菜单中。默认情况下,
+     <span class="_Override" style="font-weight: bold;">
+      输入过程
+     </span>
+     设置为
+     <span class="_Override" style="font-weight: bold;">
+      VIEWER_INPUT
+     </span>
+     。如果节点图中存在名为 VIEWER_INPUT 的节点，它将自动用作查看器的输入过程。这确保了与 pre-5.2 脚本的向后兼容性。
+    </p>
+    <p>
+     但是，输入进程节点不必命名为 VIEWER_INPUT。您可以使用任何节点作为输入过程。执行以下操作:
+    </p>
+    <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+     <col style="width: 0px;"/>
+     <col style="width: 25px;"/>
+     <col style="width: auto;"/>
+     <tr>
+      <td valign="top">
+      </td>
+      <td class="AutoNumber_p_numbered1" valign="top">
+       <span>
+        1。
+       </span>
+      </td>
+      <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+       在节点图中选择节点并选择
+       <span class="_Override" style="font-weight: bold;">
+        编辑
+       </span>
+       &gt;
+       <span class="_Override" style="font-weight: bold;">
+        节点
+       </span>
+       &gt;
+       <span class="_Override" style="font-weight: bold;">
+        用作输入过程
+       </span>
+       .
+      </td>
+     </tr>
+    </table>
+    <p class="numberedCont">
+     或者，您可以按
+     <span class="_Override" style="font-weight: bold;">
+      S
+     </span>
+     在查看器上打开查看器设置，并在
+     <span class="_Override" style="font-weight: bold;">
+      输入过程
+     </span>
+     字段。
+    </p>
+    <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+     <col style="width: 0px;"/>
+     <col style="width: 25px;"/>
+     <col style="width: auto;"/>
+     <tr>
+      <td valign="top">
+      </td>
+      <td class="AutoNumber_p_numbered1" valign="top">
+       <span>
+        2.
+       </span>
+      </td>
+      <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+       在查看器设置中，您还可以定义在当前使用的查看器进程之前还是之后应用输入进程。要这样做，设置
+       <span class="_Override" style="font-weight: bold;">
+        输入过程顺序
+       </span>
+       要么到
+       <span class="_Override" style="font-weight: bold;">
+        在查看器进程之前
+       </span>
+       或
+       <span class="_Override" style="font-weight: bold;">
+        浏览器进程后
+       </span>
+       .
+      </td>
+     </tr>
+    </table>
+    <p>
+     输入进程节点不应连接到节点图中的其他节点。如果尝试连接它，查看器中将显示错误。如果从节点图中删除输入进程节点，则禁用输入进程的效果。
+    </p>
+    <h4>
+     查看器进程控件
+    </h4>
+    <p>
+     要激活查看器进程，请从查看器右上角的查看器进程下拉菜单中选择它。您现在使用此查看器查看的任何图像都将通过选定的查看器进程进行传递。
+    </p>
+    <p class="graphic">
+     <img src="../../resources/images/gsg_images/8_46.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000067px;"/>
+    </p>
+    <p>
+     <span class="CustomProduct">
+      核武器工作室
+     </span>
+     包括以下预定义的查看器进程小控件:
+     <span class="_Override" style="font-weight: bold;">
+      SRGB
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      Rec709
+     </span>
+     。默认情况下，使用 sRGB 是因为它是典型计算机监视器的最佳猜测默认值。
+    </p>
+    <p>
+     除了使用预定义的查看器进程之外，您还可以通过将节点或 gizmo 注册为查看器进程来添加自己的进程。您可以使用自定义查看器 LUTs 注册任意数量的查看器进程。
+     <madcap:conditionaltext data-mc-conditions="Default.ScreenOnly">
+      有关创建和注册自定义查看器进程的更多信息，请参见
+      <span class="_Override" style="font-style: normal;">
+       <a class="noPage MCXref xref xrefnoPage" href="../../user_guide/configuring_nuke/creating_viewer_processes.html">
+        <span class="mcFormatColor" style="color: 00B4E0;">
+         创建自定义查看器进程
+        </span>
+       </a>
+      </span>
+      在
+      <span class="_Override" style="font-style: normal;">
+       <a class="noPage MCXref xref xrefnoPage" href="../../user_guide/configuring_nuke/configuring_nuke.html">
+        <span class="mcFormatColor" style="color: 00B4E0;">
+         配置 Nuke
+        </span>
+       </a>
+      </span>
+      第二章
+      <span class="_Override" style="font-style: italic;">
+       <span class="CustomProduct" style="font-style: normal;">
+        核武器工作室
+       </span>
+      </span>
+      <span class="_Override" style="font-style: italic;">
+      </span>
+      用户指南
+      <i>
+       .
+      </i>
+     </madcap:conditionaltext>
+    </p>
+    <p>
+     所有可用的查看器进程 (包括预定义进程和自定义进程) 都出现在查看器控件的查看器进程下拉菜单中。要禁用查看器进程的使用，请选择
+     <span class="_Override" style="font-weight: bold;">
+      没有
+     </span>
+     从查看器进程下拉菜单中。
+    </p>
+    <p>
+     要打开当前活动的查看器进程的 “属性” 面板，请选择
+     <span class="_Override" style="font-weight: bold;font-style: italic;">
+      显示面板
+     </span>
+     从查看器进程下拉菜单中。
+    </p>
+    <p>
+     请注意，如果要调整的控件与任何查看器控件具有相同的名称 (例如,
+     <span class="_Override" style="font-weight: bold;">
+      增益
+     </span>
+     或
+     <span class="_Override" style="font-weight: bold;">
+      伽马
+     </span>
+     )，您应该调整查看器上的控件。这将驱动以下控件:
+    </p>
+    <p class="bulleted" data-mc-autonum="• ">
+     <span class="autonumber">
+      <span>
+       •
+      </span>
+     </span>
+     输入进程控制输入进程是否正在使用
+    </p>
+    <p class="bulleted" data-mc-autonum="• ">
+     <span class="autonumber">
+      <span>
+       •
+      </span>
+     </span>
+     在查看器进程的控件中，如果没有使用输入进程。
+    </p>
+    <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+     <span class="autonumber">
+      <span>
+       <span class="mcFormatColor" style="color: Black;">
+        提示:
+       </span>
+      </span>
+     </span>
+     如果要渲染包含查看器进程效果的文件，可以选择
+     <span class="_Override" style="font-weight: bold;">
+      编辑
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      节点
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      将查看器进程复制到节点图
+     </span>
+     在节点图中创建查看器进程节点的实例。
+    </p>
+   </div>
+  </div>
+  <p>
+  </p>
+  <p>
+  </p>
+  <p>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;margin-left: auto;margin-right: auto;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
 </html>

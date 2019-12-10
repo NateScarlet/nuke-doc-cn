@@ -1,431 +1,937 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Tutorials|Written Tutorials|Keying and Mattes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Keying Video</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#getting_started/tutorial3/keying_video.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Tutorials|Written Tutorials|Keying and Mattes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   键控视频
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#getting_started/tutorial3/keying_video.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Keying Video</h1>
-        <p class="afterHead"><span class="CustomProduct">Nuke</span>’s Keyer node provides standard controls for pulling luma keys, green and blue screens, and color channels. We’ll use this keyer - and a few other nodes - to handle a special keying situation: video. </p>
-        <p>We’ll begin by inserting a group of nodes that allow you to pull a cleaner matte by filtering the compression artifacts in the chroma red and chroma blue channels of digital video. This involves converting the image back to its original colorspace, blurring the channels with the artifacts, and then converting the image back to <span class="CustomProduct">Nuke</span>’s native linear colorspace. </p>
-        <h3>To Prepare Video Footage for Keying</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the “<b>Keying Video</b>” node tree, select the <b>fgman.0001.dpx</b> node. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">When <span class="CustomProduct">Nuke</span> reads images into the workspace, it converts them to a linear colorspace. So here the first step is to convert the video image back to video YCbCr colorspace. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Right-click over the node tree and choose <b>Color</b> &gt; <b>Colorspace</b>. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the <b>Colorspace1</b> control panel, change the <b>out</b> parameter to <b>YCbCr</b>. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video1.png" />
-        </p>
-        <p class="numberedCont">No, you’re not having an 80’s flashback. What you’re experiencing is the result of the red, green, and blue channels remapped to the native video channels for luma (Y), chroma blue (Cb) and chroma red (Cr), respectively. </p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video2.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Press <b>r</b> over the Viewer to look at the Y channel. Press <b>g</b> to view Cb, and <b>b</b> to view Cr.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video3.png" />
-        </p>
-        <p class="numberedCont">Above, you see the Y channel image on the left. The Cb channel image is shown on the right. Notice the “blocky” compression artifacts in the Cb channel. These make it difficult to get a clean edge for your matte, but since most of your detail is in the Y channel, you can apply a small blur operation to the Cb and Cr channels to improve the situation without losing much detail. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Press <b>r</b>, <b>g</b>, or <b>b</b> again to toggle back to all color channels. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Right-click on the Colorspace1 node and choose <b>Filter</b> &gt; <b>Blur</b>. In the Blur1 control panel, set the blur <b>size</b> to <b>4</b>. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video4.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Select <b>rgb</b> in the <b>channels</b> dropdown menu and uncheck the <b>red</b> channel box. You don’t want the blur operation to process the image in the red channel (the remapped Y or luma channel) because this channel is uncompressed.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Right-click on the Blur1 node and add another <b>Color</b> &gt; <b>Colorspace</b> node. Change the <b>in</b> parameter to <b>YCbCr</b> and the <b>out</b> parameter to <b>Linear</b>. This converts the image back to standard rgb/linear.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video5.png" />
-        </p>
-        <h3><a name="To_Pull_a_Basic_Greenscreen_Key"></a>To Pull a Basic Greenscreen Key</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the <b>Colorspace2</b> node, and choose <b>Keyer</b> &gt; <b>Keyer</b> from the right-click menu.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">This inserts a keyer named “luminance key,” which is the default keying operation for this node. </p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video6.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Attach a Viewer to the <b>luminance key</b> node and then press <b>A</b> to display the alpha channel. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">In the control panel for the Keyer node, you’ll see the “range” graph: </p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/key_keyer_cp.png" style="margin-right: 10.97824px;margin-bottom: 1.58313px;" />
-        </p>
-        <p class="numberedCont">The range graph is where you’ll adjust the low and high pixel values of the matte. The first yellow handle on the left determines the low or transparent values of the key and second handle, on the upper-right, determines your high or opaque values.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Drag the first yellow handle to the right until it reads <b>.303</b> (approximately), and watch the effect in the Viewer. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video7.png" />
-        </p>
-        <p class="numberedCont">This sets the low value for the matte. Any pixels that fall below this value are clipped to black. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Drag the yellow handle, located at the upper-right edge, to the left until it reads <b>.455</b> (approximately).</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video8.png" />
-        </p>
-        <p class="numberedCont">This sets the high value for the matte. Pixel values above this setting are clipped to white. At these settings, it’s not quite “matte-worthy,” so let’s make an adjustment. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Drag the <b>A</b> handle to change the low setting from <b>.303</b> to <b>.424</b>, and drag the <b>B</b> handle to change the high value from <b>.455</b> to <b>.61</b>. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video9.png" />
-        </p>
-        <p class="numberedCont">As you adjust the location of the handles, the slope of the line controls the softness, or level of grays, for the matte edge. A gradual slope produces a softer edge. A sharper slope produces a jagged or crunchy edge - drag the <b>A</b> handle on top of the <b>B</b> handle and you’ll see what that means. </p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/lumakey_curve.png" style="margin-right: 1.957367px;margin-bottom: 3.519866px;" />
-        </p>
-        <p class="numberedCont">The default positions let you control the low and high values, assuming your image has distinct light and dark areas. However, sometimes the subject of the matte falls into the “middle-gray” area; the <b>C</b> and <b>D</b> handles on the curve, after the first two, let you shift the center for the high values of the key.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Change the keying <b>operation</b> to <b>greenscreen</b>. Pull the high value handle to the right, up to the value of <b>1.0</b>. Then, set the low value at <b>.90</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/greenkey_view-1.png" style="margin-left: 0.1479685px;margin-top: 0.6729448px;margin-right: 0.9019887px;margin-bottom: 7.58251px;" />
-        </p>
-        <p class="numberedCont">There’s a lot of garbage around the image, but it looks like you’ve got a fairly clean edge around your subject. Let’s check it in the comp. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Switch the Viewer to display all color channels and then attach the Viewer to the <b>Merge (over)</b> node. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video10.png" />
-        </p>
-        <p class="numberedCont">That’s completely terrible. What happened? The alpha channel created by the greenscreen keyer must be multiplied into the pixel values of the original image in order to generate the matte. Some keyers, like Primatte, provide a “composite” output option which handles the multiplication for you. The Keyer node does not, so you'll have to do it manually. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Select the <b>greenscreen</b> keyer node and choose <b>Merge</b> &gt; <b>Premult</b> from the right-click menu. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video11.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Adjust the high and low ranges values in the greenscreen node’s control panel to refine the edges around your subject.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video12.png" />
-        </p>
-        <p class="numberedCont">This keyer isn’t particularly good at handling spill, so let’s add a color-correction node to remove those green edges. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Select the <b>Premult1</b> node and then choose <b>Color</b> &gt; <b>HueCorrect</b> from the right-click menu.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video13.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">Select the <b>g_sup</b> parameter in the <b>HueCorrect1</b> control panel to select the green suppression curve.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">Over the Viewer, press the <b>Ctrl</b> or <b>Cmd</b> key and scrub over the green edges.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video14.png" />
-        </p>
-        <p class="numberedCont">Inside the HueCorrect properties panel, you’ll see a yellow vertical line, which marks the place in the curve that you need to lower to suppress the samples pixels. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>13. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="13. &#160;">While viewing the edges you want to suppress, adjust the <b>g_sup</b> curve so that it looks similar to this: </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video15.png" />
-        </p>
-        <p class="numberedCont">When you’re satisfied with the spill-suppression, you may want to add a quick garbage matte to remove the rigging. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>14. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="14. &#160;">Click on an empty place in the node tree, and add a <b>Draw</b> &gt; <b>RotoPaint</b> node. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>15. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="15. &#160;">Select the <b>Bezier</b> tool in the RotoPaint toolbar on the left side of the Viewer and click (and drag if you want curved points) over the Viewer to draw a Bezier shape around the man. Four points should be enough. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video16.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>16. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="16. &#160;">Select the RotoPaint node and press <b>M</b> to add a Merge node - that’s the shortcut for choosing <b>Merge</b> &gt; <b>Merge</b> from the menu - and change the merge <b>operation</b> to <b>mask</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video17.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>17. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="17. &#160;">Rewire the nodes as shown below. The <b>RotoPaint1</b> node should be connected to the A input on the “mask” node, <b>HueCorrect1</b> should be connected to the B input. Connect the output of <b>mask</b> to the “elbow” dot. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video18.png" />
-        </p>
-        <p>This method of masking is a little different than what you did in the previous example. The point here is that there are different ways to structure these types of composites. Your results should look similar to the screen capture below. </p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/keying_video19.png" />
-        </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   键控视频
+  </h1>
+  <p class="afterHead">
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的 Keyer 节点提供了用于拉动亮度键、绿色和蓝色屏幕以及彩色通道的标准控件。我们将使用这个键控器和其他几个节点来处理一个特殊的键控情况: 视频。
+  </p>
+  <p>
+   我们将首先插入一组节点，这些节点允许您通过过滤数字视频中色度红色和色度蓝色通道中的压缩伪影来拉一个清洁器哑光。这包括将图像转换回其原始颜色空间，用人工制品模糊通道，然后将图像转换回
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的本地线性色彩空间。
+  </p>
+  <h3>
+   为键控准备视频镜头
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在“
+     <b>
+      键控视频
+     </b>
+     ”节点树，选择
+     <b>
+      Fgman.0001.dpx
+     </b>
+     节点。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   当
+   <span class="CustomProduct">
+    核武器
+   </span>
+   将图像读入工作区，它将它们转换为线性颜色空间。所以在这里，第一步是将视频图像转换回视频 YCbCr colorspace。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在节点树上单击鼠标右键，然后选择
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      色彩空间
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在
+     <b>
+      Colorspace1
+     </b>
+     控制面板，更改
+     <b>
+      出去
+     </b>
+     参数到
+     <b>
+      YCbCr
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video1.png"/>
+  </p>
+  <p class="numberedCont">
+   不，你没有 80 后的闪回。你所经历的是红色、绿色和蓝色通道重新映射到亮度 (Y) 、色度蓝色 (Cb) 和色度红色 (Cr) 的本地视频通道的结果, 分别。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video2.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     新闻
+     <b>
+      r
+     </b>
+     在观众面前看 Y 频道。新闻
+     <b>
+      g
+     </b>
+     查看 Cb，和
+     <b>
+      b
+     </b>
+     查看 Cr。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video3.png"/>
+  </p>
+  <p class="numberedCont">
+   上面，你看到左边的 Y 通道图像。Cb 通道图像显示在右侧。请注意 Cb 通道中的 “块状” 压缩工件。这些使得很难为你的哑光获得干净的边缘，但是由于你的大部分细节都在 Y 通道中, 您可以对 Cb 和 Cr 通道应用一个小的模糊操作，以改善情况，而不会丢失太多细节。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     新闻
+     <b>
+      r
+     </b>
+     ,
+     <b>
+      g
+     </b>
+     ,或
+     <b>
+      b
+     </b>
+     再次切换回所有颜色通道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     右键单击 Colorspace1 节点，然后选择
+     <b>
+      过滤器
+     </b>
+     &gt;
+     <b>
+      模糊
+     </b>
+     。在 Blur1 控制面板中，设置模糊
+     <b>
+      尺寸
+     </b>
+     到
+     <b>
+      4
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video4.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     选择
+     <b>
+      Rgb
+     </b>
+     在
+     <b>
+      渠道
+     </b>
+     下拉菜单并取消选中
+     <b>
+      红色
+     </b>
+     通道盒。您不希望模糊操作处理红色通道 (重新映射的 Y 或 luma 通道) 中的图像，因为该通道未压缩。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     右键单击 Blur1 节点并添加另一个
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      色彩空间
+     </b>
+     节点。更改
+     <b>
+      在
+     </b>
+     参数到
+     <b>
+      YCbCr
+     </b>
+     以及
+     <b>
+      出去
+     </b>
+     参数到
+     <b>
+      线性
+     </b>
+     。这将图像转换回标准 rgb/线性。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video5.png"/>
+  </p>
+  <h3>
+   <a name="To_Pull_a_Basic_Greenscreen_Key">
+   </a>
+   拉一个基本的绿屏键
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      Colorspace2
+     </b>
+     节点，然后选择
+     <b>
+      Keyer
+     </b>
+     &gt;
+     <b>
+      Keyer
+     </b>
+     从右击菜单中。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这将插入一个名为 “亮度键” 的键控器，这是该节点的默认键控操作。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video6.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将查看器附加到
+     <b>
+      亮度键
+     </b>
+     节点，然后按
+     <b>
+      一个
+     </b>
+     显示 alpha 通道。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   在 Keyer 节点的控制面板中，您将看到 “范围” 图:
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/key_keyer_cp.png" style="margin-right: 10.97824px;margin-bottom: 1.58313px;"/>
+  </p>
+  <p class="numberedCont">
+   Range graph 是调整哑光的低像素值和高像素值的地方。左边的第一个黄色手柄决定键的低值或透明值，右边的第二个手柄决定你的高值或不透明值。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将第一个黄色手柄向右拖动，直到显示
+     <b>
+      。303
+     </b>
+     (大约)，并在观众中观看效果。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video7.png"/>
+  </p>
+  <p class="numberedCont">
+   这将设置遮罩的低值。低于此值的任何像素都将被剪裁为黑色。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     将位于右上角边缘的黄色手柄向左拖动，直到显示
+     <b>
+      。455
+     </b>
+     (大约)。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video8.png"/>
+  </p>
+  <p class="numberedCont">
+   这将设置遮罩的高值。高于此设置的像素值被剪裁为白色。在这些设置下，它不太 “不值得”，所以让我们做一个调整。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     拖动
+     <b>
+      一个
+     </b>
+     用于更改低设置的句柄
+     <b>
+      。303
+     </b>
+     到
+     <b>
+      。424
+     </b>
+     ,并拖动
+     <b>
+      B
+     </b>
+     更改高值的句柄
+     <b>
+      。455
+     </b>
+     到
+     <b>
+      .61
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video9.png"/>
+  </p>
+  <p class="numberedCont">
+   调整控制柄的位置时，线的坡度控制磨砂边的柔度或灰色级别。逐渐倾斜会产生较软的边缘。更尖锐的坡度会产生锯齿状或脆脆的边缘-拖动
+   <b>
+    一个
+   </b>
+   顶部的手柄
+   <b>
+    B
+   </b>
+   处理一下，你就会明白这意味着什么。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/lumakey_curve.png" style="margin-right: 1.957367px;margin-bottom: 3.519866px;"/>
+  </p>
+  <p class="numberedCont">
+   默认位置允许您控制低值和高值，假设您的图像有不同的明暗区域。然而，有时哑光的主题落入 “中灰色” 区域;
+   <b>
+    C
+   </b>
+   和
+   <b>
+    D
+   </b>
+   曲线上的控制柄，在前两个控制柄之后，可以移动关键点的高值的中心。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     更改键控
+     <b>
+      操作
+     </b>
+     到
+     <b>
+      绿屏
+     </b>
+     。将高值句柄向右拉，直到的值
+     <b>
+      1.0
+     </b>
+     。然后，将低值设置为
+     <b>
+      .90
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/greenkey_view-1.png" style="margin-left: 0.1479685px;margin-top: 0.6729448px;margin-right: 0.9019887px;margin-bottom: 7.58251px;"/>
+  </p>
+  <p class="numberedCont">
+   图像周围有很多垃圾，但看起来你的主题周围有一个相当干净的边缘。让我们在 comp 中检查一下。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     切换查看器以显示所有颜色通道，然后将查看器附加到
+     <b>
+      合并 (结束)
+     </b>
+     节点。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video10.png"/>
+  </p>
+  <p class="numberedCont">
+   那太可怕了。发生了什么？绿屏键控器创建的 alpha 通道必须与原始图像的像素值相乘才能生成遮罩。一些键控器，如 Primatte，提供了一个 “复合” 输出选项，为你处理乘法运算。Keyer 节点没有，所以你必须手动完成。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     选择
+     <b>
+      绿屏
+     </b>
+     键控节点并选择
+     <b>
+      合并
+     </b>
+     &gt;
+     <b>
+      Premult
+     </b>
+     从右击菜单中。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video11.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     调整 greenscreen 节点的控制面板中的 “高” 和 “低” 范围值，以细化主题周围的边缘。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video12.png"/>
+  </p>
+  <p class="numberedCont">
+   这个键控器并不特别擅长处理溢出，所以让我们添加一个颜色校正节点来移除这些绿色边缘。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     选择
+     <b>
+      Premult1
+     </b>
+     节点，然后选择
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      HueCorrect
+     </b>
+     从右击菜单中。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video13.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      11。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="11.  " valign="top">
+     选择
+     <b>
+      G_sup
+     </b>
+     中的参数
+     <b>
+      Huecorret1
+     </b>
+     控制面板选择绿色抑制曲线。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      12.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="12.  " valign="top">
+     在查看器上，按
+     <b>
+      Ctrl
+     </b>
+     或
+     <b>
+      Cmd
+     </b>
+     按键并擦洗绿色边缘。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video14.png"/>
+  </p>
+  <p class="numberedCont">
+   在 HueCorrect 属性面板中，您将看到一条黄色垂直线，它标记了曲线中需要降低以抑制样本像素的位置。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      13。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="13.  " valign="top">
+     在查看要抑制的边时，调整
+     <b>
+      G_sup
+     </b>
+     曲线，使其看起来类似:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video15.png"/>
+  </p>
+  <p class="numberedCont">
+   当你对溢出抑制感到满意时，你可能想添加一个快速垃圾哑光来移除索具。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      14.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="14.  " valign="top">
+     单击节点树中的空位置，然后添加
+     <b>
+      绘制
+     </b>
+     &gt;
+     <b>
+      RotoPaint
+     </b>
+     节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      15。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="15.  " valign="top">
+     选择
+     <b>
+      贝塞尔
+     </b>
+     工具在浏览器左侧的 RotoPaint 工具栏中，点击 (如果你想要弯曲的点，可以拖动) 在浏览器上，在男人周围画一个 Bezier 形状。四点应该足够了。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video16.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      16。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="16.  " valign="top">
+     选择 RotoPaint 节点并按
+     <b>
+      M
+     </b>
+     添加合并节点-这是选择的快捷方式
+     <b>
+      合并
+     </b>
+     &gt;
+     <b>
+      合并
+     </b>
+     从菜单中-更改合并
+     <b>
+      操作
+     </b>
+     到
+     <b>
+      面具
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video17.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      17.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="17.  " valign="top">
+     重新连接节点，如下所示。的
+     <b>
+      RotoPaint1
+     </b>
+     节点应连接到 “屏蔽” 节点上的 A 输入,
+     <b>
+      Huecorret1
+     </b>
+     应连接到 B 输入。连接的输出
+     <b>
+      面具
+     </b>
+     到 “肘部” 点。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video18.png"/>
+  </p>
+  <p>
+   这种屏蔽方法与前面示例中的方法略有不同。这里的要点是，有不同的方法来构建这些类型的复合材料。你的结果应该类似于下面的屏幕截图。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/keying_video19.png"/>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -439,5 +945,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
