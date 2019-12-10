@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 
+from cached_property import threaded_cached_property
+import json
 import pathlib
 from concurrent import futures
 from itertools import chain
-import json
+from threading import Lock
 
-from aliyunsdkalimt.request.v20190107 import TranslateGeneralRequest
-from aliyunsdkcore.client import AcsClient
 import bs4
 import environs
 import fire
+from aliyunsdkalimt.request.v20190107 import TranslateGeneralRequest
+from aliyunsdkcore.client import AcsClient
 
 
 def get_client() -> AcsClient:
@@ -67,24 +69,40 @@ def translate_html_file(client, path):
         f.write(soup.prettify())
 
 
-if __name__ == '__main__':
-    class CLI:
-        def __init__(self) -> None:
-            self._client = get_client()
+class CLI:
+    record_file = 'translated_files'
 
-        def html(self, path):
-            path = pathlib.Path(path).as_posix()
-            with open('translated_files', 'r') as f:
-                if path + '\n' in f:
-                    return
+    def __init__(self) -> None:
+        self._client = get_client()
+        self._record_lock = Lock()
 
-            translate_html_file(self._client, path)
-            with open('translated_files', 'a') as f:
+    @threaded_cached_property
+    def _translated_files(self):
+        with self._record_lock:
+            with open(self.record_file, 'r') as f:
+                return f.readlines()
+
+    def _add_translated_file(self, path):
+        path = pathlib.Path(path).as_posix()
+        with self._record_lock:
+            with open(self.record_file, 'a') as f:
                 f.write(path + '\n')
             print(path)
 
-        def html_dir(self, path):
-            with futures.ThreadPoolExecutor() as executor:
-                executor.map(self.html, pathlib.Path(path).glob('**/*.html'))
+    def _is_translated_file(self, path) -> bool:
+        path = pathlib.Path(path).as_posix()
+        return path + '\n' in self._translated_files
 
+    def html(self, path):
+        if self._is_translated_file(path):
+            return
+        translate_html_file(self._client, path)
+        self._add_translated_file(path)
+
+    def html_dir(self, path):
+        with futures.ThreadPoolExecutor() as executor:
+            executor.map(self.html, pathlib.Path(path).glob('**/*.html'))
+
+
+if __name__ == '__main__':
     fire.Fire(CLI())
