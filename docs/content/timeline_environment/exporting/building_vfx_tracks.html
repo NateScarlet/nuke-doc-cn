@@ -1,321 +1,763 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Timeline Editing in Nuke Studio|Exporting from Nuke Studio|Exporting Sequences and Track Items">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Building VFX Tracks and Comp Clips</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#timeline_environment/exporting/building_vfx_tracks.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Timeline Editing in Nuke Studio|Exporting from Nuke Studio|Exporting Sequences and Track Items" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   构建 VFX 轨道和 Comp 剪辑
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#timeline_environment/exporting/building_vfx_tracks.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Building VFX Tracks and Comp Clips</h2>
-        <p>When the compositing work is complete, the clips are ready to re-ingest. The shot template defines where the Nuke files reside, so all you need to do is instruct <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> to build tracks from previous exports. See <a href="#Building_Tracks_From_Export_Structure" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Building Tracks From Export Structure</span></a> for more information.</p>
-        <p>Alternatively, if you have a history of rendered VFX clips, different versions and so on, you can also build tracks from export tags to select from a list of available clips. This method allows you to add <b>Comp Clips</b> to the timeline, which act as containers for <span class="CustomProduct">Nuke</span> <b>.nk</b> scripts, or placeholders for <span class="CustomProduct">Nuke</span> renders. See <a href="#Building_Comp_Clips_From_Export_Tags" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Building Comp Clips From Export Tags</span></a> or <a href="#Building_Render_Placeholders_From_Export_Tags" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Building Render Placeholders From Export Tags</span></a> for more information.</p>
-        <h3><a name="Building_Tracks_From_Export_Structure"></a>Building Tracks From Export Structure</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the required clips on the timeline and right-click to display the context sensitive menu.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You may find it easier to select clips in the spreadsheet and then right-click on the timeline.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click <b>Build Track</b> &gt; <b>From Export Structure</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The <b>Build Track From Export Structure</b> dialog displays.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_hiero/exportmanagement/build_ex1a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter a <b>Track Name</b> or use the default <b>VFX</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select an <b>Export Preset</b> using the dropdown menu. In this case, select the same preset used during the export.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Enter the file path of the <b>Export Root</b> directory or click <b>Choose</b> and browse to the location.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The root directory is the location entered in <b>Export To</b> when exporting the project.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Select the Content preset you intend to ingest from the shot template. In this case, the <b>Nuke Write Node</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Click <b>Build</b> to create the VFX track.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> warns you if no selection is made in the <b>Content</b> column.</p>
-        <p class="numberedCont"><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> automatically creates a new track containing the VFX clips, if they exist, or offline place holders if the clips are a work in progress.</p>
-        <p class="numberedCont">If a clip instance already exists in any of the target tracks, a new track is created to hold the new clip instances.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_hiero/exportmanagement/build_ex2_453x237.png" class="cm12" style="width: 453;height: 237;" />
-        </p>
-        <p class="numberedCont">The clips are automatically updated when work is complete as long as they are saved with the expected name and location, as specified in the shot template.</p>
-        <h3><a name="Building_Comp_Clips_From_Export_Tags"></a>Building Comp Clips From Export Tags</h3>
-        <p>When you build a track from an export tag, <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> imports Comp Clips containing the <span class="CustomProduct">Nuke</span> script, by default. Comp Clips are clip instances that reference <span class="CustomProduct">Nuke</span> scripts, rather than being placeholders for offline clips as in the <a href="#Building_Render_Placeholders_From_Export_Tags" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Building Render Placeholders From Export Tags</span></a> workflow.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the required clips on the timeline and right-click to display the context sensitive menu.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You may find it easier to select clips in the spreadsheet and then right-click on the timeline.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click <b>Build Track</b> &gt; <b>From Export Tag</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The <b>Build Track From Export Tag</b> dialog displays.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter a <b>Track Name</b> or use the default <b>VFX</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select the required export tag in the left-hand panel to display tag information in the right-hand panel.</td>
-            </tr>
-        </table>
-        <p class="numberedCont"><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> imports the <b>.nk</b> Comp Clip by default.</p>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/build_from_export_tag_454x273.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;width: 454;height: 273;" />
-        </p>
-        <p class="numberedCont"> If you just want to import the offline renders when they're finished, disable the <b>Create Comp Clips</b> checkbox. See <a href="#Building_Render_Placeholders_From_Export_Tags" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Building Render Placeholders From Export Tags</span></a> for more information.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Click <b>Build</b> to create the VFX track.</td>
-            </tr>
-        </table>
-        <p class="numberedCont"><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> automatically creates a new track containing the Comp Clips. If a clip instance already exists in any of the target tracks, a new track is created to hold the new clip instances.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_hiero/exportmanagement/build_ex2b_453x283.png" class="cm12" style="width: 453;height: 283;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">You can double-click Comp Clips to open them in <MadCap:conditionalText data-mc-conditions="Custom.NukeStudio"><span class="CustomProductStudio">Nuke Studio</span>'s <span class="CustomCompositing">Compositing environment</span></MadCap:conditionalText> to make edits as required.</td>
-            </tr>
-        </table>
-        <h3><a name="Building_Render_Placeholders_From_Export_Tags"></a>Building Render Placeholders From Export Tags</h3>
-        <p>When you build a track from an export tag, you can choose to import the renders from the .<b>nk</b> script, rather than Comp Clips which contain the <span class="CustomProduct">Nuke</span> script.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the required clips on the timeline and right-click to display the context sensitive menu.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You may find it easier to select clips in the spreadsheet and then right-click on the timeline.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click <b>Build Track</b> &gt; <b>From Export Tag</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The <b>Build Track From Export Tag</b> dialog displays.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter a <b>Track Name</b> or use the default <b>VFX</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select the required export tag in the left-hand panel to display tag information in the right-hand panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Disable the <b>Create Comp Clips</b> checkbox to import the offline renders when they're finished.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/build_from_export_tag1_454x273.png" style="width: 454;height: 273;" />
-        </p>
-        <p class="numberedCont">  If you want to import the <b>.nk</b> Comp Clips, enable the <b>Create Comp Clips</b> checkbox. See  <a href="#Building_Comp_Clips_From_Export_Tags" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Building Comp Clips From Export Tags</span></a> for more information.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Click <b>Build</b> to create the VFX track.</td>
-            </tr>
-        </table>
-        <p class="numberedCont"><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> automatically creates a new track containing the VFX clips, if they exist, or offline place holders if the clips are a work in progress.</p>
-        <p class="numberedCont">If a clip instance already exists in any of the target tracks, a new track is created to hold the new clip instances.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_hiero/exportmanagement/build_ex2a_453x283.png" class="cm12" style="width: 453;height: 283;" />
-        </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   构建 VFX 轨道和 Comp 剪辑
+  </h2>
+  <p>
+   合成工作完成后，剪辑就可以重新摄取了。快照模板定义了 Nuke 文件的位置，所以你只需要指示
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   从以前的出口建立轨道。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Building_Tracks_From_Export_Structure">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从出口结构建立轨道
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p>
+   或者，如果您有渲染的 VFX 剪辑、不同版本等的历史，您也可以从导出标签构建轨迹，以便从可用剪辑列表中进行选择。此方法允许您添加
+   <b>
+    Comp 剪辑
+   </b>
+   到时间线，作为容器
+   <span class="CustomProduct">
+    核武器
+   </span>
+   <b>
+    。Nk
+   </b>
+   脚本或占位符
+   <span class="CustomProduct">
+    核武器
+   </span>
+   渲染。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Building_Comp_Clips_From_Export_Tags">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从导出标签构建 Comp 剪辑
+    </span>
+   </a>
+   或
+   <a class="noPage MCXref xref xrefnoPage" href="#Building_Render_Placeholders_From_Export_Tags">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从导出标记构建渲染占位符
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <h3>
+   <a name="Building_Tracks_From_Export_Structure">
+   </a>
+   从出口结构建立轨道
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在时间轴上选择所需的剪辑，然后单击鼠标右键以显示上下文相关菜单。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您可能会发现在电子表格中选择剪辑，然后在时间轴上单击鼠标右键更容易。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     单击
+     <b>
+      建立轨道
+     </b>
+     &gt;
+     <b>
+      从出口结构
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   的
+   <b>
+    从导出结构构建跟踪
+   </b>
+   对话框显示。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_hiero/exportmanagement/build_ex1a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     输入一个
+     <b>
+      曲目名称
+     </b>
+     或使用默认
+     <b>
+      VFX
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     选择一个
+     <b>
+      导出预设
+     </b>
+     使用下拉菜单。在这种情况下，选择导出过程中使用的相同预设。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     输入的文件路径
+     <b>
+      出口根
+     </b>
+     目录或单击
+     <b>
+      选择
+     </b>
+     并浏览到该位置。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   根目录是输入的位置
+   <b>
+    导出到
+   </b>
+   导出项目时。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     选择要从快照模板中摄取的内容预设。在这种情况下,
+     <b>
+      核写入节点
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     单击
+     <b>
+      构建
+     </b>
+     创建 VFX 轨道。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   警告您，如果没有选择
+   <b>
+    内容
+   </b>
+   列。
+  </p>
+  <p class="numberedCont">
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   自动创建包含 VFX 剪辑的新轨迹 (如果存在)，如果剪辑是正在处理的，则创建脱机放置夹。
+  </p>
+  <p class="numberedCont">
+   如果任何目标轨迹中已经存在剪辑实例，将创建一个新轨迹来容纳新的剪辑实例。
+  </p>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/ug_hiero/exportmanagement/build_ex2_453x237.png" style="width: 453;height: 237;"/>
+  </p>
+  <p class="numberedCont">
+   剪辑在工作完成时会自动更新，只要它们按照快照模板中指定的预期名称和位置保存。
+  </p>
+  <h3>
+   <a name="Building_Comp_Clips_From_Export_Tags">
+   </a>
+   从导出标签构建 Comp 剪辑
+  </h3>
+  <p>
+   当您从出口标签建立轨道时,
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   进口样夹含
+   <span class="CustomProduct">
+    核武器
+   </span>
+   默认情况下，脚本。Comp 剪辑是引用的剪辑实例
+   <span class="CustomProduct">
+    核武器
+   </span>
+   脚本，而不是离线剪辑的占位符，如
+   <a class="noPage MCXref xref xrefnoPage" href="#Building_Render_Placeholders_From_Export_Tags">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从导出标记构建渲染占位符
+    </span>
+   </a>
+   工作流。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     Select the required clips on the timeline and right-click to display the context sensitive menu.
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      TIP:
+     </span>
+    </span>
+   </span>
+   You may find it easier to select clips in the spreadsheet and then right-click on the timeline.
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     单击
+     <b>
+      建立轨道
+     </b>
+     &gt;
+     <b>
+      从出口标签
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   的
+   <b>
+    从导出标记生成跟踪
+   </b>
+   对话框显示。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     Enter a
+     <b>
+      Track Name
+     </b>
+     or use the default
+     <b>
+      VFX
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在左侧面板中选择所需的导出标记，以在右侧面板中显示标记信息。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   进口的
+   <b>
+    。Nk
+   </b>
+   默认情况下，Comp 剪辑。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/build_from_export_tag_454x273.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;width: 454;height: 273;"/>
+  </p>
+  <p class="numberedCont">
+   如果您只想在离线渲染完成后导入它们，请禁用
+   <b>
+    创建 Comp 剪辑
+   </b>
+   复选框。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Building_Render_Placeholders_From_Export_Tags">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从导出标记构建渲染占位符
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     单击
+     <b>
+      构建
+     </b>
+     创建 VFX 轨道。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   自动创建包含 Comp 剪辑的新轨迹。如果任何目标轨迹中已经存在剪辑实例，将创建一个新轨迹来容纳新的剪辑实例。
+  </p>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/ug_hiero/exportmanagement/build_ex2b_453x283.png" style="width: 453;height: 283;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     您可以双击 Comp 剪辑以在中打开它们
+     <madcap:conditionaltext data-mc-conditions="Custom.NukeStudio">
+      <span class="CustomProductStudio">
+       核武器工作室
+      </span>
+      的
+      <span class="CustomCompositing">
+       合成环境
+      </span>
+     </madcap:conditionaltext>
+     根据需要进行编辑。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="Building_Render_Placeholders_From_Export_Tags">
+   </a>
+   从导出标记构建渲染占位符
+  </h3>
+  <p>
+   从导出标记生成轨迹时，可以选择从中导入渲染。
+   <b>
+    Nk
+   </b>
+   脚本，而不是比较片段，它包含
+   <span class="CustomProduct">
+    核武器
+   </span>
+   脚本。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     Select the required clips on the timeline and right-click to display the context sensitive menu.
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      TIP:
+     </span>
+    </span>
+   </span>
+   You may find it easier to select clips in the spreadsheet and then right-click on the timeline.
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     Click
+     <b>
+      Build Track
+     </b>
+     &gt;
+     <b>
+      From Export Tag
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   The
+   <b>
+    Build Track From Export Tag
+   </b>
+   dialog displays.
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     Enter a
+     <b>
+      Track Name
+     </b>
+     or use the default
+     <b>
+      VFX
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     Select the required export tag in the left-hand panel to display tag information in the right-hand panel.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     禁用
+     <b>
+      创建 Comp 剪辑
+     </b>
+     复选框，用于在脱机渲染完成时导入它们。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/gsg_images/build_from_export_tag1_454x273.png" style="width: 454;height: 273;"/>
+  </p>
+  <p class="numberedCont">
+   如果你想导入
+   <b>
+    。Nk
+   </b>
+   Comp 剪辑，启用
+   <b>
+    创建 Comp 剪辑
+   </b>
+   复选框。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Building_Comp_Clips_From_Export_Tags">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从导出标签构建 Comp 剪辑
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     单击
+     <b>
+      构建
+     </b>
+     创建 VFX 轨道。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    Nuke Studio
+   </span>
+   automatically creates a new track containing the VFX clips, if they exist, or offline place holders if the clips are a work in progress.
+  </p>
+  <p class="numberedCont">
+   If a clip instance already exists in any of the target tracks, a new track is created to hold the new clip instances.
+  </p>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/ug_hiero/exportmanagement/build_ex2a_453x283.png" style="width: 453;height: 283;"/>
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -329,5 +771,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

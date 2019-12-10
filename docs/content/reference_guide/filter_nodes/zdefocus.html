@@ -1,879 +1,2411 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Filter Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>ZDefocus</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/filter_nodes/zdefocus.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|Filter Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   ZDefocus
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/filter_nodes/zdefocus.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>ZDefocus</h1>
-        <p>Blurs the image according to a depth map channel. This allows you to simulate depth-of-field (DOF) blurring.</p>
-        <p>In order to defocus the image, ZDefocus splits the image up into layers, each of which is assigned the same depth value everywhere and processed with a single blur size. After ZDefocus has processed all the layers, it blends them together from the back to the front of the image, with each new layer going over the top of the previous ones. This allows it to preserve the ordering of objects in the image.</p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="306px">
-                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 143px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td rowspan="3" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">This image is used as the blur kernel. It represents the shape and size of the camera aperture used to shoot the input footage. As the clip in the <span class="_Override" style="font-weight: bold;">image</span> input is blurred, any out-of-focus highlights (’bokeh’) in the clip assume the shape of the <span class="_Override" style="font-weight: bold;">filter</span> image.</p>
-                                <p class="CellBody">You can create a filter image using the Roto node (<span class="_Override" style="font-weight: bold;">Draw</span> &gt; <span class="_Override" style="font-weight: bold;">Roto</span>) or the Flare node (<span class="_Override" style="font-weight: bold;">Draw</span> &gt; <span class="_Override" style="font-weight: bold;">Flare</span>), for example. The filter image can also be a color image. For example, if you want to add color fringing to your out-of-focus highlights to simulate chromatic aberration, you can use the Flare node to easily create a suitable filter image.</p>
-                                <p class="CellBody">You don’t necessarily need to crop the filter image to a smaller size, as Fast Fourier Transforms are used to speed up convolutions with large filter images.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">image</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The image sequence to receive the blur effect. This should also contain the depth map channel.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">mask</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p class="CellBody">An optional image to use as a mask. By default, the blur is limited to the non-black areas of the mask.</p>
-                                <p class="CellBody">At first, the mask input appears as triangle on the right side of the node, but when you drag it, it turns into an arrow labeled mask. If you cannot see the mask input, ensure that the <span class="_Override" style="font-weight: bold;">mask</span> control is disabled or set to <span class="_Override" style="font-weight: bold;">none</span>.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" height="3330px" class="TableStyle-Master_TableStyle" cellspacing="0">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="96px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="364px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td style="font-weight: bold;" class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">ZDefocus Tab</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">all</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The effect is only applied to these channels.</p>
-                                <p class="CellBody">If you set this to something other than <span class="_Override" style="font-weight: bold;">all</span> or <span class="_Override" style="font-weight: bold;">none</span>, you can use the checkboxes on the right to select individual channels.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Local GPU</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>gpuName</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Displays the GPU used for rendering when <b>Use GPU if available</b> is enabled. Local GPU displays <b>Not available</b> when:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Use CPU</b> is selected as the <b>default blink device</b> in the <b>Preferences</b>.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no suitable GPU was found on your system.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>it was not possible to create a context for processing on the selected GPU, such as when there is not enough free memory available on the GPU.</p>
-                                <p>You can select a different GPU, if available, by navigating to the <b>Preferences</b> and selecting an alternative from the <b>default blink device</b> dropdown.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span> Selecting a different GPU requires you to restart <span class="CustomProduct">Nuke</span> before the change takes effect.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Use GPU if available</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>useGPUIfAvailable</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, rendering occurs on the <b>Local GPU</b> specified, if available, rather than the CPU. The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.</p>
-                                <p><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Enabling this option with no local GPU allows the script to run on the GPU whenever the script is opened on a machine that does have a GPU available. <br />You should also select this if you wish to render from the command line with the <b>--gpu</b> option.</p>
-                                <p class="CellBody">GPU processing also requires certain NVIDIA GPUs and CUDA drivers, or in the case of late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5 running 10.9.3 'Mavericks', or later, certain AMD GPUs and drivers. For more information on the minimum requirements, please refer to the Nuke Release Notes available in <b>Help</b> &gt; <b>Release Notes</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 93px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">depth channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">z_channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">depth.Z</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Specifies the input channel containing the depth map information.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The depth map should not be anti-aliased. If it is, pixels along an edge between two objects can be assigned a depth that is in-between the depth of the front and back objects. This looks wrong, as it suggests that those edge pixels are floating somewhere between the objects.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 468px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">math</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">math</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">depth</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Specifies how the <span class="_Override" style="font-weight: bold;">depth</span><span class="_Override" style="font-weight: bold;">channel</span> is used to calculate the distance between the camera and an object. For example, some programs use higher values to denote further away, while in others they mean closer to the camera:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">direct</span> - The <span class="_Override" style="font-weight: bold;">Z</span> value in the <span class="_Override" style="font-weight: bold;">depth channel</span> directly controls blur. For example, if <span class="_Override" style="font-weight: bold;">Z</span> is 0.5, then the blur size will be 0.5 times the value of the <span class="_Override" style="font-weight: bold;">size</span> control (unless this is bigger than <span class="_Override" style="font-weight: bold;">maximum</span>, in which case it will be clamped to <span class="_Override" style="font-weight: bold;">maximum</span>).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">depth</span> - The <span class="_Override" style="font-weight: bold;">Z</span> value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is the distance between the camera and whatever is in the image at that pixel.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = 0</span> - The <span class="_Override" style="font-weight: bold;">Z</span> value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is equal to 1/distance. The values are expected to decrease from large positive values close to the camera to zero at infinity. This is compatible with depth maps generated by Nuke and RenderMan.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = 1</span> - Near plane = 0, far plane = 1. This is compatible with depth maps generated by OpenGL.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">-direct</span> - As with the <span class="_Override" style="font-weight: bold;">direct</span> mode, the Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> directly controls blur. In other words, each layer is blurred by the same amount as in the <span class="_Override" style="font-weight: bold;">direct</span> mode. However, in this mode, the layers are interpreted as being in the opposite order, so a higher depth value places a layer in front of another rather than behind it.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">-depth</span> - The <span class="_Override" style="font-weight: bold;">Z</span> value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is -distance in front of the camera. This is the same as <span class="_Override" style="font-weight: bold;">depth</span>, but the distances are negative to start with.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = -0</span> - The <span class="_Override" style="font-weight: bold;">Z</span> value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is equal to -1/distance. The values are expected to increase from large negative values close to the camera to zero at infinity. This is compatible with depth maps generated by Maya.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = -1</span> - Near plane = 0, far plane = -1.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 280px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">result</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the output type:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">result</span> - displays the input image and the result of the blur controls.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">focal plane setup</span> - displays depth-of-field (DOF) information in the <span class="_Override" style="font-weight: bold;">rgb</span> channels:</p>
-                                <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">red</span> - Less than DOF (in front of the area that’s in focus).</p>
-                                <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">green</span> - Inside DOF (in focus). Note that if<span class="_Override" style="font-weight: bold;"> depth of field</span> is set to <span class="_Override" style="font-weight: bold;">0</span>, nothing is displayed in green.</p>
-                                <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">blue</span> - Greater than DOF (behind the area that’s in focus).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">layer setup</span> - like focal plane setup, but displays depth-of-field (DOF) information after the depth has been divided into layers. Pixels assigned to the same layer have the same amount of blur applied to them.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">filter shape setup</span> - displays the filter shape in <span class="_Override" style="font-weight: bold;">rbg</span>, allowing you to adjust the filter more accurately.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">show image</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">show_image</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When <span class="_Override" style="font-weight: bold;">output</span> is set to <span class="_Override" style="font-weight: bold;">focal plane setup</span>, enabling this shows the depth-of-field (DOF) information overlaid upon the input image.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>fill foreground</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>fill_foreground</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, <span class="CustomProduct">Nuke</span> attempts to compensate for missing information by filling regions in the foreground which are revealed when the foreground goes out of focus.</p>
-                                <p> You can try enabling this control if you see sharp edge artefacts in blurred objects in front of the focal point (nearer to the camera). However, because the true image information isn't available in these regions, enabling <b>fill foreground</b> can sometimes introduce undesirable artefacts by adding things which aren't there. If you see blurry artefacts in the foreground, rather than sharp edge artefacts, try disabling this control.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">focus plane (C)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">center</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the Z depth of areas in the image that are entirely in focus.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">focal point xy</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">focal_point</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">200, 200</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Controls the position of the <span class="_Override" style="font-weight: bold;">focal point</span> widget in the Viewer. Adjusting the Viewer widget updates the <span class="_Override" style="font-weight: bold;">focus</span><span class="_Override" style="font-weight: bold;">plane</span> and <span class="_Override" style="font-weight: bold;">focal</span><span class="_Override" style="font-weight: bold;">point</span> fields automatically.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 35px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">depth of field</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">dof</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets a depth slice around the focus plane that is entirely in focus.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>True theoretical depth of field would set this to zero.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 44px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">blur inside</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">blur_dof</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, a small amount of blur is applied to the in-focus region.  This gives a smoother transition between the in-focus region and the out-of-focus regions around it.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">25</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the size of the blur at infinite depth. Blur nearer the camera than the focus plane may be larger.</p>
-                                <p class="CellBody">If you have set <span class="_Override" style="font-weight: bold;">math</span> to <span class="_Override" style="font-weight: bold;">direct</span>, the size is multiplied by the depth to give the blur size at that depth. Setting <span class="_Override" style="font-weight: bold;">size</span> to 1 allows you to use the values in the depth map as the blur size directly.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">maximum</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">max_size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">50</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The filter size is clipped at this maximum value. No blurring greater than this value is generated no matter where the object is in relation to the camera.</p>
-                                <p class="CellBody">Set this value as low as possible for maximum processing speed.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 108px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">automatic layer spacing</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">autoLayerSpacing</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, ZDefocus automatically works out how many depth layers to use, based on the maximum blur size (<span class="_Override" style="font-weight: bold;">maximum</span>). In this mode, the layers are closer together near to the focal plane, where a small change in the blur amount is more obvious, and increasingly more widely-spaced further away.</p>
-                                <p class="CellBody">When disabled, you can control the depth layers and their spacing manually using <span class="_Override" style="font-weight: bold;">depth layers</span> and <span class="_Override" style="font-weight: bold;">layer curve</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">depth layers</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">nLayers</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">20</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The number of depth layers to use for the blur. Use a small number of layers for maximum speed.</p>
-                                <p class="CellBody">The maximum number of blur sizes that are used between 0 and <span class="_Override" style="font-weight: bold;">maximum</span> is 256. This means you can have up to 256 layers behind the focal plane, and up to 256 in front of it as well.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">layer curve</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">layerCurve</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The curve to apply to the layer spacing.</p>
-                                <p class="CellBody">A value of 0 gives evenly spaced layers. Positive values concentrate the layers closer to the in-focus region. Negative values mean the layers are concentrated far from the focal plane, towards the <span class="_Override" style="font-weight: bold;">maximum</span> blur size.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 89px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter_type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disc</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the blur filter applied to the image:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">disc</span> - applies a round disc filter to the image.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bladed</span> - applies a bladed filter to the image (simulates the iris blades that can make up a camera's diaphragm).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">image</span> - uses the image in the <span class="_Override" style="font-weight: bold;">filter</span> input as the blur kernel.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">The following controls, up to and including <span class="_Override" style="font-weight: bold;">aspect ratio</span>, are only available when <span class="_Override" style="font-weight: bold;">filter</span><span class="_Override" style="font-weight: bold;"> type</span> is set to <span class="_Override" style="font-weight: bold;">disc</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter shape</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">shape</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Dissolves the filter shape between Gaussian at 0 and disc at 1.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">aspect ratio</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">aspect</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the filter aspect ratio, which is 1:1 by default. Values less than 1 squeeze the filter on the x axis, and values larger than 1 squeeze it on the y axis.</p>
-                                <p class="CellBody">This allows you to simulate the cat's eye effect, caused by vignetting inherent within some lens designs.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The following controls, up to and including <span class="_Override" style="font-weight: bold;">catadioptric</span>, are only available when <span class="_Override" style="font-weight: bold;">filter</span><span class="_Override" style="font-weight: bold;"> type</span> is set to <span class="_Override" style="font-weight: bold;">bladed</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">aspect ratio</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">aspect</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the filter aspect ratio, which is 1:1 by default. Values less than 1 squeeze the filter on the x axis, and values larger than 1 squeeze it on the y axis.</p>
-                                <p class="CellBody">This allows you to simulate the cat's eye effect, caused by vignetting inherent within some lens designs.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">blades</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">blades</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">5</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets the number of iris blades that make up the camera's diaphragm. A value of 3 produces a triangle, 4 a square, 5 a pentagon, 6 a hexagon, and so on.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This field only accepts integers larger than 1.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">roundness</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">roundness</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0.2</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Controls the rounding of the filter polygon’s sides, where zero is equal to no rounding.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">rotation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">rotation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Controls filter rotation in degrees. Positive values produce counter-clockwise rotation and vice-versa.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">inner size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">inner_size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0.8</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Controls the size of the inner polygon, as a percentage of the outer polygon.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 59px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">inner feather</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">inner_feather</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Adds outward or inward feathering around the inner polygon. With values larger than 0.5, your feather effect is outward and, respectively, if your values are smaller than 0.5, the feather effect is inward. A value of 0.5 produces no feathering.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">inner brightness</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">inner_brightness</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0.8</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Controls the brightness of the inner polygon, where 0 is equal to black and 1 to white.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">catadioptric size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">catadioptric_size</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0.3</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When <span class="_Override" style="font-weight: bold;">catadioptric</span> is enabled, controls the size of the catadioptric hole in the filter.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 79px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">catadioptric</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">catadioptric</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, ZDefocus simulates catadioptric lenses. This means the defocused areas of the image are annular, producing donut-shaped bokeh.</p>
-                                <p class="CellBody">You can use the <span class="_Override" style="font-weight: bold;">catadioptric</span><span class="_Override" style="font-weight: bold;"> size</span> to control the hole in the center of the filter.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The following controls, up to and including <span class="_Override" style="font-weight: bold;">clamp image filter</span>, are only available when <span class="_Override" style="font-weight: bold;">filter</span><span class="_Override" style="font-weight: bold;"> type</span> is set to <span class="_Override" style="font-weight: bold;">image</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 35px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>legacy resize mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>legacy_resize_mode</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Loading scripts from pre-Nuke 8.0v7 enables the <b>legacy resize mode</b> checkbox automatically, for backward compatibilty, and uses the <b>filter bounds</b> dropdown to determine how images used in filtering are resized.</p>
-                                <p>Adding new ZDefocus nodes hides the <b>legacy resize mode</b> checkbox and allows you to use the <b>image filter</b> dropdown to give you more flexibility when calculating blur.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 35px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter_channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">rgba.alpha</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The channel to use as the convolution matrix from the <span class="_Override" style="font-weight: bold;">filter</span> input.</p>
-                                <p class="CellBody">This control is only available if <span class="_Override" style="font-weight: bold;">use input channels</span> is disabled.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>use input channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>use_input_channels</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, the same channels are used for both the filter and image inputs.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 143px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter bounds</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">filter_bounds</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">shape</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Sets what to use as the filter bounds when <b>legacy resize mode</b> is enabled:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">shape</span> - The <span class="_Override" style="font-weight: bold;">filter</span> input’s bounding box. In this case, ZDefocus only uses the bounding box area, and the center of the filter is the center of the bounding box. This is the default value, and you may want to use it if your <span class="_Override" style="font-weight: bold;">filter</span> input is a roto shape with a small bounding box that doesn’t fill the entire format area, for example.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">format</span> - The <span class="_Override" style="font-weight: bold;">filter</span> input’s format. In this case, ZDefocus uses the entire format area, allowing you to offset the filter image within the format.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available when <b>legacy resize mode</b> is enabled.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">image filter</td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">image_filter</td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">Cubic</td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets which of <span class="CustomProduct">Nuke</span>'s filtering algorithms to use when remapping pixels from their original positions to new positions, when <b>legacy resize mode</b> is disabled:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Impulse</span> - remapped pixels carry their original values.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Cubic</span> - remapped pixels receive some smoothing.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Keys</span> - remapped pixels receive some smoothing, plus minor sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Simon</span> - remapped pixels receive some smoothing, plus medium sharpening (as shown by the negative -y portions of the curve). </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Rifman</span> - remapped pixels receive some smoothing, plus significant sharpening (as shown by the negative -y portions of the curve).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mitchell</span> - remapped pixels receive some smoothing, plus blurring to hide pixelation.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Parzen</span> - remapped pixels receive the greatest smoothing of all filters.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Notch</span> - remapped pixels receive flat smoothing (which tends to hide moire patterns).</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Lanczos4</b>, <b>Lanczos6</b>, and <b>Sinc4</b> - remapped pixels receive sharpening which can be useful for scaling down. <b>Lanczos4</b> provides the least sharpening and <b>Sinc4</b> the most</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available when <b>legacy resize mode</b> is disabled.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">clamp image filter</td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">clamp_image_filter</td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">disabled</td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When using filters that employ sharpening, such as <b>Rifman</b> and <b>Lanczos</b>, you may see a haloing effect. If necessary, check <b>clamp image filter</b> to correct this problem.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This control is only available when <b>legacy resize mode</b> is disabled.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 64px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">gamma correction</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">bloom_gamma</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When enabled, a gamma curve of 2.2 is applied before blurring and then reversed for the final output.</p>
-                                <p class="CellBody">This is useful for making bokeh lens shape effects warmer and more visible.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">bloom</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">bloom</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, highlights over the <span class="_Override" style="font-weight: bold;">bloom threshold </span>are boosted to make lens shape effects more visible.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">bloom threshold</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">bloom_threshold</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0.8</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">When <span class="_Override" style="font-weight: bold;">bloom</span> is enabled, highlights above this value are multiplied by the <span class="_Override" style="font-weight: bold;">bloom gain</span> value to make lens shape effects more visible.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">bloom gain</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">bloom_gain</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">2</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When <span class="_Override" style="font-weight: bold;">bloom</span> is enabled, highlights above the bloom threshold are multiplied by this value.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">mask</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Enable the associated mask channel to the right. Disabling this checkbox is the same as setting the channel to <span class="_Override" style="font-weight: bold;">none</span>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">maskChannelInput</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">The channel to use as a mask. By default, the blur is limited to the non-black areas of this channel.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">inject</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">inject</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Copies the <span class="_Override" style="font-weight: bold;">mask</span> input to the predefined <span class="_Override" style="font-weight: bold;">mask.a</span> channel. Injecting the mask allows you to use the same mask further downstream.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">invert</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">invert_mask</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Inverts the use of the mask channel, so that the blur is limited to the non-white areas of the mask.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">fringe</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">fringe</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Blurs the edges of the mask.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">mix</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">mix</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">Dissolves between the original image at 0 and the full effect at 1.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">&#160;</td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">&#160;</td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">&#160;</td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">&#160;</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/filters/applying_blurs.html#Simulating_Depth-of-Field_Blurring" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Simulating Depth-of-Field Blurring</span></a>
-                </p>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Nuke 7.0 - ZDefocus</a></span>
-                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/69182301?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                        <p><a href="https://vimeo.com/69182301" target="_blank">NUKE 7.0 - ZDefocus</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
-                    </div>
-                </div>
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Nuke 7.0 - Bokeh in ZDefocus</a></span>
-                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/54930457?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                        <p><a href="https://vimeo.com/54930457">NUKE 7.0 - Bokeh in ZDefocus</a> from <a href="https://vimeo.com/thefoundry">Foundry</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-                        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesTranscribedContent">Transcription</span></a></span>
-                            <div class="MCDropDownBody dropDownBody">
-                                <p>This is Steve Wright for Foundry, with a tutorial on the ZDefocus node’s bokeh effects. In the previous ZDefocus node tutorial, we took a quick look at the bokeh settings. In this tutorial, we will dive in for a much closer look to see the amazing amount of control you have to dial in the look of a lens bokeh. I will be using this city lights picture that has this depth.Z channel already built in. To get my ZDefocus node, I will use my <b>Tab</b> and search. Because the image has a depth channel, I already get a default defocus.</p>
-                                <p>We will be looking at all three of these filter types, starting with the <b>disc</b> filter. The first parameter, <b>filter type</b>, determines whether the bokeh is a hard circle or a soft fuzzy blob. So as you move towards 0, it becomes just a Gaussian curve, back to 1, a sharp disc. The <b>aspect ratio</b> will squeeze it vertically or stretch it horizontally, so you are covered whether you are working on anamorphic plates or you are working flat and going out anamorphic.</p>
-                                <p>Next, the <b>bladed</b> filter type. This refers to the bladed iris. Again, we have the <b>aspect ratio</b> as before, and here is the number of <b>blades</b> settings. By default, we have five blades, but we can set it to any number we want. Now, the <b>roundness</b> is how straight the edges are. If I go 100% roundness, it becomes almost a circle, and if I go in the opposite direction, the shape becomes concave. We will put that back to default, which is just a bit of roundness. The <b>rotation</b>, of course, allows you to rotate the filter, so that you can get any orientation you like. The <b>inner size</b> and <b>inner feather</b> will show up better if I take the <b>inner brightness</b> down to something like this.  See this dark center, that’s what we're talking about. So I can change the <b>inner size</b> to make it as small or large as I wish, and the <b>inner feather</b> is how soft it is. Here’s an interesting toggle right here: the <b>catadioptric</b> feature. Catadioptric lenses use a combination of both mirrors and lenses, which produce a unique bokeh with a hole in the center. You can also adjust the size of the hole by adjusting the <b>catadioptric size</b>.</p>
-                                <p>Next up, the <b>image</b> filter type. Before I select that, I will show you the images I have. I have this star filter here, and the important thing about this is, there are two boxes to be aware of. The outer box out here is what we will call the <b>format</b>, and the inner box is the <b>bounding box</b> of the shape. Note the shape is off center from the format: it’s on the lower left-hand corner. You will see why this is important in a minute. So I am going to take the <b>filter</b> input of the ZDefocus node at hook it up to my star filter, then switch back to my ZDefocus node, and zoom in. Now we will switch the <b>filter type</b> to <b>image</b> and there you go. Of course, we can change the size of it by adjusting the <b>size</b> and <b>maximum</b> values. So why was I going on about the <b>format</b> or the <b>bounding box</b> for the shape? That’s for right here: <b>filter bounds</b>. If you say <b>shape</b>, you are telling it the shape is inside the <b>bounding box</b>. However, if you select <b>format</b>, it means you want the large outer box and you can see now that the star bokeh has shifted down lower left and has kind of a lens treatment.</p>
-                                <p>The next thing I want to show you is very cool: chromatic aberration. Let me show you my Chromatic_Aberration node (not supplied with Nuke). I hooked up a little 3-channel filter here that allows me to offset the RGB values like so. These offset channels will cause an offset in the bokeh of the image, so let’s check it out. First, we will hook up the <b>filter</b> to our Chromatic_Aberration, and switch the Viewer back to the ZDefocus node, and we get an error message. The error message covers right here (<b>use input channels</b>) by default. It’s looking for the alpha channel to contain the filter input. That’s not what we have here; we have a 3-channel image. So we need to use this <b>use input channels</b>. This means use the same 3 channels in that filter input as we are in the image, which is RGB. So we turn that on, and much better. Let’s zoom in, and see what it looks like. So, you can see all my bokehs now have a chromatic aberration. Red in the upper left, blue in the lower right. If I open my Chromatic_Aberration node again, I can dial the <b>Offset</b> up and down to increase and decrease the amount of chromatic aberration. I will turn it off and toggle if for you so you can really see the effect. OK, I am done with that, so I will close it and go back to the ZDefocus node.</p>
-                                <p>Next, let’s take a quick review of the <b>gamma correction</b> and <b>bloom</b>. Toggle the <b>gamma correction</b> on, and the bokeh gets a lot brighter. You have no control over this because it’s doing a gamma 2.2 change to the bokeh relative to the image. If you want to dial in your own control, use <b>bloom</b>. With the <b>bloom</b> feature turned on, these two parameters wake up. The <b>bloom gain</b> allows you to make it brighter or darker. As you lower the <b>bloom threshold</b>, darker and darker pixels get bloomed.</p>
-                                <p>With these powerful new bokeh features, the ZDefocus node can match the most obscure lenses for visual effects shots, or if you are doing animation, you have complete flexibility to generate your own creative looks.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   ZDefocus
+  </h1>
+  <p>
+   根据深度贴图通道模糊图像。这允许您模拟景深 (DOF) 模糊。
+  </p>
+  <p>
+   为了分散图像的焦点，ZDefocus 将图像分割成一层，每一层都被赋予相同的深度值，并以单个模糊大小进行处理。ZDefocus 处理完所有层后，它将它们从图像的后面到前面混合在一起，每个新层都在前面的层之上。这允许它保持图像中对象的顺序。
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="306px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="105px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="120px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="436px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 143px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="3">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         过滤器
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         此图像用作模糊内核。它表示用于拍摄输入镜头的相机光圈的形状和大小。当剪辑在
+         <span class="_Override" style="font-weight: bold;">
+          图像
+         </span>
+         输入是模糊的，剪辑中的任何焦点突出 (“散”) 都假设
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         图像。
+        </p>
+        <p class="CellBody">
+         您可以使用 Roto 节点 (
+         <span class="_Override" style="font-weight: bold;">
+          绘制
+         </span>
+         &gt;
+         <span class="_Override" style="font-weight: bold;">
+          Roto
+         </span>
+         ) 或 Flare 节点 (
+         <span class="_Override" style="font-weight: bold;">
+          绘制
+         </span>
+         &gt;
+         <span class="_Override" style="font-weight: bold;">
+          耀斑
+         </span>
+         ,例如。滤镜图像也可以是彩色图像。例如，如果要将彩色边缘添加到失焦高光中以模拟色差，可以使用 Flare 节点轻松创建合适的滤镜图像。
+        </p>
+        <p class="CellBody">
+         您不一定需要将滤镜图像裁剪到更小的尺寸，因为快速傅里叶变换用于加快大型滤镜图像的卷积。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         图像
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         接收模糊效果的图像序列。这也应该包含深度贴图通道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         面具
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p class="CellBody">
+         用作遮罩的可选图像。默认情况下，模糊仅限于遮罩的非黑色区域。
+        </p>
+        <p class="CellBody">
+         起初，遮罩输入在节点的右侧显示为三角形，但是当您拖动它时，它会变成一个标记为遮罩的箭头。如果看不到遮罩输入，请确保
+         <span class="_Override" style="font-weight: bold;">
+          面具
+         </span>
+         控件已禁用或设置为
+         <span class="_Override" style="font-weight: bold;">
+          没有
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="3330px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;caption-side: top;width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="96px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="364px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         ZDefocus 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         渠道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         渠道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         所有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         效果仅适用于这些通道。
+        </p>
+        <p class="CellBody">
+         如果你把这个设置成其他的东西
+         <span class="_Override" style="font-weight: bold;">
+          所有
+         </span>
+         或
+         <span class="_Override" style="font-weight: bold;">
+          没有
+         </span>
+         ,您可以使用右侧的复选框选择单个频道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         本地 GPU
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         GpuName
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         显示用于渲染的 GPU
+         <b>
+          使用 GPU (如果可用)
+         </b>
+         已启用。本地 GPU 显示
+         <b>
+          不可用
+         </b>
+         当:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          使用 CPU
+         </b>
+         被选为
+         <b>
+          默认闪烁设备
+         </b>
+         在
+         <b>
+          偏好
+         </b>
+         .
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         在您的系统上找不到合适的 GPU。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         无法在选定的 GPU 上创建处理上下文，例如当 GPU 上没有足够的可用内存时。
+        </p>
+        <p>
+         如果可用，您可以通过导航到
+         <b>
+          偏好
+         </b>
+         并从中选择一个替代方案
+         <b>
+          默认闪烁设备
+         </b>
+         下拉列表。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         选择不同的 GPU 需要重新启动
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在变更生效之前。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         使用 GPU (如果可用)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         UseGPUIfAvailable
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用时，渲染发生在
+         <b>
+          本地 GPU
+         </b>
+         指定 (如果可用)，而不是 CPU。GPU 和 CPU 之间的输出在 NVIDIA GPU 上是相同的，但是使用 GPU 可以显著提高处理性能。
+        </p>
+        <p>
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在 2013年底的 Mac Pro 6,1 和 2015年中的 Mac Pro 11,5 上支持 AMD gpu，运行 OS X 10.9.3 “mavericks” 或更高版本。虽然，在某些情况下，GPU 和 CPU 之间的比特级相等保持不变，但对于某些操作，这种配置可能存在精度限制。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         在没有本地 GPU 的情况下启用此选项允许脚本在 GPU 上运行，只要脚本在具有 GPU 可用的机器上打开。
+         <br/>
+         你应该选择这个，如果你想使从命令行的
+         <b>
+          -- Gpu
+         </b>
+         选项。
+        </p>
+        <p class="CellBody">
+         GPU 处理还需要某些 NVIDIA GPU 和 CUDA 驱动程序，或者在 2013年底运行 10.9.3 “mavericks” 或更高版本的 Mac Pro 6,1 和 2015年中 Mac Pro 11,5 的情况下，某些 AMD GPU 和驱动程序。有关最低要求的更多信息，请参考
+         <b>
+          帮助
+         </b>
+         &gt;
+         <b>
+          发行说明
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 93px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         深度通道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Z_channel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Depth.Z
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         指定包含深度贴图信息的输入通道。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         深度图不应抗锯齿。如果是这样，可以为两个对象之间沿边缘的像素指定一个位于前后对象深度之间的深度。这看起来是错误的，因为它表明这些边缘像素在对象之间的某个地方浮动。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 468px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         数学
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         math
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         深度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         指定如何
+         <span class="_Override" style="font-weight: bold;">
+          深度
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          渠道
+         </span>
+         用于计算相机和对象之间的距离。例如，一些程序使用更高的值来表示更远的距离，而在其他程序中，它们意味着更接近相机:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          直接
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          Z
+         </span>
+         中的值
+         <span class="_Override" style="font-weight: bold;">
+          深度通道
+         </span>
+         直接控制模糊。例如，如果
+         <span class="_Override" style="font-weight: bold;">
+          Z
+         </span>
+         是 0.5，那么模糊大小将是值的 0.5 倍
+         <span class="_Override" style="font-weight: bold;">
+          尺寸
+         </span>
+         控制 (除非这比
+         <span class="_Override" style="font-weight: bold;">
+          最大
+         </span>
+         ,在这种情况下，它将被夹住
+         <span class="_Override" style="font-weight: bold;">
+          最大
+         </span>
+         )。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          深度
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          Z
+         </span>
+         中的值
+         <span class="_Override" style="font-weight: bold;">
+          深度通道
+         </span>
+         是相机和图像中那个像素的距离。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Far = 0
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          Z
+         </span>
+         中的值
+         <span class="_Override" style="font-weight: bold;">
+          深度通道
+         </span>
+         等于 1/距离。预计这些值将从接近相机的大正值下降到无穷远处的零。这与 Nuke 和 RenderMan 生成的深度图兼容。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Far = 1
+         </span>
+         -近平面 = 0，远平面 = 1。这与 OpenGL 生成的深度图兼容。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          -直接
+         </span>
+         -就像
+         <span class="_Override" style="font-weight: bold;">
+          直接
+         </span>
+         模式中，Z 值
+         <span class="_Override" style="font-weight: bold;">
+          深度通道
+         </span>
+         直接控制模糊。也就是说，每一层都是模糊的，相同的
+         <span class="_Override" style="font-weight: bold;">
+          直接
+         </span>
+         模式。然而，在这种模式下，层被解释为相反的顺序，所以更高的深度值将层放在另一个层的前面而不是后面。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          -深度
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          Z
+         </span>
+         中的值
+         <span class="_Override" style="font-weight: bold;">
+          深度通道
+         </span>
+         相机前面的距离。这是一样的
+         <span class="_Override" style="font-weight: bold;">
+          深度
+         </span>
+         ,但距离是负的开始。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Far =-0
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          Z
+         </span>
+         中的值
+         <span class="_Override" style="font-weight: bold;">
+          深度通道
+         </span>
+         等于-1/距离。这些值预计将从接近相机的较大负值增加到无穷远处的零。这与 Maya 生成的深度贴图兼容。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Far =-1
+         </span>
+         -近平面 = 0，远平面 =-1。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 280px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         output
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         结果
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置输出类型:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          结果
+         </span>
+         -显示输入图像和模糊控件的结果。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          焦平面设置
+         </span>
+         -在中显示景深 (DOF) 信息
+         <span class="_Override" style="font-weight: bold;">
+          Rgb
+         </span>
+         渠道:
+        </p>
+        <p class="processBullet" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          红色
+         </span>
+         -小于 DOF (在焦点区域的前面)。
+        </p>
+        <p class="processBullet" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          绿色
+         </span>
+         -DOF 内部 (焦点)。请注意，如果
+         <span class="_Override" style="font-weight: bold;">
+          景深
+         </span>
+         设置为
+         <span class="_Override" style="font-weight: bold;">
+          0
+         </span>
+         ,没有显示为绿色。
+        </p>
+        <p class="processBullet" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          蓝色
+         </span>
+         -大于 DOF (在焦点区域后面)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          层设置
+         </span>
+         -类似于焦平面设置，但在深度划分为层后显示景深 (DOF) 信息。指定给同一层的像素应用的模糊量相同。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          过滤器形状设置
+         </span>
+         -在中显示过滤器形状
+         <span class="_Override" style="font-weight: bold;">
+          Rbg
+         </span>
+         ,允许您更准确地调整过滤器。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         显示图像
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Show_image
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         当
+         <span class="_Override" style="font-weight: bold;">
+          输出
+         </span>
+         设置为
+         <span class="_Override" style="font-weight: bold;">
+          焦平面设置
+         </span>
+         ,启用此选项将显示覆盖在输入图像上的景深 (DOF) 信息。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         填充前景
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Fill_foreground
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用时,
+         <span class="CustomProduct">
+          核武器
+         </span>
+         试图通过填充前景中显示的区域来补偿丢失的信息，这些区域是当前景失去焦点时显示的。
+        </p>
+        <p>
+         如果您在焦点前面 (靠近相机) 的模糊对象中看到锐利的边缘人工制品，您可以尝试启用此控制。但是，由于这些区域中没有真实的图像信息，因此启用
+         <b>
+          填充前景
+         </b>
+         有时可以通过添加不存在的东西来引入不受欢迎的文物。如果在前景中看到模糊的人工制品，而不是尖锐的边缘人工制品，请尝试禁用此控件。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         焦点平面 (C)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         中心
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置图像中完全聚焦的区域的 Z 深度。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         焦点 xy
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Focal_point
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         200 200
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         控制的位置
+         <span class="_Override" style="font-weight: bold;">
+          焦点
+         </span>
+         查看器中的小部件。调整查看器小部件将更新
+         <span class="_Override" style="font-weight: bold;">
+          焦点
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          飞机
+         </span>
+         和
+         <span class="_Override" style="font-weight: bold;">
+          焦
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          点
+         </span>
+         字段自动。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 35px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         景深
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         自由度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         围绕完全处于焦点中的焦点平面设置深度切片。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         真实的理论景深会将其设置为零。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 44px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         里面模糊
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Blur_dof
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，少量模糊将应用于聚焦区域。这使得焦点区域和焦点区域之间的过渡更加平滑。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         尺寸
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         尺寸
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         25
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置无限深度的模糊大小。离相机更近的模糊比聚焦平面可能更大。
+        </p>
+        <p class="CellBody">
+         如果你已经设置
+         <span class="_Override" style="font-weight: bold;">
+          数学
+         </span>
+         到
+         <span class="_Override" style="font-weight: bold;">
+          直接
+         </span>
+         ,大小乘以深度，以给出该深度的模糊大小。设置
+         <span class="_Override" style="font-weight: bold;">
+          尺寸
+         </span>
+         To 1 允许您直接将深度贴图中的值用作模糊大小。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 64px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         最大
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Max_size
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         50
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         过滤器大小按此最大值裁剪。无论对象与相机的关系在哪里，都不会产生大于此值的模糊。
+        </p>
+        <p class="CellBody">
+         将此值设置为尽可能低的最大处理速度。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 108px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         自动层间距
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         自动 ayerspacing
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         当启用，ZDefocus 自动算下来多少深浅层使用，基于模糊的最大尺寸 (
+         <span class="_Override" style="font-weight: bold;">
+          最大
+         </span>
+         )。在这种模式下，这些层靠近焦平面，在焦平面上，模糊量的微小变化更加明显，距离更远的地方也越来越广泛。
+        </p>
+        <p class="CellBody">
+         禁用后，可以使用手动控制深度层及其间距
+         <span class="_Override" style="font-weight: bold;">
+          深度层
+         </span>
+         和
+         <span class="_Override" style="font-weight: bold;">
+          层曲线
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         深度层
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         NLayers
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         20
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         用于模糊的深度层数。使用少量层以获得最大速度。
+        </p>
+        <p class="CellBody">
+         使用的最大模糊大小介于 0 和
+         <span class="_Override" style="font-weight: bold;">
+          最大
+         </span>
+         是 256这意味着你可以在焦平面后面有 256 层，在焦平面前面也有 256 层。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         层曲线
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         层曲线
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         要应用于层间距的曲线。
+        </p>
+        <p class="CellBody">
+         0 的值给出了均匀间隔的层。正值集中了更靠近焦点区域的层。负值意味着层集中在远离焦平面的地方，朝向
+         <span class="_Override" style="font-weight: bold;">
+          最大
+         </span>
+         模糊大小。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 89px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         过滤器类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Filter_type
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         光盘
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置应用于图像的模糊滤镜:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          光盘
+         </span>
+         -将圆形光盘过滤器应用于图像。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          Bladed
+         </span>
+         -将 bladed 滤镜应用于图像 (模拟可以构成相机光圈的虹膜叶片)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          图像
+         </span>
+         -使用中的图像
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         作为模糊内核输入。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+        <p class="CellBody">
+         以下控制，包括
+         <span class="_Override" style="font-weight: bold;">
+          纵横比
+         </span>
+         ,仅在
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          类型
+         </span>
+         设置为
+         <span class="_Override" style="font-weight: bold;">
+          光盘
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         过滤器形状
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         形状
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         在 0 处的高斯和 1 处的圆盘之间溶解过滤器形状。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         纵横比
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         方面
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置过滤器纵横比，默认为 1:1。小于 1 的值在 x 轴上挤压过滤器，大于 1 的值在 y 轴上挤压过滤器。
+        </p>
+        <p class="CellBody">
+         这允许你模拟猫眼效果，这是由一些镜头设计中固有的晕角造成的。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         以下控制，包括
+         <span class="_Override" style="font-weight: bold;">
+          折反射
+         </span>
+         ,仅在
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          类型
+         </span>
+         设置为
+         <span class="_Override" style="font-weight: bold;">
+          Bladed
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         aspect ratio
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         aspect
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         Sets the filter aspect ratio, which is 1:1 by default. Values less than 1 squeeze the filter on the x axis, and values larger than 1 squeeze it on the y axis.
+        </p>
+        <p class="CellBody">
+         This allows you to simulate the cat's eye effect, caused by vignetting inherent within some lens designs.
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 64px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         刀片
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         刀片
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         5
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置构成相机光圈的光圈叶片的数量。值 3 产生一个三角形，4 个正方形，5 个五边形，6 个六边形，依此类推。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         此字段只接受大于 1 的整数。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         圆度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         圆度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.2
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         控制过滤器多边形边的舍入，其中零等于不舍入。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         旋转
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         旋转
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         控制以度为单位的过滤器旋转。正值产生逆时针旋转，反之亦然。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         内部尺寸
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Inner_size
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.8
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         控制内部多边形的大小，作为外部多边形的百分比。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 59px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         内在羽毛
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Inner_feather
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         在内部多边形周围添加向外或向内羽化。如果值大于 0.5，则羽毛效果为外向，如果值小于 0.5，则羽毛效果为内向。值 0.5 不产生羽化。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         内部亮度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Inner_亮度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.8
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         控制内部多边形的亮度，其中 0 等于黑色，1 等于白色。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         折反射大小
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Catadiopric_size
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0.3
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         当
+         <span class="_Override" style="font-weight: bold;">
+          折反射
+         </span>
+         启用后，控制过滤器中折反射孔的大小。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 79px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         折反射
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         折反射
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用后，ZDefocus 模拟折反射镜头。这意味着图像的离焦区域是环形的，产生甜甜圈形的散景。
+        </p>
+        <p class="CellBody">
+         您可以使用
+         <span class="_Override" style="font-weight: bold;">
+          折反射
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          尺寸
+         </span>
+         以控制过滤器中心的孔。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p class="CellBody">
+         以下控制，包括
+         <span class="_Override" style="font-weight: bold;">
+          钳制图像过滤器
+         </span>
+         ,仅在
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          类型
+         </span>
+         设置为
+         <span class="_Override" style="font-weight: bold;">
+          图像
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 35px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         传统调整大小模式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Legacy_resize_mode
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         从 pre-Nuke 8.0v7 加载脚本使
+         <b>
+          传统调整大小模式
+         </b>
+         复选框自动，向后兼容，并使用
+         <b>
+          过滤边界
+         </b>
+         下拉菜单确定过滤中使用的图像的大小。
+        </p>
+        <p>
+         添加新的 ZDefocus 节点将隐藏
+         <b>
+          传统调整大小模式
+         </b>
+         复选框，并允许您使用
+         <b>
+          图像过滤器
+         </b>
+         下拉菜单，让您在计算模糊时更加灵活。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 35px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         过滤通道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Filter_channel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Rgba.alpha
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         使用的通道作为来自
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         输入。
+        </p>
+        <p class="CellBody">
+         此控件仅在
+         <span class="_Override" style="font-weight: bold;">
+          使用输入通道
+         </span>
+         已禁用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         使用输入通道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         Use_input_channels
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用后，过滤器和图像输入将使用相同的通道。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 143px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         过滤边界
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Filter_bounds
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         形状
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         设置使用什么作为过滤器边界时
+         <b>
+          传统调整大小模式
+         </b>
+         已启用:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          形状
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         输入的边界框。在这种情况下，ZDefocus 只使用边界框区域，过滤器的中心是边界框的中心。这是默认的值，你可能想使用它，如果你
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         例如，输入是一个带有小边界框的旋转形状，该边界框不会填充整个格式区域。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          格式
+         </span>
+         -The
+         <span class="_Override" style="font-weight: bold;">
+          过滤器
+         </span>
+         输入的格式。在这种情况下，ZDefocus 使用整个格式区域，允许您在格式内偏移过滤器图像。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         此控件仅在
+         <b>
+          传统调整大小模式
+         </b>
+         已启用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        图像过滤器
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        Image_filter
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        立方
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置哪个
+         <span class="CustomProduct">
+          核武器
+         </span>
+         将像素从原始位置重新映射到新位置时使用的过滤算法
+         <b>
+          传统调整大小模式
+         </b>
+         已禁用:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          冲动
+         </span>
+         -重新映射的像素携带其原始值。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          立方
+         </span>
+         -重新映射的像素接收一些平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          钥匙
+         </span>
+         -重新映射的像素会得到一些平滑，加上轻微的锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          西蒙
+         </span>
+         -重新映射的像素会获得一些平滑，加上中等锐化 (如曲线的负 y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          里夫曼
+         </span>
+         -重新映射的像素获得一些平滑，加上显著的锐化 (如曲线的负-y 部分所示)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          米切尔
+         </span>
+         -重新映射的像素接收一些平滑，加上模糊来隐藏像素化。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          帕森
+         </span>
+         -重新映射的像素接收所有过滤器的最大平滑。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          缺口
+         </span>
+         -重新映射的像素接收平坦平滑 (倾向于隐藏莫尔图案)。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          Lanczos4
+         </b>
+         ,
+         <b>
+          Lanczos6
+         </b>
+         ,和
+         <b>
+          Sinc4
+         </b>
+         -重新映射的像素接收锐化，这对于缩小缩放很有用。
+         <b>
+          Lanczos4
+         </b>
+         提供最少的锐化和
+         <b>
+          Sinc4
+         </b>
+         最
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         此控件仅在
+         <b>
+          传统调整大小模式
+         </b>
+         已禁用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        钳制图像过滤器
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        Clamp_image_filter
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        残疾人
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         当使用使用锐化的过滤器时，例如
+         <b>
+          里夫曼
+         </b>
+         和
+         <b>
+          Lanczos
+         </b>
+         ,你可能会看到光环效应。如有必要，请检查
+         <b>
+          钳制图像过滤器
+         </b>
+         来纠正这个问题。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         此控件仅在
+         <b>
+          传统调整大小模式
+         </b>
+         已禁用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 64px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         伽马校正
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Bloom_gamma
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用时，在模糊之前应用 2.2 的伽马曲线，然后反转以获得最终输出。
+        </p>
+        <p class="CellBody">
+         这对于使散景镜头形状效果更加温暖和可见非常有用。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         布鲁姆
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         布鲁姆
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，突出显示
+         <span class="_Override" style="font-weight: bold;">
+          布鲁姆门槛
+         </span>
+         增强，使镜头形状效果更明显。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         布鲁姆门槛
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         Bloom_threshold
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.8
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         当
+         <span class="_Override" style="font-weight: bold;">
+          布鲁姆
+         </span>
+         如果启用，则此值上方的突出显示将乘以
+         <span class="_Override" style="font-weight: bold;">
+          布鲁姆增益
+         </span>
+         使镜头形状效果更加可见的值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         布鲁姆增益
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Bloom_gain
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         2
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         当
+         <span class="_Override" style="font-weight: bold;">
+          布鲁姆
+         </span>
+         启用后，高于绽放阈值的高光将乘以此值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2" rowspan="2">
+        <p class="CellBody">
+         面具
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         启用右侧的关联屏蔽通道。禁用此复选框与将通道设置为
+         <span class="_Override" style="font-weight: bold;">
+          没有
+         </span>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         MaskChannelInput
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         用作遮罩的通道。默认情况下，模糊仅限于此通道的非黑色区域。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         注入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         注入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         复制
+         <span class="_Override" style="font-weight: bold;">
+          面具
+         </span>
+         预定义的输入
+         <span class="_Override" style="font-weight: bold;">
+          面具。
+         </span>
+         频道。注射面具可以让你在下游使用相同的面具。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         反转
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         Invert_mask
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         反转遮罩通道的使用，以便模糊仅限于遮罩的非白色区域。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         边缘
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         边缘
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         模糊遮罩的边缘。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         混合
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         混合
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         在 0 处的原始图像和 1 处的完整效果之间溶解。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="MCXref xref" href="../../comp_environment/filters/applying_blurs.html#Simulating_Depth-of-Field_Blurring">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       仿真景深模糊
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesVideoContent">
+      视频教程
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+       Nuke 7.0-ZDefocus
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <iframe allowfullscreen="" frameborder="0" height="281" mozallowfullscreen="" src="https://player.vimeo.com/video/69182301?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+      </iframe>
+      <p>
+       <a href="https://vimeo.com/69182301" target="_blank">
+        NUKE 7.0-ZDefocus
+       </a>
+       从
+       <a href="https://vimeo.com/thefoundry" target="_blank">
+        铸造
+       </a>
+       上
+       <a href="https://vimeo.com/" target="_blank">
+        Vimeo
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadNoBold">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+       Nuke 7.0-ZDefocus 中的散景
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <iframe allowfullscreen="" frameborder="0" height="281" mozallowfullscreen="" src="https://player.vimeo.com/video/54930457?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+      </iframe>
+      <p>
+       <a href="https://vimeo.com/54930457">
+        NUKE 7.0-ZDefocus 中的散景
+       </a>
+       从
+       <a href="https://vimeo.com/thefoundry">
+        铸造
+       </a>
+       上
+       <a href="https://vimeo.com">
+        Vimeo
+       </a>
+       .
+      </p>
+      <div class="MCDropDown MCDropDown_Open dropDown">
+       <span class="MCDropDownHead dropDownHead dropDownHeaddropDownHeadIndented">
+        <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+         <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+         <span class="Master_VariablesTranscribedContent">
+          转录
+         </span>
+        </a>
+       </span>
+       <div class="MCDropDownBody dropDownBody">
+        <p>
+         这是 Steve Wright for Foundry，关于 ZDefocus 节点的散景效果的教程。在之前的 ZDefocus 节点教程中，我们快速查看了散景设置。在本教程中，我们将深入观察，看看你必须拨入镜头散景的惊人控制量。我将使用这张有深度的城市灯光图片。Z 通道已经内置。要获得我的 ZDefocus 节点，我将使用我的
+         <b>
+          标签
+         </b>
+         和搜索。因为图像有深度通道，所以我已经得到了默认的散焦。
+        </p>
+        <p>
+         我们将从以下三个过滤器类型开始
+         <b>
+          光盘
+         </b>
+         过滤器。第一个参数,
+         <b>
+          过滤器类型
+         </b>
+         ,确定散景是硬圆还是软模糊斑点。所以当你向 0 移动时，它变成了一条高斯曲线，回到 1，一个锋利的圆盘。的
+         <b>
+          纵横比
+         </b>
+         会垂直挤压它或者水平拉伸它，所以无论你是在变形板上工作，还是在平坦地工作，走出变形板，你都会被覆盖。
+        </p>
+        <p>
+         接下来,
+         <b>
+          Bladed
+         </b>
+         过滤器类型。这是指叶片虹膜。再次，我们有
+         <b>
+          纵横比
+         </b>
+         和以前一样，这里是数量
+         <b>
+          刀片
+         </b>
+         设置。默认情况下，我们有五个刀片，但是我们可以将其设置为任何我们想要的数字。现在,
+         <b>
+          圆度
+         </b>
+         是边缘有多直。如果我走 100% 的圆度，它几乎变成一个圆，如果我走相反的方向，形状变成凹面。我们将把它恢复到默认状态，这只是有点圆。的
+         <b>
+          旋转
+         </b>
+         当然，允许你旋转过滤器，这样你就可以得到你喜欢的任何方向。的
+         <b>
+          内部尺寸
+         </b>
+         和
+         <b>
+          内在羽毛
+         </b>
+         会出现更好的如果我拿了
+         <b>
+          内部亮度
+         </b>
+         归结到这样的事情。看看这个黑暗的中心，这就是我们正在谈论的。所以我可以改变
+         <b>
+          内部尺寸
+         </b>
+         使它像我希望的那样小或大,
+         <b>
+          内在羽毛
+         </b>
+         它有多软。这里有一个有趣的切换:
+         <b>
+          折反射
+         </b>
+         功能。折反射透镜使用镜子和透镜的组合，这产生了一个独特的散景中心有一个洞。您也可以通过调整孔的大小
+         <b>
+          折反射大小
+         </b>
+         .
+        </p>
+        <p>
+         接下来,
+         <b>
+          图像
+         </b>
+         过滤器类型。在我选择之前，我会向你展示我的图像。我这里有这个星星过滤器，重要的是，有两个盒子要注意。外面的盒子是我们所说的
+         <b>
+          格式
+         </b>
+         ,内盒,
+         <b>
+          边界框
+         </b>
+         形状的。注意形状与格式偏离中心: 它在左下角。你马上就会明白为什么这很重要。所以我要把
+         <b>
+          过滤器
+         </b>
+         ZDefocus 节点的输入将其连接到我的 star filter，然后切换回我的 ZDefocus 节点，并放大。现在我们将切换
+         <b>
+          过滤器类型
+         </b>
+         到
+         <b>
+          图像
+         </b>
+         给你。当然，我们可以改变它的大小调整
+         <b>
+          尺寸
+         </b>
+         和
+         <b>
+          最大
+         </b>
+         值。那么我为什么要继续谈论
+         <b>
+          格式
+         </b>
+         或的
+         <b>
+          边界框
+         </b>
+         为了形状？这是在这里:
+         <b>
+          过滤边界
+         </b>
+         。如果你说
+         <b>
+          形状
+         </b>
+         ,你告诉它的形状是在
+         <b>
+          边界框
+         </b>
+         。但是，如果您选择
+         <b>
+          格式
+         </b>
+         ,这意味着你想要一个大的外框，现在你可以看到星体散景已经向左下方移动，并进行了镜头处理。
+        </p>
+        <p>
+         我想给你看的下一件事非常酷: 色差。让我向你展示我的 chromatic_abritance 节点 (不提供 Nuke)。我在这里连接了一个小的 3 通道过滤器，允许我像这样抵消 RGB 值。这些偏移通道将导致图像散景中的偏移，所以让我们检查一下。首先，我们将连接
+         <b>
+          过滤器
+         </b>
+         到我们的 chromatic_tradiation，并将查看器切换回 ZDefocus 节点，我们会收到一条错误消息。错误信息包括在这里 (
+         <b>
+          使用输入通道
+         </b>
+         ) 默认情况下。它正在寻找包含过滤器输入的 alpha 通道。这不是我们在这里拥有的; 我们有一个三通道图像。所以我们需要用这个
+         <b>
+          使用输入通道
+         </b>
+         。这意味着在过滤器输入中使用与图像中相同的 3 个通道，即 RGB。所以我们打开它，更好。让我们放大，看看它是什么样子。所以，你可以看到我所有的 bokehs 现在有一个色差。红色在左上角，蓝色在右下角。如果我再次打开我的 chromatic_abritation 节点，我可以拨打
+         <b>
+          偏移
+         </b>
+         向上和向下增加和减少色差的量。我会关掉它，为你切换 if，这样你就能真正看到效果。好吧，我已经完成了，所以我会关闭它，回到 ZDefocus 节点。
+        </p>
+        <p>
+         接下来，让我们快速回顾一下
+         <b>
+          伽马校正
+         </b>
+         和
+         <b>
+          布鲁姆
+         </b>
+         。切换
+         <b>
+          伽马校正
+         </b>
+         和散景变得更加明亮。你无法控制这一点，因为它相对于图像对散景进行了伽玛 2.2 的改变。如果你想在自己的控制下拨号，使用
+         <b>
+          布鲁姆
+         </b>
+         。随着
+         <b>
+          布鲁姆
+         </b>
+         功能打开，这两个参数唤醒。的
+         <b>
+          布鲁姆增益
+         </b>
+         允许你让它更亮或更暗。当你降低
+         <b>
+          布鲁姆门槛
+         </b>
+         ,较暗和较暗的像素得到绽放。
+        </p>
+        <p>
+         有了这些强大的新背景虚化功能，ZDefocus 节点可以匹配视觉效果镜头中最模糊的镜头，或者如果你正在做动画，你可以完全灵活地生成自己的创意外观。
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -887,5 +2419,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
