@@ -1,243 +1,563 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|3D Scene Geometry|Modifying Object Shapes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Modifying Objects Using the EditGeo Node</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/modifying_objects_editgeo.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|3D Scene Geometry|Modifying Object Shapes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 EditGeo 节点修改对象
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/modifying_objects_editgeo.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h3>Modifying Objects Using the EditGeo Node</h3>
-        <p>EditGeo allows you to directly modify an object’s vertices or faces, depending on the Viewer selection mode currently active. You can also modify multiple objects simultaneously if the EditGeo is downstream of a MergeGeo node with multiple geometry inputs.</p>
-        <h4>To Modify Objects Using EditGeo</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the 3D object or MergeGeo you want to modify in the Node Graph.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Navigate to <b>3D</b> &gt; <b>Modify</b> &gt; <b>EditGeo</b> to insert an EditGeo node.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the node’s controls, use the <b>display</b> dropdown menu to select how you want to view your object in the Viewer while making changes to it.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you don’t have an image or texture associated with your geometry, you may find that enabling the <span class="_Override" style="font-weight: bold;">headlamp</span> control in the Viewer properties improves visibility.<br /><br />Press <span class="_Override" style="font-weight: bold;">S</span> in the Viewer to display the Viewer properties, then enable the <span class="_Override" style="font-weight: bold;">3D</span> &gt; <span class="_Override" style="font-weight: bold;">headlamp</span> checkbox.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the Viewer selection mode using the 3D selection tools in the top right corner of the Viewer:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Vertex selection</span> - allows you to select individual vertices on geometry, giving you fine control while editing. You can also marquee select multiple vertices or use additive selection by holding down <span class="_Override" style="font-weight: bold;">Shift</span>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Face selection</span> - allows you to select individual faces on geometry. You can also marquee select multiple faces or use additive selection by holding down <span class="_Override" style="font-weight: bold;">Shift</span>.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can turn off <span class="_Override" style="font-weight: bold;">occlusion testing</span> by clicking<img src="../../assets/images/ug_images/icon_3d_select_occluded1.png" style="float: right;margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.990425px;margin-bottom: 1.009701px;" /> the disable icon in the Viewer to allow you to select vertices and<br />faces that are hidden from the view point.<br /><br />For example, selecting faces on the “front” of a cube with occlusion testing disabled also selects faces on the opposite, hidden side of the cube.<br /><br /><img src="../../assets/images/ug_images/editgeo4.png" /> <img src="../../assets/images/ug_images/editgeo5.png" /><br /></p>
-        <p class="numberedCont">See <a href="3d_selection_tools.html#3d_compositing_3567570779_810718" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">3D Selection Tools</span></a> for more information.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Set how the axis handles are aligned with your selection using the <span class="_Override" style="font-weight: bold;">axis</span> <span class="_Override" style="font-weight: bold;">alignment</span> dropdown:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">object</span> - the position of the xyz axis is determined by the average position of all vertices in the selection. The orientation of the axis is the same as the object's orientation.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">average normal</span> - the position of the xyz axis is determined by the average position of all vertices in the selection. The orientation of the axis is aligned to the average of the current selection's normals.</p>
-        <p class="processBulletCont">In this mode, the z axis always points directly away from the current selection.</p>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/editgeo1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/editgeo2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Object alignment</td>
-                    <td class="caption">Average normal alignment</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Holding <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Alt</span> allows you to drag the center of the axis across the surface of the geometry, with the orientation set to the nearest face's normal.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Make vertex or face selections in the Viewer as required. Hold <span class="_Override" style="font-weight: bold;">Shift</span> to add to a selection or <span class="_Override" style="font-weight: bold;">Alt</span>+<span class="_Override" style="font-weight: bold;">Shift</span> to remove selections.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">When you’re satisfied with your selections, drag the axis associated with the selection to a new position to edit the geometry.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/editgeo3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 1.000059px;" />
-        </p>
-        <h4>To Animate Edits</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Set the Viewer selection mode using the 3D selection tools in the top right corner of the Viewer:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Vertex selection</span> - allows you to select individual vertices on geometry, giving you fine control while editing. You can also marquee select multiple vertices or use additive selection by holding down <span class="_Override" style="font-weight: bold;">Shift</span>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Face selection</span> - allows you to select individual faces on geometry. You can also marquee select multiple faces or use additive selection by holding down <span class="_Override" style="font-weight: bold;">Shift</span>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Make selections in the Viewer and then click <img src="../../assets/images/ug_images/icon_keys1.png" /><b> </b>in the properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Scrub the playhead to the required frame and transform the geometry using the handles in the Viewer.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">A keyframe is added automatically on the new frame.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Repeat the process to produce the required animation.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Click <img src="../../assets/images/ug_images/icon_keys.png" alt="" title="" />to remove a keyframe at the current frame.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Click <b>reset geometry</b> to return the vertices to their original positions.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h3>
+   使用 EditGeo 节点修改对象
+  </h3>
+  <p>
+   EditGeo 允许您直接修改对象的顶点或面，具体取决于当前活动的查看器选择模式。如果 EditGeo 位于具有多个几何输入的 MergeGeo 节点的下游，也可以同时修改多个对象。
+  </p>
+  <h4>
+   使用 EditGeo 修改对象
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在节点图中选择要修改的 3D 对象或 MergeGeo。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     导航到
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      修改
+     </b>
+     &gt;
+     <b>
+      EditGeo
+     </b>
+     插入 EditGeo 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在节点的控件中，使用
+     <b>
+      显示
+     </b>
+     下拉菜单，选择在对对象进行更改时在查看器中查看对象的方式。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果您没有与几何图形关联的图像或纹理，您可能会发现启用
+   <span class="_Override" style="font-weight: bold;">
+    前照灯
+   </span>
+   Viewer 属性中的控件提高了可见性。
+   <br/>
+   <br/>
+   新闻
+   <span class="_Override" style="font-weight: bold;">
+    S
+   </span>
+   在查看器中显示查看器属性，然后启用
+   <span class="_Override" style="font-weight: bold;">
+    3D
+   </span>
+   &gt;
+   <span class="_Override" style="font-weight: bold;">
+    前照灯
+   </span>
+   复选框。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     使用查看器右上角的 3D 选择工具设置查看器选择模式:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    顶点选择
+   </span>
+   -允许您选择几何图形上的单个顶点，在编辑时提供精细控制。您也可以选择多个顶点或通过按住
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    面选择
+   </span>
+   -允许您选择几何图形上的各个面。您也可以选择多个面或通过按住
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   .
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   你可以关掉
+   <span class="_Override" style="font-weight: bold;">
+    遮挡测试
+   </span>
+   通过点击
+   <img src="../../assets/images/ug_images/icon_3d_select_occluded1.png" style="float: right;margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.990425px;margin-bottom: 1.009701px;"/>
+   查看器中的禁用图标允许您选择顶点和
+   <br/>
+   从视点隐藏的面。
+   <br/>
+   <br/>
+   例如，在禁用遮挡测试的立方体的 “正面” 上选择面也会选择立方体的相反隐藏侧的面。
+   <br/>
+   <br/>
+   <img src="../../assets/images/ug_images/editgeo4.png"/>
+   <img src="../../assets/images/ug_images/editgeo5.png"/>
+   <br/>
+  </p>
+  <p class="numberedCont">
+   请参阅
+   <a class="MCXref xref" href="3d_selection_tools.html#3d_compositing_3567570779_810718">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     3D 选择工具
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     设置轴控制柄如何与您的选择对齐
+     <span class="_Override" style="font-weight: bold;">
+      轴
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      对齐
+     </span>
+     下拉列表:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    对象
+   </span>
+   -Xyz 轴的位置由选择中所有顶点的平均位置决定。轴的方向与对象的方向相同。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    平均正常
+   </span>
+   -Xyz 轴的位置由选择中所有顶点的平均位置决定。轴的方向与当前选择的法线的平均值对齐。
+  </p>
+  <p class="processBulletCont">
+   在这种模式下，z 轴总是直接指向远离当前选择的位置。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/editgeo1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/editgeo2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      对象对齐
+     </td>
+     <td class="caption">
+      平均正常对齐
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   持有
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Alt
+   </span>
+   允许您通过几何图形的曲面拖动轴的中心，方向设置为最近的面法线。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     根据需要在查看器中进行顶点或面选择。保持
+     <span class="_Override" style="font-weight: bold;">
+      转变
+     </span>
+     添加到选择或
+     <span class="_Override" style="font-weight: bold;">
+      Alt
+     </span>
+     +
+     <span class="_Override" style="font-weight: bold;">
+      转变
+     </span>
+     删除选择。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     当您对选择感到满意时，将与选择关联的轴拖到新位置以编辑几何图形。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/editgeo3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 1.000059px;"/>
+  </p>
+  <h4>
+   动画编辑
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     使用查看器右上角的 3D 选择工具设置查看器选择模式:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Vertex selection
+   </span>
+   - allows you to select individual vertices on geometry, giving you fine control while editing. You can also marquee select multiple vertices or use additive selection by holding down
+   <span class="_Override" style="font-weight: bold;">
+    Shift
+   </span>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Face selection
+   </span>
+   - allows you to select individual faces on geometry. You can also marquee select multiple faces or use additive selection by holding down
+   <span class="_Override" style="font-weight: bold;">
+    Shift
+   </span>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在查看器中进行选择，然后单击
+     <img src="../../assets/images/ug_images/icon_keys1.png"/>
+     <b>
+     </b>
+     在属性面板中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将播放头擦洗到所需的帧，并使用查看器中的手柄变换几何图形。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   关键帧会自动添加到新帧上。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     重复该过程以生成所需的动画。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   单击
+   <img alt="" src="../../assets/images/ug_images/icon_keys.png" title=""/>
+   删除当前帧处的关键帧。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     单击
+     <b>
+      重置几何图形
+     </b>
+     将顶点返回到其原始位置。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -251,5 +571,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

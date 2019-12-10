@@ -1,121 +1,265 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Camera Tracking|Tracking in Stills Mode">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Troubleshooting Still Tracks</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/cameratracker/troubleshooting_stills.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Camera Tracking|Tracking in Stills Mode" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   故障排除仍然跟踪
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/cameratracker/troubleshooting_stills.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="Troubles2"></a>Troubleshooting Still Tracks</h2>
-        <p>Some stills sequences are inevitably going to cause problems. There are a number of pre-tracking checks and post-tracking refinement controls to assist CameraTracker.</p>
-        <p>You can improve tracking data by adding User Tracks. See <a href="tracking_usertracks.html#Working" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with User Tracks</span></a> for more information.</p>
-        <h3>Pre-tracking Checks</h3>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>For standard sequences, avoid too much or too little redundancy between still frames, that is, frames that contain large portions of the previous frame. As a guide,  try to capture every part of the scene in 3 to 4 images, aiming for a maximum change of 20-25% in content between frames.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Try to capture the same object in at least 3, but preferably 4 photos.</p>
-        <p class="bulletedCont">For example, when moving around an object,  a photo every 15-25 degrees would be adequate (approximately 16 shots for a full 360).</p>
-        <h3>Post-Tracking Refinements</h3>
-        <p>You can refine a set of feature tracks using the following controls and then retrack to improve your chances of getting a good solve:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Minimum Length</span> - sets a threshold value for the minimum acceptable track length. Tracks that fail to stick to the associated feature for this amount of frames are rejected. </p>
-        <p class="bulletedCont">In long slow camera moves, it is best to solve from long tracks generated in the shot. If there are lots of short tracks, this can lead to noise on the calculated camera. Try removing the short tracks before solving.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Track </span><span class="_Override" style="font-weight: bold;">Threshold</span> - CameraTracker’s tolerance to change along the track is determined by this control. </p>
-        <p class="bulletedCont">Reducing this threshold makes tracking more tolerant to image changes, potentially producing longer tracks.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Press <b>F</b> in the curve display to fit the selected track(s) to the available screen space.</p>
-        <h3>Retracking Partial Frame Ranges</h3>
-        <p>After refining your feature points, you may not need to retrack the entire sequence. You can use <b>Update Track</b> to analyze a specific frame range.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Refine your features using the controls described above.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click <b>Update Track</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">A dialog displays allowing you to set the frame range to update.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Set the required frame range and click <b>OK</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">CameraTracker retracks the selected range and combines the tracking data with any existing tracks.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You may notice that CameraTracker re-detects features on existing frames before re-tracking. This can happen when the cached feature data has been purged and needs to be rebuilt.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="Troubles2">
+   </a>
+   故障排除仍然跟踪
+  </h2>
+  <p>
+   一些剧照序列不可避免地会导致问题。有许多跟踪前检查和跟踪后改进控制来帮助摄影师。
+  </p>
+  <p>
+   您可以通过添加用户跟踪来改进跟踪数据。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_usertracks.html#Working">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用用户跟踪
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <h3>
+   预跟踪检查
+  </h3>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   对于标准序列，避免静止帧之间过多或过少的冗余，即包含前一帧大部分的帧。作为指南，尝试在 3 到 4 幅图像中捕捉场景的每个部分，目标是在帧之间最大改变 20-25% 的内容。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   尝试在至少 3 张照片中捕捉相同的物体，但最好是 4 张照片。
+  </p>
+  <p class="bulletedCont">
+   例如，当围绕一个物体移动时，每 15-25 度拍摄一张照片就足够了 (大约 16 张完整 360 的照片)。
+  </p>
+  <h3>
+   跟踪后改进
+  </h3>
+  <p>
+   您可以使用以下控件细化一组功能轨迹，然后重新跟踪，以提高获得良好解决方案的机会:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    最小长度
+   </span>
+   -设置最小可接受轨道长度的阈值。对于此数量的帧，无法坚持关联特征的轨迹将被拒绝。
+  </p>
+  <p class="bulletedCont">
+   在长时间缓慢的相机移动中，最好从拍摄中生成的长轨迹进行求解。如果有很多短轨道，这可能会导致计算相机上的噪音。尝试在解决之前删除短轨道。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    轨道
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    阈值
+   </span>
+   -CameraTracker 沿轨迹变化的容忍度由此控件确定。
+  </p>
+  <p class="bulletedCont">
+   降低此阈值使得跟踪对图像变化的容忍度更高，从而可能产生更长的跟踪。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   新闻
+   <b>
+    F
+   </b>
+   在曲线显示中，将选定的轨迹调整到可用的屏幕空间。
+  </p>
+  <h3>
+   重新跟踪部分帧范围
+  </h3>
+  <p>
+   在细化特征点之后，您可能不需要重新跟踪整个序列。你可以使用
+   <b>
+    更新跟踪
+   </b>
+   分析特定的帧范围。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     使用上述控件优化功能。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     单击
+     <b>
+      更新跟踪
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   将显示一个对话框，允许您设置要更新的帧范围。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     设置所需的帧范围并单击
+     <b>
+      好
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   CameraTracker 重新跟踪选定的范围，并将跟踪数据与任何现有轨迹相结合。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   您可能会注意到，在重新跟踪之前，CameraTracker 会重新检测现有帧上的特征。当缓存的特征数据已被清除并需要重新生成时，可能会发生这种情况。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -129,5 +273,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

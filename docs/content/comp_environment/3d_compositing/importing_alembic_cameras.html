@@ -1,153 +1,495 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Cameras">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Importing Cameras from Alembic Files</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/importing_alembic_cameras.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|Cameras" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   从 Alembic 文件导入相机
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/importing_alembic_cameras.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Importing Cameras from Alembic Files</h2>
-        <p class="afterHead">You can import cameras  from Alembic files (<span class="_Override" style="font-weight: bold;">.abc</span> file format) into a <span class="CustomProduct">Nuke</span> scene. During the import, <span class="CustomProduct">Nuke</span> allows you to control which nodes in the Alembic scene get loaded by using an import dialog. If there is only one item in the Alembic file, it loads automatically.</p>
-        <p>For more information on Alembic, see <a href="http://code.google.com/p/alembic/">http://code.google.com/p/alembic/</a></p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>In addition to cameras, you can also import meshes (or NURBS curves/patch surfaces converted to meshes), point clouds, and transforms from Alembic files.<br /><br />To learn how to export files in the Alembic (<span class="_Override" style="font-weight: bold;">.abc</span>) format, refer to <a href="exporting_objects.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Exporting Geometry, Cameras, Lights, Axes, or Point Clouds </span></a> for more information.</p>
-        <h3>To Import Cameras from an Alembic file:</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click <span class="_Override" style="font-weight: bold;">Image </span>&gt;<span class="_Override" style="font-weight: bold;"> Read</span> or press <span class="_Override" style="font-weight: bold;">R</span> on the Node Graph.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The <span class="_Override" style="font-weight: bold;">Read File(s)</span> dialog displays.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select the Alembic file you want to import from the file location, then click <span class="_Override" style="font-weight: bold;">Open</span>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The Alembic import dialog displays. By default, all items are selected in the Scene Graph when the import dialog is opened, as shown below:</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/alembic_scenegraph.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792338px;margin-bottom: 1.000063px;" />
-        </p>
-        <p class="numberedCont">Selected parent items are indicated by a yellow circle, and selected child items by a yellow bar (these turn orange when you select them in the list). Unselected items do not have an indicator next to them.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To import specific items, you must first deselect the root item by clicking on the yellow circle. This de-selects the root and any child items. Then, select specific items in the scenegraph by clicking on the blank space where the circles had been, as shown below:</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/alembic_scenegraph2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792338px;margin-bottom: 1.000063px;" />
-        </p>
-        <p class="numberedCont">Alternatively, you can right-click on an item and select:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Select as parent</span> - to select this item and make it a parent to other items. This allows you to create a separate <span class="CustomProduct">Nuke</span> node for this item (and any child items underneath it) in the next step.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Select as child</span> - to select this item and make it a child to the nearest parent item up the tree.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Deselect</span> - to deselect this item (that is, not import it from the scene).</p>
-        <p class="numberedCont">You can also select multiple items by pressing <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span> or <span class="_Override" style="font-weight: bold;">Shift</span> while clicking them.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Do one of the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Click<span class="_Override" style="font-weight: bold;"> Create all-in-one node</span> to create one <span class="CustomProduct">Nuke</span> node for everything that’s selected, regardless of whether the items are selected as parent or child.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Click<span class="_Override" style="font-weight: bold;"> Create parents as separate nodes</span> to create one <span class="CustomProduct">Nuke</span> node for each parent item (yellow circle) in the tree. This node contains all the child items (yellow bars) under the parent.</p>
-        <p class="numberedCont"><span class="CustomProduct">Nuke</span> creates ReadGeo, Camera, and Axis nodes as necessary, depending on what you selected to import from the scene.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">On the Camera nodes, you can adjust the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>From the <b>animation stack</b> dropdown menu, select the take you want to use from the <span class="_Override" style="font-weight: bold;">.abc</span> file. Alembic files support multiple takes in one file.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>From the <b>node name</b> dropdown menu, select the camera you want to import from the <span class="_Override" style="font-weight: bold;">.abc</span> file.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>In the <b>frame rate</b> field, define a frame rate (frames per second) to sample the animation. To use this rate rather than the one defined in the <span class="_Override" style="font-weight: bold;">.abc</span> file, check <b>use frame rate</b>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you want to modify the camera properties imported from the <span class="_Override" style="font-weight: bold;">.abc</span> file, uncheck <b>read from file</b> on the <b>Camera</b>  tab and make the necessary modifications. As long as <b>read from file</b> is unchecked, your changes are kept.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To reload the camera properties from the <span class="_Override" style="font-weight: bold;">.abc</span> file, make sure <b>read from file</b> is checked and click the <b>reload</b> button on the <b>File</b> tab.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To have the camera rotation values calculated using the look up vector and look at position, check <b>compute rotation</b>. If you don’t check this, <span class="CustomProduct">Nuke</span> uses the rotation channel from the <span class="_Override" style="font-weight: bold;">.abc</span> file instead of computing a new one. The rotation values are always computed when there is a look at target.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>To load specific items from an Alembic file, you can also create a ReadGeo, Camera, or Axis node, check <span class="_Override" style="font-weight: bold;">read from file</span>, and click the folder icon on the <span class="_Override" style="font-weight: bold;">File</span> tab to browse to an <span class="_Override" style="font-weight: bold;">.abc</span> file.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   从 Alembic 文件导入相机
+  </h2>
+  <p class="afterHead">
+   您可以从 Alembic 文件导入相机 (
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件格式) 转换为
+   <span class="CustomProduct">
+    核武器
+   </span>
+   场景。在进口期间,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   允许您通过使用导入对话框来控制 Alembic 场景中的哪些节点被加载。如果 Alembic 文件中只有一项，它将自动加载。
+  </p>
+  <p>
+   有关 Alembic 的更多信息，请参见
+   <a href="http://code.google.com/p/alembic/">
+    Http://code.google.com/p/alembic/
+   </a>
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   除了相机之外，还可以从 Alembic 文件导入网格 (或转换为网格的 NURBS 曲线/面片曲面) 、点云和变换。
+   <br/>
+   <br/>
+   了解如何在 Alembic 中导出文件 (
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   ) 格式，请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="exporting_objects.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     导出几何图形、摄影机、灯光、轴或点云
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <h3>
+   要从 Alembic 文件导入相机:
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      图像
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      阅读
+     </span>
+     或按
+     <span class="_Override" style="font-weight: bold;">
+      R
+     </span>
+     在节点图上。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   的
+   <span class="_Override" style="font-weight: bold;">
+    读取文件 (s)
+   </span>
+   对话框显示。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择要从文件位置导入的 Alembic 文件，然后单击
+     <span class="_Override" style="font-weight: bold;">
+      打开
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   将显示 Alembic 导入对话框。默认情况下，打开 “导入” 对话框时，将在场景图中选择所有项目，如下所示:
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/alembic_scenegraph.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792338px;margin-bottom: 1.000063px;"/>
+  </p>
+  <p class="numberedCont">
+   选定的父项用黄色圆圈表示，选定的子项用黄色条表示 (当您在列表中选择它们时，这些子项会变成橙色)。未选择的项目旁边没有指示器。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     要导入特定项目，必须首先通过单击黄色圆圈来取消选择根项目。取消选择根和任何子项。然后，通过单击圆圈所在的空白区域，在场景图中选择特定项目，如下所示:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/alembic_scenegraph2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792338px;margin-bottom: 1.000063px;"/>
+  </p>
+  <p class="numberedCont">
+   或者，您可以在项目上单击鼠标右键并选择:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    选择作为父
+   </span>
+   -选择此项目并使其成为其他项目的父项。这允许您创建一个单独的
+   <span class="CustomProduct">
+    核武器
+   </span>
+   下一步中此项目 (以及其下的任何子项目) 的节点。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    选择为子级
+   </span>
+   -选择此项目并使其成为树中最近的父项目的子项目。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    取消选择
+   </span>
+   -取消选择此项目 (即不从场景导入)。
+  </p>
+  <p class="numberedCont">
+   也可以通过按选择多个项目
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   同时点击它们。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     执行以下操作之一:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   单击
+   <span class="_Override" style="font-weight: bold;">
+    创建所有功能于一身的节点
+   </span>
+   创建一个
+   <span class="CustomProduct">
+    核武器
+   </span>
+   所有选定项的节点，无论这些项是作为父项还是子项选定。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   单击
+   <span class="_Override" style="font-weight: bold;">
+    将父节点创建为单独的节点
+   </span>
+   创建一个
+   <span class="CustomProduct">
+    核武器
+   </span>
+   树中每个父项 (黄色圆圈) 的节点。此节点包含父项下的所有子项 (黄色条)。
+  </p>
+  <p class="numberedCont">
+   <span class="CustomProduct">
+    核武器
+   </span>
+   根据您选择的要从场景导入的内容，根据需要创建 ReadGeo 、 Camera 和 Axis 节点。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在相机节点上，可以调整以下内容:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   从
+   <b>
+    动画堆栈
+   </b>
+   下拉菜单中，选择是否要用的
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件。Alembic 文件支持在一个文件中进行多次接收。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   从
+   <b>
+    节点名称
+   </b>
+   下拉菜单中，选择要从
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在
+   <b>
+    帧速率
+   </b>
+   字段中，定义一个帧速率 (每秒帧数) 来采样动画。使用这个比率，而不是在
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件，检查
+   <b>
+    使用帧速率
+   </b>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果要修改从导入的相机属性
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件，取消选中
+   <b>
+    从文件中读取
+   </b>
+   在
+   <b>
+    相机
+   </b>
+   Tab 并进行必要的修改。只要
+   <b>
+    从文件中读取
+   </b>
+   如果未选中，则保留您的更改。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   从中重新加载相机属性
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件，确保
+   <b>
+    从文件中读取
+   </b>
+   选中并单击
+   <b>
+    重新加载
+   </b>
+   按钮上
+   <b>
+    文件
+   </b>
+   标签。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要使用查找向量和查看位置计算相机旋转值，请检查
+   <b>
+    计算旋转
+   </b>
+   。如果你不检查这个,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   采用旋转通道,
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件而不是计算一个新的。旋转值总是在查看目标时计算的。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   要从 Alembic 文件中加载特定项目，还可以创建 ReadGeo 、 Camera 或 Axis 节点，检查
+   <span class="_Override" style="font-weight: bold;">
+    从文件中读取
+   </span>
+   ,然后单击上的文件夹图标
+   <span class="_Override" style="font-weight: bold;">
+    文件
+   </span>
+   选项卡浏览到
+   <span class="_Override" style="font-weight: bold;">
+    。Abc
+   </span>
+   文件。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -161,5 +503,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

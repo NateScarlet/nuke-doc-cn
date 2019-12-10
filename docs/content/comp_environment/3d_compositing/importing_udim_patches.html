@@ -1,169 +1,403 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Materials and Textures">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Importing UDIM Patches</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/importing_udim_patches.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|Materials and Textures" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   导入 UDIM 修补程序
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/importing_udim_patches.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Importing UDIM Patches</h2>
-        <p class="afterHead">When applying textures to models that use regions of UV space outside the standard (0,0) - (1,1) range, it’s common to use one texture for each 1x1 square. These textures can be numbered in a variety of ways. UDIM is a numbering scheme that identifies the first texture that’s applied to the (0,0) - (1,1) region as 1001, with numbers increasing by one for each texture in the U direction, and by ten for each texture in the V direction.</p>
-        <p>For example, the texture for the region (1,0) - (2,1) would have UDIM 1003, and the texture for (0,1) - (1,2) would have UDIM 1011. A set of patches following the UDIM scheme might look like this:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>color.1001.tif</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>color.1002.tif</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>color.1003.tif</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>color.1004.tif</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>color.1005.tif</p>
-        <p>Where color is the channel name and 1001, 1002, ... is the UDIM value for each patch in UDIM space. In <span class="CustomProduct">Nuke</span>, you can import a set of patches following the UDIM scheme and quickly apply them to the surface of a 3D object. To do this:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <span class="_Override" style="font-weight: bold;">Image</span> &gt; <span class="_Override" style="font-weight: bold;">UDIM Import </span>from the Toolbar.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select the UDIM image or sequence to import and click <span class="_Override" style="font-weight: bold;">Open</span>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/udim_import.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000074px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To ignore an individual patch, disable the checkbox next to it.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To add additional patches, click <span class="_Override" style="font-weight: bold;">Add Files</span>.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If there’s a conflict between the patches that you’ve added, a notification appears underneath the <span class="_Override" style="font-weight: bold;">Add Files</span> button describing the conflict. <br />A typical conflict would be if you attempted to import multiple files sharing the same UDIM value.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Check the <span class="_Override" style="font-weight: bold;">postage stamp</span> checkbox to enable a thumbnail view of the patch on the Read node.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Check the <span class="_Override" style="font-weight: bold;">group nodes</span> checkbox to place the Read nodes for each individual patch into a Group node. The name of the Group node is based on the name of the image or sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Click <span class="_Override" style="font-weight: bold;">Ok</span> to import the files.</td>
-            </tr>
-        </table>
-        <p>This creates a Read node for every patch in the sequence and appends a UVTile node (which allows you to modify a patch’s coordinates in UV space) to each one.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/udim_import2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000074px;margin-bottom: 0.9997767px;" />
-        </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you checked <span class="_Override" style="font-weight: bold;">group nodes</span> in the UDIM import dialog, highlight the Group node and press <span class="_Override" style="font-weight: bold;">Ctrl</span>+<span class="_Override" style="font-weight: bold;">Return </span>(<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Return </span>on a Mac) to view the contents.</p>
-        <p>The UDIM value for each patch is inserted into the <span class="_Override" style="font-weight: bold;">udim</span> field in the UVTile node. This value is important as it offsets every Read node (and therefore, patch) to the correct UDIM space. A number of MergeMat nodes are used to combine the Read/UVTile node combinations. </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The MultiTexture node at the end of the tree optimizes rendering when multiple MergeMat nodes are chained together. It uses the default Iop vertex shader and only handles multi-texturing. This node has no fields or knobs and is intended for use only with the <span class="_Override" style="font-weight: bold;">UDIM Import </span>operation.</p>
-        <p>To apply these patches to a 3D object in your scene, simply connect the output of the last node in the tree to the <span class="_Override" style="font-weight: bold;">img</span> input of a ReadGeo node. </p>
-        <p>To move a patch to a different point in UV space, in the UVTile control panel enter a different UDIM value or disable the <span class="_Override" style="font-weight: bold;">udim</span> field and enter values in the <span class="_Override" style="font-weight: bold;">u</span> and <span class="_Override" style="font-weight: bold;">v</span> fields.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>By default the <span class="_Override" style="font-weight: bold;">UDIM Import </span>operation parses the file name based on the UDIM number. It is possible, however, to create a custom parsing function to work with your own naming conventions. Please refer to the Python Developers Guide for details on how to do this.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   导入 UDIM 修补程序
+  </h2>
+  <p class="afterHead">
+   当将纹理应用于使用标准 (0,0)-(1,1) 范围之外的 UV 空间区域的模型时，通常为每个 1x1 正方形使用一个纹理。这些纹理可以以各种方式进行编号。UDIM 是一个编号方案，它将应用于 (0,0)-(1,1) 区域的第一个纹理识别为 1001，每个纹理在 U 方向上的数字增加一个, 每个纹理在 V 方向上的距离为 10。
+  </p>
+  <p>
+   例如，区域 (1,0)-(2,1) 的纹理将具有 UDIM 1003，(0,1)-(1,2) 的纹理将具有 UDIM 1011。遵循 UDIM 方案的一组补丁可能如下所示:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Color.1001.tif
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Color.1002.tif
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Color.1003.tif
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Color.1004.tif
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Color.1005.tif
+  </p>
+  <p>
+   其中 color 是频道名称，1001，1002，.是 UDIM 空间中每个补丁的 UDIM 值。在
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,您可以按照 UDIM 方案导入一组面片，并将它们快速应用于三维对象的曲面。要做到这一点:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <span class="_Override" style="font-weight: bold;">
+      图像
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      UDIM 导入
+     </span>
+     从工具栏中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择要导入的 UDIM 图像或序列，然后单击
+     <span class="_Override" style="font-weight: bold;">
+      打开
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/udim_import.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000059px;margin-bottom: 1.000074px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     要忽略单个补丁，请禁用它旁边的复选框。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要添加其他修补程序，请单击
+     <span class="_Override" style="font-weight: bold;">
+      添加文件
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果您添加的修补程序之间存在冲突，则会在
+   <span class="_Override" style="font-weight: bold;">
+    添加文件
+   </span>
+   描述冲突的按钮。
+   <br/>
+   典型的冲突是，如果您试图导入共享相同 UDIM 值的多个文件。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     检查
+     <span class="_Override" style="font-weight: bold;">
+      邮票
+     </span>
+     复选框，在 “读取” 节点上启用修补程序的缩略图视图。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     检查
+     <span class="_Override" style="font-weight: bold;">
+      组节点
+     </span>
+     复选框将每个修补程序的读取节点放置到组节点中。组节点的名称基于图像或序列的名称。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      好
+     </span>
+     导入文件。
+    </td>
+   </tr>
+  </table>
+  <p>
+   这将为序列中的每个修补程序创建一个读取节点，并将一个 UVTile 节点 (允许您修改 UV 空间中修补程序的坐标) 附加到每个修补程序。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/udim_import2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.000074px;margin-bottom: 0.9997767px;"/>
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果你检查
+   <span class="_Override" style="font-weight: bold;">
+    组节点
+   </span>
+   在 “UDIM 导入” 对话框中，突出显示组节点并按
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    返回
+   </span>
+   (
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    返回
+   </span>
+   在 Mac 上) 查看内容。
+  </p>
+  <p>
+   每个补丁的 UDIM 值插入到
+   <span class="_Override" style="font-weight: bold;">
+    Udim
+   </span>
+   UVTile 节点中的字段。这个值很重要，因为它将每个读取节点 (因此也是补丁) 偏移到正确的 UDIM 空间。许多 MergeMat 节点用于组合读/UVTile 节点组合。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   当多个 MergeMat 节点链接在一起时，树末尾的多纹理节点优化渲染。它使用默认的 Iop 顶点着色器，只处理多纹理。此节点没有字段或旋钮，仅用于
+   <span class="_Override" style="font-weight: bold;">
+    UDIM 导入
+   </span>
+   操作。
+  </p>
+  <p>
+   要将这些修补程序应用于场景中的 3D 对象，只需将树中最后一个节点的输出连接到
+   <span class="_Override" style="font-weight: bold;">
+    Img
+   </span>
+   ReadGeo 节点的输入。
+  </p>
+  <p>
+   要将修补程序移动到 UV 空间中的不同点，请在 UVTile 控制面板中输入不同的 UDIM 值或禁用
+   <span class="_Override" style="font-weight: bold;">
+    Udim
+   </span>
+   字段并在
+   <span class="_Override" style="font-weight: bold;">
+    u
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    v
+   </span>
+   字段。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   默认情况下,
+   <span class="_Override" style="font-weight: bold;">
+    UDIM 导入
+   </span>
+   操作根据 UDIM 号解析文件名。但是，可以创建一个自定义解析函数来使用您自己的命名约定。有关如何执行此操作的详细信息，请参阅 Python 开发人员指南。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -177,5 +411,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

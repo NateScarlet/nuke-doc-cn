@@ -1,248 +1,474 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Cameras">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Projection Cameras</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/projection_cameras.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|Cameras" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   投影相机
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/projection_cameras.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Projection Cameras</h2>
-        <p class="afterHead">In addition to viewing and rendering a 3D scene, cameras can also project a 2D still image or image sequence onto geometry in the scene. This is similar to the front-projection systems used in practical photography, where a background image or other element is projected onto the stage and photographed with other elements. </p>
-        <p>In <span class="CustomProduct">Nuke</span>, a projection camera can receive camera data tracked from the original shot - or another shot - to setup a projection that is match-moved to another source.</p>
-        <p>This setup requires these nodes: a projection camera, a Scene node, a Project3D node, a geometry object node (what you’ll be projecting onto), and a 2D node with the image that you want to project. </p>
-        <h3>First a Little Math... </h3>
-        <p>When you create a projection camera, you need to gather some information and do a few small calculations to make sure the projection works. Here are the bits of information you need:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Focal length of the lens that photographed the projection image. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Resolution of scanned image. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Scanner pitch of the film scanning device. </p>
-        <p>After you have this information, you need to do these calculations to get the horizontal and vertical aperture settings for the projection setup:</p>
-        <p class="cmdline">horiz. res. / scanner pitch = horizontal aperture</p>
-        <p class="cmdline">vertical res. / scanner pitch = vertical aperture</p>
-        <p>So, for example, if your image resolution is 720 x 486 and the scanner pitch is 20, then these are the results:</p>
-        <p class="cmdline">720 / 20 = horizontal aperture = 36</p>
-        <p class="cmdline">486 / 20 = vertical aperture = 24.3</p>
-        <p>Generally, for most professional projects, you can get the lens focal length from the camera report for the shot(s). If that is not available, you may be able to extrapolate lens information by running the shot through a 3D tracking application, such as Boujou, Syntheyes, or RealViz.</p>
-        <h3>Setting Up the Projection Camera Script</h3>
-        <p>Once you have the horizontal and vertical aperture and the lens focal length for the image you want to project, you can complete the projection camera setup. </p>
-        <h4>To Add a Projection Camera</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D &gt; Camera</b> to add a new camera to your script and rename the node to identify it as a projection camera. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>3D &gt; Shader &gt; Project3D</b> to add a Project3D node to the script. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect the 2D image (i.e., Read node) to the Project3D node. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Connect the projection camera to the Project3D node. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Connect the Project3D node to the geometry node that should receive the 3D projection. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Double-click the projection camera node to load its parameters. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/projection_cam_377x366.png" class="cm10" style="width: 377;height: 366;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Click the <span class="_Override" style="font-weight: bold;">Projection</span> tab in the camera’s panel and then enter the information you gathered for <b>focal length</b>, <b>horiz aperture</b>, and <b>vert aperture</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/projection_cam_node_controls_377x222.png" class="cm10" style="width: 377;height: 222;" />
-        </p>
-        <p>When you are finished, view the 3D scene to check the placement of the projection. The next section explains how to preview the 2D and 3D elements together to check the results of the composite. </p>
-        <h4>To View a 3D Scene over a 2D Background Image</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the Scene node and press <b>1</b> to display its output to the Viewer. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If necessary, press <b>Tab</b> to toggle the Viewer to 3D mode. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select the rendering camera object or node and press <b>H</b> to look through it. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Select the node with the 2D image you want to see in the Viewer, and then press <b>Shift+2</b>. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">The <b>Shift</b>+<b>2</b> keystroke connects the image to the Viewer (assigning the next available connection, number 2), and also sets up the compare wipe. </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select the desired option from the Viewer composite dropdown menu, such as <b>over</b>, <b>under</b>, <b>minus</b>,<b></b>and<b> wipe</b>).</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/projection_cam1_264x146.png" class="cm07" style="width: 264;height: 146;" />
-        </p>
-        <p>This last step superimposes the two elements in the Viewer. The crosshair (shown below) is the control that lets you adjust the location and angle of the wipe for the comparison.</p>
-        <table style="caption-side: top;">
-            <col style="width: 120mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/viewer_2d_3d_wipe_composite.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.00009px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Comparing a 3D scene over a 2D image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   投影相机
+  </h2>
+  <p class="afterHead">
+   除了观看和渲染 3D 场景，相机还可以将 2D 静止图像或图像序列投影到场景中的几何图形上。这类似于实际摄影中使用的前投影系统，其中背景图像或其他元素被投影到舞台上，并与其他元素一起拍摄。
+  </p>
+  <p>
+   在
+   <span class="CustomProduct">
+    核武器
+   </span>
+   因此，投影相机可以接收从原始镜头或另一个镜头跟踪的相机数据，以设置匹配移动到另一个来源的投影。
+  </p>
+  <p>
+   这个设置需要这些节点: 一个投影摄像机，一个场景节点，一个 Project3D 节点，一个几何对象节点 (你将投射到什么), 和一个 2D 节点，其中包含要投影的图像。
+  </p>
+  <h3>
+   首先一点数学.
+  </h3>
+  <p>
+   当你创建一个投影相机时，你需要收集一些信息并做一些小的计算来确保投影工作。以下是您需要的信息:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   拍摄投影图像的镜头的焦距。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   扫描图像的分辨率。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   胶片扫描装置的扫描仪间距。
+  </p>
+  <p>
+   获得这些信息后，需要进行这些计算才能获得投影设置的水平和垂直孔径设置:
+  </p>
+  <p class="cmdline">
+   水平。Res./扫描仪间距 = 水平光圈
+  </p>
+  <p class="cmdline">
+   垂直分辨率/扫描仪间距 = 垂直光圈
+  </p>
+  <p>
+   因此，例如，如果您的图像分辨率为 720x486，扫描仪间距为 20，则结果如下:
+  </p>
+  <p class="cmdline">
+   720/20 = 水平光圈 = 36
+  </p>
+  <p class="cmdline">
+   486/20 = 垂直光圈 = 24.3
+  </p>
+  <p>
+   通常，对于大多数专业项目，您可以从镜头报告中获得镜头焦距。如果不可用，您可以通过 3D 跟踪应用程序 (如 Boujou 、 Syntheyes 或 RealViz) 运行镜头来推断镜头信息。
+  </p>
+  <h3>
+   设置投影相机脚本
+  </h3>
+  <p>
+   一旦拥有了要投影的图像的水平和垂直光圈以及镜头焦距，就可以完成投影相机设置。
+  </p>
+  <h4>
+   添加投影相机的步骤
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D&gt; 相机
+     </b>
+     将新相机添加到脚本中，并重命名节点以将其标识为投影相机。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      3D&gt; 着色器&gt; Project3D
+     </b>
+     将 Project3D 节点添加到脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将 2D 图像 (即读取节点) 连接到 Project3D 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     将投影相机连接到 Project3D 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     将 Project3D 节点连接到应该接收 3D 投影的几何节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     双击 “投影摄影机” 节点以加载其参数。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm10" src="../../assets/images/ug_images/projection_cam_377x366.png" style="width: 377;height: 366;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      投影
+     </span>
+     在相机面板中添加标签，然后输入您收集的信息
+     <b>
+      焦距
+     </b>
+     ,
+     <b>
+      卧式孔径
+     </b>
+     ,和
+     <b>
+      垂直孔径
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm10" src="../../assets/images/ug_images/projection_cam_node_controls_377x222.png" style="width: 377;height: 222;"/>
+  </p>
+  <p>
+   完成后，查看 3D 场景以检查投影的位置。下一节解释如何一起预览 2D 和 3D 元素以检查复合结果。
+  </p>
+  <h4>
+   在 2D 背景图像上查看 3D 场景
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择场景节点并按
+     <b>
+      1
+     </b>
+     向查看器显示其输出。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如有必要，按
+     <b>
+      标签
+     </b>
+     将查看器切换到 3D 模式。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     选择渲染摄影机对象或节点，然后按
+     <b>
+      H
+     </b>
+     通过它看。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     选择包含要在查看器中查看的 2D 图像的节点，然后按
+     <b>
+      Shift + 2
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   的
+   <b>
+    转变
+   </b>
+   <b>
+    2
+   </b>
+   按键将图像连接到查看器 (指定下一个可用连接，编号 2)，并设置比较擦除。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     从查看器复合下拉菜单中选择所需的选项，如
+     <b>
+      结束
+     </b>
+     ,
+     <b>
+      下
+     </b>
+     ,
+     <b>
+      减去
+     </b>
+     ,
+     <b>
+     </b>
+     和
+     <b>
+      擦拭
+     </b>
+     )。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/ug_images/projection_cam1_264x146.png" style="width: 264;height: 146;"/>
+  </p>
+  <p>
+   最后一步叠加了观察者中的两个元素。十字准线 (如下所示) 是允许您调整擦拭位置和角度以进行比较的控件。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 120mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/viewer_2d_3d_wipe_composite.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.00009px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      将 3D 场景与 2D 图像进行比较。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -256,5 +482,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

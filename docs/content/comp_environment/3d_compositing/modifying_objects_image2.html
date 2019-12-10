@@ -1,319 +1,725 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|3D Scene Geometry|Modifying Object Shapes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Modifying Objects Using an Image - Method 2</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/modifying_objects_image2.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|3D Scene Geometry|Modifying Object Shapes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用图像方法 2 修改对象
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/modifying_objects_image2.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h3>Modifying Objects Using an Image - Method 2</h3>
-        <p>Like the DisplaceGeo node, the Displacement shader node also performs displacement mapping and at first glance the nodes seem very similar. However, the approach they have on performing displacement mapping is different.</p>
-        <p>Displacement mapping is a technique for adding geometric detail to object surfaces as you render them. Unlike the DisplaceGeo node, The Displacement node does this on the fly, only displacing those parts of the geometry that are visible at any given moment. Displacement considers the point of view of camera to determine which parts of the displacement need rendering, thus saving render time. It’s also possible to optimize the level of tessellation to be the level that you need for an object at a certain distance. </p>
-        <h4>Connecting the Displacement Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create the Displacement node by clicking <span class="_Override" style="font-weight: bold;">3D</span> &gt; <span class="_Override" style="font-weight: bold;">Shader</span> &gt; <span class="_Override" style="font-weight: bold;">Displacement</span>. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect your geometry to the Displacement node’s output. If you want, you can connect a texture to the Displacement node’s input. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect the image you want to create the displacement from in the <span class="_Override" style="font-weight: bold;">displacement</span> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Optionally, you can use a separate map for calculating the normals. Connect this to the <span class="_Override" style="font-weight: bold;">normals</span> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#3d_compositing_3567570779_780119"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Displacement Controls</span></a> below.</td>
-            </tr>
-        </table>
-        <h4><a name="3d_compositing_3567570779_780119"></a>Adjusting the Displacement Controls</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use the <span class="_Override" style="font-weight: bold;">displacement</span> <span class="_Override" style="font-weight: bold;">channel</span> dropdown menu to select the channel from your <span class="_Override" style="font-weight: bold;">displacement</span> input that you want to use as the displacement map.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you’re using a <span class="_Override" style="font-weight: bold;">normals</span> input, uncheck <span class="_Override" style="font-weight: bold;">build</span> <span class="_Override" style="font-weight: bold;">normals</span> and set <span class="_Override" style="font-weight: bold;">normal expansion </span>to:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">none</span> to use the normals as they are,</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">XY</span> to multiply them on x and y dimensions, and</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">XYZ</span> to multiply them in x, y and z dimensions.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use <span class="_Override" style="font-weight: bold;">scale</span> to set the overall scale of the displacement.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set<span class="_Override" style="font-weight: bold;"> filter</span> <span class="_Override" style="font-weight: bold;">size</span> to the size of the filter you want to use when sampling the input image.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Use the <span class="_Override" style="font-weight: bold;">filter</span> dropdown menu to select a filtering algorithm. For more information, see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:transforming_elements_3731870222_51126"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If you want to automatically calculate normals after the displacement, check <span class="_Override" style="font-weight: bold;">build normals</span>. Uncheck this, if you want the normals calculated from the <span class="_Override" style="font-weight: bold;">normals</span> input.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#3d_compositing_3567570779_780133"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting Displacement Controls for Rendering</span></a> below.</td>
-            </tr>
-        </table>
-        <h4><a name="3d_compositing_3567570779_780133"></a>Adjusting Displacement Controls for Rendering</h4>
-        <p>Before rendering a scene where you’ve used Displacement, adjust the controls on the <span class="_Override" style="font-weight: bold;">Tessellation</span> tab to gain speed and quality for the render process:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use <b>max subdivision</b> to set the maximum number of iterations of polygon subdivision that occurs in tessellation.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">If you’re used to working with DisplaceGeo or displacement in other applications, it’s worth noting that you can get a similar amount of detail with lower geometry subdivisions using the Displacement node.</p>
-        <p class="numberedCont">For example, a 30x30 Card is constructed from the tessellation of 1800 triangles (30x30x2), but you can achieve a similar tessellation levels using the Displacement node with fewer card subdivisions:</p>
-        <table style="width: 447px;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="157px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="133px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="157px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Card subdivisions</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">max subdivisions</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">tessellation triangles</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">1x1 (2 triangles)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">5</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">2048</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">2x2 (8 triangles)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">4</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">2048</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">4x4 (32 triangles)</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">3</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p class="CellBody">2048</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Using a high number of geometry <b>and</b> Displacement subdivisions is likely to slow down rendering so far it becomes unusable - A 10x10 card with <b>max subdivisions</b> set to 4 generates 51200 triangles!</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Set the <b>mode</b> dropdown menu to the mode used in polygon subdivision:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>uniform</b> - uniform polygon tessellation. This is a good option mainly for testing your result, and only in rare occasions the best option to actually use for a displacement render. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>screen</b> - tessellation is determined by the screen size. This is the default and often the best mode option. The tessellation is determined by the size of the tessellate polygons on the screen. This mode ensures that no new polygons are created once a particular polygon edge screen length is reached.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>adaptive</b> - tessellation is determined by the complexity of the displacement. This option attempts to estimate flat areas in the image where tessellation is unnecessary. The calculation is based on the threshold controls which are only active if the <b>adaptive</b> mode is selected.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you set <b>mode</b> to <b>screen</b> or <b>adaptive</b>, set <b>pixel edge length</b> to the maximum size of polygons used in tessellation.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you set <b>mode</b> to <b>adaptive</b>, you can also adjust the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>edge threshold</b> - edges larger than this threshold get divided, whereas edges smaller than this are subdivided according to the normal and displace thresholds.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>normal threshold</b> - detects normal orientations to determine if the surface is flat or not. If the angle between adjacent normals is larger than this threshold, tessellation occurs. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>displace threshold</b> - compares the degrees to which two points on the surface are displaced, and if the results do not match, tessellation occurs.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Keep in mind that applying the Displacement shader to a very complex high resolution geometry can be very slow.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h3>
+   使用图像方法 2 修改对象
+  </h3>
+  <p>
+   像 DisplaceGeo 节点一样，置换着色器节点也执行置换映射，乍一看，节点看起来非常相似。然而，他们在执行位移映射的方法是不同的。
+  </p>
+  <p>
+   置换贴图是一种在渲染对象曲面时向它们添加几何细节的技术。与 “置换” 节点不同，“置换” 节点可以动态地这样做，只置换几何图形中在任何给定时刻可见的部分。置换考虑相机的视点，以确定置换的哪些部分需要渲染，从而节省渲染时间。也可以优化细分的级别，使其成为特定距离的对象所需的级别。
+  </p>
+  <h4>
+   连接位移节点
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     通过单击创建置换节点
+     <span class="_Override" style="font-weight: bold;">
+      3D
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      着色器
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      位移
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将几何图形连接到置换节点的输出。如果需要，可以将纹理连接到置换节点的输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     连接要从中的创建置换的图像
+     <span class="_Override" style="font-weight: bold;">
+      位移
+     </span>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     或者，可以使用单独的贴图来计算法线。将此连接到
+     <span class="_Override" style="font-weight: bold;">
+      法线
+     </span>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#3d_compositing_3567570779_780119">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       调整位移控制
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <h4>
+   <a name="3d_compositing_3567570779_780119">
+   </a>
+   调整位移控制
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      位移
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      渠道
+     </span>
+     下拉菜单从您的
+     <span class="_Override" style="font-weight: bold;">
+      位移
+     </span>
+     要用作置换贴图的输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如果你用的是
+     <span class="_Override" style="font-weight: bold;">
+      法线
+     </span>
+     输入，取消选中
+     <span class="_Override" style="font-weight: bold;">
+      构建
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      法线
+     </span>
+     和设置
+     <span class="_Override" style="font-weight: bold;">
+      正常扩张
+     </span>
+     至:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    没有
+   </span>
+   要使用法线,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    XY
+   </span>
+   在 x 和 y 维度上乘以它们,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    XYZ
+   </span>
+   将它们乘以 x 、 y 和 z 尺寸。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      规模
+     </span>
+     设置位移的总体比例。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      过滤器
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      尺寸
+     </span>
+     采样输入图像时要使用的过滤器的大小。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      过滤器
+     </span>
+     下拉菜单选择过滤算法。有关更多信息，请参见
+     <a class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:transforming_elements_3731870222_51126" href="../transforming_elements/filtering_algorithm_2d.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       选择过滤算法
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     如果要在位移后自动计算法线，请选中
+     <span class="_Override" style="font-weight: bold;">
+      构建法线
+     </span>
+     。取消选中这个，如果你想从
+     <span class="_Override" style="font-weight: bold;">
+      法线
+     </span>
+     输入。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#3d_compositing_3567570779_780133">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       调整渲染的位移控制
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <h4>
+   <a name="3d_compositing_3567570779_780133">
+   </a>
+   调整渲染的位移控制
+  </h4>
+  <p>
+   在渲染使用置换的场景之前，请调整
+   <span class="_Override" style="font-weight: bold;">
+    镶嵌
+   </span>
+   选项卡以获得渲染过程的速度和质量:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     使用
+     <b>
+      最大细分
+     </b>
+     设置细分中发生的多边形细分的最大迭代次数。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果您习惯于在其他应用程序中使用 DisplaceGeo 或 deplacement，值得注意的是，您可以使用 deplacement 节点通过较低的几何细分获得类似数量的细节。
+  </p>
+  <p class="numberedCont">
+   例如，30x30 卡片是由 1800年三角形 (30x2) 的镶嵌构成的, 但是，您可以使用更少的卡细分的置换节点来实现类似的细分级别:
+  </p>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="width: 447px;caption-side: top;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="157px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="133px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="157px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       卡细分
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       最大细分
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       镶嵌三角形
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       1x1 (2 个三角形)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       5
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       2048
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       2x2 (8 个三角形)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       4
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       2048
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       4x4 (32 个三角形)
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       3
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p class="CellBody">
+       2048
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   使用大量几何图形
+   <b>
+    和
+   </b>
+   位移细分可能会减慢渲染速度，到目前为止，它变得不可用 -- 10x10 卡
+   <b>
+    最大细分
+   </b>
+   设置为 4 生成 51200 个三角形!
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     设置
+     <b>
+      模式
+     </b>
+     下拉菜单到多边形细分中使用的模式:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    制服
+   </b>
+   -均匀多边形镶嵌。这是一个很好的选择，主要用于测试结果，只有在极少数情况下，才是实际用于置换渲染的最佳选择。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    屏幕
+   </b>
+   -细分由屏幕大小决定。这是默认的，通常是最佳模式选项。镶嵌由屏幕上镶嵌多边形的大小决定。此模式可确保在达到特定多边形边缘屏幕长度后不会创建新多边形。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    自适应
+   </b>
+   -细分是由位移的复杂性决定的。此选项尝试估计图像中不需要镶嵌的平面区域。计算基于阈值控制，只有在
+   <b>
+    自适应
+   </b>
+   模式被选中。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     如果你设置
+     <b>
+      模式
+     </b>
+     到
+     <b>
+      屏幕
+     </b>
+     或
+     <b>
+      自适应
+     </b>
+     ,设置
+     <b>
+      像素边缘长度
+     </b>
+     细分中使用的多边形的最大大小。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如果你设置
+     <b>
+      模式
+     </b>
+     到
+     <b>
+      自适应
+     </b>
+     ,您也可以调整以下内容:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    边缘阈值
+   </b>
+   -大于该阈值的边缘被分割，而小于该阈值的边缘根据正常阈值和置换阈值被细分。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    正常阈值
+   </b>
+   -检测法线方向以确定曲面是否平坦。如果相邻法线之间的角度大于此阈值，将发生镶嵌。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    置换阈值
+   </b>
+   -比较曲面上两个点的偏移程度，如果结果不匹配，将发生镶嵌。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   请记住，将置换着色器应用于非常复杂的高分辨率几何图形可能非常慢。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -327,5 +733,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

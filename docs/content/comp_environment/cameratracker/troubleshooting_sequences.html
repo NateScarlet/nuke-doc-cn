@@ -1,181 +1,479 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Camera Tracking|Tracking in Sequence Mode">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Troubleshooting Sequence Tracks</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/cameratracker/troubleshooting_sequences.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Camera Tracking|Tracking in Sequence Mode" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   故障排除序列轨道
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/cameratracker/troubleshooting_sequences.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="Troubles"></a>Troubleshooting Sequence Tracks</h2>
-        <p>Some sequences are inevitably going to cause problems. There are a number of pre-tracking checks and post-tracking refinement controls to assist CameraTracker.</p>
-        <h3>Pre-Tracking Checks</h3>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Play through the sequence before tracking and mask out any problem areas in the scene. Large moving objects can confuse the tracking and solving process as can appear to be fixed areas of the scene.</p>
-        <p class="bulletedCont">See <a href="masking.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Masking Out Regions of the Image</span></a> for more information.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you're compositing on moving elements, such as faces, try tracking and solving on just the moving element using masks. You'll then get a camera that moves around the element as if it was fixed in a single position.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Textureless areas of the sequence, such as greenscreens, can cause features to cluster together in other areas, affecting the track and solve.</p>
-        <p class="bulletedCont">Turn on <b>Preview Features</b> and use the distribution and separation controls to even out the features. See <a href="tracking_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking in Sequence Mode</span></a></p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Regular edges, such as striped patterns, in the scene can confuse CameraTracker.</p>
-        <p class="bulletedCont">Again, turn on <b>Preview Features</b> and use the <b>Detection Threshold</b> to force CameraTracker to use corner-like images textures. See <a href="tracking_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking in Sequence Mode</span></a></p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can improve tracking data by adding User Tracks manually, see <a href="tracking_usertracks.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with User Tracks</span></a>for more information.</p>
-        <h3>Reviewing and Refining Tracking Data</h3>
-        <p>You can use the threshold controls on the <b>AutoTracks</b> tab to dynamically reject tracks and remove them, before solving, to improve accuracy. Using the <b>num tracks</b> curve as an example:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click the <b>AutoTracks</b> tab in the properties and select the <b>num tracks</b> curve.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Press <b>F</b> in the curve display to fit the selected track(s) to the available screen space.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/ct2_toubleshoot1.png" alt="" title="" />
-        </p>
-        <p class="numberedCont">In the example, you can see that the number of tracks has dropped significantly around frames 180-200.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Move the Viewer playhead to the affected area and examine the tracked features in the Viewer.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you increase the <b>Min Length</b> control in the properties panel, you'll start to see tracks turn red as they fall below the threshold.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/ct2_toubleshoot2.png" alt="" title="" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/ct2_toubleshoot3.png" alt="" title="" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><b>Min Length</b> set at the default value, 3 frames.</td>
-                    <td class="caption">Min Length set to 50 frames.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click <b>Delete Rejected</b> to remove all the tracks that fall below the specified threshold.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also remove tracks manually, by selecting them in the Viewer, right-clicking, and choosing <b>tracks</b> &gt; <b>delete selected</b>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">You can then retrack the affected frame range by clicking <b>Update Track</b>. See <a href="retracking_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Retracking Partial Frame Ranges</span></a> for more information.</td>
-            </tr>
-        </table>
-        <h3>Re-tracking Using Tracking Settings</h3>
-        <p>Once you have refined the tracking data, review the sequence by scrubbing the playhead to make sure you have tracks across the image on the rigid fixed background. If you see lots of tracks that drift or jump, select them manually, right-click, and go to <b>tracks</b> &gt; <b>delete selected</b>. </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/ct2_delete_track1.png" />
-        </p>
-        <p>You can also add User Tracks to improve tracking data before solving, see <a href="tracking_usertracks.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with User Tracks</span></a>.</p>
-        <p>You can improve a set of feature tracks using the following controls and then retrack to improve your chances of getting a good solve:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Minimum Length</span> - sets a threshold value for the minimum acceptable track length. Tracks that fail to stick to the associated feature for this amount of frames are rejected. </p>
-        <p class="bulletedCont">In long slow camera moves, it is best to solve from long tracks generated in the shot. If there are lots of short tracks, this can lead to noise on the calculated camera. Try removing the short tracks before solving.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Track </span><span class="_Override" style="font-weight: bold;">Threshold</span> - CameraTracker’s tolerance to change along the track is determined by this control. </p>
-        <p class="bulletedCont">Reducing this threshold makes tracking more tolerant to image changes, potentially producing longer tracks.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Track</span><span class="_Override" style="font-weight: bold;"> Smoothness</span> - sets the threshold for smooth track generation. Adjusting this value can be useful in preventing poor tracks in complex sequences.</p>
-        <p class="bulletedCont">Increasing the smoothness value removes tracks that fail over time. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Track</span><span class="_Override" style="font-weight: bold;"> Consistency</span> - sets the threshold for how inconsistent a feature track can be before CameraTracker discards it and reseeds in a different location. </p>
-        <p class="bulletedCont">Higher values allow for less inconsistency and vice versa.</p>
-        <p>Click <b>Delete Rejected</b> to remove all the tracks that fall below the specified thresholds.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="Troubles">
+   </a>
+   故障排除序列轨道
+  </h2>
+  <p>
+   一些序列不可避免地会导致问题。有许多跟踪前检查和跟踪后改进控制来帮助摄影师。
+  </p>
+  <h3>
+   预跟踪检查
+  </h3>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在跟踪和屏蔽场景中的任何问题区域之前，先播放该序列。大型运动对象可能会混淆跟踪和求解过程，因为它们可能看起来是场景的固定区域。
+  </p>
+  <p class="bulletedCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="masking.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     屏蔽图像的区域
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果您正在合成移动元素，如人脸，请尝试使用蒙版跟踪和求解移动元素。然后你会得到一个相机，它在元素周围移动，就像它被固定在一个位置一样。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   序列的无文本区域，如绿色屏幕，会导致特征在其他区域聚集在一起，影响跟踪和求解。
+  </p>
+  <p class="bulletedCont">
+   打开
+   <b>
+    预览特征
+   </b>
+   并使用分布和分离控制来平衡功能。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_sequences.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     在序列模式下跟踪
+    </span>
+   </a>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   场景中的规则边缘 (如条纹图案) 会混淆 CameraTracker。
+  </p>
+  <p class="bulletedCont">
+   再次打开
+   <b>
+    预览特征
+   </b>
+   并使用
+   <b>
+    检测阈值
+   </b>
+   强制 CameraTracker 使用角状图像纹理。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_sequences.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     在序列模式下跟踪
+    </span>
+   </a>
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   您可以通过手动添加用户跟踪来改进跟踪数据，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_usertracks.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用用户跟踪
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <h3>
+   审查和完善跟踪数据
+  </h3>
+  <p>
+   您可以使用阈值控制
+   <b>
+    自动跟踪
+   </b>
+   Tab 动态拒绝轨道，并删除它们，在解决之前，以提高精度。使用
+   <b>
+    Num 轨道
+   </b>
+   曲线为例:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击
+     <b>
+      自动跟踪
+     </b>
+     选项卡中的属性，并选择
+     <b>
+      Num 轨道
+     </b>
+     曲线。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   新闻
+   <b>
+    F
+   </b>
+   在曲线显示中，将选定的轨迹调整到可用的屏幕空间。
+  </p>
+  <p class="graphic">
+   <img alt="" src="../../assets/images/ug_images/ct2_toubleshoot1.png" title=""/>
+  </p>
+  <p class="numberedCont">
+   在这个例子中，你可以看到轨道的数量在 180-200 帧周围显著下降。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将查看器播放头移动到受影响的区域，并检查查看器中的跟踪特征。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     如果你增加
+     <b>
+      最小长度
+     </b>
+     在 “属性” 面板中，您将开始看到轨道在低于阈值时变成红色。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img alt="" src="../../assets/images/ug_images/ct2_toubleshoot2.png" title=""/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img alt="" src="../../assets/images/ug_images/ct2_toubleshoot3.png" title=""/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <b>
+       最小长度
+      </b>
+      设置为默认值，3 帧。
+     </td>
+     <td class="caption">
+      最小长度设置为 50 帧。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     单击
+     <b>
+      删除已拒绝
+     </b>
+     删除低于指定阈值的所有轨迹。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您还可以手动删除轨迹，方法是在查看器中选择轨迹，单击鼠标右键，然后选择
+   <b>
+    轨道
+   </b>
+   &gt;
+   <b>
+    删除选定的
+   </b>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     然后，您可以通过单击来重新跟踪受影响的帧范围
+     <b>
+      更新跟踪
+     </b>
+     。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="retracking_sequences.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       重新跟踪部分帧范围
+      </span>
+     </a>
+     欲了解更多信息。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   使用跟踪设置重新跟踪
+  </h3>
+  <p>
+   一旦你完善了跟踪数据，通过擦洗播放头来查看序列，以确保你在固定背景上的图像上有跟踪。如果您看到许多轨迹漂移或跳跃，请手动选择它们，单击鼠标右键，然后转到
+   <b>
+    轨道
+   </b>
+   &gt;
+   <b>
+    删除选定的
+   </b>
+   .
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/ct2_delete_track1.png"/>
+  </p>
+  <p>
+   您还可以在解决之前添加用户跟踪以改进跟踪数据，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_usertracks.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用用户跟踪
+    </span>
+   </a>
+   .
+  </p>
+  <p>
+   您可以使用以下控件改进一组功能轨迹，然后重新跟踪以提高获得良好解决方案的机会:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    最小长度
+   </span>
+   -设置最小可接受轨道长度的阈值。对于此数量的帧，无法坚持关联特征的轨迹将被拒绝。
+  </p>
+  <p class="bulletedCont">
+   在长时间缓慢的相机移动中，最好从拍摄中生成的长轨迹进行求解。如果有很多短轨道，这可能会导致计算相机上的噪音。尝试在解决之前删除短轨道。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    轨道
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    阈值
+   </span>
+   -CameraTracker 沿轨迹变化的容忍度由此控件确定。
+  </p>
+  <p class="bulletedCont">
+   降低此阈值使得跟踪对图像变化的容忍度更高，从而可能产生更长的跟踪。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    轨道
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    平滑度
+   </span>
+   -设置平滑轨道生成的阈值。调整此值有助于防止复杂序列中的不良轨迹。
+  </p>
+  <p class="bulletedCont">
+   增加 “平滑度” 值将删除随时间发生故障的轨迹。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    轨道
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    一致性
+   </span>
+   -设置阈值，以确定在 CameraTracker 丢弃特征轨迹并在不同位置重新种子之前，特征轨迹的不一致程度。
+  </p>
+  <p class="bulletedCont">
+   较高的值允许较少的不一致，反之亦然。
+  </p>
+  <p>
+   单击
+   <b>
+    删除已拒绝
+   </b>
+   删除低于指定阈值的所有轨迹。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -189,5 +487,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

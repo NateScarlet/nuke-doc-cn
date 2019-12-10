@@ -1,224 +1,528 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Camera Tracking</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/cameratracker/camera_tracking.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   相机跟踪
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/cameratracker/camera_tracking.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="chapterTitle">Camera Tracking</h1>
-        <p><span class="CustomProduct">Nuke</span>’s CameraTracker node is designed to provide an integrated camera tracking or match-moving tool, which allows you to create a virtual camera whose movement matches that of your original camera. Tracking camera movement in a 2D footage enables you to add virtual 3D objects to your 2D footage.</p>
-        <h1>Introduction</h1>
-        <p>With the CameraTracker node, you can track the camera motion in 2D sequences or stills to create an animated 3D camera or a point cloud and scene linked to the solve. You can automatically track features, add User Tracks or tracks from a Tracker node, mask out moving objects using a Bezier or B-spline shape, and edit your tracks manually. CameraTracker can solve the position of several types of cameras as well as solve stereo sequences.</p>
-        <h1>Quick Start</h1>
-        <p>The tracking process is outlined below, whether you intend to track a sequence or a set of stills:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Connect the CameraTracker node to the sequence you want to track. See <a href="connecting_ct.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Connecting the CameraTracker Node</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Mask out any areas of the image that may cause CameraTracker problems, such as movement within the scene or burn-in. See <a href="masking.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Masking Out Regions of the Image</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If you're tracking stereoscopic or multi-view images, set the <b>Principal View</b> on the <b>CameraTracker</b> or <b>Settings</b> tabs. See  <a href="multiview_scripts.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with Multi-View Scripts</span></a> for more information.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the camera parameters, such as <b>Focal Length</b> and <b>Film Back Size</b>, if they are known. These are described under <a href="camera_settings.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Setting Camera Parameters</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Set the <b>Source</b> dropdown to <b>Sequence</b> or <b>Stills</b>, and then:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you intend to track a continuous <b>Sequence</b> of frames, set the tracking preferences using the <b>Settings</b> tab <b>Features</b> and <b>Tracking</b> controls. See <a href="tracking_sequences.html#camera_tracking_911972325_664447" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking in Sequence Mode</span></a> for more information.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you're using <b>Stills</b>, you can track all frames in the same way as sequence tracking, or a subset of <b>Reference Frames</b> using the <b>+/-</b> keyframe buttons above the Viewer or in the properties panel. See <a href="tracking_stills.html#Tracking" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Tracking in Stills Mode</span></a> for more information.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">You can place <b>User Tracks</b> to improve difficult solves, use an entirely manual tracking approach, or set 3D survey points. You can use 3D survey points to tie your sequence to a known 3D world, such as those created using stills. See <a href="tracking_usertracks.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Working with User Tracks</span></a> for more information.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>3D survey points have replaced the ProjectionSolver workflow, but you can still add ProjectionSolver nodes by pressing <b>X</b> in the Node Graph and entering <b>ProjectionSolver</b> as a Tcl command.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Click <span class="_Override" style="font-weight: bold;">Track </span>to begin tracking the sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Solve the Camera position by clicking <span class="_Override" style="font-weight: bold;">Solve</span> and refine it, if necessary. For more information, see <a href="solving_camera_position.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Solving the Camera Position</span></a></td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Set the ground plane, if required, and adjust your scene. See <a href="adjusting_scene.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Scene</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Select what to export from the solve using the <b>Export</b> dropdown and click <b>Create</b>. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">You can export an animated camera, a stereoscopic or multi-view rig, a 3D scene and point cloud, lens distortion, or cards. See <a href="using_solve_data.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using Solve Data</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">If you have multiple footage sources of the same scene or content available, you can also use survey points to solve each of your sources and then register them all in the same world. See <a href="combining_solves.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Combining Solves</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">Add your 3D virtual objects to the footage. See <a href="placing_objects_scene.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Placing Objects in the Scene</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>13. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="13. &#160;">By default, any 3D objects you added to your footage do not have lens distortion applied to them. As a result, they can look like they weren't shot with the same camera. To fix this, see <a href="lens_distortion.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Accounting for Lens Distortion</span></a>.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="chapterTitle">
+   相机跟踪
+  </h1>
+  <p>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的 CameraTracker 节点旨在提供一个集成的相机跟踪或匹配移动工具，它允许您创建一个运动与原始相机相匹配的虚拟相机。跟踪 2D 镜头中的相机运动，您可以将虚拟 3D 对象添加到 2D 镜头中。
+  </p>
+  <h1>
+   导言
+  </h1>
+  <p>
+   使用 CameraTracker 节点，可以跟踪 2D 序列或静态图像中的相机运动，以创建动画 3D 相机或链接到解析式的点云和场景。您可以自动跟踪特征，从跟踪器节点添加用户轨迹或轨迹，使用 Bezier 或 b样条形状遮罩移动的对象，以及手动编辑轨迹。CameraTracker 可以解决几种类型的相机的位置以及解决立体序列。
+  </p>
+  <h1>
+   快速启动
+  </h1>
+  <p>
+   无论您打算跟踪一个序列还是一组静态图像，跟踪过程如下:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     将 CameraTracker 节点连接到要跟踪的序列。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="connecting_ct.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       连接 CameraTracker 节点
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     屏蔽掉图像中可能导致 CameraTracker 问题的任何区域，例如场景内的移动或烧毁。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="masking.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       屏蔽图像的区域
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     如果您正在跟踪立体或多视图图像，请设置
+     <b>
+      主要观点
+     </b>
+     在
+     <b>
+      摄影师
+     </b>
+     或
+     <b>
+      设置
+     </b>
+     标签。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="multiview_scripts.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用多视图脚本
+      </span>
+     </a>
+     欲了解更多信息。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置相机参数，如
+     <b>
+      焦距
+     </b>
+     和
+     <b>
+      胶片背面尺寸
+     </b>
+     ,如果他们是已知的。这些描述在
+     <a class="noPage MCXref xref xrefnoPage" href="camera_settings.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       设置相机参数
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     设置
+     <b>
+      源
+     </b>
+     下拉到
+     <b>
+      序列
+     </b>
+     或
+     <b>
+      剧照
+     </b>
+     ,然后:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果你打算跟踪一个连续的
+   <b>
+    序列
+   </b>
+   帧，使用设置跟踪首选项
+   <b>
+    设置
+   </b>
+   标签
+   <b>
+    特点
+   </b>
+   和
+   <b>
+    跟踪
+   </b>
+   控制。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_sequences.html#camera_tracking_911972325_664447">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     在序列模式下跟踪
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果你使用
+   <b>
+    剧照
+   </b>
+   ,您可以以与序列跟踪相同的方式跟踪所有帧，或跟踪的子集
+   <b>
+    参考框架
+   </b>
+   使用
+   <b>
+    /-
+   </b>
+   查看器上方或 “属性” 面板中的关键帧按钮。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="tracking_stills.html#Tracking">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     在剧照模式下跟踪
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     你可以把
+     <b>
+      用户跟踪
+     </b>
+     要改进困难的解决方案，请使用完全手动跟踪方法，或设置 3D 测量点。您可以使用 3D 测量点将您的序列与已知的 3D 世界相关联，例如使用 stills 创建的序列。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="tracking_usertracks.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用用户跟踪
+      </span>
+     </a>
+     欲了解更多信息。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   3D 测量点已经取代了 ProjectionSolver 工作流，但您仍然可以通过按来添加 ProjectionSolver 节点
+   <b>
+    X
+   </b>
+   在节点图中输入
+   <b>
+    ProjectionSolver
+   </b>
+   作为 Tcl 命令。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      轨道
+     </span>
+     开始跟踪序列。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     通过单击解决相机位置
+     <span class="_Override" style="font-weight: bold;">
+      解决
+     </span>
+     如果有必要，完善它。有关更多信息，请参见
+     <a class="noPage MCXref xref xrefnoPage" href="solving_camera_position.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       解决相机位置
+      </span>
+     </a>
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     如果需要，设置地平面，并调整场景。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="adjusting_scene.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       调整场景
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     选择所导出的解决,
+     <b>
+      出口
+     </b>
+     下拉列表并单击
+     <b>
+      创建
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   您可以导出动画相机、立体或多视图装备、 3D 场景和点云、镜头失真或卡片。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="using_solve_data.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用解析数据
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      11。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="11.  " valign="top">
+     如果您有同一场景或内容的多个素材源，您也可以使用测量点来解决每个源，然后在同一个世界中注册它们。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="combining_solves.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       组合解决
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      12.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="12.  " valign="top">
+     将 3D 虚拟对象添加到素材中。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="placing_objects_scene.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       在场景中放置对象
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      13。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="13.  " valign="top">
+     默认情况下，添加到素材中的任何 3D 对象都不会应用镜头失真。因此，它们看起来不像用同一台相机拍摄的。要解决这个问题，请参见
+     <a class="noPage MCXref xref xrefnoPage" href="lens_distortion.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       考虑镜头失真
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -232,5 +536,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
