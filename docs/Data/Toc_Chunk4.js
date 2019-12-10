@@ -749,7 +749,7 @@ define({
   },
   "/content/tutorials/step_up_to_nuke.html": {
     i: [1237],
-    t: ["加紧核武器"],
+    t: ["加紧 Nuke "],
     b: [""]
   },
   "/content/tutorials/tutorials.html": { i: [1181], t: ["教程"], b: [""] },

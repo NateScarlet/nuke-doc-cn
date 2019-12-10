@@ -713,12 +713,12 @@ define({
   },
   "/content/getting_started/installation/noncommercial_mac.html": {
     i: [28],
-    t: ["在 Mac OS X 上许可非商用核武器"],
+    t: ["在 Mac OS X 上许可非商用 Nuke "],
     b: [""]
   },
   "/content/getting_started/installation/noncommercial_win.html": {
     i: [22],
-    t: ["在 Windows 上许可非商用核武器"],
+    t: ["在 Windows 上许可非商用 Nuke "],
     b: [""]
   },
   "/content/getting_started/installation/uninstalling_nuke_linux.html": {
@@ -868,17 +868,17 @@ define({
   },
   "/content/getting_started/meet_nuke/about_nc.html": {
     i: [9],
-    t: ["关于核武器非商业"],
+    t: ["关于 Nuke 非商业"],
     b: [""]
   },
   "/content/getting_started/meet_nuke/about_nuke_assist.html": {
     i: [8],
-    t: ["关于核武器辅助"],
+    t: ["关于 Nuke 辅助"],
     b: [""]
   },
   "/content/getting_started/meet_nuke/about_nukestudio.html": {
     i: [6],
-    t: ["关于核武器"],
+    t: ["关于 Nuke "],
     b: [""]
   },
   "/content/getting_started/meet_nuke/about_nukex.html": {
@@ -993,7 +993,7 @@ define({
   },
   "/content/getting_started/tutorial1/starting_nuke.html": {
     i: [1227],
-    t: ["启动核武器"],
+    t: ["启动 Nuke "],
     b: [""]
   },
   "/content/getting_started/tutorial1/tut1_epilogue.html": {
