@@ -1,117 +1,225 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Using F_Align</title>
-        <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#furnacecore/align.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 F_Align
+  </title>
+  <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../Default.html#furnacecore/align.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="chapterTitle">Using F_Align</h1>
-        <p class="intro">This chapter l<a name="kanchor294"></a>ooks at how to use F_Align to register (line up) two shots that are of the same scene, but have slightly different camera motion and foreground objects. This can be useful, for example, for doubling up the crowd size by lining up and comping together two shots of the same scene, or locking your freshly generated clean plate to the original.</p>
-        <h1>Introduction </h1>
-        <p class="afterHead">F_Align takes two sequences that were shot of the same scene and lines them up spatially. It uses Global Motion Estimation (GME) to calculate a four-corner pin so that each frame in one shot (the source input) will be aligned with the corresponding frame in a second shot (the reference input). The result is the source image which has been repositioned to line up with the reference image.</p>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td class="caption">
-                        <img src="../assets/images/fc_images/f_align1.png" />
-                    </td>
-                    <td class="caption">
-                        <img src="../assets/images/fc_images/f_align2.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Source image. Notice the <br />position of the background.</td>
-                    <td class="caption">Reference Image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td class="caption">
-                        <img src="../assets/images/fc_images/f_align3.png" />
-                    </td>
-                    <td class="caption">
-                        <img src="../assets/images/fc_images/f_align4.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Output from F_Align. <br />The source image has been <br />repositioned so that the <br />background lines up with <br />the reference image.</td>
-                    <td class="caption">The output of F_align <br />comped together with the <br />reference image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>To be able to align the sequences, F_Align analyzes them for global motion. This analysis can be triggered for the complete sequence, specified frame range, or a single frame when you press the <span class="_Override" style="font-weight: bold;">Analyse</span> button in the F_Align controls. Alternatively, it can be done on the fly for a single frame when you move to a new frame on the timeline. The advantage of pressing <span class="_Override" style="font-weight: bold;">Analyse</span> is that during the analysis, F_Align stores the calculated four-corner pin as key-framed parameters. When you then render the output of the plug-in later, F_Align can use these key frames without having to calculate them again. </p>
-        <p>If you analyze on the fly, you won’t have direct access to the calculated corner pins. Any re-rendering will also be significantly slower, as the ’on the fly’ calculations will have been lost and F_Align will have to analyze again.</p>
-        <p>If at any stage you modify the effect in such a way to invalidate the key-framed analysis (for example by changing the <span class="_Override" style="font-weight: bold;">Accuracy</span> parameter), a warning will be posted and the effect will analyze on-the-fly during render, ignoring the keyed analysis.</p>
-        <p>The on-screen widget and the <span class="_Override" style="font-weight: bold;">Analysis Region</span>parameters are used to control which section of the <span class="_Override" style="font-weight: bold;">Reference</span>frame is being matched to each <span class="_Override" style="font-weight: bold;">Source</span> frame. Typically, leaving the region at its default is good enough. However, a heavy mismatch in foreground detail may make it necessary to change the region to a section that is shared between shots.</p>
-        <p>The transformation in F_Align is concatenated with other <span class="CustomProductX">NukeX</span> transform nodes. This means that if you add a row of F_Align and <span class="CustomProductX">NukeX</span> transform nodes to a tree, their functions are combined. Because the image is only re-sampled once, there is no loss of image quality and processing time is decreased. However, as in <span class="CustomProductX">NukeX</span>, certain nodes, including color correction nodes, can break the concatenation.</p>
-        <p>For more of an overview of Global Motion Effects and a description of the common way of working many of these effects have, please see <a href="global_motion_estimation.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Global Motion Estimation</span></a>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="chapterTitle">
+   使用 F_Align
+  </h1>
+  <p class="intro">
+   这一章 l
+   <a name="kanchor294">
+   </a>
+   看看如何使用 F_Align 来注册 (排列) 两个相同场景的镜头，但相机运动和前景对象略有不同。这可能是有用的，例如，通过排队和组合同一场景的两个镜头，或者将新生成的干净盘子锁定在原始盘子上，使人群大小加倍。
+  </p>
+  <h1>
+   导言
+  </h1>
+  <p class="afterHead">
+   F_Align 拍摄同一场景的两个序列，并在空间上排列它们。它使用全局运动估计 (GME) 来计算一个四角引脚，以便每帧一次拍摄 (源输入) 将在第二个镜头 (参考输入) 中与相应的帧对齐。结果是源图像，它已被重新定位以与参考图像对齐。
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td class="caption">
+      <img src="../assets/images/fc_images/f_align1.png"/>
+     </td>
+     <td class="caption">
+      <img src="../assets/images/fc_images/f_align2.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      源图像。请注意
+      <br/>
+      背景的位置。
+     </td>
+     <td class="caption">
+      参考图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td class="caption">
+      <img src="../assets/images/fc_images/f_align3.png"/>
+     </td>
+     <td class="caption">
+      <img src="../assets/images/fc_images/f_align4.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      F_Align 的输出。
+      <br/>
+      源图像已被
+      <br/>
+      重新定位，以便
+      <br/>
+      背景线与
+      <br/>
+      参考图像。
+     </td>
+     <td class="caption">
+      F_align 的输出
+      <br/>
+      有额外的结合
+      <br/>
+      参考图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   为了能够对齐序列，F_Align 分析它们的全局运动。这种分析可引发的测定表明，指定的框架范围内，或一个框，当你按下
+   <span class="_Override" style="font-weight: bold;">
+    分析
+   </span>
+   F_Align 控件中的按钮。或者，当你在时间线上移动到一个新的帧时，它可以在一个帧的飞行中完成。压制的优势
+   <span class="_Override" style="font-weight: bold;">
+    分析
+   </span>
+   在分析过程中，F_Align 将计算出的四角销存储为关键帧参数。当您稍后渲染插件的输出时，F_Align 可以使用这些关键帧，而不必再次计算它们。
+  </p>
+  <p>
+   如果您动态分析，您将无法直接访问计算的角销。任何重新渲染也将明显变慢，因为 “正在飞行” 的计算将会丢失，F_Align 将不得不再次分析。
+  </p>
+  <p>
+   如果在任何阶段，您修改效果以使关键帧分析无效 (例如通过更改
+   <span class="_Override" style="font-weight: bold;">
+    精度
+   </span>
+   参数)，将发布警告，效果将在渲染期间动态分析，忽略关键的分析。
+  </p>
+  <p>
+   屏幕上的小部件和
+   <span class="_Override" style="font-weight: bold;">
+    分析区域
+   </span>
+   参数用于控制的哪一部分
+   <span class="_Override" style="font-weight: bold;">
+    参考
+   </span>
+   帧与每个帧匹配
+   <span class="_Override" style="font-weight: bold;">
+    源
+   </span>
+   框架。通常，保留默认区域就足够了。然而，前景细节的严重不匹配可能使得有必要将该区域更改为在镜头之间共享的部分。
+  </p>
+  <p>
+   F_Align 中的转换与其他连接
+   <span class="CustomProductX">
+    NukeX
+   </span>
+   变换节点。这意味着，如果您添加一行 F_Align 和
+   <span class="CustomProductX">
+    NukeX
+   </span>
+   将节点转换为树，将它们的功能组合在一起。因为图像只重新采样一次，所以没有图像质量的损失，处理时间也减少了。然而，在
+   <span class="CustomProductX">
+    NukeX
+   </span>
+   ,某些节点，包括颜色校正节点，可以打破连接。
+  </p>
+  <p>
+   有关全局运动效果的更多概述以及对许多这些效果的常见工作方式的描述，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="global_motion_estimation.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     全局运动估计
+    </span>
+   </a>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -125,5 +233,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

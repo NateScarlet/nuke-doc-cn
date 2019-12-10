@@ -1,345 +1,677 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Using RotoPaint">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Adding Motion Blur</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/rotopaint/adding_motionblur.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Using RotoPaint" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   添加运动模糊
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/rotopaint/adding_motionblur.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Adding Motion Blur</h1>
-        <p>After animating your shapes, you can apply motion blur to individual shapes in the shape list or to the all shapes in the current node using the controls in the properties <b>Motion Blur</b> tab. </p>
-        <h2>Adding Blur to Shapes</h2>
-        <p><b>Shape Blur</b> determines the exposure for each moving shape and blends the resulting blurred shapes. This may be more efficient than the <b>global</b> motion blur since each shape will only be blended once.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Shape motion blur may result in artifacts when shapes blur over the same region.</p>
-        <p>To apply <b>shape</b> motion blur:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the target shapes in the shape list or in the Viewer.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the properties panel, select the <b>Motion Blur</b> tab and make sure that <b>shape</b> mode is enabled.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Check the <b>on</b> box next to the <b>motionblur</b> field to apply motion blur to your shape. If you don’t want any motion blur on your shape, leave the <b>on</b> box unchecked.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also toggle motion blur on and off in the shape list by clicking in the motion blur column for each shape <img src="../../assets/images/ug_images/icon_roto_motionblur.jpg" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.012535px;margin-bottom: 1.008001px;vertical-align: middle;" />.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the <b>Shape Blur</b> &gt; <b>motionblur</b> field, enter the sampling rate. This affects the number of times the input is sampled over the shutter time. The higher the rate, the smoother the result. In many cases, a value of 1.0 is enough.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_lowsamples.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_highsamples.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A&#160;motionblur value of 0.5 produces less samples.</td>
-                    <td class="caption">A higher value, in this case 2.0, produces a smoother blur.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the <b>shutter</b> field, enter the number of frames the shutter stays open when motion blurring. For example, a value of 0.5 would correspond to half a frame. Increasing the value produces more blur, and decreasing the value less.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_lowshutter.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_highshutter.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A&#160;shutter value of 0.2 produces less blur.</td>
-                    <td class="caption">A higher value, in this case 1.0, produces more blur.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Adjust the shutter offset using the <b>shutter offset</b> dropdown menu. The different options control when the shutter opens and closes in relation to the current frame value. Select: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>centered</b> - to center the shutter around the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29.5 to 30.5. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>start</b> - to open the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 30 to 31.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>end</b> - to close the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29 to 30.</p>
-        <table>
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_offset_cen.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_offset_start.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_offset_end.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Centering the shutter around the current frame.</td>
-                    <td class="caption">Opening the shutter at the current frame.</td>
-                    <td class="caption">Closing the shutter at the current frame.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>custom</b> - to open the shutter at the time you specify. In the field next to the dropdown menu, enter a value (in frames) you want to add to the current frame. To open the shutter before the current frame, enter a negative value. For example, a value of - 0.5 would open the shutter half a frame before the current frame.</p>
-        <h2>Adding Global Motion Blur</h2>
-        <p><b>Global Blur</b> correctly accounts for interaction between motion blurred shapes. This may be more expensive than the <b>shape</b> motion blur since it may blend each shape for every sample, in the same way as TimeBlur. See <a href="../temporal_operations/applying_timeblur_filter.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Applying the TimeBlur Filter</span></a> for more information.</p>
-        <p>Global motion blur requires that shutter and sampling parameters are the same for all shapes and has been optimized for consecutive shapes with the same properties using the <b>over</b> blend mode.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Global motion blur overrides per-shape motion blur, applying your settings to all shapes in the current node's shape list.</p>
-        <p>To add <b>global</b> motion blur:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the properties panel, select the <b>Motion Blur</b> tab and make sure that <b>global</b> mode is enabled.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the <b>Global Blur</b> &gt; <b>motionblur</b> field, enter the sampling rate. This affects the number of times the input is sampled over the shutter time. The higher the rate, the smoother the result. In many cases, a value of 1.0 is enough.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_lowsamples.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_highsamples.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A&#160;motionblur value of 0.5 produces less samples.</td>
-                    <td class="caption">A higher value, in this case 2.0, produces a smoother blur.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the <b>shutter</b> field, enter the number of frames the shutter stays open when motion blurring. For example, a value of 0.5 would correspond to half a frame. Increasing the value produces more blur, and decreasing the value less.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_lowshutter.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_highshutter.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A&#160;shutter value of 0.2 produces less blur.</td>
-                    <td class="caption">A higher value, in this case 1.0, produces more blur.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Adjust the shutter offset using the <b>shutter offset</b> dropdown menu. The different options control when the shutter opens and closes in relation to the current frame value. Select: </td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>centered</b> - to center the shutter around the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29.5 to 30.5. </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>start</b> - to open the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 30 to 31.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>end</b> - to close the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29 to 30.</p>
-        <table>
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_offset_cen.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_offset_start.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/roto_moblur_offset_end.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Centering the shutter around the current frame.</td>
-                    <td class="caption">Opening the shutter at the current frame.</td>
-                    <td class="caption">Closing the shutter at the current frame.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>custom</b> - to open the shutter at the time you specify. In the field next to the dropdown menu, enter a value (in frames) you want to add to the current frame. To open the shutter before the current frame, enter a negative value. For example, a value of - 0.5 would open the shutter half a frame before the current frame.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   添加运动模糊
+  </h1>
+  <p>
+   设置形状动画后，可以使用属性中的控件将运动模糊应用于形状列表中的单个形状或当前节点中的所有形状。
+   <b>
+    运动模糊
+   </b>
+   标签。
+  </p>
+  <h2>
+   向形状添加模糊
+  </h2>
+  <p>
+   <b>
+    形状模糊
+   </b>
+   确定每个移动形状的曝光，并混合生成的模糊形状。这可能是更高效
+   <b>
+    全球
+   </b>
+   运动模糊，因为每个形状将只混合一次。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   当形状在同一区域模糊时，形状运动模糊可能会导致瑕疵。
+  </p>
+  <p>
+   申请
+   <b>
+    形状
+   </b>
+   运动模糊:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在形状列表或查看器中选择目标形状。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 “属性” 面板中，选择
+     <b>
+      运动模糊
+     </b>
+     标签，并确保
+     <b>
+      形状
+     </b>
+     模式已启用。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     检查
+     <b>
+      上
+     </b>
+     旁边的框
+     <b>
+      Motionblur
+     </b>
+     将运动模糊应用于形状的字段。如果你不想在你的形状上有任何运动模糊，离开
+     <b>
+      上
+     </b>
+     未选中框。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您还可以通过在每个形状的 “运动模糊” 列中单击，在 “形状” 列表中打开和关闭运动模糊
+   <img src="../../assets/images/ug_images/icon_roto_motionblur.jpg" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.012535px;margin-bottom: 1.008001px;vertical-align: middle;"/>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在
+     <b>
+      形状模糊
+     </b>
+     &gt;
+     <b>
+      Motionblur
+     </b>
+     字段中，输入采样率。这将影响在快门时间内对输入进行采样的次数。速度越高，结果就越平滑。在许多情况下，值 1.0 就足够了。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_lowsamples.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_highsamples.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      0.5 的 motionblur 值产生的样本较少。
+     </td>
+     <td class="caption">
+      较高的值 (在本例中为 2.0) 会产生更平滑的模糊。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在
+     <b>
+      快门
+     </b>
+     字段中，输入当运动模糊时快门保持打开的帧数。例如，值 0.5 对应于半帧。增加值会产生更多模糊，减少值。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_lowshutter.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_highshutter.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      0.2 的快门值产生的模糊较少。
+     </td>
+     <td class="caption">
+      更高的值，在这种情况下是 1.0，会产生更多的模糊。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     使用调整快门偏移
+     <b>
+      快门偏移
+     </b>
+     下拉菜单。不同的选项控制快门何时相对于当前帧值打开和关闭。选择:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    居中
+   </b>
+   -将快门围绕当前帧居中。例如，如果将 “快门” 值设置为 1，并且当前帧为 30，则快门将从帧 29.5 保持打开，至 30.5。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    开始
+   </b>
+   -在当前帧打开快门。例如，如果将快门值设置为 1，并且当前帧为 30，则快门将从帧 30 保持打开。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    结束
+   </b>
+   -在当前帧处关闭快门。例如，如果将 “快门” 值设置为 1，并且当前帧为 30，则快门将从帧 29 到 30 保持打开状态。
+  </p>
+  <table>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_offset_cen.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_offset_start.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_offset_end.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      将快门围绕当前帧居中。
+     </td>
+     <td class="caption">
+      在当前帧处打开快门。
+     </td>
+     <td class="caption">
+      在当前帧处关闭快门。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    自定义
+   </b>
+   -在您指定的时间打开快门。在下拉菜单旁边的字段中，输入要添加到当前帧中的值 (以帧为单位)。要在当前帧之前打开快门，请输入负值。例如，值为-0.5 将在当前帧之前半帧打开快门。
+  </p>
+  <h2>
+   添加全局运动模糊
+  </h2>
+  <p>
+   <b>
+    全球模糊
+   </b>
+   正确解释运动模糊形状之间的相互作用。这可能是更昂贵的比
+   <b>
+    形状
+   </b>
+   运动模糊，因为它可以混合每个样本的每个形状，与时间模糊相同。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="../temporal_operations/applying_timeblur_filter.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     应用时间模糊过滤器
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p>
+   全局运动模糊要求所有形状的快门和采样参数都是相同的，并且已经使用
+   <b>
+    结束
+   </b>
+   混合模式。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   全局运动模糊覆盖每个形状的运动模糊，将设置应用于当前节点形状列表中的所有形状。
+  </p>
+  <p>
+   要添加
+   <b>
+    全球
+   </b>
+   运动模糊:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 “属性” 面板中，选择
+     <b>
+      运动模糊
+     </b>
+     标签，并确保
+     <b>
+      全球
+     </b>
+     模式已启用。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在
+     <b>
+      全球模糊
+     </b>
+     &gt;
+     <b>
+      Motionblur
+     </b>
+     字段中，输入采样率。这将影响在快门时间内对输入进行采样的次数。速度越高，结果就越平滑。在许多情况下，值 1.0 就足够了。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_lowsamples.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_highsamples.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      A motionblur value of 0.5 produces less samples.
+     </td>
+     <td class="caption">
+      A higher value, in this case 2.0, produces a smoother blur.
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在
+     <b>
+      快门
+     </b>
+     字段中，输入当运动模糊时快门保持打开的帧数。例如，值 0.5 对应于半帧。增加值会产生更多模糊，减少值。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_lowshutter.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_highshutter.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      A shutter value of 0.2 produces less blur.
+     </td>
+     <td class="caption">
+      A higher value, in this case 1.0, produces more blur.
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     使用调整快门偏移
+     <b>
+      快门偏移
+     </b>
+     下拉菜单。不同的选项控制快门何时相对于当前帧值打开和关闭。选择:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    centered
+   </b>
+   - to center the shutter around the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29.5 to 30.5.
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    start
+   </b>
+   - to open the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 30 to 31.
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    end
+   </b>
+   - to close the shutter at the current frame. For example, if you set the shutter value to 1 and your current frame is 30, the shutter stays open from frame 29 to 30.
+  </p>
+  <table>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_offset_cen.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_offset_start.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/roto_moblur_offset_end.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      Centering the shutter around the current frame.
+     </td>
+     <td class="caption">
+      Opening the shutter at the current frame.
+     </td>
+     <td class="caption">
+      Closing the shutter at the current frame.
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    custom
+   </b>
+   - to open the shutter at the time you specify. In the field next to the dropdown menu, enter a value (in frames) you want to add to the current frame. To open the shutter before the current frame, enter a negative value. For example, a value of - 0.5 would open the shutter half a frame before the current frame.
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -353,5 +685,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

@@ -1,282 +1,874 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using MatchGrade">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Matching a Grade Between Two Different Clips</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/matchgrade/matching_different_clips.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using MatchGrade" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   在两个不同剪辑之间匹配等级
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/matchgrade/matching_different_clips.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Matching a Grade Between Two Different Clips</h1>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Color</b> &gt; <b>MatchGrade</b> to insert a MatchGrade node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Do the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Connect MatchGrade's <b>Source</b> input to the clip to which you want to apply the color transform.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Connect the <b>Target</b> input to the clip you want to match. This should be a completely different clip, a stereo pair for the <b>Source</b> clip, or the <b>Source</b> clip in a different format.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Connect a Viewer to the output of MatchGrade.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/matchgrade_different_nodes_378x274.png" style="width: 378;height: 274;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the MatchGrade properties, set <b>Task</b> to <b>Match Different Clip</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set <b>Output</b> to <b>Source </b>and then <b>Target</b> to compare the <b>Source</b> and <b>Target</b> images. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">When you find frames that cover similar content in the <b>Source</b> and <b>Target</b> clips, click on the <img src="../../assets/images/ug_images/icon_keys1.png" alt="" title="" style="vertical-align: middle;" /> buttons next to <b>Source</b> and <b>Target</b> to set the current frame as a reference frame. Only frames set as reference frames are used in the MatchGrade analysis.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">For example, if you want grass in the <b>Source</b> clip to have the same color as grass in the <b>Target</b> clip, you need to choose frames where the relative amount of grass pixels is roughly the same. The more similar the content, the better MatchGrade is able to match the colors.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You do not need to use the same number of <b>Source</b> and <b>Target</b> reference frames or set the same frames as reference frames for both.</p>
-        <p class="numberedCont">If necessary, you can also use the <img src="../../assets/images/ug_images/icon_keys.png" alt="" title="" style="vertical-align: middle;" />button to remove a frame from the set of reference frames.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If you only want to match certain elements between the <b>Source</b> and <b>Target</b> clips, supply a mask in both the <b>Source</b> and <b>Target</b> inputs' alpha channels and set <b>Mask</b> to either:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Alpha</b> - to use the alpha channel from both inputs as a mask. Only the non-black areas of the <b>Source</b> and <b>Target</b> inputs' alpha channels are used in the MatchGrade analysis, and the grade is limited to the non-black areas of the <b>Source</b> alpha.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Inverted Alpha</b> - to use the inverted alpha channel from both inputs as a mask. Only the non-white areas of the  <b>Source</b> and <b>Target</b> inputs' alpha channels are used in the MatchGrade analysis, and the grade is limited to the non-white areas of the <b>Source</b> alpha.</p>
-        <p class="numberedCont">Masks can also be useful if you cannot find frames that cover approximately the same amount of similar content. For example, if the <b>Source</b> and <b>Target</b> inputs have a different amount of grass and sky, you can use a Roto node in both inputs to create masks that cover the same amount of grass and sky. Bear in mind that if you do so, the grade is only applied to the areas indicated by the mask in the <b>Source</b> input. To apply it to the entire frame, you need to export the grade first. For more information, see step 12.</p>
-        <table>
-            <col style="width: 7cm;" />
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_source_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_target_mask_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The <b>Source</b> image. In this case, you can set this image to have a fully opaque alpha...</td>
-                    <td class="caption">...and draw a mask like this on the <b>Target</b> image to ensure both inputs cover similar content.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">When you're done setting reference frames, use the <b>Transform</b> dropdown menu to choose how to calculate the grade:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>3D LUT</b> - Calculate the grade as a 3D look-up table (LUT). This allows you to export the grade to a <b>.csp</b> format, which you can use with the OCIOFileTransform node.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>CDL</b>&#160;- Calculate the grade as a color decision list (CDL). This allows you to export the grade to an OCIOCDLTransform node. </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The <b>CDL</b> transform is limited and cannot model all types of color transformation. In most cases, selecting <b>3D LUT</b> gives the best results.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Set <b>Output</b> back to <b>Matched</b> and click <b>Analyze Reference Frames</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">MatchGrade calculates the transform needed to match the <b>Source</b> image to the <b>Target</b> image.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">To evaluate the results, select the MatchGrade node and press <b>D</b> repeatedly to toggle between the original <b>Source</b> image and the graded output.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 7cm;" />
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_source_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_target_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The <b>Source</b> image.</td>
-                    <td class="caption">The <b>Target</b> image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_result_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The color-matched result.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">If you're not happy with the results, try one or more of the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Look for better reference frames or use a mask in the <b>Target</b> input to make sure both inputs cover approximately the same amount of similar content.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use the <b>Pre LUT</b>&#160;dropdown menu to specify a 1D shaper LUT to use for the analysis: <b>Linear</b> or <b>Logarithmic</b>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Increase the <b>LUT Resolution</b> value. This is the resolution of the look-up table (LUT) in which MatchGrade stores the color transformation. Higher values can improve the results, but also increase processing time. The maximum value is 64.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Set<b> Colorspace</b> to a different value. The correct setting to use depends on the nature of the transformation. Try each option to see which works best with your footage.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Increase the <b>Iterations</b> value. This determines the number of refinement passes. Higher values can produce a better color match, but also take longer to process.</p>
-        <p class="numberedCont">To update the results, click <b>Analyze Reference Frames</b> again.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">If you set <b>Transform</b> to <b>CDL</b> in step 8, you can fine-tune the grade manually by adjusting <b>slope</b>, <b>offset</b>, <b>power</b>, and <b>saturation</b>. The <b>lock</b> controls on the right prevent the values from being recalculated when you click <b>Recalculate CDL</b>, allowing you to set some values manually and estimate others automatically. For example, you can adjust and lock <b>slope</b> and <b>offset</b> and then click <b>Recalculate CDL</b> to automatically recalculate <b>power</b> and <b>saturation</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">If necessary, you can export the calculated grade and apply it to other nodes in your script. How you do this depends on whether you chose to calculate the grade as a 3D LUT or a CDL:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you set <b>Transform</b> to <b>3D LUT</b>, you can write the LUT&#160;into a <b>.csp</b> file and create an OCIOFileTransform node that you can use elsewhere in the script to apply the same grade. To do so, enter a file path and name for the <b>.csp</b> file in the <b>LUT&#160;output file</b> field and click <b>Write</b> to export the LUT. Then, click <b>Create OCIOFileTransform</b> to create an OCIOFileTransform node that applies the color transform from the <b>.csp</b> file.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/matchgrade_different_ociofiletransform_378x205.png" style="width: 378;height: 205;" />
-        </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you set <b>Transform</b> to <b>CDL</b>, you can click <b>Create OCIOCDLTransform</b> to create an OCIOCDLTransform node that uses the values in the <b>CDL&#160;Output</b> section of the MatchGrade properties.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/matchgrade_different_ociocdltransform_378x205.png" style="width: 378;height: 205;" />
-        </p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also apply the grade to a different source by simply connecting a new node to MatchGrade's <b>Source</b> input.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   在两个不同剪辑之间匹配等级
+  </h1>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      MatchGrade
+     </b>
+     将 MatchGrade 节点插入脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     执行以下操作:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   连接 MatchGrade's
+   <b>
+    源
+   </b>
+   输入到要应用颜色变换的剪辑。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   连接
+   <b>
+    目标
+   </b>
+   输入到要匹配的剪辑。这应该是一个完全不同的剪辑，一个立体声对
+   <b>
+    源
+   </b>
+   剪辑，或
+   <b>
+    源
+   </b>
+   以不同的格式剪辑。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将查看器连接到 MatchGrade 的输出。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/matchgrade_different_nodes_378x274.png" style="width: 378;height: 274;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在 MatchGrade 属性中，设置
+     <b>
+      任务
+     </b>
+     到
+     <b>
+      匹配不同的剪辑
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置
+     <b>
+      输出
+     </b>
+     到
+     <b>
+      源
+     </b>
+     然后
+     <b>
+      目标
+     </b>
+     要比较
+     <b>
+      源
+     </b>
+     和
+     <b>
+      目标
+     </b>
+     图像。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     当您在中找到覆盖类似内容的框架时
+     <b>
+      源
+     </b>
+     和
+     <b>
+      目标
+     </b>
+     剪辑，单击
+     <img alt="" src="../../assets/images/ug_images/icon_keys1.png" style="vertical-align: middle;" title=""/>
+     旁边的按钮
+     <b>
+      源
+     </b>
+     和
+     <b>
+      目标
+     </b>
+     将当前帧设置为参考帧。在匹配级别分析中只使用设置为参考帧的帧。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   例如，如果你想在
+   <b>
+    源
+   </b>
+   剪辑具有与草相同的颜色
+   <b>
+    目标
+   </b>
+   剪辑，您需要选择草像素的相对数量大致相同的帧。内容越相似，匹配级别就越能够匹配颜色。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   您不需要使用相同数量的
+   <b>
+    源
+   </b>
+   和
+   <b>
+    目标
+   </b>
+   参考框架或设置与两者的参考框架相同的框架。
+  </p>
+  <p class="numberedCont">
+   如有必要，您也可以使用
+   <img alt="" src="../../assets/images/ug_images/icon_keys.png" style="vertical-align: middle;" title=""/>
+   按钮从参考框架集中删除框架。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     如果您只想匹配之间的某些元素
+     <b>
+      源
+     </b>
+     和
+     <b>
+      目标
+     </b>
+     剪辑，提供一个面具在两个
+     <b>
+      源
+     </b>
+     和
+     <b>
+      目标
+     </b>
+     输入的 alpha 通道和设置
+     <b>
+      面具
+     </b>
+     要:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    阿尔法
+   </b>
+   -使用两个输入的 alpha 通道作为掩模。只有非黑色的区域
+   <b>
+    源
+   </b>
+   和
+   <b>
+    目标
+   </b>
+   输入的 alpha 通道用于匹配级别分析，并且该级别仅限于匹配级别的非黑色区域
+   <b>
+    源
+   </b>
+   阿尔法。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    倒阿尔法
+   </b>
+   -使用两个输入的倒置 alpha 通道作为掩模。只有非白色区域的
+   <b>
+    源
+   </b>
+   和
+   <b>
+    目标
+   </b>
+   输入的 alpha 通道用于匹配级别分析，并且该级别仅限于匹配级别的非白色区域
+   <b>
+    源
+   </b>
+   阿尔法。
+  </p>
+  <p class="numberedCont">
+   如果找不到覆盖大致相同数量相似内容的框架，遮罩也很有用。例如，如果
+   <b>
+    源
+   </b>
+   和
+   <b>
+    目标
+   </b>
+   输入有不同数量的草和天空，您可以在两个输入中使用 Roto 节点来创建覆盖相同数量的草和天空的蒙版。请记住，如果你这样做，等级只适用于面具指示的区域
+   <b>
+    源
+   </b>
+   输入。要将其应用于整个框架，您需要先导出等级。有关更多信息，请参见步骤 12。
+  </p>
+  <table>
+   <col style="width: 7cm;"/>
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_source_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_target_mask_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      的
+      <b>
+       源
+      </b>
+      图像。在这种情况下，您可以将此图像设置为完全不透明的 alpha.
+     </td>
+     <td class="caption">
+      。..在上面画一个这样的面具
+      <b>
+       目标
+      </b>
+      图像，以确保两个输入覆盖相似的内容。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     设置完参考框架后，使用
+     <b>
+      变换
+     </b>
+     下拉菜单选择如何计算等级:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    3D LUT
+   </b>
+   -将等级计算为 3D 查找表 (LUT)。这允许您将等级导出到
+   <b>
+    。Csp
+   </b>
+   格式，您可以与 OCIOFileTransform 节点一起使用。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    CDL
+   </b>
+   -计算等级作为颜色决策列表 (CDL)。这允许您将等级导出到 OCIOCDLTransform 节点。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   的
+   <b>
+    CDL
+   </b>
+   变换是有限的，不能为所有类型的颜色变换建模。在大多数情况下，选择
+   <b>
+    3D LUT
+   </b>
+   给出最好的结果。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     设置
+     <b>
+      输出
+     </b>
+     回到
+     <b>
+      匹配
+     </b>
+     并单击
+     <b>
+      分析参考框架
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   MatchGrade 计算匹配所需的变换
+   <b>
+    源
+   </b>
+   图像到
+   <b>
+    目标
+   </b>
+   图像。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     要评估结果，请选择 MatchGrade 节点并按
+     <b>
+      D
+     </b>
+     重复切换原来的
+     <b>
+      源
+     </b>
+     图像和分级输出。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 7cm;"/>
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_source_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_target_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      的
+      <b>
+       源
+      </b>
+      图像。
+     </td>
+     <td class="caption">
+      的
+      <b>
+       目标
+      </b>
+      图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_result_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      颜色匹配的结果。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     如果您对结果不满意，请尝试以下一项或多项:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   寻找更好的参考框架或在
+   <b>
+    目标
+   </b>
+   输入以确保两个输入涵盖大致相同数量的相似内容。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用
+   <b>
+    前 LUT
+   </b>
+   下拉菜单指定用于分析的 1D 整形器 LUT:
+   <b>
+    线性
+   </b>
+   或
+   <b>
+    对数
+   </b>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   增加
+   <b>
+    LUT 分辨率
+   </b>
+   价值。这是匹配存储颜色转换的查找表 (LUT) 的分辨率。较高的值可以改善结果，但也会增加处理时间。最大值为 64。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   设置
+   <b>
+    色彩空间
+   </b>
+   不同的值。要使用的正确设置取决于转换的性质。尝试每个选项，看看哪个最适合你的镜头。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   增加
+   <b>
+    迭代
+   </b>
+   价值。这决定了细化过程的数量。较高的值可以产生更好的颜色匹配，但也需要更长的时间来处理。
+  </p>
+  <p class="numberedCont">
+   要更新结果，请单击
+   <b>
+    分析参考框架
+   </b>
+   再次。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      11。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="11.  " valign="top">
+     如果你设置
+     <b>
+      变换
+     </b>
+     到
+     <b>
+      CDL
+     </b>
+     在步骤 8 中，您可以通过调整手动微调等级
+     <b>
+      坡度
+     </b>
+     ,
+     <b>
+      偏移
+     </b>
+     ,
+     <b>
+      权力
+     </b>
+     ,和
+     <b>
+      饱和
+     </b>
+     。的
+     <b>
+      锁
+     </b>
+     右侧的控件阻止在单击时重新计算值
+     <b>
+      重新计算 CDL
+     </b>
+     ,允许您手动设置一些值，并自动估计其他值。例如，您可以调整和锁定
+     <b>
+      坡度
+     </b>
+     和
+     <b>
+      偏移
+     </b>
+     然后单击
+     <b>
+      重新计算 CDL
+     </b>
+     自动重新计算
+     <b>
+      权力
+     </b>
+     和
+     <b>
+      饱和
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      12.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="12.  " valign="top">
+     如有必要，可以导出计算的坡度并将其应用于脚本中的其他节点。如何做到这一点取决于您选择将等级计算为 3D LUT 还是 CDL:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果你设置
+   <b>
+    变换
+   </b>
+   到
+   <b>
+    3D LUT
+   </b>
+   ,您可以将 LUT 写入
+   <b>
+    。Csp
+   </b>
+   文件并创建一个 OCIOFileTransform 节点，您可以在脚本中的其他位置使用该节点应用相同的等级。为此，请输入文件的路径和名称
+   <b>
+    。Csp
+   </b>
+   文件中的
+   <b>
+    LUT 输出文件
+   </b>
+   字段并单击
+   <b>
+    写
+   </b>
+   导出 LUT。然后，单击
+   <b>
+    创建 OCIOFileTransform
+   </b>
+   创建一个 OCIOFileTransform 节点，适用的颜色变换的
+   <b>
+    。Csp
+   </b>
+   文件。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/matchgrade_different_ociofiletransform_378x205.png" style="width: 378;height: 205;"/>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果你设置
+   <b>
+    变换
+   </b>
+   到
+   <b>
+    CDL
+   </b>
+   ,您可以单击
+   <b>
+    创建 OCIOCDLTransform
+   </b>
+   创建一个 OCIOCDLTransform 节点，该节点使用
+   <b>
+    CDL 输出
+   </b>
+   MatchGrade 属性的部分。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/matchgrade_different_ociocdltransform_378x205.png" style="width: 378;height: 205;"/>
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您也可以通过简单地将新节点连接到 MatchGrade 将等级应用于不同的源
+   <b>
+    源
+   </b>
+   输入。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -290,5 +882,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

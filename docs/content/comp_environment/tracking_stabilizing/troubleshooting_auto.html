@@ -1,224 +1,579 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Tracking and Stabilizing|Automatic Tracking">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Troubleshooting Auto-Tracks</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/tracking_stabilizing/troubleshooting_auto.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Tracking and Stabilizing|Automatic Tracking" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   自动跟踪故障排除
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/tracking_stabilizing/troubleshooting_auto.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Troubleshooting Auto-Tracks</h2>
-        <p class="afterHead">No matter how sophisticated tracking becomes, some sequences are inevitably going to cause problems. There are a number of pre-tracking checks you can perform to assist Auto-Tracking:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Play through the sequence before placing your tracking anchors</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Look for features that are consistent throughout the majority of the sequence</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Avoid occluded features where possible - see <a href="#Dealing_with_occlusions" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Dealing with Occlusions</span></a>.</p>
-        <p>You can also adjust the way patterns are tracked and how often they are re-sampled, or grabbed, using the <b>Settings</b> tab and <b>Auto-Tracking</b> controls:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Try adjusting the <b>max iterations</b>, <b>epsilon</b>, and <b>max_error</b> controls to improve the track accuracy:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>max iterations</b> - the maximum number of iterations before the tracking algorithm stops searching for features.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>epsilon/resolution</b> - the error level at which Tracker is assumed to have found the feature - no further search for a better match is performed. Higher values may result in a faster but less accurate track.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>max_error</b> - the error level at which Tracker stops searching for features.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Auto-Tracking sub-menu, enable <b>predict track</b> to use the animation path to predict where the pattern may appear in the next frame.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If the track fails when prediction is enabled, click the <b>Clear Forward</b> <img src="../../assets/images/ug_images/icon_tracker_clr_fwd1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5085334px;margin-bottom: 1.005731px;vertical-align: middle;" /> button, or re-tracking follows the same erroneous path.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Set the type of movement Tracker should expect in the pattern using the <b>warp type</b> dropdown:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Translate</b> </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Translate/Rotate</b> </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Translate/Scale</b> </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Translate/Rotate/Scale</b> </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Affine</b> </p>
-        <p class="numberedCont">Translation only is the easiest to calculate, but can lose the pattern if it rotates or scales. Affine can be used to attempt to preserve straight lines and relative distances, compensating for sheering.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Try adjusting the pattern grabbing behavior, when or how often a new pattern should be grabbed from the sequence:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>on first frame</b> - the comparison pattern is grabbed on the first frame from with the pattern anchor. You might select this option if the feature translates but doesn’t rotate, scale, or sheer.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>every frame</b> - the comparison pattern is grabbed at every frame in the sequence. This option takes longer to process, but can produce a smoother track.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>every n frames</b> - allows you to set the frame interval between pattern grabs using the <b>every n frames</b> control.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>if error above</b> - the comparison pattern is grabbed when the error value is greater than that specified by the <b>when error &gt;</b> control. Setting this control to a low value grabs the pattern more often.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>if error below</b> - the comparison pattern is grabbed when the error value is less than that specified by the <b>when error &lt;</b> control.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>custom</b> - this option enables all the pattern grab behavior controls, allowing you to fine-tune when the comparison pattern in grabbed through out the sequence.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Enable <b>when tracking is stopped</b> to cause Tracker to re-grab the pattern at the current frame when tracking stops.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Enable <b>when tracker is moved</b> to cause Tracker to re-grab the pattern at the current frame when a tracking anchor is moved.</td>
-            </tr>
-        </table>
-        <h3><a name="Dealing_with_occlusions"></a>Dealing with Occlusions</h3>
-        <p>Tracker’s offset capability allows you track an obscured feature using the relative position of another feature, providing that the distance between the two points remains constant.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Track the pattern normally until the occlusion causes Tracker to fail.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The zoom window helps to identify the failure point.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/tracker_occlusion1.png" style="margin-left: 1.000063px;margin-top: 0.2500158px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Play though the sequence to identify a likely offset point - a pattern that remains equidistant from the original pattern grab.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Hold down <b>Ctrl</b>/<b>Cmd</b> and drag the tracking anchor to the offset position.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/tracker_occlusion2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;" />
-        </p>
-        <p class="numberedCont">The offset amount is recorded in the Tracks list and highlighted in yellow in the Viewer.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Continue tracking as normal by clicking the track backward (Z) or forward (V) button. <img src="../../assets/images/ug_images/icon_fwd_all_track2.png" style="margin-left: 1.001764px;margin-top: 1.75578px;margin-right: 0.3412919px;margin-bottom: 1.935212px;vertical-align: middle;" /></td>
-            </tr>
-        </table>
-        <p class="numberedCont">Tracker combines the two tracks into a single continuous track.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Use the clear backward and forward buttons<span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_tracker_del_bwd1.png" style="margin-left: 1.000063px;margin-top: 1.75011px;margin-right: 0.5286578px;margin-bottom: 1.677826px;vertical-align: middle;" /></span> to clear poor keyframes. Click clear all to remove all selected tracks and keyframes, excluding manually placed keyframes.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can reset tracking anchor pattern and search areas by clicking <img src="../../assets/images/ug_images/icon_tracker_clr_all2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5085334px;margin-bottom: 0.9861735px;vertical-align: middle;" />.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   自动跟踪故障排除
+  </h2>
+  <p class="afterHead">
+   无论跟踪变得多么复杂，一些序列都不可避免地会导致问题。您可以执行许多预跟踪检查来帮助自动跟踪:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在放置你的跟踪锚之前，通过序列播放
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   寻找在整个序列的大部分中一致的特征
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   尽可能避免遮挡特征-请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Dealing_with_occlusions">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     处理遮挡
+    </span>
+   </a>
+   .
+  </p>
+  <p>
+   您还可以调整的模式正在跟踪多久他们重新采样，抓起，使用
+   <b>
+    设置
+   </b>
+   标签和
+   <b>
+    自动跟踪
+   </b>
+   控制:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     尝试调整
+     <b>
+      最大迭代次数
+     </b>
+     ,
+     <b>
+      Epsilon
+     </b>
+     ,和
+     <b>
+      Max_error
+     </b>
+     用于提高跟踪精度的控件:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    最大迭代次数
+   </b>
+   -跟踪算法停止搜索特征之前的最大迭代次数。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    Epsilon/resolution
+   </b>
+   -假设跟踪器找到该功能的错误级别-没有进一步搜索更好的匹配。较高的值可能会导致更快但不太准确的跟踪。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    Max_error
+   </b>
+   -跟踪器停止搜索特征的错误级别。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在自动跟踪子菜单中，启用
+     <b>
+      预测轨迹
+     </b>
+     使用动画路径来预测图案在下一帧中可能出现的位置。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果启用预测时跟踪失败，请单击
+   <b>
+    清晰向前
+   </b>
+   <img src="../../assets/images/ug_images/icon_tracker_clr_fwd1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5085334px;margin-bottom: 1.005731px;vertical-align: middle;"/>
+   按钮，或者重新跟踪遵循相同的错误路径。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     设置类型的运动跟踪器会在 (可能)
+     <b>
+      扭曲类型
+     </b>
+     下拉列表:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    翻译
+   </b>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    平移/旋转
+   </b>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    平移/缩放
+   </b>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    平移/旋转/缩放
+   </b>
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    仿射
+   </b>
+  </p>
+  <p class="numberedCont">
+   仅翻译是最容易计算的，但是如果它旋转或缩放，可能会丢失模式。仿射可以用来试图保持直线和相对距离，补偿剪切。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     尝试调整模式抓取行为，何时或多久应该从序列中抓取一个新的模式:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    在第一帧
+   </b>
+   -比较模式是从第一帧与模式锚抓住。如果特征平移但不旋转、缩放或剪切，则可以选择此选项。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    每帧
+   </b>
+   -比较模式在序列中的每一帧都被抓取。此选项需要更长的时间来处理，但可以产生更平滑的轨迹。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    每 n 帧
+   </b>
+   -允许您设置的帧间模式吸引使用
+   <b>
+    每 n 帧
+   </b>
+   控制。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    如果以上错误
+   </b>
+   -当错误值大于错误值指定的值时，将捕获比较模式
+   <b>
+    当错误&gt;
+   </b>
+   控制。将此控件设置为低值会更频繁地获取模式。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    如果错误低于
+   </b>
+   -对比模式是抓住时的误差值小于指定的
+   <b>
+    当错误 &lt;
+   </b>
+   控制。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    自定义
+   </b>
+   -此选项启用所有模式抓取行为控件，允许您在捕获到序列中的比较模式时进行微调。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     启用
+     <b>
+      停止跟踪时
+     </b>
+     使跟踪器在跟踪停止时在当前帧处重新抓取图案。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     启用
+     <b>
+      当跟踪器被移动时
+     </b>
+     当跟踪锚移动时，使跟踪器在当前帧处重新抓取图案。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="Dealing_with_occlusions">
+   </a>
+   处理遮挡
+  </h3>
+  <p>
+   跟踪器的偏移功能允许您使用另一个特征的相对位置跟踪模糊特征，前提是两点之间的距离保持不变。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     正常跟踪图案，直到遮挡导致跟踪器失败。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   缩放窗口有助于识别故障点。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/tracker_occlusion1.png" style="margin-left: 1.000063px;margin-top: 0.2500158px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     通过播放序列来识别可能的偏移点 -- 一种与原始图案抓取保持等距离的图案。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     按住
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     并将跟踪锚拖到偏移位置。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/tracker_occlusion2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;"/>
+  </p>
+  <p class="numberedCont">
+   偏移量记录在轨道列表中，并在查看器中以黄色突出显示。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     通过单击 “向后 (Z)” 或 “向前 (V)” 按钮，继续正常跟踪。
+     <img src="../../assets/images/ug_images/icon_fwd_all_track2.png" style="margin-left: 1.001764px;margin-top: 1.75578px;margin-right: 0.3412919px;margin-bottom: 1.935212px;vertical-align: middle;"/>
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   Tracker 将两个轨迹组合成一个连续的轨迹。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     使用清除后退和前进按钮
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      <img src="../../assets/images/ug_images/icon_tracker_del_bwd1.png" style="margin-left: 1.000063px;margin-top: 1.75011px;margin-right: 0.5286578px;margin-bottom: 1.677826px;vertical-align: middle;"/>
+     </span>
+     清除糟糕的关键帧。单击 “全部清除” 删除所有选定轨迹和关键帧，不包括手动放置的关键帧。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   您可以通过单击重置跟踪锚模式和搜索区域
+   <img src="../../assets/images/ug_images/icon_tracker_clr_all2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5085334px;margin-bottom: 0.9861735px;vertical-align: middle;"/>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -232,5 +587,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

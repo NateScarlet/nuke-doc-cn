@@ -1,286 +1,538 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Creating Effects">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Background Reflections on Foreground Elements</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/effects/bg_reflections_fg_elements.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Creating Effects" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   前景元素的背景反射
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/effects/bg_reflections_fg_elements.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1><a name="kanchor34"></a><a name="kanchor35"></a>Background Reflections on Foreground Elements</h1>
-        <p class="afterHead">You can use the LightWrap node to create background reflections on foreground elements. The node creates a reflection of light around the edges of your foreground element by blending in whatever is in the background.</p>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/lightwrap_disabled.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/lightwrap_enabled.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>The composite without the LightWrap effect.</p>
-                    </td>
-                    <td class="caption">
-                        <p>The composite with the LightWrap effect.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>You may have noticed that objects filmed in front of very bright backgrounds have the appearance of softened edges as the light spills round from the background. When adding foreground layers onto a background plate, using the LightWrap node can dramatically improve the quality of your composite. </p>
-        <table style="caption-side: top;">
-            <col style="width: 50mm;" />
-            <col style="width: 50mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/t_lightwrapcloseup1.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/t_lightwrapcloseup2.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>The composite without the LightWrap effect. <br />Note the hard edges around the<br />trailing hand and the bottom of the skirt.</p>
-                    </td>
-                    <td class="caption">
-                        <p>The composite with the LightWrap effect. <br />Note how the foreground fits better into <br />the background.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>If you want to use LightWrap, you should apply it on your foreground element before you composite the foreground over the background with the Merge node.</p>
-        <h2>Using the LightWrap Node</h2>
-        <p class="afterHead">To use the LightWrap node:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Draw</b> &gt; <b>LightWrap</b> to add a LightWrap node after your foreground and background images. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect your foreground element to input <b>A</b> of the LightWrap node, and the background image to input <b>B</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Connect a Viewer to the output of the LightWrap node so you can see the effect of your changes.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Adjust the <b>Diffuse</b> and <b>Intensity</b> sliders to control both the spread and brightness of the reflections on the foreground element. These sliders need to be balanced out together. You may want to start by bringing Diffuse all the way down to better see what you are blending in from the background. Then, adjust Intensity before going back to the Diffuse slider and, if necessary, Intensity again until you are happy with the result.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/lightwrap_low_diffuse.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/lightwrap_high_diffuse.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>Low <span class="_Override" style="font-weight: bold;">Diffuse</span>.</p>
-                    </td>
-                    <td class="caption">
-                        <p>High <span class="_Override" style="font-weight: bold;">Diffuse</span>.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/lightwrap_low_intensity.png" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/lightwrap_high_intensity.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>Low <span class="_Override" style="font-weight: bold;">Intensity</span>.</p>
-                    </td>
-                    <td class="caption">
-                        <p>High <span class="_Override" style="font-weight: bold;">Intensity</span>.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If you want to create a uniform effect around the edges of the foreground rather than have the effect adjust itself according to the background, check <b>Disable luminance based wrap</b> on the <b>LightWrap</b> tab.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In case you don’t want to merge the LightWrap effect with the foreground element in order to keep the LightWrap effect as a separate element, check <b>Generate wrap only </b>on the <b>LightWrap</b> tab.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/lightwrap_wrap_only.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">By default, the LightWrap effect is only applied inside the foreground element’s alpha. If you want to extend the effect outside it, making the element seem to glow, check <b>Enable Glow</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/lightwrap_glow.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">On the <b>Tweaks</b> tab, you can also adjust the following controls:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>FGBlur </b>to determine how much the foreground matte is blurred. The more blur, the more of the background is added to the foreground.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>BGBlur</b> to control how much the background is blurred before it is merged with the foreground element.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Saturation</b> to adjust the saturation of the effect.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Luma Tolerance</b> to increase or decrease the luminance values of the effect.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Highlight Merge</b> to control how the foreground element is merged with the background. The default merge operation, called <b>plus</b>, adds the elements together, producing a glow effect.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Check <b>Use constant highlight</b> to use a constant color of your choice rather than the background in the LightWrap effect. Select the color using the controls next to <b>Constant Highlights Color</b>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">On the <b>CCorrect</b> tab, you can color correct the LightWrap effect produced. </td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   <a name="kanchor34">
+   </a>
+   <a name="kanchor35">
+   </a>
+   前景元素的背景反射
+  </h1>
+  <p class="afterHead">
+   可以使用 LightWrap 节点在前景元素上创建背景反射。节点通过混合背景中的任何元素，在前景元素的边缘周围创建光的反射。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/lightwrap_disabled.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/lightwrap_enabled.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       没有光波效应的复合材料。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       具有 LightWrap 效果的复合材料。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   你可能已经注意到，在非常明亮的背景前拍摄的物体看起来边缘变软，因为光线从背景中溢出。当将前景层添加到背景板上时，使用 LightWrap 节点可以显著提高复合材料的质量。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 50mm;"/>
+   <col style="width: 50mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/t_lightwrapcloseup1.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/t_lightwrapcloseup2.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       没有光波效应的复合材料。
+       <br/>
+       注意周围的硬边
+       <br/>
+       拖尾的手和裙子的底部。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       具有 LightWrap 效果的复合材料。
+       <br/>
+       请注意前景如何更好地融入
+       <br/>
+       背景。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   如果您想使用 LightWrap，您应该在将前景与合并节点复合到背景上之前，将其应用于前景元素。
+  </p>
+  <h2>
+   使用 LightWrap 节点
+  </h2>
+  <p class="afterHead">
+   要使用 LightWrap 节点:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      绘制
+     </b>
+     &gt;
+     <b>
+      光波说唱
+     </b>
+     在前景和背景图像后添加光波节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将前景元素连接到输入
+     <b>
+      一个
+     </b>
+     LightWrap 节点的，以及要输入的背景图像
+     <b>
+      B
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将查看器连接到 LightWrap 节点的输出，以便您可以看到更改的效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     调整
+     <b>
+      扩散
+     </b>
+     和
+     <b>
+      强度
+     </b>
+     滑块控制前景元素上反射的扩散和亮度。这些滑块需要平衡在一起。你可能想从把 Diffuse 一路降低开始，以更好地从背景中看到你正在融入的东西。然后，在回到漫反射滑块之前调整强度，如有必要，再次调整强度，直到您对结果满意。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/lightwrap_low_diffuse.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/lightwrap_high_diffuse.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       低
+       <span class="_Override" style="font-weight: bold;">
+        扩散
+       </span>
+       .
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       高
+       <span class="_Override" style="font-weight: bold;">
+        扩散
+       </span>
+       .
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/lightwrap_low_intensity.png"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/lightwrap_high_intensity.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       低
+       <span class="_Override" style="font-weight: bold;">
+        强度
+       </span>
+       .
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       高
+       <span class="_Override" style="font-weight: bold;">
+        强度
+       </span>
+       .
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     如果你想在前景的边缘周围创建一个统一的效果，而不是让效果根据背景进行调整，请选中
+     <b>
+      禁用基于亮度的环绕
+     </b>
+     在
+     <b>
+      光波说唱
+     </b>
+     标签。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     如果您不想将 LightWrap 效果与前景元素合并，以便将 LightWrap 效果保持为单独的元素，请选中
+     <b>
+      仅生成包裹
+     </b>
+     在
+     <b>
+      光波说唱
+     </b>
+     标签。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/lightwrap_wrap_only.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     默认情况下，LightWrap 效果仅应用于前景元素的 alpha。如果你想扩展它之外的效果，使元素看起来发光，请检查
+     <b>
+      启用发光
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/lightwrap_glow.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     在
+     <b>
+      调整
+     </b>
+     选项卡，还可以调整以下控件:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    FGBlur
+   </b>
+   以确定前景磨砂模糊了多少。模糊越多，添加到前景中的背景就越多。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    BGBlur
+   </b>
+   控制背景在与前景元素合并之前的模糊程度。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    饱和
+   </b>
+   调整效果的饱和度。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    亮度公差
+   </b>
+   增加或减少效果的亮度值。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    突出显示合并
+   </b>
+   控制前景元素与背景的合并方式。默认合并操作，称为
+   <b>
+    加
+   </b>
+   ,将元素添加在一起，产生发光效果。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   检查
+   <b>
+    使用恒定高光
+   </b>
+   在 LightWrap 效果中使用您选择的恒定颜色，而不是背景。使用旁边的控件选择颜色
+   <b>
+    恒定高光颜色
+   </b>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     在
+     <b>
+      CCorrect
+     </b>
+     标签，你可以颜色校正产生的光波效果。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -294,5 +546,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

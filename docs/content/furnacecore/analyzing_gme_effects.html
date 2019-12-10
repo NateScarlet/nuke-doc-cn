@@ -1,83 +1,183 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Global Motion Estimation">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>The Analyzing Global Motion Estimation Effects</title>
-        <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#furnacecore/analyzing_gme_effects.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Global Motion Estimation" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   全球运动估计效果分析
+  </title>
+  <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../Default.html#furnacecore/analyzing_gme_effects.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1><a name="globalmotionestimation_2328858371_538859"></a>The <a name="kanchor262"></a>Analyzing Global Motion Estimation Effects</h1>
-        <p class="afterHead">F_Align and F_Steadiness work in a similar way, which is distinct from the way F_RigRemoval works. These two effects calculate a four-corner pin for each frame and save it into the corner pin parameters. These pins are then used during the render to move the source image.</p>
-        <h2>Using Them</h2>
-        <p class="afterHead">These effects analyze images over a range of frames to figure out their four-corner pins. This is done in response to the user pressing the <span class="_Override" style="font-weight: bold;">Analyse</span> button in the effects control panel. During analysis, the effect will run through a range of frames adding keys to the corner pin parameters. These corner pins are then applied to the source clip to render a frame. </p>
-        <p>F_Steadiness has a separate analysis pass that happens interactively; it then uses the previously computed and key-framed corner pins during render. This speeds up its operation, as the analysis step only has to be done once, and once it has been done this plug-in is very quick to render. However, F_Align, which only ever needs the two current frames from each clip, can compute the corner pin on the fly (but not keyframe it!). This leads to a slightly different mode of operation for the following effects:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>F_Steadiness </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>needs to have an analysis run before it renders useful output, </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>will always use the value in the corner pin parameters when rendering the output image. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>F_Align </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no need to have the analysis run to render output, but doing so will give you a key-framed corner pin, </p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>during render, it will use the value of the corner pin parameters only if there is a keyframe there, otherwise, it will analyse on the fly during render. This means that analysis will speed up later renders, as just rendering the corner pin is much cheaper than calculating it. </p>
-        <p>Some parameters to the effect control how the effect performs GME analysis, and some only affect the rendering. If you ever modify one of these parameters, then any analysis you may have performed will be out of date. To let you know, an overlay warning will be posted whenever this happens. You don’t have to re-analyze and your renders will still look at the keyed corner pins. </p>
-        <p>If you have not modified a parameter that affects analysis (the warning overlay will let you know), pressing <span class="_Override" style="font-weight: bold;">Analyse</span> will only re-analyse a frame if there is no key on the corner pin at that time. This avoids redundant re-analysis if you have interrupted the analysis or extended the analysis range. However, if you want to force re-analysis, press <span class="_Override" style="font-weight: bold;">Clear Analysis</span> and all keys will be deleted.</p>
-        <p>F_Steadiness and F_Align have an analysis region rectangle parameter which is used to specify which area of the reference image should be analysed during GME. So, for example, with F_Steadiness set to <span class="_Override" style="font-weight: bold;">Lock Mode</span>, this is the area inside the lock frame that a match will be sought for. The documentation for each plug-in describes exactly how to use the analysis region.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   <a name="globalmotionestimation_2328858371_538859">
+   </a>
+   的
+   <a name="kanchor262">
+   </a>
+   分析全局运动估计效果
+  </h1>
+  <p class="afterHead">
+   F_Align 和 F_Steadiness 以类似的方式工作，这与 F_RigRemoval 的工作方式不同。这两个效果为每个帧计算一个四角销，并将其保存到角销参数中。然后在渲染期间使用这些针脚来移动源图像。
+  </p>
+  <h2>
+   使用它们
+  </h2>
+  <p class="afterHead">
+   这些效果分析一系列帧中的图像，以找出它们的四角引脚。这是为了响应用户按下
+   <span class="_Override" style="font-weight: bold;">
+    分析
+   </span>
+   效果控制面板中的按钮。在分析过程中，效果将贯穿一系列帧，将关键点添加到角销参数中。然后，这些角销将应用于源剪辑以渲染帧。
+  </p>
+  <p>
+   F_Steadiness 有一个单独的分析过程，它以交互方式进行; 然后在渲染过程中使用以前计算的和关键帧的角销。这加快了它的操作，因为分析步骤只需要完成一次，一旦完成，这个插件的渲染非常快。然而，F_Align，只需要每个剪辑的两个当前帧，可以动态计算角销 (但不能计算关键帧!).这将导致以下效果的操作模式略有不同:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   F_Steadiness
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   需要在呈现有用的输出之前运行分析,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   渲染输出图像时，将始终使用角销参数中的值。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   F_Align
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   不需要运行分析来渲染输出，但是这样做会给你一个关键帧角销,
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在渲染期间，只有在那里有一个关键帧时，它才会使用角销参数的值，否则，它会在渲染期间动态分析。这意味着分析将加快后期渲染，因为仅仅渲染角销比计算它便宜得多。
+  </p>
+  <p>
+   效果的一些参数控制效果如何执行 GME 分析，而一些参数只影响渲染。如果您修改了其中一个参数，那么您可能执行的任何分析都将过时。为了让你知道，每当发生这种情况时，都会发布覆盖警告。你不必重新分析，你的渲染仍然会看到关键的角销。
+  </p>
+  <p>
+   如果您没有修改影响分析的参数 (警告覆盖会让您知道)，按
+   <span class="_Override" style="font-weight: bold;">
+    分析
+   </span>
+   只有当角销上没有键时，才会重新分析帧。如果中断了分析或扩展了分析范围，这将避免冗余的重新分析。然而，如果你想强制重新分析，按
+   <span class="_Override" style="font-weight: bold;">
+    清晰的分析
+   </span>
+   所有密钥都将被删除。
+  </p>
+  <p>
+   F_Steadiness 和 F_Align 有一个分析区域矩形参数，用于指定在 GME 期间应分析参考图像的哪个区域。例如，F_Steadiness 设置为
+   <span class="_Override" style="font-weight: bold;">
+    锁定模式
+   </span>
+   ,这是锁定框架内的区域，将寻求匹配。每个插件的文档都准确地描述了如何使用分析区域。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -91,5 +191,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

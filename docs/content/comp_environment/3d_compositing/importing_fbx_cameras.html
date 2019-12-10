@@ -1,181 +1,452 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Cameras">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Importing Cameras from FBX Files</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/importing_fbx_cameras.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|Cameras" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   从 FBX 文件导入相机
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/importing_fbx_cameras.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Importing Cameras from FBX Files</h2>
-        <p class="afterHead">You can import cameras from FBX&#160;files.</p>
-        <h3>About FBX Files</h3>
-        <p>FBX is a standard 3D file format that gives you access to 3D scenes created in other applications supporting the same format. What you generally have in an <span class="_Override" style="font-weight: bold;">.fbx</span> file is an entire 3D scene containing cameras, lights, meshes, non-uniform rational B-spline (NURBS) curves, transformation, materials, and so on. From this scene, you can extract cameras, lights, transforms, and meshes into <span class="CustomProduct">Nuke</span>. This way, you can, for example, create a camera in Maya, export it in a <span class="_Override" style="font-weight: bold;">.fbx</span> file, and use the same camera again in <span class="CustomProduct">Nuke</span>.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>For the FBX SDK version used in <span class="CustomProduct">Nuke</span>, see <a href="../../appendices/appendixd/studio_third_party_libraries.html#Third-Party_Library_Versions" class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:d_third_party_licenses_2990101796_50343"><span style="color: #00b4e0;" class="mcFormatColor">Third-Party Library Versions</span></a>.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you have trouble with <span class="_Override" style="font-weight: bold;">.fbx</span> files, it may be because they were written with an older version of FBX. If they load very slowly, it is also possible that they are ASCII rather than binary. To get around these problems, you can use the FBX converter on the Autodesk website (<a>http://usa.autodesk.com/fbx/download/</a>). It converts between various different formats, including older FBX versions, ASCII, and binary, and is available on Windows, Mac OS X, and Linux.</p>
-        <h3>Importing Cameras from an .fbx File</h3>
-        <p>The Camera node lets you read in the standard FBX cameras (Producer Perspective, Producer Top, Producer Bottom, Producer Right, Producer Left, Producer Front, Producer Back) and any other cameras. </p>
-        <p>Using one Camera node, you can only import one camera from a <span class="_Override" style="font-weight: bold;">.fbx</span> file. If you need to import several cameras, you need to use one Camera node per camera.</p>
-        <h4>To Import a Camera from an .fbx File:</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b> &gt; <b>Camera</b> to insert a Camera node in the place where you want to add the camera in your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Camera controls, check <b>read from file</b>. When this is checked, the controls on the <b>File</b> tab are enabled, and you can use them to read in a camera from an <span class="_Override" style="font-weight: bold;">.fbx</span> file. Any controls whose values are read in from the <span class="_Override" style="font-weight: bold;">.fbx</span> file are disabled. You can still view these values and use them in expressions but, as long as <b>read from file</b> is checked, you cannot modify them. Modifying the values in the <span class="_Override" style="font-weight: bold;">.fbx</span> file, however, affect the disabled values in the Camera controls, because these are reloaded from the <span class="_Override" style="font-weight: bold;">.fbx</span> file every time the node is instantiated.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To read in a camera from an <span class="_Override" style="font-weight: bold;">.fbx</span> file, click the folder icon on the <b>File</b> tab. Navigate to the <span class="_Override" style="font-weight: bold;">.fbx</span> file and select <b>Open</b>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/camera_cp_fbx.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997844px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">From the <b>animation stack</b> dropdown menu, select the take you want to use from the <span class="_Override" style="font-weight: bold;">.fbx</span> file. FBX files support multiple takes in one file. Usually, one of the takes is a default take with no animation.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">From the <b>node name</b> dropdown menu, select the camera node you want to import from the <span class="_Override" style="font-weight: bold;">.fbx</span> file.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the <b>frame rate</b> field, define a frame rate (frames per second) to sample the animation curves. To use this rate rather than the one defined in the <span class="_Override" style="font-weight: bold;">.fbx</span> file, check <b>use frame rate</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To have the camera rotation values calculated using the look up vector and look at position, check <b>compute rotation</b>. If you don’t check this, <span class="CustomProduct">Nuke</span> uses the rotation channel from the <span class="_Override" style="font-weight: bold;">.fbx</span> file instead of computing a new one. The rotation values are always computed when there is a look at target.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">If you want to modify the camera properties imported from the <span class="_Override" style="font-weight: bold;">.fbx</span> file, uncheck <b>read from file</b> on the <b>Camera</b> tab and make the necessary modifications. As long as <b>read from file</b> is unchecked, your changes are kept.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">To reload the camera properties from the <span class="_Override" style="font-weight: bold;">.fbx</span> file, make sure <b>read from file</b> is checked and click the <b>reload</b> button on the <b>File</b> tab.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   从 FBX 文件导入相机
+  </h2>
+  <p class="afterHead">
+   您可以从 FBX 文件导入相机。
+  </p>
+  <h3>
+   关于 FBX 文件
+  </h3>
+  <p>
+   FBX 是一种标准的 3D 文件格式，它允许您访问在支持相同格式的其他应用程序中创建的 3D 场景。你通常在一个
+   <span class="_Override" style="font-weight: bold;">
+    。Fbx
+   </span>
+   文件是一个完整的 3D 场景，包含相机、灯光、网格、非均匀有理 b样条 (NURBS) 曲线、变换、材质等。从这个场景中，您可以将相机、灯光、变换和网格提取到
+   <span class="CustomProduct">
+    核武器
+   </span>
+   。这样，您可以，例如，在 Maya 中创建相机，将其导出到
+   <span class="_Override" style="font-weight: bold;">
+    。Fbx
+   </span>
+   文件，并再次使用相同的相机
+   <span class="CustomProduct">
+    核武器
+   </span>
+   .
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   中使用的 FBX SDK 版本
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,请参见
+   <a class="noPage MCXref xref xrefnoPage" data-mc-unresolved-link="import-link:d_third_party_licenses_2990101796_50343" href="../../appendices/appendixd/studio_third_party_libraries.html#Third-Party_Library_Versions">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     第三方库版本
+    </span>
+   </a>
+   .
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果你有麻烦
+   <span class="_Override" style="font-weight: bold;">
+    。Fbx
+   </span>
+   文件，这可能是因为它们是用旧版本的 FBX 编写的。如果它们加载得非常慢，也可能是 ASCII 而不是二进制。要解决这些问题，可以在 Autodesk 网站上使用 FBX 转换器 (
+   <a>
+    Http://usa.autodesk.com/fbx/download/
+   </a>
+   )。它在各种不同格式之间进行转换，包括较旧的 FBX 版本、 ASCII 和二进制格式，并可在 Windows 、 Mac OS X 和 Linux 上使用。
+  </p>
+  <h3>
+   进口相机从。Fbx 文件
+  </h3>
+  <p>
+   相机节点允许您在标准 FBX 相机 (制片人视角、制片人顶部、制片人底部、制片人右侧、制片人左侧、制片人正面、制片人背面) 和任何其他相机中阅读。
+  </p>
+  <p>
+   使用一个相机节点，您只能从
+   <span class="_Override" style="font-weight: bold;">
+    。Fbx
+   </span>
+   文件。如果您需要导入几个相机，您需要每个相机使用一个相机节点。
+  </p>
+  <h4>
+   从中导入相机。Fbx 文件:
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      相机
+     </b>
+     在脚本中要添加相机的位置插入相机节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在相机控制中，检查
+     <b>
+      从文件中读取
+     </b>
+     。选中此选项时,
+     <b>
+      文件
+     </b>
+     选项卡已启用，您可以使用它们从
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件。从中读取其值的任何控件
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件被禁用。您仍然可以查看这些值并在表达式中使用它们，但是，只要
+     <b>
+      从文件中读取
+     </b>
+     被选中，您不能修改它们。修改中的值
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     但是，文件会影响相机控件中的禁用值，因为这些值是从
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     每次实例化节点时都要文件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从摄像机中读取
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件，单击上的文件夹图标
+     <b>
+      文件
+     </b>
+     标签。导航到
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件并选择
+     <b>
+      打开
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/camera_cp_fbx.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997844px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     从
+     <b>
+      动画堆栈
+     </b>
+     下拉菜单中，选择是否要用的
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件。FBX 文件支持多个接受一个文件。通常，其中一个拍摄是没有动画的默认拍摄。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     从
+     <b>
+      节点名称
+     </b>
+     下拉菜单中，选择要从
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在
+     <b>
+      帧速率
+     </b>
+     字段中，定义一个帧速率 (每秒帧数) 来采样动画曲线。使用这个比率，而不是在
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件，检查
+     <b>
+      使用帧速率
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     要使用查找向量和查看位置计算相机旋转值，请检查
+     <b>
+      计算旋转
+     </b>
+     。如果你不检查这个,
+     <span class="CustomProduct">
+      核武器
+     </span>
+     采用旋转通道,
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件而不是计算一个新的。旋转值总是在查看目标时计算的。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     如果要修改从导入的相机属性
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件，取消选中
+     <b>
+      从文件中读取
+     </b>
+     在
+     <b>
+      相机
+     </b>
+     Tab 并进行必要的修改。只要
+     <b>
+      从文件中读取
+     </b>
+     如果未选中，则保留您的更改。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     从中重新加载相机属性
+     <span class="_Override" style="font-weight: bold;">
+      。Fbx
+     </span>
+     文件，确保
+     <b>
+      从文件中读取
+     </b>
+     选中并单击
+     <b>
+      重新加载
+     </b>
+     按钮上
+     <b>
+      文件
+     </b>
+     标签。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -189,5 +460,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

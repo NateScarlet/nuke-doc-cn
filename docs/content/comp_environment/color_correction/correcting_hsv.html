@@ -1,149 +1,405 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Working with Color|Making Hue, Saturation, and Value Adjustments">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Correcting HSV</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/color_correction/correcting_hsv.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Working with Color|Making Hue, Saturation, and Value Adjustments" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   纠正 HSV
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/color_correction/correcting_hsv.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="kanchor86"></a>Correcting HSV</h2>
-        <p class="afterHead"><span class="CustomProduct">Nuke</span>’s HSVTool node lets you simultaneously adjust hue, saturation, and value components from a single properties panel. It also features a color replacement tool. The main strength of this node is the precision it offers in limiting corrections to a narrow swath of colors.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/hsv_correct1.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/hsv_correct6.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Adjusting color within <br />a specific range of pixel <br />values.</td>
-                    <td class="caption">Adjusting color within <br />a specific range of pixel <br />values.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>For example, suppose you wanted to add a bit more punch to the waterfront scene by diversifying the rooftop hues. To do so, you could limit the correction to the rooftop’s ochre-colored hues by sampling a few pixels, then shift their values. Because you limited the color range, the surrounding image would be generally unaffected by the shift.</p>
-        <h3><a name="kanchor87"></a>To make HSV corrections with the HSVTool node</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click <b>Color</b><span class="_Override" style="color: #ff0000;"> </span>&gt;<span class="_Override" style="color: #ff0000;"> </span><b>HSVTool</b><span class="_Override" style="color: #ff0000;"> </span>to insert an HSVTool node at the appropriate place in your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect a Viewer to the output of the HSVTool node so you can see the effect of your changes.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Limit, as appropriate, the range of colors you want subsequent corrections to influence:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>In the HSVTool properties panel, click the <span class="_Override" style="font-weight: bold;">srccolor</span> color swatch. <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+click on the Viewer to sample a single color displayed, or <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Shift</span>+drag to sample a range of colors. To sample a single color from the node’s input while viewing its output, <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Alt</span>+click on the Viewer. To sample a region from the input, <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">Alt</span>+<span class="_Override" style="font-weight: bold;">Shift</span>+drag on the Viewer.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can discard sampled pixels by <b>Ctrl</b>/<b>Cmd</b>+right-clicking in the Viewer.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The <b>Range</b> sliders on <b>Hue</b>, <b>Saturation</b>, and <b>Brightness</b> clamp to the sampled range.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>For any color component, drag on the <span class="_Override" style="font-weight: bold;">Range</span> sliders to expand the color range as necessary.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>For any color component, drag on the <span class="_Override" style="font-weight: bold;">Range Rolloff </span>slider to fine tune the color range. Doing so, adjusts the amount of falloff allowed past the limits defined by the Range sliders.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Make the necessary HSV corrections:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>For hue corrections, drag on the <span class="_Override" style="font-weight: bold;">Rotation</span> slider to input color wheel value between 0 and 360.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>For saturation corrections, drag on the <span class="_Override" style="font-weight: bold;">Saturation Adjustment</span> slider to input values between <span class="_Override" style="font-weight: bold;">-1</span> (completely desaturated to some shade of gray) and <span class="_Override" style="font-weight: bold;">1</span> (completely saturated).</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>For value corrections, drag on the <span class="_Override" style="font-weight: bold;">Brightness Adjustment</span> slider to input values between <span class="_Override" style="font-weight: bold;">-1</span> (black) and <span class="_Override" style="font-weight: bold;">1</span> (white).</p>
-        <p>You can also make color replacements using the srccolor and dstcolor parameters: First sample the color you wish to replace with the srccolor color swath, then sample the color which you wish to use as the replacement with the dstcolor color swath. The color in dstcolor replaces the color in srccolor throughout the image.</p>
-        <p>Also, keep in mind that the HSVTool node makes an excellent keyer. You can use its Hue, Saturation, and Brightness range sliders to precisely select a range of colors, then use the channel output dropdown at the bottom of the dialog to output this selection as a matte channel. This dropdown lets you specify which color components (hue, saturation, value, etc.) are added to the matte.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="kanchor86">
+   </a>
+   纠正 HSV
+  </h2>
+  <p class="afterHead">
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的 HSVTool 节点允许您从单个属性面板同时调整色调、饱和度和值分量。它还具有一个颜色替换工具。这个节点的主要优势是它在将修正限制在狭窄的颜色区域时提供的精度。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/hsv_correct1.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/hsv_correct6.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      在中调整颜色
+      <br/>
+      特定范围的像素
+      <br/>
+      值。
+     </td>
+     <td class="caption">
+      在中调整颜色
+      <br/>
+      特定范围的像素
+      <br/>
+      值。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   例如，假设你想通过多样化屋顶色调来给滨水场景增加一点冲击力。为此，您可以通过采样几个像素来限制对屋顶赭色色调的校正，然后移动它们的值。因为您限制了颜色范围，所以周围的图像通常不会受到移位的影响。
+  </p>
+  <h3>
+   <a name="kanchor87">
+   </a>
+   使用 HSVTool 节点进行 HSV 修正
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击
+     <b>
+      颜色
+     </b>
+     <span class="_Override" style="color: #ff0000;">
+     </span>
+     &gt;
+     <span class="_Override" style="color: #ff0000;">
+     </span>
+     <b>
+      HSVTool
+     </b>
+     <span class="_Override" style="color: #ff0000;">
+     </span>
+     在脚本中的适当位置插入 HSVTool 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将查看器连接到 HSVTool 节点的输出，以便您可以看到更改的效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     适当限制您希望后续更正影响的颜色范围:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在 HSVTool 属性面板中，单击
+   <span class="_Override" style="font-weight: bold;">
+    Srccolor
+   </span>
+   色样。
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   单击查看器以对显示的单一颜色进行采样，或
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   拖动可对一系列颜色进行采样。要在查看节点输出时从节点的输入中采样单一颜色,
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Alt
+   </span>
+   单击查看器。要从输入中采样区域,
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Alt
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   在查看器上拖动。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您可以通过
+   <b>
+    Ctrl
+   </b>
+   /
+   <b>
+    Cmd
+   </b>
+   在查看器中单击鼠标右键。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   的
+   <b>
+    范围
+   </b>
+   滑块打开
+   <b>
+    色调
+   </b>
+   ,
+   <b>
+    饱和
+   </b>
+   ,和
+   <b>
+    亮度
+   </b>
+   钳位到采样范围。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   对于任何颜色组件，拖动
+   <span class="_Override" style="font-weight: bold;">
+    范围
+   </span>
+   滑块根据需要扩大颜色范围。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   对于任何颜色组件，拖动
+   <span class="_Override" style="font-weight: bold;">
+    范围 Rolloff
+   </span>
+   滑块微调颜色范围。这样做，调整允许超过范围滑块定义的限制的衰减量。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     进行必要的 HSV 修正:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   对于色调校正，请拖动
+   <span class="_Override" style="font-weight: bold;">
+    旋转
+   </span>
+   滑块可输入 0 到 360 之间的色轮值。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   要进行饱和修正，请拖动
+   <span class="_Override" style="font-weight: bold;">
+    饱和调整
+   </span>
+   滑块之间输入值
+   <span class="_Override" style="font-weight: bold;">
+    -1
+   </span>
+   (完全去饱和到一些灰色) 和
+   <span class="_Override" style="font-weight: bold;">
+    1
+   </span>
+   (完全饱和)。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   对于值更正，请拖动
+   <span class="_Override" style="font-weight: bold;">
+    亮度调整
+   </span>
+   滑块之间输入值
+   <span class="_Override" style="font-weight: bold;">
+    -1
+   </span>
+   (黑色) 和
+   <span class="_Override" style="font-weight: bold;">
+    1
+   </span>
+   (白色)。
+  </p>
+  <p>
+   您还可以使用 srccolor 和 dstcolor 参数进行颜色替换: 首先对您希望用 srccolor 色块替换的颜色进行采样, 然后采样您希望使用的颜色作为 dstcolor 色块的替代品。Dstcolor 中的颜色在整个图像中替换 srccolor 中的颜色。
+  </p>
+  <p>
+   此外，请记住，HSVTool 节点是一个优秀的键盘手。您可以使用其色调、饱和度和亮度范围滑块来精确选择一系列颜色, 然后使用对话框底部的通道输出下拉列表将此选择输出为哑光通道。此下拉菜单允许您指定将哪些颜色组件 (色调、饱和度、值等) 添加到遮罩中。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -157,5 +413,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

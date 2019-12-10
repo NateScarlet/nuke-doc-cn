@@ -1,350 +1,851 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Time Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>VectorGenerator</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/time_nodes/vectorgenerator.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|Time Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   矢量发生器
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/time_nodes/vectorgenerator.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>VectorGenerator</h1>
-        <p>VectorGenerator (<span class="CustomProductX">NukeX</span> and <span class="CustomProductStudio">Nuke Studio</span> only) produces images containing motion vector fields. In general, once you have generated a sequence of motion vector fields that describe the motion in a particular clip well, they will be suitable for use in any nodes which can take vector inputs. These include <a href="kronos.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Kronos</span></a> and <a href="../filter_nodes/motionblur.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">MotionBlur</span></a> available in NukeX.</p>
-        <p>The output from VectorGenerator consists of two sets of motion vectors for each frame. These are stored in the vector channels. </p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="185px">
-                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="113px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="432px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 123px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td rowspan="2" class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Matte</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">An optional matte of the foreground, which may improve the motion estimation by reducing the dragging of pixels that can occur between foreground and background objects.</p>
-                                <p class="CellBody">An optional matte of the foreground. This can be used to help the motion estimation algorithm inside VectorGenerator understand what is foreground and background in the image, so that the dragging of pixels between overlapping objects can be reduced. White areas of the matte are considered to be foreground, and black areas background. Grey areas are used to attenuate between foreground and background.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p class="CellBody">Source</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p class="CellBody">The sequence from which to generate motion vectors.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="1213px">
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">VectorGenerator Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Local GPU</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>gpuName</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Displays the GPU used for rendering when <b>Use GPU if available</b> is enabled. Local GPU displays <b>Not available</b> when:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Use CPU</b> is selected as the <b>default blink device</b> in the <b>Preferences</b>.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no suitable GPU was found on your system.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>it was not possible to create a context for processing on the selected GPU, such as when there is not enough free memory available on the GPU.</p>
-                                <p>You can select a different GPU, if available, by navigating to the <b>Preferences</b> and selecting an alternative from the <b>default blink device</b> dropdown.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span> Selecting a different GPU requires you to restart <span class="CustomProduct">Nuke</span> before the change takes effect.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Use GPU if available</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>useGPUIfAvailable</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, rendering occurs on the <b>Local GPU</b> specified, if available, rather than the CPU. The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.</p>
-                                <p><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Enabling this option with no local GPU allows the script to run on the GPU whenever the script is opened on a machine that does have a GPU available. <br />You should also select this if you wish to render from the command line with the <b>--gpu</b> option.</p>
-                                <p class="CellBody">GPU processing also requires certain NVIDIA GPUs and CUDA drivers, or in the case of late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5 running 10.9.3 'Mavericks', or later, certain AMD GPUs and drivers. For more information on the minimum requirements, please refer to the Nuke Release Notes available in <b>Help</b> &gt; <b>Release Notes</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Method</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>motionEstimation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Dependent on script</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the method of calculating motion estimation vectors:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Local</b> - uses local block matching to estimate motion vectors. This method is faster to process, but can lead to artifacts in the output.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Regularized</b> - uses semi-global motion estimation to produce more consistent vectors between regions.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Scripts loaded from previous versions of Nuke default to <b>Local</b> motion estimation for backward compatibility. Adding a new VectorGenerator node to the Node Graph defaults the <b>Method</b> to <b>Regularized</b> motion estimation.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 103px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Vector Detail</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">vectorDetail</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0.3</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">This determines the resolution of the vector field. The larger vector detail is, the greater the processing time, but the more detailed the vectors should be. A value of 1.0 generates a vector at each pixel. A value of 0.5 generates a vector at every other pixel. For some sequences, a high vector detail near 1.0 generates too much unwanted local motion detail, and often a low value is more appropriate.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 132px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Strength</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">strength</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">1.5</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">This control is only active if <b>Method</b> is set to <b>Regularized</b>.</p>
-                                <p class="CellBody">Sets the strength in matching pixels between frames. Higher values allow you to accurately match similar pixels in one image to another, concentrating on detail matching even if the resulting motion field is jagged. Lower values may miss local detail, but are less likely to provide you with the odd spurious vector, producing smoother results.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The default value should work well for most sequences.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 132px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Smoothness</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">smoothness</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0.5</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">This control is only active if <b>Method</b> is set to <b>Local</b>.</p>
-                                <p class="CellBody">A high smoothness can miss lots of local detail, but is less likely to provide you with the odd spurious vector, whereas a low smoothness concentrates on detail matching, even if the resulting field is jagged.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The default value should work well for most sequences.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 184px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Matte Channel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">matteChannel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">None</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Where to get the (optional) foreground mask to use for motion estimation:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">None</span> - do not use a matte.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Alpha</span> - use the alpha of the <span class="_Override" style="font-weight: bold;">Source</span> input.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Source Inverted Alpha</span> - use the inverted alpha of the <span class="_Override" style="font-weight: bold;">Source</span> input. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Luminance</span> - use the luminance of the <span class="_Override" style="font-weight: bold;">Matte</span> input. </p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Luminance</span> - use the inverted luminance of the <span class="_Override" style="font-weight: bold;">Matte</span> input.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Alpha</span> - use the alpha of the <span class="_Override" style="font-weight: bold;">Matte</span> input.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Mask Inverted Alpha</span> - use the inverted alpha of the <span class="_Override" style="font-weight: bold;">Matte</span> input.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 84px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">output</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Foreground</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When a matte input is supplied, this determines whether the motion vectors corresponding to the background or the foreground regions are output.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Foreground</span> - the vectors for the foreground motion are output.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Background</span> - the vectors for the background motion are output.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Advanced</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 113px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Flicker Compensation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">flickerCompensation</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">When enabled, VectorGenerator takes into account variations in luminance and overall flickering, which can cause problems with your output.</p>
-                                <p class="CellBody">Examples of variable luminance include highlights on metal surfaces, like vehicle bodies, or bodies of water within a layer that reflect light in unpredictable ways.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Using <span class="_Override" style="font-weight: bold;">Flicker Compensation</span> increases rendering time.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Advanced &gt; Tolerances</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">Weight Red</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">weightRed</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p class="CellBody">0.3</p>
-                            </td>
-                            <td rowspan="3" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p class="CellBody">For efficiency, much of the motion estimation is done on luminance only - that is, using monochrome images. The tolerances allow you to tune the weight of each color channel when calculating the image luminance. These parameters rarely need tuning. However, you may, for example, wish to increase the red weighting <span class="_Override" style="font-weight: bold;">Weight Red</span> to allow the algorithm to concentrate on getting the motion of a primarily red object correct, at the cost of the rest of the items in a shot.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Weight Green</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">weightGreen</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">0.6</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 57px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">Weight Blue</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">weightBlue</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">0.1</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/kronos_motionblur/vectorgenerator.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">VectorGenerator</span></a>
-                </p>
-            </div>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   矢量发生器
+  </h1>
+  <p>
+   矢量生成器 (
+   <span class="CustomProductX">
+    NukeX
+   </span>
+   和
+   <span class="CustomProductStudio">
+    核武器工作室
+   </span>
+   仅) 生成包含运动矢量场的图像。一般来说，一旦你生成了一系列运动矢量场，很好地描述了特定片段中的运动，它们将适合用于任何可以接受矢量输入的节点。这些包括
+   <a class="noPage MCXref xref xrefnoPage" href="kronos.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     Kronos
+    </span>
+   </a>
+   和
+   <a class="noPage MCXref xref xrefnoPage" href="../filter_nodes/motionblur.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     MotionBlur
+    </span>
+   </a>
+   在 NukeX 可用。
+  </p>
+  <p>
+   VectorGenerator 的输出包含每帧的两组运动矢量。这些存储在矢量通道中。
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="185px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="101px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="113px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="432px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 123px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1" rowspan="2">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         哑光
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         前景的可选遮罩，可通过减少前景和背景对象之间可能发生的像素拖动来改善运动估计。
+        </p>
+        <p class="CellBody">
+         前景的可选遮罩。这可以用来帮助 VectorGenerator 内部的运动估计算法理解图像中的前景和背景，从而减少重叠对象之间像素的拖动。哑光的白色区域被认为是前景，黑色区域被认为是背景。灰色区域用于在前景和背景之间衰减。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p class="CellBody">
+         源
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p class="CellBody">
+         从中生成运动矢量的序列。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="1213px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="362px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         VectorGenerator 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         本地 GPU
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         GpuName
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         显示用于渲染的 GPU
+         <b>
+          使用 GPU (如果可用)
+         </b>
+         已启用。本地 GPU 显示
+         <b>
+          不可用
+         </b>
+         当:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          使用 CPU
+         </b>
+         被选为
+         <b>
+          默认闪烁设备
+         </b>
+         在
+         <b>
+          偏好
+         </b>
+         .
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         在您的系统上找不到合适的 GPU。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         无法在选定的 GPU 上创建处理上下文，例如当 GPU 上没有足够的可用内存时。
+        </p>
+        <p>
+         如果可用，您可以通过导航到
+         <b>
+          偏好
+         </b>
+         并从中选择一个替代方案
+         <b>
+          默认闪烁设备
+         </b>
+         下拉列表。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         选择不同的 GPU 需要重新启动
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在变更生效之前。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         使用 GPU (如果可用)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         UseGPUIfAvailable
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用时，渲染发生在
+         <b>
+          本地 GPU
+         </b>
+         指定 (如果可用)，而不是 CPU。GPU 和 CPU 之间的输出在 NVIDIA GPU 上是相同的，但是使用 GPU 可以显著提高处理性能。
+        </p>
+        <p>
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在 2013年底的 Mac Pro 6,1 和 2015年中的 Mac Pro 11,5 上支持 AMD gpu，运行 OS X 10.9.3 “mavericks” 或更高版本。虽然，在某些情况下，GPU 和 CPU 之间的比特级相等保持不变，但对于某些操作，这种配置可能存在精度限制。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         在没有本地 GPU 的情况下启用此选项允许脚本在 GPU 上运行，只要脚本在具有 GPU 可用的机器上打开。
+         <br/>
+         你应该选择这个，如果你想使从命令行的
+         <b>
+          -- Gpu
+         </b>
+         选项。
+        </p>
+        <p class="CellBody">
+         GPU 处理还需要某些 NVIDIA GPU 和 CUDA 驱动程序，或者在 2013年底运行 10.9.3 “mavericks” 或更高版本的 Mac Pro 6,1 和 2015年中 Mac Pro 11,5 的情况下，某些 AMD GPU 和驱动程序。有关最低要求的更多信息，请参考
+         <b>
+          帮助
+         </b>
+         &gt;
+         <b>
+          发行说明
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         方法
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         运动估计
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         依赖于脚本
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置计算运动估计向量的方法:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          本地
+         </b>
+         -使用局部块匹配来估计运动矢量。此方法处理速度更快，但会导致输出中出现瑕疵。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          正规化
+         </b>
+         -使用半全局运动估计在区域之间产生更一致的向量。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         从早期版本的 Nuke 默认加载的脚本
+         <b>
+          本地
+         </b>
+         向后兼容的运动估计。将新的 VectorGenerator 节点添加到节点图默认为
+         <b>
+          方法
+         </b>
+         到
+         <b>
+          正规化
+         </b>
+         运动估计。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 103px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         矢量细节
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         VectorDetail
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0.3
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         这决定了向量场的分辨率。向量细节越大，处理时间就越大，但向量应该越详细。值 1.0 在每个像素处生成一个向量。值为 0.5 时，会在每个其他像素处生成一个向量。对于某些序列，接近 1.0 的高矢量细节会产生太多不需要的局部运动细节，通常低值更合适。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 132px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         强度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         强度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         1.5
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         此控件仅在
+         <b>
+          方法
+         </b>
+         设置为
+         <b>
+          正规化
+         </b>
+         .
+        </p>
+        <p class="CellBody">
+         设置帧之间匹配像素的强度。更高的值允许您准确地将一幅图像中的相似像素与另一幅图像进行匹配，即使生成的运动场参差不齐，您也可以集中精力进行细节匹配。较低的值可能会错过本地细节，但不太可能为您提供奇怪的伪向量，从而产生更平滑的结果。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         默认值应该对大多数序列都很有效。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 132px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         平滑度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         平滑度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0.5
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         此控件仅在
+         <b>
+          方法
+         </b>
+         设置为
+         <b>
+          本地
+         </b>
+         .
+        </p>
+        <p class="CellBody">
+         高平滑度可能会错过许多局部细节，但不太可能为您提供奇怪的杂散向量，而低平滑度集中在细节匹配上，即使结果场是锯齿状的。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         默认值应该对大多数序列都很有效。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 184px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         哑光通道
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         MatteChannel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         在哪里获取用于运动估计的 (可选) 前景蒙版:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          没有
+         </span>
+         -不要使用哑光。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          源 Alpha
+         </span>
+         -使用的阿尔法
+         <span class="_Override" style="font-weight: bold;">
+          源
+         </span>
+         输入。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          源倒阿尔法
+         </span>
+         -使用的倒阿尔法
+         <span class="_Override" style="font-weight: bold;">
+          源
+         </span>
+         输入。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          遮罩亮度
+         </span>
+         -使用的亮度
+         <span class="_Override" style="font-weight: bold;">
+          哑光
+         </span>
+         输入。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          掩模倒置亮度
+         </span>
+         -使用倒置的亮度
+         <span class="_Override" style="font-weight: bold;">
+          哑光
+         </span>
+         输入。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          面具阿尔法
+         </span>
+         -使用的阿尔法
+         <span class="_Override" style="font-weight: bold;">
+          哑光
+         </span>
+         输入。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          面具倒阿尔法
+         </span>
+         -使用的倒阿尔法
+         <span class="_Override" style="font-weight: bold;">
+          哑光
+         </span>
+         输入。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 84px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         输出
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         前景
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         当提供遮罩输入时，这将确定是输出与背景或前景区域相对应的运动矢量。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          前景
+         </span>
+         -输出前景运动的向量。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <span class="_Override" style="font-weight: bold;">
+          背景
+         </span>
+         -输出背景运动的向量。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+        <p class="CellBody">
+         高级
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 113px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         闪烁补偿
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         闪烁补偿
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p class="CellBody">
+         启用后，VectorGenerator 会考虑亮度和总体闪烁的变化，这可能会导致输出出现问题。
+        </p>
+        <p class="CellBody">
+         可变亮度的例子包括金属表面的高光，如车身，或层内以不可预测的方式反射光线的水体。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         使用
+         <span class="_Override" style="font-weight: bold;">
+          闪烁补偿
+         </span>
+         增加渲染时间。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2" colspan="4">
+        <p class="CellBody">
+         高级&gt; 公差
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         重量红色
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         WeightRed
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p class="CellBody">
+         0.3
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" rowspan="3">
+        <p class="CellBody">
+         为了提高效率，大部分运动估计只在亮度上进行 -- 也就是说，使用单色图像。公差允许您在计算图像亮度时调整每个颜色通道的权重。这些参数很少需要调整。然而，例如，您可能希望增加红色权重
+         <span class="_Override" style="font-weight: bold;">
+          重量红色
+         </span>
+         为了让算法集中精力让主要是红色物体的运动正确，代价是拍摄中的其余项目。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         重量绿色
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         WeightGreen
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         0.6
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 57px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         重量蓝色
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         WeightBlue
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         0.1
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/kronos_motionblur/vectorgenerator.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       矢量发生器
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -358,5 +859,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

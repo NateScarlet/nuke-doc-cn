@@ -1,106 +1,453 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Timeline Editing in Nuke Studio|Exporting from Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Using the Frame Server on External Machines</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/rendering/render_farms_studio.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Timeline Editing in Nuke Studio|Exporting from Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   在外部机器上使用帧服务器
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/rendering/render_farms_studio.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1><a name="kanchor332"></a>Using the Frame Server on External Machines</h1>
-        <p>Although <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> is capable of rendering frames internally, running the Frame Server on an external machine can accelerate the process considerably by sharing work across a network of machines.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The Frame Server requires a <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> license (nukestudio_i) on the main workstation, but only a <span class="CustomProduct">Nuke</span> render license (nuke_r) on the slave machines. Local Frame Server processes use ports 5559-5662.<br /><br />If you want to use an interactive license (nuke_i) on the slave machines, add the <b>--useInteractiveLicense</b> argument to the <b>runframeserver.py</b> command described below.</p>
-        <h2>Configuring the Frame Server on External Machines</h2>
-        <p><span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span>'s Frame Server can be set up on an external machine (or a number of machines) to render from your Nuke Studio session. To do this, you need to run the <b>runframeserver.py</b> script on the external machines, found inside the Python site-packages, with specific command line arguments.</p>
-        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>In order for everything to work smoothly, you need to ensure that both your external slave machines and main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> session can read and write files to a shared location, such as an NFS share.<br /><br />Depending on platform this can be done by manipulating your default <b>umask</b> setting, but be aware that this alters the permissions of the created files.<br /><br />Additionally, Mac OS X and certain Linux distributions, such as RHEL, can not function as the main workstation if the firewall is blocking the communication port 5560. You can configure the firewall to allow certain ports through the firewall using the <b>iptables</b> command, but use caution when doing so. For example:<br /><br /><span style="font-family: 'Courier New';">sudo iptables -I INPUT -p tcp --dport 5560 --syn -j ACCEPT</span><br /><br />Please refer to the documentation on firewalls for your particular platform for more information.</p>
-        <p>The Frame Server uses a number of worker processes on the external machine, each of which requires allocated resources, such as threads, memory, and so on. There are a number of arguments that you must pass to <b>runframeserver.py</b> for the server to work correctly:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--numworkers</b> - this is the number of concurrent Nuke processes that are launched when you run this server render node.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--nukeworkerthreads</b> - the number of threads that each worker is allocated. This is similar to setting the <b>-m</b> argument when running <span class="CustomProduct">Nuke</span> from the command line.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--nukeworkermemory</b> - the amount of memory, in MB, allocated to each frame server worker.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--workerconnecturl</b> - the TCP port address of the main workstation you want to serve. For example:</p>
-        <p class="cmdlinebulletCont"> tcp://bob:5560</p>
-        <p class="bulletedCont">where <b>bob</b> is the resolved hostname of a machine you wish to serve. You can also use an IP address.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>To ensure that you're entering a valid URL, try using the <b>ping</b> command to see if you get a response.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>--nukepath</b> - the path to the Nuke application on the slave workstation.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>On Windows, if there are spaces in the file path, remember to place the path in quotes.<br />For example, <b>--nukepath="C:\Program Files\Nuke<span class="CustomVersion Number (Long)">10.5v8</span>\Nuke<span class="CustomVersion Number (Short)">10.5</span>.exe"</b></p>
-        <p>On a Linux slave machine, an example command prompt entry running from the install directory might look like this:</p>
-        <p class="cmdline">./python ./pythonextensions/site-packages/foundry/frameserver/nuke/runframeserver.py --numworkers=2 --nukeworkerthreads=4 --nukeworkermemory=8096 --workerconnecturl=tcp://bob:5560 --nukepath=./Nuke<span class="CustomVersion Number (Short)">10.5</span></p>
-        <p>On a Windows slave machine, an example command prompt entry running from the install directory might look like this:</p>
-        <p class="cmdline">python.exe pythonextensions\site-packages\foundry\frameserver\nuke\runframeserver.py --numworkers=2 --nukeworkerthreads=4 --nukeworkermemory=8096 --workerconnecturl=tcp://bob:5560 --nukepath=Nuke<span class="CustomVersion Number (Short)">10.5</span>.exe</p>
-        <p>In the examples, we specify that the slave uses two Nuke workers, with four threads and 8 GB RAM each, and are slaved to the main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> workstation  running  on <b>bob</b>.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If your slave machines run a different OS than your main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> machine, you can use the <b>--remap</b> command line argument to convert file paths between them. The host file path is read first followed by the slave file path. <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> expects all file paths to use <b>/</b> (forward slash) between directories. For example: <br /><span style="font-family: 'Courier New';">--remap "P:/,/mnt/renders/"</span><br />converts host paths beginning with <b>P:/</b> (Windows style) to slave paths beginning with <b>/mnt/renders/</b> (Linux style).</p>
-        <p>You can check that the Frame Server and workers are connected by running the following lines in the Script Editor on the main workstation:</p>
-        <p class="cmdline">from hiero.ui.nuke_bridge.nukestudio import frameServer</p>
-        <p class="cmdline">print [worker.address for worker in frameServer.getStatus(1).workerStatus]</p>
-        <p>Successful connections should report something similar to the following in the output panel:</p>
-        <p class="cmdline">['Worker 0 - henry.local - 192.168.1.11', 'Worker 0 - bob.local - 192.168.1.111', 'Worker 1 - henry.local - 192.168.1.11']</p>
-        <p>Where <b>henry.local</b> is the name of the remote slave, and <b>bob.local</b> is the name of the main <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">Nuke Studio</span> session.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If the workers cannot contact the Frame Server, an exception is printed in the Script Editor's output panel.</p>
-        <h2>Frame Server Logs</h2>
-        <p>Broker and Worker logging can to help diagnose Frame Server issues. The logs are written to NUKE_TEMP_DIR/logs by default, and take the form:</p>
-        <p class="cmdline">broker.log</p>
-        <p class="cmdline">worker-0.log</p>
-        <p class="cmdline">worker-1.log</p>
-        <p class="cmdline">worker-2.log</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Running the Frame Server using Python, as described above, always writes log files to the specific OS temporary directory. For example, on Windows C:\temp is used.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can use the FRAMESERVER_LOG_DIR environment variable to force Frame Server logs into a different location. See <MadCap:conditionalText data-mc-conditions="Default.ScreenOnly"><a href="../configuring_nuke/setting_environment_variables.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Setting Environment Variables</span></a> </MadCap:conditionalText>for more information.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   <a name="kanchor332">
+   </a>
+   在外部机器上使用帧服务器
+  </h1>
+  <p>
+   虽然
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   能够在内部渲染帧，在外部机器上运行帧服务器可以通过在机器网络上共享工作来大大加快进程。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   帧服务器需要
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   主工作站上的许可证 (nukestudio_i)，但只有一个
+   <span class="CustomProduct">
+    核武器
+   </span>
+   从机器上的渲染许可证 (nuke_r)。本地帧服务器进程使用端口 5559-5662。
+   <br/>
+   <br/>
+   如果要在从属机器上使用交互式许可证 (nuke_i)，请添加
+   <b>
+    -- UseInteractiveLicense
+   </b>
+   参数到
+   <b>
+    Runframeserver.py
+   </b>
+   命令描述如下。
+  </p>
+  <h2>
+   在外部计算机上配置帧服务器
+  </h2>
+  <p>
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   的帧服务器可以在外部机器 (或许多机器) 上设置，以便从 Nuke Studio 会话中渲染。为此，您需要运行
+   <b>
+    Runframeserver.py
+   </b>
+   外部机器上的脚本，在 Python 网站包中找到，带有特定的命令行参数。
+  </p>
+  <p class="warning" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;WARNING:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      警告:
+     </span>
+    </span>
+   </span>
+   为了让一切顺利工作，你需要确保你的外部从属机器和主机器
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   会话可以将文件读写到共享位置，如 NFS 共享。
+   <br/>
+   <br/>
+   根据平台，这可以通过操纵您的默认
+   <b>
+    Umask
+   </b>
+   设置，但请注意，这将更改创建的文件的权限。
+   <br/>
+   <br/>
+   此外，如果防火墙阻止通信端口 5560，Mac OS X 和某些 Linux 发行版 (如 RHEL) 不能作为主工作站运行。可以将防火墙配置为允许某些端口通过防火墙使用
+   <b>
+    Iptables
+   </b>
+   命令，但这样做时要小心。例如:
+   <br/>
+   <br/>
+   <span style="font-family: 'Courier New';">
+    Sudo iptables-I 输入-p tcp-dport 5560-syn-j 接受
+   </span>
+   <br/>
+   <br/>
+   有关更多信息，请参考特定平台的防火墙文档。
+  </p>
+  <p>
+   帧服务器在外部机器上使用许多工作进程，每个工作进程都需要分配资源，如线程、内存等。有许多参数必须传递给
+   <b>
+    Runframeserver.py
+   </b>
+   要使服务器正常工作:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    -- Numworkers
+   </b>
+   -这是运行此服务器渲染节点时启动的并发 Nuke 进程的数量。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    -- Nukeworkerthreads
+   </b>
+   -每个工作线程分配的线程数。这类似于设置
+   <b>
+    -M
+   </b>
+   运行时的参数
+   <span class="CustomProduct">
+    核武器
+   </span>
+   从命令行。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    -- Nukeworkermemory
+   </b>
+   -分配给每个帧服务器工作器的内存量 (MB)。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    -- Workerconnecturl
+   </b>
+   -要服务的主工作站的 TCP 端口地址。例如:
+  </p>
+  <p class="cmdlinebulletCont">
+   Tcp://鲍勃: 5560
+  </p>
+  <p class="bulletedCont">
+   在哪里
+   <b>
+    鲍勃
+   </b>
+   是您希望提供服务的计算机的已解析主机名。您也可以使用 IP 地址。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   要确保输入的 URL 有效，请尝试使用
+   <b>
+    平
+   </b>
+   命令查看您是否得到响应。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    -- Nukepath
+   </b>
+   -从工作站上的 Nuke 应用程序的路径。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   在 Windows 上，如果文件路径中有空格，请记住将路径放在引号中。
+   <br/>
+   例如,
+   <b>
+    -Nukepath = "C: \ 程序文件 \ Nuke
+    <span class="CustomVersion Number (Long)">
+     10.5v8
+    </span>
+    \ Nuke
+    <span class="CustomVersion Number (Short)">
+     10.5
+    </span>
+    。Exe"
+   </b>
+  </p>
+  <p>
+   在 Linux 从机上，从安装目录运行的示例命令提示符条目可能如下所示:
+  </p>
+  <p class="cmdline">
+   。/蟒蛇。 /pythonextensions/site-packages/foundry/frameserver/nuke/runframeserver。 py-numworkers = 2-nukeworkerthreads = 4-nukeworkermemory = 8096-workerconnecturl = tcp://鲍勃: 5560-nukepath =。 /核武器
+   <span class="CustomVersion Number (Short)">
+    10.5
+   </span>
+  </p>
+  <p>
+   在 Windows 从属计算机上，从安装目录运行的命令提示符条目示例可能如下所示:
+  </p>
+  <p class="cmdline">
+   Python.exe pythonextensions \ site-packages \ foundry \ frameserver \ nuke \ runframeserver。 py-numworkers = 2-nukeworkerthreads = 4-nukeworkermemory = 8096-workerconnecturl = tcp://鲍勃: 5560-nukepath = Nuke
+   <span class="CustomVersion Number (Short)">
+    10.5
+   </span>
+   。Exe
+  </p>
+  <p>
+   在这些例子中，我们指定从使用两个 Nuke worker，每个线程有四个线程和 8 GB RAM，并且被分配到主
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   运行的工作站
+   <b>
+    鲍勃
+   </b>
+   .
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果你的从机运行的操作系统不同于你的主
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   机器，你可以使用
+   <b>
+    -- 重新映射
+   </b>
+   命令行参数用于在它们之间转换文件路径。首先读取主机文件路径，然后读取从属文件路径。
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   希望所有文件路径都使用
+   <b>
+    /
+   </b>
+   (正斜杠) 目录之间。例如:
+   <br/>
+   <span style="font-family: 'Courier New';">
+    -重新映射 “P:/，/mnt/渲染/”
+   </span>
+   <br/>
+   转换以开头的主机路径
+   <b>
+    P:/
+   </b>
+   (Windows 样式) 从路径开始
+   <b>
+    /Mnt/渲染/
+   </b>
+   (Linux 风格)。
+  </p>
+  <p>
+   通过在主工作站的脚本编辑器中运行以下行，可以检查帧服务器和工作器是否已连接:
+  </p>
+  <p class="cmdline">
+   从 hiero.ui.nuke_bridge.nukestudio 导入框架服务器
+  </p>
+  <p class="cmdline">
+   打印 [worker.frameServer.getStatus (1).workerStatus] 中 worker 的地址
+  </p>
+  <p>
+   成功的连接应该在输出面板中报告类似以下内容:
+  </p>
+  <p class="cmdline">
+   ['工人 0-亨利。本地-192.168.1.11'，'工人 0-鲍勃。本地-192.168.1.111'，'工人 1-亨利。本地-192.168.1.11']
+  </p>
+  <p>
+   在哪里
+   <b>
+    亨利.本地
+   </b>
+   是远程从服务器的名称,
+   <b>
+    Bob.local
+   </b>
+   是主的名字
+   <span class="CustomProductStudio" data-mc-conditions="Custom.NukeStudio">
+    核武器工作室
+   </span>
+   会话。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果工作人员无法联系框架服务器，则会在脚本编辑器的输出面板中打印异常。
+  </p>
+  <h2>
+   帧服务器日志
+  </h2>
+  <p>
+   代理和工作人员日志记录可以帮助诊断帧服务器问题。默认情况下，日志写入 NUKE_TEMP_DIR/日志，并采用以下形式:
+  </p>
+  <p class="cmdline">
+   Broker.log
+  </p>
+  <p class="cmdline">
+   Worker-0.log
+  </p>
+  <p class="cmdline">
+   Worker-1.log
+  </p>
+  <p class="cmdline">
+   Worker-2.log
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如上所述，使用 Python 运行框架服务器时，总是将日志文件写入特定的操作系统临时目录。例如，在 Windows 上使用 C: \ temp。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您可以使用 FRAMESERVER_LOG_DIR 环境变量强制帧服务器登录到不同的位置。请参阅
+   <madcap:conditionaltext data-mc-conditions="Default.ScreenOnly">
+    <a class="noPage MCXref xref xrefnoPage" href="../configuring_nuke/setting_environment_variables.html">
+     <span class="mcFormatColor" style="color: #00b4e0;">
+      设置环境变量
+     </span>
+    </a>
+   </madcap:conditionaltext>
+   欲了解更多信息。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -114,5 +461,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

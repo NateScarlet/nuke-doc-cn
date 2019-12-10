@@ -1,1119 +1,2782 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Filtering and Spatial Effects">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Simulating Depth-of-Field Blurring</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/filters/applying_blurs.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Filtering and Spatial Effects" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   仿真景深模糊
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/filters/applying_blurs.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1><a name="Simulating_Depth-of-Field_Blurring"></a>Simulating Depth-of-Field Blurring</h1>
-        <p class="afterHead">The ZDefocus node blurs the image according to a depth map channel. This allows you to simulate depth-of-field (DOF) blurring.</p>
-        <table style="caption-side: top;">
-            <col style="width: 11cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_before.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The original image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 11cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_after.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Using ZDefocus to simulate a more narrow depth of field. <br />In this case, areas under the green sign remain in focus, <br />whereas areas in front of and behind it are blurred. <br />Any defocused highlights in the image bloom in the shape <br />of the filter image, creating a bokeh effect.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>In order to defocus the image, ZDefocus splits the image up into layers, each of which is assigned the same depth value everywhere and processed with a single blur size. After ZDefocus has processed all the layers, it blends them together from the back to the front of the image, with each new layer going over the top of the previous ones. This allows it to preserve the ordering of objects in the image.</p>
-        <h2>Quick Start</h2>
-        <p class="afterHead">Here's a quick overview of the workflow:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create a ZDefocus node and connect it to your script.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">See <a href="#filters_2072326023_691459" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Connecting ZDefocus</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Adjust the blur settings.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">See <a href="#filters_2072326023_693457" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Blur Settings</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Adjust the shape of any out-of-focus highlights.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">See <a href="#filters_2072326023_691706" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Shape of Out-of-Focus Highlights</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If necessary, enhance the highlights to make lens shape effects more visible.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">See <a href="#filters_2072326023_693943" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Enhancing the Out-of-Focus Highlights</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If necessary, mask the blur effect.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">See <a href="#filters_2072326023_693964" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Masking the Blur Effect</span></a>.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can check <span class="_Override" style="font-weight: bold;">Use GPU if available</span> to have the node run on the graphics processing unit (GPU) rather than the central processing unit (CPU). The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.<br /><br /><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.<br /><br />For more information on the minimum requirements, please see <a href="../../getting_started/installation/mac_os_x.html#installation_and_licensing_4023371737_986201" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Requirements for GPU Acceleration</span></a> or refer to the <span class="CustomProduct">Nuke</span> Release Notes available in <span class="_Override" style="font-weight: bold;">Help</span> &gt; <span class="_Override" style="font-weight: bold;">Release Notes</span>.<br /><br />You can select the GPU to use in the Preferences. Press <span class="_Override" style="font-weight: bold;">Shift</span>+<span class="_Override" style="font-weight: bold;">S</span> to open the <span class="_Override" style="font-weight: bold;">Preferences</span> dialog, make sure you’re viewing the <b>Preferences</b> &gt; <b>Performance</b> &gt; <b>Hardware</b> tab, and set <span class="_Override" style="font-weight: bold;">default blink device</span> to the device you want to use. You must restart <span class="CustomProduct">Nuke</span> for the change to take effect.<br /><br />If you are using a render license of Nuke, you need to add <span class="_Override" style="font-weight: bold;">--gpu</span> on the command line.</p>
-        <h2><a name="filters_2072326023_691459"></a>Connecting ZDefocus</h2>
-        <p class="afterHead">To connect ZDefocus:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create a ZDefocus node by clicking <span class="_Override" style="font-weight: bold;">Filter</span> &gt; <span class="_Override" style="font-weight: bold;">ZDefocus</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the ZDefocus node’s <span class="_Override" style="font-weight: bold;">image</span> input to the image you want to blur.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">Note that this image also needs to contain a depth map channel. If your depth channel and rgba channels exist in two different files, you can use a ShuffleCopy node to combine them.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the <span class="_Override" style="font-weight: bold;">channels</span> dropdown menu to select the channels you want to blur.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set <span class="_Override" style="font-weight: bold;">depth channel</span> to the channel in the <span class="_Override" style="font-weight: bold;">image</span> input that contains the depth map. By default, the depth information is taken from <span class="_Override" style="font-weight: bold;">depth.Z</span>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">Note that the depth map should not be anti-aliased. If it is, pixels along an edge between two objects can be assigned a depth that is in-between the depth of the front object and back objects. This looks wrong, as it suggests that those edge pixels are floating somewhere between the objects.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If you want to use your own filter image (rather than the predefined <span class="_Override" style="font-weight: bold;">disc</span> or <span class="_Override" style="font-weight: bold;">bladed</span> images), connect that to the ZDefocus node’s <span class="_Override" style="font-weight: bold;">filter</span> input and set <span class="_Override" style="font-weight: bold;">filter type</span> to <span class="_Override" style="font-weight: bold;">image</span> in the node’s properties.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The filter image represents the shape and size of the camera aperture used to shoot the input footage. As the clip in the <span class="_Override" style="font-weight: bold;">image</span> input is blurred, any highlights in the clip bloom in the shape of the <span class="_Override" style="font-weight: bold;">filter</span> image, creating a bokeh effect.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Loading scripts from pre-Nuke 8.0v7 enables the <b>legacy resize mode</b> checkbox automatically, for backward compatibilty, and uses the <b>filter bounds</b> dropdown to determine how images used in filtering are resized.<br />Adding new ZDefocus nodes hides the <b>legacy resize mode</b> checkbox and allows you to use the <b>image filter</b> dropdown to give you more flexibility when calculating blur.<br />See <a href="#filters_2072326023_692173" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using a Custom Filter Image</span></a> for more information.</p>
-        <p class="numberedCont">You can create a filter image using the Roto node (<span class="_Override" style="font-weight: bold;">Draw</span> &gt; <span class="_Override" style="font-weight: bold;">Roto</span>) or the Flare node (<span class="_Override" style="font-weight: bold;">Draw</span> &gt; <span class="_Override" style="font-weight: bold;">Flare</span>), for example.</p>
-        <p class="numberedCont">Note that you don’t necessarily need to crop the filter image to a smaller size, as fast Fourier transforms are used to speed up convolutions with large filter images.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Attach a Viewer to the ZDefocus node.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_nodes.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">A ZDefocus script.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_691706"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Shape of Out-of-Focus Highlights</span></a> below.</td>
-            </tr>
-        </table>
-        <h2><a name="filters_2072326023_693457"></a>Adjusting the Blur Settings</h2>
-        <p class="afterHead">To adjust the Blur settings:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Use <span class="_Override" style="font-weight: bold;">math</span> to specify how you want to use the <span class="_Override" style="font-weight: bold;">depth</span> <span class="_Override" style="font-weight: bold;">channel</span> to calculate the distance between the camera and an object. For example, some programs use higher values to denote further away, while in others they mean closer to the camera:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">direct</span> - The Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> directly controls blur. For example, if Z is 0.5, then the blur size is 0.5 times the value of the <span class="_Override" style="font-weight: bold;">size</span> control (unless this is bigger than <span class="_Override" style="font-weight: bold;">maximum</span>, in which case it is clamped to <span class="_Override" style="font-weight: bold;">maximum</span>).</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">depth</span> - The Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is the distance between the camera and whatever is in the image at that pixel.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = 0</span> - The Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is equal to 1/distance. The values are expected to decrease from large positive values close to the camera to zero at infinity. This is compatible with depth maps generated by Nuke and RenderMan.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = 1</span> - Near plane = 0, far plane = 1. This is compatible with depth maps generated by OpenGL.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">-direct</span> - As with the <span class="_Override" style="font-weight: bold;">direct</span> mode, the Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> directly controls blur. In other words, each layer is blurred by the same amount as in the <span class="_Override" style="font-weight: bold;">direct</span> mode. However, in this mode, the layers are interpreted as being in the opposite order, so a higher depth value places a layer in front of another rather than behind it.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">-depth</span> - The Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is -distance in front of the camera. This is the same as <span class="_Override" style="font-weight: bold;">depth</span>, but the distances are negative to start with.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = -0</span> - The Z value in the <span class="_Override" style="font-weight: bold;">depth channel</span> is equal to -1/distance. This is compatible with depth maps generated by Maya.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">far = -1</span> - Near plane = 0, far plane = -1.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Viewer, drag the <span class="_Override" style="font-weight: bold;">focal point</span> widget on top of the area that you want to be entirely in focus. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">This automatically updates the <span class="_Override" style="font-weight: bold;">focal point</span> coordinates in the ZDefocus properties and sets the <span class="_Override" style="font-weight: bold;">focus plane</span> control to the Z depth value at those coordinates. Any layers with this Z<span class="_Override" style="font-weight: bold;"> </span>depth value are left in focus. You can also set a depth slice around the focus plane that is in focus (as described in step 4), but any other areas of the image are blurred according to the depth map.</p>
-        <table style="caption-side: top;">
-            <col style="width: 11cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_focal_point1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Focal point widget under the green sign.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 11cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/zdefocus_focal_point2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Focal point widget near the cars in the distance.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>The <b>fill foreground</b> control, enabled by default, attempts to compensate for missing information by filling regions in the foreground which are revealed when the foreground goes out of focus. However, because the true image information isn't available in these regions, <b>fill foreground</b> can sometimes introduce undesirable artefacts by adding things which aren't there.<br />If you see blurry artefacts in the foreground, rather than sharp edge artefacts, try disabling this control.</p>
-        <p class="numberedCont">To better see the effect of your changes, you can also set <span class="_Override" style="font-weight: bold;">output</span> to <span class="_Override" style="font-weight: bold;">focal plane setup</span>. ZDefocus now displays depth-of-field (DOF) info in the <span class="_Override" style="font-weight: bold;">rgb</span> channels:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span> <span class="_Override" style="font-weight: bold;">red</span> - Less than DOF (in front of the area that’s in focus).</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span> <span class="_Override" style="font-weight: bold;">green</span> - Inside DOF (in focus). Note that if <span class="_Override" style="font-weight: bold;">depth of field</span> is set to <span class="_Override" style="font-weight: bold;">0</span>, nothing is displayed in green.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span> <span class="_Override" style="font-weight: bold;">blue</span> - Greater than DOF (behind the area that’s in focus).</p>
-        <p class="numberedCont">When <span class="_Override" style="font-weight: bold;">show image</span> is enabled, this information is overlaid upon the input image.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_focal_pl_setup1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_focal_pl_setup2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Focal point widget under <br />the green sign.</td>
-                    <td class="caption">Focal point widget near <br />the cars in the distance.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To widen the area that is entirely in focus, increase <span class="_Override" style="font-weight: bold;">depth of field</span>. This sets a depth slice around the focus plane that is entirely in focus (and shown in green whenever <span class="_Override" style="font-weight: bold;">output</span> is set to <span class="_Override" style="font-weight: bold;">focal plane setup</span>). True theoretical depth of field would set this to zero.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_dof_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_focal_pl_setup3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Depth of field</span> set to 0.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Depth of field</span> set to 1.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To apply a small amount of blur to the in-focus region, make sure <span class="_Override" style="font-weight: bold;">blur inside</span> is enabled. This gives a smoother transition between the in-focus region and the out-of-focus regions around it.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Set <span class="_Override" style="font-weight: bold;">output</span> back to <span class="_Override" style="font-weight: bold;">result</span> and adjust the amount of blur at infinite depth by setting the <span class="_Override" style="font-weight: bold;">size</span> value. Note that the amount of blur nearer the camera than the focus plane may be larger.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">If you have set <span class="_Override" style="font-weight: bold;">math</span> to <span class="_Override" style="font-weight: bold;">direct</span>, the size is multiplied by the depth to give the blur size at that depth. Setting <span class="_Override" style="font-weight: bold;">size</span> to 1 allows you to use the values in the depth map as the blur size directly.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If you increased the <span class="_Override" style="font-weight: bold;">size</span> value in step 5, it’s a good idea to also increase the <span class="_Override" style="font-weight: bold;">maximum</span> value. No blurring greater than this value is generated no matter where the object is in relation to the camera.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">For maximum processing speed, you may want to keep this value as low as possible.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">By default, <span class="_Override" style="font-weight: bold;">automatic layer spacing</span> is enabled, which means ZDefocus automatically works out how many depth layers to use, based on the maximum blur size (<span class="_Override" style="font-weight: bold;">maximum</span>). In this mode, the layers are closer together near to the focal plane, where a small change in the blur amount is more obvious, and increasingly more widely-spaced further away (this is equivalent to setting <span class="_Override" style="font-weight: bold;">layer curve</span> to a value of 1 when controlling the layers manually; see step 8).</td>
-            </tr>
-        </table>
-        <p class="numberedCont">To visualize the layers, you can set <span class="_Override" style="font-weight: bold;">output</span> to <span class="_Override" style="font-weight: bold;">layer setup</span>. This is like <span class="_Override" style="font-weight: bold;">focal plane setup</span>, but displays depth-of-field (DOF) information after the depth has been divided into layers.</p>
-        <table style="caption-side: top;">
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_layer_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Output</span> set to <span class="_Override" style="font-weight: bold;">layer setup</span>.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="numberedCont">The maximum number of blur sizes that are used between 0 and <span class="_Override" style="font-weight: bold;">maximum</span> is 256. This means you can have up to 256 layers behind the focal plane, and up to 256 in front of it as well.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">If you uncheck <span class="_Override" style="font-weight: bold;">automatic layer</span> spacing, you can control the number of layers manually using <span class="_Override" style="font-weight: bold;">depth layers</span>. Note that the more layers you use, the longer it takes to process the blur.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_layer_curve_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_depth_layers_50.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Depth layers</span> set to 10.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Depth layers</span> set to 50.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="numberedCont">If necessary, you can also increase <span class="_Override" style="font-weight: bold;">layer curve</span> to concentrate the layers around the focal plane. The default value of 0 produces evenly spaced layers.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_layer_curve_1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_layer_curve_5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Layer curve</span> set to 0. <br />This produces evenly spaced <br />layers.</td>
-                    <td class="caption">Increasing the <span class="_Override" style="font-weight: bold;">layer curve<br /></span> value concentrates the layers <br />around the focal plane.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_691706"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting the Shape of Out-of-Focus Highlights</span></a>.</td>
-            </tr>
-        </table>
-        <h2><a name="filters_2072326023_691706"></a>Adjusting the Shape of Out-of-Focus Highlights</h2>
-        <p class="afterHead">As the clip in the <span class="_Override" style="font-weight: bold;">image</span> input is blurred, any out-of-focus highlights (bokeh) in the clip assume the shape of the <span class="_Override" style="font-weight: bold;">filter</span> image (of the <span class="_Override" style="font-weight: bold;">filter type</span> selected).</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_bokeh_off.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_bokeh.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The original image.</td>
-                    <td class="caption">Out-of-focus highlights <br />(bokeh) in the shape of <br />the <span class="_Override" style="font-weight: bold;">filter</span> image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>How you create the filter image is up to you. You can:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use a predefined disc shape as the filter image. See <a href="#filters_2072326023_692223" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using a Predefined Disc Image</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use a predefined bladed image (polygon) as the filter image. See <a href="#filters_2072326023_692244" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using a Predefined Bladed Image</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use your own custom image in the <span class="_Override" style="font-weight: bold;">filter</span> input as the filter image. See <a href="#filters_2072326023_692173" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using a Custom Filter Image</span></a>.</p>
-        <h3><a name="filters_2072326023_692223"></a>Using a Predefined Disc Image</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">To see the effect of your changes, set <span class="_Override" style="font-weight: bold;">output</span> in the ZDefocus controls to <span class="_Override" style="font-weight: bold;">filter shape setup</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Set <span class="_Override" style="font-weight: bold;">filter type</span> to <span class="_Override" style="font-weight: bold;">disc</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the<span class="_Override" style="font-weight: bold;"> filter shape</span> control to dissolve the filter shape between Gaussian at 0 and disc at 1.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_shape_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_shape_1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Filter shape</span> set <br />to 0 (Gaussian).</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Filter shape</span> set <br />to 1 (disc). This is <br />the default value.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Use the <span class="_Override" style="font-weight: bold;">aspect ratio</span> control to set the filter aspect ratio, which is 1:1 by default. Values less than 1 squeeze the filter on the x axis, and values larger than 1 squeeze it on the y axis<span class="_Override" style="font-size: 9pt;line-height: 11pt;">.</span></td>
-            </tr>
-        </table>
-        <p class="numberedCont">This allows you to simulate the cat's eye effect, caused by vignetting inherent within some lens designs.</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_aspect_0.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_aspect_1.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Aspect ratio</span> set <br />to 0.5.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Aspect ratio</span> set <br />to 1.5.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Proceed to <a href="#filters_2072326023_693943" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Enhancing the Out-of-Focus Highlights</span></a>.</td>
-            </tr>
-        </table>
-        <h3><a name="filters_2072326023_692244"></a>Using a Predefined Bladed Image</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">To see the effect of your changes, set <span class="_Override" style="font-weight: bold;">output</span> in the ZDefocus controls to <span class="_Override" style="font-weight: bold;">filter shape setup</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Set <span class="_Override" style="font-weight: bold;">filter type</span> to <span class="_Override" style="font-weight: bold;">bladed</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use the <span class="_Override" style="font-weight: bold;">blades</span> control to set the number of iris blades that make up the camera's diaphragm. A value of 3 produces a triangle, 4 a square, 5 a pentagon, 6 a hexagon, and so on.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">This field only accepts integers larger than 1.</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_blades_5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_blades_8.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Blades</span> set to 5. <br />This is the default <br />value.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Blades</span> set to 8.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Adjust <span class="_Override" style="font-weight: bold;">roundness</span> to control the rounding of the filter polygon’s sides. A value of 0 equals no rounding.</td>
-            </tr>
-        </table>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_roundness_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_roundness_0.7.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Roundness</span> set <br />to 0.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Roundness</span> set <br />to 8.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Use <span class="_Override" style="font-weight: bold;">rotation</span> to rotate the filter image in degrees. Positive values produce counter-clockwise rotation, and vice-versa.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Use the <span class="_Override" style="font-weight: bold;">aspect ratio</span> control to set the filter aspect ratio, which is 1:1 by default. Values less than 1 squeeze the filter on the x axis, and values larger than 1 squeeze it on the y axis.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">This allows you to simulate the cat's eye effect, caused by vignetting inherent within some lens designs.</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_blades_aspect_0.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_blades_aspect_1.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Aspect ratio</span> set <br />to 0.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Aspect ratio</span> set <br />to 2.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To adjust the distribution of light inside the out-of-focus highlights:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Adjust <span class="_Override" style="font-weight: bold;">inner size</span> to control the size of the inner polygon, as a percentage of the outer polygon.</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_in_size_0.2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_in_size_0.8.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Inner size</span> set <br />to 0.2.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Inner size</span> set <br />to 0.8.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Use <span class="_Override" style="font-weight: bold;">inner feather</span> to add outward or inward feathering around the inner polygon. With values larger than 0.5, your feather effect is outward and, respectively, if your values are smaller than 0.5, the feather effect is inward. A value of 0.5 produces no feathering.  </p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_in_feather_0.2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_in_feather_0.8.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Inner feather</span> set <br />to 0.2.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Inner feather</span> set <br />to 0.8.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Adjust inner brightness to control the brightness of the inner polygon, where 0 is equal to black and 1 to white.</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_in_brightness_0.3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_in_brightness_0.7.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Inner brightness</span> <br />set to 0.3.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Inner brightness</span> <br />set to 0.7.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you want to simulate catadioptric lenses, check <span class="_Override" style="font-weight: bold;">catadioptric</span>. When using catadioptric lenses, the defocused areas of the image are annular, producing donut-shaped bokeh. You can use <span class="_Override" style="font-weight: bold;">catadioptric size</span> to adjust the size of the catadioptric hole in the filter.</p>
-        <p>&#160;</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_cat_size_0.3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_cat_size_0.7.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Catadioptric size</span> <br />set to 0.3.</td>
-                    <td class="caption"><span class="_Override" style="font-weight: bold;">Catadioptric size</span> <br />set to 0.7.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Proceed to <a href="#filters_2072326023_693943" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Enhancing the Out-of-Focus Highlights</span></a>.</td>
-            </tr>
-        </table>
-        <h3><a name="filters_2072326023_692173"></a>Using a Custom Filter Image</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Set <span class="_Override" style="font-weight: bold;">filter type</span> in the ZDefocus controls to <span class="_Override" style="font-weight: bold;">image</span>. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">This tells ZDefocus to use the <span class="_Override" style="font-weight: bold;">filter</span> input rather than a predefined shape as the filter image.</p>
-        <p class="numberedCont">Note that the <span class="_Override" style="font-weight: bold;">filter</span> image can be a color image. This can be useful, for example, if you want to add color fringing to your out-of-focus highlights to simulate chromatic aberration.</p>
-        <table style="caption-side: top;">
-            <col style="width: 3cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_filter_image.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The <span class="_Override" style="font-weight: bold;">filter</span> image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you want to display the <span class="_Override" style="font-weight: bold;">filter</span> image in the Viewer, set <span class="_Override" style="font-weight: bold;">output</span> to <span class="_Override" style="font-weight: bold;">filter shape setup</span>.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Loading scripts from pre-Nuke 9.0v2 enables the <b>legacy resize mode</b> checkbox automatically, for backward compatibilty, and uses the <b>filter bounds</b> dropdown to determine how images used in filtering are resized.<br />Adding new ZDefocus nodes hides the <b>legacy resize mode</b> checkbox and allows you to use the <b>image filter</b> dropdown to give you more flexibility when calculating blur.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To select what channel to use from the <span class="_Override" style="font-weight: bold;">filter</span> input, do one of the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Set the <span class="_Override" style="font-weight: bold;">filter channel </span>dropdown menu to the channel you want to use. By default, this menu is set to <span class="_Override" style="font-weight: bold;">rgba.alpha</span>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>To use the same channels from the <span class="_Override" style="font-weight: bold;">filter</span> input as the <span class="_Override" style="font-weight: bold;">image</span> input (that is, whatever <span class="_Override" style="font-weight: bold;">channels</span> is set to), check <span class="_Override" style="font-weight: bold;">use input channels</span>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In newer <span class="CustomProduct">Nuke</span> scripts, use the <b>image filter</b> dropdown to select the required filter. See <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a> for more information on the available filters.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>When using filters that employ sharpening, such as <b>Rifman</b> and <b>Lanczos</b>, you may see a haloing effect. If necessary, check <b>clamp image filter</b> to correct this problem.</p>
-        <p class="numberedCont">In older <span class="CustomProduct">Nuke</span> scripts with <b>legacy resize mode</b> enabled, use the <span class="_Override" style="font-weight: bold;">filter bounds</span> dropdown to select whether you want to limit the filter image to:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">shape</span> - the <span class="_Override" style="font-weight: bold;">filter</span> input’s bounding box. In this case, ZDefocus only uses the bounding box area, and the center of the filter is the center of the bounding box. This is the default value. You may want to use it, for example, if your <span class="_Override" style="font-weight: bold;">filter</span> input is a roto shape with a small bounding box that doesn’t fill the entire format area.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">format</span> - the <span class="_Override" style="font-weight: bold;">filter</span> input’s format. In this case, ZDefocus uses the entire format area, allowing you to offset the filter image within the format.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693943"><span style="color: #00b4e0;" class="mcFormatColor">Enhancing the Out-of-Focus Highlights</span></a>.</td>
-            </tr>
-        </table>
-        <h2><a name="filters_2072326023_693943"></a>Enhancing the Out-of-Focus Highlights</h2>
-        <p class="afterHead">To enhance the out-of-focus highlights:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">To make bokeh lens shape effects warmer and more visible, check <span class="_Override" style="font-weight: bold;">gamma correction</span>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">This means a gamma lookup curve of 2.2 is applied before blurring and then reversed for the final output.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_gamma_off.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_gamma_on.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Without <span class="_Override" style="font-weight: bold;">gamma correction</span>.</td>
-                    <td class="caption">With <span class="_Override" style="font-weight: bold;">gamma correction</span>.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">You can also make the lens shape effects more visible by enabling <span class="_Override" style="font-weight: bold;">bloom</span>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">Any highlights above the <span class="_Override" style="font-weight: bold;">bloom threshold</span> value are multiplied by the <span class="_Override" style="font-weight: bold;">bloom gain</span> value. Highlights below the <span class="_Override" style="font-weight: bold;">bloom threshold</span> are not affected.</p>
-        <p class="numberedCont">This allows you more control over the highlights than <span class="_Override" style="font-weight: bold;">gamma correction</span>; however, <span class="_Override" style="font-weight: bold;">gamma correction</span> may bring out some of the highlights better.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_gamma_off1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/zdefocus_bloom_on.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Without <span class="_Override" style="font-weight: bold;">bloom</span>.</td>
-                    <td class="caption">With <span class="_Override" style="font-weight: bold;">bloom</span>.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Proceed to <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693964"><span style="color: #00b4e0;" class="mcFormatColor">Masking the Blur Effect</span></a>.</td>
-            </tr>
-        </table>
-        <h2><a name="filters_2072326023_693964"></a>Masking the Blur Effect</h2>
-        <p class="afterHead">To mask the blur effect:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Do <span class="_Override" style="text-decoration: underline;">one</span> of the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Make sure there is a mask channel in the ZDefocus node’s <span class="_Override" style="font-weight: bold;">image</span> input and nothing is connected to the <span class="_Override" style="font-weight: bold;">mask</span> input.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Connect a mask to the <span class="_Override" style="font-weight: bold;">mask</span> input of the ZDefocus node. If you cannot see the <span class="_Override" style="font-weight: bold;">mask</span> input, open the node’s controls and make sure <span class="_Override" style="font-weight: bold;">mask</span> is set to <span class="_Override" style="font-weight: bold;">none</span>.</p>
-        <p class="processBulletCont">If you want the mask from the <span class="_Override" style="font-weight: bold;">mask</span> input copied into the predefined <span class="_Override" style="font-weight: bold;">mask.a</span> channel, also check <span class="_Override" style="font-weight: bold;">inject</span>. This way, you can use the <span class="_Override" style="font-weight: bold;">mask</span> input again downstream.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If you don’t want to use the alpha channel as the matte, select the channel you want to use from the <span class="_Override" style="font-weight: bold;">mask</span> dropdown menu.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">By default, the blur is limited to the non-black areas of this channel.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">If necessary, check <span class="_Override" style="font-weight: bold;">invert</span> to reverse the mask, so that the blur is limited to the non-white areas of the mask.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To blur the edges of the mask, check <span class="_Override" style="font-weight: bold;">fringe</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">To dissolve between the original image (at 0) and the full ZDefocus effect (at 1), adjust the <span class="_Override" style="font-weight: bold;">mix</span> slider. A small light-gray square appears on the node in the Node Graph to indicate that the full effect is not used.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   <a name="Simulating_Depth-of-Field_Blurring">
+   </a>
+   仿真景深模糊
+  </h1>
+  <p class="afterHead">
+   ZDefocus 节点根据深度贴图通道模糊图像。这允许您模拟景深 (DOF) 模糊。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 11cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_before.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      原始图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 11cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_after.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      使用 ZDefocus 模拟更窄的景深。
+      <br/>
+      在这种情况下，绿色标志下的区域仍然是焦点,
+      <br/>
+      而它前面和后面的区域是模糊的。
+      <br/>
+      图像中的任何离焦高光都会在形状中绽放
+      <br/>
+      过滤器图像，创建散景效果。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   为了分散图像的焦点，ZDefocus 将图像分割成一层，每一层都被赋予相同的深度值，并以单个模糊大小进行处理。ZDefocus 处理完所有层后，它将它们从图像的后面到前面混合在一起，每个新层都在前面的层之上。这允许它保持图像中对象的顺序。
+  </p>
+  <h2>
+   快速启动
+  </h2>
+  <p class="afterHead">
+   以下是工作流的快速概述:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     创建 ZDefocus 节点并将其连接到脚本。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_691459">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     连接 ZDefocus
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     调整模糊设置。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693457">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     调整模糊设置
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     调整任何焦点突出的形状。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_691706">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     调整焦点外高光的形状
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如有必要，增强高光以使镜头形状效果更加可见。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693943">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     增强焦点外的亮点
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     如有必要，掩盖模糊效果。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693964">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     掩盖模糊效果
+    </span>
+   </a>
+   .
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   You can check
+   <span class="_Override" style="font-weight: bold;">
+    使用 GPU (如果可用)
+   </span>
+   to have the node run on the graphics processing unit (GPU) rather than the central processing unit (CPU). The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.
+   <br/>
+   <br/>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.
+   <br/>
+   <br/>
+   For more information on the minimum requirements, please see
+   <a class="noPage MCXref xref xrefnoPage" href="../../getting_started/installation/mac_os_x.html#installation_and_licensing_4023371737_986201">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     GPU 加速要求
+    </span>
+   </a>
+   or refer to the
+   <span class="CustomProduct">
+    Nuke
+   </span>
+   Release Notes available in
+   <span class="_Override" style="font-weight: bold;">
+    帮助
+   </span>
+   &gt;
+   <span class="_Override" style="font-weight: bold;">
+    发行说明
+   </span>
+   .
+   <br/>
+   <br/>
+   You can select the GPU to use in the Preferences. Press
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   +
+   <span class="_Override" style="font-weight: bold;">
+    S
+   </span>
+   to open the
+   <span class="_Override" style="font-weight: bold;">
+    偏好
+   </span>
+   dialog, make sure you’re viewing the
+   <b>
+    偏好
+   </b>
+   &gt;
+   <b>
+    性能
+   </b>
+   &gt;
+   <b>
+    硬件
+   </b>
+   tab, and set
+   <span class="_Override" style="font-weight: bold;">
+    默认闪烁设备
+   </span>
+   to the device you want to use. You must restart
+   <span class="CustomProduct">
+    Nuke
+   </span>
+   for the change to take effect.
+   <br/>
+   <br/>
+   If you are using a render license of Nuke, you need to add
+   <span class="_Override" style="font-weight: bold;">
+    -- Gpu
+   </span>
+   on the command line.
+  </p>
+  <h2>
+   <a name="filters_2072326023_691459">
+   </a>
+   连接 ZDefocus
+  </h2>
+  <p class="afterHead">
+   要连接 ZDefocus:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     通过单击创建 ZDefocus 节点
+     <span class="_Override" style="font-weight: bold;">
+      过滤器
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      ZDefocus
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     连接 ZDefocus 节点的
+     <span class="_Override" style="font-weight: bold;">
+      图像
+     </span>
+     输入到要模糊的图像。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请注意，此图像还需要包含深度贴图通道。如果您的深度通道和 rgba 通道存在于两个不同的文件中，您可以使用 ShuffleCopy 节点来组合它们。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      渠道
+     </span>
+     下拉菜单选择要模糊的频道。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      深度通道
+     </span>
+     到通道中的
+     <span class="_Override" style="font-weight: bold;">
+      图像
+     </span>
+     包含深度贴图的输入。默认情况下，深度信息取自
+     <span class="_Override" style="font-weight: bold;">
+      Depth.Z
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   请注意，深度图不应抗锯齿。如果是这样，可以为两个对象之间沿边缘的像素指定一个位于前对象和后对象深度之间的深度。这看起来是错误的，因为它表明这些边缘像素在对象之间的某个地方浮动。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     如果你想使用你自己的过滤器图像 (而不是预定义的
+     <span class="_Override" style="font-weight: bold;">
+      光盘
+     </span>
+     或
+     <span class="_Override" style="font-weight: bold;">
+      Bladed
+     </span>
+     图像)，将其连接到 ZDefocus 节点的
+     <span class="_Override" style="font-weight: bold;">
+      过滤器
+     </span>
+     输入和设置
+     <span class="_Override" style="font-weight: bold;">
+      过滤器类型
+     </span>
+     到
+     <span class="_Override" style="font-weight: bold;">
+      图像
+     </span>
+     在节点的属性中。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   滤镜图像代表用于拍摄输入镜头的相机光圈的形状和大小。当剪辑在
+   <span class="_Override" style="font-weight: bold;">
+    图像
+   </span>
+   输入是模糊的，剪辑中的任何高光都绽放在形状上
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   图像，创建一个散景效果。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   从 pre-Nuke 8.0v7 加载脚本使
+   <b>
+    传统调整大小模式
+   </b>
+   复选框自动，向后兼容，并使用
+   <b>
+    过滤边界
+   </b>
+   下拉菜单确定过滤中使用的图像的大小。
+   <br/>
+   添加新的 ZDefocus 节点将隐藏
+   <b>
+    传统调整大小模式
+   </b>
+   复选框，并允许您使用
+   <b>
+    图像过滤器
+   </b>
+   下拉菜单，让您在计算模糊时更加灵活。
+   <br/>
+   请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_692173">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用自定义过滤器图像
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p class="numberedCont">
+   您可以使用 Roto 节点 (
+   <span class="_Override" style="font-weight: bold;">
+    绘制
+   </span>
+   &gt;
+   <span class="_Override" style="font-weight: bold;">
+    Roto
+   </span>
+   ) 或 Flare 节点 (
+   <span class="_Override" style="font-weight: bold;">
+    绘制
+   </span>
+   &gt;
+   <span class="_Override" style="font-weight: bold;">
+    耀斑
+   </span>
+   ,例如。
+  </p>
+  <p class="numberedCont">
+   请注意，您不一定需要将滤镜图像裁剪到更小的尺寸，因为快速傅里叶变换用于加快大型滤镜图像的卷积。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     将查看器附加到 ZDefocus 节点。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_nodes.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      ZDefocus 脚本。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_691706">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       调整焦点外高光的形状
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <h2>
+   <a name="filters_2072326023_693457">
+   </a>
+   调整模糊设置
+  </h2>
+  <p class="afterHead">
+   要调整模糊设置:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      数学
+     </span>
+     指定要如何使用
+     <span class="_Override" style="font-weight: bold;">
+      深度
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      渠道
+     </span>
+     计算相机和物体之间的距离。例如，一些程序使用更高的值来表示更远的距离，而在其他程序中，它们意味着更接近相机:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    直接
+   </span>
+   -中的 Z 值
+   <span class="_Override" style="font-weight: bold;">
+    深度通道
+   </span>
+   直接控制模糊。例如，如果 Z 是 0.5，那么模糊大小是值的 0.5 倍
+   <span class="_Override" style="font-weight: bold;">
+    尺寸
+   </span>
+   控制 (除非这比
+   <span class="_Override" style="font-weight: bold;">
+    最大
+   </span>
+   ,在这种情况下，它被夹住
+   <span class="_Override" style="font-weight: bold;">
+    最大
+   </span>
+   )。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    深度
+   </span>
+   -中的 Z 值
+   <span class="_Override" style="font-weight: bold;">
+    深度通道
+   </span>
+   是相机和图像中那个像素的距离。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Far = 0
+   </span>
+   -中的 Z 值
+   <span class="_Override" style="font-weight: bold;">
+    深度通道
+   </span>
+   等于 1/距离。预计这些值将从接近相机的大正值下降到无穷远处的零。这与 Nuke 和 RenderMan 生成的深度图兼容。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Far = 1
+   </span>
+   -近平面 = 0，远平面 = 1。这与 OpenGL 生成的深度图兼容。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    -直接
+   </span>
+   -就像
+   <span class="_Override" style="font-weight: bold;">
+    直接
+   </span>
+   模式中，Z 值
+   <span class="_Override" style="font-weight: bold;">
+    深度通道
+   </span>
+   直接控制模糊。也就是说，每一层都是模糊的，相同的
+   <span class="_Override" style="font-weight: bold;">
+    直接
+   </span>
+   模式。然而，在这种模式下，层被解释为相反的顺序，所以更高的深度值将层放在另一个层的前面而不是后面。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    -深度
+   </span>
+   -中的 Z 值
+   <span class="_Override" style="font-weight: bold;">
+    深度通道
+   </span>
+   相机前面的距离。这是一样的
+   <span class="_Override" style="font-weight: bold;">
+    深度
+   </span>
+   ,但距离是负的开始。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Far =-0
+   </span>
+   -中的 Z 值
+   <span class="_Override" style="font-weight: bold;">
+    深度通道
+   </span>
+   等于-1/距离。这与 Maya 生成的深度贴图兼容。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    Far =-1
+   </span>
+   -近平面 = 0，远平面 =-1。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在查看器中，拖动
+     <span class="_Override" style="font-weight: bold;">
+      焦点
+     </span>
+     小部件位于您希望完全聚焦的区域顶部。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这将自动更新
+   <span class="_Override" style="font-weight: bold;">
+    焦点
+   </span>
+   ZDefocus 属性中的坐标并设置
+   <span class="_Override" style="font-weight: bold;">
+    聚焦平面
+   </span>
+   控制这些坐标处的 Z 深度值。任何具有此 Z 的层
+   <span class="_Override" style="font-weight: bold;">
+   </span>
+   深度值留在焦点中。您还可以在聚焦平面周围设置深度切片 (如步骤 4 中所述)，但图像的任何其他区域都将根据深度贴图模糊。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 11cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_focal_point1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      绿色标志下的焦点小部件。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 11cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/zdefocus_focal_point2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9997844px;margin-bottom: 0.9997844px;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      远处汽车附近的焦点部件。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   的
+   <b>
+    填充前景
+   </b>
+   默认情况下启用的控件试图通过填充前景中显示的区域来补偿丢失的信息，这些区域在前景失去焦点时显示。然而，由于这些地区没有真实的图像信息,
+   <b>
+    填充前景
+   </b>
+   有时可以通过添加不存在的东西来引入不受欢迎的文物。
+   <br/>
+   如果在前景中看到模糊的人工制品，而不是尖锐的边缘人工制品，请尝试禁用此控件。
+  </p>
+  <p class="numberedCont">
+   为了更好地查看更改的效果，您也可以设置
+   <span class="_Override" style="font-weight: bold;">
+    输出
+   </span>
+   到
+   <span class="_Override" style="font-weight: bold;">
+    焦平面设置
+   </span>
+   。ZDefocus 现在显示的景深 (DOF) 信息,
+   <span class="_Override" style="font-weight: bold;">
+    Rgb
+   </span>
+   渠道:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    红色
+   </span>
+   -小于 DOF (在焦点区域的前面)。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    绿色
+   </span>
+   -DOF 内部 (焦点)。请注意，如果
+   <span class="_Override" style="font-weight: bold;">
+    景深
+   </span>
+   设置为
+   <span class="_Override" style="font-weight: bold;">
+    0
+   </span>
+   ,没有显示为绿色。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    蓝色
+   </span>
+   -大于 DOF (在焦点区域后面)。
+  </p>
+  <p class="numberedCont">
+   当
+   <span class="_Override" style="font-weight: bold;">
+    显示图像
+   </span>
+   如果启用，此信息将覆盖在输入图像上。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_focal_pl_setup1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_focal_pl_setup2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      焦点小部件下
+      <br/>
+      绿色标志。
+     </td>
+     <td class="caption">
+      附近的焦点部件
+      <br/>
+      远处的汽车。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     为了扩大完全集中的领域，增加
+     <span class="_Override" style="font-weight: bold;">
+      景深
+     </span>
+     。这将在焦点平面周围设置一个完全聚焦的深度切片 (并且无论何时都以绿色显示)
+     <span class="_Override" style="font-weight: bold;">
+      输出
+     </span>
+     设置为
+     <span class="_Override" style="font-weight: bold;">
+      焦平面设置
+     </span>
+     )。真实的理论景深会将其设置为零。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_dof_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_focal_pl_setup3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       景深
+      </span>
+      设置为 0。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       景深
+      </span>
+      设置为 1。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要对聚焦区域应用少量模糊，请确保
+     <span class="_Override" style="font-weight: bold;">
+      里面模糊
+     </span>
+     已启用。这使得焦点区域和焦点区域之间的过渡更加平滑。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      输出
+     </span>
+     回到
+     <span class="_Override" style="font-weight: bold;">
+      结果
+     </span>
+     并通过设置调整无限深度的模糊量
+     <span class="_Override" style="font-weight: bold;">
+      尺寸
+     </span>
+     价值。请注意，靠近相机的模糊量比聚焦平面可能更大。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果你已经设置
+   <span class="_Override" style="font-weight: bold;">
+    数学
+   </span>
+   到
+   <span class="_Override" style="font-weight: bold;">
+    直接
+   </span>
+   ,大小乘以深度，以给出该深度的模糊大小。设置
+   <span class="_Override" style="font-weight: bold;">
+    尺寸
+   </span>
+   To 1 允许您直接将深度贴图中的值用作模糊大小。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     如果你增加了
+     <span class="_Override" style="font-weight: bold;">
+      尺寸
+     </span>
+     值在步骤 5 中，这是一个好主意，也增加
+     <span class="_Override" style="font-weight: bold;">
+      最大
+     </span>
+     价值。无论对象与相机的关系在哪里，都不会产生大于此值的模糊。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   为了获得最大处理速度，您可能希望将此值保持尽可能低。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     默认情况下,
+     <span class="_Override" style="font-weight: bold;">
+      自动层间距
+     </span>
+     启用时，这意味着 ZDefocus 自动算下来多少深浅层使用，基于模糊的最大尺寸 (
+     <span class="_Override" style="font-weight: bold;">
+      最大
+     </span>
+     )。在这种模式下，这些层靠近焦平面，在焦平面上，模糊量的微小变化更明显, 而且距离越来越远 (这相当于设置
+     <span class="_Override" style="font-weight: bold;">
+      层曲线
+     </span>
+     手动控制图层时的值为 1; 请参见步骤 8)。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   要可视化层，可以设置
+   <span class="_Override" style="font-weight: bold;">
+    输出
+   </span>
+   到
+   <span class="_Override" style="font-weight: bold;">
+    层设置
+   </span>
+   。这就像
+   <span class="_Override" style="font-weight: bold;">
+    焦平面设置
+   </span>
+   ,但在深度划分为层后显示景深 (DOF) 信息。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_layer_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       输出
+      </span>
+      设置为
+      <span class="_Override" style="font-weight: bold;">
+       层设置
+      </span>
+      .
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="numberedCont">
+   使用的最大模糊大小介于 0 和
+   <span class="_Override" style="font-weight: bold;">
+    最大
+   </span>
+   是 256这意味着你可以在焦平面后面有 256 层，在焦平面前面也有 256 层。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     如果你取消选中
+     <span class="_Override" style="font-weight: bold;">
+      自动层
+     </span>
+     间距，您可以使用手动控制层数
+     <span class="_Override" style="font-weight: bold;">
+      深度层
+     </span>
+     。请注意，使用的层越多，处理模糊所需的时间就越长。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_layer_curve_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_depth_layers_50.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       深度层
+      </span>
+      设置为 10。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       深度层
+      </span>
+      设置为 50。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="numberedCont">
+   如果有必要，你也可以增加
+   <span class="_Override" style="font-weight: bold;">
+    层曲线
+   </span>
+   集中焦平面周围的层。默认值 0 产生均匀间隔的层。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_layer_curve_1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_layer_curve_5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       层曲线
+      </span>
+      设置为 0。
+      <br/>
+      这产生均匀间隔
+      <br/>
+      层。
+     </td>
+     <td class="caption">
+      增加
+      <span class="_Override" style="font-weight: bold;">
+       层曲线
+       <br/>
+      </span>
+      值集中了层
+      <br/>
+      围绕焦平面。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_691706">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       调整焦点外高光的形状
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h2>
+   <a name="filters_2072326023_691706">
+   </a>
+   调整焦点外高光的形状
+  </h2>
+  <p class="afterHead">
+   当剪辑在
+   <span class="_Override" style="font-weight: bold;">
+    图像
+   </span>
+   输入是模糊的，剪辑中的任何焦点突出 (散景) 都假设
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   图像 (的
+   <span class="_Override" style="font-weight: bold;">
+    过滤器类型
+   </span>
+   已选定)。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_bokeh_off.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_bokeh.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      原始图像。
+     </td>
+     <td class="caption">
+      焦点不足的亮点
+      <br/>
+      (散景) 的形状
+      <br/>
+      的
+      <span class="_Override" style="font-weight: bold;">
+       过滤器
+      </span>
+      图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   如何创建过滤器图像取决于您。您可以:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用预定义的光盘形状作为过滤器图像。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_692223">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用预定义的光盘图像
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用预定义的 bladed 图像 (多边形) 作为过滤图像。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_692244">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用预定义的刀片图像
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在中使用自己的自定义图像
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   作为过滤器图像输入。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_692173">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用自定义过滤器图像
+    </span>
+   </a>
+   .
+  </p>
+  <h3>
+   <a name="filters_2072326023_692223">
+   </a>
+   使用预定义的光盘图像
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     要查看更改的效果，请设置
+     <span class="_Override" style="font-weight: bold;">
+      输出
+     </span>
+     在 ZDefocus 控件中
+     <span class="_Override" style="font-weight: bold;">
+      过滤器形状设置
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      过滤器类型
+     </span>
+     到
+     <span class="_Override" style="font-weight: bold;">
+      光盘
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      过滤器形状
+     </span>
+     控制在 0 处的高斯和 1 处的圆盘之间溶解过滤器形状。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_shape_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_shape_1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       过滤器形状
+      </span>
+      设置
+      <br/>
+      到 0 (高斯)。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       过滤器形状
+      </span>
+      设置
+      <br/>
+      至 1 (光盘)。这是
+      <br/>
+      默认值。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      纵横比
+     </span>
+     控件设置过滤器纵横比，默认为 1:1。小于 1 的值在 x轴上挤压过滤器，大于 1 的值在 y轴上挤压过滤器
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      .
+     </span>
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这允许你模拟猫眼效果，这是由一些镜头设计中固有的晕角造成的。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_aspect_0.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_aspect_1.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       纵横比
+      </span>
+      设置
+      <br/>
+      到 0.5。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       纵横比
+      </span>
+      设置
+      <br/>
+      到 1.5。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693943">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       增强焦点外的亮点
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="filters_2072326023_692244">
+   </a>
+   使用预定义的刀片图像
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     To see the effect of your changes, set
+     <span class="_Override" style="font-weight: bold;">
+      output
+     </span>
+     in the ZDefocus controls to
+     <span class="_Override" style="font-weight: bold;">
+      filter shape setup
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      过滤器类型
+     </span>
+     到
+     <span class="_Override" style="font-weight: bold;">
+      Bladed
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      刀片
+     </span>
+     控制以设置构成相机光圈的光圈叶片的数量。值 3 产生一个三角形，4 个正方形，5 个五边形，6 个六边形，依此类推。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   此字段只接受大于 1 的整数。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_blades_5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_blades_8.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       刀片
+      </span>
+      设置为 5。
+      <br/>
+      这是默认的
+      <br/>
+      价值。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       刀片
+      </span>
+      设置为 8。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     调整
+     <span class="_Override" style="font-weight: bold;">
+      圆度
+     </span>
+     控制过滤器多边形边的舍入。值 0 等于不舍入。
+    </td>
+   </tr>
+  </table>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_roundness_0.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_roundness_0.7.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       圆度
+      </span>
+      设置
+      <br/>
+      以 0。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       圆度
+      </span>
+      设置
+      <br/>
+      到 8。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      旋转
+     </span>
+     以度为单位旋转滤镜图像。正值产生逆时针旋转，反之亦然。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      纵横比
+     </span>
+     控件设置过滤器纵横比，默认为 1:1。小于 1 的值在 x 轴上挤压过滤器，大于 1 的值在 y 轴上挤压过滤器。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   This allows you to simulate the cat's eye effect, caused by vignetting inherent within some lens designs.
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_blades_aspect_0.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_blades_aspect_1.5.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       纵横比
+      </span>
+      设置
+      <br/>
+      以 0。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       纵横比
+      </span>
+      设置
+      <br/>
+      到 2。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     要调整离焦高光内部的光线分布，请执行以下操作:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   调整
+   <span class="_Override" style="font-weight: bold;">
+    内部尺寸
+   </span>
+   以外部多边形的百分比形式控制内部多边形的大小。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_in_size_0.2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_in_size_0.8.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       内部尺寸
+      </span>
+      设置
+      <br/>
+      到 0.2。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       内部尺寸
+      </span>
+      设置
+      <br/>
+      到 0.8。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   使用
+   <span class="_Override" style="font-weight: bold;">
+    内在羽毛
+   </span>
+   在内部多边形周围向外或向内添加羽化。如果值大于 0.5，则羽毛效果为外向，如果值小于 0.5，则羽毛效果为内向。值 0.5 不产生羽化。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_in_feather_0.2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_in_feather_0.8.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       内在羽毛
+      </span>
+      设置
+      <br/>
+      到 0.2。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       内在羽毛
+      </span>
+      设置
+      <br/>
+      到 0.8。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   调整内部亮度以控制内部多边形的亮度，其中 0 等于黑色，1 等于白色。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_in_brightness_0.3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_in_brightness_0.7.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       内部亮度
+      </span>
+      <br/>
+      设置为 0.3。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       内部亮度
+      </span>
+      <br/>
+      设置为 0.7。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果要模拟折反射透镜，请检查
+   <span class="_Override" style="font-weight: bold;">
+    折反射
+   </span>
+   。当使用折反射透镜时，图像的离焦区域是环形的，产生甜甜圈形的散景。你可以使用
+   <span class="_Override" style="font-weight: bold;">
+    折反射大小
+   </span>
+   调整过滤器中折反射孔的大小。
+  </p>
+  <p>
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_cat_size_0.3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_cat_size_0.7.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       折反射大小
+      </span>
+      <br/>
+      设置为 0.3。
+     </td>
+     <td class="caption">
+      <span class="_Override" style="font-weight: bold;">
+       折反射大小
+      </span>
+      <br/>
+      设置为 0.7。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693943">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       增强焦点外的亮点
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h3>
+   <a name="filters_2072326023_692173">
+   </a>
+   使用自定义过滤器图像
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     设置
+     <span class="_Override" style="font-weight: bold;">
+      过滤器类型
+     </span>
+     在 ZDefocus 控件中
+     <span class="_Override" style="font-weight: bold;">
+      图像
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这告诉 ZDefocus 使用
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   输入而不是预定义的形状作为过滤器图像。
+  </p>
+  <p class="numberedCont">
+   请注意,
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   图像可以是彩色图像。这可能是有用的，例如，如果你想添加颜色边缘到你的焦点突出来模拟色差。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 3cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_filter_image.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997767px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      的
+      <span class="_Override" style="font-weight: bold;">
+       过滤器
+      </span>
+      图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如果你想显示
+     <span class="_Override" style="font-weight: bold;">
+      过滤器
+     </span>
+     查看器中的图像，设置
+     <span class="_Override" style="font-weight: bold;">
+      输出
+     </span>
+     到
+     <span class="_Override" style="font-weight: bold;">
+      过滤器形状设置
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   从 pre-Nuke 9.0v2 加载脚本使
+   <b>
+    传统调整大小模式
+   </b>
+   复选框自动，向后兼容，并使用
+   <b>
+    过滤边界
+   </b>
+   下拉菜单确定过滤中使用的图像的大小。
+   <br/>
+   添加新的 ZDefocus 节点将隐藏
+   <b>
+    传统调整大小模式
+   </b>
+   复选框，并允许您使用
+   <b>
+    图像过滤器
+   </b>
+   下拉菜单，让您在计算模糊时更加灵活。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从中选择要使用的频道
+     <span class="_Override" style="font-weight: bold;">
+      过滤器
+     </span>
+     输入，执行以下操作之一:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   设置
+   <span class="_Override" style="font-weight: bold;">
+    过滤通道
+   </span>
+   下拉菜单到您要使用的频道。默认情况下，此菜单设置为
+   <span class="_Override" style="font-weight: bold;">
+    Rgba.alpha
+   </span>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   从中使用相同的通道
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   输入作为
+   <span class="_Override" style="font-weight: bold;">
+    图像
+   </span>
+   输入 (即，无论
+   <span class="_Override" style="font-weight: bold;">
+    渠道
+   </span>
+   设置为)，检查
+   <span class="_Override" style="font-weight: bold;">
+    使用输入通道
+   </span>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在更新
+     <span class="CustomProduct">
+      核武器
+     </span>
+     脚本，使用
+     <b>
+      图像过滤器
+     </b>
+     下拉菜单选择所需的过滤器。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="../transforming_elements/filtering_algorithm_2d.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       选择过滤算法
+      </span>
+     </a>
+     有关可用过滤器的更多信息。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   当使用使用锐化的过滤器时，例如
+   <b>
+    里夫曼
+   </b>
+   和
+   <b>
+    Lanczos
+   </b>
+   ,你可能会看到光环效应。如有必要，请检查
+   <b>
+    钳制图像过滤器
+   </b>
+   来纠正这个问题。
+  </p>
+  <p class="numberedCont">
+   在老年
+   <span class="CustomProduct">
+    核武器
+   </span>
+   脚本与
+   <b>
+    传统调整大小模式
+   </b>
+   启用后，使用
+   <span class="_Override" style="font-weight: bold;">
+    过滤边界
+   </span>
+   下拉菜单选择是否将过滤器图像限制为:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    形状
+   </span>
+   -The
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   输入的边界框。在这种情况下，ZDefocus 只使用边界框区域，过滤器的中心是边界框的中心。这是默认值。你可能想使用它，例如，如果你的
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   输入是一个带有小边界框的旋转形状，该边界框不会填充整个格式区域。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    格式
+   </span>
+   -The
+   <span class="_Override" style="font-weight: bold;">
+    过滤器
+   </span>
+   输入的格式。在这种情况下，ZDefocus 使用整个格式区域，允许您在格式内偏移过滤器图像。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     Proceed to
+     <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693943">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       Enhancing the Out-of-Focus Highlights
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h2>
+   <a name="filters_2072326023_693943">
+   </a>
+   增强焦点外的亮点
+  </h2>
+  <p class="afterHead">
+   为了增强焦点外的亮点:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     要使散景镜头形状效果更加温暖和可见，请检查
+     <span class="_Override" style="font-weight: bold;">
+      伽马校正
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这意味着在模糊之前应用 2.2 的伽马查找曲线，然后反转最终输出。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_gamma_off.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_gamma_on.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      没有
+      <span class="_Override" style="font-weight: bold;">
+       伽马校正
+      </span>
+      .
+     </td>
+     <td class="caption">
+      与
+      <span class="_Override" style="font-weight: bold;">
+       伽马校正
+      </span>
+      .
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     您还可以通过启用使镜头形状效果更加可见
+     <span class="_Override" style="font-weight: bold;">
+      布鲁姆
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   上面的任何亮点
+   <span class="_Override" style="font-weight: bold;">
+    布鲁姆门槛
+   </span>
+   值相乘,
+   <span class="_Override" style="font-weight: bold;">
+    布鲁姆增益
+   </span>
+   价值。下面的亮点
+   <span class="_Override" style="font-weight: bold;">
+    布鲁姆门槛
+   </span>
+   不受影响。
+  </p>
+  <p class="numberedCont">
+   这允许你对高光的控制比
+   <span class="_Override" style="font-weight: bold;">
+    伽马校正
+   </span>
+   ; 然而,
+   <span class="_Override" style="font-weight: bold;">
+    伽马校正
+   </span>
+   可以更好地展示一些亮点。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_gamma_off1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000067px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/zdefocus_bloom_on.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      没有
+      <span class="_Override" style="font-weight: bold;">
+       布鲁姆
+      </span>
+      .
+     </td>
+     <td class="caption">
+      与
+      <span class="_Override" style="font-weight: bold;">
+       布鲁姆
+      </span>
+      .
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     继续到
+     <a class="noPage MCXref xref xrefnoPage" href="#filters_2072326023_693964">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       掩盖模糊效果
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <h2>
+   <a name="filters_2072326023_693964">
+   </a>
+   掩盖模糊效果
+  </h2>
+  <p class="afterHead">
+   要掩盖模糊效果:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     做
+     <span class="_Override" style="text-decoration: underline;">
+      一
+     </span>
+     以下是:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   确保 ZDefocus 节点中有一个遮罩通道
+   <span class="_Override" style="font-weight: bold;">
+    图像
+   </span>
+   输入，并且没有连接到
+   <span class="_Override" style="font-weight: bold;">
+    面具
+   </span>
+   输入。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将蒙版连接到
+   <span class="_Override" style="font-weight: bold;">
+    面具
+   </span>
+   ZDefocus 节点的输入。如果你看不到
+   <span class="_Override" style="font-weight: bold;">
+    面具
+   </span>
+   输入，打开节点的控件并确保
+   <span class="_Override" style="font-weight: bold;">
+    面具
+   </span>
+   设置为
+   <span class="_Override" style="font-weight: bold;">
+    没有
+   </span>
+   .
+  </p>
+  <p class="processBulletCont">
+   如果你想从面具
+   <span class="_Override" style="font-weight: bold;">
+    面具
+   </span>
+   输入复制到预定义的
+   <span class="_Override" style="font-weight: bold;">
+    面具。
+   </span>
+   通道，也检查
+   <span class="_Override" style="font-weight: bold;">
+    注入
+   </span>
+   。这样，您可以使用
+   <span class="_Override" style="font-weight: bold;">
+    面具
+   </span>
+   再次输入下游。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如果你不想使用 alpha 通道，磨砂，选择您要使用的
+     <span class="_Override" style="font-weight: bold;">
+      面具
+     </span>
+     下拉菜单。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   默认情况下，模糊仅限于此通道的非黑色区域。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     如有必要，请检查
+     <span class="_Override" style="font-weight: bold;">
+      反转
+     </span>
+     反转蒙版，以便模糊仅限于蒙版的非白色区域。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要模糊遮罩的边缘，请选中
+     <span class="_Override" style="font-weight: bold;">
+      边缘
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     要在原始图像 (0 处) 和完整 ZDefocus 效果 (1 处) 之间溶解，请调整
+     <span class="_Override" style="font-weight: bold;">
+      混合
+     </span>
+     滑块。节点图上的节点上会出现一个浅灰色的小方块，表示未使用完整效果。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -1127,5 +2790,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

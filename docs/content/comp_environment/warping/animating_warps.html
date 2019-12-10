@@ -1,227 +1,488 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Warping Images|Transforming and Animating Warps and Morphs">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Animating Warps</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/warping/animating_warps.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Warping Images|Transforming and Animating Warps and Morphs" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   动画扭曲
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/warping/animating_warps.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Animating Warps</h2>
-        <p class="afterHead">In the GridWarp and SplineWarp node’s properties panels, there are controls for animating both the source and the destination grids or shapes. Here, we first look at the GridWarp node and then the SplineWarp node. The instructions assume you know how to warp a still image using these nodes (if not, refer to <a href="warping_using_gridwarp.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Warping Images Using the GridWarp Node</span></a> and <a href="warping_using_splinewarp.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Warping an Image Using the SplineWarp Node</span></a>).</p>
-        <h3>To Animate a Warp Using the <a name="kanchor289"></a>GridWarp Node</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">While viewing the source image, adjust the source grid as necessary (see <a href="warping_using_gridwarp.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Warping Images Using the GridWarp Node</span></a> for information on how to do this). </td>
-            </tr>
-        </table>
-        <p class="numberedCont">If <span class="_Override" style="font-weight: bold;">autokey</span> is enabled, key frames are added every time you adjust the grid. Otherwise, click the <span class="_Override" style="font-weight: bold;">add key</span> button <img src="../../assets/images/ug_images/icon_keys1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997786px;vertical-align: middle;" /> under <b>Source Grid</b>. This saves the current grid as a key shape.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Move to a new frame and adjust the source grid accordingly. A new key shape is set automatically.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Repeat the previous step as necessary. If you need to delete a key shape, scrub to the frame where you set it and click <span class="_Override" style="font-weight: bold;">delete key <img src="../../assets/images/ug_images/icon_keys2.png" style="margin-top: 1.000063px;margin-right: 0.5150547px;margin-bottom: 0.9997786px;vertical-align: middle;" /></span> under <b>Source Grid</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Hide the source grid and display the destination grid.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">While viewing the output of the GridWarp node, adjust the destination grid until you are happy with the warp.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">If <span class="_Override" style="font-weight: bold;">autokey</span> is enabled, key frames are added every time you adjust the grid. Otherwise, click the <span class="_Override" style="font-weight: bold;">add key</span> button <img src="../../assets/images/ug_images/icon_keys3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997786px;vertical-align: middle;" /> under <b>Destination Grid</b>. This saves the current grid as a key shape. Click the <b>set</b> button under <b>Destination Grid</b>. The current grid is saved as a key shape.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Move to a new frame and adjust the destination grid again. The modified grid is automatically set as a key shape.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Repeat the previous step until you are happy with the animated warp.</td>
-            </tr>
-        </table>
-        <h3>To Animate a Warp Using the <a name="kanchor290"></a>SplineWarp Node</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create the required curves as described under <a href="warping_using_splinewarp.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Warping an Image Using the SplineWarp Node</span></a>. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">If <span class="_Override" style="font-weight: bold;">autokey</span> is enabled, key frames are added every time you adjust a shape. Otherwise, click the <span class="_Override" style="font-weight: bold;">add key</span> button <img src="../../assets/images/ug_images/icon_keys3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997786px;vertical-align: middle;" /> with <b>A warped </b>selected. This saves the current shape as a key frame.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Move to a new frame and adjust the shapes accordingly. New key shapes are set automatically.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">Repeat the previous step as necessary. If you need to delete a key shape, scrub to the frame where you set it and click <span class="_Override" style="font-weight: bold;">delete key</span> <img src="../../assets/images/ug_images/icon_keys2.png" style="margin-top: 1.000063px;margin-right: 0.5150547px;margin-bottom: 0.9997786px;vertical-align: middle;" />with <span class="_Override" style="font-weight: bold;">A warped</span> selected.</p>
-        <h3>Linking Transforms Using the SplineWarp Node</h3>
-        <p>Transforms applied in the properties panel <span class="_Override" style="font-weight: bold;">Transform</span> tab can be expression linked with other shapes in the <span class="_Override" style="font-weight: bold;">curves</span> list using the <span class="_Override" style="font-weight: bold;">transform linked</span> toggle.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Create the required transform on the source shape.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Click the <span class="_Override" style="font-weight: bold;">transform linked</span> toggle in the curves list.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">A menu displays the available shapes and transform types.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_translink.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997691px;" />
-        </p>
-        <p class="numberedCont">You can link all transform types associated with the source shape or be selective, such as <span class="_Override" style="font-weight: bold;">all but extra matrix</span>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the example, any <span class="_Override" style="font-weight: bold;">scale</span> keyframes added to the <span class="_Override" style="font-weight: bold;">l_left_nose</span> shape are applied equally to the <span class="_Override" style="font-weight: bold;">l_head</span> shape.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you want to remove a link, click the <span class="_Override" style="font-weight: bold;">transform linked</span> toggle for the required shape, select the link, and click <span class="_Override" style="font-weight: bold;">remove link</span>.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   动画扭曲
+  </h2>
+  <p class="afterHead">
+   在 GridWarp 和 SplineWarp 节点的 “属性” 面板中，有用于为源网格或形状和目标网格或形状设置动画的控件。在这里，我们首先看 GridWarp 节点，然后看 SplineWarp 节点。说明假设您知道如何使用这些节点扭曲静止图像 (如果不知道，请参考
+   <a class="noPage MCXref xref xrefnoPage" href="warping_using_gridwarp.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用 GridWarp 节点扭曲图像
+    </span>
+   </a>
+   和
+   <a class="noPage MCXref xref xrefnoPage" href="warping_using_splinewarp.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用 SplineWarp 节点扭曲图像
+    </span>
+   </a>
+   )。
+  </p>
+  <h3>
+   使用动画制作扭曲
+   <a name="kanchor289">
+   </a>
+   GridWarp 节点
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     查看源图像时，根据需要调整源网格 (请参见
+     <a class="noPage MCXref xref xrefnoPage" href="warping_using_gridwarp.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用 GridWarp 节点扭曲图像
+      </span>
+     </a>
+     有关如何做到这一点的信息)。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果
+   <span class="_Override" style="font-weight: bold;">
+    自动密钥
+   </span>
+   如果启用，则每次调整网格时都会添加关键帧。否则，单击
+   <span class="_Override" style="font-weight: bold;">
+    添加密钥
+   </span>
+   按钮
+   <img src="../../assets/images/ug_images/icon_keys1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+   下
+   <b>
+    源网格
+   </b>
+   。这将当前网格保存为关键形状。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     移动到新框架并相应地调整源网格。自动设置新的关键图形。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     根据需要重复前一步。如果需要删除关键形状，请擦洗到设置它的框架并单击
+     <span class="_Override" style="font-weight: bold;">
+      删除密钥
+      <img src="../../assets/images/ug_images/icon_keys2.png" style="margin-top: 1.000063px;margin-right: 0.5150547px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+     </span>
+     下
+     <b>
+      源网格
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     隐藏源网格并显示目标网格。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在查看 GridWarp 节点的输出时，调整目标网格，直到您对扭曲感到满意。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果
+   <span class="_Override" style="font-weight: bold;">
+    自动密钥
+   </span>
+   如果启用，则每次调整网格时都会添加关键帧。否则，单击
+   <span class="_Override" style="font-weight: bold;">
+    添加密钥
+   </span>
+   按钮
+   <img src="../../assets/images/ug_images/icon_keys3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+   下
+   <b>
+    目的地网格
+   </b>
+   。这将当前网格保存为关键形状。单击
+   <b>
+    设置
+   </b>
+   按钮在
+   <b>
+    目的地网格
+   </b>
+   。当前网格保存为关键形状。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     移动到新框架并再次调整目标网格。修改后的网格将自动设置为关键形状。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     重复上一步，直到您对动画扭曲感到满意。
+    </td>
+   </tr>
+  </table>
+  <h3>
+   使用动画制作扭曲
+   <a name="kanchor290">
+   </a>
+   SplineWarp 节点
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     按照下所述创建所需曲线
+     <a class="noPage MCXref xref xrefnoPage" href="warping_using_splinewarp.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用 SplineWarp 节点扭曲图像
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果
+   <span class="_Override" style="font-weight: bold;">
+    自动密钥
+   </span>
+   如果启用，则每次调整形状时都会添加关键帧。否则，单击
+   <span class="_Override" style="font-weight: bold;">
+    添加密钥
+   </span>
+   按钮
+   <img src="../../assets/images/ug_images/icon_keys3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+   与
+   <b>
+    扭曲的
+   </b>
+   已选择。这将当前形状保存为关键帧。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     移动到新框架并相应地调整形状。新的关键形状会自动设置。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   根据需要重复前一步。如果需要删除关键形状，请擦洗到设置它的框架并单击
+   <span class="_Override" style="font-weight: bold;">
+    删除密钥
+   </span>
+   <img src="../../assets/images/ug_images/icon_keys2.png" style="margin-top: 1.000063px;margin-right: 0.5150547px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+   与
+   <span class="_Override" style="font-weight: bold;">
+    扭曲的
+   </span>
+   已选择。
+  </p>
+  <h3>
+   使用 SplineWarp 节点链接变换
+  </h3>
+  <p>
+   应用在属性面板中的变换
+   <span class="_Override" style="font-weight: bold;">
+    变换
+   </span>
+   选项卡可以是与其他形状链接的表达式
+   <span class="_Override" style="font-weight: bold;">
+    曲线
+   </span>
+   列表使用
+   <span class="_Override" style="font-weight: bold;">
+    变换链接
+   </span>
+   切换。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在源形状上创建所需的变换。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      变换链接
+     </span>
+     在曲线列表中切换。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   菜单显示可用的形状和变换类型。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_translink.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997691px;"/>
+  </p>
+  <p class="numberedCont">
+   可以链接与源形状关联的所有变换类型，也可以选择，例如
+   <span class="_Override" style="font-weight: bold;">
+    除了额外的矩阵
+   </span>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在这个例子中，任何
+     <span class="_Override" style="font-weight: bold;">
+      规模
+     </span>
+     添加到的关键帧
+     <span class="_Override" style="font-weight: bold;">
+      L_left_nose
+     </span>
+     形状平等地应用于
+     <span class="_Override" style="font-weight: bold;">
+      L_head
+     </span>
+     形状。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如果要删除链接，请单击
+     <span class="_Override" style="font-weight: bold;">
+      变换链接
+     </span>
+     切换所需的形状，选择链接，然后单击
+     <span class="_Override" style="font-weight: bold;">
+      删除链接
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -235,5 +496,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

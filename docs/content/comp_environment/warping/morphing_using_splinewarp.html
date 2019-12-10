@@ -1,314 +1,678 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Warping Images|Morphing">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Morphing One Image into Another Using the SplineWarp Node</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/warping/morphing_using_splinewarp.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Warping Images|Morphing" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 SplineWarp 节点将一个图像变形为另一个图像
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/warping/morphing_using_splinewarp.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Morphing One Image into Another Using the SplineWarp Node</h2>
-        <p class="afterHead">To morph one image into another using the SplineWarp node:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Image</b> &gt; <b>Read</b> to import the two images you want to morph together.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">If the images do not have the same resolution, insert Reformat nodes as required. For more information, see <a href="../../getting_started/managing_scripts/reformatting_image_sequences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Reformatting Image Sequences</span></a> or <a href="../reformatting_elements/reformatting_images.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Reformatting Images</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select <b>Transform</b> &gt; <b>SplineWarp</b> to insert a SplineWarp node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Connect the source image (the image you want to turn into another image) to the <b>A</b> input of the SplineWarp node, and the destination image (the image you want the source image turned into) to the <b>B</b> input. Attach a Viewer to the SplineWarp node.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_morph_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the SplineWarp node’s controls, switch <b>output</b> between <b>A</b> and <span class="_Override" style="font-weight: bold;">B</span> or click <span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_splinewarp_mode_a1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;" /></span> and <span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_splinewarp_mode_b1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;" /></span> in the Viewer tools. You should see both images in the Viewer.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Identify some features that are similar in the source and the destination images. For example, if you are morphing together images of people or animals, these features might include their eyes, noses and mouths as well as the outlines of their faces and heads.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Switch to input <span class="_Override" style="font-weight: bold;">A</span> to draw curves around the key features you identified in the previous step. For more information on how to create the curves, see <a href="warping_using_splinewarp.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Warping an Image Using the SplineWarp Node</span></a>.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_morph_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;" />
-        </p>
-        <p class="numberedCont">You may find it useful to name the entries in the curves list, left_eye, right_eye, etc. Meaningful names can help you later on when you’re using the <span class="_Override" style="font-weight: bold;">Join</span> tool to link the source and destination shapes.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Switch to input <span class="_Override" style="font-weight: bold;">B</span> and draw curves in a similar fashion. Draw the same amount of curves, on similar features, to make the morph as accurate as possible.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_node_morph_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Switch the Viewer to output <span class="_Override" style="font-weight: bold;">AB</span> <span class="_Override" style="font-weight: bold;">morph </span><img src="../../assets/images/ug_images/icon_splinewarp_mode_ab.png" alt="" title="" style="vertical-align: middle;" />, which displays both sets of curves, and activate <span class="_Override" style="font-weight: bold;">Join</span> <img src="../../assets/images/ug_images/icon_splinewarp_join2.png" style="margin-left: 1.002614px;margin-top: 0.2500158px;vertical-align: middle;" /> in the Viewer tools.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Work through the <span class="_Override" style="font-weight: bold;">A</span> input shapes, linking them to their <span class="_Override" style="font-weight: bold;">B</span> input counterparts. Try to link similar points, such as the corners of the eyes or the side of the mouth.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can invert the source and destination shapes using the <span class="_Override" style="font-weight: bold;">Reverse</span> tool.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_link_points.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;" />
-        </p>
-        <p class="numberedCont">As you join shapes, the curves list updates showing the linked pairs.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_curveslist1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>11. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="11. &#160;">Scrub to the frame where you want the morph to begin. Bring the <b>mix</b> slider down to <span class="_Override" style="font-weight: bold;">0</span> (input <span class="_Override" style="font-weight: bold;">A</span>). Click on the animation button <img src="../../assets/images/ug_images/icon_animation_curve.png" /> and select <b>Set key</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>12. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="12. &#160;">Set keyframes for <span class="_Override" style="font-weight: bold;">root warp</span> in the same way.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>13. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="13. &#160;">If you’re using stills, as in this example, scrub the playhead to the number of frames required for the morph. Otherwise, scrub to the end of the sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>14. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="14. &#160;">Set the <b>mix</b> and <span class="_Override" style="font-weight: bold;">root warp</span> sliders to <span class="_Override" style="font-weight: bold;">1</span> (input <span class="_Override" style="font-weight: bold;">B</span>).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>15. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="15. &#160;">Press <b>Q</b> in the Viewer to disable the spline overlay and press play.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">Input <span class="_Override" style="font-weight: bold;">A</span> is morphed into input <span class="_Override" style="font-weight: bold;">B</span>.</p>
-        <h3>Using the cookie-cutter to create traveling masks</h3>
-        <p>The <span class="_Override" style="font-weight: bold;">curves</span> list cookie-cutter is primarily designed to overlay a morph between two images, which may not include an alpha channel, on top of a sequence by creating a “traveling mask” automatically between closed cookie-cutter shapes.</p>
-        <p>For example, the monkey-lion morph demonstrated previously could be merged with a sequence, replacing a face with a monkey face that is morphed into a lion over time.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>The cookie-cutter only works with closed shapes from the <span class="_Override" style="font-weight: bold;">curves</span> list.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Designate a pair of closed shapes as cookie-cutters by clicking the cookie-cutter icon in the curves list.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_cookiecut1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997691px;" />
-        </p>
-        <p class="numberedCont">In this instance, enabling cookie-cut for the monkey’s head, <span class="_Override" style="font-weight: bold;">m_head</span>, also designates the lion’s head, <span class="_Override" style="font-weight: bold;">l_head</span>, as a cookie-cutter shape.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Use the <span class="_Override" style="font-weight: bold;">output mask</span> dropdown to select the channel where the traveling mask is stored, or use the <span class="_Override" style="font-weight: bold;">mask_splinewarp.a</span> default.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_cookiecut2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000067px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Animate the morph to follow the required background element as described in <a class="noPage MCXref xref xrefnoPage" href="transforming_animating_warps.html"><span style="color: #00b4e0;" class="mcFormatColor">Transforming and Animating Warps and Morphs</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Finally, merge the output of the SplineWarp node with your sequence. A simple script might appear as follows:</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/splinewarp_cookiecut3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997691px;" />
-        </p>
-        <p class="numberedCont">You can confirm the presence of the traveling mask by selecting the <span class="_Override" style="font-weight: bold;">output mask</span> channel in the Viewer dropdown and then pressing <span class="_Override" style="font-weight: bold;">M</span> to display the <span class="_Override" style="font-weight: bold;">Mat</span> channel. You should see an automatically created mask that matches the morphed shape.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   使用 SplineWarp 节点将一个图像变形为另一个图像
+  </h2>
+  <p class="afterHead">
+   使用 SplineWarp 节点将一个图像变形为另一个图像:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      图像
+     </b>
+     &gt;
+     <b>
+      阅读
+     </b>
+     要导入要一起变形的两个图像。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     如果图像的分辨率不同，请根据需要插入重新格式化节点。有关更多信息，请参见
+     <a class="noPage MCXref xref xrefnoPage" href="../../getting_started/managing_scripts/reformatting_image_sequences.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       重新格式化图像序列
+      </span>
+     </a>
+     或
+     <a class="noPage MCXref xref xrefnoPage" href="../reformatting_elements/reformatting_images.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       重新格式化图像
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     选择
+     <b>
+      变换
+     </b>
+     &gt;
+     <b>
+      Splininewarp
+     </b>
+     将 SplineWarp 节点插入到脚本中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     将源图像 (要转换为其他图像的图像) 连接到
+     <b>
+      一个
+     </b>
+     SplineWarp 节点的输入，以及目标图像 (您希望源图像变成的图像) 到
+     <b>
+      B
+     </b>
+     输入。将查看器附加到 SplineWarp 节点。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_morph_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997767px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在 SplineWarp 节点的控制中，切换
+     <b>
+      输出
+     </b>
+     之间
+     <b>
+      一个
+     </b>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      B
+     </span>
+     或单击
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      <img src="../../assets/images/ug_images/icon_splinewarp_mode_a1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+     </span>
+     和
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      <img src="../../assets/images/ug_images/icon_splinewarp_mode_b1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5249766px;margin-bottom: 0.9997786px;vertical-align: middle;"/>
+     </span>
+     在查看器工具中。您应该在查看器中看到这两个图像。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     识别源图像和目标图像中的一些相似特征。例如，如果你将人或动物的图像变形在一起，这些特征可能包括他们的眼睛、鼻子和嘴巴以及他们的脸和头的轮廓。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     切换到输入
+     <span class="_Override" style="font-weight: bold;">
+      一个
+     </span>
+     在上一步中确定的关键特征周围绘制曲线。有关如何创建曲线的更多信息，请参见
+     <a class="noPage MCXref xref xrefnoPage" href="warping_using_splinewarp.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用 SplineWarp 节点扭曲图像
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_morph_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;"/>
+  </p>
+  <p class="numberedCont">
+   您可能会发现为曲线列表中的条目命名很有用，left_eye，right_eye 等。有意义的名称可以在以后使用
+   <span class="_Override" style="font-weight: bold;">
+    加入
+   </span>
+   工具链接源和目标形状。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     切换到输入
+     <span class="_Override" style="font-weight: bold;">
+      B
+     </span>
+     并以类似的方式绘制曲线。在相似的特征上绘制相同数量的曲线，以使变形尽可能准确。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_node_morph_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     将查看器切换到输出
+     <span class="_Override" style="font-weight: bold;">
+      AB
+     </span>
+     <span class="_Override" style="font-weight: bold;">
+      变形
+     </span>
+     <img alt="" src="../../assets/images/ug_images/icon_splinewarp_mode_ab.png" style="vertical-align: middle;" title=""/>
+     ,显示两组曲线，并激活
+     <span class="_Override" style="font-weight: bold;">
+      加入
+     </span>
+     <img src="../../assets/images/ug_images/icon_splinewarp_join2.png" style="margin-left: 1.002614px;margin-top: 0.2500158px;vertical-align: middle;"/>
+     在查看器工具中。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     通过工作
+     <span class="_Override" style="font-weight: bold;">
+      一个
+     </span>
+     输入形状，将它们链接到它们的
+     <span class="_Override" style="font-weight: bold;">
+      B
+     </span>
+     输入对应。尝试链接相似的点，如眼角或嘴边。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   你可以转化的来源和目的地的形状使用
+   <span class="_Override" style="font-weight: bold;">
+    反向
+   </span>
+   工具。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_link_points.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 0.9997691px;"/>
+  </p>
+  <p class="numberedCont">
+   连接形状时，曲线列表将更新，显示链接对。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_curveslist1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000059px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      11。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="11.  " valign="top">
+     擦洗到你想要变形开始的框架。把
+     <b>
+      混合
+     </b>
+     滑块向下至
+     <span class="_Override" style="font-weight: bold;">
+      0
+     </span>
+     (输入
+     <span class="_Override" style="font-weight: bold;">
+      一个
+     </span>
+     )。单击动画按钮
+     <img src="../../assets/images/ug_images/icon_animation_curve.png"/>
+     并选择
+     <b>
+      设置密钥
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      12.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="12.  " valign="top">
+     设置关键帧
+     <span class="_Override" style="font-weight: bold;">
+      根翘曲
+     </span>
+     以同样的方式。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      13。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="13.  " valign="top">
+     如果您正在使用剧照，如本例所示，请将播放头擦洗到变形所需的帧数。否则，擦洗到序列的末尾。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      14.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="14.  " valign="top">
+     设置
+     <b>
+      混合
+     </b>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      根翘曲
+     </span>
+     滑块到
+     <span class="_Override" style="font-weight: bold;">
+      1
+     </span>
+     (输入
+     <span class="_Override" style="font-weight: bold;">
+      B
+     </span>
+     )。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      15。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="15.  " valign="top">
+     新闻
+     <b>
+      Q
+     </b>
+     在查看器中禁用 spline 覆盖并按 play 键。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   输入
+   <span class="_Override" style="font-weight: bold;">
+    一个
+   </span>
+   被转化为输入
+   <span class="_Override" style="font-weight: bold;">
+    B
+   </span>
+   .
+  </p>
+  <h3>
+   使用饼干切割器创建旅行面具
+  </h3>
+  <p>
+   的
+   <span class="_Override" style="font-weight: bold;">
+    曲线
+   </span>
+   列表 cookie-cutter 主要设计用于在两个图像之间覆盖变形，这可能不包括 alpha 通道, 在一个序列的顶部，通过在封闭的饼干切割器形状之间自动创建一个 “旅行面具”。
+  </p>
+  <p>
+   例如，以前展示的猴-狮子变形可以与序列合并，用随时间演变成狮子的猴脸替换脸。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   鲨鱼中仅适用于封闭的形状
+   <span class="_Override" style="font-weight: bold;">
+    曲线
+   </span>
+   列表。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     通过单击 “曲线” 列表中的 “cookie-cutter” 图标，将一对闭合形状指定为 cookie-cutter。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_cookiecut1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997691px;"/>
+  </p>
+  <p class="numberedCont">
+   在这种情况下，为猴子的头部启用饼干切割,
+   <span class="_Override" style="font-weight: bold;">
+    M_head
+   </span>
+   ,也指明了狮子的头,
+   <span class="_Override" style="font-weight: bold;">
+    L_head
+   </span>
+   ,作为一个千篇一律的形状。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      输出掩模
+     </span>
+     下拉菜单选择存储移动屏蔽的通道，或者使用
+     <span class="_Override" style="font-weight: bold;">
+      Mask_splinewarp.a
+     </span>
+     默认。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_cookiecut2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000067px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     设置变形的动画，以遵循所需的背景元素，如中所述
+     <a class="noPage MCXref xref xrefnoPage" href="transforming_animating_warps.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       变换和动画扭曲和变形
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     最后，将 SplineWarp 节点的输出与您的序列合并。一个简单的脚本可能如下所示:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/splinewarp_cookiecut3.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 0.9997691px;"/>
+  </p>
+  <p class="numberedCont">
+   你能证实这旅行面膜的选择
+   <span class="_Override" style="font-weight: bold;">
+    输出掩模
+   </span>
+   通道在查看器下拉列表中，然后按
+   <span class="_Override" style="font-weight: bold;">
+    M
+   </span>
+   要显示
+   <span class="_Override" style="font-weight: bold;">
+    垫子
+   </span>
+   频道。您应该会看到与变形形状相匹配的自动创建的蒙版。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -322,5 +686,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

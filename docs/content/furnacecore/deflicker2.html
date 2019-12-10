@@ -1,77 +1,124 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Using F_DeFlicker2</title>
-        <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#furnacecore/deflicker2.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 F_DeFlicker2
+  </title>
+  <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../Default.html#furnacecore/deflicker2.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="chapterTitle">Using F_DeFlicker2</h1>
-        <p class="intro">When working in film, <a name="kanchor184"></a>you sometimes have to deal with shots that have a luminance flicker. This chapter concentrates on removing flicker using F_DeFlicker2.</p>
-        <h1>Introduction</h1>
-        <p class="afterHead">F_Deflicker2 is used to remove flicker. It is particularly suitable for removing flicker that is localized and dependent on the geometry of the scene (that is, flicker that is not present across the whole of the image), such as that caused by an unsynchronized fluorescent light in a shot. It works by calculating the gain between the current frame and each frame in a small analysis range surrounding it. It then tries to adjust the gain so that it varies smoothly over this frame range. This means it is better at reducing fast flicker than flicker which varies slowly over the image sequence, as the latter will already appear smooth over the small frame range and F_DeFlicker2 will leave it largely untouched.</p>
-        <p>The algorithm used by F_DeFlicker2 can introduce blurring in areas where there is rapid motion. This problem could be alleviated by using local motion estimation before deflickering the frames. However, this process is complicated by the fact that the presence of flicker can adversely affect the results of the motion estimation. F_DeFlicker2 therefore adopts a two-stage approach to this problem. First, the normal deflickering process is performed. Then, the motion vectors for the sequence are calculated on the resulting deflickered frames, and applied to the original frames in order to align them. The deflicker calculation is then performed on the aligned frames to give the final result. To use this approach, turn on <span class="_Override" style="font-weight: bold;">Use Motion</span> in F_DeFlicker2.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Because F_DeFlicker2 looks at input frames outside the current frame when performing its calculation, it can be a computationally expensive plug-in. As such, using more than two instances of F_DeFlicker2 in a node tree will dramatically increase render times. It is strongly advised therefore, that you render each instance out separately.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="chapterTitle">
+   使用 F_DeFlicker2
+  </h1>
+  <p class="intro">
+   在电影中工作时,
+   <a name="kanchor184">
+   </a>
+   你有时必须处理有亮度闪烁的镜头。本章集中讨论使用 F_DeFlicker2 消除闪烁。
+  </p>
+  <h1>
+   导言
+  </h1>
+  <p class="afterHead">
+   F_Deflicker2 用于删除闪烁。它特别适合去除局部的和依赖于场景几何形状的闪烁 (即整个图像中不存在的闪烁), 比如由镜头中不同步的荧光灯引起的。它的工作原理是在一个小的分析范围内计算当前帧和每帧之间的增益。然后，它尝试调整增益，使其在该帧范围内平滑变化。这意味着它比在图像序列中变化缓慢的闪烁更能减少快速闪烁，因为后者在小帧范围内已经显得平滑，F_DeFlicker2 将使它基本上保持不变。
+  </p>
+  <p>
+   F_DeFlicker2 使用的算法可以在快速运动的区域引入模糊。这个问题可以通过在偏转帧之前使用局部运动估计来缓解。然而，这个过程很复杂，因为闪烁的存在会对运动估计的结果产生不利影响。因此，F_DeFlicker2 采用两阶段方法来解决这个问题。首先，正常的偏转过程被执行。然后，在生成的偏转帧上计算序列的运动矢量，并将其应用于原始帧以对齐它们。然后在对齐的框架上执行偏转器计算，以给出最终结果。要使用这种方法，请打开
+   <span class="_Override" style="font-weight: bold;">
+    使用运动
+   </span>
+   在 F_DeFlicker2 中。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   因为 F_DeFlicker2 在执行计算时会查看当前帧之外的输入帧，所以它可能是一个计算成本很高的插件。因此，在节点树中使用两个以上的 F_DeFlicker2 实例将大大增加渲染时间。因此，强烈建议您分别渲染每个实例。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -85,5 +132,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

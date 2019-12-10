@@ -1,428 +1,923 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Other Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BlinkScript</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/other_nodes/blinkscript.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|Other Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   BlinkScript
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/other_nodes/blinkscript.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>BlinkScript</h1>
-        <p>The BlinkScript node runs Foundry's Blink framework enabling us to write our code once and run it on any supported device. This is achieved through code translation, in which  the Blink code is turned into specific code for each target device.  Code is generated and compiled on-the-fly, allowing you to switch between devices at will.</p>
-        <p>BlinkScript runs a Blink "kernel" over every pixel in the output, where a Blink kernel is similar to a C++ class, but with some special parameter types and functions. Through translation, the code in the BlinkScript node can be turned into normal C++ or SIMD code for the CPU, or OpenCL for the GPU. </p>
-        <p>The Blink framework streamlines plug-in development workflow significantly, as you no longer have to exit Nuke to compile your code.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>GPU acceleration requires an NVIDIA GPU and drivers for CUDA 4.2 or above. To use the GPU when rendering from the command line, add --gpu to your command.</p>
-        <p>You can publish kernels in Group nodes  which can then be saved as gizmos, if required. Published kernels can be encoded to protect your IP using BlinkScript's built-in kernel protection. Protected kernels are  not readable when the published node is saved to a script.</p>
-        <p class="warning" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;WARNING:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">WARNING:</span> &#160;</span></span>BlinkScript is very flexible, as there are no restrictions  on the code you can write within a kernel. As a result, code complied from the Kernel Source can cause <span class="CustomProduct">Nuke</span> to crash, so please use caution!</p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="54px">
-                    <col width="105px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="120px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="436px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Type</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Connection Name</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p class="CellBody">src</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p>The image to which the BlinkScript kernel is applied.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" height="401px">
-                    <col width="93px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="101px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="100px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <col width="362px" class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr style="height: 23px;background-color: #cac8c9;" class="TableStyle-Master_TableStyle-Head-Header1">
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Control (UI)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Default Value</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
-                                <p class="CellHeading">Function</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                                <p class="CellBody">BlinkScript Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Kernel File</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>kernelSourceFile</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p class="CellBody">Sets the file path of the kernel used for <b>Load</b> and <b>Save</b> operations. BlinkScript kernels use the <b>.rpp</b> file extension.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Load</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>reloadKernelSourceFile</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Click to load and compile the kernel specified in the <b>Kernel File</b> field. </p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Save</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>saveKernelFile</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Click to save the current kernel to the location and file name specified in the <b>Kernel File</b> field. </p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Clear</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>clearKernelSource</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Click to clear the Kernel Editor.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 29px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p class="CellBody">Recompile</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>recompile</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Click to recompile the kernel currently in the Kernel Editor. Any compile errors present are displayed on screen.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td colspan="4" class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Kernel Source</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Kernel Editor</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>kernelSource</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>InvertKernel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Enter  the kernel you intend to compile or edit the default InvertKernel to suit your purposes. </p>
-                                <p>Click the <b>Recompile</b> button to see the result of any changes. </p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p colspan="4">Kernel Parameters Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Local GPU</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>gpuName</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Displays the GPU used for rendering when <b>Use GPU if available</b> is enabled. Local GPU displays <b>Not available</b> when:</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Use CPU</b> is selected as the <b>default blink device</b> in the <b>Preferences</b>.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>no suitable GPU was found on your system.</p>
-                                <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>it was not possible to create a context for processing on the selected GPU, such as when there is not enough free memory available on the GPU.</p>
-                                <p>You can select a different GPU, if available, by navigating to the <b>Preferences</b> and selecting an alternative from the <b>default blink device</b> dropdown.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span> Selecting a different GPU requires you to restart <span class="CustomProduct">Nuke</span> before the change takes effect.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Use GPU if available</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>useGPUIfAvailable</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, rendering occurs on the <b>Local GPU</b> specified, if available, rather than the CPU. The output between the GPU and CPU is identical on NVIDIA GPUs, but using the GPU can significantly improve processing performance.</p>
-                                <p><span class="CustomProduct">Nuke</span> supports AMD GPUs on late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5, running OS X 10.9.3 'Mavericks', or later. While, in some cases the bit-wise equality between GPU and CPU holds, for some operations there are limitations to the accuracy possible with this configuration.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Enabling this option with no local GPU allows the script to run on the GPU whenever the script is opened on a machine that does have a GPU available. <br />You should also select this if you wish to render from the command line with the <b>--gpu</b> option.</p>
-                                <p class="CellBody">GPU processing also requires certain NVIDIA GPUs and CUDA drivers, or in the case of late 2013 Mac Pro 6,1 and mid 2015 Mac Pro 11,5 running 10.9.3 'Mavericks', or later, certain AMD GPUs and drivers. For more information on the minimum requirements, please refer to the Nuke Release Notes available in <b>Help</b> &gt; <b>Release Notes</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Vectorize on CPU</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>vectorize</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>enabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>When enabled, use SIMD instructions on the CPU where possible.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>This is currently an experimental feature and vectorization might fail for some valid Blink kernels.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Multiply</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>InvertKernel_Multiply</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Multiplies the result of the InverKernel by this factor.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Multiply is the only control exposed by the default InvertKernel. For more information on writing kernels and some examples, see <b>Help</b> &gt; <b>Documentation</b>.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Publish</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>publishButton</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Click to create a Group node containing a copy of the current node. The Group can then be saved as a gizmo. </p>
-                                <p>The kernel parameters and GPU controls are exposed as user controls in the published version of the node.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Protect kernel</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>protectKernel<br />WhenPublishing</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, the kernel in the published group is encoded and is not readable when the published node is written to a script.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>format</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>format</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Dependent on <b>Project Settings</b></p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the output format when <b>Specify output format</b> is enabled, but otherwise  defaults to the input format size.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Specify output format</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>specifiedFormat</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p> When enabled, allows you to set the output format using the <b>format</b> control.</p>
-                                <p>Enabling this control also exposes the <b>format</b> dropdown in the published Group node.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p colspan="4">Settings Tab</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>Percentage of GPU memory to use</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>maxGPUMemory</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>50</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>Sets the maximum percentage of GPU memory that is available for the BlinkScript node to allocate.</p>
-                            </td>
-                        </tr>
-                        <tr style="height: 15px;" class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p>Percentage of image height per tile</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p>maxTileLines</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                                <p>10</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                                <p>Sets the maximum percentage of the image height that the BlinkScript attempts to render in a single tile, that is, before updating the output. </p>
-                                <p>Processing is always done in tiles. On the CPU, the processing is sometimes done in scanlines rather than tiles, so this parameter does not always have an effect. </p>
-                                <p>See <b>Help</b> &gt; <b>Documentation</b> for more information on when scanline processing is used on the CPU.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/blinkscript/image_processing_blink.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using the BlinkScript Node</span></a>
-                </p>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="CustomExample Scripts">Example Nuke Scripts</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Loading example scripts only works if you launched the help from <span class="CustomProduct">Nuke</span> and have set <b>documentation source</b> to <b>local</b> in the <b>Behaviors</b> &gt; <b>Documentation</b> tab of the <b>Preferences</b>. <br /><br />See <a href="../../example_scripts/example_scripts.html#Using" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Using Script Links</span></a> for more information.</p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Knobs.nk');">Examples of all the knob types that can be added to Kernel Parameters</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Ballomatic.nk');">A balloon-like effect that uses random access and bilinear interpolation</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_BoxBlur1D.nk');">A one-dimensional box blur</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_BoxBlur2D.nk');">A two-dimensional box blur</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Convolution.nk');">A weighted blur where the weights are taken from a second input</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Curtain.nk');">A rippling curtain effect that uses 1D-ranged access</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_LensFlare.nk');">A simple lens flare generator that requires no inputs</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Median.nk');">A 5x5 average that uses Blink's median function</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Swirlomatic.nk');">A swirl effect that uses random access, trigonometric functions and bilinear interpolation</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_TwoPassResize.nk');">A two-pass resize implemented with two Blink kernels chained together</a>
-                </p>
-                <p><a href="#" onclick="loadInNuke('BlinkScript_Wipe.nk');">A simple transition effect</a>
-                </p>
-            </div>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   BlinkScript
+  </h1>
+  <p>
+   BlinkScript 节点运行 Foundry 的 Blink 框架，使我们能够编写一次代码并在任何受支持的设备上运行。这是通过代码翻译实现的，其中闪烁代码被转换为每个目标设备的特定代码。代码是动态生成和编译的，允许您随意在设备之间切换。
+  </p>
+  <p>
+   BlinkScript 在输出中的每个像素上运行一个闪烁的 “内核”，其中闪烁的内核类似于 C 类，但具有一些特殊的参数类型和函数。通过翻译，BlinkScript 节点中的代码可以变成 CPU 的普通 C 或 SIMD 代码，或者 GPU 的 OpenCL 代码。
+  </p>
+  <p>
+   Blink 框架大大简化了插件开发工作流，因为您不再需要退出 Nuke 来编译代码。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   GPU 加速需要 NVIDIA GPU 和驱动程序才能实现 CUDA 4.2 或更高版本。要在从命令行渲染时使用 GPU，请将 -- gpu 添加到命令中。
+  </p>
+  <p>
+   您可以在组节点中发布内核，如果需要，可以将其保存为 gizmos。可以对已发布的内核进行编码，以使用 BlinkScript 的内置内核保护来保护您的 IP。当已发布的节点保存到脚本时，受保护的内核不可读。
+  </p>
+  <p class="warning" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;WARNING:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      警告:
+     </span>
+    </span>
+   </span>
+   BlinkScript 非常灵活，因为在内核中可以编写的代码没有限制。因此，从内核源代码编译的代码可能会导致
+   <span class="CustomProduct">
+    核武器
+   </span>
+   要崩溃，所以请小心!
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="54px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="105px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="120px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="436px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接类型
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p class="CellBody">
+         Src
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p>
+         应用 BlinkScript 内核的图像。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" class="TableStyle-Master_TableStyle" height="401px" style="border-spacing-x: 0;border-spacing-y: 0;border-collapse: collapse;border-color: black;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="93px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="101px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="100px"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" width="362px"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1" style="height: 23px;background-color: #cac8c9;">
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1" style="font-weight: bold;">
+        <p class="CellHeading">
+         函数
+        </p>
+       </td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p class="CellBody">
+         BlinkScript 选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         内核文件
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         KernelSourceFile
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p class="CellBody">
+         设置用于的内核的文件路径
+         <b>
+          负载
+         </b>
+         和
+         <b>
+          保存
+         </b>
+         操作。BlinkScript 内核使用
+         <b>
+          。Rpp
+         </b>
+         文件扩展名。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         负载
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         ReloadKernelSourceFile
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         单击以加载和编译中指定的内核
+         <b>
+          内核文件
+         </b>
+         字段。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         保存
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         保存 kernelfile
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         单击将当前内核保存到中指定的位置和文件名
+         <b>
+          内核文件
+         </b>
+         字段。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         清除
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         ClearKernelSource
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         单击以清除内核编辑器。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 29px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p class="CellBody">
+         重新编译
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         重新编译
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         单击以重新编译内核编辑器中当前的内核。屏幕上显示任何编译错误。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1" colspan="4">
+        <p>
+         内核源
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         内核编辑器
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         KernelSource
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         InvertKernel
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         输入您打算编译或编辑默认 InvertKernel 以满足您的目的的内核。
+        </p>
+        <p>
+         单击
+         <b>
+          重新编译
+         </b>
+         按钮查看任何更改的结果。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p colspan="4">
+         内核参数选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         本地 GPU
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         GpuName
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         显示用于渲染的 GPU
+         <b>
+          使用 GPU (如果可用)
+         </b>
+         已启用。本地 GPU 显示
+         <b>
+          不可用
+         </b>
+         当:
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         <b>
+          使用 CPU
+         </b>
+         被选为
+         <b>
+          默认闪烁设备
+         </b>
+         在
+         <b>
+          偏好
+         </b>
+         .
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         在您的系统上找不到合适的 GPU。
+        </p>
+        <p class="bulleted" data-mc-autonum="• ">
+         <span class="autonumber">
+          <span>
+           •
+          </span>
+         </span>
+         无法在选定的 GPU 上创建处理上下文，例如当 GPU 上没有足够的可用内存时。
+        </p>
+        <p>
+         如果可用，您可以通过导航到
+         <b>
+          偏好
+         </b>
+         并从中选择一个替代方案
+         <b>
+          默认闪烁设备
+         </b>
+         下拉列表。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         选择不同的 GPU 需要重新启动
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在变更生效之前。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         使用 GPU (如果可用)
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         UseGPUIfAvailable
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用时，渲染发生在
+         <b>
+          本地 GPU
+         </b>
+         指定 (如果可用)，而不是 CPU。GPU 和 CPU 之间的输出在 NVIDIA GPU 上是相同的，但是使用 GPU 可以显著提高处理性能。
+        </p>
+        <p>
+         <span class="CustomProduct">
+          核武器
+         </span>
+         在 2013年底的 Mac Pro 6,1 和 2015年中的 Mac Pro 11,5 上支持 AMD gpu，运行 OS X 10.9.3 “mavericks” 或更高版本。虽然，在某些情况下，GPU 和 CPU 之间的比特级相等保持不变，但对于某些操作，这种配置可能存在精度限制。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         在没有本地 GPU 的情况下启用此选项允许脚本在 GPU 上运行，只要脚本在具有 GPU 可用的机器上打开。
+         <br/>
+         你应该选择这个，如果你想使从命令行的
+         <b>
+          -- Gpu
+         </b>
+         选项。
+        </p>
+        <p class="CellBody">
+         GPU 处理还需要某些 NVIDIA GPU 和 CUDA 驱动程序，或者在 2013年底运行 10.9.3 “mavericks” 或更高版本的 Mac Pro 6,1 和 2015年中 Mac Pro 11,5 的情况下，某些 AMD GPU 和驱动程序。有关最低要求的更多信息，请参考
+         <b>
+          帮助
+         </b>
+         &gt;
+         <b>
+          发行说明
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         在 CPU 上矢量化
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         矢量化
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         已启用
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         启用后，尽可能在 CPU 上使用 SIMD 指令。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         这是目前的一个实验性功能，对于一些有效的眨眼内核，矢量化可能会失败。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         乘
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         InvertKernel_Multiply
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         将 InverKernel 的结果乘以此因子。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         乘法是默认 InvertKernel 公开的唯一控件。有关编写内核和一些示例的更多信息，请参见
+         <b>
+          帮助
+         </b>
+         &gt;
+         <b>
+          文档
+         </b>
+         .
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         发布
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         PublishButton
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         单击以创建包含当前节点副本的组节点。然后可以将该组保存为 gizmo。
+        </p>
+        <p>
+         内核参数和 GPU 控件在节点的已发布版本中作为用户控件公开。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         保护内核
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         保护内核
+         <br/>
+         WhenPublishing
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用后，发布组中的内核被编码，当发布的节点被写入脚本时，它是不可读的。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         依赖于
+         <b>
+          项目设置
+         </b>
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         设置输出格式时
+         <b>
+          指定输出格式
+         </b>
+         已启用，但默认为输入格式大小。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         指定输出格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         指定格式
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用后，允许您使用
+         <b>
+          格式
+         </b>
+         控制。
+        </p>
+        <p>
+         启用此控件还会暴露
+         <b>
+          格式
+         </b>
+         已发布组节点中的下拉列表。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p colspan="4">
+         设置选项卡
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         要使用的 GPU 内存百分比
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         MaxGPUMemory
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         50
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         设置可供 BlinkScript 节点分配的最大 GPU 内存百分比。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2" style="height: 15px;">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p>
+         每个图块的图像高度百分比
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p>
+         MaxTileLines
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+        <p>
+         10
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+        <p>
+         设置 BlinkScript 尝试在单个平铺 (即更新输出之前) 中渲染的图像高度的最大百分比。
+        </p>
+        <p>
+         处理总是在瓷砖中完成。在 CPU 上，处理有时是用扫描线而不是瓷砖来完成的，所以这个参数并不总是有效果。
+        </p>
+        <p>
+         请参阅
+         <b>
+          帮助
+         </b>
+         &gt;
+         <b>
+          文档
+         </b>
+         有关何时在 CPU 上使用扫描线处理的更多信息。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/blinkscript/image_processing_blink.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用 BlinkScript 节点
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="CustomExample Scripts">
+      Nuke 脚本示例
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+     <span class="autonumber">
+      <span>
+       <span class="mcFormatColor" style="color: Black;">
+        注意:
+       </span>
+      </span>
+     </span>
+     加载示例脚本仅在您从启动帮助时有效
+     <span class="CustomProduct">
+      核武器
+     </span>
+     并设置
+     <b>
+      文档来源
+     </b>
+     到
+     <b>
+      本地
+     </b>
+     在
+     <b>
+      行为
+     </b>
+     &gt;
+     <b>
+      文档
+     </b>
+     标签的
+     <b>
+      偏好
+     </b>
+     .
+     <br/>
+     <br/>
+     请参阅
+     <a class="MCXref xref" href="../../example_scripts/example_scripts.html#Using">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       使用脚本链接
+      </span>
+     </a>
+     欲了解更多信息。
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Knobs.nk');">
+      可以添加到内核参数的所有旋钮类型的示例
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Ballomatic.nk');">
+      使用随机访问和双线性插值的气球状效果
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_BoxBlur1D.nk');">
+      一维框模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_BoxBlur2D.nk');">
+      二维框模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Convolution.nk');">
+      从第二个输入中获取权重的加权模糊
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Curtain.nk');">
+      使用一维远程访问的波纹窗帘效果
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_LensFlare.nk');">
+      一个简单的镜头耀斑发生器，不需要输入
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Median.nk');">
+      使用眨眼中值函数的 5x5 平均值
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Swirlomatic.nk');">
+      使用随机存取、三角函数和双线性插值的漩涡效应
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_TwoPassResize.nk');">
+      用两个闪烁内核链接在一起实现的两遍调整大小
+     </a>
+    </p>
+    <p>
+     <a href="#" onclick="loadInNuke('BlinkScript_Wipe.nk');">
+      一个简单的过渡效果
+     </a>
+    </p>
+   </div>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -436,5 +931,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

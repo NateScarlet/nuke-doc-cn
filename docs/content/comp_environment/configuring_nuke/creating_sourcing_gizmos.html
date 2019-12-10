@@ -1,929 +1,2429 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Configuring Nuke|Gizmos, Custom Plug-ins, and Generic Tcl Scripts">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Creating and Sourcing Gizmos</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/configuring_nuke/creating_sourcing_gizmos.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Configuring Nuke|Gizmos, Custom Plug-ins, and Generic Tcl Scripts" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   创建和采购小发明
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/configuring_nuke/creating_sourcing_gizmos.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Creating and Sourcing Gizmos</h2>
-        <p class="afterHead">Using <span class="CustomProduct">Nuke</span>’s <b>Export gizmo</b> command, you can export a group of nodes and explicitly control which controls may be edited by the artists to ensure the processes within the gizmo are consistently applied. </p>
-        <h3>Creating Gizmos</h3>
-        <p>To create a gizmo: </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select the nodes you want to include in the gizmo.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select <b>Other</b> &gt; <b>Group</b> from the Toolbar (or press <b>Ctrl</b>/<b>Cmd</b>+<b>G</b>) to group the nodes.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">You may want to rename the group by entering a new name in the Group properties panel title field. This step is optional, and has no effect on the saved gizmo. However, it is often a good idea to give the Group the same name you intend to use for the gizmo.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/group_node_renaming.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000063px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To control which controls the artists can adjust, follow the instructions under <a class="noPage MCXref xref xrefnoPage" href="#Managing_the_gizmo_controls"><span style="color: #00b4e0;" class="mcFormatColor">Managing the Gizmo Controls</span></a> below.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Click the <b>export as gizmo</b> button.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the file browser that appears, click <b>Home</b>. Type <span class="_Override" style="font-weight: bold;">.nuke/</span> after the path displayed at the bottom of the file browser.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Enter a name after the path, and append a <span class="_Override" style="font-weight: bold;">.gizmo</span> extension after the name. This is the name of the command that is written to any saved script that’s using the gizmo. It’s a good idea, and common practice, to begin the name with a capital letter, because <span class="CustomProduct">Nuke</span> uses this as an indication that the command is a node or a gizmo. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Click <span class="_Override" style="font-weight: bold;">Save</span>.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><span class="CustomProduct">Nuke</span> does not allow you to <b>Overwrite</b> and <b>Save as</b> gizmos by default, without copying the gizmo to a Group. If you want to allow this behavior, so artists don't need to copy a gizmo before editing it, set the NUKE_ALLOW_GIZMO_SAVING environment variable to <b>1</b>. See <a href="setting_environment_variables.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Setting Environment Variables</span></a> for more information.</p>
-        <h3><a name="Managing_the_gizmo_controls"></a>Managing the Gizmo Controls</h3>
-        <p>You can add controls to your gizmo (which at this point is just a Group node) in two different ways:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>by picking and editing a control from the controls that by default exist for the nodes inside your Group node. For example, if the Group node contains a Grade node, you can add any of the Grade node controls to your gizmo properties panel.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>by adding a control you have created yourself to your gizmo properties panel.</p>
-        <h4>To Pick Existing Controls:</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Right-click on the dark gray background of the Group properties panel and select <b>Manage User Knobs</b>. The following dialog opens. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/group_node_user_knobs_dialog.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">To pick a control you want to give the users control of, click on the <b>Pick</b> button. This opens a dialog that lists all the nodes that the group contains. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/group_node_picking_knobs_to_add.png" />
-        </p>
-        <p class="numberedCont">Expand the list items as necessary to see the controls you can include in the gizmo controls. Select a control and click <b>OK</b>. You can also select multiple controls by <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+clicking on them, or pick a range of controls by <span class="_Override" style="font-weight: bold;">Shift</span>+clicking.</p>
-        <p class="numberedCont">At this point, a new tab called <b>User</b> appears in the Group properties panel. The control you selected has been added to this tab. In our example, we selected the <b>size</b> control of the Text node.</p>
-        <p class="numberedCont">The control has also been added to the Manage User Knobs dialog, ready for you to edit.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To edit the control you added, open the <b>Manage User Knobs</b> dialog and select the control from the list. Click <b>Edit</b>. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/group_node_edit_user_knobs.png" />
-        </p>
-        <p class="numberedCont">In most cases, you can edit the following:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Name</b> - Give the new control a unique name here. You need to use this name whenever you want to reference the control from scripts or via expressions. The name can only contain letters and digits. Spaces or punctuation are not allowed. This field cannot be left empty.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Label</b> - Whatever you enter here appears to the left of the control in the gizmo properties panel (or, in the case of buttons, on the button). If you leave this empty, whatever is in the <b>Name</b> field is also used as the label.</p>
-        <p class="processBulletCont">In the <b>Label</b> fields of check boxes, Tcl script buttons, and Python script buttons, you can also use HTML. For example, to have your text appear in bold, you can enter <span class="_Override" style="font-weight: bold;">&lt;b&gt;text&lt;/b&gt;</span>.</p>
-        <p class="processBulletCont">To add an icon to your check box or Tcl/Python button using HTML, you can enter <span class="_Override" style="font-weight: bold;">&lt;img src="Colorwheel.png"/&gt; </span>in the <b>Label</b> field. This adds the <span class="CustomProduct">Nuke</span> color wheel icon. You can also use your own icons in the same way as long as you save them in your plug-in path directory. Most common image formats work, but we recommend using .png files.</p>
-        <p class="processBulletCont">Note that the HTML has been changed to a slightly non-standard form where newlines are significant. If there is a newline character in your data, a new line is displayed in the label.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Hide</b> - Check this to hide the control from the users. This can be useful if you want to make a new control to contain a complex expression that you can then refer to repeatedly by other controls.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Start new line</b> - Uncheck this if you want the control to appear on the same line as the previous control in the gizmo properties panel.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Tooltip</b> - Enter a short help text here. It appears, along with the Name, in a pop-up tool tip when the user points the mouse at the control. If you do not provide a tool tip, whatever is in the <b>Name</b> field is used as the tool tip.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If necessary, repeat the previous three steps to add more controls to your Group node (future gizmo).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the Group node properties panel, the controls are listed in the same order as they are in the <b>Manage User Knobs</b> dialog. To move a control up or down in the properties panel, select it in the dialog and use the <b>Up</b> and <b>Down</b> buttons.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Click the <b>export as gizmo</b> button.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">In the file browser that appears, click <b>Home</b>. Type <span class="_Override" style="font-weight: bold;">.nuke/</span> after the path displayed at the bottom of the file browser.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Enter a name after the path, and append a <span class="_Override" style="font-weight: bold;">.gizmo</span> extension after the name. This is the name of the command that is written to any saved script that’s using the gizmo. It’s a good idea, and common practice, to begin the name with a capital letter, because <span class="CustomProduct">Nuke</span> uses this as an indication that the command is a node or a gizmo. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Click <span class="_Override" style="font-weight: bold;">Save</span>. </td>
-            </tr>
-        </table>
-        <h4>To Create New Controls:</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Right-click on the dark gray background of the Group properties panel and select <b>Manage User Knobs</b>. The following dialog opens. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/group_node_user_knobs_dialog.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">To add a new control, tab, static text, or divider line to the Group (gizmo) controls, click <b>Add</b> on the <b>Manage User Knobs</b> dialog and select the option you want to add. This opens a dialog where you can edit the control, tab or static text you added. In most cases, you can edit the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Name</b> - Give the new control a unique name here. You need to use this name whenever you want to reference the control from scripts or via expressions. The name can only contain letters and digits. Spaces or punctuation are not allowed. This field cannot be left empty.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Label</b> - Whatever you enter here appears to the left of the control in the gizmo properties panel. If you leave this empty, whatever is in the <b>Name</b> field is also used as the label.</p>
-        <p class="processBulletCont">In the <b>Label</b> fields of check boxes, Tcl script buttons, and Python script buttons, you can also use HTML. For example, to have your text appear in bold, you can enter <span class="_Override" style="font-weight: bold;">&lt;b&gt;text&lt;/b&gt;</span>.</p>
-        <p class="processBulletCont">To add an icon to your check box or Tcl/Python button using HTML, you can enter <span class="_Override" style="font-weight: bold;">&lt;img src="Colorwheel.png"/&gt; </span>in the <b>Label</b> field. This adds the <span class="CustomProduct">Nuke</span> color wheel icon. You can also use your own icons in the same way as long as you save them in your plug-in path directory. Most common image formats can work, but we recommend using .png files.</p>
-        <p class="processBulletCont">Note that the HTML has been changed to a slightly non-standard form where newlines are significant. If there is a newline character in your data, a new line is displayed in the label.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Hide</b> - Check this to hide the control from the users. This can be useful if you want to make a new control to contain a complex expression that you can then refer to repeatedly by other controls.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Start new line</b> - Uncheck this if you want the control to appear on the same line as the previous control in the Group properties panel.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Tooltip</b> - Enter a short help text here. It appears, along with the Name, in a pop-up tool tip when the user points the mouse at the control. If you do not provide a tool tip, whatever is in the <b>Name</b> field is used as the tool tip.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Use an expression to link the control you just created to a node and its control inside the Group node. This is important, because for the new control to do anything, you need to refer to it using an expression in some other control on a node inside the Group. For more information, see the examples below and refer to <a href="../expressions/expressions.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Expressions</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If necessary, repeat the previous four steps to add more controls to your Group node (future gizmo).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the Group node properties panel, the controls are listed in the same order as they are in the <b>Manage User Knobs</b> dialog. To move a control up or down in the properties panel, select it in the dialog and use the <b>Up</b> and <b>Down</b> buttons. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Click the <b>export as gizmo</b> button.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">In the file browser that appears, click <b>Home</b>. Type <span class="_Override" style="font-weight: bold;">.nuke/</span> after the path displayed at the bottom of the file browser.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Enter a name after the path, and append a <span class="_Override" style="font-weight: bold;">.gizmo</span> extension after the name. This is the name of the command that is written to any saved script that’s using the gizmo. It’s a good idea, and common practice, to begin the name with a capital letter, because <span class="CustomProduct">Nuke</span> uses this as an indication that the command is a node or a gizmo. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Click <span class="_Override" style="font-weight: bold;">Save</span>. </td>
-            </tr>
-        </table>
-        <h4>To Delete Controls:</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Right-click on the dark gray background of the Group properties panel and select <b>Manage User Knobs</b>. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select the controls that you want to delete from the list and click <b>Delete</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To delete an entire tab, select all controls on the tab as well as the tab name and click <b>Delete</b>.</td>
-            </tr>
-        </table>
-        <h4>Examples</h4>
-        <p>Below are some examples on how to create new controls for gizmos. To try them out, do the following preparations:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Draw</b> &gt; <b>Text</b> and <b>Draw</b> &gt; <b>Rectangle</b>. Create the following setup:</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_examples_starting_script_264x207.png" class="cm07" style="width: 264;height: 207;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Double-click on the Rectangle1 node. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the Viewer, resize and reposition the rectangle until it looks like the following:</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_examples_white_rectangle.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the Rectangle1 properties panel, go to the <b>Color</b> tab. Click on the <b>4</b> button to display multiple values rather than the slider. Enter <span class="_Override" style="font-weight: bold;">1</span> as the value for <b>r</b>, and <span class="_Override" style="font-weight: bold;">0</span> as the value for <b>b</b>, <b>g</b> and <b>a</b>. This changes the color of the rectangle from white to red.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Copy the Rectangle1 node and paste it into the same script. Create the following connections:</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_examples_two_rectangles_script_264x207.png" class="cm07" style="width: 264;height: 207;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Double-click on the Rectangle2 node and change the color of the rectangle from red to green (r 0, g 1, b 0, a 0).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Select <b>Merge</b> &gt; <b>Switch</b> to add a Switch node. Create the following connections:</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_examples_script_with_all_nodes_264x207.png" class="cm07" style="width: 264;height: 207;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">Select the Text1, Rectangle1, Rectangle2 and Switch1 nodes and press <span class="_Override" style="font-weight: bold;">Ctrl</span>/<span class="_Override" style="font-weight: bold;">Cmd</span>+<span class="_Override" style="font-weight: bold;">G</span> to group them. This group is the gizmo we add controls to in the following examples.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">Delete the original four nodes from the <b>Node Graph</b> tab.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">Select the Group node and append a Viewer to it.</td>
-            </tr>
-        </table>
-        <p><b>Example 1</b>
-        </p>
-        <p>In this example, we add a control called <b>Version</b> to the Group node controls. This control is an input field. Whatever is entered in the field is called by the Text1 node and displayed in the Viewer when you view the output of the group.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Open the Group properties panel and right-click on the dark gray background. Select <b>Manage User Knobs</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select <b>Add</b> &gt; <b>Text input Knob </b>to add a text input field control to your Group properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter <span class="_Override" style="font-style: italic;">version</span> as the <b>Name</b> for the control, <span class="_Override" style="font-style: italic;">Version</span> as the <b>Label</b>, and <span class="_Override" style="font-style: italic;">Enter the version number here</span> as the <b>Tooltip</b>. Click <b>OK </b>and<b> Done </b>to close the dialogs. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example1a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000067px;" />
-        </p>
-        <p class="numberedCont">This step created a tab called <b>User</b> in the Group node controls. All the controls you add or pick are added on this tab by default. </p>
-        <p class="numberedCont">As you can see, the <b>Version</b> control is now there.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example1b.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">On the <b>Group1 Node Graph</b> tab, double-click the Text1 node to open its controls. In the <b>message</b> field, enter the following expression: <span class="_Override" style="font-weight: bold;">[value version]</span>. This expression calls the control named <span class="_Override" style="font-style: italic;">version</span> that you created in the previous step. Therefore, whatever is entered in the <b>Version</b> field of the Group node (for example, <span class="_Override" style="font-weight: bold;">v03</span>), appears as a result of the Text1 node.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_1c.png" style="margin-left: 1.000063px;margin-top: 1.75011px;margin-right: 0.9997538px;" />
-        </p>
-        <p><b>Example 2</b>
-        </p>
-        <p>This example teaches you to create a checkbox control that the users can use to specify whether they want to display or hide the version number added in the previous example.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the Group properties panel, right-click on the dark gray background and select <b>Manage User Knobs</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select <b>Add</b> &gt; <b>Check Box </b>to add a checkbox control to your Group properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter <span class="_Override" style="font-style: italic;">hideversion</span> as the <b>Name</b> for the control, <span class="_Override" style="font-style: italic;">Hide version number</span> as the <b>Label</b>, and <span class="_Override" style="font-style: italic;">Check this to hide the version number</span> as the <b>Tooltip</b>. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">To have the new control appear next to the Version control (created in the previous example) rather than below it on its own line, uncheck <b>Start new line</b>. Click <b>OK </b>and<b> Done </b>to close the dialogs. </td>
-            </tr>
-        </table>
-        <p class="numberedCont">The control you created appears in the Group properties panel now.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_2a.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the Text1 controls, go to the <b>Node</b> tab. Right-click on the <b>disable</b> control and select <b>Add expression</b>. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_2b_5.1.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the <b>Expression</b> field, enter <span class="_Override" style="font-weight: bold;">hideversion </span>(or, if you want to make it clear that the control is in the enclosing group, you can also use <b>parent.hideversion</b>). This calls the control you created in steps 2 and 3. Click <b>OK</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">From now on, whenever <b>Hide version number</b> is checked in the Group controls, the Text1 node is disabled and you cannot see the version number it would otherwise create.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_2c.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-        </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/hide_versions.png" />
-        </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example2e.png" />
-        </p>
-        <p><b>Example 3</b>
-        </p>
-        <p>In this example, we add a control labeled <b>Status </b>to the Group controls. This control is a dropdown menu with two options: <b>Finished</b> and <b>Unfinished</b>. When <b>Finished</b> is selected, the green rectangle is displayed. When <b>Unfinished</b> is selected, you’ll see the red rectangle instead.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the Group properties panel, right-click on the dark gray background and select <b>Manage User Knobs</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select <b>Add</b> &gt; <b>Pulldown Choice </b>to add a dropdown menu control to your Group properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter <span class="_Override" style="font-style: italic;">status</span> as the <b>Name</b> for the control and <span class="_Override" style="font-style: italic;">Status</span> as the <b>Label</b>. In the <b>Menu Items</b> field, list the items you want to appear in the dropdown menu - in this case, <span class="_Override" style="font-style: italic;">Finished</span> and <span class="_Override" style="font-style: italic;">Unfinished</span>. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example3a.png" />
-        </p>
-        <p class="numberedCont">Finally, enter <span class="_Override" style="font-style: italic;">Select the production status here</span> as the <b>Tooltip</b>. Click <b>OK </b>and<b> Done </b>to close the dialogs. </p>
-        <p class="numberedCont">The <b>Status</b> control should now appear in the Group controls.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">On the <b>Group1 Node Graph</b> tab, double-click the Switch1 node to open its controls. Right-click on the <b>which</b> field and select <b>Add expression</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the dialog that opens, enter the following expression: <span class="_Override" style="font-weight: bold;">status==0</span> (or, <span class="_Override" style="font-weight: bold;">parent.status==0</span>). This expression calls the control named <span class="_Override" style="font-style: italic;">status</span> that you created earlier in this example. For the dropdown menus, the first item is <span class="_Override" style="font-weight: bold;">0</span>, the next <span class="_Override" style="font-weight: bold;">1</span>, the next <span class="_Override" style="font-weight: bold;">2</span>, and so on.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">From now on, whenever <b>Finished</b> is selected under <b>Status</b>, the green rectangle is shown. When <b>Unfinished</b> is selected, the red rectangle is shown.</p>
-        <p><b>Example 4</b>
-        </p>
-        <p>This example teaches you how to visually group and rearrange the controls you created for the Group properties panel. You can do this by renaming the <b>User</b> tab, and using static text and divider lines to group the controls on the tab. </p>
-        <p>First, we’ll rename the <b>User</b> tab in the Group properties panel:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the Group properties panel, right-click on the dark gray background and select <b>Manage User Knobs</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select <b>User</b> and click <b>Edit</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the <b>Label</b> field, enter a new name for the tab, for example, <span class="_Override" style="font-style: italic;">Version and status</span>. Click <b>OK </b>and<b> Done </b>to close the dialogs.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">If you now look at the Group controls, you’ll notice that the <b>User</b> tab has been renamed to <b>Version and status</b>.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_4c.png" />
-        </p>
-        <p>Next, we’ll group the two version controls of the Group node under a title called <span class="_Override" style="font-style: italic;">Version controls</span>:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the Group properties panel, right-click on the dark gray background and select <b>Manage User Knobs</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select <b>Add</b> &gt; <b>Text </b>to add text to your Group properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Enter <span class="_Override" style="font-style: italic;">versioncont</span> as the <b>Name</b> for the control and <span class="_Override" style="font-style: italic;">Version controls</span> as the <b>Label</b>. Click <b>OK </b>and<b> Done </b>to close the dialogs.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">This adds the text <span class="_Override" style="font-style: italic;">Version controls</span> to the Group properties panel. However, the text does not appear where we want it to appear: on top of the <b>Version</b> and <b>Hide version number</b> controls. Let’s move it up.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_4b.png" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Right-click on the Group properties panel again and select <b>Manage User Knobs</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Select <b>[Version controls] </b>from the list and click <b>Up</b> three times. Click <b>Done</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">The text should now appear on top of the Group properties panel, above the version controls.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_4c.png" />
-        </p>
-        <p>Finally, we’ll add a divider line between the version controls and the <b>Status</b> control:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">In the Group properties panel, right-click on the dark gray background and select <b>Manage User Knobs</b> again. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the dialog that opens, select <b>Add</b> &gt; <b>Divider Line </b>to add a line to divide the controls in your Group properties panel.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Select the line from the Manage User Knobs dialog, where it is shown as <b>unnamed</b>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Click the <b>Up</b> button once to move the line between the <b>Hide version number</b> and <b>Status</b> controls. Click <b>Done</b>.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">If you now open the Group controls, you’ll notice that a there’s a line between these controls.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gizmo_example_4d.png" />
-        </p>
-        <p>Hopefully, the above examples have given you an idea of how to create user controls for your gizmos. Once you have all the controls you need, remember to save your gizmo. </p>
-        <h3>Sourcing Gizmos</h3>
-        <p>To source a gizmo, create a menu option referencing the gizmo (see <a href="custom_menus_toolbars.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Defining Custom Menus and Toolbars</span></a>),</p>
-        <p>OR</p>
-        <p>Instruct artists to invoke the gizmo by: </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>pressing <b>X</b> on the Node Graph or Properties panel and entering the gizmo name<b></b>(without the extension)<b></b>as a Tcl command in the dialog that opens.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>opening the Script Editor and entering <span class="_Override" style="font-weight: bold;">nuke.load (“</span><span class="_Override" style="font-weight: bold;font-style: italic;">gizmo name</span><span class="_Override" style="font-weight: bold;">”)</span><b></b>where<b></b><span class="_Override" style="font-weight: bold;font-style: italic;">gizmo name</span><b></b>stands for the name of the gizmo without the extension.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>selecting <b>Other</b> &gt; <b>All plugins</b> &gt; <b>Update</b> and once this is done pressing <span class="_Override" style="font-weight: bold;">Tab</span> on the Node Graph and entering the gizmo name.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   创建和采购小发明
+  </h2>
+  <p class="afterHead">
+   使用
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的
+   <b>
+    出口 gizmo
+   </b>
+   命令，您可以导出一组节点，并明确控制艺术家可以编辑哪些控件，以确保 gizmo 中的进程得到一致应用。
+  </p>
+  <h3>
+   创建小发明
+  </h3>
+  <p>
+   要创建小控件:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择要包括在 gizmo 中的节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择
+     <b>
+      其他
+     </b>
+     &gt;
+     <b>
+      集团
+     </b>
+     从工具栏 (或按
+     <b>
+      Ctrl
+     </b>
+     /
+     <b>
+      Cmd
+     </b>
+     +
+     <b>
+      G
+     </b>
+     ) 将节点分组。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     您可能希望通过在 “组属性” 面板 “标题” 字段中输入新名称来重命名组。此步骤是可选的，对保存的 gizmo 没有影响。然而，给该组一个与您打算用于 gizmo 的名称通常是个好主意。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/group_node_renaming.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-bottom: 1.000063px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要控制艺术家可以调整哪些控件，请按照下面的说明操作
+     <a class="noPage MCXref xref xrefnoPage" href="#Managing_the_gizmo_controls">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       管理 Gizmo 控件
+      </span>
+     </a>
+     下面。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     单击
+     <b>
+      导出为 gizmo
+     </b>
+     按钮。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在出现的文件浏览器中，单击
+     <b>
+      家
+     </b>
+     。类型
+     <span class="_Override" style="font-weight: bold;">
+      。核武器/
+     </span>
+     在文件浏览器底部显示的路径之后。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     在路径后输入名称，并附加
+     <span class="_Override" style="font-weight: bold;">
+      。Gizmo
+     </span>
+     名称后的扩展。这是写入使用 gizmo 的任何已保存脚本的命令的名称。用大写字母开头是一个好主意，也是常见的做法，因为
+     <span class="CustomProduct">
+      核武器
+     </span>
+     使用该命令表示该命令是节点或 gizmo。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      保存
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   不允许你
+   <b>
+    覆盖
+   </b>
+   和
+   <b>
+    另存为
+   </b>
+   默认情况下，不将 gizmo 复制到组。如果你想允许这种行为，所以艺术家不需要在编辑 gizmo 之前复制它，将 NUKE_ALLOW_GIZMO_SAVING 环境变量设置为
+   <b>
+    1
+   </b>
+   。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="setting_environment_variables.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     设置环境变量
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <h3>
+   <a name="Managing_the_gizmo_controls">
+   </a>
+   管理 Gizmo 控件
+  </h3>
+  <p>
+   您可以通过两种不同的方式将控件添加到 gizmo (此时它只是一个组节点):
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   通过从默认存在于组节点内的节点的控件中拾取和编辑控件。例如，如果组节点包含级别节点，则可以将任何级别节点控件添加到 gizmo “属性” 面板中。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   通过将自己创建的控件添加到 gizmo 属性面板。
+  </p>
+  <h4>
+   要选择现有控件:
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 “组属性” 面板的深灰色背景上单击鼠标右键，然后选择
+     <b>
+      管理用户旋钮
+     </b>
+     。将打开以下对话框。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/group_node_user_knobs_dialog.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     要选择要让用户控制的控件，请单击
+     <b>
+      选择
+     </b>
+     按钮。这将打开一个对话框，列出组包含的所有节点。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/group_node_picking_knobs_to_add.png"/>
+  </p>
+  <p class="numberedCont">
+   根据需要展开列表项，以查看可以包含在 gizmo 控件中的控件。选择一个控件并单击
+   <b>
+    好
+   </b>
+   。您也可以选择多个控件
+   <span class="_Override" style="font-weight: bold;">
+    Ctrl
+   </span>
+   /
+   <span class="_Override" style="font-weight: bold;">
+    Cmd
+   </span>
+   单击它们，或选择一系列控件
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   点击。
+  </p>
+  <p class="numberedCont">
+   此时，一个名为
+   <b>
+    用户
+   </b>
+   显示在 “组属性” 面板中。您选择的控件已添加到此选项卡。在我们的示例中，我们选择了
+   <b>
+    尺寸
+   </b>
+   控制文本节点。
+  </p>
+  <p class="numberedCont">
+   该控件也已添加到 “管理用户旋钮” 对话框中，供您编辑。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     要编辑添加的控件，请打开
+     <b>
+      管理用户旋钮
+     </b>
+     对话框并从列表中选择控件。单击
+     <b>
+      编辑
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/group_node_edit_user_knobs.png"/>
+  </p>
+  <p class="numberedCont">
+   在大多数情况下，您可以编辑以下内容:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    名称
+   </b>
+   -在这里给新控件一个唯一的名称。每当您想从脚本或通过表达式引用控件时，都需要使用此名称。名称只能包含字母和数字。不允许使用空格或标点。此字段不能留空。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    标签
+   </b>
+   -无论您在这里输入什么，都显示在 gizmo 属性面板中的控件左侧 (或者，在按钮的情况下，显示在按钮上)。如果你把这个空的，无论是在
+   <b>
+    名称
+   </b>
+   字段也用作标签。
+  </p>
+  <p class="processBulletCont">
+   在
+   <b>
+    标签
+   </b>
+   复选框、 Tcl 脚本按钮和 Python 脚本按钮的字段，您也可以使用 HTML。例如，要让文本以粗体显示，您可以输入
+   <span class="_Override" style="font-weight: bold;">
+    文本 &lt;/b&gt;
+   </span>
+   .
+  </p>
+  <p class="processBulletCont">
+   要使用 HTML 向复选框或 Tcl/Python 按钮添加图标，您可以输入
+   <span class="_Override" style="font-weight: bold;">
+    &lt;Img src = "Colorwheel.png"/&gt;
+   </span>
+   在
+   <b>
+    标签
+   </b>
+   字段。这增加了
+   <span class="CustomProduct">
+    核武器
+   </span>
+   色轮图标。只要将图标保存在插件路径目录中，您也可以使用自己的图标。大多数常见的图像格式都有效，但我们建议使用。Png 文件。
+  </p>
+  <p class="processBulletCont">
+   请注意，HTML 已经被更改为稍微不标准的形式，其中换行符很重要。如果数据中有换行符，标签中将显示新行。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    隐藏
+   </b>
+   -选中此选项可对用户隐藏控件。如果您希望创建一个新控件以包含一个复杂的表达式，然后其他控件可以重复引用该表达式，这将非常有用。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    开始新行
+   </b>
+   -如果希望控件显示在 gizmo 属性面板中与上一个控件相同的行上，请取消选中此选项。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    工具提示
+   </b>
+   -在这里输入一个简短的帮助文本。当用户将鼠标指向控件时，它将与名称一起出现在弹出工具提示中。如果你不提供工具提示，无论是在
+   <b>
+    名称
+   </b>
+   字段用作工具提示。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如有必要，重复前三个步骤，向组节点 (未来 gizmo) 添加更多控件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在 “组节点属性” 面板中，这些控件的列出顺序与它们在
+     <b>
+      管理用户旋钮
+     </b>
+     对话框。要在 “属性” 面板中向上或向下移动控件，请在对话框中选择该控件并使用
+     <b>
+      向上
+     </b>
+     和
+     <b>
+      下来
+     </b>
+     按钮。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     单击
+     <b>
+      导出为 gizmo
+     </b>
+     按钮。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     在出现的文件浏览器中，单击
+     <b>
+      家
+     </b>
+     。类型
+     <span class="_Override" style="font-weight: bold;">
+      。核武器/
+     </span>
+     在文件浏览器底部显示的路径之后。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     在路径后输入名称，并附加
+     <span class="_Override" style="font-weight: bold;">
+      。Gizmo
+     </span>
+     名称后的扩展。这是写入使用 gizmo 的任何已保存脚本的命令的名称。用大写字母开头是一个好主意，也是常见的做法，因为
+     <span class="CustomProduct">
+      核武器
+     </span>
+     使用该命令表示该命令是节点或 gizmo。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      保存
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <h4>
+   要创建新控件:
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     Right-click on the dark gray background of the Group properties panel and select
+     <b>
+      Manage User Knobs
+     </b>
+     . The following dialog opens.
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/group_node_user_knobs_dialog.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     要向组 (gizmo) 控件添加新控件、制表符、静态文本或分隔线，请单击
+     <b>
+      添加
+     </b>
+     在
+     <b>
+      管理用户旋钮
+     </b>
+     对话框并选择要添加的选项。这将打开一个对话框，您可以在其中编辑添加的控件、选项卡或静态文本。在大多数情况下，您可以编辑以下内容:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    Name
+   </b>
+   - Give the new control a unique name here. You need to use this name whenever you want to reference the control from scripts or via expressions. The name can only contain letters and digits. Spaces or punctuation are not allowed. This field cannot be left empty.
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    标签
+   </b>
+   -无论您在这里输入什么，都会出现在 gizmo 属性面板中控件的左侧。如果你把这个空的，无论是在
+   <b>
+    名称
+   </b>
+   字段也用作标签。
+  </p>
+  <p class="processBulletCont">
+   In the
+   <b>
+    Label
+   </b>
+   fields of check boxes, Tcl script buttons, and Python script buttons, you can also use HTML. For example, to have your text appear in bold, you can enter
+   <span class="_Override" style="font-weight: bold;">
+    &lt;b&gt;text&lt;/b&gt;
+   </span>
+   .
+  </p>
+  <p class="processBulletCont">
+   要使用 HTML 向复选框或 Tcl/Python 按钮添加图标，您可以输入
+   <span class="_Override" style="font-weight: bold;">
+    &lt;Img src = "Colorwheel.png"/&gt;
+   </span>
+   在
+   <b>
+    标签
+   </b>
+   字段。这增加了
+   <span class="CustomProduct">
+    核武器
+   </span>
+   色轮图标。只要将图标保存在插件路径目录中，您也可以使用自己的图标。最常见的图像格式可以工作，但我们建议使用。Png 文件。
+  </p>
+  <p class="processBulletCont">
+   Note that the HTML has been changed to a slightly non-standard form where newlines are significant. If there is a newline character in your data, a new line is displayed in the label.
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    Hide
+   </b>
+   - Check this to hide the control from the users. This can be useful if you want to make a new control to contain a complex expression that you can then refer to repeatedly by other controls.
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    开始新行
+   </b>
+   -如果希望控件显示在 “组属性” 面板中与上一个控件相同的行上，请取消选中此选项。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <b>
+    Tooltip
+   </b>
+   - Enter a short help text here. It appears, along with the Name, in a pop-up tool tip when the user points the mouse at the control. If you do not provide a tool tip, whatever is in the
+   <b>
+    Name
+   </b>
+   field is used as the tool tip.
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     使用表达式将刚刚创建的控件链接到节点及其在组节点内的控件。这很重要，因为要使新控件执行任何操作，您需要在组中的节点上使用其他控件中的表达式来引用它。有关更多信息，请参见下面的示例并参考
+     <a class="noPage MCXref xref xrefnoPage" href="../expressions/expressions.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       表情
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如有必要，重复前四个步骤，向组节点 (未来 gizmo) 添加更多控件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在 “组节点属性” 面板中，这些控件的列出顺序与它们在
+     <b>
+      管理用户旋钮
+     </b>
+     对话框。要在 “属性” 面板中向上或向下移动控件，请在对话框中选择该控件并使用
+     <b>
+      向上
+     </b>
+     和
+     <b>
+      下来
+     </b>
+     按钮。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     Click the
+     <b>
+      export as gizmo
+     </b>
+     button.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     In the file browser that appears, click
+     <b>
+      Home
+     </b>
+     . Type
+     <span class="_Override" style="font-weight: bold;">
+      .nuke/
+     </span>
+     after the path displayed at the bottom of the file browser.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     Enter a name after the path, and append a
+     <span class="_Override" style="font-weight: bold;">
+      .gizmo
+     </span>
+     extension after the name. This is the name of the command that is written to any saved script that’s using the gizmo. It’s a good idea, and common practice, to begin the name with a capital letter, because
+     <span class="CustomProduct">
+      Nuke
+     </span>
+     uses this as an indication that the command is a node or a gizmo.
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     Click
+     <span class="_Override" style="font-weight: bold;">
+      Save
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <h4>
+   要删除控件:
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 “组属性” 面板的深灰色背景上单击鼠标右键，然后选择
+     <b>
+      管理用户旋钮
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，从列表中选择要删除的控件，然后单击
+     <b>
+      删除
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     要删除整个选项卡，请选择选项卡上的所有控件以及选项卡名称，然后单击
+     <b>
+      删除
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <h4>
+   例子
+  </h4>
+  <p>
+   下面是一些如何为小工具创建新控件的示例。要试用它们，请做以下准备:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      绘制
+     </b>
+     &gt;
+     <b>
+      文本
+     </b>
+     和
+     <b>
+      绘制
+     </b>
+     &gt;
+     <b>
+      矩形
+     </b>
+     。创建以下设置:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/ug_images/gizmo_examples_starting_script_264x207.png" style="width: 264;height: 207;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     双击 Rectangle1 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在查看器中，调整矩形的大小并重新定位矩形，直到它看起来像以下内容:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_examples_white_rectangle.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在 Rectangle1 属性面板中，转到
+     <b>
+      颜色
+     </b>
+     标签。点击
+     <b>
+      4
+     </b>
+     按钮显示多个值，而不是滑块。输入
+     <span class="_Override" style="font-weight: bold;">
+      1
+     </span>
+     作为的值
+     <b>
+      r
+     </b>
+     ,和
+     <span class="_Override" style="font-weight: bold;">
+      0
+     </span>
+     作为的值
+     <b>
+      b
+     </b>
+     ,
+     <b>
+      g
+     </b>
+     和
+     <b>
+      一个
+     </b>
+     。这将矩形的颜色从白色更改为红色。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     复制 Rectangle1 节点并将其粘贴到同一个脚本中。创建以下连接:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/ug_images/gizmo_examples_two_rectangles_script_264x207.png" style="width: 264;height: 207;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     双击 Rectangle2 节点，将矩形的颜色从红色改为绿色 (r 0，g 1，b 0，a 0)。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     选择
+     <b>
+      合并
+     </b>
+     &gt;
+     <b>
+      开关
+     </b>
+     添加交换机节点。创建以下连接:
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/ug_images/gizmo_examples_script_with_all_nodes_264x207.png" style="width: 264;height: 207;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     选择 Text1 、 Rectangle1 、 Rectangle2 和 Switch1 节点，然后按
+     <span class="_Override" style="font-weight: bold;">
+      Ctrl
+     </span>
+     /
+     <span class="_Override" style="font-weight: bold;">
+      Cmd
+     </span>
+     +
+     <span class="_Override" style="font-weight: bold;">
+      G
+     </span>
+     把他们分组。此组是我们在以下示例中添加控件的 gizmo。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     从中删除原始的四个节点
+     <b>
+      节点图
+     </b>
+     标签。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     选择组节点并将查看器附加到该节点。
+    </td>
+   </tr>
+  </table>
+  <p>
+   <b>
+    示例 1
+   </b>
+  </p>
+  <p>
+   在这个例子中，我们添加一个名为
+   <b>
+    版本
+   </b>
+   到组节点控件。此控件是一个输入字段。在字段中输入的内容由 Text1 节点调用，并在查看组输出时显示在查看器中。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     打开 “组属性” 面板，在深灰色背景上单击鼠标右键。选择
+     <b>
+      管理用户旋钮
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，选择
+     <b>
+      添加
+     </b>
+     &gt;
+     <b>
+      文本输入旋钮
+     </b>
+     将文本输入字段控件添加到组属性面板。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     输入
+     <span class="_Override" style="font-style: italic;">
+      版本
+     </span>
+     作为
+     <b>
+      名称
+     </b>
+     为了控制,
+     <span class="_Override" style="font-style: italic;">
+      版本
+     </span>
+     作为
+     <b>
+      标签
+     </b>
+     ,和
+     <span class="_Override" style="font-style: italic;">
+      在此输入版本号
+     </span>
+     作为
+     <b>
+      工具提示
+     </b>
+     。单击
+     <b>
+      好
+     </b>
+     和
+     <b>
+      完成
+     </b>
+     关闭对话框。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example1a.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000067px;"/>
+  </p>
+  <p class="numberedCont">
+   此步骤创建了一个名为
+   <b>
+    用户
+   </b>
+   在组节点控件中。默认情况下，您添加或拾取的所有控件都将添加在此选项卡上。
+  </p>
+  <p class="numberedCont">
+   正如你所看到的,
+   <b>
+    版本
+   </b>
+   控制现在在那里。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example1b.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198802px;margin-bottom: 1.000059px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在
+     <b>
+      群 1 节点图
+     </b>
+     选项卡上，双击 Text1 节点以打开其控件。在
+     <b>
+      消息
+     </b>
+     字段中，输入以下表达式:
+     <span class="_Override" style="font-weight: bold;">
+      【价值版本】
+     </span>
+     。此表达式调用名为的控件
+     <span class="_Override" style="font-style: italic;">
+      版本
+     </span>
+     您在上一步中创建的。因此，无论是在
+     <b>
+      版本
+     </b>
+     组节点的字段 (例如,
+     <span class="_Override" style="font-weight: bold;">
+      V03
+     </span>
+     )，显示为 Text1 节点的结果。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_1c.png" style="margin-left: 1.000063px;margin-top: 1.75011px;margin-right: 0.9997538px;"/>
+  </p>
+  <p>
+   <b>
+    示例 2
+   </b>
+  </p>
+  <p>
+   此示例教您创建一个 checkbox 控件，用户可以使用该控件指定是要显示还是隐藏上一示例中添加的版本号。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 “组属性” 面板中，在深灰色背景上单击鼠标右键，然后选择
+     <b>
+      管理用户旋钮
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，选择
+     <b>
+      添加
+     </b>
+     &gt;
+     <b>
+      复选框
+     </b>
+     将 checkbox 控件添加到组属性面板。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     输入
+     <span class="_Override" style="font-style: italic;">
+      隐藏
+     </span>
+     作为
+     <b>
+      名称
+     </b>
+     为了控制,
+     <span class="_Override" style="font-style: italic;">
+      隐藏版本号
+     </span>
+     作为
+     <b>
+      标签
+     </b>
+     ,和
+     <span class="_Override" style="font-style: italic;">
+      选中此选项以隐藏版本号
+     </span>
+     作为
+     <b>
+      工具提示
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     要将新控件显示在版本控件 (在前面的示例中创建) 旁边，而不是显示在它自己的行上，请取消选中
+     <b>
+      开始新行
+     </b>
+     。单击
+     <b>
+      好
+     </b>
+     和
+     <b>
+      完成
+     </b>
+     关闭对话框。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   您创建的控件现在显示在 “组属性” 面板中。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_2a.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在 Text1 控件中，转到
+     <b>
+      节点
+     </b>
+     标签。右键单击
+     <b>
+      禁用
+     </b>
+     控制和选择
+     <b>
+      添加表达式
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_2b_5.1.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在
+     <b>
+      表达
+     </b>
+     字段，输入
+     <span class="_Override" style="font-weight: bold;">
+      隐藏
+     </span>
+     (或者，如果你想清楚控件在封闭组中，你也可以使用
+     <b>
+      Parent.hideversion
+     </b>
+     )。这将调用您在步骤 2 和 3 中创建的控件。单击
+     <b>
+      好
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   从现在开始，无论何时
+   <b>
+    隐藏版本号
+   </b>
+   在组控件中被选中，Text1 节点被禁用，您看不到它将创建的版本号。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_2c.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/hide_versions.png"/>
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example2e.png"/>
+  </p>
+  <p>
+   <b>
+    示例 3
+   </b>
+  </p>
+  <p>
+   在这个例子中，我们添加一个标记为
+   <b>
+    地位
+   </b>
+   到组控件。此控件是一个带有两个选项的下拉菜单:
+   <b>
+    完成
+   </b>
+   和
+   <b>
+    未完成
+   </b>
+   。当
+   <b>
+    完成
+   </b>
+   选中后，将显示绿色矩形。当
+   <b>
+    未完成
+   </b>
+   选中后，您将看到红色矩形。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     In the Group properties panel, right-click on the dark gray background and select
+     <b>
+      Manage User Knobs
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，选择
+     <b>
+      添加
+     </b>
+     &gt;
+     <b>
+      下拉选择
+     </b>
+     将下拉菜单控件添加到组属性面板。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     输入
+     <span class="_Override" style="font-style: italic;">
+      地位
+     </span>
+     作为
+     <b>
+      名称
+     </b>
+     对于控制和
+     <span class="_Override" style="font-style: italic;">
+      地位
+     </span>
+     作为
+     <b>
+      标签
+     </b>
+     。在
+     <b>
+      菜单项
+     </b>
+     字段中，列出您希望出现在下拉菜单中的项目-在这种情况下,
+     <span class="_Override" style="font-style: italic;">
+      完成
+     </span>
+     和
+     <span class="_Override" style="font-style: italic;">
+      未完成
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example3a.png"/>
+  </p>
+  <p class="numberedCont">
+   最后，输入
+   <span class="_Override" style="font-style: italic;">
+    在此选择生产状态
+   </span>
+   作为
+   <b>
+    工具提示
+   </b>
+   。单击
+   <b>
+    好
+   </b>
+   和
+   <b>
+    完成
+   </b>
+   关闭对话框。
+  </p>
+  <p class="numberedCont">
+   的
+   <b>
+    地位
+   </b>
+   控件现在应该出现在组控件中。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在
+     <b>
+      群 1 节点图
+     </b>
+     选项卡上，双击 Switch1 节点以打开其控件。右键单击
+     <b>
+      其中
+     </b>
+     字段并选择
+     <b>
+      添加表达式
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在打开的对话框中，输入以下表达式:
+     <span class="_Override" style="font-weight: bold;">
+      状态 = = 0
+     </span>
+     (或,
+     <span class="_Override" style="font-weight: bold;">
+      父级。状态 = = 0
+     </span>
+     )。此表达式调用名为的控件
+     <span class="_Override" style="font-style: italic;">
+      地位
+     </span>
+     您在此示例中前面创建的。对于下拉菜单，第一项是
+     <span class="_Override" style="font-weight: bold;">
+      0
+     </span>
+     ,下一个
+     <span class="_Override" style="font-weight: bold;">
+      1
+     </span>
+     ,下一个
+     <span class="_Override" style="font-weight: bold;">
+      2
+     </span>
+     等等。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   从现在开始，无论何时
+   <b>
+    完成
+   </b>
+   被选中
+   <b>
+    地位
+   </b>
+   ,绿色矩形显示。当
+   <b>
+    未完成
+   </b>
+   选中后，将显示红色矩形。
+  </p>
+  <p>
+   <b>
+    示例 4
+   </b>
+  </p>
+  <p>
+   此示例演示如何以视觉方式对为 “组属性” 面板创建的控件进行分组和重新排列。您可以通过重命名
+   <b>
+    用户
+   </b>
+   选项卡，并使用静态文本和分隔线对选项卡上的控件进行分组。
+  </p>
+  <p>
+   首先，我们将重命名
+   <b>
+    用户
+   </b>
+   “组属性” 面板中的选项卡:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     In the Group properties panel, right-click on the dark gray background and select
+     <b>
+      Manage User Knobs
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，选择
+     <b>
+      用户
+     </b>
+     并单击
+     <b>
+      编辑
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在
+     <b>
+      标签
+     </b>
+     字段中，输入选项卡的新名称，例如,
+     <span class="_Override" style="font-style: italic;">
+      版本和状态
+     </span>
+     。单击
+     <b>
+      好
+     </b>
+     和
+     <b>
+      完成
+     </b>
+     关闭对话框。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果您现在查看组控件，您会注意到
+   <b>
+    用户
+   </b>
+   选项卡已重命名为
+   <b>
+    版本和状态
+   </b>
+   .
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_4c.png"/>
+  </p>
+  <p>
+   接下来，我们将组节点的两个版本控件分组在一个名为
+   <span class="_Override" style="font-style: italic;">
+    版本控制
+   </span>
+   :
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     In the Group properties panel, right-click on the dark gray background and select
+     <b>
+      Manage User Knobs
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，选择
+     <b>
+      添加
+     </b>
+     &gt;
+     <b>
+      文本
+     </b>
+     将文本添加到组属性面板。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     输入
+     <span class="_Override" style="font-style: italic;">
+      版本控制
+     </span>
+     作为
+     <b>
+      名称
+     </b>
+     对于控制和
+     <span class="_Override" style="font-style: italic;">
+      版本控制
+     </span>
+     作为
+     <b>
+      标签
+     </b>
+     。单击
+     <b>
+      好
+     </b>
+     和
+     <b>
+      完成
+     </b>
+     关闭对话框。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   这将添加文本
+   <span class="_Override" style="font-style: italic;">
+    版本控制
+   </span>
+   到 “组属性” 面板。然而，文本不会出现在我们希望它出现的地方:
+   <b>
+    版本
+   </b>
+   和
+   <b>
+    隐藏版本号
+   </b>
+   控制。让我们把它向上移动。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_4b.png"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     再次右键单击 “组属性” 面板，然后选择
+     <b>
+      管理用户旋钮
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     选择
+     <b>
+      [版本控制]
+     </b>
+     从列表中单击
+     <b>
+      向上
+     </b>
+     三次。单击
+     <b>
+      完成
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   文本现在应该出现在 “组属性” 面板的顶部，版本控件的上方。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_4c.png"/>
+  </p>
+  <p>
+   最后，我们将在版本控件和
+   <b>
+    地位
+   </b>
+   控制:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     在 “组属性” 面板中，在深灰色背景上单击鼠标右键，然后选择
+     <b>
+      管理用户旋钮
+     </b>
+     再次。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在打开的对话框中，选择
+     <b>
+      添加
+     </b>
+     &gt;
+     <b>
+      分隔线
+     </b>
+     在 “组属性” 面板中添加用于分割控件的行。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     从 “管理用户旋钮” 对话框中选择该行，该行显示为
+     <b>
+      未命名
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     单击
+     <b>
+      向上
+     </b>
+     按钮一次移动之间的线
+     <b>
+      隐藏版本号
+     </b>
+     和
+     <b>
+      地位
+     </b>
+     控制。单击
+     <b>
+      完成
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   如果现在打开组控件，您会注意到这些控件之间有一条线。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gizmo_example_4d.png"/>
+  </p>
+  <p>
+   希望上面的例子给了你一个如何为你的小工具创建用户控件的想法。一旦你拥有了所有你需要的控制，记得保存你的小玩意。
+  </p>
+  <h3>
+   采购小发明
+  </h3>
+  <p>
+   要获取 gizmo，请创建一个引用 gizmo 的菜单选项 (请参见
+   <a class="noPage MCXref xref xrefnoPage" href="custom_menus_toolbars.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     定义自定义菜单和工具栏
+    </span>
+   </a>
+   ),
+  </p>
+  <p>
+   OR
+  </p>
+  <p>
+   指示艺术家通过以下方式调用 gizmo:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   按
+   <b>
+    X
+   </b>
+   在节点图形或属性面板上输入 gizmo 名称
+   <b>
+   </b>
+   (没有扩展)
+   <b>
+   </b>
+   在打开的对话框中作为 Tcl 命令。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   打开脚本编辑器并输入
+   <span class="_Override" style="font-weight: bold;">
+    Nuke.load (“
+   </span>
+   <span class="_Override" style="font-weight: bold;font-style: italic;">
+    Gizmo 名称
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    ”)
+   </span>
+   <b>
+   </b>
+   在哪里
+   <b>
+   </b>
+   <span class="_Override" style="font-weight: bold;font-style: italic;">
+    Gizmo 名称
+   </span>
+   <b>
+   </b>
+   代表不带扩展的 gizmo 的名称。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   选择
+   <b>
+    其他
+   </b>
+   &gt;
+   <b>
+    所有插件
+   </b>
+   &gt;
+   <b>
+    更新
+   </b>
+   一旦这一切都完成了
+   <span class="_Override" style="font-weight: bold;">
+    标签
+   </span>
+   在节点图上输入 gizmo 名称。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -937,5 +2437,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

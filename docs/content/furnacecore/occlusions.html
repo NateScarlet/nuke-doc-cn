@@ -1,143 +1,190 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using F_RigRemoval|Quick Start">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Occlusions</title>
-        <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#furnacecore/occlusions.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using F_RigRemoval|Quick Start" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   闭塞
+  </title>
+  <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../Default.html#furnacecore/occlusions.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="rigremoval_2354006982_538866"></a><a name="kanchor242"></a>Occlusions</h2>
-        <p class="afterHead">The algorithm used in F_RigRemoval is unable to differentiate between multiple foreground objects. If there is another foreground object in the sequence that moves through the background region that is being used in the repair, this second foreground object will also be cut up and used, resulting in an incorrect repair. To try and assist in these situations, it is possible to mark regions of the image as not to be used for repair by setting their alpha value to mid gray. This will ensure that spurious bits of other foreground objects do not appear in the repair.</p>
-        <p>In the figure below, we are trying to remove the woman in the center of the screen as she walks from left to right down the street. At this frame, a man walks in the opposite direction and her feet and his head overlap.</p>
-        <table>
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td class="caption">
-                        <p class="graphic">
-                            <img src="../assets/images/fc_images/f_rig_rem9.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>Original shot.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Below, the figure on the left shows the normal matte for the woman, and the figure on the right shows the result of using this in F_RigRemoval. Note that the man’s head interferes with the repair and the reconstruction of the pavement is particularly bad, probably due to the man becoming the dominant motion source.</p>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td class="caption">
-                        <p class="graphic">
-                            <img src="../assets/images/fc_images/f_rig_rem10.png" />
-                        </p>
-                    </td>
-                    <td class="caption">
-                        <p class="graphic">
-                            <img src="../assets/images/fc_images/f_rig_rem11.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>The normal matte.</p>
-                    </td>
-                    <td class="caption">
-                        <p>The output.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>To fix this, we can adapt the matte to include a mid gray area over the man. This tells the rig removal algorithm to ignore that area in the repair. This matte is shown below in the figure on the left, and the result is shown in the figure on the right. Note that the repair on the pavement is improved, and the man is simply clipped rather than being used in the repair.</p>
-        <table>
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td class="caption">
-                        <p class="graphic">
-                            <img src="../assets/images/fc_images/f_rig_rem12.png" />
-                        </p>
-                    </td>
-                    <td class="caption">
-                        <p class="graphic">
-                            <img src="../assets/images/fc_images/f_rig_rem13.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">
-                        <p>The matte with a mid-gray <br />area.</p>
-                    </td>
-                    <td class="caption">
-                        <p>The output.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="rigremoval_2354006982_538866">
+   </a>
+   <a name="kanchor242">
+   </a>
+   闭塞
+  </h2>
+  <p class="afterHead">
+   F_RigRemoval 中使用的算法无法区分多个前景对象。如果序列中有另一个前景对象在修复中使用的背景区域中移动，第二个前景对象也将被切割和使用, 导致不正确的修复。为了在这些情况下提供帮助，可以通过将图像的 alpha 值设置为中灰色来将图像区域标记为不用于修复。这将确保其他前景对象的虚假部分不会出现在修复中。
+  </p>
+  <p>
+   在下图中，我们试图将屏幕中央的女人从左到右走在街上。在这个画面上，一个男人朝相反的方向走，她的脚和他的头重叠。
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td class="caption">
+      <p class="graphic">
+       <img src="../assets/images/fc_images/f_rig_rem9.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       原始拍摄。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   下面，左边的图显示了女人的正常磨砂，右边的图显示了在 F_RigRemoval 中使用这个的结果。请注意，该男子的头部干扰了修复，路面的重建特别糟糕，可能是由于该男子成为主要的运动来源。
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td class="caption">
+      <p class="graphic">
+       <img src="../assets/images/fc_images/f_rig_rem10.png"/>
+      </p>
+     </td>
+     <td class="caption">
+      <p class="graphic">
+       <img src="../assets/images/fc_images/f_rig_rem11.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       正常的哑光。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       输出。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   为了解决这个问题，我们可以调整磨砂，在男人身上包括一个中灰色区域。这告诉钻机移除算法忽略修复中的该区域。这个哑光显示在左边的图中，结果显示在右边的图中。请注意，路面上的修复得到了改善，这个人只是被夹住，而不是被用于修复。
+  </p>
+  <table>
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td class="caption">
+      <p class="graphic">
+       <img src="../assets/images/fc_images/f_rig_rem12.png"/>
+      </p>
+     </td>
+     <td class="caption">
+      <p class="graphic">
+       <img src="../assets/images/fc_images/f_rig_rem13.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      <p>
+       中间灰色的哑光
+       <br/>
+       区域。
+      </p>
+     </td>
+     <td class="caption">
+      <p>
+       输出。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -151,5 +198,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

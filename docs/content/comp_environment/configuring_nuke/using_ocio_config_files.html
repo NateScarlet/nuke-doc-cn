@@ -1,195 +1,625 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Configuring Nuke|Altering a Script’s Lookup Tables (LUTs)">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>OCIO Color Management</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/configuring_nuke/using_ocio_config_files.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Configuring Nuke|Altering a Script’s Lookup Tables (LUTs)" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   OCIO 色彩管理
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/configuring_nuke/using_ocio_config_files.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>OCIO Color Management</h2>
-        <p><span class="CustomProduct">Nuke</span> uses OpenColorIO for color management. All of the colorspaces in <span class="CustomProduct">Nuke</span>, whether those shipped with the application or custom colorspaces, are defined in OCIO config files.</p>
-        <p>Depending on the OCIO config file that you are working with, there are a number of colorspace options and roles (aliases to colorspaces) that you can set in <span class="CustomProduct">Nuke</span>. There are also default options, which change depending on what file type you are working with. When the default option is selected, the colorspace that <span class="CustomProduct">Nuke</span> has set for it is listed in brackets.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Use the options in <b>Preferences</b> &gt; <b>Project Defaults</b> &gt; <b>Color Management</b> to apply them to all new projects.</p>
-        <p>
-            <img src="../../assets/images/ug_images/color_management_377x214.png" class="cm10" style="width: 377;height: 214;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">The <b>color management </b>dropdown determines whether <span class="CustomProduct">Nuke</span> uses the LUTs read from the configuration specified or the <b>Nuke</b> native LUTs. Selecting <b>OCIO</b> makes the relevant OCIO LUTs available to the Read and Write nodes in scripts on a per project basis.</td>
-            </tr>
-        </table>
-        <p class="numberedCont">All OCIO configurations except <b>nuke-default</b> automatically switch this control to <b>OCIO</b>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Set the OpenColorIO Config you want to use for this project.</td>
-            </tr>
-        </table>
-        <p class="numberedCont"><span class="CustomProduct">Nuke</span> ships with a number of default configurations, but you can:</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>use a custom OCIO config file by selecting <b>custom</b> from the <b>OpenColorIO Config</b> dropdown and then entering the file path, or</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>add your own config to your <b>.nuke</b> file. See <a href="#Adding_OCIO_Configurations" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Adding OCIO Configurations</span></a> for more information.</p>
-        <p class="numberedCont">Changing the configuration updates the <b>Default Color Transforms</b> accordingly. If the selected configuration is invalid for certain transforms, a warning displays.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">The <b>working space</b> transform determines what colorspace files should be converted to (Read) and from (Write) - it's the colorspace used by <span class="CustomProduct">Nuke</span> under the hood.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>In earlier releases of <span class="CustomProduct">Nuke</span>, this colorspace was hidden because <b>linear</b> was always chosen as the <b>working space</b>. You may find that some operations work better in colorspaces other than <b>linear</b>. For example, some transforms work better in the <b>CLog</b> colorspace.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">You can use <b>Default Color Transforms</b> dropdown menus to override how clips in the Viewer, thumbnails, and so on are converted to and from the <b>working space</b>.</td>
-            </tr>
-        </table>
-        <p>When the <b>Nuke</b> is selected, Reads and Writes work the same as in previous versions of <span class="CustomProduct">Nuke</span>, with no integrated OCIO transforms. When <b>OCIO</b> is selected:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Reads and Writes use OCIO transforms, with no <span class="CustomProduct">Nuke</span> built-in LUTs applied to the image.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Read and Write colorspace controls are populated with the list of colorspaces defined in your currently selected OCIO config.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The <b>default LUT settings</b> dropdowns are also populated with the list of colorspaces or display transforms defined in your OCIO config. The default value for each menu match the defaults in a <span class="CustomProductStudio">Nuke Studio</span> project with the same config. These defaults can be overridden using Python callbacks. See the following path for the default implementation that ships with <span class="CustomProduct">Nuke</span>:</p>
-        <p class="cmdlinebulletCont">&lt;install_dir&gt;/plugins/nuke/colorspaces.py</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The <b>working space</b> dropdown allows you to change the colorspace that Nuke uses internally for its image processing. This automatically sets the <b>in</b> colorspace of Write nodes and Viewer Processes, and the <b>out</b> colorspace for Read nodes. This defaults to the scene <b>linear</b> role defined in your OCIO config.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="CustomProductStudio">Nuke Studio</span>-created comps no longer contain automatically injected OCIOColorspace nodes. Instead, OCIO Color Management is automatically set in the comp’s <b>Project Settings</b>, and the correct OCIO colorspace is set directly into the Read and Write nodes.</p>
-        <h2><a name="Adding_OCIO_Configurations"></a>Adding OCIO Configurations</h2>
-        <p>You can add your own OCIO configurations to <span class="CustomProduct">Nuke</span> as they become available, such as new versions of ACES. You can also add legacy configs for backward compatibility.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Navigate to the location of your <b>.nuke</b> file as shown by platform. You may have to create a <b>.nuke</b> folder if it doesn't exist.</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Linux: /users/login name/.nuke</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Mac OS X: /Users/login name/.nuke</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Windows: ~\.nuke</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>On Windows, the <b>.nuke</b> folder can be found under the directory pointed to by the HOME environment variable. If this variable is not set (which is common), the <b>.nuke</b> directory is under the folder specified by the USERPROFILE environment variable - which is generally of the form <i>drive letter:</i>\Documents and Settings\login name\ or <i>drive letter:</i>\Users\login name\<br /><br />To find out if the HOME and USERPROFILE environment variables are set and where they are pointing at, enter <b>%HOME%</b> or <b>%USERPROFILE%</b> into the address bar in Windows Explorer. If the environment variable is set, the folder it’s pointing at is opened.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Recreate the following structure within your <b>.nuke</b> folder:</td>
-            </tr>
-        </table>
-        <p class="cmdlinenumCont">~/plugins/OCIOConfigs/configs/&lt;config name&gt;</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Copy the contents of the config into the <b>config name</b> named folder. There should be a <b>luts</b> folder and <b>.ocio</b> file at the bare minimum.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If <span class="CustomProduct">Nuke</span> is already running, relaunch the application to apply the change.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">You can now select your configuration from the <b>Project Settings</b> &gt; <b>Color</b> &gt; <b>OCIO Config</b> dropdown.</td>
-            </tr>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   OCIO 色彩管理
+  </h2>
+  <p>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   使用 OpenColorIO 进行颜色管理。中的所有颜色空间
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,无论是应用程序附带的还是自定义颜色空间，都在 OCIO 配置文件中定义。
+  </p>
+  <p>
+   根据您正在使用的 OCIO 配置文件，可以在中设置许多颜色空间选项和角色 (颜色空间的别名)
+   <span class="CustomProduct">
+    核武器
+   </span>
+   。还有默认选项，这些选项会根据您使用的文件类型而改变。当选择默认选项时，颜色空间
+   <span class="CustomProduct">
+    核武器
+   </span>
+   它的设置列在括号中。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   使用中的选项
+   <b>
+    偏好
+   </b>
+   &gt;
+   <b>
+    项目默认值
+   </b>
+   &gt;
+   <b>
+    色彩管理
+   </b>
+   将它们应用于所有新项目。
+  </p>
+  <p>
+   <img class="cm10" src="../../assets/images/ug_images/color_management_377x214.png" style="width: 377;height: 214;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     的
+     <b>
+      色彩管理
+     </b>
+     下拉决定是否
+     <span class="CustomProduct">
+      核武器
+     </span>
+     使用从指定的配置中读取的 LUTs 或
+     <b>
+      核武器
+     </b>
+     本地 LUTs。选择
+     <b>
+      OCIO
+     </b>
+     使相关的 OCIO LUTs 可用于每个项目的脚本中的读写节点。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   除之外的所有 OCIO 配置
+   <b>
+    核武器-默认
+   </b>
+   自动将此控件切换到
+   <b>
+    OCIO
+   </b>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     设置要为此项目使用的 OpenColorIO 配置。
+    </td>
+   </tr>
+  </table>
+  <p class="numberedCont">
+   <span class="CustomProduct">
+    核武器
+   </span>
+   附带了许多默认配置，但您可以:
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   通过选择使用自定义 OCIO 配置文件
+   <b>
+    自定义
+   </b>
+   从
+   <b>
+    OpenColorIO 配置
+   </b>
+   下拉列表，然后输入文件路径，或
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   将您自己的配置添加到您的
+   <b>
+    。核武器
+   </b>
+   文件。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="#Adding_OCIO_Configurations">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     添加 OCIO 配置
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p class="numberedCont">
+   更改配置将更新
+   <b>
+    默认颜色转换
+   </b>
+   因此。如果所选配置对某些转换无效，将显示警告。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     的
+     <b>
+      工作空间
+     </b>
+     转换决定了哪些颜色空间文件应该转换为 (读) 和 (写)-它是由
+     <span class="CustomProduct">
+      核武器
+     </span>
+     引擎盖下。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   在早期版本中
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,这个色彩空间是隐藏的，因为
+   <b>
+    线性
+   </b>
+   总是被选为
+   <b>
+    工作空间
+   </b>
+   。你可能会发现一些操作在色彩空间中工作得更好
+   <b>
+    线性
+   </b>
+   。例如，一些转换在
+   <b>
+    堵塞
+   </b>
+   色彩空间。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     你可以使用
+     <b>
+      默认颜色转换
+     </b>
+     下拉菜单以覆盖查看器、缩略图等中的剪辑如何转换为
+     <b>
+      工作空间
+     </b>
+     .
+    </td>
+   </tr>
+  </table>
+  <p>
+   当
+   <b>
+    核武器
+   </b>
+   被选中，读写工作与以前版本的相同
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,没有集成的 OCIO 转换。当
+   <b>
+    OCIO
+   </b>
+   被选中:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   读取和写入使用 OCIO 变换，没有
+   <span class="CustomProduct">
+    核武器
+   </span>
+   应用于图像的内置 LUTs。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   读和写 colorspace 控件用当前选定的 OCIO 配置中定义的 colorspace 列表填充。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   的
+   <b>
+    默认 LUT 设置
+   </b>
+   下拉列表中还填充了在 OCIO 配置中定义的颜色空间或显示变换列表。默认值为每个菜单匹配默认的
+   <span class="CustomProductStudio">
+    核武器工作室
+   </span>
+   具有相同配置的项目。可以使用 Python 回调来覆盖这些默认值。有关附带的默认实现，请参见以下路径
+   <span class="CustomProduct">
+    核武器
+   </span>
+   :
+  </p>
+  <p class="cmdlinebulletCont">
+   &lt;Install_dir&gt;/plugins/nuke/colorspaces.py
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   的
+   <b>
+    工作空间
+   </b>
+   下拉菜单允许您更改 Nuke 内部用于图像处理的颜色空间。这将自动设置
+   <b>
+    在
+   </b>
+   写节点和查看器进程的颜色空间，以及
+   <b>
+    出去
+   </b>
+   读取节点的颜色空间。这默认为场景
+   <b>
+    线性
+   </b>
+   在 OCIO 配置中定义的角色。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="CustomProductStudio">
+    核武器工作室
+   </span>
+   -创建的 comps 不再包含自动注入的 OCIOColorspace 节点。相反，OCIO 颜色管理是在 comp 中自动设置的
+   <b>
+    项目设置
+   </b>
+   ,正确的 OCIO 颜色空间直接设置为读写节点。
+  </p>
+  <h2>
+   <a name="Adding_OCIO_Configurations">
+   </a>
+   添加 OCIO 配置
+  </h2>
+  <p>
+   您可以将自己的 OCIO 配置添加到
+   <span class="CustomProduct">
+    核武器
+   </span>
+   当它们变得可用时，例如 ACES 的新版本。您还可以添加旧配置以实现向后兼容性。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     导航到您的位置
+     <b>
+      。核武器
+     </b>
+     平台显示的文件。您可能需要创建一个
+     <b>
+      。核武器
+     </b>
+     文件夹 (如果不存在)。
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Linux:/users/登录名/。nuke
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   Mac OS X:/Users/登录名/。nuke
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   窗户: ~ \.nuke
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   在窗户上,
+   <b>
+    。核武器
+   </b>
+   文件夹可以在 HOME 环境变量指向的目录下找到。如果没有设置这个变量 (这是常见的),
+   <b>
+    。核武器
+   </b>
+   目录位于 USERPROFILE 环境变量指定的文件夹下，该变量通常是
+   <i>
+    驱动器号:
+   </i>
+   \ 文档和设置 \ 登录名 \ 或
+   <i>
+    驱动器号:
+   </i>
+   \ Users \ 登录名 \
+   <br/>
+   <br/>
+   要找出是否设置了 HOME 和 USERPROFILE 环境变量以及它们指向的位置，请输入
+   <b>
+    % HOME %
+   </b>
+   或
+   <b>
+    % USERPROFILE %
+   </b>
+   进入 Windows 资源管理器的地址栏。如果设置了环境变量，它指向的文件夹将被打开。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在您的数据库中重新创建以下结构
+     <b>
+      。核武器
+     </b>
+     文件夹:
+    </td>
+   </tr>
+  </table>
+  <p class="cmdlinenumCont">
+   ~/Plugins/OCIOConfigs/configs/&lt;配置名称&gt;
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将配置的内容复制到
+     <b>
+      配置名称
+     </b>
+     命名文件夹。应该有一个
+     <b>
+      Luts
+     </b>
+     文件夹和
+     <b>
+      。Ocio
+     </b>
+     最低限度的文件。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如果
+     <span class="CustomProduct">
+      核武器
+     </span>
+     已在运行，重新启动应用程序以应用更改。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     您现在可以从
+     <b>
+      项目设置
+     </b>
+     &gt;
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      OCIO 配置
+     </b>
+     下拉列表。
+    </td>
+   </tr>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -203,5 +633,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

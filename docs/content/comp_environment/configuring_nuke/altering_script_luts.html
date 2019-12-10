@@ -1,77 +1,224 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Configuring Nuke">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Altering a Script’s Lookup Tables (LUTs)</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/configuring_nuke/altering_script_luts.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Configuring Nuke" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   更改脚本的查找表 (LUTs)
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/configuring_nuke/altering_script_luts.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1><a name="kanchor250"></a>Altering a Script’s Lookup Tables (LUTs)</h1>
-        <p class="afterHead">A script’s lookup tables are curves that control the conversion between file or device color spaces and <span class="CustomProduct">Nuke</span>’s internal color space. In the Curve Editor, the x axis represents the input pixel values and the y axis the output pixel values (normalized to the 0-1 range). When applying LUTs, <span class="CustomProduct">Nuke</span> looks up the input value along the x axis to determine what the y value is to output. </p>
-        <p><span class="CustomProduct">Nuke</span> provides the following set of default LUTs: <span class="_Override" style="font-weight: bold;">linear</span>, <span class="_Override" style="font-weight: bold;">sRGB</span>, <span class="_Override" style="font-weight: bold;">rec709</span>, <span class="_Override" style="font-weight: bold;">Cineon<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">1<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The Cineon conversion is implemented as defined in Kodak’s Cineon documentation.</span></a>, Gamma1.8, Gamma2.2, Panalog<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">2<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The Panalog LUT is based on a log2lin conversion with a blackpoint of 64, whitepoint of 681, and a gamma of 0.89. </span></a></span>, <span class="_Override" style="font-weight: bold;">REDLog<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">3<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The REDLog LUT is based on a log2lin conversion with a blackpoint of 0, whitepoint of 1023, and a gamma of 1.022.</span></a>,</span> <span class="_Override" style="font-weight: bold;">ViperLog<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">4<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The ViperLog LUT is based on a log2lin conversion with a blackpoint of 0, whitepoint of 1023, and a gamma of 1.0.</span></a>, AlexaV3LogC<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">5<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The Alexa LogC LUT uses the formula provided by ARRI.</span></a>, PLogLin<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">6<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The PLogLin LUT uses the default values for the formula, mapping log 0.43457 (code value 445 on a 1024 scale) to linear 0.18 (mid-gray) assuming a negative gamma of 0.6 and a density per code value of 0.002. (This does factor in the fact that value ranges for a log image in Nuke are still scaled to 0-1 range.)</span></a>, SLog<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">7<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The Sony S-Log LUT comes from the Sony S-Log Whitepaper Version 1.110. For more information, see http://www.sony.co.uk/res/attachment/file/66/1237476953066.pdf. </span></a>, </span>and<span class="_Override" style="font-weight: bold;"> REDSpace<a href="javascript:void(0);" class="MCTextPopup popup popupHead" style="font-size: 0.9em; vertical-align: super">8<span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody"><span class="MCTextPopupArrow"></span> The REDSpace LUT is implemented as defined in a curve provided by RED.</span></a>.</span></p>
-        <p>You can also create an unlimited number of additional LUTs and edit or remove existing LUTs in the script’s settings.</p>
-        <p>By default, <span class="CustomProduct">Nuke</span> uses certain LUTs for certain file types or devices. In most cases, you do not need to touch these defaults. However, there may occasionally be cases when changing the defaults is necessary: for example, if your material has been shot with a camera that records in a custom color space, such as Panalog. In those cases, you can change the defaults in the script’s settings so that you don’t need to change the color space on each Read or Write node.</p>
-        <p>If you do not want to use the default LUT for reading or writing certain individual images, you can select the LUT to use in the corresponding Read or Write node’s controls. </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   <a name="kanchor250">
+   </a>
+   更改脚本的查找表 (LUTs)
+  </h1>
+  <p class="afterHead">
+   脚本的查找表是控制文件或设备颜色空间和
+   <span class="CustomProduct">
+    核武器
+   </span>
+   它的内部色彩空间。在曲线编辑器中，x 轴表示输入像素值，y 轴表示输出像素值 (标准化为 0-1 范围)。应用 LUTs 时,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   沿 x 轴查找输入值，以确定要输出的 y 值。
+  </p>
+  <p>
+   <span class="CustomProduct">
+    核武器
+   </span>
+   provides the following set of default LUTs:
+   <span class="_Override" style="font-weight: bold;">
+    线性
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    SRGB
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    Rec709
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    Cineon
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     1
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      根据柯达的 Cineon 文档中的定义，实现了 Cineon 转换。
+     </span>
+    </a>
+    ,Gamma1.8，Gamma2.2，Panalog
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     2
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      Panalog LUT 基于 log2lin 转换，黑点为 64，白点为 681，伽马为 0.89。
+     </span>
+    </a>
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    REDLog
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     3
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      REDLog LUT 基于 log2lin 转换，黑点为 0，白点为 1023，伽马为 1.022。
+     </span>
+    </a>
+    ,
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    ViperLog
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     4
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      ViperLog LUT 基于 log2lin 转换，黑点为 0，白点为 1023，伽马为 1.0。
+     </span>
+    </a>
+    ,AlexaV3LogC
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     5
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      Alexa LogC LUT 使用 ARRI 提供的公式。
+     </span>
+    </a>
+    ,普洛格林
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     6
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      PLogLin LUT 使用公式的默认值，将日志 0.43457 (445 刻度上的代码值 1024) 映射到线性 0.18 (中灰色) 假设负伽马值为 0.6，每码密度值为 0.002。(这确实考虑到了 Nuke 中日志图像的值范围仍然缩放到 0-1 范围。)
+     </span>
+    </a>
+    ,SLog
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     7
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      索尼 S-Log LUT 来自索尼 S-Log 白皮书 1.110 版。有关更多信息，请参见 http://www.sony.co.uk/res/attachment/file/66/1237476953066.pdf。
+     </span>
+    </a>
+    ,
+   </span>
+   and
+   <span class="_Override" style="font-weight: bold;">
+    REDSpace
+    <a class="MCTextPopup popup popupHead" href="javascript:void(0);" style="font-size: 0.9em; vertical-align: super">
+     8
+     <span class="MCTextPopupBody MCTextPopupBody_Closed needs-pie popupBody">
+      <span class="MCTextPopupArrow">
+      </span>
+      REDSpace LUT 按照 RED 提供的曲线中的定义来实现。
+     </span>
+    </a>
+    .
+   </span>
+  </p>
+  <p>
+   您还可以创建无限数量的其他 LUTs，并在脚本设置中编辑或删除现有的 LUTs。
+  </p>
+  <p>
+   默认情况下,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   对某些文件类型或设备使用某些 lut。在大多数情况下，您不需要触及这些默认值。然而，有时可能需要更改默认值: 例如，如果您的材料是用记录在自定义颜色空间 (如 Panalog) 中的相机拍摄的。在这些情况下，您可以更改脚本设置中的默认值，这样您就不需要更改每个读或写节点上的颜色空间。
+  </p>
+  <p>
+   如果您不想使用默认 LUT 来读取或写入某些单独的图像，您可以选择在相应的读或写节点的控件中使用的 LUT。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -85,5 +232,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

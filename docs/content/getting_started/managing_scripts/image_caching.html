@@ -1,82 +1,279 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Managing Scripts">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Image Caching</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#getting_started/managing_scripts/image_caching.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Managing Scripts" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   图像缓存
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#getting_started/managing_scripts/image_caching.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Image Caching</h1>
-        <p class="afterHead">To ensure fast playback, <span class="CustomProduct">Nuke</span> uses several ways of caching data. Some of these include the following:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The Viewer cache (also referred to as disk cache, which shares the DiskCache node's location)  saves the scanlines of the displayed image to the disk cache directory. This location can be set in the <b>Preferences</b> panel (see <a href="cache_directory.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">The Cache Directory</span></a> and <a href="defining_settings_caching.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Defining the Settings for Caching</span></a>). When the Viewer displays an image, it reads from this cache of pre-rendered scanlines. This way, <span class="CustomProduct">Nuke</span> can quickly display image data when returning to a previously cached set of scanlines. You can specify the total amount of space for disk cache in <b>Preferences</b> &gt; <b>Performance</b> &gt; <b>Caching</b> &gt; <b>comp disk cache size</b> . If the disk cache needs more space, the cache that was least recently used is disposed of to free more space. You can clear all of the disk cache by selecting <b>Cache</b> &gt; <b>Clear Disk Cache</b> from the top menu bar. </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>Clearing the Viewer cache (disk cache) also clears the DiskCache node data.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The Buffer cache stores scanline data as calculated at selected intermediate stages in the Node Graph. This speeds up the end result of the Node Graph by caching parts of the Node Graph that haven't  changed. Nuke automatically determines these intermediate cache points based on several things, including the Node Graph structure, which properties panels are open, and so on. </p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can also force this behavior manually by selecting the <b>cached</b> checkbox in the node properties panel.</p>
-        <p class="bulletedCont">The Buffer cache uses RAM and you can specify the total amount of space in <b>Preferences</b> &gt; <b>Performance &gt; Caching </b>&gt;<b> comp cache size (%)</b>. When the buffer cache needs more space, it disposes of the first cached data that was stored (first in, first out). To clear all of the buffer cache you can either select <b>Cache</b> &gt; <b>Clear Buffers</b> from the top menu bar, or press <b>F12 </b>on the keyboard. </p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>The Playback cache also helps improve smooth playback. Playback cache uses RAM to temporarily store the frames in the Viewer. When you first play back a clip in the Viewer, a green bar  appears automatically displaying the progress of the playback cache. After the playback cache is complete (and the green line is complete) the frames play back smoothly. You can temporarily disable playback caching by either selecting the pause button above the Viewer or by pressing <b>P</b>. To clear playback cache select <b>Cache</b> &gt; <b>Clear Playback Cache</b>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>You can use the DiskCache node to cache parts of the Node Graph. This caches scanlines to disk from its input as they are requested by its output. DiskCache data is stored in the same place as the Viewer cache data and can share the data provided the Viewer is operating in full float (32-bit). See <a href="using_diskcache_node.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Using the DiskCache Node</span></a> for more information.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can clear all caches by selecting <b>Cache</b> &gt; <b>Clear All</b> from the menu bar.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you find that loading files from a remote server slows down your processing, you can localize the files  that you’re working with for speedier processing. See <a href="caching_files_locally.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Caching Files Locally for Better Performance</span></a>. </p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   图像缓存
+  </h1>
+  <p class="afterHead">
+   为了确保快速播放,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   使用几种缓存数据的方法。其中一些包括以下内容:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   查看器缓存 (也称为磁盘缓存，共享磁盘缓存节点的位置) 将显示图像的扫描线保存到磁盘缓存目录。此位置可以在
+   <b>
+    偏好
+   </b>
+   面板 (见
+   <a class="noPage MCXref xref xrefnoPage" href="cache_directory.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     缓存目录
+    </span>
+   </a>
+   和
+   <a class="noPage MCXref xref xrefnoPage" href="defining_settings_caching.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     定义缓存的设置
+    </span>
+   </a>
+   )。当查看器显示图像时，它从预渲染扫描线的缓存中读取。这样,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   返回到以前缓存的一组扫描线时，可以快速显示图像数据。可以在中指定磁盘缓存的总空间量
+   <b>
+    偏好
+   </b>
+   &gt;
+   <b>
+    性能
+   </b>
+   &gt;
+   <b>
+    缓存
+   </b>
+   &gt;
+   <b>
+    Comp 磁盘缓存大小
+   </b>
+   。如果磁盘缓存需要更多空间，最近使用最少的缓存将被释放以释放更多空间。您可以通过选择清除所有磁盘缓存
+   <b>
+    缓存
+   </b>
+   &gt;
+   <b>
+    清除磁盘缓存
+   </b>
+   从顶部菜单栏。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   清除查看器缓存 (磁盘缓存) 也会清除磁盘缓存节点数据。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   缓冲区缓存存储在节点图中选定的中间阶段计算的扫描线数据。这通过缓存节点图中没有更改的部分来加快节点图的最终结果。Nuke 根据几件事自动确定这些中间缓存点，包括节点图结构、哪些属性面板是开放的，等等。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您也可以通过选择手动强制此行为
+   <b>
+    缓存
+   </b>
+   节点属性面板中的复选框。
+  </p>
+  <p class="bulletedCont">
+   缓冲区缓存使用 RAM，您可以指定中的总空间量
+   <b>
+    偏好
+   </b>
+   &gt;
+   <b>
+    性能&gt; 缓存
+   </b>
+   &gt;
+   <b>
+    Comp 缓存大小 (%)
+   </b>
+   。当缓冲区缓存需要更多空间时，它会处理存储的第一个缓存数据 (先入，先出)。要清除所有缓冲区缓存，您可以选择
+   <b>
+    缓存
+   </b>
+   &gt;
+   <b>
+    清除缓冲区
+   </b>
+   从顶部菜单栏，或按
+   <b>
+    F12
+   </b>
+   在键盘上。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   回放缓存也有助于改善平滑回放。回放缓存使用 RAM 将帧临时存储在查看器中。首次在查看器中播放剪辑时，会出现一个绿色条，自动显示播放缓存的进度。回放缓存完成 (绿线完成) 后，帧平滑地回放。您可以通过选择查看器上方的暂停按钮或按
+   <b>
+    P
+   </b>
+   。要清除播放缓存，请选择
+   <b>
+    缓存
+   </b>
+   &gt;
+   <b>
+    清除播放缓存
+   </b>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   可以使用 DiskCache 节点缓存节点图的部分。这将扫描线从其输入缓存到磁盘，因为它们是由其输出请求的。DiskCache 数据存储在与查看器缓存数据相同的位置，如果查看器以完全浮点数 (32 位) 运行，则可以共享数据。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="using_diskcache_node.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用 DiskCache 节点
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   您可以通过选择清除所有缓存
+   <b>
+    缓存
+   </b>
+   &gt;
+   <b>
+    清除所有
+   </b>
+   从菜单栏。
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果您发现从远程服务器加载文件会减慢处理速度，您可以本地化您正在使用的文件，以加快处理速度。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="caching_files_locally.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     本地缓存文件以获得更好的性能
+    </span>
+   </a>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -90,5 +287,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

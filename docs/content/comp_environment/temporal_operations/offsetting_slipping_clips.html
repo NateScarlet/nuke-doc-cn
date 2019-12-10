@@ -1,263 +1,704 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Temporal Operations|Editing Clips">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Offsetting and Slipping Clips</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/temporal_operations/offsetting_slipping_clips.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Temporal Operations|Editing Clips" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   偏移和滑动剪辑
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/temporal_operations/offsetting_slipping_clips.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2><a name="kanchor164"></a>Offsetting and Slipping Clips</h2>
-        <h3>Offsetting Clips</h3>
-        <p class="afterHead"><i>Offsetting</i> a clip refers to moving the clip backwards or forwards in time.  In <span class="CustomProduct">Nuke</span>, you can offset clips using the TimeOffset and TimeClip nodes. </p>
-        <p class="afterHead">Unlike TimeClip, the TimeOffset node can also be used with 3D nodes, for example, if you want to offset camera times. </p>
-        <h4>To Offset a Clip Using the TimeOffset Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click <b>Time &gt; TimeOffset </b>to insert a TimeOffset node into your script. (Place it downstream from the element to which you want to offset.)</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Attach a Viewer to this node, so you can see the effect of your changes.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the TimeOffset properties panel, check <b>reverse input</b> if you want to invert the clip (make the last frame the first, and so on).</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the <b>time offset (frames)</b> field, type the number of frames by which you want to offset the clip. Enter a negative value to subtract frames from the head of the clip. Enter a positive value to add frames to the head of the clip.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Adjust the script length for the new output range. Select <b>Edit</b> &gt;<b> Project Settings</b>, and enter <b>frame range</b> values that match the output range you specified.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>It’s not mandatory that you adjust the script’s frame range after slipping the clip. If you don’t, the Viewer fills the empty frames at the tail of the clip by holding on the last frame.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>If you are using 3D nodes, such as cards, spheres, or cubes, together with a TimeOffset node, you can view the object in just a specified frame range by setting the <span class="_Override" style="font-weight: bold;">frame range</span> control for the object, and attaching a Viewer node to the TimeOffset node. Be sure to set the timeline range to <span class="_Override" style="font-weight: bold;">Input</span> to view the offset.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Using TimeOffset, you can also offset clips directly in the Dope Sheet. See <a href="../../getting_started/using_interface/animating_parameters.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Parameters</span></a> for more information.</p>
-        <h3>Slipping Clips</h3>
-        <p class="afterHead"><span class="_Override" style="font-style: italic;">Slipping</span> a clip refers to changing the content of the clip that is seen, but not the position or duration.  In <span class="CustomProduct">Nuke</span>, you can slip clips using the TimeClip node. </p>
-        <p class="afterHead">Just like TimeOffset, the TimeClip node also lets you move clips forwards or backwards in time and reverse the order of frames in a clip. In addition to this basic functionality, you can set the frame range for the clip, set what happens to frames outside of this frame range, fade the clip to or from black, and set expressions to adjust the node’s behavior. Using TimeClip, you can also slip the clip directly in the DopeSheet, which can be handy if you prefer editing clips on a timeline.</p>
-        <h4>To Slip a Clip Using the TimeClip Node</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click <span class="_Override" style="font-weight: bold;">Time</span> &gt; <span class="_Override" style="font-weight: bold;">TimeClip</span> to insert a TimeClip node into your script. Place it downstream from the element that you want to adjust.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Attach a Viewer to the TimeClip node to see the effect of your changes.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the <span class="_Override" style="font-weight: bold;">Fade In</span> and<span class="_Override" style="font-weight: bold;"> Fade Out</span> fields of the TimeClip properties panel, type the number of frames, if any, you want to fade to or from black.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the new <span class="_Override" style="font-weight: bold;">frame range</span> for your clip by entering the first and last frame numbers.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">In the <span class="_Override" style="font-weight: bold;">before</span> dropdown menu, set how <span class="CustomProduct">Nuke</span> should treat the frames before the first frame in the range (examples refer to a 20-frame sequence with a first frame value of 5):</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">hold</span> - the first frame in the sequence is held until the first frame is reached. Example: 1, 1, 1, 1, 1, 2, 3, 4, etc.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">loop</span> - substitutes an equal number of frames, effectively creating a clip loop. Example: 17, 18, 19, 20, 1, 2, 3, 4, etc.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bounce</span> - substitutes a reversed equal number of frames, creating a clip bounce. Example: 5, 4, 3, 2, 1, 2, 3, 4, etc.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">black</span> - frames are black until the first frame is reached.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the <span class="_Override" style="font-weight: bold;">after</span> dropdown menu, set  how <span class="CustomProduct">Nuke</span> should treat the frames after the <span class="_Override" style="font-weight: bold;">last</span> frame (examples refer to a 20 frame sequence with a last frame value of 5):</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">hold</span> - the last frame in the sequence is held until the end of the sequence is reached. Example: 16, 17, 18, 19, 20, 20, 20, 20, etc.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">loop</span> - substitutes an equal number of frames, effectively creating a clip loop. Example: 16, 17, 18, 19, 20, 1, 2, 3, 4, etc.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">bounce</span> - substitutes a reversed equal number of frames, creating a clip bounce. Example: 16, 17, 18, 19, 20, 19, 18, 17, etc.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">black</span> - frames are black from last until the end of the sequence is reached.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Use the <span class="_Override" style="font-weight: bold;">frame</span> dropdown to set the frame mode:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">expression</span> - Lets you enter an expression in the field on the right. The expression changes the relation between the current frame and the frame read in.</p>
-        <p class="processBulletCont">For example, if your clip begins from image.0500.rgb and you want to place this first frame at frame 1 rather than frame 500, you can use the expression <span class="_Override" style="font-weight: bold;">frame+499</span>. This way, 499 frames are added to the current frame to get the number of the frame that’s read in. At frame 1, image.0500.rgb is read in; at frame 2, image.0501.rgb is read in; and so on.</p>
-        <p class="processBulletCont">Another example of an expression is <span class="_Override" style="font-weight: bold;">frame*2</span>. This expression multiplies the current frame by two to get the number of the frame that’s read in. This way, only every other frame in the clip is used. At frame 1, image.0002.rgb is read in; at frame 2, image.0004.rgb is read in; at frame 3, image.0006.rgb is read in; and so on.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">start at</span> - Lets you enter a start frame number in the field on the right. This specifies the frame where the first frame in the sequence is read in. In other words, all frames are offset so that the clip starts at the specified frame.</p>
-        <p class="processBulletCont">For example, if your sequence begins from image.0500.rgb and you enter <span class="_Override" style="font-weight: bold;">1</span> in the field, image0500.rgb is read in at frame 1. Similarly, if you enter <span class="_Override" style="font-weight: bold;">100</span> in the field, image0500.rgb is read in at frame 100.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">offset</span> - Lets you enter a constant offset in the field on the right. This constant value is added to the current frame to get the number of the frame that’s read in. </p>
-        <p class="processBulletCont">For example, if your clip begins from image.0500.rgb and you want to place this first frame at frame 1 rather than frame 500, you can use <span class="_Override" style="font-weight: bold;">499</span> as the constant offset. This way, 499 is added to the current frame to get the frame that’s read in. At frame 1, image.0500.rgb is read in; at frame 2, image.0501 is read in, and so on. </p>
-        <p class="processBulletCont">You can also use negative values as the constant offset. For example, if you use the value <span class="_Override" style="font-weight: bold;">-10</span>, <span class="CustomProduct">Nuke</span> subtracts ten from the current frame to get the frame that’s read in. At frame 20, image.0010.rgb is read in; at frame 21, image.0011.rgb is read in; and so on.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">To reverse the clip within the specified <span class="_Override" style="font-weight: bold;">frame range</span>, check <span class="_Override" style="font-weight: bold;">reverse</span>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">While the <span class="_Override" style="font-weight: bold;">original range</span> fields don't actually affect the output of the node, they help make things clear in the Dope Sheet. Open the Dope Sheet and enter some values here and observe how they affect the TimeClip lines.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>10. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="10. &#160;">If necessary, adjust the script length for the new output range. Select <b>Edit</b> &gt;<b> Project Settings</b>, and enter <b>frame range</b> values that match the output range you specified.</td>
-            </tr>
-        </table>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>Using TimeClip, you can also offset, trim, and slip clips directly in the Dope Sheet. See <a href="../../getting_started/using_interface/animating_parameters.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Parameters</span></a> for more information.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   <a name="kanchor164">
+   </a>
+   偏移和滑动剪辑
+  </h2>
+  <h3>
+   偏移剪辑
+  </h3>
+  <p class="afterHead">
+   <i>
+    偏移
+   </i>
+   剪辑是指在时间上向后或向前移动剪辑。在
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,您可以使用时间偏移和时间片节点来偏移剪辑。
+  </p>
+  <p class="afterHead">
+   与 TimeClip 不同，time offset 节点也可以与 3D 节点一起使用，例如，如果要偏移相机时间。
+  </p>
+  <h4>
+   使用时间偏移节点偏移剪辑
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击
+     <b>
+      时间&gt; 时间偏移
+     </b>
+     将时间偏移节点插入到脚本中。(将其放置在您要偏移的元素的下游。)
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将查看器附加到此节点，以便您可以看到更改的效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在 “时间偏移属性” 面板中，选中
+     <b>
+      反向输入
+     </b>
+     如果你想反转剪辑 (使最后一帧成为第一帧，依此类推)。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在
+     <b>
+      时间偏移 (帧)
+     </b>
+     字段中，键入要偏移剪辑的帧数。输入负值以从片段的头部减去帧。输入正值以将帧添加到剪辑的头部。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     调整新输出范围的脚本长度。选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      项目设置
+     </b>
+     ,然后输入
+     <b>
+      帧范围
+     </b>
+     与指定的输出范围匹配的值。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   滑动剪辑后调整脚本的帧范围不是强制性的。如果不这样做，观众通过保持最后一帧来填充剪辑尾部的空帧。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   如果使用 3D 节点 (如卡片、球体或立方体) 和时间偏移节点，则可以通过设置
+   <span class="_Override" style="font-weight: bold;">
+    帧范围
+   </span>
+   控件，并将查看器节点附加到 TimeOffset 节点。确保将时间线范围设置为
+   <span class="_Override" style="font-weight: bold;">
+    输入
+   </span>
+   查看偏移。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   使用 TimeOffset，还可以直接在摄影表中偏移剪辑。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="../../getting_started/using_interface/animating_parameters.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     动画参数
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <h3>
+   滑动剪辑
+  </h3>
+  <p class="afterHead">
+   <span class="_Override" style="font-style: italic;">
+    滑倒
+   </span>
+   剪辑是指更改所看到的剪辑的内容，而不是位置或持续时间。在
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,您可以使用 “时间片” 节点滑动剪辑。
+  </p>
+  <p class="afterHead">
+   就像时间偏移一样，时间片节点还允许您在时间上向前或向后移动剪辑，并反转剪辑中帧的顺序。除了这个基本功能之外，您还可以设置剪辑的帧范围，设置此帧范围之外的帧发生的情况，将剪辑淡入黑色或从黑色淡出, 并设置表达式来调整节点的行为。使用 TimeClip，您也可以直接将剪辑滑入 DopeSheet 中，如果您更喜欢在时间线上编辑剪辑，这可能会很方便。
+  </p>
+  <h4>
+   使用时间片节点滑动剪辑
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击
+     <span class="_Override" style="font-weight: bold;">
+      时间
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      TimeClip
+     </span>
+     将时间片节点插入到脚本中。将其置于您要调整的元素的下游。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     将查看器附加到 TimeClip 节点以查看更改的效果。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在
+     <span class="_Override" style="font-weight: bold;">
+      淡入
+     </span>
+     和
+     <span class="_Override" style="font-weight: bold;">
+      淡出
+     </span>
+     在 “时间片属性” 面板的字段中，键入要淡入或从黑色淡出的帧数 (如果有)。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置新的
+     <span class="_Override" style="font-weight: bold;">
+      帧范围
+     </span>
+     为您的剪辑输入第一帧和最后帧编号。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     在
+     <span class="_Override" style="font-weight: bold;">
+      之前
+     </span>
+     下拉菜单，设置如何
+     <span class="CustomProduct">
+      核武器
+     </span>
+     应该处理范围内第一帧之前的帧 (示例指第一帧值为 5 的 20 帧序列):
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    保持
+   </span>
+   -序列中的第一帧一直保持，直到到达第一帧。例: 1 、 2 、 3 、 4 等。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    循环
+   </span>
+   -替换相同数量的帧，有效地创建剪辑循环。例: 17 、 18 、 19 、 20 、 1 、 2 、 3 、 4 等。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    反弹
+   </span>
+   -替换反转相等数量的帧，创建剪辑反弹。例: 5 、 4 、 3 、 2 、 1 、 2 、 3 、 4 等。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    黑色
+   </span>
+   -帧是黑色的，直到到达第一帧。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在
+     <span class="_Override" style="font-weight: bold;">
+      之后
+     </span>
+     下拉菜单，设置如何
+     <span class="CustomProduct">
+      核武器
+     </span>
+     应该处理帧后
+     <span class="_Override" style="font-weight: bold;">
+      最后
+     </span>
+     帧 (示例指最后帧值为 5 的 20 帧序列):
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    保持
+   </span>
+   -序列中的最后一帧一直保持到序列的结束。例: 16 、 17 、 18 、 19 、 20 等。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    循环
+   </span>
+   -替换相同数量的帧，有效地创建剪辑循环。例: 16 、 17 、 18 、 19 、 20 、 1 、 2 、 3 、 4 等。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    反弹
+   </span>
+   -替换反转相等数量的帧，创建剪辑反弹。例: 16 、 17 、 18 、 19 、 20 、 19 、 18 、 17 等。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    黑色
+   </span>
+   -帧从最后到序列结束都是黑色的。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     使用
+     <span class="_Override" style="font-weight: bold;">
+      框架
+     </span>
+     下拉菜单设置帧模式:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    表达
+   </span>
+   -允许您在右侧的字段中输入表达式。表达式将更改当前帧和读入的帧之间的关系。
+  </p>
+  <p class="processBulletCont">
+   例如，如果剪辑从 image.0500.rgb 开始，并且您希望将第一帧放在帧 1 而不是帧 500，则可以使用表达式
+   <span class="_Override" style="font-weight: bold;">
+    框架 499
+   </span>
+   。这样，499 帧被添加到当前帧中，以获取读取的帧的编号。在帧 1，读入 image0500.rgb; 在帧 2，读入 image0501.rgb; 依此类推。
+  </p>
+  <p class="processBulletCont">
+   表达式的另一个例子是
+   <span class="_Override" style="font-weight: bold;">
+    框架 * 2
+   </span>
+   。此表达式将当前帧乘以 2，以获取读取的帧的编号。这样，只使用剪辑中的每个其他帧。在帧 1，读入 image.0002.rgb; 在帧 2，读入 image.0004.rgb; 在帧 3，读入 image.0006.rgb; 依此类推。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    从开始
+   </span>
+   -允许您在右侧的字段中输入开始帧编号。这指定读取序列中第一帧的帧。换句话说，所有帧都是偏移的，以便剪辑从指定的帧开始。
+  </p>
+  <p class="processBulletCont">
+   例如，如果您的序列从 image.0500.rgb 开始，并输入
+   <span class="_Override" style="font-weight: bold;">
+    1
+   </span>
+   在该字段中，image0500.rgb 在帧 1 处读入。同样，如果输入
+   <span class="_Override" style="font-weight: bold;">
+    100
+   </span>
+   在该字段中，image0500.rgb 在第 100 帧读入。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    偏移
+   </span>
+   -允许您在右侧的字段中输入恒定偏移。将此常数值添加到当前帧中，以获取读取的帧的编号。
+  </p>
+  <p class="processBulletCont">
+   例如，如果剪辑从 image.0500.rgb 开始，并且您希望将第一帧放在帧 1 而不是帧 500，则可以使用
+   <span class="_Override" style="font-weight: bold;">
+    499
+   </span>
+   作为常数偏移。通过这种方式，499 被添加到当前帧中，以获取读取的帧。在帧 1，image.0500.rgb 读入; 在帧 2，image.0501 读入，依此类推。
+  </p>
+  <p class="processBulletCont">
+   也可以使用负值作为常数偏移。例如，如果使用值
+   <span class="_Override" style="font-weight: bold;">
+    -10
+   </span>
+   ,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   从当前帧中减去 10，以获得读入的帧。在 20 帧时，读入 image.0010.rgb; 在 21 帧时，读入 image.0011.rgb; 依此类推。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     在指定的范围内反转剪辑
+     <span class="_Override" style="font-weight: bold;">
+      帧范围
+     </span>
+     ,检查
+     <span class="_Override" style="font-weight: bold;">
+      反向
+     </span>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     而在
+     <span class="_Override" style="font-weight: bold;">
+      原始范围
+     </span>
+     字段实际上不会影响节点的输出，它们有助于在涂料表中弄清楚问题。打开摄影表，在此输入一些值，观察它们如何影响时间线。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      10.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="10.  " valign="top">
+     如有必要，调整新输出范围的脚本长度。选择
+     <b>
+      编辑
+     </b>
+     &gt;
+     <b>
+      项目设置
+     </b>
+     ,然后输入
+     <b>
+      帧范围
+     </b>
+     与指定的输出范围匹配的值。
+    </td>
+   </tr>
+  </table>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   使用 TimeClip，您还可以直接在涂料表中偏移、修剪和滑动剪辑。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="../../getting_started/using_interface/animating_parameters.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     动画参数
+    </span>
+   </a>
+   欲了解更多信息。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -271,5 +712,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

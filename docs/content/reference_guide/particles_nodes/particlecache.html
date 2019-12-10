@@ -1,293 +1,533 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Reference Guide|Particles Nodes">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>ParticleCache</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#reference_guide/particles_nodes/particlecache.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Reference Guide|Particles Nodes" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   ParticleCache
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#reference_guide/particles_nodes/particlecache.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>ParticleCache</h1>
-        <p>The ParticleCache node allows you to store the geometry simulation for a particle system to file. It can then be read back in different sessions of <span class="CustomProduct">Nuke</span> or on different machines without the need for recalculation.</p>
-        <p>This allows a particle system to be produced by an artist and then used by a render farm without recalculation, speeding up render times.</p>
-        <p>Caching does not replace the particle system rendered, as it relies on its inputs.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>ParticleCache nodes must be placed at the bottom of a single particle system or multiple merged particle systems. They cannot be placed beneath a Scene node connected to two separate streams or in the middle of a string of particle nodes.</p>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesRGContent">Inputs and Controls</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <table style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 104px;" />
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 127px;" />
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                            <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Connection Type</p>
-                            </th>
-                            <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Connection Name</p>
-                            </th>
-                            <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                                <p class="CellHeading">Function</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>Input</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>particles</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p>The particle system you intend to write to cache.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');" class="TableStyle-Master_TableStyle" cellspacing="0">
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 95px;" />
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 112px;" />
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 92px;" />
-                    <col class="TableStyle-Master_TableStyle-Column-Column1" />
-                    <thead>
-                        <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                            <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Control (UI)</p>
-                            </th>
-                            <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Knob (Scripting)</p>
-                            </th>
-                            <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                                <p class="CellHeading">Default Value</p>
-                            </th>
-                            <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                                <p class="CellHeading">Function</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">Cache Tab</td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>file</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>file</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Sets the file path to save the particle system to using the <b>.nkpc</b> file extension.</p>
-                                <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>ParticleCache may need to render up to 100 sub-frames. To account for this, it adds decimals to the file name's frame number. For example, if the file name in the <b>file</b> field is <b>particle_cache.####.nkpc</b>, ParticleCache may generate files called <b>particle_cache.0001.01.nkpc</b>, <b>particle_cache.0001.02.nkpc</b>, and so on.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>padding</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>particle_cache_padding</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>1</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>The number of extra frames added to the start and end of the ParticleCache render. This is required if you have nodes downstream requesting  frames outside the normal frame range due to motion blur (for example, if you have increased the <b>shutter</b> value in a downstream ScanlineRender node).</p>
-                                <p>If you get a "Particle cache data not found" error when you enable <b>read from file</b>, you need to increase this value.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>Render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>N/A</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>Click to render the particle system to the location specified in the <b>file</b> control.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>read from file</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>particle_cache_read_from_file</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>disabled</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>When enabled, use the particle system rendered  to the location specified in the <b>file</b> control.</p>
-                                <p>When disabled, re-evaluate the particle system as normal.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
-                                <p colspan="4">Python Tab (These controls are for Python callbacks and can be used to have Python functions automatically called when various
-events happen in <span class="CustomProduct">Nuke</span>.)</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>before render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>beforeRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>These functions run prior to starting rendering in execute(). If they
-throw an exception, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>before each frame</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>beforeFrameRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>These functions run prior to starting rendering of each individual
-frame. If they throw an exception, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>after each frame</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>afterFrameRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                                <p>These functions run after each frame is finished rendering. They are
-not called if the render aborts. If they throw an exception, the render
-aborts.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>after render</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>afterRender</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                                <p>These functions run after rendering of all frames is finished. If they
-throw an error, the render aborts.</p>
-                            </td>
-                        </tr>
-                        <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>render progress</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>renderProgress</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                                <p>none</p>
-                            </td>
-                            <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                                <p>These functions run during rendering to determine progress or failure.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesUGContent">Step-by-Step Guides</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <p><a href="../../comp_environment/particles/caching_particles.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Caching Particles</span></a>
-                </p>
-            </div>
-        </div>
-        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /><span class="Master_VariablesVideoContent">Video Tutorials</span></a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Nuke 8.0 - ParticleCache
-                </a></span>
-                    <div class="MCDropDownBody dropDownBody"><iframe src="https://player.vimeo.com/video/81086651?color=f9b41b;byline=0;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                        <p><a href="https://vimeo.com/81086651" target="_blank">ParticleCache - NUKE 8 Tutorial</a> from <a href="https://vimeo.com/thefoundry" target="_blank">Foundry</a> on <a href="https://vimeo.com/" target="_blank">Vimeo</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   ParticleCache
+  </h1>
+  <p>
+   ParticleCache 节点允许您存储要存档的粒子系统的几何模拟。然后可以在不同的会话中读取
+   <span class="CustomProduct">
+    核武器
+   </span>
+   或者在不同的机器上，而不需要重新计算。
+  </p>
+  <p>
+   这允许艺术家制作粒子系统，然后由渲染场使用，而无需重新计算，从而加快渲染时间。
+  </p>
+  <p>
+   缓存不会替换渲染的粒子系统，因为它依赖于其输入。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   ParticleCache 节点必须放置在单个粒子系统或多个合并粒子系统的底部。它们不能放置在连接到两个独立流的场景节点下，也不能放置在一串粒子节点的中间。
+  </p>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesRGContent">
+      输入和控制
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <table cellspacing="0" class="TableStyle-Master_TableStyle" style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 104px;"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 127px;"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1">
+       <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+        <p class="CellHeading">
+         连接类型
+        </p>
+       </th>
+       <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+        <p class="CellHeading">
+         连接名称
+        </p>
+       </th>
+       <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+        <p class="CellHeading">
+         函数
+        </p>
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         输入
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         粒子
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p>
+         要写入缓存的粒子系统。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table cellspacing="0" class="TableStyle-Master_TableStyle" style="width: 100%;mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');">
+     <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 95px;"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 112px;"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1" style="width: 92px;"/>
+     <col class="TableStyle-Master_TableStyle-Column-Column1"/>
+     <thead>
+      <tr class="TableStyle-Master_TableStyle-Head-Header1">
+       <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+        <p class="CellHeading">
+         控制 (UI)
+        </p>
+       </th>
+       <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+        <p class="CellHeading">
+         旋钮 (脚本)
+        </p>
+       </th>
+       <th class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+        <p class="CellHeading">
+         默认值
+        </p>
+       </th>
+       <th class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+        <p class="CellHeading">
+         函数
+        </p>
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        缓存选项卡
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         文件
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         文件
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         将文件路径设置为使用
+         <b>
+          。Nkpc
+         </b>
+         文件扩展名。
+        </p>
+        <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+         <span class="autonumber">
+          <span>
+           <span class="mcFormatColor" style="color: Black;">
+            注意:
+           </span>
+          </span>
+         </span>
+         ParticleCache 可能需要渲染 100 个子帧。为此，它将小数添加到文件名的帧号中。例如，如果文件中的文件名
+         <b>
+          文件
+         </b>
+         字段是
+         <b>
+          Particle_cache.#.nkpc
+         </b>
+         ,ParticleCache 可能会生成名为
+         <b>
+          Particle_cache.0001.01.nkpc
+         </b>
+         ,
+         <b>
+          Particle_cache.0001.02.nkpc
+         </b>
+         等等。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         填充
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Particle_cache_padding
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         1
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         添加到 ParticleCache 渲染开始和结束的额外帧数。如果由于运动模糊，下游节点请求超出正常帧范围的帧，则需要这样做 (例如，如果增加了
+         <b>
+          快门
+         </b>
+         下游 ScanlineRender 节点中的值)。
+        </p>
+        <p>
+         如果启用时出现 “找不到粒子缓存数据” 错误
+         <b>
+          从文件中读取
+         </b>
+         ,您需要增加此值。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         渲染
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         渲染
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         N/A
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         单击以将粒子系统渲染到在
+         <b>
+          文件
+         </b>
+         控制。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         从文件中读取
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         Particle_cache_read_from_file
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         残疾人
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         启用时，使用渲染到指定位置的粒子系统
+         <b>
+          文件
+         </b>
+         控制。
+        </p>
+        <p>
+         禁用时，将粒子系统重新评估为正常状态。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="4">
+        <p colspan="4">
+         Python Tab (这些控件用于 Python 回调，可用于在各种情况下自动调用 Python 函数
+事件发生在
+         <span class="CustomProduct">
+          核武器
+         </span>
+         )。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         渲染前
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         BeforeRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         这些函数在 execute () 中开始呈现之前运行。如果他们
+抛出异常，渲染中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         在每帧之前
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         BeforeFrameRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         这些函数在开始呈现每个个体之前运行
+框架。如果它们抛出异常，渲染将中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         每帧后
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         AfterFrameRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+        <p>
+         这些函数在每个帧完成渲染后运行。他们是
+如果渲染中止，则不调用。如果他们抛出异常，渲染
+中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body2">
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         渲染后
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         AfterRender
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+        <p>
+         这些函数在所有帧的渲染完成后运行。如果他们
+抛出错误，渲染中止。
+        </p>
+       </td>
+      </tr>
+      <tr class="TableStyle-Master_TableStyle-Body-Body1">
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         渲染进度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         渲染进度
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+        <p>
+         没有
+        </p>
+       </td>
+       <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+        <p>
+         这些函数在渲染期间运行，以确定进度或失败。
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesUGContent">
+      一步一步的指导
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <p>
+     <a class="noPage MCXref xref xrefnoPage" href="../../comp_environment/particles/caching_particles.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       缓存粒子
+      </span>
+     </a>
+    </p>
+   </div>
+  </div>
+  <div class="MCDropDown MCDropDown_Open dropDown">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     <span class="Master_VariablesVideoContent">
+      视频教程
+     </span>
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCDropDown MCDropDown_Open dropDown">
+     <span class="MCDropDownHead dropDownHead">
+      <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" href="javascript:void(0);">
+       <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+       Nuke 8.0-ParticleCache
+      </a>
+     </span>
+     <div class="MCDropDownBody dropDownBody">
+      <iframe allowfullscreen="" frameborder="0" height="281" mozallowfullscreen="" src="https://player.vimeo.com/video/81086651?color=f9b41b;byline=0;portrait=0" webkitallowfullscreen="" width="500">
+      </iframe>
+      <p>
+       <a href="https://vimeo.com/81086651" target="_blank">
+        ParticleCache-NUKE 8 教程
+       </a>
+       从
+       <a href="https://vimeo.com/thefoundry" target="_blank">
+        铸造
+       </a>
+       上
+       <a href="https://vimeo.com/" target="_blank">
+        Vimeo
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -301,5 +541,6 @@ throw an error, the render aborts.</p>
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

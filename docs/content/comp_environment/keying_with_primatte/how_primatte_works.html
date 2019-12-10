@@ -1,156 +1,391 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Keying with Primatte|The Primatte Algorithm">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Explanation of How Primatte Works</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/keying_with_primatte/how_primatte_works.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Keying with Primatte|The Primatte Algorithm" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   灵长类动物如何工作的解释
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/keying_with_primatte/how_primatte_works.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Explanation of How Primatte Works</h2>
-        <p class="afterHead">The Primatte chromakey algorithm is a sophisticated method of color space segmentation that can be easily explained to help a user achieve maximum effectiveness with the tool. Basically, Primatte segments all the colors in the foreground image into one of four separate categories. The result is a spill suppressed foreground image and a matte which is used to apply the modified foreground to a suitable background.</p>
-        <p>Primatte works in 3D RGB color space. Here is a visual representation of the Primatte algorithm after an image has been processed.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/primatte_diagram1.png" />
-        </p>
-        <p>By operating the Primatte interface, you essentially create three concentric, multi-faceted polyhedrons. These can be pictured as three globes (or polyhedrons or polys), one within the other, which share a common center point. The creation of these polyhedrons separates all possible foreground colors into one of four regions; inside the small polyhedron<span class="_Override" style="font-weight: bold;"> (1)</span>, between the small and medium polyhedrons <span class="_Override" style="font-weight: bold;">(2)</span>, between the medium and the large polyhedrons <span class="_Override" style="font-weight: bold;">(3)</span> and outside the large polyhedron <span class="_Override" style="font-weight: bold;">(4)</span>.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/primatte_diagram2_453x293.png" class="cm12" style="width: 453;height: 293;" />
-        </p>
-        <p>The four regions created are described as follows:</p>
-        <p><span class="_Override" style="font-weight: bold;">Region 1</span> (inside the small polyhedron) - This region contains all of the foreground image colors that are considered 100% background. These are the green or blue or whatever colors that were used as the backing color of the foreground image. </p>
-        <p><span class="_Override" style="font-weight: bold;">Region 2</span> (between the small and medium polyhedrons) - This region contains all the foreground colors that are at the edges of the foreground object(s), in glass, glass reflections, shadows, sheets of water and other transparent and semi-transparent color regions. These color regions also have spill suppression applied to them to remove color spill from the backing screen. </p>
-        <p><span class="_Override" style="font-weight: bold;">Region 3 </span>(between the medium and large polyhedrons) - This region contains all the foreground image colors that are 100% foreground but have spill suppression applied to them to remove color spill from the backing screen. Otherwise they are 100% solid foreground colors. </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/primatte_diagram2a_453x344.png" class="cm12" style="width: 453;height: 344;" />
-        </p>
-        <p><span class="_Override" style="font-weight: bold;">Region 4</span> (outside the large polyhedron) - This region contains all the 100% foreground image colors that are not modified from the original foreground image. There is no spill suppression applied to these colors. </p>
-        <p>In the first step in using Primatte (<span class="_Override" style="font-weight: bold;">Smart</span> <span class="_Override" style="font-weight: bold;">Select BG Color</span>), you are asked to indicate the backing color on the original foreground image. The sample should usually be taken from a medium shaded area near the foreground object. By medium shaded area, it is meant that if green is the backing color and the green area of the foreground image has many shades of green ranging from very pale green to almost black, a shade of green in-between these extreme ranges should be chosen. If you’re not getting good results using this sample, you should reset Primatte and take another sample using a slightly darker or lighter shade of green. The first sample of Primatte often determines the final result as the center point of all three polyhedrons is created based on this first sample.</p>
-        <p>A single pixel may be selected or a range of pixels (snail trail or rectangular sample). If a range of pixels is taken, the sample is averaged to get a single color sample. This single pixel or averaged color sample then becomes the center of the small polyhedron. A few other shades around that color are included in the original small polyhedron.</p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>It is recommended that a single pixel be selected as the first sample as you then have some idea where the center point of the polyhedrons is located. If a box sample or a long snail trail sample is made, you can only guess at the average color that ends up being the center point. You can get an idea how this sample affects the algorithm by resetting the Primatte node, viewing the alpha channel, and clicking around on the green or blue screen area while in the <span class="_Override" style="font-weight: bold;">Smart Select BG Color</span> operation mode. You can immediately see the results of the initial settings of the polyhedrons in this way.</p>
-        <p>The second step in using Primatte is to clean up the backing color area by adding additional shades of green or blue to the small poly. This second step (<span class="_Override" style="font-weight: bold;">Clean BG Noise</span>) is usually executed while viewing the black and white alpha channel.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/bgdirty.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/bgclean.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Before background <br />noise removal.</td>
-                    <td class="caption">After background <br />noise removal.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>While in the <span class="_Override" style="font-weight: bold;">Clean Bg Noise</span> sampling mode, you sample the white milky regions as shown in the left-hand image above. As you sample these regions, they turn to black as shown in the right-hand image above.</p>
-        <p>What is happening in the Primatte algorithm is that these new shades of green (the white milky areas) are added to the small poly where all the shades of green or blue are moved. The advantage of this technique is that the polyhedron distorts to enclose only the shades of green that are in the backing screen. Other shades of green around these colors are left undisturbed in the foreground. </p>
-        <p>Now that you have created a small polyhedron, you need to shape the medium and large polys. A default medium and large poly are both automatically created and are then modified based on the next couple of Primatte operations. The third Primatte step (<span class="_Override" style="font-weight: bold;">Clean FG Noise</span>) is to sample and eliminate gray areas in the 100% foreground area of the image.        </p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/fgdirty.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/fgclean.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">Before foreground noise <br />removal.</td>
-                    <td class="caption">After foreground noise <br />removal.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Again, you make several samples on the dark, grayish areas on the foreground object until it is solid white in color. Primatte is shaping the large polyhedron with each color region that is sampled. Care should be taken in both this and the previous steps to not sample too close to the edges of the foreground object. Getting too close to the foreground object's edges results in hard edges around the foreground object. Primatte uses these samples to modify and shape the medium and large polys to the desired shape. At this point, the matte or key has been created and would allow the foreground objects to be composited into a new background image. </p>
-        <p>If you now view the RGB channels, there is usually color spill on the edges (and sometimes the center) of the foreground objects. When on the edges of the foreground object, this spill comes from where the edges of the foreground object blended into the backing color. If it is on the center of the foreground object, it usually results from reflected color from the backing screen. The next Primatte step, either <span class="_Override" style="font-weight: bold;">Spill Sponge</span>, <span class="_Override" style="font-weight: bold;">Fine Tuning</span> or <span class="_Override" style="font-weight: bold;">Spill(-)</span>, can now be used to eliminate this spill color.</p>
-        <p>Let's take a look at what is happening in the Primatte algorithm while this next step is performed. Here is what the various tools in Primatte do to the Polyhedrons when they are used: </p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/primatte_diagram3_453x356.png" class="cm12" style="width: 453;height: 356;" />
-        </p>
-        <p>As you can see above, the <span class="_Override" style="font-weight: bold;">Spill Sponge</span> bulges the large polyhedron in the color region specified. A color region is specified by clicking on the image in a particular area with spill present. For example, if you click on some spill on the cheek of a foreground person, Primatte goes to the section of the large polyhedron closest to that particular flesh tone and bulges the polyhedron there. As a result, the flesh tones move from outside the large poly to in-between the medium and large polys. This is <span class="_Override" style="font-weight: bold;">Region 3</span> and, if you remember, is 100% foreground with spill suppression. As a result of the suppression, the spill is removed from that cheek color and all other shades of that color on the foreground. You would then continue to sample areas of the image where spill exists and each sample would remove spill from another color region.</p>
-        <p>When all spill has been removed, you should have a final composite. As a last step, you should view the alpha channel and make sure that gray, transparent areas have not appeared in the foreground area. If there are any, you should select the <span class="_Override" style="font-weight: bold;">Matte Sponge</span> operation mode and sample those gray pixels until they have all turned white again.</p>
-        <p>The <span class="_Override" style="font-weight: bold;">Matte Sponge</span> and <span class="_Override" style="font-weight: bold;">Spill Sponge</span> tools bulge or dent the polyhedrons a pre-selected amount. If the desired results are not achieved or the results are too extreme for the image, a manual method can be applied. You should select the <span class="_Override" style="font-weight: bold;">Fine Tuning</span> sliders, select a color region of interest and then move the appropriate slider to get the desired results.</p>
-        <p>For example, to remove spill, select a region of the composite image with spill on it. Move the spill or large poly slider to the right a little bit, the large poly bulges and the spill should disappear. Move it a little more, if necessary. Moving this slider to the right removes spill (moves the colors from outside the large poly to between the medium and large polyhedrons) and moving it to the left, dents the large poly and moves that color region to outside the large poly.</p>
-        <p>If you sample a foreground object shadow and then move the <span class="_Override" style="font-weight: bold;">M-poly (trans)</span> slider to the right, the shadow becomes more transparent. This is useful for matching composited shadows to shadows on the plate photography. It can also be used to make clouds or smoke more transparent. </p>
-        <p>If some foreground detail disappears during the composite, you can select where the detail should be and then move the <span class="_Override" style="font-weight: bold;">S-poly (detail)</span> slider to the left. This dents the small poly in that color region and releases the detail pixels from the small poly into the visible region between the small and medium polyhedrons.</p>
-        <p>The <span class="_Override" style="font-weight: bold;">Spill Sponge</span> and <span class="_Override" style="font-weight: bold;">Matte Sponge</span> tools are shortcut tools that automatically move the sliders a pre-selected amount as a timesaving step for you. Other shortcut tools include the <span class="_Override" style="font-weight: bold;">Make FG Trans.</span> tool and the <span class="_Override" style="font-weight: bold;">Restore Detail</span> tool.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/primatte_diagram4_377x333.png" class="cm10" style="width: 377;height: 333;" />
-        </p>
-        <p>These shortcut tools are one-step operations where you click on a color region of interest and Primatte performs a pre-calculated operation. Hopefully, most operations using Primatte would only require these tools, but the manual operation of the sliders is always an option. </p>
-        <p>The <span class="_Override" style="font-weight: bold;">Spill(-)</span> tool bulges the large poly a small amount incrementally in the color region that is clicked on and the <span class="_Override" style="font-weight: bold;">Spill(+)</span> tool dents it a small amount with each click. The <span class="_Override" style="font-weight: bold;">Matte(-)</span> and <span class="_Override" style="font-weight: bold;">Matte(+)</span> tools do the same to the medium poly and the <span class="_Override" style="font-weight: bold;">Detail(-)</span> and <span class="_Override" style="font-weight: bold;">Detail(+)</span> do it to the small poly.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   灵长类动物如何工作的解释
+  </h2>
+  <p class="afterHead">
+   Primatte chromakey 算法是一种复杂的颜色空间分割方法，可以很容易地解释，以帮助用户使用该工具实现最大的有效性。基本上，Primatte 将前景图像中的所有颜色分割成四个独立的类别之一。结果是溢出抑制前景图像和遮罩，用于将修改后的前景应用于合适的背景。
+  </p>
+  <p>
+   Primatte 在 3D RGB 颜色空间中工作。这是图像处理后 Primatte 算法的视觉表示。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/primatte_diagram1.png"/>
+  </p>
+  <p>
+   通过操作 Primatte 界面，您基本上创建了三个同心、多面多面体。这些可以被描绘成三个地球仪 (或多面体或多边形)，一个在另一个中，共享一个共同的中心点。这些多面体的创造将所有可能的前景色分成四个区域之一; 在小多面体内
+   <span class="_Override" style="font-weight: bold;">
+    (1)
+   </span>
+   ,在中小型多面体之间
+   <span class="_Override" style="font-weight: bold;">
+    (2)
+   </span>
+   在中型和大型多面体之间
+   <span class="_Override" style="font-weight: bold;">
+    (3)
+   </span>
+   在大多面体外面
+   <span class="_Override" style="font-weight: bold;">
+    (4)
+   </span>
+   .
+  </p>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/ug_images/primatte_diagram2_453x293.png" style="width: 453;height: 293;"/>
+  </p>
+  <p>
+   创建的四个区域描述如下:
+  </p>
+  <p>
+   <span class="_Override" style="font-weight: bold;">
+    区域 1
+   </span>
+   (在小多面体内)-此区域包含所有被认为 100% 背景的前景图像颜色。这些是绿色或蓝色或用作前景图像支持颜色的任何颜色。
+  </p>
+  <p>
+   <span class="_Override" style="font-weight: bold;">
+    区域 2
+   </span>
+   (在中小型多面体之间)-该区域包含前景对象边缘的所有前景色，在玻璃、玻璃反射、阴影中, 水和其他透明和半透明的颜色区域。这些颜色区域还应用了溢出抑制，以消除背衬屏幕上的颜色溢出。
+  </p>
+  <p>
+   <span class="_Override" style="font-weight: bold;">
+    区域 3
+   </span>
+   (在中型和大型多面体之间)-此区域包含 100% 为前景的所有前景图像颜色，但对其应用溢出抑制，以从支持屏幕中删除颜色溢出。否则，它们是 100% 纯色前景色。
+  </p>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/ug_images/primatte_diagram2a_453x344.png" style="width: 453;height: 344;"/>
+  </p>
+  <p>
+   <span class="_Override" style="font-weight: bold;">
+    区域 4
+   </span>
+   (在大多面体之外)-此区域包含未从原始前景图像修改的所有 100% 前景图像颜色。这些颜色没有溢出抑制。
+  </p>
+  <p>
+   在使用 Primatte 的第一步 (
+   <span class="_Override" style="font-weight: bold;">
+    智能
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    选择 BG 颜色
+   </span>
+   )，要求您在原始前景图像上指示背衬颜色。样本通常应该取自前景对象附近的中等阴影区域。通过中等阴影区域，这意味着如果绿色是背衬颜色，前景图像的绿色区域有许多绿色阴影，从非常浅绿色到几乎黑色, 应该选择介于这些极端范围之间的绿色阴影。如果你使用这个样本没有得到好的结果，你应该重置灵长类动物，然后用稍微暗一点或更轻一点的绿色样本。灵长类动物的第一个样本通常决定最终结果，因为所有三个多面体的中心点都是基于这个第一个样本创建的。
+  </p>
+  <p>
+   可以选择单个像素或一系列像素 (蜗牛轨迹或矩形样本)。如果拍摄了一系列像素，则对样本进行平均以获得单一颜色样本。这个单像素或平均颜色样本成为小多面体的中心。该颜色周围的其他一些阴影包含在原始的小多面体中。
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   建议选择一个像素作为第一个样本，这样你就可以知道多面体的中心点在哪里。如果制作了盒子样品或长蜗牛样品，你只能猜测最终成为中心点的平均颜色。你可以了解如何通过重置抽样算法的影响 Primatte 节点，观看的 alpha 通道，并单击周围的绿色或蓝色屏幕面积在
+   <span class="_Override" style="font-weight: bold;">
+    智能选择 BG 颜色
+   </span>
+   操作模式。这样，您可以立即看到多面体初始设置的结果。
+  </p>
+  <p>
+   使用 Primatte 的第二步是通过在小多边形中添加额外的绿色或蓝色色调来清理背衬颜色区域。第二步 (
+   <span class="_Override" style="font-weight: bold;">
+    清洁 BG 噪音
+   </span>
+   ) 通常在查看黑白 alpha 通道时执行。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/bgdirty.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/bgclean.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      背景之前
+      <br/>
+      噪音去除。
+     </td>
+     <td class="caption">
+      背景后
+      <br/>
+      噪音去除。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   而在
+   <span class="_Override" style="font-weight: bold;">
+    清洁 Bg 噪音
+   </span>
+   采样模式，您可以如上面的左侧图像所示对白色乳白色区域进行采样。当您对这些区域进行采样时，它们会变成黑色，如上面的右侧图像所示。
+  </p>
+  <p>
+   Primatte 算法中发生的事情是，这些新的绿色阴影 (白色乳白色区域) 被添加到小多边形中，所有绿色或蓝色的阴影都被移动。这种技术的优点是多面体扭曲，只封闭背衬屏幕中的绿色阴影。这些颜色周围的其他绿色阴影在前景中不受干扰。
+  </p>
+  <p>
+   现在你已经创建了一个小多面体，你需要塑造中、大多边形。默认的中型和大型多边形都是自动创建的，然后根据接下来的几个 Primatte 操作进行修改。第三个灵长类动物步骤 (
+   <span class="_Override" style="font-weight: bold;">
+    清洁 FG 噪音
+   </span>
+   ) 是对图像 100% 前景区域中的灰色区域进行采样和消除。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/fgdirty.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/fgclean.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      前景噪声之前
+      <br/>
+      移除。
+     </td>
+     <td class="caption">
+      前景噪音后
+      <br/>
+      移除。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   同样，在前景对象的深色灰色区域上制作几个样本，直到其颜色为纯白色。Primatte 正在用取样的每个颜色区域塑造大多面体。在这个步骤和前面的步骤中都应该小心，不要采样太靠近前景对象的边缘。过于靠近前景对象的边缘会导致前景对象周围出现硬边。Primatte 使用这些样本修改和形状的中型和大型多边形所需的形状。此时，已经创建了遮罩或键，并将允许前景对象组合成新的背景图像。
+  </p>
+  <p>
+   如果现在查看 RGB 通道，前景对象的边缘 (有时是中心) 通常会出现颜色溢出。当在前景对象的边缘时，这种溢出来自前景对象的边缘混合成背衬颜色的地方。如果它位于前景对象的中心，它通常是由背衬屏幕反射的颜色产生的。下一个灵长类动物步骤，要么
+   <span class="_Override" style="font-weight: bold;">
+    溢出海绵
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    微调
+   </span>
+   或
+   <span class="_Override" style="font-weight: bold;">
+    溢出 (-)
+   </span>
+   ,现在可以用来消除这种溢出颜色。
+  </p>
+  <p>
+   让我们看看在执行下一步时 Primatte 算法中发生了什么。以下是 Primatte 中的各种工具在使用时对多面体的作用:
+  </p>
+  <p class="graphic">
+   <img class="cm12" src="../../assets/images/ug_images/primatte_diagram3_453x356.png" style="width: 453;height: 356;"/>
+  </p>
+  <p>
+   正如你上面看到的,
+   <span class="_Override" style="font-weight: bold;">
+    溢出海绵
+   </span>
+   凸出指定颜色区域中的大多面体。通过在出现溢出的特定区域中单击图像来指定颜色区域。例如，如果你点击前景人脸颊上的一些溢出物，Primatte 会去最接近那个特定肤色的大多面体的部分，并在那里凸出多面体。因此，肉色从大多边形之外移动到中多边形和大多边形之间。这是
+   <span class="_Override" style="font-weight: bold;">
+    区域 3
+   </span>
+   而且，如果你记得，是 100% 前景与溢出抑制。由于抑制，溢出从脸颊颜色和前景上所有其他颜色的阴影中删除。然后，您将继续对图像中存在溢出的区域进行采样，每个采样将从另一个颜色区域中删除溢出。
+  </p>
+  <p>
+   当所有溢出都被移除时，你应该有一个最终的复合材料。作为最后一步，您应该查看 alpha 通道，并确保灰色透明区域没有出现在前景区域中。如果有，您应该选择
+   <span class="_Override" style="font-weight: bold;">
+    哑光海绵
+   </span>
+   操作模式并对这些灰色像素进行采样，直到它们再次全部变成白色。
+  </p>
+  <p>
+   的
+   <span class="_Override" style="font-weight: bold;">
+    哑光海绵
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    溢出海绵
+   </span>
+   工具凸出或凹进多面体预先选定的量。如果没有达到预期的结果，或者结果对图像来说太极端，可以应用手动方法。您应该选择
+   <span class="_Override" style="font-weight: bold;">
+    微调
+   </span>
+   滑块，选择感兴趣的颜色区域，然后移动适当的滑块以获得所需的结果。
+  </p>
+  <p>
+   例如，要删除溢出，请选择复合图像上有溢出的区域。将溢出或大多边形滑块向右移动一点，大多边形凸出和溢出应该会消失。如果有必要，多搬一点。将该滑块向右移动可以消除溢出 (将颜色从大聚体外部移动到中大聚体之间)，并将其向左移动, 凹进大多边形并将该颜色区域移动到大多边形之外。
+  </p>
+  <p>
+   如果您对前景对象阴影进行采样，然后移动
+   <span class="_Override" style="font-weight: bold;">
+    M-poly (反式)
+   </span>
+   向右滑动，阴影变得更加透明。这对于将合成阴影与平板摄影上的阴影相匹配非常有用。它也可以用来使云或烟更透明。
+  </p>
+  <p>
+   如果一些前景细节在合成过程中消失，您可以选择细节应该在哪里，然后移动
+   <span class="_Override" style="font-weight: bold;">
+    S-poly (详细信息)
+   </span>
+   向左滑动。这将在该颜色区域中凹进小多边形，并将小多边形中的细节像素释放到中小多面体之间的可见区域。
+  </p>
+  <p>
+   的
+   <span class="_Override" style="font-weight: bold;">
+    溢出海绵
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    哑光海绵
+   </span>
+   工具是快捷工具，它会自动将滑块移动一个预先选定的数量，作为您节省时间的步骤。其他快捷方式工具包括
+   <span class="_Override" style="font-weight: bold;">
+    使 FG 转换。
+   </span>
+   工具和
+   <span class="_Override" style="font-weight: bold;">
+    恢复详细信息
+   </span>
+   工具。
+  </p>
+  <p class="graphic">
+   <img class="cm10" src="../../assets/images/ug_images/primatte_diagram4_377x333.png" style="width: 377;height: 333;"/>
+  </p>
+  <p>
+   这些快捷工具是一步操作，您可以点击感兴趣的颜色区域，Primatte 执行预先计算的操作。希望大多数使用 Primatte 的操作只需要这些工具，但是手动操作滑块总是一种选择。
+  </p>
+  <p>
+   的
+   <span class="_Override" style="font-weight: bold;">
+    溢出 (-)
+   </span>
+   工具在单击的颜色区域中以少量递增方式突出大多边形
+   <span class="_Override" style="font-weight: bold;">
+    溢出 ()
+   </span>
+   每次点击时，工具会产生少量的凹痕。的
+   <span class="_Override" style="font-weight: bold;">
+    哑光 (-)
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    哑光 ()
+   </span>
+   工具对中等多边形和
+   <span class="_Override" style="font-weight: bold;">
+    详细信息 (-)
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    详细信息 ()
+   </span>
+   对小聚做吧。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -164,5 +399,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

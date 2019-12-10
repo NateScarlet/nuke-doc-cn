@@ -1,221 +1,456 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|3D Compositing|Lighting|Inserting Lights">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Inserting Direct Lights, Point Lights, or Spot Lights</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/3d_compositing/the_light_node.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|3D Compositing|Lighting|Inserting Lights" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   插入直接灯、点灯或聚光灯
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/3d_compositing/the_light_node.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h3><a name="kanchor60"></a>Inserting Direct Lights, Point Lights, or Spot Lights</h3>
-        <p> The Light node includes the DirectLight, Point, and Spotlight nodes, so you can set it to act as any of these three nodes. The advantage of using a Light node in this way is that if you want to change the light type later, you can do so without setting up a new node. For example, you might insert a direct light, but then realize that what you actually need is a spot light. If you inserted the direct light using a DirectLight node, you need to delete this node and insert a SpotLight node instead. However, if you inserted the direct light using a Light node, you can simply change the light <b>type</b> from <b>directional</b> to <b>spot</b> in the Light controls.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>The node can also be used to import lights from <b>.fbx</b> files. This is described under <a href="importing_fbx_lights.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Importing Lights from FBX Files</span></a>.</p>
-        <h4>To Add a Direct, Point, or Spot Light</h4>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>3D</b> &gt; <b>Lights</b> &gt; <b>Light</b> to insert a Light node into your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Light controls, select the <b>light type</b> you want to use: <b>point</b>, <b>directional</b>, or <b>spot</b>. The controls are enabled and disabled according to the light type you select. For example, if you chose directional light, you get the same controls that appear on the DirectLight node.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/light_node_controls_377x161.png" class="cm10" style="width: 377;height: 161;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Adjust the controls as necessary. For information on the functions of the controls, refer to the following:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you selected point as the light type, see <a href="inserting_point_lights.html#3d_compositing_3567570779_678118" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Inserting Point Lights</span></a>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you selected directional as the light type, see <a href="inserting_direct_lights.html#3d_compositing_3567570779_678098" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Inserting Direct Lights</span></a>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>If you selected spot as the light type, see <a href="inserting_spot_lights.html#3d_compositing_3567570779_678138" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Inserting Spot Lights</span></a>.</p>
-        <h4>Using the Look Input </h4>
-        <p>You can use the optional <b>look</b> input of the Light node, so that the light automatically rotates to face towards the connected input. You can attach a Camera, Light, or Axis node to the <b>look</b> input. For example, you can connect an Axis node to the <b>look</b> input so that the light rotates to face the axis, wherever it is moved.</p>
-        <p>If you animate a card to move along the x axis, you can attach a Camera and a Light node with the <b>look</b> inputs so that they automatically rotate and face the card as it moves. To do this, complete the following steps:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">After animating your card, insert an Axis node.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Expression link the Axis node to the Card node by holding <b>Ctrl</b>, clicking on the <b>translate</b> animation button in the Card node's properties, and dragging it to the <b>translate</b> animation button in the Axis node's properties. The expression link is displayed as a green line with an arrow denoting the direction of the expression. See <a href="../expressions/linking_expressions.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Linking Expressions</span></a> for more information.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/example06_264x232.png" class="cm07" style="width: 264;height: 232;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Insert a Camera node and either drag the camera to the required position in the Viewer, or use the Camera node properties to adjust the position of the camera.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/example5_264x216.png" class="cm07" style="width: 264;height: 216;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Connect the Camera's <b>look</b> input to the Axis node. </td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/example04_264x166.png" class="cm07" style="width: 264;height: 166;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Insert a Light node and drag the light to required position in the Viewer, or use the Light node properties to adjust the position of the camera.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/example3_264x222.png" class="cm07" style="width: 264;height: 222;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">Connect the Light node's <b>look</b> input to the Axis node</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/gsg_images/node_graph1_264x235.png" class="cm07" style="width: 264;height: 235;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">Playback your animated card and notice that the Camera and Light follow the animated card.</td>
-            </tr>
-        </table>
-        <table>
-            <col style="width: 70mm;" />
-            <col style="width: 70mm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/gsg_images/example01_264x177.png" class="cm07" style="width: 264;height: 177;" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/gsg_images/example02_264x177.png" class="cm07" style="width: 264;height: 177;" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h3>
+   <a name="kanchor60">
+   </a>
+   插入直接灯、点灯或聚光灯
+  </h3>
+  <p>
+   灯光节点包括 DirectLight 、 Point 和 Spotlight 节点，因此您可以将其设置为充当这三个节点中的任何一个。以这种方式使用灯光节点的好处是，如果你想以后改变灯光类型，你可以在不设置新节点的情况下这样做。例如，你可能会插入一个直射灯，但然后意识到你真正需要的是一个聚光灯。如果使用 DirectLight 节点插入直射灯光，则需要删除此节点并插入聚光灯节点。但是，如果使用灯光节点插入直射灯光，则可以简单地更改灯光
+   <b>
+    类型
+   </b>
+   从
+   <b>
+    定向
+   </b>
+   到
+   <b>
+    现货
+   </b>
+   在灯光控制中。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   该节点还可以用于从
+   <b>
+    。Fbx
+   </b>
+   文件。这是描述下
+   <a class="noPage MCXref xref xrefnoPage" href="importing_fbx_lights.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     从 FBX 文件导入灯光
+    </span>
+   </a>
+   .
+  </p>
+  <h4>
+   添加直接、点或聚光灯的步骤
+  </h4>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      3D
+     </b>
+     &gt;
+     <b>
+      灯光
+     </b>
+     &gt;
+     <b>
+      光
+     </b>
+     将灯光节点插入脚本。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在灯光控制中，选择
+     <b>
+      轻型类型
+     </b>
+     你想使用:
+     <b>
+      点
+     </b>
+     ,
+     <b>
+      定向
+     </b>
+     ,或
+     <b>
+      现货
+     </b>
+     。将根据您选择的灯光类型启用和禁用控件。例如，如果选择了平行光，则会获得与 DirectLight 节点上显示的控件相同的控件。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm10" src="../../assets/images/ug_images/light_node_controls_377x161.png" style="width: 377;height: 161;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     根据需要调整控件。有关控件功能的信息，请参阅以下内容:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果选择 “点” 作为灯光类型，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="inserting_point_lights.html#3d_compositing_3567570779_678118">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     插入点光源
+    </span>
+   </a>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果选择 “方向” 作为灯光类型，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="inserting_direct_lights.html#3d_compositing_3567570779_678098">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     插入直接灯
+    </span>
+   </a>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   如果选择 “光点” 作为光源类型，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="inserting_spot_lights.html#3d_compositing_3567570779_678138">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     插入聚光灯
+    </span>
+   </a>
+   .
+  </p>
+  <h4>
+   使用外观输入
+  </h4>
+  <p>
+   您可以使用可选的
+   <b>
+    看
+   </b>
+   光节点的输入，以便光自动朝连接的输入旋转。可以将相机、灯光或轴节点附加到
+   <b>
+    看
+   </b>
+   输入。例如，可以将轴节点连接到
+   <b>
+    看
+   </b>
+   输入，使光线旋转，面向轴，无论它被移动。
+  </p>
+  <p>
+   如果设置卡片的动画以沿 x 轴移动，则可以使用
+   <b>
+    看
+   </b>
+   输入，以便它们在卡移动时自动旋转并面对卡。为此，请完成以下步骤:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     动画你的卡后，插入一个轴节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     表达式通过保持将轴节点链接到卡节点
+     <b>
+      Ctrl
+     </b>
+     ,单击
+     <b>
+      翻译
+     </b>
+     卡节点的属性中的动画按钮，并将其拖动到
+     <b>
+      翻译
+     </b>
+     轴节点属性中的动画按钮。表达式链接显示为绿色线，箭头表示表达式的方向。请参阅
+     <a class="noPage MCXref xref xrefnoPage" href="../expressions/linking_expressions.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       链接表达式
+      </span>
+     </a>
+     欲了解更多信息。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/gsg_images/example06_264x232.png" style="width: 264;height: 232;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     插入相机节点，然后将相机拖到查看器中所需的位置，或者使用相机节点属性来调整相机的位置。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/ug_images/example5_264x216.png" style="width: 264;height: 216;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     连接相机的
+     <b>
+      看
+     </b>
+     输入到轴节点。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/gsg_images/example04_264x166.png" style="width: 264;height: 166;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     插入灯光节点并将灯光拖动到查看器中的所需位置，或使用灯光节点属性调整相机的位置。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/ug_images/example3_264x222.png" style="width: 264;height: 222;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     连接灯光节点的
+     <b>
+      看
+     </b>
+     轴节点的输入
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img class="cm07" src="../../assets/images/gsg_images/node_graph1_264x235.png" style="width: 264;height: 235;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     播放您的动画卡，并注意到相机和灯光跟随动画卡。
+    </td>
+   </tr>
+  </table>
+  <table>
+   <col style="width: 70mm;"/>
+   <col style="width: 70mm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img class="cm07" src="../../assets/images/gsg_images/example01_264x177.png" style="width: 264;height: 177;"/>
+     </td>
+     <td>
+      <img class="cm07" src="../../assets/images/gsg_images/example02_264x177.png" style="width: 264;height: 177;"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -229,5 +464,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

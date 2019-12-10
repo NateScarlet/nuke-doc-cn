@@ -1,77 +1,164 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using F_ReGrain">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Color Space in FurnaceCore Plug-ins</title>
-        <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../Default.html#furnacecore/regrain_color_space.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio|Using F_ReGrain" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   FurnaceCore 插件中的色彩空间
+  </title>
+  <link href="../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../Default.html#furnacecore/regrain_color_space.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1>Color Space in FurnaceCore Plug-ins</h1>
-        <p class="afterHead">Some of the algorithms in the FurnaceCore tool set are sensitive to the color space of the source footage. If the footage is not in the expected color space, you may get poor results from some of the plug-ins.<span class="_Override" style="font-family: 'Times New Roman';"> </span></p>
-        <p>Like <span class="CustomProduct">Nuke</span>, FurnaceCore expects all footage to be in <span class="_Override" style="font-weight: bold;">Linear</span> space. <span class="CustomProduct">Nuke</span> converts all footage to Linear upon import, so unless you have changed the colorspace in your <span class="_Override" style="font-weight: bold;">Read</span> nodes (or in the node tree by using a <span class="_Override" style="font-weight: bold;">Colorspace</span> node before a FurnaceCore plug-in), your footage should be Linear by the time it reaches the plug-in anyway.</p>
-        <p>If you know that the input to a plug-ins isn’t Linear, you should use a <span class="_Override" style="font-weight: normal;">Colorspace</span> node before and after the plug-in to convert to and from Linear for processing. This should ensure optimal results.</p>
-        <h2>Color Space in F_ReGrain</h2>
-        <p class="afterHead">Because color space transformations can distort the look of grain, and by default, <span class="CustomProduct">Nuke</span> converts your footage to linear, if you are sampling grain from your own plate, you need to  make sure you tell the plug-in what space the plate was in originally, so the sample isn’t distorted.</p>
-        <p>This is accomplished by setting the <span class="_Override" style="font-weight: bold;">Grain Colour Space</span> dropdown menu in the F_ReGrain controls to the right space. For example, if you were sampling grain from a film scan, you would want to set this to <span class="_Override" style="font-weight: bold;">Cineon</span>. If you had footage from a digital video camera, this would most likely be <span class="_Override" style="font-weight: bold;">sRGB</span>. F_ReGrain automatically sets the right color space when using one of the pre-sampled grain clips, which are in <span class="_Override" style="font-weight: bold;">sRGB</span>.</p>
-        <p>F_ReGrain also works best when applying grain in the same color space that the sampled grain originally existed. There is a dropdown menu in the <span class="_Override" style="font-weight: bold;">Response</span> section of the F_ReGrain controls which allows you to match or override this. It defaults to applying the grain in the same space as the sample.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1>
+   FurnaceCore 插件中的色彩空间
+  </h1>
+  <p class="afterHead">
+   FurnaceCore 工具集中的一些算法对源镜头的颜色空间敏感。如果素材不在预期的颜色空间中，您可能会从一些插件中获得较差的结果。
+   <span class="_Override" style="font-family: 'Times New Roman';">
+   </span>
+  </p>
+  <p>
+   像
+   <span class="CustomProduct">
+    核武器
+   </span>
+   ,FurnaceCore 希望所有的镜头都在
+   <span class="_Override" style="font-weight: bold;">
+    线性
+   </span>
+   空间。
+   <span class="CustomProduct">
+    核武器
+   </span>
+   导入时将所有素材转换为线性，因此，除非您已经更改了
+   <span class="_Override" style="font-weight: bold;">
+    阅读
+   </span>
+   节点 (或在节点树中使用
+   <span class="_Override" style="font-weight: bold;">
+    色彩空间
+   </span>
+   在 FurnaceCore 插件之前的节点)，无论如何，当它到达插件时，你的镜头应该是线性的。
+  </p>
+  <p>
+   如果你知道插件的输入不是线性的，你应该使用
+   <span class="_Override" style="font-weight: normal;">
+    色彩空间
+   </span>
+   节点前后的插件进行转换，并从线性进行处理。这将确保最佳结果。
+  </p>
+  <h2>
+   F_ReGrain 中的颜色空间
+  </h2>
+  <p class="afterHead">
+   因为颜色空间转换会扭曲纹理的外观，默认情况下,
+   <span class="CustomProduct">
+    核武器
+   </span>
+   将你的镜头转换成线性，如果你从你自己的盘子中取样谷物，你需要确保你告诉插件盘子最初在什么空间, 所以样本不会扭曲。
+  </p>
+  <p>
+   这是通过设置
+   <span class="_Override" style="font-weight: bold;">
+    纹理颜色空间
+   </span>
+   将 F_ReGrain 控件中的下拉菜单设置为右侧空间。例如，如果您正在从胶片扫描中采样颗粒，您可能希望将其设置为
+   <span class="_Override" style="font-weight: bold;">
+    Cineon
+   </span>
+   。如果你有数码摄像机的镜头，这很可能是
+   <span class="_Override" style="font-weight: bold;">
+    SRGB
+   </span>
+   。F_ReGrain 在使用一个预采样纹理剪辑时自动设置正确的颜色空间，该剪辑位于
+   <span class="_Override" style="font-weight: bold;">
+    SRGB
+   </span>
+   .
+  </p>
+  <p>
+   当在采样纹理最初存在的相同颜色空间中应用纹理时，F_ReGrain 也效果最好。有一个下拉菜单
+   <span class="_Override" style="font-weight: bold;">
+    响应
+   </span>
+   F_ReGrain 控件的部分，允许您匹配或覆盖此控件。它默认在与样本相同的空间中应用颗粒。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -85,5 +172,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

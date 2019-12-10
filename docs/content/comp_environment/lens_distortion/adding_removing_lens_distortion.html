@@ -1,134 +1,312 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Working with Lens Distortion</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/lens_distortion/adding_removing_lens_distortion.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   处理镜头失真
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/lens_distortion/adding_removing_lens_distortion.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="chapterTitle">Working with Lens Distortion</h1>
-        <p class="intro"><span class="CustomProduct">Nuke</span>'s <a name="kanchor328"></a>LensDistortion node allows you to distort or undistort an image according to a radial distortion model.</p>
-        <h1>Quick Start</h1>
-        <p class="afterHead">Here's a quick overview of the workflow:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Read in an input sequence, connect it to a Lens Distortion node (<span class="_Override" style="font-weight: bold;">Transform</span> &gt; <span class="_Override" style="font-weight: bold;">LensDistortion</span>), and connect the output to a Viewer.<span class="_Override" style="font-weight: bold;"> </span></td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">To apply lens distortion to the input manually, change the parameters on the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab. Turn on <span class="_Override" style="font-weight: bold;">Undistort</span> to invert the current distortion. For more information, see <a href="adjusting_lensdistortion.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Adjusting LensDistortion Parameters</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">To estimate the lens distortion on the input, you have three options. Each one of these calculates the distortion present and set the values in the <span class="_Override" style="font-weight: bold;">LensDistortion</span> tab.</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Image Analysis: </span>use this option to estimate the distortion automatically<span class="_Override" style="font-weight: bold;"> </span>without the help of grids or lines. Image analysis tracks features through the sequence and ﬁnds the distortion model that best describes the way the same 3D structure is projected onto different parts of the image. For more information, see <a href="analyzing_distortion_image.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Calculating Lens Distortion Automatically</span></a>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Grid Analysis: </span>use this option to estimate the distortion from a checkerboard or thin line grid, for greater accuracy. For more information, see <a href="analyzing_distortion_grid.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Analyzing Distortion Using a Grid</span></a>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">Line Analysis:</span> use this option to estimate the distortion from lines drawn along features in the input that are known to be straight. For more information, see <a href="analyzing_distortion_lines.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Analyzing Distortion Using Lines</span></a>.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">If you want, you can also calculate the lens distortion on one image and apply that distortion to another image with the help of an STMap node. For more information, see <a href="applying_distortion_another_image.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Calculating the Distortion on One Image and Applying it to Another</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">You can use the estimated lens distortion values on the LensDistortion tab to distort an image on a Card. For more information, see <a href="applying_lens_distortion_card.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Applying Lens Distortion to a Card Node</span></a>.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>When using a ScanlineRender node downstream from a LensDistortion node, by default, the ScanlineRender node does not pull pixels from outside the frame and you may end up with parts of the image missing. <br /><br />To fix this, you can use the <span class="_Override" style="font-weight: bold;">overscan</span> slider in the ScanlineRender controls to set the maximum additional pixels to render beyond the left/right and top/bottom of the frame. For more information on the ScanlineRender node and the overscan control, see <a href="../3d_compositing/rendering_3d_scene.html" class="MCXref xref"><span style="color: #00b4e0;" class="mcFormatColor">Rendering a 3D Scene</span></a>.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="chapterTitle">
+   处理镜头失真
+  </h1>
+  <p class="intro">
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的
+   <a name="kanchor328">
+   </a>
+   透镜失真节点允许您根据径向失真模型扭曲或不扭曲图像。
+  </p>
+  <h1>
+   快速启动
+  </h1>
+  <p class="afterHead">
+   以下是工作流的快速概述:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     读取输入序列，将其连接到镜头失真节点 (
+     <span class="_Override" style="font-weight: bold;">
+      变换
+     </span>
+     &gt;
+     <span class="_Override" style="font-weight: bold;">
+      透镜失真
+     </span>
+     )，并将输出连接到查看器。
+     <span class="_Override" style="font-weight: bold;">
+     </span>
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     要手动将镜头失真应用于输入，请更改
+     <span class="_Override" style="font-weight: bold;">
+      透镜失真
+     </span>
+     标签。打开
+     <span class="_Override" style="font-weight: bold;">
+      不失真
+     </span>
+     反转电流失真。有关更多信息，请参见
+     <a class="MCXref xref" href="adjusting_lensdistortion.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       调整透镜失真参数
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     要估计输入上的镜头失真，您有三个选项。其中每一个都计算当前的失真，并在
+     <span class="_Override" style="font-weight: bold;">
+      透镜失真
+     </span>
+     标签。
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    图像分析:
+   </span>
+   使用此选项可以自动估计失真
+   <span class="_Override" style="font-weight: bold;">
+   </span>
+   没有网格或线的帮助。图像分析通过序列跟踪特征，并找到最能描述相同 3D 结构投射到图像不同部分的方式的失真模型。有关更多信息，请参见
+   <a class="MCXref xref" href="analyzing_distortion_image.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     自动计算镜头失真
+    </span>
+   </a>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    网格分析:
+   </span>
+   使用此选项可以从棋盘或细线网格估计失真，以获得更高的精度。有关更多信息，请参见
+   <a class="MCXref xref" href="analyzing_distortion_grid.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用网格分析失真
+    </span>
+   </a>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   <span class="_Override" style="font-weight: bold;">
+    线路分析:
+   </span>
+   使用此选项可以估计沿输入中已知为直线的特征绘制的线的失真。有关更多信息，请参见
+   <a class="MCXref xref" href="analyzing_distortion_lines.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     使用线条分析失真
+    </span>
+   </a>
+   .
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     如果需要，您还可以计算一张图像上的镜头失真，并借助 STMap 节点将该失真应用于另一张图像。有关更多信息，请参见
+     <a class="MCXref xref" href="applying_distortion_another_image.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       计算一幅图像的失真并将其应用于另一幅图像
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     您可以使用 “镜头失真” 选项卡上的估计镜头失真值来扭曲卡片上的图像。有关更多信息，请参见
+     <a class="MCXref xref" href="applying_lens_distortion_card.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       将镜头失真应用于卡节点
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   默认情况下，当使用来自 lensdistability 节点下游的 ScanlineRender 节点时，ScanlineRender 节点不会从帧外部提取像素，最终可能会丢失部分图像。
+   <br/>
+   <br/>
+   要解决这个问题，您可以使用
+   <span class="_Override" style="font-weight: bold;">
+    过扫描
+   </span>
+   在 ScanlineRender 控件中使用滑块设置要在帧的左/右和顶部/底部之外渲染的最大附加像素。有关 ScanlineRender 节点和 overscan 控件的更多信息，请参见
+   <a class="MCXref xref" href="../3d_compositing/rendering_3d_scene.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     渲染 3D 场景
+    </span>
+   </a>
+   .
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -142,5 +320,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

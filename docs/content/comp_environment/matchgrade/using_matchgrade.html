@@ -1,110 +1,209 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Using MatchGrade</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/matchgrade/using_matchgrade.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Advanced Compositing with NukeX and Nuke Studio" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 MatchGrade
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/matchgrade/using_matchgrade.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h1 class="chapterTitle">Using MatchGrade</h1>
-        <p class="intro">This chapter teaches you how to use MatchGrade to automatically calculate a grade to match the colors in the <b>Source</b> input to the colors in the <b>Target</b> input.</p>
-        <h1>Introduction</h1>
-        <p> You can use MatchGrade to:</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>extract a baked-in grade if the <b>Target</b> clip that you want to match  is simply a graded version of the <b>Source</b> clip. See <a href="extracting_baked_grade.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Extracting a Baked-In Grade</span></a>.</p>
-        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>match the grade between two different clips to create the same look. See <a href="matching_different_clips.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Matching a Grade Between Two Different Clips</span></a>.</p>
-        <p>In both cases, you can also mask the grade to only match certain elements between the <b>Source</b> and <b>Target</b> clips, and export LUT or CDL files to re-use the calculated grade elsewhere.</p>
-        <table>
-            <col style="width: 7cm;" />
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_source_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_target_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The <b>Source</b> image.</td>
-                    <td class="caption">The <b>Target</b> image.</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <col style="width: 7cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../assets/images/ug_images/matchgrade_different_result_378x212.png" style="width: 378;height: 212;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The color-matched result.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Special thanks to The Mill <img src="../../assets/images/ug_images/themill_logo_38x29.png" style="width: 38;height: 29;" /> for use of the above footage, used throughout this chapter.</p>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-                <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
-                </div>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h1 class="chapterTitle">
+   使用 MatchGrade
+  </h1>
+  <p class="intro">
+   本章教你如何使用 MatchGrade 自动计算等级，以匹配
+   <b>
+    源
+   </b>
+   输入到中的颜色
+   <b>
+    目标
+   </b>
+   输入。
+  </p>
+  <h1>
+   导言
+  </h1>
+  <p>
+   您可以使用 MatchGrade:
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   提取一个烘焙等级，如果
+   <b>
+    目标
+   </b>
+   你想匹配的剪辑只是一个分级版本
+   <b>
+    源
+   </b>
+   剪辑。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="extracting_baked_grade.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     提取烘焙等级
+    </span>
+   </a>
+   .
+  </p>
+  <p class="bulleted" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   匹配两个不同剪辑之间的等级，以创建相同的外观。请参阅
+   <a class="noPage MCXref xref xrefnoPage" href="matching_different_clips.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     在两个不同剪辑之间匹配等级
+    </span>
+   </a>
+   .
+  </p>
+  <p>
+   在这两种情况下，您也可以屏蔽等级，以仅匹配
+   <b>
+    源
+   </b>
+   和
+   <b>
+    目标
+   </b>
+   剪辑，并导出 LUT 或 CDL 文件，以便在其他地方重新使用计算的分数。
+  </p>
+  <table>
+   <col style="width: 7cm;"/>
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_source_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_target_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      的
+      <b>
+       源
+      </b>
+      图像。
+     </td>
+     <td class="caption">
+      的
+      <b>
+       目标
+      </b>
+      图像。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <col style="width: 7cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <img src="../../assets/images/ug_images/matchgrade_different_result_378x212.png" style="width: 378;height: 212;"/>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      颜色匹配的结果。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   特别感谢磨坊
+   <img src="../../assets/images/ug_images/themill_logo_38x29.png" style="width: 38;height: 29;"/>
+   对于上述镜头的使用，在本章中使用。
+  </p>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+    <div class="MCMiniTocBox_0 miniToc nocontent" data-mc-depth="3" data-mc-toc="True">
+    </div>
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -118,5 +217,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

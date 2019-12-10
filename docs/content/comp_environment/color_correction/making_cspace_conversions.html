@@ -1,201 +1,598 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Working with Color|Transforming the Color Space">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Making Other Colorspace Conversions</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/color_correction/making_cspace_conversions.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Working with Color|Transforming the Color Space" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   进行其他颜色空间转换
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/color_correction/making_cspace_conversions.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Making Other Colorspace Conversions</h2>
-        <p class="afterHead">You can also convert elements from <span class="CustomProduct">Nuke</span>’s native color space to other color spaces more appropriate to a given process or intended display device. For conversions such as this, use <span class="CustomProduct">Nuke</span>’s Colorspace node, which supports RGB, HSV, YUV, CIE, and CMS formats (and various sub-formats).</p>
-        <h3><a name="kanchor141"></a>To Convert an Element in <span class="CustomProduct">Nuke</span>’s Native Color Space into Another Color Space</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Click <b>Color</b> &gt; <b>Colorspace</b> to insert a Colorspace node into the appropriate place in your script.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">In the Colorspace properties panel, set the rightmost dropdown menu in the <b>out</b> controls to the appropriate standard.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">Set the dropdown menu in the middle of the <b>out</b> controls to the appropriate standard.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Set the leftmost dropdown menu in the <b>out</b> controls to the color space of your choice.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">If you wish to reverse this conversion later in the script:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Copy the Colorspace node and insert it at the appropriate point in your script.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Set the <b>out</b> controls to <b>sRGB</b>, <b>D55</b>, and <b>RGB</b>.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Set the <b>in</b> controls to match the values you entered in steps 2, 3, and 4 above.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">If you wish write out the element in the new color space:</td>
-            </tr>
-        </table>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>Double-click on the element’s Write node.</p>
-        <p class="processBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span>In the Write properties panel, set the <b>colorspace</b> dropdown menu to <b>linear</b>. This halts the automatic conversion and lets the one you create above have priority.</p>
-        <h3><a name="Converting_colorspaces_with_the_OCIOColorSpace_node:"></a>Converting Color Spaces with the OCIOColorSpace Node</h3>
-        <p>Much like the ColorSpace node, you can use the OCIOColorSpace node for converting an image sequence from one colorspace to another. Conversions with the OCIOColorSpace node are based on the OpenColorIO library (for more information, see <a><a href="http://opencolorio.org/">http://opencolorio.org</a></a>). Using OCIOColorSpace is pretty simple:</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Color</b> &gt; <b>OCIO</b> &gt; <b>OCIO ColorSpace</b> and connect it to your image sequence.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Select the channel or layer you want the conversion to affect using the <b>channels</b> controls.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">In the <b>in</b> dropdown, select the colorspace of your input image. </td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">In the <b>out</b> dropdown, select the colorspace you want to convert the image to.</td>
-            </tr>
-        </table>
-        <p data-mc-conditions="Default.ScreenOnly">For more information on the OCIOColorSpace node, and other nodes based on the OpenColorIO library, see the <a href="../../reference_guide/color_nodes/color_nodes.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Color Nodes</span></a> chapter in the <a href="../../reference_guide/preface/reference_guide.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Reference Guide</span></a>.</p>
-        <div class="background">
-            <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span><span class="CustomProduct">Nuke</span> is bundled with a pre-compiled version of the OpenColorIO library and a suite of OCIO nodes. If you already have a pre-built version of the OCIO library on your system and your environment is not set up correctly for <span class="CustomProduct">Nuke</span>, you may encounter problems. For OCIO to work correctly, <span class="CustomProduct">Nuke</span> requires the compiled versions of PyOpenColorIO and libOpenColorIO to match. To override <span class="CustomProduct">Nuke</span>'s pre-packaged version with your own custom version, follow the steps below:</p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Linux:</b>
-                <br />Manually replace the <span class="CustomProduct">Nuke</span> packaged versions of <b>libOpenColorIO.so</b> and <b>PyOpenColorIO.so</b> with your custom versions of these files. These can be found in the <b>&lt;</b><span style="font-weight: bold;" class="CustomProduct">Nuke</span><b>Install&gt;</b> and <b>&lt;</b><span style="font-weight: bold;" class="CustomProduct">Nuke</span><b>Install&gt;/plugins</b> directories respectively.<br /></p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Mac:</b>
-                <br />Set your <b>NUKE_PATH</b> to the location of <b>PyOpenColorIO.so</b> and your <b>DYLD_LIBRARY_PATH</b> to the location of <b>OpenColorIO.so</b>. For example:<br />export NUKE_PATH="/myOCIOLibraryLocation/"<br />export DYLD_LIBRARY_PATH="/myOCIOLibraryLocation/"<br />NOTE: Due to an Apple security update in Mac OS X 10.7 (Lion), DYLD variables can't be loaded from the environment.plist. See <a href="http://support.apple.com/kb/TS4267">http://support.apple.com/kb/TS4267</a> for more information.<br /></p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>Windows:</b>
-                <br />Both <b>OpenColorIO.dll</b> and <b>PyOpenColorIO.pyd</b> must be in the same directory. You then need to set your <b>NUKE_PATH</b> to this directory. For example:<br />set NUKE_PATH=\myOCIOLibraryLocation\<br /></p>
-            <p class="backBullet" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><b>All Platforms:</b>
-                <br />In addition to the steps above, you need to set the OCIO environment variable to point to your OCIO configuration file. This overrides the configuration file specified in <span class="CustomProduct">Nuke</span>’s preferences (see <a href="../customizing_interface/setting_preferences.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Setting Preferences</span></a>). For example:<br />export OCIO="/myOCIOConfigLocation/config.ocio"<br />The OCIO nodes in <span class="CustomProduct">Nuke</span> are compiled against a specific version of the OCIO libraries (for the current version, see <a href="../../appendices/appendixd/studio_third_party_libraries.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Third-Party Libraries and Fonts</span></a>). If you’re using your own custom libraries, recompile the OCIO nodes against your versions of the libraries. Failure to follow these steps may result in errors when adding OCIO nodes or modifying OCIO options in the preferences.</p>
-        </div>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   进行其他颜色空间转换
+  </h2>
+  <p class="afterHead">
+   您也可以将元素转换为
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的本地颜色空间与其他颜色空间更适合给定的过程或预期的显示设备。对于这样的转换，使用
+   <span class="CustomProduct">
+    核武器
+   </span>
+   的 Colorspace 节点，支持 RGB 、 HSV 、 YUV 、 CIE 和 CMS 格式 (以及各种子格式)。
+  </p>
+  <h3>
+   <a name="kanchor141">
+   </a>
+   在中转换元素
+   <span class="CustomProduct">
+    核武器
+   </span>
+   将本地颜色空间转换为另一个颜色空间
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     单击
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      色彩空间
+     </b>
+     将 Colorspace 节点插入到脚本中的适当位置。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     在 “颜色空间属性” 面板中，在
+     <b>
+      出去
+     </b>
+     控制到适当的标准。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     将下拉菜单设置在
+     <b>
+      出去
+     </b>
+     控制到适当的标准。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     设置最左边的下拉菜单
+     <b>
+      出去
+     </b>
+     控制您选择的颜色空间。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     如果您希望稍后在脚本中反转此转换:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   复制 Colorspace 节点，并将其插入脚本中的适当位置。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   设置
+   <b>
+    出去
+   </b>
+   控制到
+   <b>
+    SRGB
+   </b>
+   ,
+   <b>
+    D55
+   </b>
+   ,和
+   <b>
+    RGB
+   </b>
+   .
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   设置
+   <b>
+    在
+   </b>
+   与您在上述步骤 2 、 3 和 4 中输入的值相匹配的控件。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     如果你想在新的颜色空间中写出元素:
+    </td>
+   </tr>
+  </table>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   双击元素的写入节点。
+  </p>
+  <p class="processBullet" data-mc-autonum="• ">
+   <span class="autonumber">
+    <span>
+     •
+    </span>
+   </span>
+   在 “写入属性” 面板中，设置
+   <b>
+    色彩空间
+   </b>
+   下拉菜单到
+   <b>
+    线性
+   </b>
+   。这将停止自动转换，并让您在上面创建的转换具有优先级。
+  </p>
+  <h3>
+   <a name="Converting_colorspaces_with_the_OCIOColorSpace_node:">
+   </a>
+   使用 OCIOColorSpace 节点转换颜色空间
+  </h3>
+  <p>
+   就像 ColorSpace 节点一样，您可以使用 OCIOColorSpace 节点将图像序列从一个 colorspace 转换到另一个 ColorSpace。与 OCIOColorSpace 节点的转换基于 OpenColorIO 库 (有关更多信息，请参见
+   <a>
+    <a href="http://opencolorio.org/">
+     Http://opencolorio.org
+    </a>
+   </a>
+   )。使用 OCIOColorSpace 非常简单:
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      颜色
+     </b>
+     &gt;
+     <b>
+      OCIO
+     </b>
+     &gt;
+     <b>
+      OCIO 色彩空间
+     </b>
+     并将其连接到您的图像序列。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     选择通道或层你要转换的影响使用
+     <b>
+      渠道
+     </b>
+     控制。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     在
+     <b>
+      在
+     </b>
+     下拉菜单，选择输入图像的颜色空间。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     在
+     <b>
+      出去
+     </b>
+     下拉列表中，选择要将图像转换为的颜色空间。
+    </td>
+   </tr>
+  </table>
+  <p data-mc-conditions="Default.ScreenOnly">
+   有关 OCIOColorSpace 节点和基于 OpenColorIO 库的其他节点的更多信息，请参见
+   <a class="noPage MCXref xref xrefnoPage" href="../../reference_guide/color_nodes/color_nodes.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     颜色节点
+    </span>
+   </a>
+   第二章
+   <a class="noPage MCXref xref xrefnoPage" href="../../reference_guide/preface/reference_guide.html">
+    <span class="mcFormatColor" style="color: #00b4e0;">
+     参考指南
+    </span>
+   </a>
+   .
+  </p>
+  <div class="background">
+   <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+    <span class="autonumber">
+     <span>
+      <span class="mcFormatColor" style="color: Black;">
+       注意:
+      </span>
+     </span>
+    </span>
+    <span class="CustomProduct">
+     核武器
+    </span>
+    与预编译版本的 OpenColorIO 库和一套 OCIO 节点捆绑在一起。如果您的系统上已经有了 OCIO 库的预构建版本，并且您的环境没有为
+    <span class="CustomProduct">
+     核武器
+    </span>
+    ,你可能会遇到问题。为了让 OCIO 正常工作,
+    <span class="CustomProduct">
+     核武器
+    </span>
+    要求 PyOpenColorIO 和 libOpenColorIO 的编译版本匹配。要覆盖
+    <span class="CustomProduct">
+     核武器
+    </span>
+    的预打包版本和您自己的自定义版本，请按照以下步骤操作:
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    <b>
+     Linux:
+    </b>
+    <br/>
+    手动更换
+    <span class="CustomProduct">
+     核武器
+    </span>
+    的打包版本
+    <b>
+     LibOpenColorIO。所以
+    </b>
+    和
+    <b>
+     PyOpenColorIO。所以
+    </b>
+    使用这些文件的自定义版本。这些可以在
+    <b>
+     &lt;
+    </b>
+    <span class="CustomProduct" style="font-weight: bold;">
+     核武器
+    </span>
+    <b>
+     安装&gt;
+    </b>
+    和
+    <b>
+     &lt;
+    </b>
+    <span class="CustomProduct" style="font-weight: bold;">
+     核武器
+    </span>
+    <b>
+     安装&gt;/插件
+    </b>
+    分别为目录。
+    <br/>
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    <b>
+     Mac:
+    </b>
+    <br/>
+    设置你的
+    <b>
+     NUKE_PATH
+    </b>
+    到的位置
+    <b>
+     PyOpenColorIO。所以
+    </b>
+    和你的
+    <b>
+     DYLD_LIBRARY_PATH
+    </b>
+    到的位置
+    <b>
+     OpenColorIO。所以
+    </b>
+    。例如:
+    <br/>
+    Export NUKE_PATH = "/myOCIOLibraryLocation/"
+    <br/>
+    Export DYLD_LIBRARY_PATH = "/myOCIOLibraryLocation/"
+    <br/>
+    注意: 由于 Mac OS X 10.7 (Lion) 中的苹果安全更新，DYLD 变量无法从 environment.plist 加载。请参阅
+    <a href="http://support.apple.com/kb/TS4267">
+     Http://support.apple.com/kb/TS4267
+    </a>
+    欲了解更多信息。
+    <br/>
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    <b>
+     视窗:
+    </b>
+    <br/>
+    两者都
+    <b>
+     OpenColorIO.dll
+    </b>
+    和
+    <b>
+     PyOpenColorIO.pyd
+    </b>
+    必须在同一目录中。然后你需要设置你的
+    <b>
+     NUKE_PATH
+    </b>
+    到此目录。例如:
+    <br/>
+    设置 NUKE_PATH = \ myOCIOLibraryLocation \
+    <br/>
+   </p>
+   <p class="backBullet" data-mc-autonum="• ">
+    <span class="autonumber">
+     <span>
+      •
+     </span>
+    </span>
+    <b>
+     所有平台:
+    </b>
+    <br/>
+    除了上述步骤之外，您还需要将 OCIO 环境变量设置为指向您的 OCIO 配置文件。这将覆盖中指定的配置文件
+    <span class="CustomProduct">
+     核武器
+    </span>
+    的偏好 (请参见
+    <a class="noPage MCXref xref xrefnoPage" href="../customizing_interface/setting_preferences.html">
+     <span class="mcFormatColor" style="color: #00b4e0;">
+      设置首选项
+     </span>
+    </a>
+    )。例如:
+    <br/>
+    导出 OCIO = "/myOCIOConfigLocation/config.ocio"
+    <br/>
+    OCIO 节点在
+    <span class="CustomProduct">
+     核武器
+    </span>
+    根据特定版本的 OCIO 库进行编译 (有关当前版本，请参见
+    <a class="noPage MCXref xref xrefnoPage" href="../../appendices/appendixd/studio_third_party_libraries.html">
+     <span class="mcFormatColor" style="color: #00b4e0;">
+      第三方库和字体
+     </span>
+    </a>
+    )。如果您正在使用自己的自定义库，请根据您的库版本重新编译 OCIO 节点。在首选项中添加 OCIO 节点或修改 OCIO 选项时，如果不执行这些步骤，可能会导致错误。
+   </p>
+  </div>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -209,5 +606,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>

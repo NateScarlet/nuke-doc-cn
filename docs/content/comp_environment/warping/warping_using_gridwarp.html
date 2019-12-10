@@ -1,548 +1,1239 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Compositing with Nuke|Warping Images|Warping">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Warping Images Using the GridWarp Node</title>
-        <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet" />
-        <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet" />
-        <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet" />
-        <script src="../../../Resources/Scripts/custom.modernizr.js">
-        </script>
-        <script src="../../../Resources/Scripts/jquery.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/require.config.js">
-        </script>
-        <script src="../../../Resources/Scripts/foundation.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/plugins.min.js">
-        </script>
-        <script src="../../../Resources/Scripts/MadCapAll.js">
-        </script>
-        <script src="../../assets/stylesheets/load.js">
-        </script>
-    </head>
-    <body>
-        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../Default.html#comp_environment/warping/warping_using_gridwarp.html">Open topic with navigation</a>
-        </p>
-        <script>/* <![CDATA[ */
+<html data-mc-help-system-file-name="Default.xml" data-mc-in-preview-mode="false" data-mc-path-to-help-system="../../../" data-mc-preload-images="false" data-mc-runtime-file-type="Topic" data-mc-search-type="Stem" data-mc-target-type="WebHelp2" data-mc-toc-path="Compositing with Nuke|Warping Images|Warping" lang="en-us" xml:lang="en-us" xmlns:madcap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+ <head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   使用 GridWarp 节点扭曲图像
+  </title>
+  <link href="../../../skins/default/stylesheets/Slideshow.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/TextEffects.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/Topic.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/styles.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/tablet.css" rel="stylesheet"/>
+  <link href="../../../skins/default/stylesheets/components/mobile.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/master_tablestyle.css" rel="stylesheet"/>
+  <link href="../../assets/stylesheets/nuke_stylesheet.css" rel="stylesheet"/>
+  <script src="../../../Resources/Scripts/custom.modernizr.js">
+  </script>
+  <script src="../../../Resources/Scripts/jquery.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/require.config.js">
+  </script>
+  <script src="../../../Resources/Scripts/foundation.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/plugins.min.js">
+  </script>
+  <script src="../../../Resources/Scripts/MadCapAll.js">
+  </script>
+  <script src="../../assets/stylesheets/load.js">
+  </script>
+ </head>
+ <body>
+  <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop">
+   <a href="../../../Default.html#comp_environment/warping/warping_using_gridwarp.html">
+    用导航打开主题
+   </a>
+  </p>
+  <script>
+   /* <![CDATA[ */
 			$(document).ready(function(){ 
 			$('.dropDownMiniTOCmenu:not(:has([class*="MCMiniTocBox"]))').remove();
 			});
-		/* ]]> */</script>
-        <div class="nocontent">
-            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
-            </div>
-        </div>
-        <h2>Warping Images Using the GridWarp Node</h2>
-        <p class="afterHead">The GridWarp node allows you to warp images by transferring image information from one Bezier grid onto another. When using this node, you first position the source grid, which defines where to warp from. Next, you position the destination grid, which defines where to warp the image to. This grid can be a duplicate of the source grid, or you can define it separately. When you manipulate the destination grid, the corresponding warp is applied to the source image.</p>
-        <p>The GridWarp node also includes controls for animating the warp and selecting the level of filtering used to remove any artifacts the warp may have caused.</p>
-        <h3>To Warp an Image Using the GridWarp Node</h3>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>1. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="1. &#160;">Select <b>Transform</b> &gt; <b>GridWarp</b> to insert a GridWarp node after the image you want to warp.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>2. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="2. &#160;">Connect the <b>src</b> input and a Viewer to the image.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gridwarp_node_node_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-        </p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>3. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="3. &#160;">When the GridWarp properties panel is open, by default the destination grid overlay appears in the Viewer. You can show or hide the source and destination grids using the <span class="_Override" style="font-size: 9pt;line-height: 11pt;"><img src="../../assets/images/ug_images/icon_gridwarp_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9881581px;margin-bottom: 0.9881581px;vertical-align: middle;" /> </span>and<span class="_Override" style="font-size: 9pt;line-height: 11pt;"> <img src="../../assets/images/ug_images/icon_gridwarp_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.990425px;margin-bottom: 0.9997805px;vertical-align: middle;" /> </span>buttons in the Viewer toolbar or the <span class="_Override" style="font-weight: bold;">visible</span> checkbox in the <span class="_Override" style="font-weight: bold;">GridWarp</span> tab. Use the destination grid to define the warp areas.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gridwarp_node_starting_grids.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.03967083px;margin-bottom: 0.5198802px;" />
-        </p>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>GridWarp automatically attempts to resize the grids to the image size as long as you have not modified any of the control points.<br /><br />If the grids are not the same size as the input image, click the <span class="_Override" style="font-weight: bold;">Resize to image</span> buttons under both <span class="_Override" style="font-weight: bold;">Source Grid</span> and <span class="_Override" style="font-weight: bold;">Destination Grid</span>.<br /><br /><img src="../../assets/images/ug_images/gridwarp_node_image_size_buttons.png" style="margin-right: 1.266235px;margin-bottom: 1.450195px;" /></p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>4. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="4. &#160;">Use the Viewer tools to control the following aspects of the grids:</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can use the copy and paste buttons <img src="../../assets/images/ug_images/icon_gridwarp_cpypst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.7525958px;margin-bottom: 1.005731px;vertical-align: middle;" /> in the grid controls to copy control point keyframes between the source and destination grids. </p>
-        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="95px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="375px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Control</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">What it does</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">output</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Controls the output displayed in the Viewer:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">source</span> - the source image and source grid.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">source</span> <span class="_Override" style="font-weight: bold;">warped</span> - the source image and destination grid.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">destination</span> - the destination image and destination grid.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">destination</span> <span class="_Override" style="font-weight: bold;">warped</span> - the destination image and source grid.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">morph</span> - the morphed image, controlled by the <span class="_Override" style="font-weight: bold;">warp</span> and <span class="_Override" style="font-weight: bold;">mix</span> parameters, and both grids.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_auto.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, the grids shown in the Viewer depends on the <span class="_Override" style="font-weight: bold;">output</span> setting. For example, if <span class="_Override" style="font-weight: bold;">output</span> is set to <span class="_Override" style="font-weight: bold;">source warped</span>, only the destination grid appears in the Viewer.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_src1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, the <span class="_Override" style="font-weight: bold;">source</span> grid is displayed in the Viewer. This control can be overridden by the <img src="../../assets/images/ug_images/icon_gridwarp_auto1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.013387px;margin-bottom: 0.9924086px;vertical-align: middle;" /> button.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_dst1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, the <span class="_Override" style="font-weight: bold;">destination</span> grid is displayed in the Viewer. This control can be overridden by the <img src="../../assets/images/ug_images/icon_gridwarp_auto2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.013387px;margin-bottom: 0.9924086px;vertical-align: middle;" /> button.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_autokey.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, changes to points in a grid are automatically keyed. You can disable this and set your keyframes manually, which is particularly useful if you intend to use the Curve Editor. See <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a>.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">ripple</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Rippling keyframes allows you to adjust the position of a stroke/shape point on one frame and have that same relative adjustment applied to the point across all frames or a specified range of frames.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">off</span> - ripple edit is disabled.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">all</span> - ripple all frames in the sequence.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">from start</span> - ripple frames from the <span class="_Override" style="font-weight: bold;">first</span> frame to the <span class="_Override" style="font-weight: bold;">current</span> frame.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">to end</span> - ripple frames from <span class="_Override" style="font-weight: bold;">current</span> frame to the <span class="_Override" style="font-weight: bold;">last</span> frame.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">range</span> - ripple all frames within the <span class="_Override" style="font-weight: bold;">from</span> and <span class="_Override" style="font-weight: bold;">to</span> fields.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">label points</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, points selected on the grid are labeled <span class="_Override" style="font-weight: bold;">x,y</span> measured from the origin.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_transhandle.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">When enabled, the transform handle overlays all selected points.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_preview.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">When enabled, a low resolution preview displays when points are moved on a grid. Once the render is complete, the low-res image is updated.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">divisions</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Enter the number of divisions required in the field to modify the grid. The number of divisions must be between 3 and 20.</p>
-                        <p class="CellBody">You can also click and hold the slider to overlay a preview of the subdivisions. GridWarp attempts to modify the grid based on the current control point distribution.</p>
-                        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>When using the preview, accuracy may suffer at lower divisions and additional smoothing may be required at higher divisions.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_select.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Edit</span> mode. Select individual points, multiple points using shift-click, or marquee groups of points.</p>
-                        <p class="CellBody">Edit mode also allows you to adjust the curve between points to produce distortion.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_add.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Insert</span> mode. Click on a horizontal line to add a vertical line to the grid and vice versa.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_delete.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Delete</span> mode. Click on a grid line to remove it from the Viewer.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_drawgrid.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Click to enable <span class="_Override" style="font-weight: bold;">Draw Boundary</span> mode. The cursor changes to a crosshair and you can drag a marquee in the Viewer to create a custom grid.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_subdiv.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Click to subdivide the grid <span class="_Override" style="font-weight: bold;">columns</span> across the currently selected area.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_subdiv1.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Click to subdivide the grid <span class="_Override" style="font-weight: bold;">rows</span> across the currently selected area.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
-                        <p class="CellBody">
-                            <img src="../../assets/images/ug_images/icon_gridwarp_subdiv2.png" />
-                        </p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
-                        <p class="CellBody">Click to subdivide the grid <span class="_Override" style="font-weight: bold;">columns</span> and <span class="_Override" style="font-weight: bold;">rows</span> across the currently selected area.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>5. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="5. &#160;">Modify the grid around the area you want to warp. Usually, you want the grid to conform to the subject of the source image. For example, if you are warping an animal’s eyes, you need to create grid lines that follow the edges of the eyes.</td>
-            </tr>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>If you have both grids visible when you move a point, and the same point for both grids are on top of each other, both points are moved and you won’t see any distortion.</p>
-        <p class="numberedCont">You can use the grid lines to isolate the areas you do not want to warp. You do this by adding grid lines between the area you intend to warp and the area you don’t want to change.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/warp1.png" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/warp2.png" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">An unlimited warp.</td>
-                    <td class="caption">The same warp limited to <br />a small area with grid lines.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="numberedCont">When you select a point, four tangent handles appear around it. You can use these handles to modify the curves connecting the points.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gridwarp_node_point_handles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-        </p>
-        <p class="numberedCont">To move several points together, draw a marquee around them and use the transformation overlay that appears.</p>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gridwarp_node_transformation_overlay.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997691px;" />
-        </p>
-        <p class="numberedCont">You can also use the <b>Draw Boundary</b> tool in the Viewer to quickly set a user defined grid. Click <b>Draw Boundary</b> and draw a marquee over the required area of the image.</p>
-        <table style="caption-side: top;">
-            <col style="width: 5cm;" />
-            <col style="width: 5cm;" />
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/gridwarp_node_draw_boundary1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;" />
-                        </p>
-                    </td>
-                    <td>
-                        <p class="graphic">
-                            <img src="../../assets/images/ug_images/gridwarp_node_draw_boundary2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="caption">The <b>Draw Boundary</b> marquee.</td>
-                    <td class="caption">The resulting user-defined grid.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="note" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;NOTE:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">NOTE:</span> &#160;</span></span>You can also use the Curve Editor to edit curves by right-clicking a control point and selecting <span class="_Override" style="font-weight: bold;">Curve Editor</span> &gt; <span class="_Override" style="font-weight: bold;">points</span>, <span class="_Override" style="font-weight: bold;">tangents</span>, or <span class="_Override" style="font-weight: bold;">both</span>.<br /><br />The curves appear in the Dope Sheet as long as the GridWarp <span class="_Override" style="font-weight: bold;">Properties</span> panel is open.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>6. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="6. &#160;">In the areas where you want to warp the image, drag the points on the grid to a new position. When you click on a point, the point changes color to indicate whether it’s in focus (green by default) and whether it has an expression set (red by default). You can change the default colors on the <span class="_Override" style="font-weight: bold;">Viewers</span> tab in the Preferences.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/gridwarp_node_image_being_warped.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792033px;margin-bottom: 1.000059px;" />
-        </p>
-        <p class="numberedCont">The pixels in these areas are moved in the direction you moved the points. Pixels in the nearby areas are also moved to accommodate the change, but the distortion lessens the further you get from the repositioned points. If you don’t want a nearby area distorted, add more grid lines between the area and the points you want to move before you drag the points to a new location.</p>
-        <p class="tip" data-mc-autonum="&lt;span style=&quot;color: Black;&quot; class=&quot;mcFormatColor&quot;&gt;TIP:&lt;/span&gt; &#160;"><span class="autonumber"><span><span style="color: Black;" class="mcFormatColor">TIP:</span> &#160;</span></span>You can nudge selected control points by a single pixel using the numeric pad <span class="_Override" style="font-weight: bold;">4</span> and <span class="_Override" style="font-weight: bold;">6</span> to nudge left and right, or <span class="_Override" style="font-weight: bold;">8 </span>and <span class="_Override" style="font-weight: bold;">2</span> to nudge up and down.<br /><br />Holding down <span class="_Override" style="font-weight: bold;">Shift</span> and using the numeric pad moves the selected points by 10 pixels, for example, <span class="_Override" style="font-weight: bold;">Shift+6 </span>moves the selected points 10 pixels to the right.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>7. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="7. &#160;">To better see what the warped image looks like, press <b>Q</b> on the Viewer to toggle the overlay off.</td>
-            </tr>
-        </table>
-        <p class="graphic">
-            <img src="../../assets/images/ug_images/warp3.png" />
-        </p>
-        <p class="numberedCont">To compare the original and warped images, press <span class="_Override" style="font-weight: bold;">D</span> on the GridWarp node to disable and enable it. If you see changes in the areas you don’t want to warp, go back to modifying the grid.</p>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>8. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="8. &#160;">If necessary, animate the grid to match any movement in the source image. For more information on how to do this, see <a href="animating_warps.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Animating Warps</span></a>.</td>
-            </tr>
-        </table>
-        <table class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
-            <col style="width: 0px;" />
-            <col style="width: 25px;" />
-            <col style="width: auto;" />
-            <tr>
-                <td valign="top" />
-                <td class="AutoNumber_p_numbered1" valign="top"><span>9. &#160;</span>
-                </td>
-                <td class="AutoNumber_p_numbered1" valign="top" data-mc-autonum="9. &#160;">You can adjust the controls described in the following table to enhance your results. </td>
-            </tr>
-        </table>
-        <table style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;" class="TableStyle-Master_TableStyle" cellspacing="0">
-            <col width="87px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <col width="368px" class="TableStyle-Master_TableStyle-Column-Column1" />
-            <thead>
-                <tr class="TableStyle-Master_TableStyle-Head-Header1">
-                    <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
-                        <p class="CellHeading">Control</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
-                        <p class="CellHeading">What it does</p>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                        <p class="CellBody">GridWarp Tab</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">channel</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Sets the channels affected by the distortion.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">mask</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Connect a mask input and set the channel to use as a mask. By default, the mask is limited to the non-black areas of this channel.</p>
-                        <p class="CellBody">Use the checkboxes to modify the mask properties:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">inject</span> - copies the <span class="_Override" style="font-weight: bold;">mask</span> input to the predefined <span class="_Override" style="font-weight: bold;">mask.a</span> channel. Injecting the mask allows you to use the same mask further downstream.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">invert</span> - inverts the use of the mask channel so that the mask is limited to the non-white areas of the mask.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">fringe</span> - blurs the edges of the mask.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">background</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">The warped image is rendered on top of an unwarped background. This control sets what to use as that background:</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on black </span>- render the warped image on top of a constant black image.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on src</span> - render the warped image on top of the image connected to the <b>src</b> input of the GridWarp node.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on dst</span> - render the warped image on top of the image connected to the <b>dst</b> input of the GridWarp node.</p>
-                        <p class="bulleted" data-mc-autonum="• "><span class="autonumber"><span>• </span></span><span class="_Override" style="font-weight: bold;">on bg</span> - render the warped image on top of a background image connected to the <b>bg</b> input of the GridWarp node.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">background mix</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Blends between the output of the GridWarp node (at 0) and whatever you have selected from the <span class="_Override" style="font-weight: bold;">background</span> dropdown menu (at 1).</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">Set bbox to</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Sets the boundary box properties.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                        <p class="CellBody">Render Tab</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
-                        <p class="CellBody">submesh <br />resolution</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
-                        <p class="CellBody">Sets the number of subdivisions that are created between Bezier curves in the grid. The higher the value, the more accurate the distortion between the grid lines, but rendering time increases.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">filter</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Select the appropriate filtering algorithm (see <a href="../transforming_elements/filtering_algorithm_2d.html" class="noPage MCXref xref xrefnoPage"><span style="color: #00b4e0;" class="mcFormatColor">Choosing a Filtering Algorithm</span></a>).</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
-                    <td colspan="2" class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading">
-                        <p class="CellBody">Options Tab</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body1">
-                    <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
-                        <p class="CellBody">source color</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
-                        <p class="CellBody">Sets the source grid color.</p>
-                    </td>
-                </tr>
-                <tr class="TableStyle-Master_TableStyle-Body-Body2">
-                    <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
-                        <p class="CellBody">destination color</p>
-                    </td>
-                    <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
-                        <p class="CellBody">Sets the destination grid color.</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>&#160;</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage"><img class="MCDropDown_Image_Icon" src="../../../skins/default/stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Topics In This Section</a></span>
-            <div class="MCDropDownBody dropDownBody">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">/* <![CDATA[ */
+		/* ]]> */
+  </script>
+  <div class="nocontent">
+   <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-count="3" data-mc-breadcrumbs-divider=" &gt; " data-mc-toc="True">
+    <span class="MCBreadcrumbsPrefix">
+     你在这里:
+    </span>
+   </div>
+  </div>
+  <h2>
+   使用 GridWarp 节点扭曲图像
+  </h2>
+  <p class="afterHead">
+   GridWarp 节点允许您通过将图像信息从一个 Bezier 网格传输到另一个网格来扭曲图像。使用此节点时，首先定位源网格，该网格定义了扭曲的位置。接下来，定位目标网格，该网格定义将图像扭曲到的位置。此网格可以是源网格的副本，也可以单独定义。操纵目标网格时，相应的扭曲将应用于源图像。
+  </p>
+  <p>
+   GridWarp 节点还包括用于设置扭曲动画和选择用于删除扭曲可能导致的任何瑕疵的过滤级别的控件。
+  </p>
+  <h3>
+   使用 GridWarp 节点扭曲图像
+  </h3>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      1。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="1.  " valign="top">
+     选择
+     <b>
+      变换
+     </b>
+     &gt;
+     <b>
+      灰矮星
+     </b>
+     在要扭曲的图像后插入一个 GridWarp 节点。
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      2.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="2.  " valign="top">
+     连接
+     <b>
+      Src
+     </b>
+     输入和图像的查看器。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gridwarp_node_node_setup.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      3.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="3.  " valign="top">
+     当 GridWarp 属性面板打开时，默认情况下，目标网格覆盖显示在查看器中。您可以显示或隐藏在来源国和目的地国网使用
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      <img src="../../assets/images/ug_images/icon_gridwarp_src.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.9881581px;margin-bottom: 0.9881581px;vertical-align: middle;"/>
+     </span>
+     和
+     <span class="_Override" style="font-size: 9pt;line-height: 11pt;">
+      <img src="../../assets/images/ug_images/icon_gridwarp_dst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.990425px;margin-bottom: 0.9997805px;vertical-align: middle;"/>
+     </span>
+     查看器工具栏中的按钮或
+     <span class="_Override" style="font-weight: bold;">
+      可见
+     </span>
+     中的复选框
+     <span class="_Override" style="font-weight: bold;">
+      灰矮星
+     </span>
+     标签。使用目标网格定义扭曲区域。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gridwarp_node_starting_grids.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.03967083px;margin-bottom: 0.5198802px;"/>
+  </p>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   只要您没有修改任何控制点，GridWarp 会自动尝试将网格调整为图像大小。
+   <br/>
+   <br/>
+   如果网格与输入图像的大小不同，请单击
+   <span class="_Override" style="font-weight: bold;">
+    调整到图像
+   </span>
+   两个按钮下
+   <span class="_Override" style="font-weight: bold;">
+    源网格
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    目的地网格
+   </span>
+   .
+   <br/>
+   <br/>
+   <img src="../../assets/images/ug_images/gridwarp_node_image_size_buttons.png" style="margin-right: 1.266235px;margin-bottom: 1.450195px;"/>
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      4.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="4.  " valign="top">
+     使用查看器工具控制网格的以下方面:
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   您可以使用复制和粘贴按钮
+   <img src="../../assets/images/ug_images/icon_gridwarp_cpypst.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.7525958px;margin-bottom: 1.005731px;vertical-align: middle;"/>
+   在网格控件中，在源网格和目标网格之间复制控制点关键帧。
+  </p>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="95px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="375px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       控制
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       它做什么
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       输出
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       控制查看器中显示的输出:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        源
+       </span>
+       -源图像和源网格。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        源
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        扭曲
+       </span>
+       -源图像和目标网格。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        目的地
+       </span>
+       -目标图像和目标网格。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        目的地
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        扭曲
+       </span>
+       -目标图像和源网格。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        变形
+       </span>
+       -变形图像，由
+       <span class="_Override" style="font-weight: bold;">
+        翘曲
+       </span>
+       和
+       <span class="_Override" style="font-weight: bold;">
+        混合
+       </span>
+       参数和两个网格。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_auto.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用时，查看器中显示的网格取决于
+       <span class="_Override" style="font-weight: bold;">
+        输出
+       </span>
+       设置。例如，如果
+       <span class="_Override" style="font-weight: bold;">
+        输出
+       </span>
+       设置为
+       <span class="_Override" style="font-weight: bold;">
+        源扭曲
+       </span>
+       ,只有目标网格出现在查看器中。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_src1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用时,
+       <span class="_Override" style="font-weight: bold;">
+        源
+       </span>
+       网格显示在查看器中。此控件可以由
+       <img src="../../assets/images/ug_images/icon_gridwarp_auto1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.013387px;margin-bottom: 0.9924086px;vertical-align: middle;"/>
+       按钮。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_dst1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用时,
+       <span class="_Override" style="font-weight: bold;">
+        目的地
+       </span>
+       网格显示在查看器中。此控件可以由
+       <img src="../../assets/images/ug_images/icon_gridwarp_auto2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 1.013387px;margin-bottom: 0.9924086px;vertical-align: middle;"/>
+       按钮。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_autokey.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 0.9997786px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，对网格中的点的更改将自动键入。您可以禁用该选项并手动设置关键帧，如果您打算使用曲线编辑器，这将特别有用。请参阅
+       <a class="noPage MCXref xref xrefnoPage" href="animating_warps.html">
+        <span class="mcFormatColor" style="color: #00b4e0;">
+         动画扭曲
+        </span>
+       </a>
+       .
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       波纹
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       波纹关键帧允许您在一个帧上调整笔触/形状点的位置，并在所有帧或指定帧范围内对该点应用相同的相对调整。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        关闭
+       </span>
+       -波纹编辑被禁用。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        所有
+       </span>
+       -波纹序列中的所有帧。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        从开始
+       </span>
+       -波纹帧从
+       <span class="_Override" style="font-weight: bold;">
+        首先
+       </span>
+       框架到
+       <span class="_Override" style="font-weight: bold;">
+        当前
+       </span>
+       框架。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        要结束
+       </span>
+       -波纹帧从
+       <span class="_Override" style="font-weight: bold;">
+        当前
+       </span>
+       框架到
+       <span class="_Override" style="font-weight: bold;">
+        最后
+       </span>
+       框架。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        范围
+       </span>
+       -波纹内的所有帧
+       <span class="_Override" style="font-weight: bold;">
+        从
+       </span>
+       和
+       <span class="_Override" style="font-weight: bold;">
+        到
+       </span>
+       字段。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       标签点
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，将标记网格上选定的点
+       <span class="_Override" style="font-weight: bold;">
+        X，y
+       </span>
+       从原点测量。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_transhandle.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       启用后，变换控制柄会覆盖所有选定的点。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_preview.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       启用后，在网格上移动点时将显示低分辨率预览。渲染完成后，将更新低分辨率图像。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       部门
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       在字段中输入修改网格所需的分段数。划分的数量必须在 3 到 20 之间。
+      </p>
+      <p class="CellBody">
+       也可以单击并按住滑块以覆盖细分的预览。GridWarp 尝试根据当前控制点分布修改网格。
+      </p>
+      <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+       <span class="autonumber">
+        <span>
+         <span class="mcFormatColor" style="color: Black;">
+          注意:
+         </span>
+        </span>
+       </span>
+       当使用预览时，精度可能会在较低的部门受到影响，在较高的部门可能需要额外的平滑。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_select.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        编辑
+       </span>
+       模式。选择单个点、使用 shift-click 选择多个点或选择选框点组。
+      </p>
+      <p class="CellBody">
+       编辑模式还允许您调整点之间的曲线以产生失真。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_add.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        插入
+       </span>
+       模式。单击水平线可将垂直线添加到网格中，反之亦然。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_delete.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        删除
+       </span>
+       模式。单击网格线将其从查看器中删除。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_drawgrid.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       单击以启用
+       <span class="_Override" style="font-weight: bold;">
+        绘制边界
+       </span>
+       模式。光标变为十字线，您可以在查看器中拖动选框来创建自定义网格。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_subdiv.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198745px;margin-bottom: 1.000063px;"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       单击以细分网格
+       <span class="_Override" style="font-weight: bold;">
+        列
+       </span>
+       在当前选定的区域。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_subdiv1.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       单击以细分网格
+       <span class="_Override" style="font-weight: bold;">
+        行
+       </span>
+       在当前选定的区域。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body1">
+      <p class="CellBody">
+       <img src="../../assets/images/ug_images/icon_gridwarp_subdiv2.png"/>
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body1">
+      <p class="CellBody">
+       单击以细分网格
+       <span class="_Override" style="font-weight: bold;">
+        列
+       </span>
+       和
+       <span class="_Override" style="font-weight: bold;">
+        行
+       </span>
+       在当前选定的区域。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      5.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="5.  " valign="top">
+     修改要扭曲的区域周围的网格。通常，您希望网格符合源图像的主题。例如，如果您正在扭曲动物的眼睛，您需要创建跟随眼睛边缘的网格线。
+    </td>
+   </tr>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   如果在移动点时两个网格都可见，并且两个网格的同一个点位于彼此的顶部，则两个点都被移动，并且不会看到任何失真。
+  </p>
+  <p class="numberedCont">
+   可以使用网格线来隔离不希望扭曲的区域。您可以通过在要扭曲的区域和不想更改的区域之间添加网格线来做到这一点。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/warp1.png"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/warp2.png"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      无限扭曲。
+     </td>
+     <td class="caption">
+      同样的扭曲仅限于
+      <br/>
+      有网格线的小区域。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="numberedCont">
+   选择点时，四个切线控制柄会出现在它周围。可以使用这些控制柄修改连接点的曲线。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gridwarp_node_point_handles.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+  </p>
+  <p class="numberedCont">
+   要一起移动几个点，请在它们周围画一个选框，并使用出现的变换覆盖。
+  </p>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gridwarp_node_transformation_overlay.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997691px;"/>
+  </p>
+  <p class="numberedCont">
+   您也可以使用
+   <b>
+    绘制边界
+   </b>
+   工具在查看器中快速设置用户定义的网格。单击
+   <b>
+    绘制边界
+   </b>
+   并在图像的所需区域上绘制一个字幕。
+  </p>
+  <table style="caption-side: top;">
+   <col style="width: 5cm;"/>
+   <col style="width: 5cm;"/>
+   <tbody>
+    <tr>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/gridwarp_node_draw_boundary1.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 1.000059px;"/>
+      </p>
+     </td>
+     <td>
+      <p class="graphic">
+       <img src="../../assets/images/ug_images/gridwarp_node_draw_boundary2.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.5198649px;margin-bottom: 0.9997844px;"/>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td class="caption">
+      的
+      <b>
+       绘制边界
+      </b>
+      字幕。
+     </td>
+     <td class="caption">
+      生成的用户定义网格。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p class="note" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;NOTE:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      注意:
+     </span>
+    </span>
+   </span>
+   也可以使用曲线编辑器编辑曲线，方法是右击控制点并选择
+   <span class="_Override" style="font-weight: bold;">
+    曲线编辑器
+   </span>
+   &gt;
+   <span class="_Override" style="font-weight: bold;">
+    点
+   </span>
+   ,
+   <span class="_Override" style="font-weight: bold;">
+    切线
+   </span>
+   ,或
+   <span class="_Override" style="font-weight: bold;">
+    两者都
+   </span>
+   .
+   <br/>
+   <br/>
+   曲线出现在涂料表上，就像 GridWarp 一样长
+   <span class="_Override" style="font-weight: bold;">
+    属性
+   </span>
+   面板是开放的。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      6.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="6.  " valign="top">
+     在要扭曲图像的区域中，将网格上的点拖到新位置。当您单击某个点时，该点会改变颜色，以指示它是否处于焦点状态 (默认情况下为绿色) 以及它是否设置了表达式 (默认情况下为红色)。您可以更改上的默认颜色
+     <span class="_Override" style="font-weight: bold;">
+      观众
+     </span>
+     首选项中的选项卡。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/gridwarp_node_image_being_warped.png" style="margin-left: 1.000063px;margin-top: 1.000063px;margin-right: 0.2792033px;margin-bottom: 1.000059px;"/>
+  </p>
+  <p class="numberedCont">
+   这些区域中的像素将按照移动点的方向移动。附近区域的像素也会被移动以适应变化，但是从重新定位的点处得到的失真会减少。如果不希望附近的区域扭曲，请在区域和要移动的点之间添加更多网格线，然后将点拖动到新位置。
+  </p>
+  <p class="tip" data-mc-autonum='&lt;span style="color: Black;" class="mcFormatColor"&gt;TIP:&lt;/span&gt;  '>
+   <span class="autonumber">
+    <span>
+     <span class="mcFormatColor" style="color: Black;">
+      提示:
+     </span>
+    </span>
+   </span>
+   您可以使用数字键盘按单个像素轻推选定的控制点
+   <span class="_Override" style="font-weight: bold;">
+    4
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    6
+   </span>
+   向左和向右轻推，或
+   <span class="_Override" style="font-weight: bold;">
+    8
+   </span>
+   和
+   <span class="_Override" style="font-weight: bold;">
+    2
+   </span>
+   向上和向下轻推。
+   <br/>
+   <br/>
+   按住
+   <span class="_Override" style="font-weight: bold;">
+    转变
+   </span>
+   使用数字键盘将选定的点移动 10 像素，例如,
+   <span class="_Override" style="font-weight: bold;">
+    6 班
+   </span>
+   将选定的点向右移动 10 个像素。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      7.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="7.  " valign="top">
+     要更好地查看扭曲的图像是什么样子，请按
+     <b>
+      Q
+     </b>
+     在查看器上关闭覆盖。
+    </td>
+   </tr>
+  </table>
+  <p class="graphic">
+   <img src="../../assets/images/ug_images/warp3.png"/>
+  </p>
+  <p class="numberedCont">
+   要比较原始图像和扭曲图像，请按
+   <span class="_Override" style="font-weight: bold;">
+    D
+   </span>
+   在 GridWarp 节点上禁用并启用它。如果您看到不想扭曲的区域发生变化，请返回修改网格。
+  </p>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      8。
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="8.  " valign="top">
+     如有必要，设置网格动画以匹配源图像中的任何移动。有关如何执行此操作的更多信息，请参见
+     <a class="noPage MCXref xref xrefnoPage" href="animating_warps.html">
+      <span class="mcFormatColor" style="color: #00b4e0;">
+       动画扭曲
+      </span>
+     </a>
+     .
+    </td>
+   </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" class="AutoNumber_p_numbered1" style="width: 100%; margin-left: 0;">
+   <col style="width: 0px;"/>
+   <col style="width: 25px;"/>
+   <col style="width: auto;"/>
+   <tr>
+    <td valign="top">
+    </td>
+    <td class="AutoNumber_p_numbered1" valign="top">
+     <span>
+      9.
+     </span>
+    </td>
+    <td class="AutoNumber_p_numbered1" data-mc-autonum="9.  " valign="top">
+     您可以调整下表中描述的控件以增强结果。
+    </td>
+   </tr>
+  </table>
+  <table cellspacing="0" class="TableStyle-Master_TableStyle" style="mc-table-style: url('../../assets/stylesheets/master_tablestyle.css');caption-side: top;width: 100%;">
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="87px"/>
+   <col class="TableStyle-Master_TableStyle-Column-Column1" width="368px"/>
+   <thead>
+    <tr class="TableStyle-Master_TableStyle-Head-Header1">
+     <td class="TableStyle-Master_TableStyle-HeadE-Column1-Header1">
+      <p class="CellHeading">
+       Control
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-HeadD-Column1-Header1">
+      <p class="CellHeading">
+       What it does
+      </p>
+     </td>
+    </tr>
+   </thead>
+   <tbody>
+    <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="2">
+      <p class="CellBody">
+       GridWarp 标签
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       渠道
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       设置受失真影响的通道。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       面具
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       连接遮罩输入并设置要用作遮罩的通道。默认情况下，遮罩仅限于此通道的非黑色区域。
+      </p>
+      <p class="CellBody">
+       使用复选框修改遮罩属性:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        注入
+       </span>
+       -复制
+       <span class="_Override" style="font-weight: bold;">
+        面具
+       </span>
+       预定义的输入
+       <span class="_Override" style="font-weight: bold;">
+        面具。
+       </span>
+       频道。注射面具可以让你在下游使用相同的面具。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        反转
+       </span>
+       -反转面具通道的使用，以便面具被限制在面具的非白色区域。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        边缘
+       </span>
+       -模糊面具的边缘。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       背景
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       扭曲的图像在未扭曲背景的顶部渲染。此控件设置用作背景的内容:
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        黑色上
+       </span>
+       -在恒定的黑色图像上渲染扭曲的图像。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        关于 src
+       </span>
+       -在连接到的图像顶部渲染扭曲的图像
+       <b>
+        Src
+       </b>
+       GridWarp 节点的输入。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        在 dst 上
+       </span>
+       -在连接到的图像顶部渲染扭曲的图像
+       <b>
+        Dst
+       </b>
+       GridWarp 节点的输入。
+      </p>
+      <p class="bulleted" data-mc-autonum="• ">
+       <span class="autonumber">
+        <span>
+         •
+        </span>
+       </span>
+       <span class="_Override" style="font-weight: bold;">
+        关于 bg
+       </span>
+       -将扭曲的图像渲染到连接到的背景图像的顶部
+       <b>
+        Bg
+       </b>
+       GridWarp 节点的输入。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       背景混合
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       在 GridWarp 节点的输出 (0) 和您从
+       <span class="_Override" style="font-weight: bold;">
+        背景
+       </span>
+       下拉菜单 (1)。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       将 bbox 设置为
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       设置边界框属性。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="2">
+      <p class="CellBody">
+       渲染选项卡
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body2">
+      <p class="CellBody">
+       子网格
+       <br/>
+       决议
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body2">
+      <p class="CellBody">
+       设置在网格中的 Bezier 曲线之间创建的细分数。值越高，网格线之间的失真越准确，但渲染时间会增加。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       过滤器
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       选择适当的过滤算法 (请参见
+       <a class="noPage MCXref xref xrefnoPage" href="../transforming_elements/filtering_algorithm_2d.html">
+        <span class="mcFormatColor" style="color: #00b4e0;">
+         选择过滤算法
+        </span>
+       </a>
+       )。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Subheading" data-mc-pattern="6">
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Subheading" colspan="2">
+      <p class="CellBody">
+       选项选项卡
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body1">
+     <td class="TableStyle-Master_TableStyle-BodyE-Column1-Body1">
+      <p class="CellBody">
+       源颜色
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyD-Column1-Body1">
+      <p class="CellBody">
+       设置源网格颜色。
+      </p>
+     </td>
+    </tr>
+    <tr class="TableStyle-Master_TableStyle-Body-Body2">
+     <td class="TableStyle-Master_TableStyle-BodyB-Column1-Body2">
+      <p class="CellBody">
+       目的地颜色
+      </p>
+     </td>
+     <td class="TableStyle-Master_TableStyle-BodyA-Column1-Body2">
+      <p class="CellBody">
+       设置目标网格颜色。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
+   <col/>
+   <tbody>
+    <tr>
+     <td>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="MCDropDown MCDropDown_Open dropDown dropDownMiniTOCmenu">
+   <span class="MCDropDownHead dropDownHead">
+    <a class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCDropDownHotSpot_MiniTOCmenu MCHotSpotImage" href="javascript:void(0);">
+     <img alt="Closed" class="MCDropDown_Image_Icon" data-mc-alt2="Open" height="13" src="../../../skins/default/stylesheets/Images/transparent.gif" width="16"/>
+     本节中的主题
+    </a>
+   </span>
+   <div class="MCDropDownBody dropDownBody">
+   </div>
+  </div>
+ </body>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-60569477-1', {'cookieDomain': 'none'});
-	/* ]]> */</script>
-    <script type="text/javascript">/* <![CDATA[ */
+	/* ]]> */
+ </script>
+ <script type="text/javascript">
+  /* <![CDATA[ */
 		$("document").ready(function ()
 		{
 		function postMe()
@@ -556,5 +1247,6 @@
 		var submit = $("input#search-field");
 		submit.keypress(function(e) { if(e.keyCode==13) { postMe(); } return true; } );
 		});
-	/* ]]> */</script>
+	/* ]]> */
+ </script>
 </html>
