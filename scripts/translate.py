@@ -100,7 +100,7 @@ class CLI:
         self._add_translated_file(path)
 
     def html_dir(self, path):
-        with futures.ThreadPoolExecutor() as executor:
+        with futures.ThreadPoolExecutor(max_workers=16) as executor:
             executor.map(self.html, pathlib.Path(path).glob('**/*.html'))
 
 
