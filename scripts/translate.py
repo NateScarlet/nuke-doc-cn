@@ -71,7 +71,7 @@ def translate_html_file(client, path):
         translated_tags.add(i)
 
     def select_html_text(tag: bs4.Tag):
-        if tag.name in ['script']:
+        if tag.name in ['script', 'pre']:
             return False
         return len(str(tag)) < 2000 and len(tag.get_text()) > 2
 
