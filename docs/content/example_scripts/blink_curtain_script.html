@@ -45,40 +45,40 @@
 			});
 		/* ]]> */
   </script>
-  <pre><p>根 {
-输入 0
-格式 “2048 1556 0 0 2048 1556 1 2K_Super_35 (全 ap)”
-Proxy_type 刻度
-Proxy_format "1024 778 0 0 1024 778 1 1K_Super_35 (全 ap)"
+  <pre><p>Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
 }
 StickyNote {
-输入 0
-名字 StickyNote10
-标签 “CurtainKernel: \ nA 涟漪窗帘效果与 \ n1D 远程访问”
-Xpos 174
-Ypos 117
+ inputs 0
+ name StickyNote10
+ label "CurtainKernel:\nA rippling curtain effect with \n1D ranged access"
+ xpos -174
+ ypos -117
 }
-棋盘 2 {
-输入 0
-名称 CheckerBoard3
-Xpos 133
-Ypos-65
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard3
+ xpos -133
+ ypos -65
 }
 BlinkScript {
-KernelDescription “1” CurtainKernel “迭代组件化” 2 “src” 读取 Ranged1D “dst” 写点 3 “振幅” 浮动 1 AADIQg = = \ "阶段 \ "Float 1 2w9JQA = = \" period \ "Float 1 AAD6Qw = ="
-KernelSource "//请注意，如果行号改变，writing_a_process.rst 必须编辑。 \ nkernel CurtainKernel: ImageComputationKernel &lt;eComponentWise&gt; \ n 图像 &lt;eRead，eAccessRanged1D，eEdgeConstant&gt; src; \ n 图像 &lt;eWrite，eaccessspoint&gt; dst; \ n \ nparam: \ n 浮动幅度像素; \ n 浮动相位; \ n 浮动周期像素; \ n \ nlocal: \ n 浮动角度频率; \ n void define () “振幅”，100.0f); \ n defineParam (相位，“相位”，PI); \ n defineParam (周期像素，“周期”，500.0f); \ n \} \ n 无效 init () {\ n src。 setRange (-amplitudePixels,AmplitudePixels); \ n src。 setAxis (eX); \ n angularFrequency = 2.0f * PI/periodPixels; \ n \} \ n 无效进程 (int3 pos) {\ n int offset = amplitudePixels * sin (pos。 y * angularFrequency phaseradian); \ n dst () = src (偏移); \ n \}; \ n"
-重建 ""
-名称 BlinkScript3
-选定真
-Xpos 133
-Ypos 7
+ KernelDescription "1 \"CurtainKernel\" iterate componentWise 5bf7fa35ef6e91b8cb3dbf7f8493d620cc80d977819b69e1e30605e2348da970 2 \"src\" Read Ranged1D \"dst\" Write Point 3 \"amplitude\" Float 1 AADIQg== \"phase\" Float 1 2w9JQA== \"period\" Float 1 AAD6Qw=="
+ kernelSource "//Note if line numbers change writing_a_process.rst must be edited.\nkernel CurtainKernel : ImageComputationKernel&lt;eComponentWise&gt;\n\{\n  Image&lt;eRead, eAccessRanged1D, eEdgeConstant&gt; src;\n  Image&lt;eWrite, eAccessPoint&gt; dst;\n\nparam:\n  float amplitudePixels;\n  float phaseRadians;\n  float periodPixels;\n\nlocal:\n  float angularFrequency;\n\n  void define() \{\n    defineParam(amplitudePixels, \"amplitude\", 100.0f);\n    defineParam(phaseRadians, \"phase\", PI);\n    defineParam(periodPixels, \"period\", 500.0f);\n  \}\n\n  void init() \{\n     src.setRange(-amplitudePixels, amplitudePixels);\n     src.setAxis(eX);\n     angularFrequency = 2.0f*PI/periodPixels;\n  \}\n\n  void process(int3 pos) \{\n    int offset = amplitudePixels * sin( pos.y * angularFrequency + phaseRadians );\n    dst() = src(offset);\n  \}\n\};\n\n"
+ rebuild ""
+ name BlinkScript3
+ selected true
+ xpos -133
+ ypos 7
 }
-查看器 {
-框架 1
-Input_process 错误
-名称 Viewer1
-Xpos 133
-Ypos 67
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -133
+ ypos 67
 }
 </p></pre>
   <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">

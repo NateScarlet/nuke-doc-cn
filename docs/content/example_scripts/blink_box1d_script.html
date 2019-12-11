@@ -45,40 +45,40 @@
 			});
 		/* ]]> */
   </script>
-  <pre><p>根 {
-输入 0
-格式 “2048 1556 0 0 2048 1556 1 2K_Super_35 (全 ap)”
-Proxy_type 刻度
-Proxy_format "1024 778 0 0 1024 778 1 1K_Super_35 (全 ap)"
+  <pre><p>Root {
+ inputs 0
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
 }
 StickyNote {
-输入 0
-名称 StickyNote1
-标签 “BoxBlur1D: \ nA 从 \ nits 输入访问 1D 范围的一维模糊”
-Xpos 394
-Ypos 142
+ inputs 0
+ name StickyNote1
+ label "BoxBlur1D:\nA one-dimensional blur that\naccesses a 1D range from \nits input"
+ xpos -394
+ ypos -142
 }
-棋盘 2 {
-输入 0
-名称 CheckerBoard8
-Xpos 359
-Ypos-79
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard8
+ xpos -359
+ ypos -79
 }
 BlinkScript {
-KernelDescription "1 \" BoxBlur1D \ "迭代组件式 2 \" src \ "读取 Ranged1D \" dst \ "写入点 1 \" Radius \ "Int 1 BQAAAA = ="
-KernelSource "kernel BoxBlur1D: public ImageComputationKernel &lt;eComponentWise&gt; \ n 图像 &lt;eRead，eAccessRanged1D，eEdgeClamped&gt; src; \ n 图像 &lt;eWrite，eaccessspoint&gt; dst; \ n \ nparam: \ n int 半径;//我们盒子的半径模糊 \ n \ nlocal: \ n int _ filterWidth; \ n void define () {\ n//RIP 节点将半径标识为停机坪 \ n defineParam (半径，\ "radius \"，5); \ n \ \ n void init (){\ \ N//设置我们需要从源 \ n src 访问的范围。 setRange (-radius，radius); \ n//将 1d 范围的轴设置为水平 \ n src。 setAxis (eX); \ n _ filterWidth = 2 * 半径 1; \ n \} \ n 无效进程 () {\ \ n 浮动总和 = 0.0f; \ n for (int i =-半径; i &lt;= 半径; i) \ n sum = src (i); \ n dst ()= Sum/(float) _ filterWidth; \ n \}; \ n"
-重建 ""
-名称 BlinkScript10
-选定真
-Xpos 359
-Ypos 13
+ KernelDescription "1 \"BoxBlur1D\" iterate componentWise 3e112ad059d3b7e8782ba1ef1a9e1c6b4ffc7e41942fbac32ee93c028f5176ed 2 \"src\" Read Ranged1D \"dst\" Write Point 1 \"Radius\" Int 1 BQAAAA=="
+ kernelSource "kernel BoxBlur1D : public ImageComputationKernel&lt;eComponentWise&gt;\n\{\n  Image&lt;eRead, eAccessRanged1D, eEdgeClamped&gt; src;\n  Image&lt;eWrite, eAccessPoint&gt; dst;\n\nparam:\n  int radius;  //The radius of our box blur\n\nlocal:\n  int _filterWidth;\n\n  void define() \{\n    //RIP node will identify radius as the apron\n    defineParam(radius, \"Radius\", 5); \n  \}\n\n  void init() \{\n    //Set the range we need to access from the source \n    src.setRange(-radius, radius);\n\n    //Set the axis for the 1D-range to be horizontal\n    src.setAxis(eX);\n\n    _filterWidth = 2 * radius + 1;\n  \}\n\n  void process() \{\n    float sum = 0.0f;\n    for(int i = -radius; i &lt;= radius; i++)\n      sum += src(i);\n    dst() = sum / (float)_filterWidth;\n  \}\n\};\n"
+ rebuild ""
+ name BlinkScript10
+ selected true
+ xpos -359
+ ypos 13
 }
-查看器 {
-框架 1
-Input_process 错误
-名称 Viewer1
-Xpos 359
-Ypos 82
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos -359
+ ypos 82
 }
 </p></pre>
   <table style="width: 100%;border-bottom-style: solid;border-bottom-width: 1px;">
